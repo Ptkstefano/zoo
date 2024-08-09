@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4tbgdays1keu"]
+
+[ext_resource type="Texture2D" uid="uid://boftg0lq7xdqp" path="res://terrain_sheet.png" id="1_2xvyp"]
+[ext_resource type="Script" path="res://tile.gd" id="1_f7nxy"]
+
+[node name="Tile" type="Node2D"]
+script = ExtResource("1_f7nxy")
+
+[node name="Terrain" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_2xvyp")
+hframes = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(0, -12, -26, 0, 0, 12, 25, 0)
