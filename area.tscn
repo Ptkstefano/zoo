@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b020lesiynlbr"]
+
+[ext_resource type="Script" path="res://area.gd" id="1_hna4l"]
+[ext_resource type="PackedScene" uid="uid://mjmj3ujto5dd" path="res://area_layer_template.tscn" id="2_ccmyx"]
+
+[node name="Area" type="Node"]
+script = ExtResource("1_hna4l")
+
+[node name="AreaTiles" parent="." instance=ExtResource("2_ccmyx")]

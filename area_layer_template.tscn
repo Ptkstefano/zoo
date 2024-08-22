@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://mjmj3ujto5dd"]
+
+[ext_resource type="Texture2D" uid="uid://bw474aur5qc4s" path="res://tile3.png" id="1_n8nju"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q1gup"]
+texture = ExtResource("1_n8nju")
+texture_region_size = Vector2i(64, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_kn4vk"]
+tile_shape = 1
+tile_layout = 5
+tile_size = Vector2i(64, 32)
+sources/0 = SubResource("TileSetAtlasSource_q1gup")
+
+[node name="AreaLayer" type="TileMapLayer"]
+modulate = Color(1, 1, 1, 0.372549)
+tile_set = SubResource("TileSet_kn4vk")
