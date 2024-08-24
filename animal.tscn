@@ -1,0 +1,115 @@
+[gd_scene load_steps=10 format=3 uid="uid://cl4o0ja0kt0i1"]
+
+[ext_resource type="Texture2D" uid="uid://c6wmdilxav70a" path="res://capy.png" id="1_1ee7e"]
+[ext_resource type="Script" path="res://animal.gd" id="1_wogma"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r3wdq"]
+radius = 4.12311
+
+[sub_resource type="Animation" id="Animation_o17hh"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_abva1"]
+resource_name = "Eat"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(4, 0), Vector2i(3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7dh8g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pk5g8"]
+resource_name = "Walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(1, 0), Vector2i(2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kpkyi"]
+resource_name = "Walk_S"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(1, 1), Vector2i(2, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_586lv"]
+_data = {
+"Eat": SubResource("Animation_abva1"),
+"Idle": SubResource("Animation_o17hh"),
+"RESET": SubResource("Animation_7dh8g"),
+"Walk_N": SubResource("Animation_pk5g8"),
+"Walk_S": SubResource("Animation_kpkyi")
+}
+
+[node name="Animal" type="CharacterBody2D"]
+script = ExtResource("1_wogma")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -14)
+texture = ExtResource("1_1ee7e")
+hframes = 5
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r3wdq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_586lv")
+}
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+navigation_layers = 2

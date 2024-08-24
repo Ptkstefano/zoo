@@ -1,9 +1,78 @@
-[gd_scene load_steps=3 format=3 uid="uid://b020lesiynlbr"]
+[gd_scene load_steps=10 format=3 uid="uid://b020lesiynlbr"]
 
 [ext_resource type="Script" path="res://area.gd" id="1_hna4l"]
 [ext_resource type="PackedScene" uid="uid://mjmj3ujto5dd" path="res://area_layer_template.tscn" id="2_ccmyx"]
+[ext_resource type="Texture2D" uid="uid://cjyflttjg5wv5" path="res://fence_sheet.png" id="3_25akr"]
+[ext_resource type="Texture2D" uid="uid://bw474aur5qc4s" path="res://tile3.png" id="3_l4y1i"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_b7efn"]
+vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bcvfi"]
+texture = ExtResource("3_l4y1i")
+texture_region_size = Vector2i(64, 32)
+0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_b7efn")
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_o4u8v"]
+tile_shape = 1
+tile_layout = 5
+tile_size = Vector2i(64, 32)
+navigation_layer_0/layers = 2
+sources/0 = SubResource("TileSetAtlasSource_bcvfi")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1csia"]
+texture = ExtResource("3_25akr")
+texture_region_size = Vector2i(65, 35)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_e8yor"]
+tile_shape = 1
+tile_layout = 5
+tile_size = Vector2i(64, 32)
+sources/0 = SubResource("TileSetAtlasSource_1csia")
 
 [node name="Area" type="Node"]
 script = ExtResource("1_hna4l")
 
 [node name="AreaTiles" parent="." instance=ExtResource("2_ccmyx")]
+tile_set = SubResource("TileSet_o4u8v")
+
+[node name="FenceLayer" type="Node2D" parent="."]
+
+[node name="E" type="TileMapLayer" parent="FenceLayer"]
+y_sort_enabled = true
+texture_filter = 1
+tile_set = SubResource("TileSet_e8yor")
+collision_enabled = false
+
+[node name="S" type="TileMapLayer" parent="FenceLayer"]
+y_sort_enabled = true
+texture_filter = 1
+tile_set = SubResource("TileSet_e8yor")
+collision_enabled = false
+
+[node name="W" type="TileMapLayer" parent="FenceLayer"]
+y_sort_enabled = true
+texture_filter = 1
+tile_set = SubResource("TileSet_e8yor")
+collision_enabled = false
+
+[node name="N" type="TileMapLayer" parent="FenceLayer"]
+y_sort_enabled = true
+texture_filter = 1
+tile_set = SubResource("TileSet_e8yor")
+collision_enabled = false

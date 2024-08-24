@@ -6,6 +6,8 @@ var is_pressing : bool = false
 
 var press_start_pos : Vector2
 
+@export var debug_spawn_animal_scene : PackedScene
+
 var start_tile_pos : Vector2i
 var end_tile_pos : Vector2i
 
@@ -53,6 +55,14 @@ func _input(event: InputEvent):
 					$"../PathManager".remove_path(coords)
 				if current_tool == TOOLS.AREA:
 					$"../AreaManager".remove_area(coords)
+	if event is InputEventKey:
+		if event.keycode == 49 and event.is_pressed():
+			var spawned_animal = debug_spawn_animal_scene.instantiate()
+			var areas = $"../AreaManager".get_children()
+			var random_area = areas.pick_random()
+			spawned_animal.area = random_area
+			random_area.add_child(spawned_animal)
+			
 				
 
 
