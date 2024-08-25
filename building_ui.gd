@@ -9,13 +9,33 @@ signal area_tool_selected
 func _ready() -> void:
 	%PathTool.pressed.connect(on_path_tool)
 	%AreaTool.pressed.connect(on_area_tool)
+	%AnimalTool.pressed.connect(on_animal_tool)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
+func deselect():
+	for button in $VBoxContainer/PanelContainer/MarginContainer/HBoxContainer.get_children():
+		if button is Button:
+			print('deselect')
+			inputController.current_tool = inputController.TOOLS.NONE
+			button.set_pressed_no_signal(false)
+
 func on_path_tool():
-	inputController.current_tool = inputController.TOOLS.PATH
+	if inputController.current_tool == inputController.TOOLS.PATH:
+		deselect()
+	else:
+		inputController.current_tool = inputController.TOOLS.PATH
 
 func on_area_tool():
-	inputController.current_tool = inputController.TOOLS.AREA
+	if inputController.current_tool == inputController.TOOLS.AREA:
+		deselect()
+	else:
+		inputController.current_tool = inputController.TOOLS.AREA
+
+func on_animal_tool():
+	if inputController.current_tool == inputController.TOOLS.ANIMAL:
+		deselect()
+	else:
+		inputController.current_tool = inputController.TOOLS.ANIMAL

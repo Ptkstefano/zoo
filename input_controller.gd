@@ -3,16 +3,21 @@ extends Node2D
 class_name InputController
 
 var is_pressing : bool = false
+var is_pressing_middle = false
 
 var press_start_pos : Vector2
+var press_middle_pos
 
 @export var debug_spawn_animal_scene : PackedScene
 
 var start_tile_pos : Vector2i
 var end_tile_pos : Vector2i
 
-enum TOOLS {NONE,PATH,AREA}
+enum TOOLS {NONE,PATH,AREA,ANIMAL}
 var current_tool = TOOLS.NONE
+
+signal zoom_camera
+signal move_camera
 
 var coords = []
 var dir
@@ -30,7 +35,7 @@ func _process(delta: float) -> void:
 		if current_tool == TOOLS.AREA:
 			highlight_area()
 
-func _input(event: InputEvent):
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.is_pressed():
@@ -43,6 +48,8 @@ func _input(event: InputEvent):
 					$"../PathManager".build_path(coords, dir)
 				if current_tool == TOOLS.AREA:
 					$"../AreaManager".build_area(coords)
+				if current_tool == TOOLS.ANIMAL:
+					$"../AnimalManager".spawn_animal(press_start_pos)
 
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			if event.is_pressed():
@@ -57,11 +64,24 @@ func _input(event: InputEvent):
 					$"../AreaManager".remove_area(coords)
 	if event is InputEventKey:
 		if event.keycode == 49 and event.is_pressed():
-			var spawned_animal = debug_spawn_animal_scene.instantiate()
-			var areas = $"../AreaManager".get_children()
-			var random_area = areas.pick_random()
-			spawned_animal.area = random_area
-			random_area.add_child(spawned_animal)
+			pass
+			
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_MIDDLE:
+			if event.is_pressed():
+				is_pressing_middle = true
+				press_middle_pos = event.position
+			else:
+				is_pressing_middle = false
+		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			zoom_camera.emit(1)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			zoom_camera.emit(-1)
+	elif event is InputEventMouseMotion and is_pressing_middle:
+		var mouse_delta = event.position - press_middle_pos
+		press_middle_pos = event.position
+		move_camera.emit(mouse_delta)
+		
 			
 				
 

@@ -21,7 +21,8 @@ func _process(delta: float) -> void:
 
 func generate_animal_destination():
 	var random_cell = area_cells.pick_random()
-	var random_position = Vector2(random_cell.x*64, random_cell.y*32)
+	var random_position = area_tilemap.map_to_local(random_cell)
+	print(random_position)
 	return random_position
 	
 
@@ -47,7 +48,6 @@ func detect_continuity():
 	var iterated_coordinates = []
 	var existing_areas = []
 	var n_areas = 0
-	
 	
 	while(iterated_coordinates.size() != area_cells.size()):
 		var starting_cell = find_first_coordinate_not_matching(iterated_coordinates)

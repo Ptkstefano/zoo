@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=26 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Texture2D" uid="uid://boftg0lq7xdqp" path="res://terrain_sheet.png" id="1_1k8ag"]
 [ext_resource type="Script" path="res://game_controller.gd" id="1_nisry"]
@@ -23,7 +23,6 @@ radius = 1.0
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mlmjk"]
 texture = ExtResource("1_1k8ag")
 texture_region_size = Vector2i(64, 32)
-use_texture_padding = false
 0:0/0 = 0
 1:0/0 = 0
 
@@ -36,7 +35,6 @@ sources/0 = SubResource("TileSetAtlasSource_mlmjk")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k4cji"]
 texture = ExtResource("4_f4nul")
 texture_region_size = Vector2i(64, 32)
-use_texture_padding = false
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -58,7 +56,6 @@ sources/0 = SubResource("TileSetAtlasSource_k4cji")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y7hke"]
 texture = ExtResource("4_lkfjk")
 texture_region_size = Vector2i(64, 32)
-use_texture_padding = false
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_j5c2e"]
@@ -69,7 +66,6 @@ sources/0 = SubResource("TileSetAtlasSource_y7hke")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mi6kd"]
 texture = ExtResource("3_s04uj")
 texture_region_size = Vector2i(64, 32)
-use_texture_padding = false
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_gp0kq"]
@@ -77,25 +73,6 @@ tile_shape = 1
 tile_layout = 5
 tile_size = Vector2i(64, 32)
 sources/0 = SubResource("TileSetAtlasSource_mi6kd")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_628s1"]
-texture = ExtResource("3_s04uj")
-texture_region_size = Vector2i(64, 32)
-use_texture_padding = false
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_otjb1"]
-tile_shape = 1
-tile_layout = 5
-tile_size = Vector2i(64, 32)
-sources/0 = SubResource("TileSetAtlasSource_628s1")
 
 [node name="Main" type="Node2D"]
 
@@ -154,7 +131,6 @@ script = ExtResource("6_5hq40")
 [node name="AreaLayer" parent="TileMap" instance=ExtResource("12_g4gk5")]
 visible = false
 modulate = Color(0.913036, 0.102429, 1, 0.372549)
-tile_set = SubResource("TileSet_otjb1")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("inputController")]
 position_smoothing_enabled = true
@@ -242,11 +218,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Debug" type="Panel" parent="UI"]
+[node name="Debug" type="Panel" parent="."]
 offset_right = 266.0
 offset_bottom = 121.0
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/Debug"]
+[node name="MarginContainer" type="MarginContainer" parent="Debug"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -258,28 +234,28 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Debug/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Debug/MarginContainer"]
 layout_mode = 2
 
-[node name="Debug_FPS" type="Label" parent="UI/Debug/MarginContainer/VBoxContainer"]
+[node name="Debug_FPS" type="Label" parent="Debug/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 text = "ASD"
 
-[node name="Debug_Animals" type="Label" parent="UI/Debug/MarginContainer/VBoxContainer"]
+[node name="Debug_Animals" type="Label" parent="Debug/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 text = "ASD"
 
-[node name="Debug_pos" type="Label" parent="UI/Debug/MarginContainer/VBoxContainer"]
+[node name="Debug_pos" type="Label" parent="Debug/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 text = "ASD"
 
-[node name="Debug_coordinate" type="Label" parent="UI/Debug/MarginContainer/VBoxContainer"]
+[node name="Debug_coordinate" type="Label" parent="Debug/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
