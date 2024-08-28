@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0u76pko0mnsk"]
+
+[ext_resource type="Texture2D" uid="uid://jp8a53my5klh" path="res://Sprites/tree.png" id="1_uws1a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1cvid"]
+radius = 3.0
+
+[node name="Scenery" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+texture = ExtResource("1_uws1a")
+offset = Vector2(2, -28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1cvid")

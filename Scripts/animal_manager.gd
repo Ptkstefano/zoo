@@ -1,7 +1,11 @@
 extends Node2D
 
-@onready var general_area_tilemap = $"../TileMap/AreaLayer"
+class_name AnimalManager
+
+@export var area_manager : AreaManager
 @export var debug_spawn_animal_scene : PackedScene
+
+var animal_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,12 +18,11 @@ func _process(delta: float) -> void:
 
 func spawn_animal(coordinate):
 	## Find what area the player wants to add an animal to
-	var tile_coordinate = general_area_tilemap.local_to_map(coordinate)
-	var found_area = $"../AreaManager".get_existing_area(tile_coordinate)
+	var tile_coordinate = area_manager.area_layer.local_to_map(coordinate)
+	var found_area = area_manager.get_existing_area(tile_coordinate)
 	if found_area:
 		var spawned_animal = debug_spawn_animal_scene.instantiate()
-		var areas = $"../AreaManager".get_children()
-		var random_area = areas.pick_random()
 		spawned_animal.global_position = coordinate
-		spawned_animal.area = random_area
-		random_area.add_child(spawned_animal)
+		spawned_animal.area = found_area
+		add_child(spawned_animal)
+		animal_count += 1

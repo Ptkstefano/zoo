@@ -8,12 +8,13 @@ var is_pressing_middle = false
 var press_start_pos : Vector2
 var press_middle_pos
 
-@export var debug_spawn_animal_scene : PackedScene
+@export var scenery_manager : SceneryManager
+@export var animal_manager : AnimalManager
 
 var start_tile_pos : Vector2i
 var end_tile_pos : Vector2i
 
-enum TOOLS {NONE,PATH,AREA,ANIMAL}
+enum TOOLS {NONE,PATH,AREA,ANIMAL,SCENERY}
 var current_tool = TOOLS.NONE
 
 signal zoom_camera
@@ -49,7 +50,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				if current_tool == TOOLS.AREA:
 					$"../AreaManager".build_area(coords)
 				if current_tool == TOOLS.ANIMAL:
-					$"../AnimalManager".spawn_animal(press_start_pos)
+					animal_manager.spawn_animal(press_start_pos)
+				if current_tool == TOOLS.SCENERY:
+					scenery_manager.plop(press_start_pos)
 
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			if event.is_pressed():
@@ -64,7 +67,12 @@ func _unhandled_input(event: InputEvent) -> void:
 					$"../AreaManager".remove_area(coords)
 	if event is InputEventKey:
 		if event.keycode == 49 and event.is_pressed():
-			pass
+			if $"../UI".visible:
+				$"../UI".visible = false
+			else:
+				$"../UI".visible = true
+			
+		
 			
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_MIDDLE:
@@ -82,9 +90,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		press_middle_pos = event.position
 		move_camera.emit(mouse_delta)
 		
-			
-				
-
 
 func highlight_path():
 	var tile_map_layer = $"../TileMap/TerrainLayer" as TileMapLayer

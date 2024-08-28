@@ -17,6 +17,7 @@ func _ready() -> void:
 	agent.set_target_position(get_new_destination())
 
 func _physics_process(delta: float) -> void:
+	z_index = Helpers.get_current_tile_z_index(global_position)
 	if animal_state == ANIMAL_STATES.MOVING:
 		if velocity.x > 0:
 			$Sprite2D.flip_h=true

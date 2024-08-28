@@ -1,29 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://cl4o0ja0kt0i1"]
+[gd_scene load_steps=9 format=3 uid="uid://ca66y62ys1xkh"]
 
-[ext_resource type="Script" path="res://Scripts/animal.gd" id="1_wogma"]
-[ext_resource type="Texture2D" uid="uid://cvufj2juppxif" path="res://Sprites/giraffe.png" id="2_iudgg"]
+[ext_resource type="Script" path="res://peep.gd" id="1_kks3u"]
+[ext_resource type="Texture2D" uid="uid://dj5mhhnytgghf" path="res://Sprites/peep.png" id="1_o0vri"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_r3wdq"]
-radius = 4.12311
+[sub_resource type="CircleShape2D" id="CircleShape2D_uvgr3"]
+radius = 2.82843
 
-[sub_resource type="Animation" id="Animation_abva1"]
-resource_name = "Eat"
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.566667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2i(5, 0), Vector2i(4, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_o17hh"]
+[sub_resource type="Animation" id="Animation_7v73o"]
 resource_name = "Idle"
+length = 3.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -32,13 +17,13 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(-0.0333333, 0.6),
+"times": PackedFloat32Array(0, 1.56667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2i(0, 1), Vector2i(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_7dh8g"]
+[sub_resource type="Animation" id="Animation_38bcy"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -50,11 +35,11 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2i(0, 0)]
+"values": [Vector2i(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_pk5g8"]
-resource_name = "Walk"
+[sub_resource type="Animation" id="Animation_ymvuu"]
+resource_name = "Walk_N"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -69,7 +54,7 @@ tracks/0/keys = {
 "values": [Vector2i(2, 0), Vector2i(3, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_kpkyi"]
+[sub_resource type="Animation" id="Animation_5tsy0"]
 resource_name = "Walk_S"
 loop_mode = 1
 tracks/0/type = "value"
@@ -79,44 +64,45 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.533333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2i(2, 1), Vector2i(3, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_586lv"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_imm3a"]
 _data = {
-"Eat": SubResource("Animation_abva1"),
-"Idle": SubResource("Animation_o17hh"),
-"RESET": SubResource("Animation_7dh8g"),
-"Walk_N": SubResource("Animation_pk5g8"),
-"Walk_S": SubResource("Animation_kpkyi")
+"Idle": SubResource("Animation_7v73o"),
+"RESET": SubResource("Animation_38bcy"),
+"Walk_N": SubResource("Animation_ymvuu"),
+"Walk_S": SubResource("Animation_5tsy0")
 }
 
-[node name="Animal" type="CharacterBody2D"]
-script = ExtResource("1_wogma")
+[node name="Peep" type="CharacterBody2D"]
+script = ExtResource("1_kks3u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
 texture_filter = 1
-texture = ExtResource("2_iudgg")
-offset = Vector2(0, -27)
-hframes = 6
+texture = ExtResource("1_o0vri")
+offset = Vector2(0, -10)
+hframes = 4
 vframes = 2
+frame = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_r3wdq")
+shape = SubResource("CircleShape2D_uvgr3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_586lv")
+"": SubResource("AnimationLibrary_imm3a")
 }
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-target_desired_distance = 40.0
-navigation_layers = 2
 path_postprocessing = 1
+debug_path_custom_point_size = 4.36
+debug_path_custom_line_width = 0.83
 
 [node name="StateTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 3.0
 one_shot = true

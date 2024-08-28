@@ -8,12 +8,11 @@ var area_cells = []
 var fence_cells = []
 
 @onready var area_tilemap = $AreaTiles
-@onready var fence_layer = $FenceLayer
+@onready var fence_manager : FenceManager = $FenceManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	fence_manager.area_tilemap = area_tilemap
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -90,29 +89,7 @@ func create_sibling_area(cells):
 	
 func build_fence():
 	remove_fence()
-	for coordinate in area_cells:
-		var east_cell = Vector2i(coordinate.x + 1, coordinate.y)
-		var south_cell = Vector2i(coordinate.x, coordinate.y + 1)
-		var west_cell= Vector2i(coordinate.x - 1, coordinate.y)
-		var north_cell= Vector2i(coordinate.x, coordinate.y - 1)
-		
-		if area_tilemap.get_cell_atlas_coords(east_cell) == Vector2i(-1,-1):
-			$FenceLayer/E.set_cell(coordinate, 0, Vector2i(0,0))
-			fence_cells.append(coordinate)
-		if area_tilemap.get_cell_atlas_coords(south_cell) == Vector2i(-1,-1):
-			$FenceLayer/S.set_cell(coordinate, 0, Vector2i(1,0))
-			fence_cells.append(coordinate)
-		if area_tilemap.get_cell_atlas_coords(west_cell) == Vector2i(-1,-1):
-			$FenceLayer/W.set_cell(coordinate, 0, Vector2i(2,0))
-			fence_cells.append(coordinate)
-		if area_tilemap.get_cell_atlas_coords(north_cell) == Vector2i(-1,-1):
-			$FenceLayer/N.set_cell(coordinate, 0, Vector2i(3,0))
-			fence_cells.append(coordinate)
+	fence_manager.build_fence(area_cells)
 
 func remove_fence():
-	## TODO - SEPARATE fence_cells BY CARDINAL DIRECTION
-	for fence_layer in $FenceLayer.get_children():
-		for coordinate in fence_cells:
-			if fence_layer.get_cell_atlas_coords(coordinate) != Vector2i(-1,-1):
-				fence_layer.set_cell(coordinate, -1, Vector2i(-1,-1))
-	fence_cells.clear()
+	fence_manager.remove_fence()

@@ -10,6 +10,7 @@ func _ready() -> void:
 	%PathTool.pressed.connect(on_path_tool)
 	%AreaTool.pressed.connect(on_area_tool)
 	%AnimalTool.pressed.connect(on_animal_tool)
+	%SceneryTool.pressed.connect(on_scenery_tool)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -39,3 +40,9 @@ func on_animal_tool():
 		deselect()
 	else:
 		inputController.current_tool = inputController.TOOLS.ANIMAL
+		
+func on_scenery_tool():
+	if inputController.current_tool == inputController.TOOLS.SCENERY:
+		deselect()
+	else:
+		inputController.current_tool = inputController.TOOLS.SCENERY

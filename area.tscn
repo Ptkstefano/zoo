@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://b020lesiynlbr"]
+[gd_scene load_steps=11 format=3 uid="uid://b020lesiynlbr"]
 
-[ext_resource type="Script" path="res://area.gd" id="1_hna4l"]
-[ext_resource type="PackedScene" uid="uid://mjmj3ujto5dd" path="res://area_layer_template.tscn" id="2_ccmyx"]
-[ext_resource type="Texture2D" uid="uid://cjyflttjg5wv5" path="res://fence_sheet.png" id="3_25akr"]
-[ext_resource type="Texture2D" uid="uid://bw474aur5qc4s" path="res://tile3.png" id="3_l4y1i"]
+[ext_resource type="Script" path="res://Scripts/area.gd" id="1_hna4l"]
+[ext_resource type="Texture2D" uid="uid://bw474aur5qc4s" path="res://Sprites/tile3.png" id="3_l4y1i"]
+[ext_resource type="Script" path="res://fence_manager.gd" id="3_wdrdh"]
+[ext_resource type="PackedScene" uid="uid://c7x3g6837s0x8" path="res://fence.tscn" id="4_h01na"]
+[ext_resource type="Texture2D" uid="uid://cjyflttjg5wv5" path="res://Sprites/fence_sheet.png" id="4_qj3v5"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_b7efn"]
 vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
@@ -33,56 +34,87 @@ physics_layer_0/collision_mask = 0
 navigation_layer_0/layers = 2
 sources/0 = SubResource("TileSetAtlasSource_bcvfi")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1csia"]
-texture = ExtResource("3_25akr")
-texture_region_size = Vector2i(65, 35)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vbmef"]
+texture = ExtResource("4_qj3v5")
+texture_region_size = Vector2i(65, 64)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(30.15, -0.925, -2.3, 14.85, 0.6875, 17.125, 32.9375, 1.5)
+0:0/0/texture_origin = Vector2i(0, 16)
+0:0/0/y_sort_origin = 8
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)
 1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-30.15, -0.925, 2.3, 14.85, -0.6875, 17.125, -32.9375, 1.5)
+1:0/0/texture_origin = Vector2i(0, 16)
+1:0/0/y_sort_origin = 8
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)
 2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-29.3125, 2.5, 3.85, -14.075, 0, -16, -32.9375, -0.625)
+2:0/0/texture_origin = Vector2i(0, 16)
+2:0/0/y_sort_origin = -8
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)
+3:0/next_alternative_id = 3
 3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(29.3125, 2.5, -3.85, -14.075, 0, -16, 32.9375, -0.625)
+3:0/0/texture_origin = Vector2i(0, 16)
+3:0/0/y_sort_origin = -8
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)
+0:1/0 = 0
+0:1/0/texture_origin = Vector2i(0, 18)
+0:1/0/y_sort_origin = 16
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)
+1:1/0 = 0
+1:1/0/texture_origin = Vector2i(0, 18)
+1:1/0/y_sort_origin = 16
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)
+2:1/0 = 0
+2:1/0/texture_origin = Vector2i(0, 18)
+2:1/0/z_index = -1
+2:1/0/y_sort_origin = 16
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)
+3:1/0 = 0
+3:1/0/texture_origin = Vector2i(0, 18)
+3:1/0/z_index = -1
+3:1/0/y_sort_origin = 16
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)
 
-[sub_resource type="TileSet" id="TileSet_e8yor"]
+[sub_resource type="TileSet" id="TileSet_1a3nq"]
 tile_shape = 1
 tile_layout = 5
 tile_size = Vector2i(64, 32)
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_1csia")
+sources/0 = SubResource("TileSetAtlasSource_vbmef")
 
 [node name="Area" type="Node"]
 script = ExtResource("1_hna4l")
 
-[node name="AreaTiles" parent="." instance=ExtResource("2_ccmyx")]
+[node name="AreaTiles" type="TileMapLayer" parent="."]
 visible = false
 tile_set = SubResource("TileSet_o4u8v")
 
-[node name="FenceLayer" type="Node2D" parent="."]
+[node name="FenceManager" type="Node2D" parent="."]
 y_sort_enabled = true
+script = ExtResource("3_wdrdh")
+fence_scene = ExtResource("4_h01na")
 
-[node name="E" type="TileMapLayer" parent="FenceLayer"]
-y_sort_enabled = true
+[node name="E" type="TileMapLayer" parent="FenceManager"]
+visible = false
 texture_filter = 1
-tile_set = SubResource("TileSet_e8yor")
+tile_set = SubResource("TileSet_1a3nq")
 collision_enabled = false
 
-[node name="S" type="TileMapLayer" parent="FenceLayer"]
-y_sort_enabled = true
+[node name="S" type="TileMapLayer" parent="FenceManager"]
+visible = false
 texture_filter = 1
-tile_set = SubResource("TileSet_e8yor")
+tile_set = SubResource("TileSet_1a3nq")
 collision_enabled = false
 
-[node name="W" type="TileMapLayer" parent="FenceLayer"]
-y_sort_enabled = true
+[node name="W" type="TileMapLayer" parent="FenceManager"]
+visible = false
 texture_filter = 1
-tile_set = SubResource("TileSet_e8yor")
+tile_set = SubResource("TileSet_1a3nq")
 collision_enabled = false
 
-[node name="N" type="TileMapLayer" parent="FenceLayer"]
-y_sort_enabled = true
+[node name="N" type="TileMapLayer" parent="FenceManager"]
+visible = false
 texture_filter = 1
-tile_set = SubResource("TileSet_e8yor")
+tile_set = SubResource("TileSet_1a3nq")
 collision_enabled = false
+
+[node name="FenceInstances" type="Node2D" parent="FenceManager"]

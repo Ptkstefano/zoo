@@ -23,7 +23,6 @@ func _ready() -> void:
 	
 
 func on_camera_move(mouse_delta):
-	print(sensitivity)
 	var direction = Vector2(-mouse_delta.x * sensitivity, -mouse_delta.y * sensitivity)
 	translate(direction)
 		

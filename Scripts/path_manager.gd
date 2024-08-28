@@ -1,10 +1,13 @@
 extends Node2D
 
+class_name PathManager
+
 @onready var path_layer = $"../TileMap/PathLayer"
+var path_coordinates = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	path_coordinates = path_layer.get_used_cells()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,6 +18,8 @@ func build_path(coordinates, dir):
 	## Builds a straight path and lists neighbor paths
 	var all_neighbors = []
 	for coordinate in coordinates:
+		if coordinate not in path_coordinates:
+			path_coordinates.append(coordinate)
 		if dir == 'x':
 			path_layer.set_cell(coordinate, 0, Vector2(0,0))
 		if dir == 'y':
@@ -34,6 +39,8 @@ func remove_path(coordinates):
 	var all_neighbors = []
 	for coordinate in coordinates:
 		path_layer.set_cell(coordinate, 0, Vector2(-1,-1))
+		if coordinate in path_coordinates:
+			path_coordinates.erase(coordinate)
 	for coordinate in coordinates:
 		var neighbors = path_layer.get_surrounding_cells(coordinate)
 		for neighbor in neighbors:
@@ -78,3 +85,7 @@ func build_intersections(coordinate):
 		path_layer.set_cell(coordinate, 0, Vector2(2,0))
 
 #TileSet.CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE
+func generate_peep_destination():
+	var random_cell = path_coordinates.pick_random()
+	var random_position = path_layer.map_to_local(random_cell)
+	return random_position

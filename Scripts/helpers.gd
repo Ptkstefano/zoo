@@ -1,9 +1,10 @@
 extends Node
 
+var terrain_layer
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	terrain_layer = get_parent().get_child(1).find_child('TileMap').find_child('TerrainLayer') as TileMapLayer
+	print(terrain_layer)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,3 +18,10 @@ func get_adjacent(coordinate) -> Array:
 	var n = Vector2i(coordinate.x, coordinate.y - 1)
 	
 	return [e, s, w, n]
+
+func get_current_tile_z_index(position):
+	var coordinate = terrain_layer.local_to_map(position)
+	return (coordinate.x + coordinate.y)
+
+func get_global_pos_of_cell(coordinate):
+	return terrain_layer.map_to_local(coordinate)
