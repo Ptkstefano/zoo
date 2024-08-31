@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
+var animal_res
 
-const SPEED = 20.0
-const JUMP_VELOCITY = -400.0
+var speed = 20.0
 
 enum ANIMAL_STATES {IDLE, MOVING, EATING}
 var animal_state = ANIMAL_STATES.MOVING
@@ -11,10 +11,22 @@ var area : area
 
 var agent: NavigationAgent2D
 
+signal animal_removed
+
 func _ready() -> void:
 	agent = $NavigationAgent2D
 	$StateTimer.timeout.connect(on_state_timer_timeout)
 	agent.set_target_position(get_new_destination())
+
+func initialize_animal(animal_res, coordinate, found_area):
+	$Sprite2D.texture = animal_res.texture
+	speed = animal_res.speed
+	## Corrects the y-sort position of the animal
+	$Sprite2D.offset = Vector2(0, (-($Sprite2D.texture.get_height() * 0.25) + 4))
+	
+	animal_res = animal_res
+	global_position = coordinate
+	area = found_area
 
 func _physics_process(delta: float) -> void:
 	z_index = Helpers.get_current_tile_z_index(global_position)
@@ -30,7 +42,7 @@ func _physics_process(delta: float) -> void:
 		if agent.is_navigation_finished():
 			change_state()
 		else:
-			velocity = (agent.get_next_path_position() - global_position).normalized() * SPEED
+			velocity = (agent.get_next_path_position() - global_position).normalized() * speed
 			move_and_slide()
 		
 func get_new_destination():
@@ -48,3 +60,7 @@ func change_state():
 	else:
 		animal_state = ANIMAL_STATES.EATING
 		$AnimationPlayer.play('Eat')
+
+func remove_animal():
+	animal_removed.emit()
+	queue_free()

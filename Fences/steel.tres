@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="fence_resource" load_steps=2 format=3 uid="uid://b85gocjhm05am"]
+
+[ext_resource type="Script" path="res://Fences/fence_res.gd" id="1_stf4y"]
+
+[resource]
+script = ExtResource("1_stf4y")
+name = "Steel"
+atlas_y = 1

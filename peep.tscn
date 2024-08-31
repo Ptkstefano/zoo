@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dj5mhhnytgghf" path="res://Sprites/peep.png" id="1_o0vri"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uvgr3"]
-radius = 2.82843
+radius = 1.5
 
 [sub_resource type="Animation" id="Animation_7v73o"]
 resource_name = "Idle"

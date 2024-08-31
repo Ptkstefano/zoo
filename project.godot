@@ -17,11 +17,12 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 [autoload]
 
 Helpers="*res://Scripts/helpers.gd"
+DataManager="*res://data_manager.gd"
 
 [display]
 
 window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_height=800
 window/size/always_on_top=true
 
 [rendering]

@@ -23,7 +23,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func build_fence(area_cells):
+func build_fence(area_cells, fence_res):
 	for coordinate in area_cells:
 		var east_cell = Vector2i(coordinate.x + 1, coordinate.y)
 		var south_cell = Vector2i(coordinate.x, coordinate.y + 1)
@@ -43,7 +43,7 @@ func build_fence(area_cells):
 			fence_layer_N.set_cell(coordinate, 0, Vector2i(3,1))
 			fence_cells.append(coordinate)
 			
-	instantiate_fence()
+	instantiate_fence(fence_res)
 			
 
 func remove_fence():
@@ -57,7 +57,7 @@ func remove_fence():
 		instance.queue_free()
 		
 
-func instantiate_fence():
+func instantiate_fence(fence_res):
 	var direction_index = 0
 	for child in get_children():
 		if child is TileMapLayer:
@@ -70,6 +70,6 @@ func instantiate_fence():
 					fence_instance.z_index -= 1
 				if direction_index == 3:
 					fence_instance.z_index -= 1
-				fence_instance.update_fence_instance()
+				fence_instance.update_fence_instance(fence_res)
 				$FenceInstances.add_child(fence_instance)
 		direction_index += 1

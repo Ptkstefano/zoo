@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://cl4o0ja0kt0i1"]
 
 [ext_resource type="Script" path="res://Scripts/animal.gd" id="1_wogma"]
-[ext_resource type="Texture2D" uid="uid://cvufj2juppxif" path="res://Sprites/giraffe.png" id="2_iudgg"]
+[ext_resource type="Texture2D" uid="uid://c6wmdilxav70a" path="res://Sprites/animals/capy.png" id="2_jcx1h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r3wdq"]
-radius = 4.12311
+radius = 8.0
 
 [sub_resource type="Animation" id="Animation_abva1"]
 resource_name = "Eat"
@@ -99,8 +99,8 @@ script = ExtResource("1_wogma")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_iudgg")
-offset = Vector2(0, -27)
+texture = ExtResource("2_jcx1h")
+offset = Vector2(0, -12)
 hframes = 6
 vframes = 2
 

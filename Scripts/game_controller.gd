@@ -5,6 +5,7 @@ extends Node2D
 @onready var mouse_pos_label = %Debug_pos
 @onready var mouse_coordinate_label = %Debug_coordinate
 @onready var peep_count_label = %Debug_Peeps
+@onready var physics_time_label = %Debug_PhysicsTime
 
 @onready var highlight_layer = $"../TileMap/HighlightLayer"
 
@@ -18,7 +19,7 @@ var peep_count = 0:
 		peep_count = value
 		peep_count_label.text = "Peeps: " + str($"../PeepManager".peep_count)
 		
-# Called when the node enters the scene tree for the first time.
+# Called when the node enters the scene tree f1or the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
@@ -30,3 +31,4 @@ func _process(delta: float) -> void:
 	mouse_coordinate_label.text = str(highlight_layer.local_to_map(get_global_mouse_position()))
 	animal_count_label.text = "Animals: " + str($"../Objects/AnimalManager".animal_count)
 	peep_count_label.text = "Peeps: " + str($"../Objects/PeepManager".peep_count)
+	physics_time_label.text = ("Physics: "+str(Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS)))

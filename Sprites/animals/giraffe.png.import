@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cvufj2juppxif"
-path="res://.godot/imported/giraffe.png-e0c1e00c5b7e3804caad57f0c3d8089b.ctex"
+path="res://.godot/imported/giraffe.png-a4789e037d71815eb6c4e99926ccbef7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/giraffe.png"
-dest_files=["res://.godot/imported/giraffe.png-e0c1e00c5b7e3804caad57f0c3d8089b.ctex"]
+source_file="res://Sprites/animals/giraffe.png"
+dest_files=["res://.godot/imported/giraffe.png-a4789e037d71815eb6c4e99926ccbef7.ctex"]
 
 [params]
 

@@ -89,3 +89,10 @@ func generate_peep_destination():
 	var random_cell = path_coordinates.pick_random()
 	var random_position = path_layer.map_to_local(random_cell)
 	return random_position
+
+func get_fence_overlap(coordinates):
+	var path_cells = path_layer.get_used_cells()
+	for coordinate in coordinates:
+		if coordinate in path_cells:
+			return true
+	return false

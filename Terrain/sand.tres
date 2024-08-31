@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="terrain_resource" load_steps=2 format=3 uid="uid://cv3jbpbpoab6s"]
+
+[ext_resource type="Script" path="res://Terrain/terrain_res.gd" id="1_se0y2"]
+
+[resource]
+script = ExtResource("1_se0y2")
+name = "Sand"
+atlas = Vector2i(1, 0)

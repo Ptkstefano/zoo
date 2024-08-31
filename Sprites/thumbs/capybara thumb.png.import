@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6wmdilxav70a"
-path="res://.godot/imported/capy.png-b1f6cf29606b284a3a6246a32ad62512.ctex"
+uid="uid://dkj8v36e5ormb"
+path="res://.godot/imported/capybara thumb.png-2aa31a2509d4eaaa38becb37a0fb0847.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/capy.png"
-dest_files=["res://.godot/imported/capy.png-b1f6cf29606b284a3a6246a32ad62512.ctex"]
+source_file="res://Sprites/thumbs/capybara thumb.png"
+dest_files=["res://.godot/imported/capybara thumb.png-2aa31a2509d4eaaa38becb37a0fb0847.ctex"]
 
 [params]
 

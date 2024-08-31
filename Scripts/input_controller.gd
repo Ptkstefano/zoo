@@ -6,7 +6,11 @@ var is_pressing : bool = false
 var is_pressing_middle = false
 
 var press_start_pos : Vector2
+var press_current_pos : Vector2
+
 var press_middle_pos
+
+var selected_res : Resource
 
 @export var scenery_manager : SceneryManager
 @export var animal_manager : AnimalManager
@@ -14,7 +18,7 @@ var press_middle_pos
 var start_tile_pos : Vector2i
 var end_tile_pos : Vector2i
 
-enum TOOLS {NONE,PATH,AREA,ANIMAL,SCENERY}
+enum TOOLS {NONE,PATH,AREA,ANIMAL,SCENERY,TERRAIN}
 var current_tool = TOOLS.NONE
 
 signal zoom_camera
@@ -23,17 +27,20 @@ signal move_camera
 var coords = []
 var dir
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
-	## Code for highlighting in a straight line
 	if is_pressing:
+		press_current_pos = get_global_mouse_position()
+		if !Helpers.is_valid_cell(press_start_pos) or !Helpers.is_valid_cell(press_current_pos):
+			return
 		if current_tool == TOOLS.PATH:
 			highlight_path()
 		if current_tool == TOOLS.AREA:
+			highlight_area()
+		if current_tool == TOOLS.TERRAIN:
 			highlight_area()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -46,11 +53,17 @@ func _unhandled_input(event: InputEvent) -> void:
 				$"../TileMap/HighlightLayer".clear_highlight()
 				is_pressing = false
 				if current_tool == TOOLS.PATH:
+					if $"../AreaManager".get_area_overlap(coords):
+						return
 					$"../PathManager".build_path(coords, dir)
 				if current_tool == TOOLS.AREA:
-					$"../AreaManager".build_area(coords)
+					if $"../PathManager".get_fence_overlap(coords):
+						return
+					$"../AreaManager".build_area(coords, selected_res)
+				if current_tool == TOOLS.TERRAIN:
+					$"../TerrainManager".build_terrain(coords, selected_res)
 				if current_tool == TOOLS.ANIMAL:
-					animal_manager.spawn_animal(press_start_pos)
+					animal_manager.spawn_animal(press_start_pos, selected_res)
 				if current_tool == TOOLS.SCENERY:
 					scenery_manager.plop(press_start_pos)
 
@@ -71,8 +84,13 @@ func _unhandled_input(event: InputEvent) -> void:
 				$"../UI".visible = false
 			else:
 				$"../UI".visible = true
-			
-		
+		if event.keycode == 50 and event.is_pressed():
+			if !$"../UI/DebugScreen".visible:
+				$"../UI/DebugScreen".visible = true
+				$"../TileMap/GridLayer".visible = true
+			else:
+				$"../UI/DebugScreen".visible = false
+				$"../TileMap/GridLayer".visible = false
 			
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_MIDDLE:
@@ -93,11 +111,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func highlight_path():
 	var tile_map_layer = $"../TileMap/TerrainLayer" as TileMapLayer
-	var tilepos = tile_map_layer.local_to_map(get_global_mouse_position())
+	var tilepos = tile_map_layer.local_to_map(press_current_pos)
 	start_tile_pos = tile_map_layer.local_to_map(press_start_pos)
 	end_tile_pos = tilepos
-	var x_press_diff = get_global_mouse_position().x - press_start_pos.x
-	var y_press_diff = get_global_mouse_position().y - press_start_pos.y
+	var x_press_diff = press_current_pos.x - press_start_pos.x
+	var y_press_diff = press_current_pos.y - press_start_pos.y
 	var x_tile_diff = end_tile_pos.x - start_tile_pos.x
 	var y_tile_diff = end_tile_pos.y - start_tile_pos.y
 	coords.clear()
@@ -123,7 +141,7 @@ func highlight_path():
 	
 func highlight_area():
 	var tile_map_layer = $"../TileMap/TerrainLayer" as TileMapLayer
-	var tilepos = tile_map_layer.local_to_map(get_global_mouse_position())
+	var tilepos = tile_map_layer.local_to_map(press_current_pos)
 	start_tile_pos = tile_map_layer.local_to_map(press_start_pos)
 	end_tile_pos = tilepos
 	var x_tile_diff = end_tile_pos.x - start_tile_pos.x

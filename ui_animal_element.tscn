@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://oa08vk0rrcpe"]
+
+[ext_resource type="Script" path="res://ui_animal_element.gd" id="1_1a1p2"]
+[ext_resource type="Texture2D" uid="uid://c83xp6l2j8d6s" path="res://Sprites/thumbs/giraffe thumb.png" id="2_8cfht"]
+
+[node name="AnimalElement" type="Control"]
+custom_minimum_size = Vector2(200, 148)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+script = ExtResource("1_1a1p2")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+
+[node name="Button" type="Button" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Button"]
+layout_mode = 2
+offset_right = 200.0
+offset_bottom = 148.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Button/MarginContainer"]
+layout_mode = 2
+
+[node name="AnimalName" type="Label" parent="PanelContainer/Button/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Giraffe"
+horizontal_alignment = 1
+
+[node name="Thumbnail" type="TextureRect" parent="PanelContainer/Button/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+texture = ExtResource("2_8cfht")
+expand_mode = 5
