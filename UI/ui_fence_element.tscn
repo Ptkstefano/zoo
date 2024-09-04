@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0yqr1xdbc6do"]
 
-[ext_resource type="Script" path="res://ui_fence_element.gd" id="1_x64s8"]
+[ext_resource type="Script" path="res://UI/ui_fence_element.gd" id="1_x64s8"]
 [ext_resource type="Texture2D" uid="uid://c83xp6l2j8d6s" path="res://Sprites/thumbs/giraffe thumb.png" id="2_ewvix"]
 
-[node name="FenceElement" type="Control"]
+[node name="UiFenceElement" type="Control"]
 custom_minimum_size = Vector2(200, 148)
 layout_mode = 3
 anchors_preset = 0

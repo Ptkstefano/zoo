@@ -18,7 +18,7 @@ var selected_res : Resource
 var start_tile_pos : Vector2i
 var end_tile_pos : Vector2i
 
-enum TOOLS {NONE,PATH,AREA,ANIMAL,SCENERY,TERRAIN}
+enum TOOLS {NONE,PATH,AREA,ANIMAL,SCENERY,TERRAIN,BULLDOZER}
 var current_tool = TOOLS.NONE
 
 signal zoom_camera
@@ -42,6 +42,10 @@ func _process(delta: float) -> void:
 			highlight_area()
 		if current_tool == TOOLS.TERRAIN:
 			highlight_area()
+		if current_tool == TOOLS.BULLDOZER:
+			$BulldozerCollider.global_position = press_current_pos
+			for object in $BulldozerCollider.get_overlapping_bodies():
+				object.queue_free()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -55,7 +59,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				if current_tool == TOOLS.PATH:
 					if $"../AreaManager".get_area_overlap(coords):
 						return
-					$"../PathManager".build_path(coords, dir)
+					$"../PathManager".build_path(coords, dir, selected_res)
 				if current_tool == TOOLS.AREA:
 					if $"../PathManager".get_fence_overlap(coords):
 						return

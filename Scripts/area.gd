@@ -32,7 +32,7 @@ func add_cells(coordinates, fence_res):
 	if fence_res:
 		current_fence = fence_res
 	for coordinate in coordinates:
-		$AreaTiles.set_cell(coordinate, 0, Vector2i(0, fence_res.atlas_y))
+		$AreaTiles.set_cell(coordinate, 0, Vector2i(0, 0))
 		if !area_cells.has(coordinate):
 			area_cells.append(coordinate)
 	build_fence(current_fence)

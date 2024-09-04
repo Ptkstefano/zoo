@@ -17,6 +17,7 @@ func _ready() -> void:
 	agent = $NavigationAgent2D
 	$StateTimer.timeout.connect(on_state_timer_timeout)
 	agent.set_target_position(get_new_destination())
+	$AnimationPlayer.speed_scale = 0.5
 
 func initialize_animal(animal_res, coordinate, found_area):
 	$Sprite2D.texture = animal_res.texture

@@ -16,8 +16,10 @@ var fence_cells = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
-
+	$E.visible = false
+	$S.visible = false
+	$W.visible = false
+	$N.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -37,10 +39,10 @@ func build_fence(area_cells, fence_res):
 			fence_layer_S.set_cell(coordinate, 0, Vector2i(1,1))
 			fence_cells.append(coordinate)
 		if area_tilemap.get_cell_atlas_coords(west_cell) == Vector2i(-1,-1):
-			fence_layer_W.set_cell(coordinate, 0, Vector2i(2,1))
+			fence_layer_W.set_cell(coordinate, 0, Vector2i(3,1))
 			fence_cells.append(coordinate)
 		if area_tilemap.get_cell_atlas_coords(north_cell) == Vector2i(-1,-1):
-			fence_layer_N.set_cell(coordinate, 0, Vector2i(3,1))
+			fence_layer_N.set_cell(coordinate, 0, Vector2i(2,1))
 			fence_cells.append(coordinate)
 			
 	instantiate_fence(fence_res)
@@ -58,7 +60,7 @@ func remove_fence():
 		
 
 func instantiate_fence(fence_res):
-	var direction_index = 0
+	var direction_index = 3
 	for child in get_children():
 		if child is TileMapLayer:
 			for cell in child.get_used_cells():
@@ -66,10 +68,8 @@ func instantiate_fence(fence_res):
 				fence_instance.sprite_x = direction_index
 				fence_instance.global_position = Helpers.get_global_pos_of_cell(cell)
 				fence_instance.z_index = Helpers.get_current_tile_z_index(fence_instance.global_position)
-				if direction_index == 2:
-					fence_instance.z_index -= 1
-				if direction_index == 3:
-					fence_instance.z_index -= 1
+				if direction_index == 1 or direction_index == 0:
+					fence_instance.z_index -= 2
 				fence_instance.update_fence_instance(fence_res)
 				$FenceInstances.add_child(fence_instance)
-		direction_index += 1
+		direction_index -= 1

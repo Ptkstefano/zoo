@@ -25,6 +25,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=800
 window/size/always_on_top=true
 
+[layer_names]
+
+2d_physics/layer_9="Trees"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

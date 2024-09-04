@@ -6,6 +6,7 @@
 radius = 3.0
 
 [node name="Scenery" type="StaticBody2D"]
+collision_layer = 257
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true

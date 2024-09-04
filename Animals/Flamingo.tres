@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="animal_resource" load_steps=3 format=3 uid="uid://c1csiys1jf20o"]
+
+[ext_resource type="Script" path="res://Animals/animal_res.gd" id="1_5v5j4"]
+[ext_resource type="Texture2D" uid="uid://c0i7v011f4bmd" path="res://Animals/sprites/flamingo.png" id="2_e828y"]
+
+[resource]
+script = ExtResource("1_5v5j4")
+name = "Flamingo"
+texture = ExtResource("2_e828y")
+speed = 10

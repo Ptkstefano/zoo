@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvafqwrvm1q8p"
-path="res://.godot/imported/path_sheet.png-df0933b65ad8dddce0591772e0490c9e.ctex"
+uid="uid://c0i7v011f4bmd"
+path="res://.godot/imported/flamingo.png-e83c5c857a4445ddc57dff6ec5912833.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/path_sheet.png"
-dest_files=["res://.godot/imported/path_sheet.png-df0933b65ad8dddce0591772e0490c9e.ctex"]
+source_file="res://Animals/sprites/flamingo.png"
+dest_files=["res://.godot/imported/flamingo.png-e83c5c857a4445ddc57dff6ec5912833.ctex"]
 
 [params]
 
