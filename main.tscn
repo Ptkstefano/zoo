@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=72 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" path="res://Scripts/game_controller.gd" id="1_nisry"]
 [ext_resource type="Script" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -43,6 +43,7 @@
 [ext_resource type="Resource" uid="uid://xk5hxkv0keyb" path="res://Fences/concrete.tres" id="28_ldw2x"]
 [ext_resource type="Shader" path="res://terrain.gdshader" id="31_e0m5j"]
 [ext_resource type="Texture2D" uid="uid://wj8tt8gnhkn5" path="res://Terrain/terrain_sheet.png" id="32_05eb2"]
+[ext_resource type="FontFile" uid="uid://32dcop5n8krs" path="res://UI/RobotoCondensed-Medium.ttf" id="44_a4t23"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4oys"]
 radius = 1.0
@@ -249,6 +250,13 @@ tile_layout = 5
 tile_size = Vector2i(64, 32)
 sources/0 = SubResource("TileSetAtlasSource_628s1")
 
+[sub_resource type="Theme" id="Theme_8vho0"]
+default_font = ExtResource("44_a4t23")
+default_font_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h6ule"]
+bg_color = Color(0.434763, 0.167469, 0.176031, 1)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0dfji"]
 
 [node name="Main" type="Node2D"]
@@ -390,288 +398,556 @@ tile_set = SubResource("TileSet_otjb1")
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("inputController")]
-position = Vector2(-1335, 796)
+position = Vector2(-990, 636)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("7_pw5dd")
 inputController = NodePath("../InputController")
+max_zoom = Vector2(4, 4)
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("inputController")]
 script = ExtResource("10_pctuh")
 inputController = NodePath("../InputController")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 6
+theme = SubResource("Theme_8vho0")
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/VBoxContainer"]
+[node name="Top-Left" type="Control" parent="UI/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_stretch_ratio = 5.0
+size_flags_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/Top-Left"]
+layout_mode = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="BuildPanelOpener" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+toggle_mode = true
+action_mode = 0
+text = "Build"
+
+[node name="ToolPanel" type="PanelContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="ToolContainer" type="HBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="PathTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MarginContainer/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Path"
+
+[node name="AreaTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MarginContainer/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Area"
+
+[node name="AnimalTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MarginContainer/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Animal"
+
+[node name="SceneryTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MarginContainer/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Scenery"
+
+[node name="TerrainTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MarginContainer/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+text = "Terrain"
+
+[node name="ToolContainer2" type="HBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="Top-Right" type="Control" parent="UI/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/Top-Right"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -384.0
+offset_bottom = 105.0
+grow_horizontal = 0
+
+[node name="AdministrationContainer" type="PanelContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/AdministrationContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ToolContainer" type="VBoxContainer" parent="UI/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/AdministrationContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 5
 
-[node name="PathTool" type="Button" parent="UI/VBoxContainer/PanelContainer/MarginContainer/ToolContainer"]
-unique_name_in_owner = true
+[node name="ResearchMenu" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/AdministrationContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(85, 85)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Path"
+text = "Research
+"
 
-[node name="AreaTool" type="Button" parent="UI/VBoxContainer/PanelContainer/MarginContainer/ToolContainer"]
-unique_name_in_owner = true
+[node name="StaffMenu" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/AdministrationContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(85, 85)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Area"
+text = "Staff"
 
-[node name="AnimalTool" type="Button" parent="UI/VBoxContainer/PanelContainer/MarginContainer/ToolContainer"]
-unique_name_in_owner = true
+[node name="AdmMenu" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/AdministrationContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(85, 85)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Animal"
+text = "Adm."
 
-[node name="SceneryTool" type="Button" parent="UI/VBoxContainer/PanelContainer/MarginContainer/ToolContainer"]
-unique_name_in_owner = true
+[node name="MainMenu" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/AdministrationContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(85, 85)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Scenery"
+text = "Config"
 
-[node name="TerrainTool" type="Button" parent="UI/VBoxContainer/PanelContainer/MarginContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(85, 85)
+[node name="DebugScreen" type="HBoxContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Terrain"
 
-[node name="BulldozerTool" type="Button" parent="UI/VBoxContainer/PanelContainer/MarginContainer/ToolContainer"]
+[node name="Debug2" type="PanelContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug2"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug2/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Do smt"
+
+[node name="Debug" type="PanelContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Debug_FPS" type="Label" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "ASD"
+horizontal_alignment = 2
+
+[node name="Debug_PhysicsTime" type="Label" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "ASD"
+horizontal_alignment = 2
+
+[node name="Debug_Animals" type="Label" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "ASD"
+horizontal_alignment = 2
+
+[node name="Debug_Peeps" type="Label" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "ASD"
+horizontal_alignment = 2
+
+[node name="Debug_pos" type="Label" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "ASD"
+horizontal_alignment = 2
+
+[node name="Debug_coordinate" type="Label" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "ASD"
+horizontal_alignment = 2
+
+[node name="Debug_finger" type="Label" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "ASD"
+horizontal_alignment = 2
+
+[node name="Debug_distance" type="Label" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "ASD"
+horizontal_alignment = 2
+
+[node name="Bottom" type="Control" parent="UI/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="BottomMenu" type="VBoxContainer" parent="UI/MarginContainer/Bottom"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -220.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="HBoxContainer" type="Control" parent="UI/MarginContainer/Bottom/BottomMenu"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="BulldozerContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -105.0
+offset_right = 133.0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 10
+
+[node name="BulldozerButtonPanel" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/BulldozerContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h6ule")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/BulldozerContainer/BulldozerButtonPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BulldozerTool" type="Button" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/BulldozerContainer/BulldozerButtonPanel/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Bulldozer"
 
-[node name="Control" type="Control" parent="UI/VBoxContainer"]
+[node name="InfoContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -62.5
+offset_top = -44.0
+offset_right = 62.5
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/InfoContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.45
+size_flags_horizontal = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/InfoContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/InfoContainer/HBoxContainer2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="InfoLabel" type="Label" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/InfoContainer/HBoxContainer2/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Building PATH"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -44.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/MarginContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/MarginContainer2/HBoxContainer2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="Label2" type="Label" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/MarginContainer2/HBoxContainer2/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "$ 1000,00"
+horizontal_alignment = 2
+
+[node name="SelectionMenu" type="VBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
 mouse_filter = 2
 
-[node name="SelectionMenu" type="PanelContainer" parent="UI/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="AnimalContinentFilter" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Africa" type="Button" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
+layout_mode = 2
+text = "Africa"
+
+[node name="Africa6" type="Button" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
+layout_mode = 2
+text = "Asia"
+
+[node name="Africa2" type="Button" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
+layout_mode = 2
+text = "S. America"
+
+[node name="Africa3" type="Button" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
+layout_mode = 2
+text = "N. America"
+
+[node name="Africa5" type="Button" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
+layout_mode = 2
+text = "Europe"
+
+[node name="Africa4" type="Button" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
+layout_mode = 2
+text = "Oceania"
+
+[node name="SelectionPanel" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 165)
 layout_mode = 2
+size_flags_vertical = 10
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_0dfji")
 
-[node name="PathMenu" type="PanelContainer" parent="UI/VBoxContainer/SelectionMenu"]
+[node name="PathMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/SelectionMenu/PathMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/PathMenu"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/SelectionMenu/PathMenu/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/PathMenu/MarginContainer"]
 layout_mode = 2
 
-[node name="PathSelectionContainer" type="HBoxContainer" parent="UI/VBoxContainer/SelectionMenu/PathMenu/MarginContainer/ScrollContainer"]
+[node name="PathSelectionContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/PathMenu/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="AreaMenu" type="PanelContainer" parent="UI/VBoxContainer/SelectionMenu"]
+[node name="AreaMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/SelectionMenu/AreaMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/AreaMenu"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/SelectionMenu/AreaMenu/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/AreaMenu/MarginContainer"]
 layout_mode = 2
 
-[node name="FenceSelectionContainer" type="HBoxContainer" parent="UI/VBoxContainer/SelectionMenu/AreaMenu/MarginContainer/ScrollContainer"]
+[node name="FenceSelectionContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/AreaMenu/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="AnimalMenu" type="PanelContainer" parent="UI/VBoxContainer/SelectionMenu"]
+[node name="AnimalMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/SelectionMenu/AnimalMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/AnimalMenu"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/SelectionMenu/AnimalMenu/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/AnimalMenu/MarginContainer"]
 layout_mode = 2
 
-[node name="AnimalSelectionContainer" type="HBoxContainer" parent="UI/VBoxContainer/SelectionMenu/AnimalMenu/MarginContainer/ScrollContainer"]
+[node name="AnimalSelectionContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/AnimalMenu/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
-[node name="AnimalElement" parent="UI/VBoxContainer/SelectionMenu/AnimalMenu/MarginContainer/ScrollContainer/AnimalSelectionContainer" instance=ExtResource("21_a35of")]
+[node name="AnimalElement" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/AnimalMenu/MarginContainer/ScrollContainer/AnimalSelectionContainer" instance=ExtResource("21_a35of")]
 layout_mode = 2
 
-[node name="SceneryMenu" type="PanelContainer" parent="UI/VBoxContainer/SelectionMenu"]
+[node name="SceneryMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/SelectionMenu/SceneryMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/SceneryMenu"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/SelectionMenu/SceneryMenu/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/SceneryMenu/MarginContainer"]
 layout_mode = 2
 
-[node name="AnimalSelectionContainer" type="HBoxContainer" parent="UI/VBoxContainer/SelectionMenu/SceneryMenu/MarginContainer/ScrollContainer"]
+[node name="AnimalSelectionContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/SceneryMenu/MarginContainer/ScrollContainer"]
 layout_mode = 2
 
-[node name="TerrainMenu" type="PanelContainer" parent="UI/VBoxContainer/SelectionMenu"]
+[node name="TerrainMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/SelectionMenu/TerrainMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/TerrainMenu"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/SelectionMenu/TerrainMenu/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer"]
 layout_mode = 2
 
-[node name="TerrainSelectionContainer" type="HBoxContainer" parent="UI/VBoxContainer/SelectionMenu/TerrainMenu/MarginContainer/ScrollContainer"]
+[node name="TerrainSelectionContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="DebugScreen" type="HBoxContainer" parent="UI"]
-visible = false
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -210.0
-offset_bottom = 132.0
-grow_horizontal = 0
-
-[node name="Debug2" type="PanelContainer" parent="UI/DebugScreen"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/DebugScreen/Debug2"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/DebugScreen/Debug2/MarginContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-
-[node name="Button" type="Button" parent="UI/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Do smt"
-
-[node name="Debug" type="PanelContainer" parent="UI/DebugScreen"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/DebugScreen/Debug"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/DebugScreen/Debug/MarginContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-
-[node name="Debug_FPS" type="Label" parent="UI/DebugScreen/Debug/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 12
-text = "ASD"
-horizontal_alignment = 2
-
-[node name="Debug_PhysicsTime" type="Label" parent="UI/DebugScreen/Debug/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 12
-text = "ASD"
-horizontal_alignment = 2
-
-[node name="Debug_Animals" type="Label" parent="UI/DebugScreen/Debug/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 12
-text = "ASD"
-horizontal_alignment = 2
-
-[node name="Debug_Peeps" type="Label" parent="UI/DebugScreen/Debug/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 12
-text = "ASD"
-horizontal_alignment = 2
-
-[node name="Debug_pos" type="Label" parent="UI/DebugScreen/Debug/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 12
-text = "ASD"
-horizontal_alignment = 2
-
-[node name="Debug_coordinate" type="Label" parent="UI/DebugScreen/Debug/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 12
-text = "ASD"
-horizontal_alignment = 2

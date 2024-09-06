@@ -6,7 +6,7 @@ extends Camera2D
 var dragging = false
 var last_mouse_position = Vector2()
 
-@export var basis_sensitivity = 3.5
+@export var basis_sensitivity = 3
 
 @export var min_zoom = Vector2(0.2, 0.2)
 @export var max_zoom = Vector2(3.0, 3.0)
@@ -14,8 +14,7 @@ var last_mouse_position = Vector2()
 @onready var new_zoom = zoom
 @onready var sensitivity = basis_sensitivity
 
-
-@export var zoom_sensitivity = 0.1
+@export var zoom_sensitivity = 0.2
 
 func _ready() -> void:
 	inputController.zoom_camera.connect(on_camera_zoom)
@@ -28,15 +27,11 @@ func on_camera_move(mouse_delta):
 		
 
 func _process(delta):
-	zoom.lerp(new_zoom, 0.01)
-	sensitivity = basis_sensitivity - (zoom.x * 1)
-	if dragging:
-		# Optionally, additional logic can be added here if needed.
-		pass
+	pass
 
 func on_camera_zoom(direction: int):
-	# Adjust the zoom level based on mouse wheel direction
 	var new_zoom = zoom + Vector2(zoom_sensitivity, zoom_sensitivity) * direction
-	# Clamp the zoom level to stay within the min and max zoom
 	new_zoom = new_zoom.clamp(min_zoom, max_zoom)
-	zoom = new_zoom
+	var tween = get_tree().create_tween()
+	await tween.tween_property(self, "zoom", new_zoom, 0.1)
+	sensitivity = basis_sensitivity - (zoom.x * 0.5)

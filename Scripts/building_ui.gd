@@ -25,7 +25,11 @@ var selected_terrain : terrain_resource:
 		selected_res = value
 	
 
+var build_mode : bool = false
+
 @export var inputController : InputController
+
+@onready var info_label = %InfoLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,15 +38,17 @@ func _ready() -> void:
 	%AnimalTool.pressed.connect(on_animal_tool)
 	%SceneryTool.pressed.connect(on_scenery_tool)
 	%TerrainTool.pressed.connect(on_terrain_tool)
-	%BulldozerTool.pressed.connect(on_bulldozer_tool)
-	#selected_path = %PathSelectionContainer.get_child(0).path_res
-	#selected_area = %FenceSelectionContainer.get_child(0).fence_res
-	#selected_animal = %AnimalSelectionContainer.get_child(0).animal_res
-	#selected_terrain = %TerrainSelectionContainer.get_child(0).terrain_res
+	
+	%BuildPanelOpener.pressed.connect(on_open_build_panel)
+	
+	%BulldozerTool.button_down.connect(on_bulldozer_tool_press)
+	%BulldozerTool.button_up.connect(on_bulldozer_tool_release)
+	
+	hide_selection_menu()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	update_info_label()
 
 func update_ui():
 	for element in %AnimalSelectionContainer.get_children():
@@ -58,16 +64,55 @@ func update_ui():
 		if element:
 			element.path_selected.connect(on_path_selected)
 
+func update_info_label():
+	if inputController.current_tool == inputController.TOOLS.NONE:
+		%InfoContainer.visible = false
+		return
+	else:
+		%InfoContainer.visible = true
+	if inputController.current_tool == inputController.TOOLS.ANIMAL:
+		info_label.text = 'Placing animal'
+		return
+	elif inputController.current_tool == inputController.TOOLS.PATH:
+		if inputController.is_bulldozing:
+			info_label.text = 'Removing path'
+			return
+		info_label.text = 'Building path'
+		return
+	elif inputController.current_tool == inputController.TOOLS.AREA:
+		if inputController.is_bulldozing:
+			info_label.text = 'Removing fence'
+			return
+		info_label.text = 'Building fence'
+		return
+	elif inputController.current_tool == inputController.TOOLS.SCENERY:
+		if inputController.is_bulldozing:
+			info_label.text = 'Removing scenery'
+			return
+		info_label.text = 'Placing scenery'
+		return
+	elif inputController.current_tool == inputController.TOOLS.TERRAIN:
+		info_label.text = 'Adding terrain'
+		return
+
 func deselect_main():
 	for button in $VBoxContainer/PanelContainer/MarginContainer/HBoxContainer.get_children():
 		if button is Button:
 			inputController.current_tool = inputController.TOOLS.NONE
 			button.set_pressed_no_signal(false)
 			
-func hide_selection_menu():
-	for child in %SelectionMenu.get_children():
+func close_selection_submenu():
+	for child in %SelectionPanel.get_children():
 		if child is PanelContainer:
 			child.hide()
+			
+func hide_selection_menu():
+	%BulldozerContainer.visible = false
+	%SelectionMenu.visible = false
+
+func show_selection_menu():
+	%BulldozerContainer.visible = true
+	%SelectionMenu.visible = true
 
 func on_animal_selected(animal_res):
 	selected_res = animal_res
@@ -81,9 +126,20 @@ func on_fence_selected(fence_res):
 func on_path_selected(path_res):
 	selected_res = path_res
 
+func on_open_build_panel():
+	if !%ToolPanel.visible and !build_mode:
+		%ToolPanel.show()
+		show_selection_menu()
+		build_mode = true
+	else:
+		inputController.current_tool = inputController.TOOLS.NONE
+		build_mode = false
+		%ToolPanel.hide()
+		hide_selection_menu()
 
 func on_tool_selected(tool):
-	hide_selection_menu()
+	show_selection_menu()
+	close_selection_submenu()
 	inputController.current_tool = tool
 	if tool == inputController.TOOLS.PATH:
 		%PathMenu.show()
@@ -110,15 +166,43 @@ func on_tool_selected(tool):
 	if tool == inputController.TOOLS.BULLDOZER:
 		return
 
-func on_bulldozer_tool():
-	on_tool_selected(inputController.TOOLS.BULLDOZER)
+func on_bulldozer_tool_press():
+	inputController.is_bulldozing = true
+	
+func on_bulldozer_tool_release():
+	inputController.is_bulldozing = false
+	
 func on_path_tool():
+	if inputController.current_tool == inputController.TOOLS.PATH:
+		hide_selection_menu()
+		inputController.current_tool = inputController.TOOLS.NONE
+		return
 	on_tool_selected(inputController.TOOLS.PATH)
+	%BulldozerContainer.visible = true
 func on_area_tool():
+	if inputController.current_tool == inputController.TOOLS.AREA:
+		hide_selection_menu()
+		inputController.current_tool = inputController.TOOLS.NONE
+		return
 	on_tool_selected(inputController.TOOLS.AREA)
+	%BulldozerContainer.visible = true
 func on_animal_tool():
+	if inputController.current_tool == inputController.TOOLS.ANIMAL:
+		hide_selection_menu()
+		inputController.current_tool = inputController.TOOLS.NONE
+		return
 	on_tool_selected(inputController.TOOLS.ANIMAL)
+	%BulldozerContainer.visible = false
 func on_terrain_tool():
+	if inputController.current_tool == inputController.TOOLS.TERRAIN:
+		hide_selection_menu()
+		inputController.current_tool = inputController.TOOLS.NONE
+		return
 	on_tool_selected(inputController.TOOLS.TERRAIN)
+	%BulldozerContainer.visible = false
 func on_scenery_tool():
+	if inputController.current_tool == inputController.TOOLS.SCENERY:
+		hide_selection_menu()
+		return
 	on_tool_selected(inputController.TOOLS.SCENERY)
+	%BulldozerContainer.visible = true

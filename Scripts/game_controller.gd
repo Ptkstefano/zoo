@@ -6,6 +6,8 @@ extends Node2D
 @onready var mouse_coordinate_label = %Debug_coordinate
 @onready var peep_count_label = %Debug_Peeps
 @onready var physics_time_label = %Debug_PhysicsTime
+@onready var finger_count_label = %Debug_finger
+@onready var finger_distance_label = %Debug_distance
 
 @onready var highlight_layer = $"../TileMap/HighlightLayer"
 
@@ -32,3 +34,6 @@ func _process(delta: float) -> void:
 	animal_count_label.text = "Animals: " + str($"../Objects/AnimalManager".animal_count)
 	peep_count_label.text = "Peeps: " + str($"../Objects/PeepManager".peep_count)
 	physics_time_label.text = ("Physics: "+str(Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS)))
+	finger_count_label.text = ("Fingers: "+str($"../InputController".fingers_touching.size()))
+	finger_distance_label.text = ("Finger d:"+str($"../InputController".previous_touches_distance))
+	
