@@ -6,8 +6,11 @@ class_name PathManager
 @onready var path_menu = %PathSelectionContainer
 @export var ui_element : PackedScene
 
+@export var null_path : path_resource
+
 @onready var path_layer = $"../TileMap/PathLayer"
 var path_coordinates = []
+var building_path_coordinates = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,16 +34,13 @@ func update_path_menu():
 	$"../UI".update_ui()
 	
 
-func build_path(coordinates, dir, path_res):
+func build_path(coordinates, path_res):
 	## Builds a straight path and lists neighbor paths
 	var all_neighbors = []
 	for coordinate in coordinates:
 		if coordinate not in path_coordinates:
 			path_coordinates.append(coordinate)
-		if dir == 'x':
-			path_layer.set_cell(coordinate, 0, Vector2(0,path_res.atlas_y))
-		if dir == 'y':
-			path_layer.set_cell(coordinate, 0, Vector2(1,path_res.atlas_y))
+		path_layer.set_cell(coordinate, 0, Vector2(1,path_res.atlas_y))
 		var neighbors = path_layer.get_surrounding_cells(coordinate)
 		for neighbor in neighbors:
 			if path_layer.get_cell_atlas_coords(neighbor) != Vector2i(-1,-1):
@@ -67,7 +67,6 @@ func remove_path(coordinates):
 	for neighbor in all_neighbors:
 		## Adds instersections to neighbors of built paths
 		build_intersections(neighbor, null)
-
 
 func build_intersections(coordinate, path_res):
 	var path_y = null
@@ -116,3 +115,7 @@ func get_fence_overlap(coordinates):
 		if coordinate in path_cells:
 			return true
 	return false
+
+func build_building_path(coordinates):
+	building_path_coordinates.append(coordinates)
+	build_path(coordinates,null_path)

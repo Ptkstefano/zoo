@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=77 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" path="res://Scripts/game_controller.gd" id="1_nisry"]
 [ext_resource type="Script" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -18,12 +18,12 @@
 [ext_resource type="Resource" uid="uid://cea7u5xphaurx" path="res://Paths/cement_path.tres" id="5_yh37h"]
 [ext_resource type="Script" path="res://Scripts/highlight_layer.gd" id="6_5hq40"]
 [ext_resource type="Resource" uid="uid://c7pfv2es6r5oa" path="res://Animals/Capybara.tres" id="6_k8h6b"]
+[ext_resource type="Resource" uid="uid://vojm72sdvlvh" path="res://Paths/cement_plaza.tres" id="6_tpdaa"]
 [ext_resource type="Resource" uid="uid://b8jk8nfoxbpbo" path="res://Terrain/grass.tres" id="6_twhii"]
 [ext_resource type="Resource" uid="uid://c8vfd72bmgjcf" path="res://Animals/Giraffe.tres" id="7_4qpb4"]
 [ext_resource type="Resource" uid="uid://cv3jbpbpoab6s" path="res://Terrain/sand.tres" id="7_i5ul7"]
 [ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="7_pw5dd"]
 [ext_resource type="PackedScene" uid="uid://loilhhqarje0" path="res://UI/ui_path_element.tscn" id="7_tmdpf"]
-[ext_resource type="Resource" uid="uid://dp82v0odladsa" path="res://Paths/null_path.tres" id="7_ybs1u"]
 [ext_resource type="PackedScene" uid="uid://dvjtneek7b62q" path="res://UI/ui_terrain_element.tscn" id="8_qghle"]
 [ext_resource type="Script" path="res://Scripts/building_ui.gd" id="10_pctuh"]
 [ext_resource type="Script" path="res://peep_manager.gd" id="10_ubp83"]
@@ -40,11 +40,8 @@
 [ext_resource type="Resource" uid="uid://camg8o6ropjnr" path="res://Fences/small.tres" id="21_ad55l"]
 [ext_resource type="Resource" uid="uid://b85gocjhm05am" path="res://Fences/steel.tres" id="22_kya8w"]
 [ext_resource type="PackedScene" uid="uid://c0yqr1xdbc6do" path="res://UI/ui_fence_element.tscn" id="23_uop4j"]
-[ext_resource type="Script" path="res://building_manager.gd" id="27_mg3kq"]
-[ext_resource type="PackedScene" uid="uid://bb5olte5gphhj" path="res://UI/ui_building_element.tscn" id="28_04i1b"]
-[ext_resource type="Script" path="res://Buildings/building_res.gd" id="28_58uqa"]
+[ext_resource type="Texture2D" uid="uid://cwvec4talel2p" path="res://Buildings/IceCreamShop.png" id="27_5unjw"]
 [ext_resource type="Resource" uid="uid://xk5hxkv0keyb" path="res://Fences/concrete.tres" id="28_ldw2x"]
-[ext_resource type="Resource" uid="uid://csjatom74kl3h" path="res://Buildings/ice_cream_shop.tres" id="29_nh40u"]
 [ext_resource type="Shader" path="res://terrain.gdshader" id="31_e0m5j"]
 [ext_resource type="Texture2D" uid="uid://wj8tt8gnhkn5" path="res://Terrain/terrain_sheet.png" id="32_05eb2"]
 [ext_resource type="Texture2D" uid="uid://cjyflttjg5wv5" path="res://Fences/fence_sheet.png" id="42_ahr0a"]
@@ -91,7 +88,11 @@ tile_layout = 5
 tile_size = Vector2i(64, 32)
 sources/0 = SubResource("TileSetAtlasSource_n2opu")
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_i0ey6"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_gqyjn"]
+vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
+agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5lb64"]
 vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
@@ -99,36 +100,92 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
 agent_radius = 0.0
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_nwaol"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_mrgp6"]
+vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
+agent_radius = 0.0
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_nyr2l"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_j52p6"]
+vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ncjm2"]
+vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_bf0tf"]
+vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7ugbs"]
+vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_qulto"]
+vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_i1y0c"]
+vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_451f2"]
+vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_nrv7t"]
+vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_tb1ac"]
+vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
+agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k4cji"]
 texture = ExtResource("4_f4nul")
 texture_region_size = Vector2i(64, 32)
 use_texture_padding = false
 0:0/0 = 0
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_i0ey6")
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_gqyjn")
 1:0/0 = 0
-1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nyr2l")
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_j52p6")
 2:0/0 = 0
-2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nwaol")
+2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_ncjm2")
 3:0/0 = 0
-3:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nwaol")
+3:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_bf0tf")
 4:0/0 = 0
-4:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nwaol")
+4:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_7ugbs")
 5:0/0 = 0
-5:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nwaol")
+5:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_qulto")
 6:0/0 = 0
-6:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nwaol")
+6:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_i1y0c")
 7:0/0 = 0
-7:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nwaol")
+7:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_451f2")
 8:0/0 = 0
-8:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nwaol")
+8:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nrv7t")
 9:0/0 = 0
-9:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nwaol")
+9:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_tb1ac")
 10:0/0 = 0
-10:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nwaol")
+10:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_mrgp6")
 0:1/0 = 0
 0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_5lb64")
 1:1/0 = 0
@@ -242,12 +299,6 @@ bg_color = Color(0.772697, 0.923297, 0.949193, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h6ule"]
 bg_color = Color(0.434763, 0.167469, 0.176031, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4kedo"]
-bg_color = Color(2.21401e-06, 0.994918, 0.422684, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lw6jx"]
-bg_color = Color(0.745479, 0.49032, 0.166407, 1)
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0dfji"]
 
 [node name="Main" type="Node2D"]
@@ -271,9 +322,8 @@ shape = SubResource("CircleShape2D_l4oys")
 
 [node name="PathManager" type="Node2D" parent="."]
 script = ExtResource("2_4bhy0")
-available_paths = Array[ExtResource("4_5g54g")]([ExtResource("5_yh37h")])
+available_paths = Array[ExtResource("4_5g54g")]([ExtResource("5_yh37h"), ExtResource("6_tpdaa")])
 ui_element = ExtResource("7_tmdpf")
-null_path = ExtResource("7_ybs1u")
 
 [node name="TerrainManager" type="Node2D" parent="."]
 script = ExtResource("4_cuia8")
@@ -308,10 +358,13 @@ wait_time = 4.0
 autostart = true
 
 [node name="BuildingManager" type="Node2D" parent="Objects"]
-y_sort_enabled = true
-script = ExtResource("27_mg3kq")
-available_buildings = Array[ExtResource("28_58uqa")]([ExtResource("29_nh40u")])
-ui_building_element = ExtResource("28_04i1b")
+
+[node name="Node2D" type="Node2D" parent="Objects/BuildingManager"]
+texture_filter = 1
+position = Vector2(-1323, 592)
+
+[node name="Sprite2D" type="Sprite2D" parent="Objects/BuildingManager/Node2D"]
+texture = ExtResource("27_5unjw")
 
 [node name="AreaManager" type="Node2D" parent="."]
 script = ExtResource("3_3jjmw")
@@ -369,7 +422,7 @@ z_index = -4095
 y_sort_enabled = true
 texture_filter = 1
 material = ExtResource("4_21t5t")
-tile_map_data = PackedByteArray("AAAAAC0AAAABAAEAAAAAACwAAAABAAEAAAAAACsAAAABAAEAAAAAACoAAAABAAEAAAAAAC4AAAABAAEAAAAAAC8AAAACAAEAAAAAADAAAAACAAEAAAACAC8AAAAFAAEAAAD+/y8AAAADAAEAAAACADAAAAAJAAEAAAD+/zAAAAAKAAEAAAD//y8AAAAHAAEAAAABAC8AAAAHAAEAAAABADAAAAACAAEAAAD//zAAAAACAAEAAAAAACkAAAAHAAEAAAABACkAAAAAAAEAAAACACkAAAAAAAEAAAADACkAAAAAAAEAAAAEACkAAAAAAAEAAAD//ykAAAAAAAEAAAD+/ykAAAAAAAEAAAD9/ykAAAAAAAEAAAD8/ykAAAAAAAEAAAA=")
+tile_map_data = PackedByteArray("AAAAAC0AAAABAAAAAAAAACwAAAABAAAAAAAAACsAAAABAAAAAAAAACoAAAABAAAAAAAAAC4AAAABAAAAAAAAAC8AAAACAAAAAAAAADAAAAACAAAAAAACAC8AAAAFAAAAAAD+/y8AAAADAAAAAAACADAAAAAJAAAAAAD+/zAAAAAKAAAAAAD//y8AAAAHAAAAAAABAC8AAAAHAAAAAAABADAAAAACAAAAAAD//zAAAAACAAAAAAAAACkAAAAHAAAAAAABACkAAAAAAAAAAAACACkAAAAAAAAAAAADACkAAAAAAAAAAAAEACkAAAAAAAAAAAD//ykAAAAAAAAAAAD+/ykAAAAAAAAAAAD9/ykAAAAAAAAAAAD8/ykAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_qn1u4")
 metadata/_edit_lock_ = true
 
@@ -449,6 +502,7 @@ text = "Build"
 
 [node name="ToolPanel" type="PanelContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel"]
@@ -490,13 +544,6 @@ custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Animal"
-
-[node name="BuildingTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MarginContainer/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 125)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Buildings"
 
 [node name="SceneryTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MarginContainer/HBoxContainer/ToolContainer"]
 unique_name_in_owner = true
@@ -698,7 +745,7 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="SidePanel" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer"]
+[node name="ConstructContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 2
@@ -714,26 +761,24 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="ConstructionSidePanel" type="VBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/SidePanel"]
-unique_name_in_owner = true
-visible = false
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/ConstructContainer"]
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="CameraButtonPanel" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/SidePanel/ConstructionSidePanel"]
+[node name="CameraButtonPanel" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/ConstructContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cfsr6")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/SidePanel/ConstructionSidePanel/CameraButtonPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/ConstructContainer/VBoxContainer/CameraButtonPanel"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="CameraTool" type="Button" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/SidePanel/ConstructionSidePanel/CameraButtonPanel/MarginContainer"]
+[node name="CameraTool" type="Button" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/ConstructContainer/VBoxContainer/CameraButtonPanel/MarginContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
@@ -741,68 +786,25 @@ size_flags_horizontal = 3
 text = "Move
  Camera"
 
-[node name="BulldozerButtonPanel2" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/SidePanel/ConstructionSidePanel"]
+[node name="BulldozerButtonPanel2" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/ConstructContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_h6ule")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/SidePanel/ConstructionSidePanel/BulldozerButtonPanel2"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/ConstructContainer/VBoxContainer/BulldozerButtonPanel2"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="BulldozerTool" type="Button" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/SidePanel/ConstructionSidePanel/BulldozerButtonPanel2/MarginContainer"]
+[node name="BulldozerTool" type="Button" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/ConstructContainer/VBoxContainer/BulldozerButtonPanel2/MarginContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Bulldoze"
-
-[node name="BuildingSidePanel" type="VBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/SidePanel"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="CameraButtonPanel" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/SidePanel/BuildingSidePanel"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_4kedo")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/SidePanel/BuildingSidePanel/CameraButtonPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="BuildTool" type="Button" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/SidePanel/BuildingSidePanel/CameraButtonPanel/MarginContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Build"
-
-[node name="RotateButtonPanel" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/SidePanel/BuildingSidePanel"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_lw6jx")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/SidePanel/BuildingSidePanel/RotateButtonPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="RotateTool" type="Button" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/SidePanel/BuildingSidePanel/RotateButtonPanel/MarginContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Rotate"
 
 [node name="InfoContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer"]
 unique_name_in_owner = true
@@ -884,7 +886,6 @@ horizontal_alignment = 2
 
 [node name="SelectionMenu" type="VBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 10
 mouse_filter = 2
@@ -976,7 +977,6 @@ layout_mode = 2
 
 [node name="AnimalMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/AnimalMenu"]
@@ -995,24 +995,6 @@ custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
 [node name="AnimalElement" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/AnimalMenu/MarginContainer/ScrollContainer/AnimalSelectionContainer" instance=ExtResource("21_a35of")]
-layout_mode = 2
-
-[node name="BuildingMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/BuildingMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/BuildingMenu/MarginContainer"]
-layout_mode = 2
-
-[node name="BuildingSelectionContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/BuildingMenu/MarginContainer/ScrollContainer"]
-unique_name_in_owner = true
 layout_mode = 2
 
 [node name="SceneryMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
@@ -1051,3 +1033,7 @@ layout_mode = 2
 [node name="TerrainSelectionContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0.84432, 0.775298, 0.803879, 1)

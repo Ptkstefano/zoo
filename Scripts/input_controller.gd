@@ -32,15 +32,25 @@ var start_tile_pos : Vector2i
 var end_tile_pos : Vector2i
 
 var is_bulldozing : bool = false
+var is_camera_tool_selected : bool = false
 
-enum TOOLS {NONE,PATH,AREA,ANIMAL,SCENERY,TERRAIN,BULLDOZER}
+var rotate_building : bool = false
+
+enum TOOLS {NONE,PATH,AREA,ANIMAL,SCENERY,TERRAIN,BUILDING,BULLDOZER}
 var current_tool = TOOLS.NONE
+var free_cam_tools = [TOOLS.NONE, TOOLS.BUILDING]
+
 
 signal zoom_camera
 signal move_camera
 
+signal building_placed
+signal building_built
+
 var fingers_touching = {}
 var previous_touches_distance = 0
+
+var zoom_started : bool = false
 
 
 var coords = []
@@ -51,35 +61,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if is_pressing:
-		if !Helpers.is_valid_cell(touch_start_global_pos) or !Helpers.is_valid_cell(touch_current_global_pos):
-			return
-		if current_tool == TOOLS.PATH:
-			highlight_path()
-		if current_tool == TOOLS.AREA:
-			highlight_area()
-		if current_tool == TOOLS.TERRAIN:
-			highlight_area()
+	pass
 
 func _unhandled_input(event: InputEvent) -> void:
-	#if event is InputEventMouseButton:
-		#return
-		#if event.is_pressed():
-			#is_pressing = true
-			#press_start_gpos = get_global_mouse_position()
-			#press_current_gpos = press_start_gpos
-			##press_start_lpos = event.position
-			##press_current_lpos = press_start_lpos
-			##previous_current_lpos = press_start_lpos
-		#elif event.is_released():
-			#is_pressing = false
-			#
-	#if event is InputEventMouseMotion:
-		#return
-		#if is_pressing:
-			#press_current_gpos = get_global_mouse_position()
-			#press_current_lpos = event.position
-			
 	if event is InputEventScreenTouch:
 		if event.is_pressed():
 			is_pressing = true
@@ -99,25 +83,30 @@ func _unhandled_input(event: InputEvent) -> void:
 				touch_current_global_pos = get_canvas_transform().affine_inverse().translated(event.position/$"../Camera2D".zoom).origin
 				touch_current_local_pos = event.position
 			
-		
-	handle_tooling_input(event)
-	handle_camera_input(event)
+	if current_tool in free_cam_tools or is_camera_tool_selected:
+		handle_camera_input(event)
+	if current_tool != TOOLS.NONE and !is_camera_tool_selected:
+		handle_tooling_input(event)
 	debug_keyboard_input(event)
 	
 func handle_camera_input(event):
 
+	## Prevents screen to shoot around after zooming
+	if fingers_touching.size() == 0:
+		zoom_started = false
+	
 	## Handle touch camera movement
 	if is_pressing:
 		if event is InputEventScreenDrag:
-				if current_tool == TOOLS.NONE and fingers_touching.size() == 1:
-					var touch_delta_t = touch_current_local_pos - touch_previous_local_pos
-					touch_previous_local_pos = touch_current_local_pos
-					move_camera.emit(touch_delta_t)
-
+			if fingers_touching.size() == 1 and !zoom_started:
+				var touch_delta_t = touch_current_local_pos - touch_previous_local_pos
+				touch_previous_local_pos = touch_current_local_pos
+				move_camera.emit(touch_delta_t)
 	
 	## Handle camera zoom:
 	if event is InputEventScreenDrag:
 		if fingers_touching.size() > 1:
+			zoom_started = true
 			var touches_distance = fingers_touching.values()[0].distance_to(fingers_touching.values()[1])
 			if touches_distance > previous_touches_distance:
 				zoom_camera.emit(1)
@@ -132,71 +121,31 @@ func handle_camera_input(event):
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			zoom_camera.emit(-1)
 			
-	if event is InputEventKey:
-		if event.keycode == 4194332 and event.is_pressed():
-			var touch_event = InputEventScreenTouch.new()
-			touch_event.position = Vector2(200, 300)  # Replace with the position where you want the touch
-			touch_event.index = 3  # Touch index, 0 for the first finger
-			touch_event.pressed = true
-			Input.parse_input_event(touch_event)
-			touch_debug = true
-
-		elif event.keycode == 4194332 and touch_debug and event.is_released():
-			# Simulate touch end
-			var touch_event = InputEventScreenTouch.new()
-			touch_event.position = Vector2(200, 300)  # Same position as above
-			touch_event.index = 3
-			touch_event.pressed = false
-			Input.parse_input_event(touch_event)
-			touch_debug = false
-			
-
 func handle_tooling_input(event):
-	## Leaving this code here for now but if no issues then remove later
-	#if event is InputEventScreenDrag:
-		#return
-		#if current_tool != TOOLS.NONE:
-			#if is_pressing:
-				#press_current_gpos = get_canvas_transform().affine_inverse().translated(event.position).origin
-#
-	#if event is InputEventScreenTouch:
-		#return
-		#if event.is_pressed():
-			#press_start_gpos = get_canvas_transform().affine_inverse().translated(event.position).origin
-			#is_pressing = true
-		#if event.is_released():
-			#$"../TileMap/HighlightLayer".clear_highlight()
-			#is_pressing = false
-			#if current_tool == TOOLS.PATH:
-				#if is_bulldozing:
-					#$"../PathManager".remove_path(coords)
-					#return
-				#if $"../AreaManager".get_area_overlap(coords):
-					#return
-				#$"../PathManager".build_path(coords, dir, selected_res)
-			#if current_tool == TOOLS.AREA:
-				#if is_bulldozing:
-					#$"../AreaManager".remove_area(coords)
-					#return
-				#if $"../PathManager".get_fence_overlap(coords):
-					#return
-				#$"../AreaManager".build_area(coords, selected_res)
-			#if current_tool == TOOLS.TERRAIN:
-				#$"../TerrainManager".build_terrain(coords, selected_res)
-			#if current_tool == TOOLS.ANIMAL:
-				#animal_manager.spawn_animal(press_start_gpos, selected_res)
-			#if current_tool == TOOLS.SCENERY:
-				#if is_bulldozing:
-					#for object in $BulldozerCollider.get_overlapping_bodies():
-						#object.queue_free()
-					#return
-				#scenery_manager.plop(press_start_gpos)
+	if is_pressing:
+		if !Helpers.is_valid_cell(touch_start_global_pos) or !Helpers.is_valid_cell(touch_current_global_pos):
+			return
+			
+	if event is InputEventScreenDrag:
+		if is_pressing:
+			if !Helpers.is_valid_cell(touch_start_global_pos) or !Helpers.is_valid_cell(touch_current_global_pos):
+				return
+			if current_tool == TOOLS.PATH:
+				highlight_path()
+			if current_tool == TOOLS.AREA:
+				highlight_area()
+			if current_tool == TOOLS.TERRAIN:
+				highlight_area()
 
 	if event is InputEventScreenTouch:
 		if event.is_pressed():
 			is_pressing = true
 		if event.is_released():
-			$"../TileMap/HighlightLayer".clear_highlight()
+			if current_tool == TOOLS.BUILDING:
+				building_placed.emit()
+				highlight_building_area()
+			else:
+				$"../TileMap/HighlightLayer".clear_highlight()
 			is_pressing = false
 			if current_tool == TOOLS.PATH:
 				if is_bulldozing:
@@ -204,7 +153,11 @@ func handle_tooling_input(event):
 					return
 				if $"../AreaManager".get_area_overlap(coords):
 					return
-				$"../PathManager".build_path(coords, dir, selected_res)
+				$"../PathManager".build_path(coords, selected_res)
+			if current_tool == TOOLS.BUILDING:
+				if $"../AreaManager".get_area_overlap(coords):
+					return
+				#$"../PathManager".build_path(coords, dir, selected_res)
 			if current_tool == TOOLS.AREA:
 				if is_bulldozing:
 					$"../AreaManager".remove_area(coords)
@@ -231,17 +184,23 @@ func debug_keyboard_input(event):
 			else:
 				$"../UI".visible = true
 		if event.keycode == 50 and event.is_pressed():
-			if !$"../UI/DebugScreen".visible:
-				$"../UI/DebugScreen".visible = true
+			if !$"../UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen".visible:
+				$"../UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen".visible = true
 				$"../TileMap/GridLayer".visible = true
 			else:
-				$"../UI/DebugScreen".visible = false
+				$"../UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen".visible = false
 				$"../TileMap/GridLayer".visible = false
 		if event.keycode == 4194326:
 			if event.is_pressed():
 				is_bulldozing = true
 			elif event.is_released():
 				is_bulldozing = false
+				
+		if event.keycode == 4194325:
+			if event.is_pressed():
+				is_camera_tool_selected = true
+			elif event.is_released():
+				is_camera_tool_selected = false
 
 func highlight_path():
 	var tile_map_layer = $"../TileMap/TerrainLayer" as TileMapLayer
@@ -271,7 +230,7 @@ func highlight_path():
 			else:
 				var new_coordinate = Vector2i(start_tile_pos.x, start_tile_pos.y - y)
 				coords.append(new_coordinate)
-	$"../TileMap/HighlightLayer".apply_highlight(coords)
+	$"../TileMap/HighlightLayer".apply_highlight(coords, is_bulldozing)
 	
 func highlight_area():
 	var tile_map_layer = $"../TileMap/TerrainLayer" as TileMapLayer
@@ -293,4 +252,34 @@ func highlight_area():
 			else:
 				new_coordinate.y = start_tile_pos.y + y
 			coords.append(new_coordinate)
-	$"../TileMap/HighlightLayer".apply_highlight(coords)
+	$"../TileMap/HighlightLayer".apply_highlight(coords, is_bulldozing)
+
+func highlight_building_area():
+	var tile_map_layer = $"../TileMap/TerrainLayer" as TileMapLayer
+	if selected_res is not building_resource:
+		return
+	start_tile_pos = tile_map_layer.local_to_map(touch_start_global_pos)
+	coords.clear()
+	if !rotate_building:
+		for x in range(abs(selected_res.size.x)):
+			for y in range(abs(selected_res.size.y)):
+				var new_coordinate = Vector2(start_tile_pos.x + x, start_tile_pos.y + y)
+				coords.append(new_coordinate)
+	if rotate_building:
+		for x in range(abs(selected_res.size.x)):
+			for y in range(abs(selected_res.size.y)):
+				var new_coordinate = Vector2(start_tile_pos.x + y, start_tile_pos.y - x)
+				coords.append(new_coordinate)
+	$"../TileMap/HighlightLayer".apply_highlight(coords, false)
+
+func rotate_building_toggle():
+	if rotate_building:
+		rotate_building = false
+	else:
+		rotate_building = true
+	highlight_building_area()
+
+# called from UI node
+func build_building():
+	building_built.emit()
+	$"../Objects/BuildingManager".build_building(selected_res, start_tile_pos, rotate_building, coords)

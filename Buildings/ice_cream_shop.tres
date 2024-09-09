@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="building_resource" load_steps=3 format=3 uid="uid://csjatom74kl3h"]
+
+[ext_resource type="Script" path="res://Buildings/building_res.gd" id="1_7ywjo"]
+[ext_resource type="PackedScene" uid="uid://ddy5hjfromil5" path="res://Buildings/ice_cream_shop.tscn" id="1_luav2"]
+
+[resource]
+script = ExtResource("1_7ywjo")
+name = "Ice Cream Shop"
+size = Vector2i(2, 1)
+building_scene = ExtResource("1_luav2")

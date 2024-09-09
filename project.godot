@@ -26,6 +26,7 @@ window/size/viewport_height=1080
 window/size/always_on_top=true
 window/stretch/aspect="expand"
 window/stretch/scale=1.2
+window/stretch/scale_mode="integer"
 
 [input_devices]
 
@@ -33,6 +34,8 @@ pointing/emulate_touch_from_mouse=true
 
 [layer_names]
 
+2d_navigation/layer_1="Peep_layer"
+2d_navigation/layer_2="animal_layer"
 2d_physics/layer_9="Trees"
 
 [rendering]

@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="path_resource" load_steps=2 format=3 uid="uid://vojm72sdvlvh"]
-
-[ext_resource type="Script" path="res://Paths/path_res.gd" id="1_hjrr8"]
-
-[resource]
-script = ExtResource("1_hjrr8")
-name = "Cement Plaza"
-atlas_y = 0

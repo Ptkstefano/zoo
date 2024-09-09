@@ -17,8 +17,8 @@ func get_adjacent(coordinate) -> Array:
 	
 	return [e, s, w, n]
 
-func get_current_tile_z_index(position):
-	var coordinate = terrain_layer.local_to_map(position)
+func get_current_tile_z_index(global_position):
+	var coordinate = terrain_layer.local_to_map(global_position)
 	return ((coordinate.x + coordinate.y) * 3)
 
 func get_global_pos_of_cell(coordinate):
