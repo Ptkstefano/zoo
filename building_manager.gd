@@ -1,6 +1,9 @@
 extends Node2D
 
+class_name BuildingManager
+
 @export var available_buildings : Array[building_resource]
+@export var building_class_scene : PackedScene
 @export var ui_building_element : PackedScene
 
 @onready var building_menu = %BuildingSelectionContainer
@@ -28,11 +31,22 @@ func update_building_menu():
 	$"../../UI".update_ui()
 
 func build_building(building_res, starting_coord, rotate, coords):
-	var new_building = building_res.building_scene.instantiate()
-	new_building.global_position = $"../../TileMap/TerrainLayer".map_to_local(starting_coord)
-	new_building.z_index = Helpers.get_current_tile_z_index(new_building.global_position)
-	new_building.on_built(rotate)
+	var new_building = building_class_scene.instantiate()
+	new_building.building_position = $"../../TileMap/TerrainLayer".map_to_local(starting_coord)
+	new_building.is_building_rotated = rotate
+	new_building.building_res = building_res
+	new_building.used_coordinates = coords
 	add_child(new_building)
+	new_building.building_selected.connect(on_building_selected)
+	new_building.building_removed.connect(on_building_removed)
 	$"../../PathManager".build_building_path(coords)
 	coordinates_used_by_buildings.append(coords)
-	pass
+	
+func on_building_removed(building_node):
+	for coordinate in building_node.used_coordinates:
+		coordinates_used_by_buildings.erase(coordinate)
+	$"../../PathManager".remove_path(building_node.used_coordinates)
+
+func on_building_selected(building_node):
+	$"../../PopupManager".open_building_popup(building_node)
+	

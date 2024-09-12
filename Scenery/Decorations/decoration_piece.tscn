@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyjax0fx7tuvi"]
+
+[ext_resource type="Script" path="res://Scenery/Decorations/decoration_piece.gd" id="1_844ec"]
+[ext_resource type="Texture2D" uid="uid://c7hrmtfrvc8jj" path="res://Scenery/Decorations/deer-statue.png" id="1_iu7v7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vktyh"]
+
+[node name="DecorationPiece" type="Node2D"]
+script = ExtResource("1_844ec")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_iu7v7")
+offset = Vector2(0, -15)
+
+[node name="RemovalArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RemovalArea"]
+shape = SubResource("CircleShape2D_vktyh")

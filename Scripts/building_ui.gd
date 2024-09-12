@@ -56,6 +56,10 @@ func _ready() -> void:
 	
 	%BuildTool.pressed.connect(on_build_tool_press)
 	
+	%SceneryTreesTool.pressed.connect(on_scenery_trees_tool_press)
+	%SceneryDecorationTool.pressed.connect(on_scenery_decorations_tool_press)
+	%SceneryVegetationTool.pressed.connect(on_scenery_vegetations_tool_press)
+	
 	inputController.building_placed.connect(on_building_placed)
 	inputController.building_built.connect(on_building_built)
 	
@@ -81,6 +85,15 @@ func update_ui():
 	for element in %BuildingSelectionContainer.get_children():
 		if element:
 			element.building_selected.connect(on_building_selected)
+	for element in %TreesSelectionContainer.get_children():
+		if element:
+			element.scenery_selected.connect(on_scenery_selected)
+	for element in %VegetationSelectionContainer.get_children():
+		if element:
+			element.scenery_selected.connect(on_scenery_selected)
+	for element in %DecorationSelectionContainer.get_children():
+		if element:
+			element.scenery_selected.connect(on_scenery_selected)
 			
 func update_info_label():
 	if inputController.current_tool == inputController.TOOLS.NONE:
@@ -106,11 +119,23 @@ func update_info_label():
 			return
 		info_label.text = 'Building fence'
 		return
-	elif inputController.current_tool == inputController.TOOLS.SCENERY:
+	elif inputController.current_tool == inputController.TOOLS.TREE:
 		if inputController.is_bulldozing:
 			info_label.text = 'Removing scenery'
 			return
-		info_label.text = 'Placing scenery'
+		info_label.text = 'Placing single tree'
+		return
+	elif inputController.current_tool == inputController.TOOLS.VEGETATION:
+		if inputController.is_bulldozing:
+			info_label.text = 'Removing scenery'
+			return
+		info_label.text = 'Placing vegetation'
+		return
+	elif inputController.current_tool == inputController.TOOLS.DECORATION:
+		if inputController.is_bulldozing:
+			info_label.text = 'Removing scenery'
+			return
+		info_label.text = 'Placing decoration'
 		return
 	elif inputController.current_tool == inputController.TOOLS.TERRAIN:
 		info_label.text = 'Adding terrain'
@@ -126,6 +151,8 @@ func deselect_main():
 			button.set_pressed_no_signal(false)
 			
 func close_selection_submenu():
+	for child in %Subpanel.get_children():
+		child.hide()
 	for child in %SelectionPanel.get_children():
 		if child is PanelContainer:
 			child.hide()
@@ -163,10 +190,28 @@ func on_path_selected(path_res):
 	inputController.current_tool = inputController.TOOLS.PATH
 	selected_res = path_res
 	
+func on_scenery_selected(scenery_res, type):
+	hide_side_panel()
+	%ConstructionSidePanel.show()
+	if type == 'tree':
+		inputController.current_tool = inputController.TOOLS.TREE
+	if type == 'vegetation':
+		inputController.current_tool = inputController.TOOLS.VEGETATION
+	if type == 'decoration':
+		inputController.current_tool = inputController.TOOLS.DECORATION
+	selected_res = scenery_res
+	
+#func on_decoration_selected(decoration_res):
+	#hide_side_panel()
+	#%ConstructionSidePanel.show()
+	#inputController.current_tool = inputController.TOOLS.DECORATION
+	#selected_res = decoration_res
+	
 func on_building_selected(building_res):
 	hide_side_panel()
 	inputController.current_tool = inputController.TOOLS.BUILDING
 	selected_res = building_res
+	
 	
 func on_building_placed():
 	%BuildingSidePanel.show()
@@ -178,8 +223,10 @@ func on_building_built():
 func on_open_build_panel():
 	if !%ToolPanel.visible and !build_mode:
 		%ToolPanel.show()
+		%Subpanel.show()
 		build_mode = true
 	else:
+		%Subpanel.hide()
 		inputController.current_tool = inputController.TOOLS.NONE
 		build_mode = false
 		%ToolPanel.hide()
@@ -202,6 +249,15 @@ func on_tool_selected(tool):
 		%TerrainMenu.show()
 	if tool == inputController.TOOLS.BUILDING:
 		%BuildingMenu.show()
+	if tool == inputController.TOOLS.TREE:
+		%ScenerySubpanel.show()
+		%TreesMenu.show()
+	if tool == inputController.TOOLS.VEGETATION:
+		%ScenerySubpanel.show()
+		%VegetationMenu.show()
+	if tool == inputController.TOOLS.DECORATION:
+		%ScenerySubpanel.show()
+		%DecorationMenu.show()
 	if tool == inputController.TOOLS.BULLDOZER:
 		return
 
@@ -233,6 +289,12 @@ func on_animal_tool():
 func on_terrain_tool():
 	on_tool_selected(inputController.TOOLS.TERRAIN)
 func on_scenery_tool():
-	on_tool_selected(inputController.TOOLS.SCENERY)
+	%ScenerySubpanel.show()
+func on_scenery_trees_tool_press():
+	on_tool_selected(inputController.TOOLS.TREE)
+func on_scenery_decorations_tool_press():
+	on_tool_selected(inputController.TOOLS.DECORATION)
+func on_scenery_vegetations_tool_press():
+	on_tool_selected(inputController.TOOLS.VEGETATION)
 func on_building_tool():
 	on_tool_selected(inputController.TOOLS.BUILDING)

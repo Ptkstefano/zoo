@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="decoration_resource" load_steps=3 format=3 uid="uid://dqn36shhu7sgb"]
+
+[ext_resource type="Script" path="res://Scenery/Decorations/decoration_resource.gd" id="1_imivf"]
+[ext_resource type="Texture2D" uid="uid://c7hrmtfrvc8jj" path="res://Scenery/Decorations/deer-statue.png" id="2_m3i3b"]
+
+[resource]
+script = ExtResource("1_imivf")
+name = "Deer Statue"
+texture = ExtResource("2_m3i3b")
+texture_offset = Vector2(0, -15)

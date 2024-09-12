@@ -3,8 +3,8 @@ extends Node
 var terrain_layer
 
 func _ready() -> void:
-	print(get_parent().find_child('Main'))
-	terrain_layer = get_parent().get_child(2).find_child('TileMap').find_child('TerrainLayer') as TileMapLayer
+	if get_parent().get_child(2).name == 'Main':
+		terrain_layer = get_parent().get_child(2).find_child('TileMap').find_child('TerrainLayer') as TileMapLayer
 
 func _process(delta: float) -> void:
 	pass

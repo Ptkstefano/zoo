@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ca66y62ys1xkh"]
+[gd_scene load_steps=10 format=3 uid="uid://ca66y62ys1xkh"]
 
 [ext_resource type="Script" path="res://peep.gd" id="1_kks3u"]
 [ext_resource type="Texture2D" uid="uid://dj5mhhnytgghf" path="res://Sprites/peep.png" id="1_o0vri"]
+[ext_resource type="Texture2D" uid="uid://5gmndyyv30v6" path="res://Sprites/shadow.png" id="2_ew0rm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uvgr3"]
 radius = 1.5
@@ -37,6 +38,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_ymvuu"]
 resource_name = "Walk_N"
@@ -52,6 +65,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2i(2, 0), Vector2i(3, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_5tsy0"]
@@ -69,6 +94,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(2, 1), Vector2i(3, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.533333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_imm3a"]
 _data = {
@@ -80,6 +117,13 @@ _data = {
 
 [node name="Peep" type="CharacterBody2D"]
 script = ExtResource("1_kks3u")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.2)
+texture_filter = 1
+position = Vector2(0, -9)
+texture = ExtResource("2_ew0rm")
+hframes = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true

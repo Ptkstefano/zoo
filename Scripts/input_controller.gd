@@ -36,9 +36,10 @@ var is_camera_tool_selected : bool = false
 
 var rotate_building : bool = false
 
-enum TOOLS {NONE,PATH,AREA,ANIMAL,SCENERY,TERRAIN,BUILDING,BULLDOZER}
+enum TOOLS {NONE,PATH,AREA,ANIMAL,SCENERY,TERRAIN,BUILDING,BULLDOZER,TREE,VEGETATION,DECORATION}
 var current_tool = TOOLS.NONE
 var free_cam_tools = [TOOLS.NONE, TOOLS.BUILDING]
+var scenery_tools = [TOOLS.TREE, TOOLS.VEGETATION, TOOLS.DECORATION]
 
 
 signal zoom_camera
@@ -57,7 +58,7 @@ var coords = []
 var dir
 
 func _ready() -> void:
-	pass
+	$SelectorCollider.area_entered.connect(on_selection)
 
 
 func _process(delta: float) -> void:
@@ -84,7 +85,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				touch_current_local_pos = event.position
 			
 	if current_tool in free_cam_tools or is_camera_tool_selected:
-		handle_camera_input(event)
+		if !await handle_selection(event):
+			handle_camera_input(event)
 	if current_tool != TOOLS.NONE and !is_camera_tool_selected:
 		handle_tooling_input(event)
 	debug_keyboard_input(event)
@@ -136,6 +138,10 @@ func handle_tooling_input(event):
 				highlight_area()
 			if current_tool == TOOLS.TERRAIN:
 				highlight_area()
+			if current_tool in scenery_tools:
+				if is_bulldozing:
+					bulldoze()
+					
 
 	if event is InputEventScreenTouch:
 		if event.is_pressed():
@@ -169,12 +175,29 @@ func handle_tooling_input(event):
 				$"../TerrainManager".build_terrain(coords, selected_res)
 			if current_tool == TOOLS.ANIMAL:
 				animal_manager.spawn_animal(touch_start_global_pos, selected_res)
-			if current_tool == TOOLS.SCENERY:
-				if is_bulldozing:
-					for object in $BulldozerCollider.get_overlapping_bodies():
-						object.queue_free()
-					return
-				scenery_manager.plop(touch_start_global_pos)
+			if current_tool == TOOLS.TREE:
+				if !is_bulldozing:
+					scenery_manager.place_tree(touch_start_global_pos, selected_res)
+			if current_tool == TOOLS.VEGETATION:
+				if !is_bulldozing:
+					scenery_manager.place_vegetation(touch_start_global_pos, selected_res)
+			if current_tool == TOOLS.DECORATION:
+				if !is_bulldozing:
+					scenery_manager.place_decoration(touch_start_global_pos, selected_res)
+
+func handle_selection(event):
+	if event is InputEventScreenTouch:
+		if event.is_pressed():
+			if current_tool == TOOLS.NONE:
+				$SelectorCollider.global_position = touch_start_global_pos
+				#var overlapping_areas = $SelectorCollider.get_overlapping_areas()
+				#if overlapping_areas.size() > 0:
+					#overlapping_areas[0].clicked()
+					#return true
+		else:
+			## Done to ensure double clicking on a building doesn't fail
+			$SelectorCollider.global_position = Vector2(9999,9999)
+	return false
 
 func debug_keyboard_input(event):
 	if event is InputEventKey:
@@ -281,5 +304,14 @@ func rotate_building_toggle():
 
 # called from UI node
 func build_building():
+	$"../TileMap/HighlightLayer".clear_highlight()
 	building_built.emit()
 	$"../Objects/BuildingManager".build_building(selected_res, start_tile_pos, rotate_building, coords)
+
+func on_selection(selected_object):
+	selected_object.clicked()
+	
+func bulldoze():
+	$BulldozerCollider.global_position = touch_current_global_pos
+	await get_tree().create_timer(0.25).timeout
+	$BulldozerCollider.global_position = Vector2(9999,9999)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=85 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" path="res://Scripts/game_controller.gd" id="1_nisry"]
 [ext_resource type="Script" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -49,14 +49,9 @@
 [ext_resource type="PackedScene" uid="uid://bb5olte5gphhj" path="res://UI/ui_building_element.tscn" id="28_04i1b"]
 [ext_resource type="Script" path="res://Buildings/building_res.gd" id="28_58uqa"]
 [ext_resource type="Resource" uid="uid://xk5hxkv0keyb" path="res://Fences/concrete.tres" id="28_ldw2x"]
-[ext_resource type="Script" path="res://Scenery/Vegetation/vegetation_res.gd" id="28_wajut"]
-[ext_resource type="Resource" uid="uid://bin28cl7rvgjd" path="res://Scenery/Vegetation/short_grass.tres" id="29_d00f0"]
-[ext_resource type="PackedScene" uid="uid://32hy2cqq5ww0" path="res://Scenery/Vegetation/vegetation_scene.tscn" id="29_kyg12"]
 [ext_resource type="Resource" uid="uid://csjatom74kl3h" path="res://Buildings/ice_cream_shop.tres" id="29_nh40u"]
 [ext_resource type="PackedScene" uid="uid://dyjax0fx7tuvi" path="res://Scenery/Decorations/decoration_piece.tscn" id="29_xj5w8"]
-[ext_resource type="Resource" uid="uid://bpx7vdfrvha4a" path="res://Scenery/Vegetation/tall_grass.tres" id="30_dvure"]
 [ext_resource type="PackedScene" uid="uid://bgasmembo8g7r" path="res://Buildings/building.tscn" id="30_wk5yf"]
-[ext_resource type="Resource" uid="uid://ch0c44mjn0ono" path="res://Scenery/Vegetation/bush.tres" id="31_7jmpp"]
 [ext_resource type="Shader" path="res://terrain.gdshader" id="31_e0m5j"]
 [ext_resource type="Texture2D" uid="uid://wj8tt8gnhkn5" path="res://Terrain/terrain_sheet.png" id="32_05eb2"]
 [ext_resource type="Texture2D" uid="uid://cjyflttjg5wv5" path="res://Fences/fence_sheet.png" id="42_ahr0a"]
@@ -66,6 +61,7 @@
 [ext_resource type="Shader" path="res://postfx.gdshader" id="53_fkgg7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4oys"]
+radius = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xst71"]
 shader = ExtResource("31_e0m5j")
@@ -270,8 +266,8 @@ shader_parameter/saturation_r = 1.0
 shader_parameter/saturation_g = 1.0
 shader_parameter/saturation_b = 1.0
 shader_parameter/color_quantization = 32.0
-shader_parameter/brightness = 0.119
-shader_parameter/contrast = -0.278
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 0.0
 shader_parameter/use_palette = false
 shader_parameter/palette_colors = null
 
@@ -287,15 +283,14 @@ scenery_manager = NodePath("../Objects/SceneryManager")
 animal_manager = NodePath("../Objects/AnimalManager")
 
 [node name="BulldozerCollider" type="Area2D" parent="InputController"]
-position = Vector2(343, -302)
-collision_layer = 256
-collision_mask = 0
+position = Vector2(956, 129)
+collision_layer = 0
+collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InputController/BulldozerCollider"]
 shape = SubResource("CircleShape2D_l4oys")
 
 [node name="SelectorCollider" type="Area2D" parent="InputController"]
-visible = false
 position = Vector2(-768, 616)
 collision_layer = 0
 collision_mask = 512
@@ -326,17 +321,14 @@ area_manager = NodePath("../../AreaManager")
 animal_scene = ExtResource("2_7ivxh")
 ui_animal_element = ExtResource("21_a35of")
 
-[node name="SceneryManager" type="Node2D" parent="Objects" node_paths=PackedStringArray("buildingManager")]
+[node name="SceneryManager" type="Node2D" parent="Objects"]
 y_sort_enabled = true
 script = ExtResource("14_62h3g")
 available_trees = Array[ExtResource("24_g51a1")]([ExtResource("25_qvxwd")])
 available_decorations = Array[ExtResource("26_0c60e")]([ExtResource("27_r3jxo")])
-available_vegetations = Array[ExtResource("28_wajut")]([ExtResource("29_d00f0"), ExtResource("30_dvure"), ExtResource("31_7jmpp")])
 tree_scene = ExtResource("26_vuik7")
-vegetation_scene = ExtResource("29_kyg12")
 decoration_scene = ExtResource("29_xj5w8")
 ui_scenery_element = ExtResource("27_5553e")
-buildingManager = NodePath("../BuildingManager")
 
 [node name="PeepManager" type="Node2D" parent="Objects" node_paths=PackedStringArray("path_manager")]
 y_sort_enabled = true
@@ -410,6 +402,7 @@ metadata/_edit_lock_ = true
 z_index = -4095
 y_sort_enabled = true
 texture_filter = 1
+material = ExtResource("4_21t5t")
 tile_map_data = PackedByteArray("AAAAAC0AAAABAAEAAAAAACwAAAABAAEAAAAAACsAAAABAAEAAAAAACoAAAABAAEAAAAAAC4AAAABAAEAAAAAAC8AAAACAAEAAAAAADAAAAACAAEAAAACAC8AAAAFAAEAAAD+/y8AAAADAAEAAAACADAAAAAJAAEAAAD+/zAAAAAKAAEAAAD//y8AAAAHAAEAAAABAC8AAAAHAAEAAAABADAAAAACAAEAAAD//zAAAAACAAEAAAAAACkAAAAHAAEAAAABACkAAAAAAAEAAAACACkAAAAAAAEAAAADACkAAAAAAAEAAAAEACkAAAAAAAEAAAD//ykAAAAAAAEAAAD+/ykAAAAAAAEAAAD9/ykAAAAAAAEAAAD8/ykAAAAAAAEAAAA=")
 tile_set = SubResource("TileSet_qn1u4")
 metadata/_edit_lock_ = true
@@ -438,7 +431,6 @@ metadata/_edit_lock_ = true
 
 [node name="OutOfBoundsLayer" type="TileMapLayer" parent="TileMap"]
 texture_filter = 1
-material = ExtResource("4_21t5t")
 tile_map_data = PackedByteArray("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AAAcANP/AgACAAEAAAAbANP/AgACAAEAAAAaANP/AgACAAEAAAAZANP/AgACAAEAAAAYANP/AgACAAEAAAAXANP/AgACAAEAAAAWANP/AgACAAEAAAAVANP/AgACAAEAAAAUANP/AgACAAEAAAATANP/AgACAAEAAAASANP/AgACAAEAAAARANP/AgACAAEAAAAQANP/AgACAAEAAAAPANP/AgACAAEAAAAOANP/AgACAAEAAAANANP/AgACAAEAAAAMANP/AgACAAEAAAALANP/AgACAAEAAAAKANP/AgACAAEAAAAJANP/AgACAAEAAAAIANP/AgACAAEAAAAHANP/AgACAAEAAAAGANP/AgACAAEAAAAFANP/AgACAAEAAAAEANP/AgACAAEAAAADANP/AgACAAEAAAACANP/AgACAAEAAAABANP/AgACAAEAAAAAANP/AgACAAEAAAD//9P/AgACAAEAAAD+/9P/AgACAAEAAAD9/9P/AgACAAEAAAD8/9P/AgACAAEAAAD7/9P/AgACAAEAAAD6/9P/AgACAAEAAAD5/9P/AgACAAEAAAD4/9P/AgACAAEAAAD3/9P/AgACAAEAAAD2/9P/AgACAAEAAAD1/9P/AgACAAEAAAD0/9P/AgACAAEAAADz/9P/AgACAAEAAADy/9P/AgACAAEAAADx/9P/AgACAAEAAADw/9P/AgACAAEAAADv/9P/AgACAAEAAADu/9P/AgACAAEAAADt/9P/AgACAAEAAADs/9P/AgACAAEAAADr/9P/AgACAAEAAADq/9P/AgACAAEAAADp/9P/AgACAAEAAADo/9P/AgACAAEAAADn/9P/AgACAAEAAADm/9P/AgACAAEAAADl/9P/AgACAAEAAADk/9P/AgACAAEAAADj/9P/AgACAAEAAADi/9P/AgACAAEAAADh/9P/AgACAAEAAADg/9P/AgACAAEAAADf/9P/AgACAAEAAADe/9P/AgACAAEAAADd/9P/AgACAAEAAADc/9P/AgACAAEAAADb/9P/AgACAAEAAADa/9P/AgACAAEAAADZ/9P/AgACAAEAAADY/9P/AgACAAEAAADX/9P/AgACAAEAAADW/9P/AgACAAEAAADV/9P/AgACAAEAAADU/9P/AgACAAEAAADT/9P/AgACAAEAAADS/9T/AgADAAEAAADS/9X/AgADAAEAAADS/9b/AgADAAEAAADS/9f/AgADAAEAAADS/9j/AgADAAEAAADS/9n/AgADAAEAAADS/9r/AgADAAEAAADS/9v/AgADAAEAAADS/9z/AgADAAEAAADS/93/AgADAAEAAADS/97/AgADAAEAAADS/9//AgADAAEAAADS/+D/AgADAAEAAADS/+H/AgADAAEAAADS/+L/AgADAAEAAADS/+P/AgADAAEAAADS/+T/AgADAAEAAADS/+X/AgADAAEAAADS/+b/AgADAAEAAADS/+f/AgADAAEAAADS/+j/AgADAAEAAADS/+n/AgADAAEAAADS/+r/AgADAAEAAADS/+v/AgADAAEAAADS/+z/AgADAAEAAADS/+3/AgADAAEAAADS/+7/AgADAAEAAADS/+//AgADAAEAAADS//D/AgADAAEAAADS//H/AgADAAEAAADS//L/AgADAAEAAADS//P/AgADAAEAAADS//T/AgADAAEAAADS//X/AgADAAEAAADS//b/AgADAAEAAADS//f/AgADAAEAAADS//j/AgADAAEAAADS//n/AgADAAEAAADS//r/AgADAAEAAADS//v/AgADAAEAAADS//z/AgADAAEAAADS//3/AgADAAEAAADS//7/AgADAAEAAADS////AgADAAEAAADS/wAAAgADAAEAAADS/wEAAgADAAEAAADS/wIAAgADAAEAAADS/wMAAgADAAEAAADS/wQAAgADAAEAAADS/wUAAgADAAEAAADS/wYAAgADAAEAAADS/wcAAgADAAEAAADS/wgAAgADAAEAAADS/wkAAgADAAEAAADS/woAAgADAAEAAADS/wsAAgADAAEAAADS/wwAAgADAAEAAADS/w0AAgADAAEAAADS/w4AAgADAAEAAADS/w8AAgADAAEAAADS/xAAAgADAAEAAADS/xEAAgADAAEAAADS/xIAAgADAAEAAADS/xMAAgADAAEAAADS/xQAAgADAAEAAADS/xUAAgADAAEAAADS/xYAAgADAAEAAADS/xcAAgADAAEAAADS/xgAAgADAAEAAADS/xkAAgADAAEAAADS/xoAAgADAAEAAADS/xsAAgADAAEAAADS/xwAAgADAAEAAADS/x0AAgADAAEAAADS/x4AAgADAAEAAADS/x8AAgADAAEAAADS/yAAAgADAAEAAADS/yEAAgADAAEAAADS/yIAAgADAAEAAADS/yMAAgADAAEAAADS/yQAAgADAAEAAADS/yUAAgADAAEAAADS/yYAAgADAAEAAADS/ycAAgADAAEAAADS/ygAAgADAAEAAADS/ykAAgADAAEAAADS/yoAAgADAAEAAADS/ysAAgADAAEAAADS/ywAAgADAAEAAADS/y0AAgADAAEAAADT/y4AAgAAAAEAAADU/y4AAgAAAAEAAADV/y4AAgAAAAEAAADW/y4AAgAAAAEAAADX/y4AAgAAAAEAAADY/y4AAgAAAAEAAADZ/y4AAgAAAAEAAADa/y4AAgAAAAEAAADb/y4AAgAAAAEAAADc/y4AAgAAAAEAAADd/y4AAgAAAAEAAADe/y4AAgAAAAEAAADf/y4AAgAAAAEAAADg/y4AAgAAAAEAAADh/y4AAgAAAAEAAADi/y4AAgAAAAEAAADj/y4AAgAAAAEAAADk/y4AAgAAAAEAAADl/y4AAgAAAAEAAADm/y4AAgAAAAEAAADn/y4AAgAAAAEAAADo/y4AAgAAAAEAAADp/y4AAgAAAAEAAADq/y4AAgAAAAEAAADr/y4AAgAAAAEAAADs/y4AAgAAAAEAAADt/y4AAgAAAAEAAADu/y4AAgAAAAEAAADv/y4AAgAAAAEAAADw/y4AAgAAAAEAAADx/y4AAgAAAAEAAADy/y4AAgAAAAEAAADz/y4AAgAAAAEAAAD0/y4AAgAAAAEAAAD1/y4AAgAAAAEAAAD2/y4AAgAAAAEAAAD3/y4AAgAAAAEAAAD4/y4AAgAAAAEAAAD5/y4AAgAAAAEAAAD6/y4AAgAAAAEAAAD7/y4AAgAAAAEAAAD8/y4AAgAAAAEAAAD9/y4AAgAAAAEAAAD+/y4AAgAAAAEAAAD//y4AAgAAAAEAAAA=")
 tile_set = SubResource("TileSet_78wrr")
 
@@ -466,10 +458,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_8vho0")
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 15
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
 
 [node name="Top-Left" type="Control" parent="UI/MarginContainer"]
 layout_mode = 2
@@ -993,7 +985,6 @@ size_flags_vertical = 3
 mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/PanelContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
@@ -1134,25 +1125,6 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VegetationMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/VegetationMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/VegetationMenu/MarginContainer"]
-layout_mode = 2
-
-[node name="VegetationSelectionContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/VegetationMenu/MarginContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
 [node name="DecorationMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
 unique_name_in_owner = true
 visible = false
@@ -1195,11 +1167,9 @@ layout_mode = 2
 layer = 0
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
 material = SubResource("ShaderMaterial_if1ac")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_lock_ = true

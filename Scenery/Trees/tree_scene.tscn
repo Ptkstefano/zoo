@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuiky1io0hfof"]
+
+[ext_resource type="Script" path="res://Scenery/Trees/tree_scene.gd" id="1_1udct"]
+[ext_resource type="Texture2D" uid="uid://c5phaf50gibix" path="res://Scenery/Trees/pine.png" id="1_cdt5w"]
+[ext_resource type="Texture2D" uid="uid://5gmndyyv30v6" path="res://Sprites/shadow.png" id="2_4jtuv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1cvid"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c2iwc"]
+radius = 8.0
+
+[node name="Tree" type="StaticBody2D"]
+script = ExtResource("1_1udct")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.2)
+texture_filter = 1
+position = Vector2(-1, -12)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_4jtuv")
+hframes = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+texture = ExtResource("1_cdt5w")
+offset = Vector2(0, -28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_1cvid")
+
+[node name="RemovalArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RemovalArea"]
+shape = SubResource("CircleShape2D_c2iwc")

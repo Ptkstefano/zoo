@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://cl4o0ja0kt0i1"]
+[gd_scene load_steps=10 format=3 uid="uid://cl4o0ja0kt0i1"]
 
 [ext_resource type="Script" path="res://Scripts/animal.gd" id="1_wogma"]
-[ext_resource type="Texture2D" uid="uid://5gmndyyv30v6" path="res://Sprites/shadow.png" id="2_anpbx"]
 [ext_resource type="Texture2D" uid="uid://c6wmdilxav70a" path="res://Sprites/animals/capy.png" id="2_jcx1h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r3wdq"]
@@ -98,13 +97,6 @@ _data = {
 [node name="Animal" type="CharacterBody2D"]
 collision_layer = 0
 script = ExtResource("1_wogma")
-
-[node name="Shadow" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 0.2)
-texture_filter = 1
-position = Vector2(0, -5)
-texture = ExtResource("2_anpbx")
-hframes = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

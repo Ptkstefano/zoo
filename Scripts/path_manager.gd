@@ -38,9 +38,11 @@ func build_path(coordinates, path_res):
 	## Builds a straight path and lists neighbor paths
 	var all_neighbors = []
 	for coordinate in coordinates:
+		if path_layer.get_cell_atlas_coords(coordinate).y == 0:
+			continue
 		if coordinate not in path_coordinates:
 			path_coordinates.append(coordinate)
-		path_layer.set_cell(coordinate, 0, Vector2(1,path_res.atlas_y))
+		path_layer.set_cell(coordinate, 0, Vector2i(1,path_res.atlas_y))
 		var neighbors = path_layer.get_surrounding_cells(coordinate)
 		for neighbor in neighbors:
 			if path_layer.get_cell_atlas_coords(neighbor) != Vector2i(-1,-1):
@@ -55,6 +57,9 @@ func build_path(coordinates, path_res):
 func remove_path(coordinates):
 	var all_neighbors = []
 	for coordinate in coordinates:
+		## Probably terrible
+		if coordinate in $"../Objects/BuildingManager".coordinates_used_by_buildings:
+			continue
 		path_layer.set_cell(coordinate, 0, Vector2(-1,-1))
 		if coordinate in path_coordinates:
 			path_coordinates.erase(coordinate)

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://32hy2cqq5ww0"]
+
+[ext_resource type="Texture2D" uid="uid://bsvsl53n4gga3" path="res://Scenery/Vegetation/vegetation1.png" id="1_f67hu"]
+[ext_resource type="Script" path="res://Scenery/Vegetation/vegetation_scene.gd" id="1_noc2m"]
+[ext_resource type="Texture2D" uid="uid://5gmndyyv30v6" path="res://Sprites/shadow.png" id="1_qgudt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_71esx"]
+radius = 8.0
+
+[node name="VegetationScene" type="Node2D"]
+script = ExtResource("1_noc2m")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.2)
+texture_filter = 1
+position = Vector2(-1, -8)
+texture = ExtResource("1_qgudt")
+hframes = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -14)
+texture = ExtResource("1_f67hu")
+
+[node name="RemovalArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RemovalArea"]
+shape = SubResource("CircleShape2D_71esx")
