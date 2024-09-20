@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfb5pi2yfy3jh"]
+
+[ext_resource type="Script" path="res://lake_scene.gd" id="1_x45p8"]
+[ext_resource type="Material" uid="uid://dnrl255m8dbu6" path="res://Water/water_movement.tres" id="2_mq15h"]
+[ext_resource type="Texture2D" uid="uid://kw67tgg6ws3i" path="res://Water/water2.png" id="3_kav0r"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ta1gu"]
+vertices = PackedVector2Array(-210.648, -224.578, 300.57, -73.5391, 215.672, 135.008, -88.0625, 92.2031, -422.281, 19.7422, -314.078, 263.406, -79.0625, 147.297)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 4, 3, 6)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-76, 104, 222, 146, 314, -80, -214, -236, -434, 18, -319, 277, -68, 153)])
+
+[node name="LakeScene" type="Node2D"]
+script = ExtResource("1_x45p8")
+
+[node name="WaterFill" type="Polygon2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = ExtResource("2_mq15h")
+texture = ExtResource("3_kav0r")
+polygon = PackedVector2Array(-289, -136, -334, 137, 23, 411, 603, 174, 434, -90, 275, -272, -124, -276)
+
+[node name="ShoreLine" type="Line2D" parent="."]
+points = PackedVector2Array(-289, -136, -334, 137, 23, 411, 603, 174, 434, -90, 275, -272, -124, -276)
+closed = true
+width = 4.0
+default_color = Color(0.933333, 0.764706, 0.603922, 1)
+
+[node name="RemovalArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RemovalArea"]
+polygon = PackedVector2Array(16, -14, -56, -82, -139, 51, 15, 150, 135, 41, 108, -40)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_ta1gu")
+enabled = false
+navigation_layers = 0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Enclosure"]]
+visible = false
+collision_layer = 2048
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+visible = false
+polygon = PackedVector2Array(-289, -136, -334, 137, 23, 411, 603, 174, 434, -90, 275, -272, -124, -276)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32768
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]

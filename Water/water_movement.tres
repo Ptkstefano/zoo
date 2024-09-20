@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dnrl255m8dbu6"]
+
+[ext_resource type="Shader" path="res://Water/scrolling.gdshader" id="1_yhufy"]
+[ext_resource type="Texture2D" uid="uid://kw67tgg6ws3i" path="res://Water/water2.png" id="2_vewhp"]
+
+[resource]
+shader = ExtResource("1_yhufy")
+shader_parameter/scroll_speed = 0.1
+shader_parameter/angle_degrees = 161.879
+shader_parameter/repeat_x = 1.0
+shader_parameter/repeat_y = 1.0
+shader_parameter/row_offset = 0.416
+shader_parameter/texture_to_scroll = ExtResource("2_vewhp")

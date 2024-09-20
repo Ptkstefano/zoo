@@ -16,4 +16,5 @@ func _process(delta: float) -> void:
 	pass
 
 func on_removal(bulldozer):
+	$RemovalArea/CollisionShape2D.disabled = true
 	queue_free()

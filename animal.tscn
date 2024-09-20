@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cl4o0ja0kt0i1"]
+[gd_scene load_steps=14 format=3 uid="uid://cl4o0ja0kt0i1"]
 
 [ext_resource type="Script" path="res://Scripts/animal.gd" id="1_wogma"]
 [ext_resource type="Texture2D" uid="uid://5gmndyyv30v6" path="res://Sprites/shadow.png" id="2_anpbx"]
-[ext_resource type="Texture2D" uid="uid://c6wmdilxav70a" path="res://Sprites/animals/capy.png" id="2_jcx1h"]
+[ext_resource type="Texture2D" uid="uid://c6wmdilxav70a" path="res://Animals/sprites/capy.png" id="2_jcx1h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r3wdq"]
 radius = 8.0
@@ -86,14 +86,51 @@ tracks/0/keys = {
 "values": [Vector2i(2, 1), Vector2i(3, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_wtt7n"]
+resource_name = "Swim_N"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(6, 1), Vector2i(7, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uf1yy"]
+resource_name = "Swim_S"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(6, 0), Vector2i(7, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_586lv"]
 _data = {
 "Eat": SubResource("Animation_abva1"),
 "Idle": SubResource("Animation_o17hh"),
 "RESET": SubResource("Animation_7dh8g"),
+"Swim_N": SubResource("Animation_uf1yy"),
+"Swim_S": SubResource("Animation_wtt7n"),
 "Walk_N": SubResource("Animation_pk5g8"),
 "Walk_S": SubResource("Animation_kpkyi")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bgifp"]
+radius = 2.23607
 
 [node name="Animal" type="CharacterBody2D"]
 collision_layer = 0
@@ -110,7 +147,7 @@ hframes = 2
 texture_filter = 1
 texture = ExtResource("2_jcx1h")
 offset = Vector2(0, -12)
-hframes = 6
+hframes = 8
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -122,10 +159,19 @@ libraries = {
 }
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-target_desired_distance = 40.0
-navigation_layers = 2
+target_desired_distance = 30.0
+navigation_layers = 4
 path_postprocessing = 1
+avoidance_layers = 0
+avoidance_mask = 0
 
 [node name="StateTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
+
+[node name="SwimDetection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwimDetection"]
+shape = SubResource("CircleShape2D_bgifp")

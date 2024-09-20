@@ -11,19 +11,27 @@ var area : area
 
 var agent: NavigationAgent2D
 
+var is_swimming : bool = false
+
 signal animal_removed
 
 func _ready() -> void:
 	agent = $NavigationAgent2D
 	$StateTimer.timeout.connect(on_state_timer_timeout)
 	agent.set_target_position(get_new_destination())
-	$AnimationPlayer.speed_scale = 0.5
+	$AnimationPlayer.speed_scale = 1.5
+	$SwimDetection
+	$SwimDetection.area_entered.connect(on_swim_start)
+	$SwimDetection.area_exited.connect(on_swim_stop)
 
 func initialize_animal(animal_res, coordinate, found_area):
 	$Sprite2D.texture = animal_res.texture
 	speed = animal_res.speed
 	## Corrects the y-sort position of the animal
 	$Sprite2D.offset = Vector2(0, (-($Sprite2D.texture.get_height() * 0.25) + 4))
+	
+	#if animal_res.can_swim:
+		#$NavigationAgent2D.navigation_layers = 3
 	
 	animal_res = animal_res
 	global_position = coordinate
@@ -37,9 +45,15 @@ func _physics_process(delta: float) -> void:
 		else:
 			$Sprite2D.flip_h=false
 		if velocity.y > 0:
-			$AnimationPlayer.play('Walk_S')
+			if is_swimming:
+				$AnimationPlayer.play('Swim_S')
+			else:
+				$AnimationPlayer.play('Walk_S')
 		elif velocity.y < 0:
-			$AnimationPlayer.play('Walk_N')
+			if is_swimming:
+				$AnimationPlayer.play('Swim_N')
+			else:
+				$AnimationPlayer.play('Walk_N')
 		if agent.is_navigation_finished():
 			change_state()
 		else:
@@ -47,7 +61,7 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 		
 func get_new_destination():
-	return area.generate_animal_destination()
+	return TileMapRef.map_to_local(area.area_cells.pick_random())
 
 func on_state_timer_timeout():
 	agent.target_position=get_new_destination()
@@ -55,6 +69,9 @@ func on_state_timer_timeout():
 	
 func change_state():
 	$StateTimer.start()
+	if is_swimming:
+		agent.target_position=get_new_destination()
+		return
 	if randi_range(0, 100) > 50:
 		animal_state = ANIMAL_STATES.IDLE
 		$AnimationPlayer.play('Idle')
@@ -65,3 +82,9 @@ func change_state():
 func remove_animal():
 	animal_removed.emit()
 	queue_free()
+
+func on_swim_start(area):
+	is_swimming = true
+	
+func on_swim_stop(area):
+	is_swimming = false

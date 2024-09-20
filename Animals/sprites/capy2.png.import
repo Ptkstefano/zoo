@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6wmdilxav70a"
-path="res://.godot/imported/capy.png-c94792a5f3a5b9928b4dcefb32ba447a.ctex"
+uid="uid://d1fpad62k8fe0"
+path="res://.godot/imported/capy2.png-27c6ce77aebc41e46bbaa6b66ba45270.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/animals/capy.png"
-dest_files=["res://.godot/imported/capy.png-c94792a5f3a5b9928b4dcefb32ba447a.ctex"]
+source_file="res://Animals/sprites/capy2.png"
+dest_files=["res://.godot/imported/capy2.png-27c6ce77aebc41e46bbaa6b66ba45270.ctex"]
 
 [params]
 

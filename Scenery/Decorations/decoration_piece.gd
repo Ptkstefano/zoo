@@ -4,7 +4,7 @@ var category = 'decoration'
 
 var resource : decoration_resource
 
-var sceneryManager
+signal removed
 
 var cell : Vector2
 
@@ -19,5 +19,5 @@ func _process(delta: float) -> void:
 	pass
 
 func on_removal(bulldozer):
-	sceneryManager.remove(cell)
+	removed.emit(cell)
 	queue_free()

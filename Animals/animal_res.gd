@@ -6,3 +6,4 @@ class_name animal_resource
 @export var texture : Texture2D
 @export var thumb : Texture2D
 @export var speed : int
+@export var can_swim : bool

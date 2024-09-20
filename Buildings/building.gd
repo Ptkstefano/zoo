@@ -19,7 +19,7 @@ signal building_removed
 func _ready() -> void:
 	var building_instance = building_res.building_scene.instantiate()
 	building_instance.global_position = building_position
-	building_instance.z_index = Helpers.get_current_tile_z_index(building_position)
+	building_instance.z_index = Helpers.get_current_tile_z_index(building_position) + building_res.z_offset
 	building_instance.is_rotated = is_building_rotated
 	add_child(building_instance)
 	building_instance.building_selected.connect(on_building_selected)

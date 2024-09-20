@@ -12,8 +12,8 @@ var last_mouse_position = Vector2()
 @export var max_zoom = Vector2(3.0, 3.0)
 
 var possible_zoom_values = [ 1, 2, 3, 4, 5]
-var current_zoom_index = 2
-var current_zoom_value = 2
+var current_zoom_index = 1
+var current_zoom_value = 1
 
 @onready var new_zoom = zoom
 @onready var sensitivity = basis_sensitivity

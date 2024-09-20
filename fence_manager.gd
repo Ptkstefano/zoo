@@ -10,6 +10,7 @@ class_name FenceManager
 var area_tilemap
 
 var fence_cells = []
+var fence_cells_dict = {}
 
 @export var fence_scene : PackedScene
 
@@ -32,17 +33,21 @@ func build_fence(area_cells, fence_res):
 		var west_cell= Vector2i(coordinate.x - 1, coordinate.y)
 		var north_cell= Vector2i(coordinate.x, coordinate.y - 1)
 		
-		if area_tilemap.get_cell_atlas_coords(east_cell) == Vector2i(-1,-1):
+		
+		## Figures out which cells are bordered by out-of-bounds cells
+		
+		if area_tilemap.get_cell_atlas_coords(east_cell) == Vector2i(-1,-1): #1
 			fence_layer_E.set_cell(coordinate, 0, Vector2i(0,1))
 			fence_cells.append(coordinate)
-		if area_tilemap.get_cell_atlas_coords(south_cell) == Vector2i(-1,-1):
-			fence_layer_S.set_cell(coordinate, 0, Vector2i(1,1))
+			fence_cells
+		if area_tilemap.get_cell_atlas_coords(north_cell) == Vector2i(-1,-1): #3 
+			fence_layer_N.set_cell(coordinate, 0, Vector2i(2,1))
 			fence_cells.append(coordinate)
-		if area_tilemap.get_cell_atlas_coords(west_cell) == Vector2i(-1,-1):
+		if area_tilemap.get_cell_atlas_coords(west_cell) == Vector2i(-1,-1): #4
 			fence_layer_W.set_cell(coordinate, 0, Vector2i(3,1))
 			fence_cells.append(coordinate)
-		if area_tilemap.get_cell_atlas_coords(north_cell) == Vector2i(-1,-1):
-			fence_layer_N.set_cell(coordinate, 0, Vector2i(2,1))
+		if area_tilemap.get_cell_atlas_coords(south_cell) == Vector2i(-1,-1): #2
+			fence_layer_S.set_cell(coordinate, 0, Vector2i(1,1))
 			fence_cells.append(coordinate)
 			
 	instantiate_fence(fence_res)

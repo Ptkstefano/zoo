@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnvesg7wrwadp"]
+
+[ext_resource type="Script" path="res://color_refs.gd" id="1_dnho3"]
+
+[node name="ColorRefs" type="Node"]
+script = ExtResource("1_dnho3")
+body_colors = Array[Color]([Color(0.67451, 0.196078, 0.196078, 1), Color(0.69108, 0.432264, 0.204327, 1), Color(0.388235, 0.607843, 1, 1), Color(0.866667, 0.501961, 0.796078, 1), Color(0.215686, 0.580392, 0.431373, 1)])
+skin_colors = Array[Color]([Color(0.890196, 0.690196, 0.537255, 1), Color(0.580392, 0.419608, 0.352941, 1)])
+hair_colors = Array[Color]([Color(0.388235, 0.25098, 0.164706, 1), Color(0.0509804, 0.145098, 0.25098, 1), Color(0.560784, 0.337255, 0.231373, 1), Color(0.0807833, 0.0807833, 0.0807833, 1)])

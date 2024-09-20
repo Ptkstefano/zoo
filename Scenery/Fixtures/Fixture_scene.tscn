@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyw57ak1ghyxw"]
+
+[ext_resource type="Texture2D" uid="uid://cnumvqt4inrbp" path="res://Scenery/Fixtures/bench.png" id="1_ifv28"]
+[ext_resource type="Script" path="res://Scenery/Fixtures/fixture_scene.gd" id="1_j2mey"]
+
+[node name="FixtureScene" type="Node2D"]
+script = ExtResource("1_j2mey")
+
+[node name="Directions" type="Node2D" parent="."]
+position = Vector2(0, -18)
+
+[node name="N" type="Sprite2D" parent="Directions"]
+texture_filter = 1
+texture = ExtResource("1_ifv28")
+vframes = 4
+frame = 1
+
+[node name="W" type="Sprite2D" parent="Directions"]
+texture_filter = 1
+texture = ExtResource("1_ifv28")
+vframes = 4
+
+[node name="S" type="Sprite2D" parent="Directions"]
+texture_filter = 1
+texture = ExtResource("1_ifv28")
+vframes = 4
+frame = 2
+
+[node name="E" type="Sprite2D" parent="Directions"]
+texture_filter = 1
+texture = ExtResource("1_ifv28")
+vframes = 4
+frame = 3

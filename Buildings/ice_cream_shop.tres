@@ -8,3 +8,5 @@ script = ExtResource("1_7ywjo")
 name = "Ice Cream Shop"
 size = Vector2i(2, 1)
 building_scene = ExtResource("1_luav2")
+building_type = 0
+z_offset = -3

@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 class_name area
 
@@ -11,12 +11,16 @@ var area_animals = []
 
 var current_fence
 
+var area_central_point : Vector2
+
 @onready var area_tilemap = $AreaTiles
 @onready var fence_manager : FenceManager = $FenceManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fence_manager.area_tilemap = area_tilemap
+	SignalBus.obstacle_changed.connect(update_navigation_region)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -32,14 +36,16 @@ func add_cells(coordinates, fence_res):
 	if fence_res:
 		current_fence = fence_res
 	for coordinate in coordinates:
-		$AreaTiles.set_cell(coordinate, 0, Vector2i(0, 0))
+		area_tilemap.set_cell(coordinate, 0, Vector2i(0, 0))
 		if !area_cells.has(coordinate):
 			area_cells.append(coordinate)
 	build_fence(current_fence)
+	update_central_point()
+	update_navigation_region()
 			
 func remove_cells(coordinates):
 	for coordinate in coordinates:
-		$AreaTiles.set_cell(coordinate, -1, Vector2i(-1,-1))
+		area_tilemap.set_cell(coordinate, -1, Vector2i(-1,-1))
 		if area_cells.has(coordinate):
 			area_cells.erase(coordinate)
 			
@@ -50,6 +56,8 @@ func remove_cells(coordinates):
 	detect_continuity()
 	build_fence(current_fence)
 	redistribute_animals()
+	update_central_point()
+	update_navigation_region()
 	
 func detect_continuity():
 	## Figures out if current area was broken into multiple areas and instantiates newly created areas as siblings
@@ -118,3 +126,85 @@ func remove_area():
 		animal.remove_animal()
 		
 	queue_free()
+
+func update_central_point():
+	var cells = $FenceManager.fence_cells
+	var sum_x: float = 0.0
+	var sum_y: float = 0.0
+	var num_cells: int = cells.size()
+
+	for cell in cells:
+		sum_x += cell.x
+		sum_y += cell.y
+
+	var centroid_x: float = sum_x / num_cells
+	var centroid_y: float = sum_y / num_cells
+	
+	var central_point = Vector2(centroid_x, centroid_y)
+
+	area_central_point = Helpers.get_global_pos_of_cell(central_point)
+	
+func update_navigation_region():
+	$LandRegion.bake_navigation_polygon()
+	$WaterRegion.bake_navigation_polygon()
+	
+	#var new_navigation_mesh = NavigationPolygon.new()
+	#var coordinates = []
+	#var ordered_cells = order_edge_cells($FenceManager.fence_cells)
+	#print(ordered_cells)
+	#for cell in ordered_cells:
+		#var localpos = TileMapRef.map_to_local(cell)
+		#if localpos not in coordinates:
+			#coordinates.append(localpos)
+	#new_navigation_mesh.clear_outlines()
+	#new_navigation_mesh.add_outline(coordinates)
+	##new_navigation_mesh.make_polygons_from_outline()
+	#NavigationServer2D.bake_from_source_geometry_data(new_navigation_mesh, NavigationMeshSourceGeometryData2D.new());
+	#$NavigationRegion2D.navigation_polygon = new_navigation_mesh
+
+func order_edge_cells(edge_cells: Array) -> Array:
+	var ordered_cells = []
+	var visited_cells = {}
+
+	# Choose a starting cell
+	var current_cell = edge_cells[0]
+	ordered_cells.append(current_cell)
+	visited_cells[current_cell] = true
+
+
+	while len(ordered_cells) < len(edge_cells):
+		var found_next = false
+		
+		# Check all neighbors of the current cell
+		for neighbor in get_neighbors(current_cell):
+			if neighbor in edge_cells and not visited_cells.has(neighbor):
+				ordered_cells.append(neighbor)
+				visited_cells[neighbor] = true
+				current_cell = neighbor
+				found_next = true
+				break
+		
+		if not found_next:
+			break # This prevents infinite loops in case of a break in the chain
+
+	return ordered_cells
+
+func get_neighbors(cell: Vector2i) -> Array:
+	var neighbors = []
+
+	# Horizontal and vertical neighbors (4-way)
+	neighbors.append(cell + Vector2i(1, 0))   # Right
+	neighbors.append(cell + Vector2i(-1, 0))  # Left
+	neighbors.append(cell + Vector2i(0, 1))   # Down
+	neighbors.append(cell + Vector2i(0, -1))  # Up
+	
+	#if neighbors.size() > 0:
+		#return neighbors
+
+	# Diagonal neighbors (for 8-way)
+	neighbors.append(cell + Vector2i(1, 1))   # Bottom-Right
+	neighbors.append(cell + Vector2i(-1, 1))  # Bottom-Left
+	neighbors.append(cell + Vector2i(1, -1))  # Top-Right
+	neighbors.append(cell + Vector2i(-1, -1)) # Top-Left
+
+	return neighbors

@@ -65,18 +65,20 @@ func place_vegetation(press_start_pos, vegetation_res):
 	add_child(vegetation)
 	
 func place_decoration(press_start_pos, decoration_res):
-	var decoration_position = $"../../TileMap/TerrainLayer".map_to_local($"../../TileMap/TerrainLayer".local_to_map(press_start_pos))
-	if decoration_position in used_cells:
+	var decoration_position_cell = TileMapRef.local_to_map(press_start_pos)
+	var decoration_position_local = TileMapRef.map_to_local(decoration_position_cell)
+	if decoration_position_cell in used_cells:
 		return
 	var decoration = decoration_scene.instantiate()
 	decoration.resource = decoration_res
-	decoration.global_position = decoration_position
-	decoration.sceneryManager = self
-	used_cells.append(decoration_position)
+	decoration.global_position = decoration_position_local
+	decoration.cell = decoration_position_cell
+	decoration.removed.connect(on_decoration_removed)
+	used_cells.append(decoration_position_cell)
 	add_child(decoration)
 	
-func remove_decoration(cell):
-	used_cells.erase(cell)
+func on_decoration_removed(cell):
+	used_cells.erase(Vector2i(cell.x, cell.y))
 	
 	
 func remove(press_start_pos):

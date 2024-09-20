@@ -43,6 +43,7 @@ func _ready() -> void:
 	%SceneryTool.pressed.connect(on_scenery_tool)
 	%TerrainTool.pressed.connect(on_terrain_tool)
 	%BuildingTool.pressed.connect(on_building_tool)
+	%WaterTool.pressed.connect(on_water_tool)
 	
 	%BuildPanelOpener.pressed.connect(on_open_build_panel)
 	
@@ -59,6 +60,7 @@ func _ready() -> void:
 	%SceneryTreesTool.pressed.connect(on_scenery_trees_tool_press)
 	%SceneryDecorationTool.pressed.connect(on_scenery_decorations_tool_press)
 	%SceneryVegetationTool.pressed.connect(on_scenery_vegetations_tool_press)
+	%SceneryFixtureTool.pressed.connect(on_scenery_fixtures_tool_press) 
 	
 	inputController.building_placed.connect(on_building_placed)
 	inputController.building_built.connect(on_building_built)
@@ -89,6 +91,9 @@ func update_ui():
 		if element:
 			element.scenery_selected.connect(on_scenery_selected)
 	for element in %VegetationSelectionContainer.get_children():
+		if element:
+			element.scenery_selected.connect(on_scenery_selected)
+	for element in %FixtureSelectionContainer.get_children():
 		if element:
 			element.scenery_selected.connect(on_scenery_selected)
 	for element in %DecorationSelectionContainer.get_children():
@@ -139,6 +144,12 @@ func update_info_label():
 		return
 	elif inputController.current_tool == inputController.TOOLS.TERRAIN:
 		info_label.text = 'Adding terrain'
+		return
+	elif inputController.current_tool == inputController.TOOLS.WATER:
+		if inputController.is_bulldozing:
+			info_label.text = 'Removing lake'
+			return
+		info_label.text = 'Placing lake'
 		return
 	elif inputController.current_tool == inputController.TOOLS.BUILDING:
 		info_label.text = 'Placing building'
@@ -199,6 +210,8 @@ func on_scenery_selected(scenery_res, type):
 		inputController.current_tool = inputController.TOOLS.VEGETATION
 	if type == 'decoration':
 		inputController.current_tool = inputController.TOOLS.DECORATION
+	if type == 'fixture':
+		inputController.current_tool = inputController.TOOLS.FIXTURE
 	selected_res = scenery_res
 	
 #func on_decoration_selected(decoration_res):
@@ -258,8 +271,14 @@ func on_tool_selected(tool):
 	if tool == inputController.TOOLS.DECORATION:
 		%ScenerySubpanel.show()
 		%DecorationMenu.show()
+	if tool == inputController.TOOLS.FIXTURE:
+		%ScenerySubpanel.show()
+		%FixtureMenu.show()
 	if tool == inputController.TOOLS.BULLDOZER:
 		return
+	if tool == inputController.TOOLS.WATER:
+		%ConstructionSidePanel.show()
+		inputController.current_tool = inputController.TOOLS.WATER
 
 func on_bulldozer_tool_press():
 	inputController.is_bulldozing = true
@@ -296,5 +315,9 @@ func on_scenery_decorations_tool_press():
 	on_tool_selected(inputController.TOOLS.DECORATION)
 func on_scenery_vegetations_tool_press():
 	on_tool_selected(inputController.TOOLS.VEGETATION)
+func on_scenery_fixtures_tool_press():
+	on_tool_selected(inputController.TOOLS.FIXTURE)
 func on_building_tool():
 	on_tool_selected(inputController.TOOLS.BUILDING)
+func on_water_tool():
+	on_tool_selected(inputController.TOOLS.WATER)

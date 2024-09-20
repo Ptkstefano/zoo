@@ -21,6 +21,10 @@ var touch_start_local_pos : Vector2
 var touch_current_local_pos : Vector2
 var touch_previous_local_pos : Vector2
 
+var is_placing_water : bool = false
+var water_starting_point : Vector2
+var water_points : Array[Vector2]
+
 var touch_debug : bool
 
 var selected_res : Resource
@@ -36,10 +40,10 @@ var is_camera_tool_selected : bool = false
 
 var rotate_building : bool = false
 
-enum TOOLS {NONE,PATH,AREA,ANIMAL,SCENERY,TERRAIN,BUILDING,BULLDOZER,TREE,VEGETATION,DECORATION}
+enum TOOLS {NONE,PATH,AREA,ANIMAL,SCENERY,TERRAIN,BUILDING,BULLDOZER,TREE,VEGETATION,FIXTURE,DECORATION,WATER}
 var current_tool = TOOLS.NONE
 var free_cam_tools = [TOOLS.NONE, TOOLS.BUILDING]
-var scenery_tools = [TOOLS.TREE, TOOLS.VEGETATION, TOOLS.DECORATION]
+var scenery_tools = [TOOLS.TREE, TOOLS.VEGETATION, TOOLS.DECORATION, TOOLS.FIXTURE, TOOLS.WATER]
 
 
 signal zoom_camera
@@ -140,12 +144,28 @@ func handle_tooling_input(event):
 				highlight_area()
 			if current_tool in scenery_tools:
 				if is_bulldozing:
-					bulldoze()
+					if current_tool == TOOLS.WATER:
+						is_placing_water = false
+						bulldoze_water()
+					else:
+						bulldoze()
+					
+			if current_tool == TOOLS.WATER:
+				if is_placing_water:
+					if touch_current_global_pos.distance_to(water_points[water_points.size()-1]) > 20:
+						water_points.append(touch_current_global_pos)
+						$"../Objects/WaterManager".draw_placeholder(water_points)
+					#print(touch_current_global_pos.distance_to(water_points[water_points.size()-1]))
+					
 					
 
 	if event is InputEventScreenTouch:
 		if event.is_pressed():
 			is_pressing = true
+			if current_tool == TOOLS.WATER:
+				is_placing_water = true
+				water_starting_point = touch_start_global_pos
+				water_points.append(water_starting_point)
 		if event.is_released():
 			if current_tool == TOOLS.BUILDING:
 				building_placed.emit()
@@ -181,9 +201,22 @@ func handle_tooling_input(event):
 			if current_tool == TOOLS.VEGETATION:
 				if !is_bulldozing:
 					scenery_manager.place_vegetation(touch_start_global_pos, selected_res)
+			if current_tool == TOOLS.FIXTURE:
+				if !is_bulldozing:
+					$"../Objects/FixtureManager".place_fixture(touch_start_global_pos, selected_res)
 			if current_tool == TOOLS.DECORATION:
 				if !is_bulldozing:
 					scenery_manager.place_decoration(touch_start_global_pos, selected_res)
+			if current_tool == TOOLS.WATER:
+				if !is_bulldozing:
+					is_placing_water = false
+					$"../Objects/WaterManager".create_water_body(water_points)
+					$"../Objects/WaterManager".clear_placeholder()
+					water_points = []
+				else:
+					$"../Objects/WaterManager".clear_placeholder()
+					water_points = []
+
 
 func handle_selection(event):
 	if event is InputEventScreenTouch:
@@ -315,3 +348,8 @@ func bulldoze():
 	$BulldozerCollider.global_position = touch_current_global_pos
 	await get_tree().create_timer(0.25).timeout
 	$BulldozerCollider.global_position = Vector2(9999,9999)
+
+func bulldoze_water():
+	$BulldozerWaterCollider.global_position = touch_current_global_pos
+	await get_tree().create_timer(0.25).timeout
+	$BulldozerWaterCollider.global_position = Vector2(9999,9999)

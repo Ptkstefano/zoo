@@ -18,6 +18,9 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 
 Helpers="*res://Scripts/helpers.gd"
 DataManager="*res://data_manager.gd"
+ColorRefs="*res://Autoload/color_refs.tscn"
+TileMapRef="*res://Autoload/tile_map_ref.tscn"
+SignalBus="*res://signal_bus.gd"
 
 [display]
 
@@ -28,6 +31,10 @@ window/stretch/aspect="expand"
 window/stretch/scale=1.2
 window/stretch/scale_mode="integer"
 
+[global_group]
+
+Enclosure=""
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
@@ -35,10 +42,13 @@ pointing/emulate_touch_from_mouse=true
 [layer_names]
 
 2d_navigation/layer_1="Peep_layer"
-2d_navigation/layer_2="animal_layer"
+2d_navigation/layer_2="land_animal_layer"
+2d_navigation/layer_3="water_animal_layer"
 2d_physics/layer_9="Scenery"
 2d_physics/layer_10="Detection"
 2d_physics/layer_11="Scenery"
+2d_physics/layer_12="water"
+2d_physics/layer_16="water_detection"
 
 [rendering]
 

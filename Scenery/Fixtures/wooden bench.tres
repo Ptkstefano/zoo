@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="fixture_resource" load_steps=3 format=3 uid="uid://bsox4n3cixif"]
+
+[ext_resource type="Script" path="res://Scenery/Fixtures/fixture_resource.gd" id="1_2ij5e"]
+[ext_resource type="Texture2D" uid="uid://cnumvqt4inrbp" path="res://Scenery/Fixtures/bench.png" id="2_cwntl"]
+
+[resource]
+script = ExtResource("1_2ij5e")
+name = "Wooden bench"
+texture = ExtResource("2_cwntl")
+type = 0
