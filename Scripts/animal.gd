@@ -7,7 +7,7 @@ var speed = 20.0
 enum ANIMAL_STATES {IDLE, MOVING, EATING}
 var animal_state = ANIMAL_STATES.MOVING
 
-var area : area
+var enclosure : Enclosure
 
 var agent: NavigationAgent2D
 
@@ -24,7 +24,7 @@ func _ready() -> void:
 	$SwimDetection.area_entered.connect(on_swim_start)
 	$SwimDetection.area_exited.connect(on_swim_stop)
 
-func initialize_animal(animal_res, coordinate, found_area):
+func initialize_animal(animal_res, coordinate, found_enclosure):
 	$Sprite2D.texture = animal_res.texture
 	speed = animal_res.speed
 	## Corrects the y-sort position of the animal
@@ -35,7 +35,8 @@ func initialize_animal(animal_res, coordinate, found_area):
 	
 	animal_res = animal_res
 	global_position = coordinate
-	area = found_area
+	enclosure = found_enclosure
+	print(enclosure)
 
 func _physics_process(delta: float) -> void:
 	z_index = Helpers.get_current_tile_z_index(global_position)
@@ -61,7 +62,7 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 		
 func get_new_destination():
-	return TileMapRef.map_to_local(area.area_cells.pick_random())
+	return TileMapRef.map_to_local(enclosure.enclosure_cells.pick_random())
 
 func on_state_timer_timeout():
 	agent.target_position=get_new_destination()

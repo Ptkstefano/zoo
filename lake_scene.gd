@@ -2,6 +2,9 @@ extends Node2D
 
 var line_points
 var shoreline_points
+var cells
+
+signal lake_removed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,6 +27,7 @@ func _process(delta: float) -> void:
 	pass
 
 func on_removal(bulldozer):
+	lake_removed.emit(cells)
 	queue_free()
 
 func shrink_polygon(vertices: Array[Vector2], shrink_factor: float):

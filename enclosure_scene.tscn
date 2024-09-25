@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://b020lesiynlbr"]
 
-[ext_resource type="Script" path="res://Scripts/area.gd" id="1_hna4l"]
-[ext_resource type="Texture2D" uid="uid://d1m6d2njxkwo5" path="res://Sprites/tile2.png" id="2_3331p"]
-[ext_resource type="Script" path="res://fence_manager.gd" id="3_wdrdh"]
-[ext_resource type="PackedScene" uid="uid://c7x3g6837s0x8" path="res://Fences/fence.tscn" id="4_h01na"]
-[ext_resource type="Texture2D" uid="uid://cjyflttjg5wv5" path="res://Fences/fence_sheet.png" id="4_qj3v5"]
+[ext_resource type="Script" path="res://Scripts/enclosure.gd" id="1_nv64f"]
+[ext_resource type="Texture2D" uid="uid://d1m6d2njxkwo5" path="res://Sprites/tile2.png" id="2_753mj"]
+[ext_resource type="Script" path="res://fence_manager.gd" id="3_guvt6"]
+[ext_resource type="Texture2D" uid="uid://cjyflttjg5wv5" path="res://Enclosures/Fences/fence_sheet.png" id="4_m6bky"]
+[ext_resource type="PackedScene" uid="uid://c7x3g6837s0x8" path="res://Enclosures/Fences/fence_scene.tscn" id="4_nke03"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_iqps3"]
 vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
@@ -13,7 +13,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bcvfi"]
-texture = ExtResource("2_3331p")
+texture = ExtResource("2_753mj")
 texture_region_size = Vector2i(64, 32)
 0:0/0 = 0
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_iqps3")
@@ -52,7 +52,7 @@ source_geometry_group_name = &"Enclosure"
 agent_radius = 1.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vbmef"]
-texture = ExtResource("4_qj3v5")
+texture = ExtResource("4_m6bky")
 texture_region_size = Vector2i(80, 72)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 12)
@@ -112,10 +112,10 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_vbmef")
 
-[node name="Area" type="Node2D"]
-script = ExtResource("1_hna4l")
+[node name="EnclosureScene" type="Node2D"]
+script = ExtResource("1_nv64f")
 
-[node name="AreaTiles" type="TileMapLayer" parent="." groups=["Enclosure"]]
+[node name="EnclosureTiles" type="TileMapLayer" parent="." groups=["Enclosure"]]
 visible = false
 tile_set = SubResource("TileSet_o4u8v")
 navigation_enabled = false
@@ -129,29 +129,36 @@ navigation_layers = 2
 navigation_polygon = SubResource("NavigationPolygon_k6c81")
 navigation_layers = 4
 
-[node name="FenceManager" type="Node2D" parent="."]
+[node name="EnclosureFenceManager" type="Node2D" parent="."]
 y_sort_enabled = true
-script = ExtResource("3_wdrdh")
-fence_scene = ExtResource("4_h01na")
+script = ExtResource("3_guvt6")
+fence_scene = ExtResource("4_nke03")
 
-[node name="E" type="TileMapLayer" parent="FenceManager"]
+[node name="E" type="TileMapLayer" parent="EnclosureFenceManager"]
 texture_filter = 1
 tile_set = SubResource("TileSet_1a3nq")
 collision_enabled = false
 
-[node name="S" type="TileMapLayer" parent="FenceManager"]
+[node name="S" type="TileMapLayer" parent="EnclosureFenceManager"]
 texture_filter = 1
 tile_set = SubResource("TileSet_1a3nq")
 collision_enabled = false
 
-[node name="W" type="TileMapLayer" parent="FenceManager"]
+[node name="W" type="TileMapLayer" parent="EnclosureFenceManager"]
 texture_filter = 1
 tile_set = SubResource("TileSet_1a3nq")
 collision_enabled = false
 
-[node name="N" type="TileMapLayer" parent="FenceManager"]
+[node name="N" type="TileMapLayer" parent="EnclosureFenceManager"]
 texture_filter = 1
 tile_set = SubResource("TileSet_1a3nq")
 collision_enabled = false
 
-[node name="FenceInstances" type="Node2D" parent="FenceManager"]
+[node name="FenceInstances" type="Node2D" parent="EnclosureFenceManager"]
+
+[node name="VegetationDetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4096
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VegetationDetectionArea"]
+polygon = PackedVector2Array(-87, -600, -359, 83, 116, 366, 831, -29, 62, -646)

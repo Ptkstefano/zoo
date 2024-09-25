@@ -40,10 +40,11 @@ var is_camera_tool_selected : bool = false
 
 var rotate_building : bool = false
 
-enum TOOLS {NONE,PATH,AREA,ANIMAL,SCENERY,TERRAIN,BUILDING,BULLDOZER,TREE,VEGETATION,FIXTURE,DECORATION,WATER}
+enum TOOLS {NONE,PATH,ENCLOSURE,SHELTER,ANIMAL,SCENERY,TERRAIN,BUILDING,BULLDOZER,TREE,VEGETATION,FIXTURE,DECORATION,WATER}
 var current_tool = TOOLS.NONE
 var free_cam_tools = [TOOLS.NONE, TOOLS.BUILDING]
 var scenery_tools = [TOOLS.TREE, TOOLS.VEGETATION, TOOLS.DECORATION, TOOLS.FIXTURE, TOOLS.WATER]
+var building_placement_tools = [TOOLS.SHELTER, TOOLS.BUILDING]
 
 
 signal zoom_camera
@@ -58,7 +59,7 @@ var previous_touches_distance = 0
 var zoom_started : bool = false
 
 
-var coords = []
+var cells : Array[Vector2i] = []
 var dir
 
 func _ready() -> void:
@@ -138,7 +139,7 @@ func handle_tooling_input(event):
 				return
 			if current_tool == TOOLS.PATH:
 				highlight_path()
-			if current_tool == TOOLS.AREA:
+			if current_tool == TOOLS.ENCLOSURE:
 				highlight_area()
 			if current_tool == TOOLS.TERRAIN:
 				highlight_area()
@@ -167,7 +168,7 @@ func handle_tooling_input(event):
 				water_starting_point = touch_start_global_pos
 				water_points.append(water_starting_point)
 		if event.is_released():
-			if current_tool == TOOLS.BUILDING:
+			if current_tool in building_placement_tools:
 				building_placed.emit()
 				highlight_building_area()
 			else:
@@ -175,24 +176,20 @@ func handle_tooling_input(event):
 			is_pressing = false
 			if current_tool == TOOLS.PATH:
 				if is_bulldozing:
-					$"../PathManager".remove_path(coords)
+					$"../PathManager".remove_path(cells)
 					return
-				if $"../AreaManager".get_area_overlap(coords):
+				if $"../EnclosureManager".get_enclosure_overlap(cells):
 					return
-				$"../PathManager".build_path(coords, selected_res)
-			if current_tool == TOOLS.BUILDING:
-				if $"../AreaManager".get_area_overlap(coords):
-					return
-				#$"../PathManager".build_path(coords, dir, selected_res)
-			if current_tool == TOOLS.AREA:
+				$"../PathManager".build_path(cells, selected_res)
+			if current_tool == TOOLS.ENCLOSURE:
 				if is_bulldozing:
-					$"../AreaManager".remove_area(coords)
+					$"../EnclosureManager".remove_enclosure(cells)
 					return
-				if $"../PathManager".get_fence_overlap(coords):
+				if $"../PathManager".get_path_overlap(cells):
 					return
-				$"../AreaManager".build_area(coords, selected_res)
+				$"../EnclosureManager".build_enclosure(cells, selected_res)
 			if current_tool == TOOLS.TERRAIN:
-				$"../TerrainManager".build_terrain(coords, selected_res)
+				$"../TerrainManager".build_terrain(cells, selected_res)
 			if current_tool == TOOLS.ANIMAL:
 				animal_manager.spawn_animal(touch_start_global_pos, selected_res)
 			if current_tool == TOOLS.TREE:
@@ -267,26 +264,26 @@ func highlight_path():
 	var y_press_diff = touch_current_global_pos.y - touch_start_global_pos.y
 	var x_tile_diff = end_tile_pos.x - start_tile_pos.x
 	var y_tile_diff = end_tile_pos.y - start_tile_pos.y
-	coords.clear()
+	cells.clear()
 	if abs(x_tile_diff) > abs(y_tile_diff):
 		dir = 'x'
 		for x in range(abs(x_tile_diff) + 1):
 			if start_tile_pos.x < end_tile_pos.x:
 				var new_coordinate = Vector2i(start_tile_pos.x + x, start_tile_pos.y)
-				coords.append(new_coordinate)
+				cells.append(new_coordinate)
 			else:
 				var new_coordinate = Vector2i(start_tile_pos.x - x, start_tile_pos.y)
-				coords.append(new_coordinate)
+				cells.append(new_coordinate)
 	else:
 		dir = 'y'
 		for y in range(abs(y_tile_diff) + 1):
 			if start_tile_pos.y < end_tile_pos.y:
 				var new_coordinate = Vector2i(start_tile_pos.x, start_tile_pos.y + y)
-				coords.append(new_coordinate)
+				cells.append(new_coordinate)
 			else:
 				var new_coordinate = Vector2i(start_tile_pos.x, start_tile_pos.y - y)
-				coords.append(new_coordinate)
-	$"../TileMap/HighlightLayer".apply_highlight(coords, is_bulldozing)
+				cells.append(new_coordinate)
+	$"../TileMap/HighlightLayer".apply_highlight(cells, is_bulldozing)
 	
 func highlight_area():
 	var tile_map_layer = $"../TileMap/TerrainLayer" as TileMapLayer
@@ -295,7 +292,7 @@ func highlight_area():
 	end_tile_pos = tilepos
 	var x_tile_diff = end_tile_pos.x - start_tile_pos.x
 	var y_tile_diff = end_tile_pos.y - start_tile_pos.y
-	coords.clear()
+	cells.clear()
 	for x in range(abs(x_tile_diff)+1):
 		for y in range(abs(y_tile_diff)+1):
 			var new_coordinate = Vector2i.ZERO
@@ -307,26 +304,34 @@ func highlight_area():
 				new_coordinate.y = end_tile_pos.y + y
 			else:
 				new_coordinate.y = start_tile_pos.y + y
-			coords.append(new_coordinate)
-	$"../TileMap/HighlightLayer".apply_highlight(coords, is_bulldozing)
+			cells.append(new_coordinate)
+	$"../TileMap/HighlightLayer".apply_highlight(cells, is_bulldozing)
 
 func highlight_building_area():
 	var tile_map_layer = $"../TileMap/TerrainLayer" as TileMapLayer
-	if selected_res is not building_resource:
-		return
+	#if selected_res is not building_resource:
+		#return
 	start_tile_pos = tile_map_layer.local_to_map(touch_start_global_pos)
-	coords.clear()
+	cells.clear()
 	if !rotate_building:
 		for x in range(abs(selected_res.size.x)):
 			for y in range(abs(selected_res.size.y)):
-				var new_coordinate = Vector2(start_tile_pos.x + x, start_tile_pos.y + y)
-				coords.append(new_coordinate)
+				var new_coordinate = Vector2i(start_tile_pos.x - x, start_tile_pos.y - y)
+				cells.append(new_coordinate)
 	if rotate_building:
 		for x in range(abs(selected_res.size.x)):
 			for y in range(abs(selected_res.size.y)):
-				var new_coordinate = Vector2(start_tile_pos.x + y, start_tile_pos.y - x)
-				coords.append(new_coordinate)
-	$"../TileMap/HighlightLayer".apply_highlight(coords, false)
+				var new_coordinate = Vector2i(start_tile_pos.x - y, start_tile_pos.y - x)
+				cells.append(new_coordinate)
+	if current_tool == TOOLS.BUILDING:
+		if $"../EnclosureManager".get_enclosure_overlap(cells):
+			$"../TileMap/HighlightLayer".clear_highlight()
+			return
+	if current_tool == TOOLS.SHELTER:
+		if !$"../EnclosureManager".get_enclosure_overlap(cells):
+			$"../TileMap/HighlightLayer".clear_highlight()
+			return
+	$"../TileMap/HighlightLayer".apply_highlight(cells, false)
 
 func rotate_building_toggle():
 	if rotate_building:
@@ -339,7 +344,12 @@ func rotate_building_toggle():
 func build_building():
 	$"../TileMap/HighlightLayer".clear_highlight()
 	building_built.emit()
-	$"../Objects/BuildingManager".build_building(selected_res, start_tile_pos, rotate_building, coords)
+	$"../Objects/BuildingManager".build_building(selected_res, start_tile_pos, rotate_building, cells)
+
+func build_shelter():
+	$"../TileMap/HighlightLayer".clear_highlight()
+	building_built.emit()
+	$"../Objects/ShelterManager".build_shelter(selected_res, start_tile_pos, rotate_building, cells)
 
 func on_selection(selected_object):
 	selected_object.clicked()

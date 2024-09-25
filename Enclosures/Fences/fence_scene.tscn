@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c7x3g6837s0x8"]
 
-[ext_resource type="Texture2D" uid="uid://cjyflttjg5wv5" path="res://Fences/fence_sheet.png" id="1_2s4a2"]
-[ext_resource type="Script" path="res://Fences/fence.gd" id="1_fnwc4"]
+[ext_resource type="Texture2D" uid="uid://cjyflttjg5wv5" path="res://Enclosures/Fences/fence_sheet.png" id="1_2s4a2"]
+[ext_resource type="Script" path="res://Enclosures/Fences/enclosureFence.gd" id="1_fnwc4"]
 [ext_resource type="Texture2D" uid="uid://boftg0lq7xdqp" path="res://Sprites/terrain_sheet.png" id="3_jltj5"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_uu5tt"]

@@ -8,3 +8,4 @@ script = ExtResource("1_gc3im")
 name = "Pine"
 texture = ExtResource("2_3argv")
 texture_offset = Vector2(0, -28)
+vegetation_weight = 2.0

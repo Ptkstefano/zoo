@@ -7,8 +7,8 @@ var sprite_y = 0
 func _ready() -> void:
 	pass
 
-func update_fence_instance(fence_res):
-	$Sprite2D.frame_coords = Vector2(sprite_x, fence_res.atlas_y)
+func update_fence_instance(enclosure_res):
+	$Sprite2D.frame_coords = Vector2(sprite_x, enclosure_res.atlas_y)
 	update_collision(sprite_x)
 
 func update_collision(x):

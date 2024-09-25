@@ -1,6 +1,9 @@
 extends Node2D
 
 @export var lake_scene : PackedScene
+
+var water_cells : Array[Vector2i]
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -13,6 +16,13 @@ func _process(delta: float) -> void:
 func create_water_body(points):
 	if points.size() < 5:
 		return
+		
+	for point in points:
+		if TileMapRef.local_to_map(point) in $"../../PathManager".path_coordinates:
+			return
+	for point in points:
+		if TileMapRef.local_to_map(point) in water_cells:
+			return
 		
 	## Adds points to soften hard edges
 	var smooth_points = smooth_lines(points)
@@ -32,13 +42,45 @@ func create_water_body(points):
 	var new_lake = lake_scene.instantiate()
 	new_lake.line_points = points
 	new_lake.shoreline_points = shoreline_points
+	var lake_cells = []
+	for point in points:
+		var point_cell = TileMapRef.local_to_map(point)
+		if point_cell not in lake_cells:
+			lake_cells.append(point_cell)
+	for cell in lake_cells:
+		$"../../TileMap/WaterCoverageLayer".set_cell(cell, 0, Vector2i(0,0))
+		if cell not in water_cells:
+			water_cells.append(cell)
+	new_lake.cells = lake_cells
+	new_lake.lake_removed.connect(on_lake_removed)
 	add_child(new_lake)
+	TileMapRef.update_enclosures(lake_cells)
+
+func on_lake_removed(cells):
+	for cell in cells:
+		water_cells.erase(cell)
+
+func get_water_availability(cells):
+	for cell in cells:
+		if cell in water_cells:
+			return true
+			
+	return false
 
 func draw_placeholder(points):
 	var smooth_points = smooth_lines(points)
 	$PlaceholderLine.points = smooth_points
+	for point in points:
+		if TileMapRef.local_to_map(point) in $"../../PathManager".path_coordinates:
+			$PlaceholderLine.default_color = Color('#f04644')
+			return
+	for point in points:
+		if TileMapRef.local_to_map(point) in water_cells:
+			$PlaceholderLine.default_color = Color('#f04644')
+			return
 	if is_polygon_self_intersecting(smooth_points):
 		$PlaceholderLine.default_color = Color('#f04644')
+		return
 	else:
 		$PlaceholderLine.default_color = Color('#4874f4')
 

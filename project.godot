@@ -17,7 +17,7 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 [autoload]
 
 Helpers="*res://Scripts/helpers.gd"
-DataManager="*res://data_manager.gd"
+DataManager="*res://enclosure_manager.gd"
 ColorRefs="*res://Autoload/color_refs.tscn"
 TileMapRef="*res://Autoload/tile_map_ref.tscn"
 SignalBus="*res://signal_bus.gd"
@@ -48,6 +48,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_10="Detection"
 2d_physics/layer_11="Scenery"
 2d_physics/layer_12="water"
+2d_physics/layer_13="Vegetation"
 2d_physics/layer_16="water_detection"
 
 [rendering]

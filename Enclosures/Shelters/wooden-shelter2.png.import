@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjyflttjg5wv5"
-path="res://.godot/imported/fence_sheet.png-4d7b25ec956ba5b0c742b07e58f8adbe.ctex"
+uid="uid://spni6kvjwmxc"
+path="res://.godot/imported/wooden-shelter2.png-df516889ae04d931eb73d5f4a4835134.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fences/fence_sheet.png"
-dest_files=["res://.godot/imported/fence_sheet.png-4d7b25ec956ba5b0c742b07e58f8adbe.ctex"]
+source_file="res://Enclosures/Shelters/wooden-shelter2.png"
+dest_files=["res://.godot/imported/wooden-shelter2.png-df516889ae04d931eb73d5f4a4835134.ctex"]
 
 [params]
 

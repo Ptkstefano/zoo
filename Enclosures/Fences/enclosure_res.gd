@@ -1,6 +1,6 @@
 extends Resource
 
-class_name fence_resource
+class_name enclosure_resource
 
 @export var name : String
 @export var thumb : Texture2D

@@ -1,10 +1,9 @@
-[gd_scene load_steps=104 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=96 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" path="res://Scripts/game_controller.gd" id="1_nisry"]
 [ext_resource type="Script" path="res://Scripts/input_controller.gd" id="1_ojpln"]
-[ext_resource type="Script" path="res://zoo_management.gd" id="1_ufl1h"]
 [ext_resource type="Script" path="res://Scripts/path_manager.gd" id="2_4bhy0"]
-[ext_resource type="PackedScene" uid="uid://cl4o0ja0kt0i1" path="res://Animals/animal.tscn" id="2_7ivxh"]
+[ext_resource type="PackedScene" uid="uid://cl4o0ja0kt0i1" path="res://animal.tscn" id="2_7ivxh"]
 [ext_resource type="Script" path="res://Scripts/enclosure_manager.gd" id="3_3jjmw"]
 [ext_resource type="Texture2D" uid="uid://bw474aur5qc4s" path="res://Sprites/tile3.png" id="3_s04uj"]
 [ext_resource type="Script" path="res://Paths/path_res.gd" id="4_5g54g"]
@@ -22,9 +21,9 @@
 [ext_resource type="Resource" uid="uid://c8vfd72bmgjcf" path="res://Animals/Giraffe.tres" id="7_4qpb4"]
 [ext_resource type="Resource" uid="uid://cv3jbpbpoab6s" path="res://Terrain/sand.tres" id="7_i5ul7"]
 [ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="7_pw5dd"]
-[ext_resource type="PackedScene" uid="uid://loilhhqarje0" path="res://UI/UI selectable elements/ui_path_element.tscn" id="7_tmdpf"]
+[ext_resource type="PackedScene" uid="uid://loilhhqarje0" path="res://UI/ui_path_element.tscn" id="7_tmdpf"]
 [ext_resource type="Resource" uid="uid://dp82v0odladsa" path="res://Paths/null_path.tres" id="7_ybs1u"]
-[ext_resource type="PackedScene" uid="uid://dvjtneek7b62q" path="res://UI/UI selectable elements/ui_terrain_element.tscn" id="8_qghle"]
+[ext_resource type="PackedScene" uid="uid://dvjtneek7b62q" path="res://UI/ui_terrain_element.tscn" id="8_qghle"]
 [ext_resource type="Script" path="res://Scripts/building_ui.gd" id="10_pctuh"]
 [ext_resource type="Script" path="res://peep_manager.gd" id="10_ubp83"]
 [ext_resource type="PackedScene" uid="uid://ca66y62ys1xkh" path="res://Peeps/peep.tscn" id="11_nv6fn"]
@@ -34,20 +33,20 @@
 [ext_resource type="Script" path="res://scenery_manager.gd" id="14_62h3g"]
 [ext_resource type="Script" path="res://terrain_layer.gd" id="15_l0i61"]
 [ext_resource type="Resource" uid="uid://c1csiys1jf20o" path="res://Animals/Flamingo.tres" id="17_2vbol"]
-[ext_resource type="Script" path="res://Enclosures/Fences/enclosure_res.gd" id="20_k6451"]
-[ext_resource type="PackedScene" uid="uid://oa08vk0rrcpe" path="res://UI/UI selectable elements/ui_animal_element.tscn" id="21_a35of"]
-[ext_resource type="Resource" uid="uid://camg8o6ropjnr" path="res://Enclosures/Fences/small.tres" id="21_ad55l"]
-[ext_resource type="Resource" uid="uid://b85gocjhm05am" path="res://Enclosures/Fences/steel.tres" id="22_kya8w"]
+[ext_resource type="Script" path="res://Enclosures/enclosure_res.gd" id="20_k6451"]
+[ext_resource type="PackedScene" uid="uid://oa08vk0rrcpe" path="res://UI/ui_animal_element.tscn" id="21_a35of"]
+[ext_resource type="Resource" uid="uid://camg8o6ropjnr" path="res://Enclosures/small.tres" id="21_ad55l"]
+[ext_resource type="Resource" uid="uid://b85gocjhm05am" path="res://Enclosures/steel.tres" id="22_kya8w"]
 [ext_resource type="Script" path="res://Scenery/Trees/tree_resource.gd" id="24_g51a1"]
 [ext_resource type="Resource" uid="uid://s5hkg34ufeu3" path="res://Scenery/Trees/Pine.tres" id="25_qvxwd"]
 [ext_resource type="Script" path="res://Scenery/Decorations/decoration_resource.gd" id="26_0c60e"]
 [ext_resource type="PackedScene" uid="uid://cuiky1io0hfof" path="res://Scenery/Trees/tree_scene.tscn" id="26_vuik7"]
-[ext_resource type="PackedScene" uid="uid://bt8m7eb0se03i" path="res://UI/UI selectable elements/ui_scenery_element.tscn" id="27_5553e"]
+[ext_resource type="PackedScene" uid="uid://bt8m7eb0se03i" path="res://UI/ui_scenery_element.tscn" id="27_5553e"]
 [ext_resource type="Script" path="res://building_manager.gd" id="27_mg3kq"]
 [ext_resource type="Resource" uid="uid://dqn36shhu7sgb" path="res://Scenery/Decorations/deer-statue.tres" id="27_r3jxo"]
-[ext_resource type="PackedScene" uid="uid://bb5olte5gphhj" path="res://UI/UI selectable elements/ui_building_element.tscn" id="28_04i1b"]
+[ext_resource type="PackedScene" uid="uid://bb5olte5gphhj" path="res://UI/ui_building_element.tscn" id="28_04i1b"]
 [ext_resource type="Script" path="res://Buildings/building_res.gd" id="28_58uqa"]
-[ext_resource type="Resource" uid="uid://xk5hxkv0keyb" path="res://Enclosures/Fences/concrete.tres" id="28_ldw2x"]
+[ext_resource type="Resource" uid="uid://xk5hxkv0keyb" path="res://Enclosures/concrete.tres" id="28_ldw2x"]
 [ext_resource type="Script" path="res://Scenery/Vegetation/vegetation_res.gd" id="28_wajut"]
 [ext_resource type="Resource" uid="uid://bin28cl7rvgjd" path="res://Scenery/Vegetation/short_grass.tres" id="29_d00f0"]
 [ext_resource type="PackedScene" uid="uid://32hy2cqq5ww0" path="res://Scenery/Vegetation/vegetation_scene.tscn" id="29_kyg12"]
@@ -58,7 +57,7 @@
 [ext_resource type="Resource" uid="uid://ch0c44mjn0ono" path="res://Scenery/Vegetation/bush.tres" id="31_7jmpp"]
 [ext_resource type="Shader" path="res://terrain.gdshader" id="31_e0m5j"]
 [ext_resource type="Texture2D" uid="uid://wj8tt8gnhkn5" path="res://Terrain/terrain_sheet.png" id="32_05eb2"]
-[ext_resource type="Texture2D" uid="uid://cjyflttjg5wv5" path="res://Enclosures/Fences/fence_sheet.png" id="42_ahr0a"]
+[ext_resource type="Texture2D" uid="uid://cjyflttjg5wv5" path="res://Enclosures/fence_sheet.png" id="42_ahr0a"]
 [ext_resource type="Script" path="res://water_manager.gd" id="43_sh5qp"]
 [ext_resource type="FontFile" uid="uid://32dcop5n8krs" path="res://UI/RobotoCondensed-Medium.ttf" id="44_a4t23"]
 [ext_resource type="PackedScene" uid="uid://dfb5pi2yfy3jh" path="res://Water/lake_scene.tscn" id="44_wq78x"]
@@ -67,31 +66,15 @@
 [ext_resource type="PackedScene" uid="uid://dyw57ak1ghyxw" path="res://Scenery/Fixtures/Fixture_scene.tscn" id="46_f0e0b"]
 [ext_resource type="Resource" uid="uid://bsox4n3cixif" path="res://Scenery/Fixtures/wooden bench.tres" id="47_gvub1"]
 [ext_resource type="Script" path="res://popup_manager.gd" id="48_w8cen"]
-[ext_resource type="Script" path="res://shelter_manager.gd" id="49_hnjxi"]
-[ext_resource type="PackedScene" uid="uid://ddbum626vwima" path="res://UI/UI popups/ui_shop_popup.tscn" id="50_dyuu3"]
-[ext_resource type="Script" path="res://Enclosures/Shelters/shelter_res.gd" id="50_m3er2"]
-[ext_resource type="Resource" uid="uid://cuk4yesxl2kqy" path="res://Enclosures/Shelters/small_wooden_shelter.tres" id="51_row6q"]
-[ext_resource type="PackedScene" uid="uid://dasxyu5n8ncu0" path="res://UI/UI selectable elements/ui_shelter_element.tscn" id="52_30626"]
+[ext_resource type="PackedScene" uid="uid://ddbum626vwima" path="res://ui_shop_popup.tscn" id="50_dyuu3"]
 [ext_resource type="Shader" path="res://postfx.gdshader" id="53_fkgg7"]
-[ext_resource type="PackedScene" uid="uid://c0yqr1xdbc6do" path="res://UI/UI selectable elements/ui_enclosure_element.tscn" id="54_il7k7"]
+[ext_resource type="PackedScene" uid="uid://c0yqr1xdbc6do" path="res://UI/ui_enclosure_element.tscn" id="54_il7k7"]
 [ext_resource type="PackedScene" uid="uid://b020lesiynlbr" path="res://enclosure_scene.tscn" id="55_54dhb"]
-[ext_resource type="Script" path="res://ui_show.gd" id="74_d5mka"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4oys"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xst71"]
 shader = ExtResource("31_e0m5j")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_svg4p"]
-texture = ExtResource("4_lkfjk")
-texture_region_size = Vector2i(64, 32)
-0:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_vuqhn"]
-tile_shape = 1
-tile_layout = 5
-tile_size = Vector2i(64, 32)
-sources/0 = SubResource("TileSetAtlasSource_svg4p")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n2opu"]
 texture = ExtResource("32_05eb2")
@@ -285,9 +268,6 @@ shader_parameter/palette_colors = null
 
 [node name="Main" type="Node2D"]
 
-[node name="ZooManagement" type="Node" parent="."]
-script = ExtResource("1_ufl1h")
-
 [node name="GameController" type="Node2D" parent="."]
 script = ExtResource("1_nisry")
 
@@ -336,11 +316,10 @@ ui_terrain_element = ExtResource("8_qghle")
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="AnimalManager" type="Node2D" parent="Objects" node_paths=PackedStringArray("enclosure_manager")]
+[node name="AnimalManager" type="Node2D" parent="Objects"]
 y_sort_enabled = true
 script = ExtResource("4_xl85y")
 available_animals = Array[ExtResource("5_h2s5g")]([ExtResource("6_k8h6b"), ExtResource("7_4qpb4"), ExtResource("17_2vbol")])
-enclosure_manager = NodePath("../../EnclosureManager")
 animal_scene = ExtResource("2_7ivxh")
 ui_animal_element = ExtResource("21_a35of")
 
@@ -391,11 +370,6 @@ fixture_scene = ExtResource("46_f0e0b")
 ui_scenery_element = ExtResource("27_5553e")
 pathLayer = NodePath("../../TileMap/PathLayer")
 
-[node name="ShelterManager" type="Node2D" parent="Objects"]
-script = ExtResource("49_hnjxi")
-available_shelters = Array[ExtResource("50_m3er2")]([ExtResource("51_row6q")])
-ui_shelter_element = ExtResource("52_30626")
-
 [node name="EnclosureManager" type="Node2D" parent="."]
 script = ExtResource("3_3jjmw")
 available_enclosures = Array[ExtResource("20_k6451")]([ExtResource("21_ad55l"), ExtResource("22_kya8w"), ExtResource("28_ldw2x")])
@@ -405,10 +379,6 @@ enclosure_scene = ExtResource("55_54dhb")
 [node name="TileMap" type="Node2D" parent="."]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_xst71")
-
-[node name="WaterCoverageLayer" type="TileMapLayer" parent="TileMap"]
-visible = false
-tile_set = SubResource("TileSet_vuqhn")
 
 [node name="TerrainLayer" type="TileMapLayer" parent="TileMap"]
 z_index = -4096
@@ -538,22 +508,15 @@ toggle_mode = true
 action_mode = 0
 text = "Build"
 
-[node name="OpenableToolPanel" type="Control" parent="UI/MarginContainer/Top-Left/HBoxContainer"]
-layout_mode = 2
-
-[node name="ToolPanel" type="VBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel"]
-unique_name_in_owner = true
-layout_mode = 2
-offset_left = 4.0
-offset_right = 1104.0
-offset_bottom = 249.0
-script = ExtResource("74_d5mka")
-
-[node name="MainPanel" type="PanelContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel"]
+[node name="ToolPanel" type="VBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/MainPanel"]
+[node name="MainPanel" type="PanelContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MainPanel"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/margin_left = 10
@@ -561,76 +524,75 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/MainPanel/MarginContainer"]
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MainPanel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 5
 
-[node name="ToolContainer" type="HBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/MainPanel/MarginContainer/HBoxContainer"]
+[node name="ToolContainer" type="HBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MainPanel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 5
 
-[node name="PathTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
+[node name="PathTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Path"
 
-[node name="EnclosureTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
+[node name="EnclosureTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Enclosure"
+text = "Area"
 
-[node name="AnimalTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
+[node name="AnimalTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Animal"
 
-[node name="BuildingTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
+[node name="BuildingTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Buildings"
 
-[node name="SceneryTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
+[node name="SceneryTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Scenery"
 
-[node name="TerrainTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
+[node name="TerrainTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 text = "Terrain"
 
-[node name="WaterTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
+[node name="WaterTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 text = "Water"
 
-[node name="ToolContainer2" type="HBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/MainPanel/MarginContainer/HBoxContainer"]
+[node name="ToolContainer2" type="HBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/MainPanel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 5
 
-[node name="Subpanel" type="PanelContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel"]
+[node name="Subpanel" type="PanelContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ScenerySubpanel" type="MarginContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/Subpanel"]
+[node name="ScenerySubpanel" type="MarginContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/Subpanel"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/margin_left = 10
@@ -638,83 +600,43 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/Subpanel/ScenerySubpanel"]
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/Subpanel/ScenerySubpanel"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 5
 
-[node name="ToolContainer" type="HBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer"]
+[node name="ToolContainer" type="HBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 5
 
-[node name="SceneryTreesTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
+[node name="SceneryTreesTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(125, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Trees"
 
-[node name="SceneryVegetationTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
+[node name="SceneryVegetationTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(125, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Vegetation"
 
-[node name="SceneryFixtureTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
+[node name="SceneryFixtureTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(125, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Fixtures"
 
-[node name="SceneryDecorationTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
+[node name="SceneryDecorationTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(125, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Decorations"
-
-[node name="EnclosureSubpanel" type="MarginContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/Subpanel"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/Subpanel/EnclosureSubpanel"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 5
-
-[node name="ToolContainer" type="HBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/Subpanel/EnclosureSubpanel/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 5
-
-[node name="EnclosureFenceTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/Subpanel/EnclosureSubpanel/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Fences"
-
-[node name="EnclosureShelterTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/Subpanel/EnclosureSubpanel/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Shelter"
-
-[node name="EnclosureToyTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/Subpanel/EnclosureSubpanel/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Toys"
 
 [node name="Top-Right" type="Control" parent="UI/MarginContainer"]
 layout_mode = 2
@@ -1169,25 +1091,6 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 
 [node name="EnclosureSelectionContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="ShelterMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/ShelterMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/ShelterMenu/MarginContainer"]
-layout_mode = 2
-
-[node name="ShelterSelectionContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/ShelterMenu/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 

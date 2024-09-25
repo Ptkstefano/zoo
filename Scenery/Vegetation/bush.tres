@@ -8,3 +8,4 @@ script = ExtResource("1_h6o6d")
 name = "Bush"
 texture = ExtResource("2_6176h")
 texture_offset = Vector2(0, 0)
+vegetation_weight = 0.25

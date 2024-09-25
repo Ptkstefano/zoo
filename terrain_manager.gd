@@ -34,9 +34,25 @@ func build_terrain(coords, selected_res : terrain_resource):
 			if neighbor not in neighbors:
 				if neighbor not in coords:
 					neighbors.append(neighbor)
-
+					
 	apply_wang(coords, selected_res)
-
+	TileMapRef.update_enclosures(coords)
+	
+	
+func get_terrain_coverage(cells):
+	var terrain_coverage = {}
+	var total_cells = cells.size()
+	for cell in cells:
+		var y_coord = $"../TileMap/TerrainLayer".get_cell_atlas_coords(cell).y
+		if y_coord in terrain_coverage:
+			terrain_coverage[y_coord] += 1
+		else:
+			terrain_coverage[y_coord] = 1
+	for key in terrain_coverage.keys():
+		terrain_coverage[key] = float(terrain_coverage[key]) / total_cells * 100
+		
+	return terrain_coverage
+	
 func apply_wang(coords, selected_res):
 	remove_wang(coords, selected_res)
 	for coord in coords:
@@ -58,7 +74,7 @@ func apply_wang(coords, selected_res):
 					$"../TileMap/TerrainLayer/TerrainWang_S".set_cell(neighbor, 0, Vector2(3, selected_res.atlas.y))
 			i += 1
 	
-	
+
 
 func remove_wang(coords, selected_res):
 	for coord in coords:

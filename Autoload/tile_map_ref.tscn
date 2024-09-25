@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bq6af3i5kilgq"]
+[gd_scene load_steps=3 format=3 uid="uid://bq6af3i5kilgq"]
+
+[ext_resource type="Script" path="res://Autoload/tile_map_ref.gd" id="1_v7nnk"]
 
 [sub_resource type="TileSet" id="TileSet_sbsaw"]
 tile_shape = 1
@@ -7,3 +9,4 @@ tile_size = Vector2i(64, 32)
 
 [node name="TileMapRef" type="TileMapLayer"]
 tile_set = SubResource("TileSet_sbsaw")
+script = ExtResource("1_v7nnk")

@@ -1,10 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddbum626vwima"]
+[gd_scene format=3 uid="uid://dqxwg06b4gjwq"]
 
-[ext_resource type="Script" path="res://ui_shop_popup.gd" id="1_w81ri"]
-
-[node name="UI_ShopPopup" type="CanvasLayer"]
+[node name="UI_AnimalPopup" type="CanvasLayer"]
 layer = 2
-script = ExtResource("1_w81ri")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15

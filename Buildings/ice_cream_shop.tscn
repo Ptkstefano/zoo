@@ -9,20 +9,21 @@ radius = 35.2278
 
 [node name="IceCreamShop" type="Node2D"]
 script = ExtResource("1_f3kbg")
-sprite_offset = Vector2(20, -16)
-sprite_offset_rotated = Vector2(10, -32)
-detectable_pos = Vector2(11, -9)
-detectable_pos_rotated = Vector2(20, -24)
+sprite_offset = Vector2(-12, -32)
+sprite_offset_rotated = Vector2(12, -33)
+detectable_pos = Vector2(-18, -13)
+detectable_pos_rotated = Vector2(23, -23)
 
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprites"]
 texture_filter = 1
 texture = ExtResource("1_xnvia")
-offset = Vector2(20, -16)
+offset = Vector2(12, -33)
+flip_h = true
 
 [node name="Detectable" type="Area2D" parent="."]
-position = Vector2(11, -9)
+position = Vector2(23, -23)
 collision_layer = 512
 collision_mask = 0
 script = ExtResource("3_1xbeh")

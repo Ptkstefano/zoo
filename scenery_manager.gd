@@ -57,12 +57,14 @@ func place_tree(press_start_pos, tree_res):
 	tree.tree_res = tree_res
 	tree.global_position = press_start_pos
 	add_child(tree)
+	SignalBus.vegetation_placed.emit(tree.global_position)
 	
 func place_vegetation(press_start_pos, vegetation_res):
 	var vegetation = vegetation_scene.instantiate()
 	vegetation.vegetation_res = vegetation_res
 	vegetation.global_position = press_start_pos
 	add_child(vegetation)
+	SignalBus.vegetation_placed.emit(vegetation.global_position)
 	
 func place_decoration(press_start_pos, decoration_res):
 	var decoration_position_cell = TileMapRef.local_to_map(press_start_pos)

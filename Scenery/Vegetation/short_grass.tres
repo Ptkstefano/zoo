@@ -10,3 +10,4 @@ script = ExtResource("1_f8ked")
 name = "Short grass"
 texture = SubResource("CompressedTexture2D_px4sa")
 texture_offset = Vector2(0, 0)
+vegetation_weight = 0.1
