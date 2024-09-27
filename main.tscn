@@ -33,7 +33,7 @@
 [ext_resource type="Resource" uid="uid://ctusbtwghbxrl" path="res://Terrain/savanna.tres" id="14_1rewk"]
 [ext_resource type="Script" path="res://scenery_manager.gd" id="14_62h3g"]
 [ext_resource type="Script" path="res://terrain_layer.gd" id="15_l0i61"]
-[ext_resource type="Resource" uid="uid://c1csiys1jf20o" path="res://Animals/Flamingo.tres" id="17_2vbol"]
+[ext_resource type="Resource" uid="uid://c1csiys1jf20o" path="res://Animals/American Flamingo.tres" id="17_2vbol"]
 [ext_resource type="Script" path="res://Enclosures/Fences/enclosure_res.gd" id="20_k6451"]
 [ext_resource type="PackedScene" uid="uid://oa08vk0rrcpe" path="res://UI/UI selectable elements/ui_animal_element.tscn" id="21_a35of"]
 [ext_resource type="Resource" uid="uid://camg8o6ropjnr" path="res://Enclosures/Fences/small.tres" id="21_ad55l"]
@@ -60,7 +60,6 @@
 [ext_resource type="Texture2D" uid="uid://wj8tt8gnhkn5" path="res://Terrain/terrain_sheet.png" id="32_05eb2"]
 [ext_resource type="Texture2D" uid="uid://cjyflttjg5wv5" path="res://Enclosures/Fences/fence_sheet.png" id="42_ahr0a"]
 [ext_resource type="Script" path="res://water_manager.gd" id="43_sh5qp"]
-[ext_resource type="FontFile" uid="uid://32dcop5n8krs" path="res://UI/RobotoCondensed-Medium.ttf" id="44_a4t23"]
 [ext_resource type="PackedScene" uid="uid://dfb5pi2yfy3jh" path="res://Water/lake_scene.tscn" id="44_wq78x"]
 [ext_resource type="Script" path="res://fixture_manager.gd" id="45_u6xcc"]
 [ext_resource type="Script" path="res://Scenery/Fixtures/fixture_resource.gd" id="46_0jpxo"]
@@ -75,6 +74,8 @@
 [ext_resource type="Shader" path="res://postfx.gdshader" id="53_fkgg7"]
 [ext_resource type="PackedScene" uid="uid://c0yqr1xdbc6do" path="res://UI/UI selectable elements/ui_enclosure_element.tscn" id="54_il7k7"]
 [ext_resource type="PackedScene" uid="uid://b020lesiynlbr" path="res://enclosure_scene.tscn" id="55_54dhb"]
+[ext_resource type="PackedScene" uid="uid://baic6x8rh68v8" path="res://UI/UI popups/ui_animal_popup.tscn" id="73_mv3dj"]
+[ext_resource type="Theme" uid="uid://qsq4gutgth07" path="res://UI/default_theme.tres" id="74_7k2ss"]
 [ext_resource type="Script" path="res://ui_show.gd" id="74_d5mka"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4oys"]
@@ -254,10 +255,6 @@ tile_layout = 5
 tile_size = Vector2i(64, 32)
 sources/2 = SubResource("TileSetAtlasSource_3qy8p")
 
-[sub_resource type="Theme" id="Theme_8vho0"]
-default_font = ExtResource("44_a4t23")
-default_font_size = 24
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfsr6"]
 bg_color = Color(0.772697, 0.923297, 0.949193, 1)
 
@@ -313,13 +310,11 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InputController/BulldozerWaterCollider"]
 shape = SubResource("CircleShape2D_l4oys")
 
-[node name="SelectorCollider" type="Area2D" parent="InputController"]
-visible = false
-position = Vector2(-768, 616)
-collision_layer = 0
+[node name="DetectableCollider" type="Area2D" parent="InputController"]
+collision_layer = 512
 collision_mask = 512
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InputController/SelectorCollider"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InputController/DetectableCollider"]
 shape = SubResource("CircleShape2D_l4oys")
 
 [node name="PathManager" type="Node2D" parent="."]
@@ -363,7 +358,8 @@ peep_scene = ExtResource("11_nv6fn")
 path_manager = NodePath("../../PathManager")
 
 [node name="PeepSpawnTimer" type="Timer" parent="Objects/PeepManager"]
-wait_time = 5.0
+unique_name_in_owner = true
+wait_time = 15.0
 autostart = true
 
 [node name="BuildingManager" type="Node2D" parent="Objects"]
@@ -496,9 +492,11 @@ inputController = NodePath("../InputController")
 min_zoom = Vector2(0.75, 0.75)
 max_zoom = Vector2(5, 5)
 
-[node name="PopupManager" type="Node" parent="."]
+[node name="PopupManager" type="CanvasLayer" parent="."]
+layer = 2
 script = ExtResource("48_w8cen")
 ui_shop_popup = ExtResource("50_dyuu3")
+ui_animal_popup = ExtResource("73_mv3dj")
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("inputController")]
 script = ExtResource("10_pctuh")
@@ -510,7 +508,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_8vho0")
+theme = ExtResource("74_7k2ss")
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 25
@@ -721,74 +719,49 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/Top-Right"]
+[node name="VBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/Top-Right"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -384.0
-offset_bottom = 105.0
+offset_left = -520.0
+offset_bottom = 532.0
 grow_horizontal = 0
-
-[node name="AdministrationContainer" type="PanelContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/AdministrationContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/AdministrationContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="ResearchMenu" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/AdministrationContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(125, 125)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Research
-"
-
-[node name="StaffMenu" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/AdministrationContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(125, 125)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Staff"
-
-[node name="AdmMenu" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/AdministrationContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(125, 125)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Adm."
-
-[node name="MainMenu" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/AdministrationContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(125, 125)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Config"
+mouse_filter = 2
 
 [node name="DebugScreen" type="HBoxContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 2
 
 [node name="Debug2" type="PanelContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug2"]
 layout_mode = 2
 size_flags_horizontal = 0
+mouse_filter = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug2/MarginContainer"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
+mouse_filter = 2
 
-[node name="Button" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
+[node name="DebugSpawnPeeps" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Do smt"
+text = "Spawn peeps"
+
+[node name="DebugRemovePeeps" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Clear peeps"
 
 [node name="Debug" type="PanelContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen"]
 layout_mode = 2
@@ -859,23 +832,71 @@ theme_override_font_sizes/font_size = 12
 text = "ASD"
 horizontal_alignment = 2
 
-[node name="Debug_finger" type="Label" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 12
-text = "ASD"
-horizontal_alignment = 2
+size_flags_horizontal = 10
 
-[node name="Debug_distance" type="Label" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug/MarginContainer/VBoxContainer"]
+[node name="RightMenuToggle" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
-size_flags_horizontal = 8
+toggle_mode = true
+text = "|||"
+
+[node name="Control" type="Control" parent="UI/MarginContainer/Top-Right/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 12
-text = "ASD"
-horizontal_alignment = 2
+
+[node name="DropDownMenu" type="PanelContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/VBoxContainer/Control"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+offset_top = 4.0
+offset_right = 145.0
+offset_bottom = 536.0
+script = ExtResource("74_d5mka")
+is_vertical = true
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/VBoxContainer/Control/DropDownMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/VBoxContainer/Control/DropDownMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="DropDownMenu" type="VBoxContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/VBoxContainer/Control/DropDownMenu/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="ResearchMenu" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/VBoxContainer/Control/DropDownMenu/MarginContainer/VBoxContainer2/DropDownMenu"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Research
+"
+
+[node name="StaffMenu" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/VBoxContainer/Control/DropDownMenu/MarginContainer/VBoxContainer2/DropDownMenu"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Staff"
+
+[node name="AdmMenu" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/VBoxContainer/Control/DropDownMenu/MarginContainer/VBoxContainer2/DropDownMenu"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Adm."
+
+[node name="DebugToggle" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/VBoxContainer/Control/DropDownMenu/MarginContainer/VBoxContainer2/DropDownMenu"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Debug"
 
 [node name="Bottom" type="Control" parent="UI/MarginContainer"]
 layout_mode = 2
@@ -1337,3 +1358,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true

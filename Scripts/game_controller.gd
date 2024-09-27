@@ -6,8 +6,8 @@ extends Node2D
 @onready var mouse_coordinate_label = %Debug_coordinate
 @onready var peep_count_label = %Debug_Peeps
 @onready var physics_time_label = %Debug_PhysicsTime
-@onready var finger_count_label = %Debug_finger
-@onready var finger_distance_label = %Debug_distance
+
+var base_peep_spawn_timer
 
 @onready var highlight_layer = $"../TileMap/HighlightLayer"
 
@@ -23,7 +23,10 @@ var peep_count = 0:
 		
 # Called when the node enters the scene tree f1or the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	base_peep_spawn_timer = %PeepSpawnTimer.wait_time
+	%DebugSpawnPeeps.button_down.connect(start_spawn_peeps)
+	%DebugSpawnPeeps.button_up.connect(stop_spawn_peeps)
+	%DebugRemovePeeps.pressed.connect(remove_peeps)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,6 +37,13 @@ func _process(delta: float) -> void:
 	animal_count_label.text = "Animals: " + str($"../Objects/AnimalManager".animal_count)
 	peep_count_label.text = "Peeps: " + str($"../Objects/PeepManager".peep_count)
 	physics_time_label.text = ("Physics: "+str(Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS)))
-	finger_count_label.text = ("Fingers: "+str($"../InputController".fingers_touching.size()))
-	finger_distance_label.text = ("Finger d:"+str($"../InputController".previous_touches_distance))
+
+func start_spawn_peeps():
+	%PeepSpawnTimer.wait_time = 0.1
+	%PeepSpawnTimer.start()
+
+func stop_spawn_peeps():
+	%PeepSpawnTimer.wait_time = base_peep_spawn_timer
 	
+func remove_peeps():
+	$"../Objects/PeepManager".debug_clear_peeps()

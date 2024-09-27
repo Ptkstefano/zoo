@@ -1,60 +1,176 @@
-[gd_scene format=3 uid="uid://dqxwg06b4gjwq"]
+[gd_scene load_steps=6 format=3 uid="uid://baic6x8rh68v8"]
 
-[node name="UI_AnimalPopup" type="CanvasLayer"]
-layer = 2
+[ext_resource type="Theme" uid="uid://qsq4gutgth07" path="res://UI/default_theme.tres" id="1_va6s2"]
+[ext_resource type="Script" path="res://Animals/ui_animal_popup.gd" id="2_02j40"]
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lwchb"]
+content_margin_left = 40.0
+content_margin_top = 15.0
+content_margin_right = 40.0
+content_margin_bottom = 15.0
+bg_color = Color(0.529067, 0.529067, 0.529067, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbgyd"]
+content_margin_left = 40.0
+content_margin_top = 15.0
+content_margin_right = 40.0
+content_margin_bottom = 15.0
+bg_color = Color(0.347817, 0.347817, 0.347817, 1)
+corner_radius_top_right = 2
+
+[sub_resource type="Theme" id="Theme_ahx40"]
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_lwchb")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_pbgyd")
+
+[node name="AnimalPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
-theme_override_constants/margin_left = 250
-theme_override_constants/margin_top = 200
-theme_override_constants/margin_right = 250
-theme_override_constants/margin_bottom = 250
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_va6s2")
+script = ExtResource("2_02j40")
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -169.0
+offset_right = 250.0
+offset_bottom = 169.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+[node name="AnimalName" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Ice" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
-text = "Ice Cream Shop"
+text = "Capybara"
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 10
+theme_override_constants/separation = 25
 
-[node name="RemoveBuildingButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 100)
+[node name="TabContainer" type="TabContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_ahx40")
+current_tab = 0
+
+[node name="Needs" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+metadata/_tab_index = 0
+
+[node name="Needs" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Needs"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Needs/Needs"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Needs/Needs/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Remove building"
+size_flags_stretch_ratio = 0.3
+text = "Hunger: "
 
-[node name="CloseButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer"]
+[node name="HungerProgressBar" type="ProgressBar" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Needs/Needs/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 0
-size_flags_stretch_ratio = 0.1
-text = "X"
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Needs/Needs"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Needs/Needs/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+text = "Rest: "
+
+[node name="RestProgressBar" type="ProgressBar" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Needs/Needs/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Needs/Needs"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Needs/Needs/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+text = "Fun: "
+
+[node name="FunProgressBar" type="ProgressBar" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Needs/Needs/HBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Actions" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 35
+metadata/_tab_index = 1
+
+[node name="Needs" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Actions"]
+layout_mode = 2
+
+[node name="SellAnimal" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Actions/Needs"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Sell animal"
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 25
+
+[node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+text = "Close"

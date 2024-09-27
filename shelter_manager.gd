@@ -30,7 +30,6 @@ func update_shelter_menu():
 	$"../../UI".update_ui()
 
 func build_shelter(shelter_res, starting_coord, rotate, coords):
-	print('build_shelter')
 	var new_shelter = shelter_res.shelter_scene.instantiate()
 	new_shelter.shelter_position = $"../../TileMap/TerrainLayer".map_to_local(starting_coord)
 	#new_shelter.is_shelter_rotated = rotate

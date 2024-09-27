@@ -63,7 +63,7 @@ var cells : Array[Vector2i] = []
 var dir
 
 func _ready() -> void:
-	$SelectorCollider.area_entered.connect(on_selection)
+	pass
 
 
 func _process(delta: float) -> void:
@@ -219,14 +219,14 @@ func handle_selection(event):
 	if event is InputEventScreenTouch:
 		if event.is_pressed():
 			if current_tool == TOOLS.NONE:
-				$SelectorCollider.global_position = touch_start_global_pos
-				#var overlapping_areas = $SelectorCollider.get_overlapping_areas()
+				$DetectableCollider.global_position = touch_start_global_pos
+				#var overlapping_areas = $DetectableCollider.get_overlapping_areas()
 				#if overlapping_areas.size() > 0:
 					#overlapping_areas[0].clicked()
 					#return true
 		else:
 			## Done to ensure double clicking on a building doesn't fail
-			$SelectorCollider.global_position = Vector2(9999,9999)
+			$DetectableCollider.global_position = Vector2(9999,9999)
 	return false
 
 func debug_keyboard_input(event):
@@ -350,9 +350,6 @@ func build_shelter():
 	$"../TileMap/HighlightLayer".clear_highlight()
 	building_built.emit()
 	$"../Objects/ShelterManager".build_shelter(selected_res, start_tile_pos, rotate_building, cells)
-
-func on_selection(selected_object):
-	selected_object.clicked()
 	
 func bulldoze():
 	$BulldozerCollider.global_position = touch_current_global_pos

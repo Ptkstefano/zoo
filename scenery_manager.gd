@@ -57,7 +57,9 @@ func place_tree(press_start_pos, tree_res):
 	tree.tree_res = tree_res
 	tree.global_position = press_start_pos
 	add_child(tree)
-	SignalBus.vegetation_placed.emit(tree.global_position)
+	var enclosure = TileMapRef.get_enclosure_by_cell(TileMapRef.local_to_map(tree.global_position))
+	if enclosure:
+		enclosure.call_deferred('update_navigation_region')
 	
 func place_vegetation(press_start_pos, vegetation_res):
 	var vegetation = vegetation_scene.instantiate()

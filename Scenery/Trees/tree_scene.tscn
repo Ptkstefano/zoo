@@ -5,12 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://5gmndyyv30v6" path="res://Sprites/shadow.png" id="2_4jtuv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1cvid"]
-radius = 3.0
+radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c2iwc"]
 radius = 8.0
 
-[node name="Tree" type="StaticBody2D"]
+[node name="Tree" type="StaticBody2D" groups=["Enclosure"]]
 script = ExtResource("1_1udct")
 
 [node name="Shadow" type="Sprite2D" parent="."]

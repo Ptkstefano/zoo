@@ -169,8 +169,6 @@ func update_navigation_region():
 	$LandRegion.bake_navigation_polygon()
 	$WaterRegion.bake_navigation_polygon()
 	
-
-	
 func update_enclosure_area():
 	var coordinates = []
 	#var ordered_cells = order_edge_cells($EnclosureManager.enclosure_cells)

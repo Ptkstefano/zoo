@@ -34,16 +34,16 @@ func update_animal_menu():
 func spawn_animal(coordinate, animal_res):
 		
 	## Find what enclosure the player wants to add an animal to
-	var tile_coordinate = TileMapRef.local_to_map(coordinate)
-	var found_enclosures = enclosure_manager.get_existing_enclosures(tile_coordinate)
-	if found_enclosures.size() != 1:
+	var cell = TileMapRef.local_to_map(coordinate)
+	var found_enclosure = enclosure_manager.get_enclosure_by_cell(cell)
+	if !found_enclosure:
 		return
 		
 	var spawned_animal = animal_scene.instantiate()
-	spawned_animal.initialize_animal(animal_res, coordinate, found_enclosures[0])
+	spawned_animal.initialize_animal(animal_res, coordinate, found_enclosure)
 	spawned_animal.animal_removed.connect(despawn_animal)
 	add_child(spawned_animal)
-	found_enclosures[0].add_animal(spawned_animal)
+	found_enclosure.add_animal(spawned_animal)
 	animal_count += 1
 	
 func despawn_animal():

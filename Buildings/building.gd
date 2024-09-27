@@ -22,10 +22,6 @@ func _ready() -> void:
 	building_instance.z_index = Helpers.get_current_tile_z_index(building_position) + building_res.z_offset
 	building_instance.is_rotated = is_building_rotated
 	add_child(building_instance)
-	building_instance.building_selected.connect(on_building_selected)
-
-func on_building_selected():
-	building_selected.emit(self)
 
 func remove_building():
 	building_removed.emit(self)

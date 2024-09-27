@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="animal_resource" load_steps=3 format=3 uid="uid://c1csiys1jf20o"]
+
+[ext_resource type="Script" path="res://Animals/animal_res.gd" id="1_5v5j4"]
+[ext_resource type="Texture2D" uid="uid://bk7okniitjf6t" path="res://Animals/sprites/flamingo2.png" id="2_exngk"]
+
+[resource]
+script = ExtResource("1_5v5j4")
+name = "American Flamingo"
+texture = ExtResource("2_exngk")
+base_speed = 10.0
+run_speed = 10.0
+animation_speed_scale = 0.5
+can_swim = true

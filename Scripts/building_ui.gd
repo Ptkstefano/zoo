@@ -41,6 +41,9 @@ func _ready() -> void:
 	%PathTool.pressed.connect(on_path_tool)
 	%EnclosureTool.pressed.connect(on_enclosure_tool)
 	
+	%RightMenuToggle.toggled.connect(on_right_menu_toggle)
+	%DebugToggle.pressed.connect(on_debug_toggle)
+	
 	%AnimalTool.pressed.connect(on_animal_tool)
 	%SceneryTool.pressed.connect(on_scenery_tool)
 	%TerrainTool.pressed.connect(on_terrain_tool)
@@ -162,6 +165,19 @@ func update_info_label():
 	elif inputController.current_tool == inputController.TOOLS.BUILDING:
 		info_label.text = 'Placing building'
 		return
+
+func on_right_menu_toggle(toggled):
+	if toggled:
+		%DropDownMenu.visible = true
+	else:
+		%DropDownMenu.visible = false
+
+func on_debug_toggle():
+	if %DebugScreen.visible:
+		%DebugScreen.visible = false
+	else:
+		%DebugScreen.visible = true
+	
 
 func deselect_main():
 	for button in $VBoxContainer/PanelContainer/MarginContainer/HBoxContainer.get_children():

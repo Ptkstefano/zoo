@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name building_food
+
 @export var sprite_offset : Vector2
 @export var sprite_offset_rotated : Vector2
 
@@ -11,11 +13,8 @@ var coordinates = []
 
 var is_rotated : bool
 
-signal building_selected
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Detectable.on_clicked.connect(on_selected)
 	for sprite in $Sprites.get_children():
 		if is_rotated:
 			sprite.flip_h = true
@@ -23,6 +22,3 @@ func _ready() -> void:
 		else:
 			sprite.flip_h = false
 			sprite.offset = sprite_offset
-
-func on_selected():
-	building_selected.emit()

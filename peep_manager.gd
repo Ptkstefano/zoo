@@ -28,3 +28,8 @@ func on_peep_spawn_timeout():
 func generate_peep_destination():
 	return path_manager.generate_peep_destination()
 	
+func debug_clear_peeps():
+	for peep in get_children():
+		if peep is not Timer:
+			peep.queue_free()
+			peep_count -= 1

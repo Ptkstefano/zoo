@@ -1,11 +1,19 @@
 extends CharacterBody2D
 
-var animal_res
+class_name animal
 
-var speed = 20.0
+var animal_res : animal_resource
 
-enum ANIMAL_STATES {IDLE, MOVING, EATING}
-var animal_state = ANIMAL_STATES.MOVING
+var base_speed : float
+var run_speed : float
+
+var speed
+
+enum ANIMAL_STATES {IDLE, MOVING_TOWARDS, EATING, RUNNING, RESTING}
+var current_state = ANIMAL_STATES.IDLE
+var next_state = null
+
+var animal_name
 
 var enclosure : Enclosure
 
@@ -13,50 +21,96 @@ var agent: NavigationAgent2D
 
 var is_swimming : bool = false
 
+var needs_rest : float = 70:
+	set(value):
+		needs_rest = clamp(value,0,100)
+	
+var needs_hunger : float = 70:
+	set(value):
+		needs_hunger = clamp(value,0,100)
+		
+var needs_play : float = 70:
+	set(value):
+		needs_play = clamp(value,0,100)
+
+var hunger_restore_rate = 0.1
+var rest_restore_rate = 0.01
+var play_restore_rate = 0.05
+
+var hunger_drain_rate = 3.5
+var rest_drain_rate = 2.5
+var play_drain_rate = 5
+
+var direction = '_S'
+
 signal animal_removed
 
 func _ready() -> void:
 	agent = $NavigationAgent2D
 	$StateTimer.timeout.connect(on_state_timer_timeout)
+	$DecayTimer.timeout.connect(on_decay_timer_timeout)
 	agent.set_target_position(get_new_destination())
 	$AnimationPlayer.speed_scale = 1.5
-	$SwimDetection
 	$SwimDetection.area_entered.connect(on_swim_start)
 	$SwimDetection.area_exited.connect(on_swim_stop)
+	$NoSwimTimer.timeout.connect(on_no_swim_timer_timeout)
+	$StateTimer.start()
+	
 
-func initialize_animal(animal_res, coordinate, found_enclosure):
+func initialize_animal(res, coordinate, found_enclosure):
+	
+	animal_res = res
+	
 	$Sprite2D.texture = animal_res.texture
-	speed = animal_res.speed
+	base_speed = animal_res.base_speed
+	run_speed = animal_res.run_speed
+	
+	$AnimationPlayer.speed_scale = animal_res.animation_speed_scale
 	## Corrects the y-sort position of the animal
 	$Sprite2D.offset = Vector2(0, (-($Sprite2D.texture.get_height() * 0.25) + 4))
+	animal_name = animal_res.name
 	
-	#if animal_res.can_swim:
-		#$NavigationAgent2D.navigation_layers = 3
+	if animal_res.can_swim:
+		$NavigationAgent2D.set_navigation_layer_value(2, false)
+		$NavigationAgent2D.set_navigation_layer_value(3, true)
+		
 	
-	animal_res = animal_res
+	
 	global_position = coordinate
 	enclosure = found_enclosure
-	print(enclosure)
 
 func _physics_process(delta: float) -> void:
 	z_index = Helpers.get_current_tile_z_index(global_position)
-	if animal_state == ANIMAL_STATES.MOVING:
+	play_animation()
+	if current_state == ANIMAL_STATES.EATING:
+		needs_hunger += hunger_restore_rate
+		if needs_hunger > 90:
+			on_state_timer_timeout()
+	elif current_state == ANIMAL_STATES.RESTING:
+		needs_rest += rest_restore_rate
+		if needs_rest > 90:
+			on_state_timer_timeout()
+	elif current_state == ANIMAL_STATES.RUNNING or current_state == ANIMAL_STATES.MOVING_TOWARDS:
+		if current_state == ANIMAL_STATES.RUNNING:
+			needs_play += play_restore_rate
+			speed = run_speed
+		else:
+			speed = base_speed
+			
 		if velocity.x > 0:
 			$Sprite2D.flip_h=true
 		else:
 			$Sprite2D.flip_h=false
-		if velocity.y > 0:
-			if is_swimming:
-				$AnimationPlayer.play('Swim_S')
-			else:
-				$AnimationPlayer.play('Walk_S')
-		elif velocity.y < 0:
-			if is_swimming:
-				$AnimationPlayer.play('Swim_N')
-			else:
-				$AnimationPlayer.play('Walk_N')
 		if agent.is_navigation_finished():
-			change_state()
+			if current_state == ANIMAL_STATES.RUNNING:
+				agent.target_position=get_new_destination()
+			if current_state == ANIMAL_STATES.MOVING_TOWARDS:
+				if !next_state:
+					current_state = ANIMAL_STATES.IDLE
+					$StateTimer.start()
+				else:
+					current_state = next_state
+					next_state = null
 		else:
 			velocity = (agent.get_next_path_position() - global_position).normalized() * speed
 			move_and_slide()
@@ -65,20 +119,48 @@ func get_new_destination():
 	return TileMapRef.map_to_local(enclosure.enclosure_cells.pick_random())
 
 func on_state_timer_timeout():
-	agent.target_position=get_new_destination()
-	animal_state = ANIMAL_STATES.MOVING
-	
-func change_state():
-	$StateTimer.start()
-	if is_swimming:
-		agent.target_position=get_new_destination()
-		return
-	if randi_range(0, 100) > 50:
-		animal_state = ANIMAL_STATES.IDLE
-		$AnimationPlayer.play('Idle')
+	## Check for what animal wants to do, according to priorities.
+	if needs_hunger < 50:
+		change_state('eat')
+	elif needs_rest < 30:
+		change_state('rest')
+	elif needs_play < 75:
+		change_state('play')
 	else:
-		animal_state = ANIMAL_STATES.EATING
-		$AnimationPlayer.play('Eat')
+		change_state('idle')
+	
+	
+func change_state(state):
+	if is_swimming:
+		current_state = ANIMAL_STATES.MOVING_TOWARDS
+		agent.target_position=get_new_destination()
+		$StateTimer.start()
+		return
+	if state == 'eat':
+		current_state = ANIMAL_STATES.EATING
+	if state == 'play':
+		current_state = ANIMAL_STATES.RUNNING
+		$StateTimer.start()
+		get_new_destination()
+	if state == 'rest':
+		if enclosure.available_shelters.size() > 0:
+			var enclosure_shelters = enclosure.available_shelters
+			var random_shelter = enclosure_shelters.pick_random()
+			var random_resting_spot = random_shelter.rest_spots.pick_random()
+			
+			agent.target_position = random_resting_spot.global_position
+			next_state = ANIMAL_STATES.RESTING
+			current_state = ANIMAL_STATES.MOVING_TOWARDS
+		else:
+			current_state = ANIMAL_STATES.RESTING
+	if state == 'idle':
+		if randi_range(0,100) > 75:
+			$StateTimer.start()
+			agent.target_position=get_new_destination()
+			current_state = ANIMAL_STATES.MOVING_TOWARDS
+		else:
+			$StateTimer.start()
+			current_state = ANIMAL_STATES.IDLE
 
 func remove_animal():
 	animal_removed.emit()
@@ -89,3 +171,44 @@ func on_swim_start(area):
 	
 func on_swim_stop(area):
 	is_swimming = false
+	$NavigationAgent2D.set_navigation_layer_value(3, false)
+	$NavigationAgent2D.set_navigation_layer_value(2, true)
+	$NoSwimTimer.start()
+	
+## Animal takes a break from swimming for a while
+func on_no_swim_timer_timeout():
+	$NavigationAgent2D.set_navigation_layer_value(3, true)
+	$NavigationAgent2D.set_navigation_layer_value(2, false)
+	
+func on_decay_timer_timeout():
+	needs_rest -= rest_drain_rate
+	needs_hunger -= hunger_drain_rate
+	needs_play -= play_drain_rate
+
+func play_animation():
+	if current_state == ANIMAL_STATES.RUNNING:
+		$AnimationPlayer.speed_scale = 1.5
+	else:
+		$AnimationPlayer.speed_scale = 1
+	if velocity.y > 0:
+		direction = '_S'
+	elif  velocity.y < 0:
+		direction = '_N'
+	#else:
+		#if randi_range(0,100) > 50:
+			#direction = '_S'
+		#else:
+			#direction = '_N'
+			
+	if current_state == ANIMAL_STATES.MOVING_TOWARDS or current_state == ANIMAL_STATES.RUNNING:
+		if abs(velocity) != Vector2.ZERO:
+			if is_swimming:
+				$AnimationPlayer.play('Swim'+direction)
+			else:
+				$AnimationPlayer.play('Walk'+direction)
+	elif current_state == ANIMAL_STATES.RESTING:
+		$AnimationPlayer.play('Rest'+direction)
+	elif current_state == ANIMAL_STATES.IDLE:
+		$AnimationPlayer.play('Idle'+direction)
+	elif current_state == ANIMAL_STATES.EATING:
+		$AnimationPlayer.play('Eat'+direction)

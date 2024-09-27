@@ -27,9 +27,6 @@ func _ready() -> void:
 	set_peep_visuals()
 	
 	
-
-	
-	
 	agent = $NavigationAgent2D
 	$StateTimer.timeout.connect(on_state_timer_timeout)
 	agent.set_target_position(get_new_destination())

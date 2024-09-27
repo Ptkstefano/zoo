@@ -35,18 +35,12 @@ navigation_layer_0/layers = 2
 sources/0 = SubResource("TileSetAtlasSource_bcvfi")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mv2b7"]
-vertices = PackedVector2Array(66.3203, 9.78906, -43.0313, 32.3516, -70.2969, -59.1328, -59.9297, -80.6328, 71.4531, -118.539)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-81, -60, -50, 44, 76, 18, 82, -132, -67, -89)])
 source_geometry_mode = 2
 source_geometry_group_name = &"Enclosure"
 agent_radius = 1.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_k6c81"]
-vertices = PackedVector2Array(66.3203, 9.78906, -43.0313, 32.3516, -70.2969, -59.1328, -59.9297, -80.6328, 71.4531, -118.539)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-81, -60, -50, 44, 76, 18, 82, -132, -67, -89)])
-parsed_collision_mask = 4278190080
+parsed_collision_mask = 4294965247
 source_geometry_mode = 2
 source_geometry_group_name = &"Enclosure"
 agent_radius = 1.0
@@ -120,12 +114,13 @@ visible = false
 tile_set = SubResource("TileSet_o4u8v")
 navigation_enabled = false
 
-[node name="LandRegion" type="NavigationRegion2D" parent="."]
+[node name="LandRegion" type="NavigationRegion2D" parent="." groups=["Enclosure"]]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_mv2b7")
 navigation_layers = 2
 
 [node name="WaterRegion" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_k6c81")
 navigation_layers = 4
 
@@ -161,4 +156,3 @@ collision_layer = 0
 collision_mask = 4096
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VegetationDetectionArea"]
-polygon = PackedVector2Array(-87, -600, -359, 83, 116, 366, 831, -29, 62, -646)
