@@ -7,7 +7,10 @@
 script = ExtResource("1_5v5j4")
 name = "American Flamingo"
 texture = ExtResource("2_exngk")
+shadow_scale = 1.0
+sprite_y_offset = 0
 base_speed = 10.0
 run_speed = 10.0
 animation_speed_scale = 0.5
 can_swim = true
+terrain_preference = {}

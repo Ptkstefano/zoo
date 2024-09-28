@@ -21,6 +21,7 @@ DataManager="*res://enclosure_manager.gd"
 ColorRefs="*res://Autoload/color_refs.tscn"
 TileMapRef="*res://Autoload/tile_map_ref.tscn"
 SignalBus="*res://signal_bus.gd"
+Effects="*res://effects.gd"
 
 [display]
 

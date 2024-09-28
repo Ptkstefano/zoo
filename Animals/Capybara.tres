@@ -9,7 +9,21 @@ script = ExtResource("1_ob3tf")
 name = "Capybara"
 texture = ExtResource("2_uytuh")
 thumb = ExtResource("3_oveb4")
+shadow_scale = 1.0
+sprite_y_offset = 0
+animation_speed_scale = 1.0
 base_speed = 20.0
 run_speed = 30.0
-animation_speed_scale = 1.0
 can_swim = true
+minimum_shelter_level = 0
+terrain_preference = {
+0: 25.0,
+2: 25.0
+}
+terrain_dislike = Array[int]([3, 4])
+needs_water = true
+minimum_habitat_size = 40
+minimum_vegetation_coverage = 0.3
+maximum_vegetation_coverage = 1.0
+minimum_herd_size = 5
+maximum_herd_density = 0.2

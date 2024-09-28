@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-class_name animal
+class_name Animal
 
 var animal_res : animal_resource
 
@@ -41,6 +41,13 @@ var hunger_drain_rate = 3.5
 var rest_drain_rate = 2.5
 var play_drain_rate = 5
 
+var preference_terrain_satisfied : bool
+var preference_water_satisfied : bool
+var preference_habitat_size_satisfied : bool
+var preference_vegetation_coverage_satisfied : bool
+var preference_herd_size_satisfied : bool
+var preference_herd_density_satisfied : bool
+
 var direction = '_S'
 
 signal animal_removed
@@ -50,11 +57,11 @@ func _ready() -> void:
 	$StateTimer.timeout.connect(on_state_timer_timeout)
 	$DecayTimer.timeout.connect(on_decay_timer_timeout)
 	agent.set_target_position(get_new_destination())
-	$AnimationPlayer.speed_scale = 1.5
 	$SwimDetection.area_entered.connect(on_swim_start)
 	$SwimDetection.area_exited.connect(on_swim_stop)
 	$NoSwimTimer.timeout.connect(on_no_swim_timer_timeout)
 	$StateTimer.start()
+	enclosure.enclosure_stats_updated.connect(update_habitat_satifaction)
 	
 
 func initialize_animal(res, coordinate, found_enclosure):
@@ -62,12 +69,15 @@ func initialize_animal(res, coordinate, found_enclosure):
 	animal_res = res
 	
 	$Sprite2D.texture = animal_res.texture
+	$Shadow.scale = Vector2(animal_res.shadow_scale, animal_res.shadow_scale)
 	base_speed = animal_res.base_speed
 	run_speed = animal_res.run_speed
 	
 	$AnimationPlayer.speed_scale = animal_res.animation_speed_scale
-	## Corrects the y-sort position of the animal
-	$Sprite2D.offset = Vector2(0, (-($Sprite2D.texture.get_height() * 0.25) + 4))
+	
+	## Ensures sprite starts at origin
+	$Sprite2D.offset = Vector2(0, (($Sprite2D.texture.get_height() * -0.25) + animal_res.sprite_y_offset))
+	
 	animal_name = animal_res.name
 	
 	if animal_res.can_swim:
@@ -187,9 +197,9 @@ func on_decay_timer_timeout():
 
 func play_animation():
 	if current_state == ANIMAL_STATES.RUNNING:
-		$AnimationPlayer.speed_scale = 1.5
+		$AnimationPlayer.speed_scale = animal_res.animation_speed_scale * 1.5
 	else:
-		$AnimationPlayer.speed_scale = 1
+		$AnimationPlayer.speed_scale = animal_res.animation_speed_scale
 	if velocity.y > 0:
 		direction = '_S'
 	elif  velocity.y < 0:
@@ -212,3 +222,38 @@ func play_animation():
 		$AnimationPlayer.play('Idle'+direction)
 	elif current_state == ANIMAL_STATES.EATING:
 		$AnimationPlayer.play('Eat'+direction)
+
+func update_habitat_satifaction():
+	preference_terrain_satisfied = true
+	for key in animal_res.terrain_preference:
+		if key in enclosure.terrain_coverage.keys():
+			if enclosure.terrain_coverage[key] < animal_res.terrain_preference[key]:
+				preference_terrain_satisfied = false
+		else:
+			preference_terrain_satisfied = false ## Missing required terrain
+			
+	if animal_res.needs_water:
+		if enclosure.water_availability:
+			preference_water_satisfied = true
+		else:
+			preference_water_satisfied = false
+			
+	if enclosure.enclosure_cells.size() > animal_res.minimum_habitat_size:
+		preference_habitat_size_satisfied = true
+	else:
+		preference_habitat_size_satisfied = false
+
+	if enclosure.vegetation_coverage > animal_res.minimum_vegetation_coverage and enclosure.vegetation_coverage < animal_res.maximum_vegetation_coverage:
+		preference_vegetation_coverage_satisfied = true
+	else:
+		preference_vegetation_coverage_satisfied = false
+
+	if enclosure.herd_size >= animal_res.minimum_herd_size:
+		preference_herd_size_satisfied = true
+	else:
+		preference_herd_size_satisfied = false
+
+	if enclosure.herd_density <= animal_res.maximum_herd_density:
+		preference_herd_density_satisfied = true
+	else:
+		preference_herd_density_satisfied = false

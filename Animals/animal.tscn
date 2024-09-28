@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/animal.gd" id="1_wogma"]
 [ext_resource type="Texture2D" uid="uid://5gmndyyv30v6" path="res://Sprites/shadow.png" id="2_anpbx"]
-[ext_resource type="Texture2D" uid="uid://c6wmdilxav70a" path="res://Animals/sprites/capy.png" id="2_jcx1h"]
+[ext_resource type="Texture2D" uid="uid://cia24m1atmqtq" path="res://Animals/sprites/giraffe2.png" id="3_nvnji"]
 [ext_resource type="PackedScene" uid="uid://dkhxs71sdajj2" path="res://UI/detectable.tscn" id="4_covhg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r3wdq"]
@@ -212,14 +212,15 @@ script = ExtResource("1_wogma")
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 0.2)
 texture_filter = 1
-position = Vector2(0, -5)
+scale = Vector2(1.885, 1.885)
 texture = ExtResource("2_anpbx")
+offset = Vector2(0, -8.5)
 hframes = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_jcx1h")
-offset = Vector2(0, -12)
+texture = ExtResource("3_nvnji")
+offset = Vector2(0, -28)
 hframes = 10
 vframes = 2
 

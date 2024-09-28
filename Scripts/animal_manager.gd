@@ -43,6 +43,7 @@ func spawn_animal(coordinate, animal_res):
 	spawned_animal.initialize_animal(animal_res, coordinate, found_enclosure)
 	spawned_animal.animal_removed.connect(despawn_animal)
 	add_child(spawned_animal)
+	Effects.wobble(spawned_animal)
 	found_enclosure.add_animal(spawned_animal)
 	animal_count += 1
 	

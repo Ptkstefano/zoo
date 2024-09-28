@@ -12,10 +12,11 @@ func _ready() -> void:
 
 
 func on_detectable_element_selected(detector_pos, element):
+	print('aaa')
 	if opened_popup != null:
 		opened_popup.queue_free()
 		opened_popup = null
-	if element is animal:
+	if element is Animal:
 		open_animal_popup(element, detector_pos)
 
 func open_building_popup(building_node):

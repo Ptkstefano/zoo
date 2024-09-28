@@ -14,11 +14,15 @@ var vegetation_coverage : float
 var water_availability : bool
 var terrain_coverage : Dictionary
 var available_shelters : Array[Shelter]
+var herd_size : int
+var herd_density : float
 
 var enclosure_central_point : Vector2
 
 @onready var enclosure_tilemap = $EnclosureTiles
 @onready var enclosure_fence_manager : EnclosureFenceManager = $EnclosureFenceManager
+
+signal enclosure_stats_updated
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,6 +49,11 @@ func calculate_enclosure_stats():
 		vegetation_weight_sum += area.get_parent().vegetation_weight
 		
 	vegetation_coverage = vegetation_weight_sum / enclosure_cells.size()
+	herd_size = enclosure_animals.size()
+	herd_density =  float(enclosure_animals.size()) / float(enclosure_cells.size())
+	enclosure_stats_updated.emit()
+	
+	
 	
 func add_shelter(shelter):
 	available_shelters.append(shelter)
@@ -137,6 +146,8 @@ func remove_enclosure_fence():
 
 func add_animal(animal):
 	enclosure_animals.append(animal)
+	call_deferred("calculate_enclosure_stats")
+	
 
 func redistribute_animals():
 	for animal in enclosure_animals:

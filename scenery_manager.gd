@@ -57,15 +57,18 @@ func place_tree(press_start_pos, tree_res):
 	tree.tree_res = tree_res
 	tree.global_position = press_start_pos
 	add_child(tree)
+	Effects.wobble(tree)
 	var enclosure = TileMapRef.get_enclosure_by_cell(TileMapRef.local_to_map(tree.global_position))
 	if enclosure:
 		enclosure.call_deferred('update_navigation_region')
+	SignalBus.vegetation_placed.emit(tree.global_position)
 	
 func place_vegetation(press_start_pos, vegetation_res):
 	var vegetation = vegetation_scene.instantiate()
 	vegetation.vegetation_res = vegetation_res
 	vegetation.global_position = press_start_pos
 	add_child(vegetation)
+	Effects.wobble(vegetation)
 	SignalBus.vegetation_placed.emit(vegetation.global_position)
 	
 func place_decoration(press_start_pos, decoration_res):
@@ -80,6 +83,7 @@ func place_decoration(press_start_pos, decoration_res):
 	decoration.removed.connect(on_decoration_removed)
 	used_cells.append(decoration_position_cell)
 	add_child(decoration)
+	Effects.wobble(decoration)
 	
 func on_decoration_removed(cell):
 	used_cells.erase(Vector2i(cell.x, cell.y))

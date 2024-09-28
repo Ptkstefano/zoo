@@ -217,17 +217,19 @@ func handle_tooling_input(event):
 
 func handle_selection(event):
 	if event is InputEventScreenTouch:
-		if event.is_pressed():
+		if event.is_released():
 			if current_tool == TOOLS.NONE:
-				$DetectableCollider.global_position = touch_start_global_pos
-				#var overlapping_areas = $DetectableCollider.get_overlapping_areas()
+				$DetectableCollider.set_deferred('global_position', touch_start_global_pos)
+				await get_tree().create_timer(0.1).timeout
+				$DetectableCollider.set_deferred('global_position',Vector2(9999,9999))
+				#var overlapping_areas = $DetectableCollider.call_deferred('get_overlapping_areas')
 				#if overlapping_areas.size() > 0:
-					#overlapping_areas[0].clicked()
+					#print(overlapping_areas[0])
 					#return true
-		else:
+		#else:
 			## Done to ensure double clicking on a building doesn't fail
-			$DetectableCollider.global_position = Vector2(9999,9999)
-	return false
+			#$DetectableCollider.global_position = Vector2(9999,9999)
+	#return false
 
 func debug_keyboard_input(event):
 	if event is InputEventKey:

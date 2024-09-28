@@ -509,10 +509,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("74_7k2ss")
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 15
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 25
 
 [node name="Top-Left" type="Control" parent="UI/MarginContainer"]
 layout_mode = 2
@@ -541,6 +541,7 @@ layout_mode = 2
 
 [node name="ToolPanel" type="VBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 offset_left = 4.0
 offset_right = 1104.0
@@ -554,6 +555,7 @@ layout_mode = 2
 [node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/MainPanel"]
 layout_mode = 2
 size_flags_vertical = 0
+mouse_filter = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -678,6 +680,7 @@ text = "Decorations"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
+mouse_filter = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -731,6 +734,7 @@ mouse_filter = 2
 
 [node name="DebugScreen" type="HBoxContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 2
@@ -919,6 +923,7 @@ size_flags_vertical = 10
 
 [node name="SidePanel" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -1025,6 +1030,7 @@ text = "Rotate"
 
 [node name="InfoContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1103,6 +1109,7 @@ horizontal_alignment = 2
 
 [node name="SelectionMenu" type="VBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 10
 mouse_filter = 2
