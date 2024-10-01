@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="animal_resource" load_steps=3 format=3 uid="uid://ck55w4ejddxxs"]
+
+[ext_resource type="Script" path="res://Animals/animal_res.gd" id="1_hthtb"]
+[ext_resource type="Texture2D" uid="uid://ch5nicona3f7r" path="res://Animals/sprites/deer.png" id="2_qse5u"]
+
+[resource]
+script = ExtResource("1_hthtb")
+name = "White-tail Deer"
+texture = ExtResource("2_qse5u")
+shadow_scale = 1.0
+sprite_y_offset = 14
+animation_speed_scale = 0.75
+base_speed = 15.0
+run_speed = 25.0
+can_swim = false
+minimum_shelter_level = 0
+terrain_preference = {}
+terrain_dislike = Array[int]([])
+needs_water = false
+minimum_habitat_size = 50
+minimum_vegetation_coverage = 0.6
+maximum_vegetation_coverage = 1.5
+minimum_herd_size = 4
+maximum_herd_density = 0.15

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/animal.gd" id="1_wogma"]
 [ext_resource type="Texture2D" uid="uid://5gmndyyv30v6" path="res://Sprites/shadow.png" id="2_anpbx"]
-[ext_resource type="Texture2D" uid="uid://cia24m1atmqtq" path="res://Animals/sprites/giraffe2.png" id="3_nvnji"]
+[ext_resource type="Texture2D" uid="uid://ch5nicona3f7r" path="res://Animals/sprites/deer.png" id="3_k44vj"]
 [ext_resource type="PackedScene" uid="uid://dkhxs71sdajj2" path="res://UI/detectable.tscn" id="4_covhg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r3wdq"]
@@ -219,8 +219,8 @@ hframes = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("3_nvnji")
-offset = Vector2(0, -28)
+texture = ExtResource("3_k44vj")
+offset = Vector2(0, -14)
 hframes = 10
 vframes = 2
 

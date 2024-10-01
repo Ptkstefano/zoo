@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://n27wskles2ce" path="res://Peeps/Body F1.png" id="5_yupsv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uvgr3"]
-radius = 1.5
+radius = 1.0
 
 [sub_resource type="Animation" id="Animation_7v73o"]
 resource_name = "Idle"
@@ -167,6 +167,14 @@ _data = {
 }
 
 [node name="Peep" type="CharacterBody2D"]
+light_mask = 0
+y_sort_enabled = true
+collision_layer = 0
+motion_mode = 1
+slide_on_ceiling = false
+floor_stop_on_slope = false
+floor_block_on_wall = false
+platform_on_leave = 2
 platform_floor_layers = 4294966271
 script = ExtResource("1_kks3u")
 head_sprites_m = Array[Texture2D]([ExtResource("3_tqd6t")])
@@ -176,6 +184,7 @@ body_sprites_f = Array[Texture2D]([ExtResource("5_yupsv")])
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 0.2)
+light_mask = 0
 texture_filter = 1
 position = Vector2(0, -9)
 texture = ExtResource("2_ew0rm")
@@ -184,6 +193,7 @@ hframes = 2
 [node name="BodyParts" type="Node2D" parent="."]
 
 [node name="Head" type="Sprite2D" parent="BodyParts"]
+light_mask = 0
 y_sort_enabled = true
 texture_filter = 1
 texture = ExtResource("3_6yixv")
@@ -193,6 +203,7 @@ vframes = 2
 frame = 5
 
 [node name="Body" type="Sprite2D" parent="BodyParts"]
+light_mask = 0
 y_sort_enabled = true
 texture_filter = 1
 texture = ExtResource("4_pdqmh")
@@ -209,12 +220,10 @@ libraries = {
 "": SubResource("AnimationLibrary_imm3a")
 }
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 10.0
-path_postprocessing = 1
-debug_path_custom_point_size = 4.36
-debug_path_custom_line_width = 0.83
-
 [node name="StateTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="FrameTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true

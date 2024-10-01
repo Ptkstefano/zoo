@@ -53,6 +53,7 @@ func build_path(coordinates, path_res):
 	for neighbor in all_neighbors:
 		## Adds instersections to neighbors of built paths
 		build_intersections(neighbor, null)
+	SignalBus.peep_navigation_changed.emit()
 	
 func remove_path(coordinates):
 	var all_neighbors = []
@@ -72,6 +73,7 @@ func remove_path(coordinates):
 	for neighbor in all_neighbors:
 		## Adds instersections to neighbors of built paths
 		build_intersections(neighbor, null)
+	SignalBus.peep_navigation_changed.emit()
 
 func build_intersections(coordinate, path_res):
 	var path_y = null

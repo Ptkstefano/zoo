@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://iscokpw16nk"]
+
+[ext_resource type="Script" path="res://peep_group.gd" id="1_jl7ea"]
+[ext_resource type="PackedScene" uid="uid://ca66y62ys1xkh" path="res://Peeps/peep.tscn" id="2_7wr1u"]
+[ext_resource type="Texture2D" uid="uid://canc52dwbgrhw" path="res://Peeps/Body M1.png" id="3_txlsr"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jviqp"]
+size = Vector2(5, 5)
+
+[node name="PeepGroup" type="Node2D"]
+y_sort_enabled = true
+texture_filter = 1
+script = ExtResource("1_jl7ea")
+peep_scene = ExtResource("2_7wr1u")
+peep_texture = ExtResource("3_txlsr")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+path_postprocessing = 1
+debug_path_custom_point_size = 4.36
+debug_path_custom_line_width = 0.83
+
+[node name="Peeps" type="Node" parent="."]
+
+[node name="Debug" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_jviqp")
