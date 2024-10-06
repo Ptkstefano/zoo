@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dkhxs71sdajj2"]
 
-[ext_resource type="Script" path="res://UI/detectable.gd" id="1_r86f1"]
+[ext_resource type="Script" path="res://UI/click_detector.gd" id="1_r86f1"]
 
 [node name="Detectable" type="Area2D"]
 collision_layer = 0

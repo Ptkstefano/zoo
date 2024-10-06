@@ -12,14 +12,15 @@ config_version=5
 
 config/name="Zoo"
 run/main_scene="res://main.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [autoload]
 
 Helpers="*res://Scripts/helpers.gd"
-DataManager="*res://enclosure_manager.gd"
+GameManager="*res://game_manager_data.gd"
 ColorRefs="*res://Autoload/color_refs.tscn"
 TileMapRef="*res://Autoload/tile_map_ref.tscn"
+NameRefs="*res://name_refs.gd"
 SignalBus="*res://signal_bus.gd"
 Effects="*res://effects.gd"
 
@@ -46,6 +47,7 @@ pointing/emulate_touch_from_mouse=true
 2d_navigation/layer_1="Peep_layer"
 2d_navigation/layer_2="land_animal_layer"
 2d_navigation/layer_3="water_animal_layer"
+2d_physics/layer_5="Observable"
 2d_physics/layer_9="Scenery"
 2d_physics/layer_10="click_detection"
 2d_physics/layer_11="Scenery"
@@ -55,6 +57,6 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true

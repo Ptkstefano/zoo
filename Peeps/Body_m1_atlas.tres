@@ -1,7 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dsxbf5x8jk07d"]
-
-[ext_resource type="Texture2D" uid="uid://canc52dwbgrhw" path="res://Peeps/Body M1.png" id="1_x7dol"]
-
-[resource]
-atlas = ExtResource("1_x7dol")
-region = Rect2(0, 0, 64, 42)

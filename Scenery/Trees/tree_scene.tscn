@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuiky1io0hfof"]
+[gd_scene load_steps=5 format=3 uid="uid://cuiky1io0hfof"]
 
 [ext_resource type="Script" path="res://Scenery/Trees/tree_scene.gd" id="1_1udct"]
-[ext_resource type="Texture2D" uid="uid://c5phaf50gibix" path="res://Scenery/Trees/pine.png" id="1_cdt5w"]
-[ext_resource type="Texture2D" uid="uid://5gmndyyv30v6" path="res://Sprites/shadow.png" id="2_4jtuv"]
+[ext_resource type="Texture2D" uid="uid://bd8col15c5qwk" path="res://Scenery/Trees/trees-sheet.png" id="2_tkqex"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1cvid"]
 radius = 4.0
@@ -11,21 +10,16 @@ radius = 4.0
 radius = 8.0
 
 [node name="Tree" type="StaticBody2D" groups=["Enclosure"]]
+y_sort_enabled = true
 script = ExtResource("1_1udct")
-
-[node name="Shadow" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 0.2)
-texture_filter = 1
-position = Vector2(-1, -12)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_4jtuv")
-hframes = 2
+tree_sheet = ExtResource("2_tkqex")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-y_sort_enabled = true
+z_as_relative = false
 texture_filter = 1
-texture = ExtResource("1_cdt5w")
-offset = Vector2(0, -28)
+texture = ExtResource("2_tkqex")
+centered = false
+hframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o3njrw3scbdc"
-path="res://.godot/imported/Head M1.png-fbef4850138fdefe471cb9dd6ac38ec6.ctex"
+uid="uid://bd8col15c5qwk"
+path="res://.godot/imported/trees-sheet.png-2773b49766252b47cab66e6b8821096b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Peeps/Head M1.png"
-dest_files=["res://.godot/imported/Head M1.png-fbef4850138fdefe471cb9dd6ac38ec6.ctex"]
+source_file="res://Scenery/Trees/trees-sheet.png"
+dest_files=["res://.godot/imported/trees-sheet.png-2773b49766252b47cab66e6b8821096b.ctex"]
 
 [params]
 

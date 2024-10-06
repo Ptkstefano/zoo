@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://diabcxnc3u1uu"]
+
+[ext_resource type="Script" path="res://z_index_renderer.gd" id="1_04am7"]
+[ext_resource type="Texture2D" uid="uid://c4o5hx1qon072" path="res://Sprites/shadows/shadow_small.png" id="2_xd8r7"]
+[ext_resource type="Texture2D" uid="uid://bkni1npoagbbm" path="res://Sprites/shadows/shadow_medium.png" id="3_jvnfv"]
+[ext_resource type="Texture2D" uid="uid://cr5k5l4ws5guj" path="res://Sprites/shadows/shadow_big.png" id="4_fsmcp"]
+
+[node name="ZIndexRenderer" type="Node2D"]
+texture_filter = 3
+script = ExtResource("1_04am7")
+shadow_texture_s = ExtResource("2_xd8r7")
+shadow_texture_m = ExtResource("3_jvnfv")
+shadow_texture_b = ExtResource("4_fsmcp")

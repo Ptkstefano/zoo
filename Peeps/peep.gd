@@ -1,18 +1,11 @@
 extends CharacterBody2D
 
 
-const SPEED = 20.0
+const SPEED = 15.0
 
-@export var head_sprites_m : Array[Texture2D]
-@export var body_sprites_m : Array[Texture2D]
+@export var peep_sprites : Array[Texture2D]
 
-@export var head_sprites_f : Array[Texture2D]
-@export var body_sprites_f : Array[Texture2D]
-
-var genders = ['m', 'f']
-var peep_gender
-
-enum PEEP_STATES {IDLE, MOVING}
+enum PEEP_STATES {IDLE, MOVING, OBSERVING, RESTING}
 var peep_state = PEEP_STATES.MOVING
 
 var peep_manager : PeepManager
@@ -25,32 +18,67 @@ var group_position : Vector2
 var body_texture
 var head_texture
 
+var move_direction : Vector2
+var look_direction
+
 var frame = 0
+var sprite_x = 0
+var sprite_y = 0
+
+
 
 func _ready() -> void:
 	$FrameTimer.timeout.connect(on_frame_timer)
-	peep_gender = genders.pick_random()
-	#set_peep_visuals()
-	#$AnimationPlayer.speed_scale = randf_range(0.9, 1.1)
+	set_peep_visuals()
+	$FrameTimer.wait_time = randf_range(0.4, 0.55)
 
 func _physics_process(delta: float) -> void:
+	var target_pos = (group_position + position_offset)
+	
+	if global_position.distance_to(target_pos) < 5:
+		velocity = Vector2.ZERO
+		return
+		
+	move_direction = global_position.direction_to(target_pos)
+	
+	if global_position.distance_to(target_pos) > 25:
+		velocity = move_direction * SPEED * 2
+	else:
+		velocity = move_direction * SPEED
+	move_and_slide()
+
+func _process(delta: float) -> void:
+	if !$VisibleOnScreenNotifier2D.is_on_screen():
+		return
+		
 	z_index = Helpers.get_current_tile_z_index(global_position)
 	if peep_state == PEEP_STATES.MOVING:
-		if velocity.x > 0:
-			$BodyParts/Head.flip_h=true
-			$BodyParts/Body.flip_h=true
+		if velocity == Vector2.ZERO:
+			sprite_x = 0
 		else:
-			$BodyParts/Head.flip_h=false
-			$BodyParts/Body.flip_h=false
-		if velocity.y > 0:
-			$AnimationPlayer.play('Walk_S')
-		elif velocity.y < 0:
-			$AnimationPlayer.play('Walk_N')
-		elif velocity == Vector2.ZERO:
-			$AnimationPlayer.play('Idle')
-		velocity = ((group_position + position_offset) - global_position).normalized() * SPEED
-		#global_position = group_position + position_offset
-		move_and_slide()
+			if velocity.x > 0:
+				sprite_x = 2
+				$PeepSprite.flip_h=true
+			else:
+				sprite_x = 2
+				$PeepSprite.flip_h=false
+				
+			if velocity.y > 0:
+				sprite_y = 1
+			elif velocity.y < 0:
+				sprite_y = 0
+	if peep_state == PEEP_STATES.OBSERVING:
+		if abs(look_direction) > PI * 0.5:
+			$PeepSprite.flip_h = false
+		else:
+			$PeepSprite.flip_h = true
+			
+		if look_direction > 0:
+			sprite_y = 1
+		else:
+			sprite_y = 0
+		
+	$PeepSprite.frame_coords = Vector2(sprite_x + frame, sprite_y)
 		
 func on_frame_timer():
 	if frame == 0:
@@ -62,34 +90,30 @@ func set_peep_visuals():
 	var shader_material = ShaderMaterial.new()
 	shader_material.shader = preload("res://Peeps/peep.gdshader") 
 	
-	if peep_gender == 'm':
-		body_texture =  body_sprites_m.pick_random()
-		head_texture = head_sprites_m.pick_random()
-		#$BodyParts/Head.texture =
-		#$BodyParts/Body.texture = 
-	else:
-		body_texture = body_sprites_f.pick_random()
-		head_texture = head_sprites_f.pick_random()
-		#$BodyParts/Head.texture = head_sprites_f.pick_random()
-		#$BodyParts/Body.texture = body_sprites_f.pick_random()
+	$PeepSprite.texture = peep_sprites.pick_random()
 	
 	shader_material.set_shader_parameter("body_color", ColorRefs.body_colors.pick_random())
 	shader_material.set_shader_parameter("skin_color", ColorRefs.skin_colors.pick_random())
 	shader_material.set_shader_parameter("hair_color", ColorRefs.hair_colors.pick_random())
 	
-	$BodyParts/Body.material = shader_material
-	$BodyParts/Head.material = shader_material
-		
+	$PeepSprite.material = shader_material
+	
 func get_new_destination():
 	return peep_manager.generate_peep_destination()
 
-func on_state_timer_timeout():
-	agent.target_position=get_new_destination()
-	peep_state = PEEP_STATES.MOVING
-	
-func change_state():
-	$StateTimer.start()
-	peep_state = PEEP_STATES.IDLE
-	$AnimationPlayer.play('Idle')
-
-	
+func change_state(state):
+	if state == 0: ## Stopped
+		peep_state = PEEP_STATES.IDLE
+		sprite_x = 0
+	if state == 1: ## Walking:
+		peep_state = PEEP_STATES.MOVING
+		sprite_x = 2
+	if state == 2: ## OBSERVING:
+		peep_state = PEEP_STATES.OBSERVING
+		if randi_range(0,100) > 50:
+			sprite_x = 4
+		else:
+			sprite_x = 0
+	if state == 3: ## SITTING:
+		peep_state = PEEP_STATES.RESTING
+		sprite_x = 6

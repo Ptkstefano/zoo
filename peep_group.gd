@@ -8,6 +8,10 @@ var peep_manager : PeepManager
 
 @export var peep_texture : Texture2D
 
+enum group_states {STOPPED, WALKING, OBSERVING, RESTING}
+
+var group_state : group_states = group_states.WALKING
+
 var peeps = []
 
 var agent 
@@ -16,13 +20,27 @@ var first_position_offset = Vector2(0, -5)
 var second_position_offset = Vector2(-5, 0)
 var third_position_offset = Vector2(5, 0)
 
-var position_offsets = [Vector2(0, -7), Vector2(-7, 0), Vector2(7, 0), Vector2(-7, 0), Vector2(0, 0)]
+var position_offsets = [Vector2(0, -7), Vector2(-7, 0), Vector2(7, 0), Vector2(0, 7), Vector2(0, 0)]
+
+var observed_animals : Array[NameRefs.ANIMAL_SPECIES]
+
+var needs_rest : float = 90:
+	set(value):
+		needs_rest = clamp(value,0,100)
+
+var needs_hunger : float = 90:
+	set(value):
+		needs_hunger = clamp(value,0,100)
+		
+		
+var hunger_drain_rate = 1
+var rest_drain_rate = 1
 
 var peep_count = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	peep_count = randi_range(1,5)
+	peep_count = randi_range(1,4)
 	for i in range(peep_count):
 		var peep = peep_scene.instantiate()
 		peeps.append(peep)
@@ -33,18 +51,37 @@ func _ready() -> void:
 	
 	agent = $NavigationAgent2D
 	await get_tree().create_timer(0.5).timeout
+	
+	$AnimalDetector.body_entered.connect(on_detector_body_entered)
+	$StateTimer.timeout.connect(on_state_timer_timeout)
+	$DecayTimer.timeout.connect(on_decay_timer_timeout)
+	
 	get_new_destination()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	move_toward_position(agent.get_next_path_position(), delta)
-	if agent.is_navigation_finished():
+	if group_state == group_states.WALKING:
+		move_toward_position(agent.get_next_path_position(), delta)
+		if agent.is_navigation_finished():
+			change_state(group_states.STOPPED)
+		
+		for peep in peeps:
+			peep.group_position = global_position
+
+func change_state(state):
+	if state == group_states.OBSERVING:
+		$StateTimer.wait_time = 10
+		$StateTimer.start()
+	if state == group_states.WALKING:
 		get_new_destination()
-	
+	if state == group_states.STOPPED:
+		$StateTimer.wait_time = 5
+		$StateTimer.start()
+		
+	group_state = state
 	for peep in peeps:
-		peep.group_position = global_position
-	
+		peep.change_state(state)
+		
 
 func get_new_destination():
 	var destination = peep_manager.generate_peep_destination()
@@ -53,3 +90,23 @@ func get_new_destination():
 func move_toward_position(destination: Vector2, delta: float):
 	var direction = (destination - global_position).normalized()
 	global_position += direction * SPEED * delta
+
+func on_detector_body_entered(body):
+	if body is Animal:
+		if body.animal_species not in observed_animals:
+			observed_animals.append(body.animal_species)
+			change_state(group_states.OBSERVING)
+			for peep in peeps:
+				var dir = global_position.direction_to(body.global_position).angle()
+				print(dir)
+				peep.look_direction = dir
+
+func on_state_timer_timeout():
+	if group_state == group_states.OBSERVING:
+		change_state(group_states.WALKING)
+	if group_state == group_states.STOPPED:
+		change_state(group_states.WALKING)
+
+func on_decay_timer_timeout():
+	needs_rest -= rest_drain_rate
+	needs_hunger -= hunger_drain_rate

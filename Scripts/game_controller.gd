@@ -7,6 +7,7 @@ extends Node2D
 @onready var peep_count_label = %Debug_Peeps
 @onready var physics_time_label = %Debug_PhysicsTime
 @onready var z_index_label = %Debug_z
+@onready var draw_label = %Debug_draw
 
 var base_peep_spawn_timer
 
@@ -39,6 +40,7 @@ func _process(delta: float) -> void:
 	peep_count_label.text = "Peeps: " + str($"../Objects/PeepManager".peep_count)
 	physics_time_label.text = ("Physics: "+str(Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS)))
 	z_index_label.text = ("Tile Z: "+str(Helpers.get_current_tile_z_index(get_global_mouse_position())))
+	draw_label.text = ("Draw calls: "+str(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)))
 
 func start_spawn_peeps():
 	%PeepSpawnTimer.wait_time = 0.1

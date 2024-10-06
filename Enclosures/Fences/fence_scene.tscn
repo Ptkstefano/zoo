@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://c7x3g6837s0x8"]
 
-[ext_resource type="Texture2D" uid="uid://cjyflttjg5wv5" path="res://Enclosures/Fences/fence_sheet.png" id="1_2s4a2"]
 [ext_resource type="Script" path="res://Enclosures/Fences/enclosureFence.gd" id="1_fnwc4"]
 [ext_resource type="Texture2D" uid="uid://boftg0lq7xdqp" path="res://Sprites/terrain_sheet.png" id="3_jltj5"]
+[ext_resource type="Texture2D" uid="uid://bgsedt3bhj4my" path="res://Enclosures/Fences/fence_exp1.png" id="3_jmfwx"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_uu5tt"]
 a = Vector2(32, 0)
@@ -31,9 +31,8 @@ hframes = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -16)
-texture = ExtResource("1_2s4a2")
-offset = Vector2(0, 6)
+position = Vector2(0, -13)
+texture = ExtResource("3_jmfwx")
 hframes = 4
 vframes = 3
 frame = 11

@@ -6,7 +6,7 @@ extends Camera2D
 var dragging = false
 var last_mouse_position = Vector2()
 
-@export var basis_sensitivity = 2.5
+@export var basis_sensitivity = 1.5
 
 @export var min_zoom = Vector2(0.2, 0.2)
 @export var max_zoom = Vector2(3.0, 3.0)
@@ -42,4 +42,5 @@ func on_camera_zoom(direction: int):
 	new_zoom = new_zoom.clamp(min_zoom, max_zoom)
 	var tween = get_tree().create_tween()
 	await tween.tween_property(self, "zoom", new_zoom, 0.1)
-	sensitivity = basis_sensitivity - (zoom.x * 0.45)
+	sensitivity = basis_sensitivity - (zoom.x * 0.20)
+	

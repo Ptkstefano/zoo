@@ -1,229 +1,39 @@
-[gd_scene load_steps=13 format=3 uid="uid://ca66y62ys1xkh"]
+[gd_scene load_steps=5 format=3 uid="uid://ca66y62ys1xkh"]
 
 [ext_resource type="Script" path="res://Peeps/peep.gd" id="1_kks3u"]
-[ext_resource type="Texture2D" uid="uid://5gmndyyv30v6" path="res://Sprites/shadow.png" id="2_ew0rm"]
-[ext_resource type="Texture2D" uid="uid://dh0we022rrea5" path="res://Peeps/Head F1.png" id="3_6yixv"]
-[ext_resource type="Texture2D" uid="uid://o3njrw3scbdc" path="res://Peeps/Head M1.png" id="3_tqd6t"]
-[ext_resource type="Texture2D" uid="uid://canc52dwbgrhw" path="res://Peeps/Body M1.png" id="4_pdqmh"]
-[ext_resource type="Texture2D" uid="uid://n27wskles2ce" path="res://Peeps/Body F1.png" id="5_yupsv"]
+[ext_resource type="Texture2D" uid="uid://ejmv0mhkyby7" path="res://Peeps/F1.png" id="2_5vfpu"]
+[ext_resource type="Texture2D" uid="uid://cuek6tduewd36" path="res://Peeps/M1.png" id="3_r4ud2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uvgr3"]
 radius = 1.0
-
-[sub_resource type="Animation" id="Animation_7v73o"]
-resource_name = "Idle"
-length = 3.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BodyParts/Body:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.56667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2i(0, 1), Vector2i(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BodyParts/Head:frame_coords")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(-0.0333333, 1.56667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2i(0, 1), Vector2i(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_38bcy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BodyParts/Body:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Shadow:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BodyParts/Head:frame_coords")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_ymvuu"]
-resource_name = "Walk_N"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BodyParts/Body:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2i(2, 0), Vector2i(3, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Shadow:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BodyParts/Head:frame_coords")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2i(2, 0), Vector2i(3, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_5tsy0"]
-resource_name = "Walk_S"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BodyParts/Body:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.533333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2i(2, 1), Vector2i(3, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Shadow:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.533333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BodyParts/Head:frame_coords")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.533333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2i(2, 1), Vector2i(3, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_imm3a"]
-_data = {
-"Idle": SubResource("Animation_7v73o"),
-"RESET": SubResource("Animation_38bcy"),
-"Walk_N": SubResource("Animation_ymvuu"),
-"Walk_S": SubResource("Animation_5tsy0")
-}
 
 [node name="Peep" type="CharacterBody2D"]
 light_mask = 0
 y_sort_enabled = true
 collision_layer = 0
+collision_mask = 0
 motion_mode = 1
 slide_on_ceiling = false
 floor_stop_on_slope = false
 floor_block_on_wall = false
-platform_on_leave = 2
 platform_floor_layers = 4294966271
 script = ExtResource("1_kks3u")
-head_sprites_m = Array[Texture2D]([ExtResource("3_tqd6t")])
-body_sprites_m = Array[Texture2D]([ExtResource("4_pdqmh")])
-head_sprites_f = Array[Texture2D]([ExtResource("3_6yixv")])
-body_sprites_f = Array[Texture2D]([ExtResource("5_yupsv")])
+peep_sprites = Array[Texture2D]([ExtResource("2_5vfpu"), ExtResource("3_r4ud2")])
 
-[node name="Shadow" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 0.2)
+[node name="PeepSprite" type="Sprite2D" parent="."]
 light_mask = 0
 texture_filter = 1
 position = Vector2(0, -9)
-texture = ExtResource("2_ew0rm")
-hframes = 2
-
-[node name="BodyParts" type="Node2D" parent="."]
-
-[node name="Head" type="Sprite2D" parent="BodyParts"]
-light_mask = 0
-y_sort_enabled = true
-texture_filter = 1
-texture = ExtResource("3_6yixv")
-offset = Vector2(0, -10)
-hframes = 4
+texture = ExtResource("3_r4ud2")
+hframes = 7
 vframes = 2
-frame = 5
-
-[node name="Body" type="Sprite2D" parent="BodyParts"]
-light_mask = 0
-y_sort_enabled = true
-texture_filter = 1
-texture = ExtResource("4_pdqmh")
-offset = Vector2(0, -10)
-hframes = 4
-vframes = 2
-frame = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_uvgr3")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_imm3a")
-}
-
-[node name="StateTimer" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
 
 [node name="FrameTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

@@ -7,7 +7,7 @@ var opened_popup
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalBus.detectable_element_clicked.connect(on_detectable_element_selected)
+	SignalBus.clickable_element_clicked.connect(on_detectable_element_selected)
 	pass # Replace with function body.
 
 

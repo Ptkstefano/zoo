@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="tree_resource" load_steps=2 format=3 uid="uid://36wmkrb0dw5i"]
+
+[ext_resource type="Script" path="res://Scenery/Trees/tree_resource.gd" id="1_u5a03"]
+
+[resource]
+script = ExtResource("1_u5a03")
+name = "Jacaranda Tree"
+texture_y = 3
+vegetation_weight = 2.0

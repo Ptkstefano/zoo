@@ -54,7 +54,6 @@ func calculate_enclosure_stats():
 	enclosure_stats_updated.emit()
 	
 	
-	
 func add_shelter(shelter):
 	available_shelters.append(shelter)
 

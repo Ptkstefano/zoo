@@ -71,6 +71,7 @@ func instantiate_fence(enclosure_res):
 				fence_instance.sprite_x = direction_index
 				fence_instance.global_position = Helpers.get_global_pos_of_cell(cell)
 				fence_instance.z_index = Helpers.get_current_tile_z_index(fence_instance.global_position)
+				fence_instance.g_pos = Helpers.get_global_pos_of_cell(cell)
 				if direction_index == 1 or direction_index == 0:
 					fence_instance.z_index -= 2
 				fence_instance.update_fence_instance(enclosure_res)

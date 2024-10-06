@@ -7,12 +7,21 @@
 [resource]
 script = ExtResource("1_udr7q")
 name = "Kardofan Giraffe"
+species = 2
 texture = ExtResource("2_t6epv")
 thumb = ExtResource("3_laca4")
 shadow_scale = 1.8
 sprite_y_offset = 4
+animation_speed_scale = 0.5
 base_speed = 15.0
 run_speed = 20.0
-animation_speed_scale = 0.5
 can_swim = false
+minimum_shelter_level = 0
 terrain_preference = {}
+terrain_dislike = Array[int]([])
+needs_water = false
+minimum_habitat_size = 0
+minimum_vegetation_coverage = 0.0
+maximum_vegetation_coverage = 0.0
+minimum_herd_size = 0
+maximum_herd_density = 0.0

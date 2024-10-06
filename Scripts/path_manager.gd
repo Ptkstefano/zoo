@@ -42,17 +42,21 @@ func build_path(coordinates, path_res):
 			continue
 		if coordinate not in path_coordinates:
 			path_coordinates.append(coordinate)
-		path_layer.set_cell(coordinate, 0, Vector2i(1,path_res.atlas_y))
 		var neighbors = path_layer.get_surrounding_cells(coordinate)
 		for neighbor in neighbors:
 			if path_layer.get_cell_atlas_coords(neighbor) != Vector2i(-1,-1):
 				if neighbor not in all_neighbors:
 					all_neighbors.append(neighbor)
 		## Adds intersections to built paths
+		path_layer.set_cell(coordinate, 0, Vector2i(1,path_res.atlas_y))
+		Effects.smoke2(TileMapRef.map_to_local(coordinate))
+		await get_tree().create_timer(0.01).timeout
+		
 		build_intersections(coordinate, path_res)
 	for neighbor in all_neighbors:
 		## Adds instersections to neighbors of built paths
 		build_intersections(neighbor, null)
+
 	SignalBus.peep_navigation_changed.emit()
 	
 func remove_path(coordinates):
@@ -62,6 +66,8 @@ func remove_path(coordinates):
 		if coordinate in $"../Objects/BuildingManager".coordinates_used_by_buildings:
 			continue
 		path_layer.set_cell(coordinate, 0, Vector2(-1,-1))
+		Effects.smoke(TileMapRef.map_to_local(coordinate))
+		await get_tree().create_timer(0.01).timeout
 		if coordinate in path_coordinates:
 			path_coordinates.erase(coordinate)
 	for coordinate in coordinates:

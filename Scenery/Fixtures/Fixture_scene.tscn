@@ -7,27 +7,47 @@
 script = ExtResource("1_j2mey")
 
 [node name="Directions" type="Node2D" parent="."]
-position = Vector2(0, -18)
 
-[node name="N" type="Sprite2D" parent="Directions"]
+[node name="N" type="Node2D" parent="Directions"]
+
+[node name="N" type="Sprite2D" parent="Directions/N"]
 texture_filter = 1
+position = Vector2(0, -18)
 texture = ExtResource("1_ifv28")
 vframes = 4
 frame = 1
 
-[node name="W" type="Sprite2D" parent="Directions"]
+[node name="Sitting1" type="Node2D" parent="Directions/N"]
+position = Vector2(10, -8)
+
+[node name="Sitting2" type="Node2D" parent="Directions/N"]
+position = Vector2(17, -5)
+
+[node name="W" type="Node2D" parent="Directions"]
+visible = false
+
+[node name="W" type="Sprite2D" parent="Directions/W"]
 texture_filter = 1
+position = Vector2(0, -18)
 texture = ExtResource("1_ifv28")
 vframes = 4
 
-[node name="S" type="Sprite2D" parent="Directions"]
+[node name="S" type="Node2D" parent="Directions"]
+visible = false
+
+[node name="S" type="Sprite2D" parent="Directions/S"]
 texture_filter = 1
+position = Vector2(0, -18)
 texture = ExtResource("1_ifv28")
 vframes = 4
 frame = 2
 
-[node name="E" type="Sprite2D" parent="Directions"]
+[node name="E" type="Node2D" parent="Directions"]
+visible = false
+
+[node name="E" type="Sprite2D" parent="Directions/E"]
 texture_filter = 1
+position = Vector2(0, -18)
 texture = ExtResource("1_ifv28")
 vframes = 4
 frame = 3

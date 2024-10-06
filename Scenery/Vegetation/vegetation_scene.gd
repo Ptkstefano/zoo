@@ -4,14 +4,25 @@ extends Node2D
 var vegetation_res : vegetation_resource
 var vegetation_weight
 
+var texture
+
+signal object_removed
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$RemovalArea.area_entered.connect(on_removal)
 	$Sprite2D.texture = vegetation_res.texture
-	$Sprite2D.offset = vegetation_res.texture_offset
+	texture = vegetation_res.texture
+	var y = -texture.get_height()
+	var x = -texture.get_width() * 0.5
+	$Sprite2D.offset = Vector2(x,y)
 	z_index = Helpers.get_current_tile_z_index(global_position)
 	vegetation_weight = vegetation_res.vegetation_weight
+	Effects.wobble(self)
+	#await get_tree().create_timer(0.5).timeout
+	#$Sprite2D.visible = false
 
 
 func on_removal(bulldozer):
-	queue_free()
+	$RemovalArea/CollisionShape2D.disabled = true
+	object_removed.emit(self)

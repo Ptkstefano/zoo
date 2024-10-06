@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_5v5j4")
 name = "American Flamingo"
+species = 1
 texture = ExtResource("2_exngk")
 shadow_scale = 1.0
 sprite_y_offset = 0

@@ -6,9 +6,10 @@
 [resource]
 script = ExtResource("1_hthtb")
 name = "White-tail Deer"
+species = 3
 texture = ExtResource("2_qse5u")
 shadow_scale = 1.0
-sprite_y_offset = 14
+sprite_y_offset = 4
 animation_speed_scale = 0.75
 base_speed = 15.0
 run_speed = 25.0

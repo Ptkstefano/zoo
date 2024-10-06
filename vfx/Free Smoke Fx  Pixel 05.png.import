@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c34eivycj5pdr"
-path="res://.godot/imported/Sprite-0001.png-3d61b4f561213efe899625c1830c95cf.ctex"
+uid="uid://6vry3u8pqsy8"
+path="res://.godot/imported/Free Smoke Fx  Pixel 05.png-1b68fd2088c4e0090d141bc5213c376f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Peeps/Sprite-0001.png"
-dest_files=["res://.godot/imported/Sprite-0001.png-3d61b4f561213efe899625c1830c95cf.ctex"]
+source_file="res://vfx/Free Smoke Fx  Pixel 05.png"
+dest_files=["res://.godot/imported/Free Smoke Fx  Pixel 05.png-1b68fd2088c4e0090d141bc5213c376f.ctex"]
 
 [params]
 

@@ -25,13 +25,13 @@ func get_global_pos_of_cell(coordinate):
 
 func is_valid_cell(position):
 	var tile_at_position = TileMapRef.local_to_map(position)
-	if tile_at_position.x > DataManager.playable_area_size * 0.5:
+	if tile_at_position.x > GameManager.playable_area_size * 0.5:
 		return false
-	if tile_at_position.x < -DataManager.playable_area_size * 0.5:
+	if tile_at_position.x < -GameManager.playable_area_size * 0.5:
 		return false
-	if tile_at_position.y > DataManager.playable_area_size * 0.5:
+	if tile_at_position.y > GameManager.playable_area_size * 0.5:
 		return false
-	if tile_at_position.y < -DataManager.playable_area_size * 0.5:
+	if tile_at_position.y < -GameManager.playable_area_size * 0.5:
 		return false
 	return true
 

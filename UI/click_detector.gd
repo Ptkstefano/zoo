@@ -7,4 +7,4 @@ func _ready() -> void:
 	area_entered.connect(on_clicked)
 	
 func on_clicked(area):
-	SignalBus.detectable_element_clicked.emit(global_position, parent)
+	SignalBus.clickable_element_clicked.emit(global_position, parent)

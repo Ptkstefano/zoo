@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh0we022rrea5"
-path="res://.godot/imported/Head F1.png-4a58c954ba71e0296c575bcc6689f2d7.ctex"
+uid="uid://bkni1npoagbbm"
+path="res://.godot/imported/shadow_medium.png-ddf2b4f5bc79f859b2ede01edb16e0d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Peeps/Head F1.png"
-dest_files=["res://.godot/imported/Head F1.png-4a58c954ba71e0296c575bcc6689f2d7.ctex"]
+source_file="res://Sprites/shadows/shadow_medium.png"
+dest_files=["res://.godot/imported/shadow_medium.png-ddf2b4f5bc79f859b2ede01edb16e0d6.ctex"]
 
 [params]
 
