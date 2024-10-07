@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=118 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" path="res://Scripts/game_controller.gd" id="1_nisry"]
 [ext_resource type="Script" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -65,6 +65,7 @@
 [ext_resource type="Texture2D" uid="uid://wj8tt8gnhkn5" path="res://Terrain/terrain_sheet.png" id="32_05eb2"]
 [ext_resource type="Resource" uid="uid://36wmkrb0dw5i" path="res://Scenery/Trees/Jacaranda.tres" id="32_weqx1"]
 [ext_resource type="Resource" uid="uid://d0guv3uxkjigw" path="res://Scenery/Trees/Acacia.tres" id="33_5f25m"]
+[ext_resource type="Resource" uid="uid://benyyn571ipab" path="res://Scenery/Trees/Araucaria.tres" id="34_7vtya"]
 [ext_resource type="PackedScene" uid="uid://iscokpw16nk" path="res://peep_group.tscn" id="40_rrrup"]
 [ext_resource type="Texture2D" uid="uid://cjyflttjg5wv5" path="res://Enclosures/Fences/fence_sheet.png" id="42_ahr0a"]
 [ext_resource type="Script" path="res://water_manager.gd" id="43_sh5qp"]
@@ -368,7 +369,7 @@ ui_animal_element = ExtResource("21_a35of")
 [node name="SceneryManager" type="Node2D" parent="Objects" node_paths=PackedStringArray("buildingManager")]
 y_sort_enabled = true
 script = ExtResource("14_62h3g")
-available_trees = Array[ExtResource("24_g51a1")]([ExtResource("25_qvxwd"), ExtResource("30_yos0d"), ExtResource("31_m2uoq"), ExtResource("32_weqx1"), ExtResource("33_5f25m")])
+available_trees = Array[ExtResource("24_g51a1")]([ExtResource("25_qvxwd"), ExtResource("30_yos0d"), ExtResource("31_m2uoq"), ExtResource("32_weqx1"), ExtResource("33_5f25m"), ExtResource("34_7vtya")])
 available_decorations = Array[ExtResource("26_0c60e")]([ExtResource("27_r3jxo")])
 available_vegetations = Array[ExtResource("28_wajut")]([ExtResource("29_d00f0"), ExtResource("30_dvure"), ExtResource("31_7jmpp")])
 tree_scene = ExtResource("26_vuik7")
