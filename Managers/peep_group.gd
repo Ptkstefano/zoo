@@ -6,7 +6,7 @@ const SPEED = 20.0
 
 var peep_manager : PeepManager
 
-@export var peep_texture : Texture2D
+#@export var peep_texture : Texture2D
 
 enum group_states {STOPPED, WALKING, OBSERVING, RESTING}
 
@@ -15,6 +15,8 @@ var group_state : group_states = group_states.WALKING
 var peeps = []
 
 var agent 
+
+var direction : Vector2
 
 var first_position_offset = Vector2(0, -5)
 var second_position_offset = Vector2(-5, 0)
@@ -52,6 +54,8 @@ func _ready() -> void:
 	agent = $NavigationAgent2D
 	await get_tree().create_timer(0.5).timeout
 	
+	agent.waypoint_reached.connect(on_agent_waypoint_reached)
+	
 	$AnimalDetector.body_entered.connect(on_detector_body_entered)
 	$StateTimer.timeout.connect(on_state_timer_timeout)
 	$DecayTimer.timeout.connect(on_decay_timer_timeout)
@@ -61,12 +65,16 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if group_state == group_states.WALKING:
-		move_toward_position(agent.get_next_path_position(), delta)
+		move_toward_direction(direction, delta)
 		if agent.is_navigation_finished():
 			change_state(group_states.STOPPED)
 		
 		for peep in peeps:
 			peep.group_position = global_position
+
+func on_agent_waypoint_reached(d):
+	await get_tree().create_timer(0.01).timeout
+	direction = (agent.get_next_path_position() - global_position).normalized()
 
 func change_state(state):
 	if state == group_states.OBSERVING:
@@ -86,9 +94,9 @@ func change_state(state):
 func get_new_destination():
 	var destination = peep_manager.generate_peep_destination()
 	agent.target_position=destination
+	direction = (agent.get_next_path_position() - global_position).normalized()
 
-func move_toward_position(destination: Vector2, delta: float):
-	var direction = (destination - global_position).normalized()
+func move_toward_direction(direction: Vector2, delta: float):
 	global_position += direction * SPEED * delta
 
 func on_detector_body_entered(body):

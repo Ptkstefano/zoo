@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" path="res://Scripts/game_controller.gd" id="1_nisry"]
 [ext_resource type="Script" path="res://Scripts/input_controller.gd" id="1_ojpln"]
-[ext_resource type="Script" path="res://Managers/zoo_management.gd" id="1_ufl1h"]
+[ext_resource type="Script" path="res://zoo_management.gd" id="1_ufl1h"]
 [ext_resource type="Script" path="res://Scripts/path_manager.gd" id="2_4bhy0"]
 [ext_resource type="PackedScene" uid="uid://cl4o0ja0kt0i1" path="res://Animals/animal.tscn" id="2_7ivxh"]
-[ext_resource type="Script" path="res://Managers/rendering_controller.gd" id="2_hhygd"]
+[ext_resource type="Script" path="res://rendering_controller.gd" id="2_hhygd"]
 [ext_resource type="Script" path="res://Scripts/game_data_manager.gd" id="3_3jjmw"]
-[ext_resource type="PackedScene" uid="uid://diabcxnc3u1uu" path="res://Managers/z_index_renderer.tscn" id="3_rhpto"]
+[ext_resource type="PackedScene" uid="uid://diabcxnc3u1uu" path="res://z_index_renderer.tscn" id="3_rhpto"]
 [ext_resource type="Texture2D" uid="uid://bw474aur5qc4s" path="res://Sprites/tile3.png" id="3_s04uj"]
 [ext_resource type="Script" path="res://Paths/path_res.gd" id="4_5g54g"]
 [ext_resource type="Material" uid="uid://clxcpld1cjl4q" path="res://Shaders/outline_material.tres" id="4_21t5t"]
-[ext_resource type="Script" path="res://Managers/terrain_manager.gd" id="4_cuia8"]
+[ext_resource type="Script" path="res://terrain_manager.gd" id="4_cuia8"]
 [ext_resource type="Texture2D" uid="uid://dvafqwrvm1q8p" path="res://Paths/path_sheet.png" id="4_f4nul"]
 [ext_resource type="Texture2D" uid="uid://d1m6d2njxkwo5" path="res://Sprites/tile2.png" id="4_lkfjk"]
 [ext_resource type="Script" path="res://Scripts/animal_manager.gd" id="4_xl85y"]
@@ -28,12 +28,13 @@
 [ext_resource type="Resource" uid="uid://dp82v0odladsa" path="res://Paths/null_path.tres" id="7_ybs1u"]
 [ext_resource type="PackedScene" uid="uid://dvjtneek7b62q" path="res://UI/UI selectable elements/ui_terrain_element.tscn" id="8_qghle"]
 [ext_resource type="Script" path="res://Scripts/building_ui.gd" id="10_pctuh"]
-[ext_resource type="Script" path="res://Managers/peep_manager.gd" id="10_ubp83"]
+[ext_resource type="Script" path="res://peep_manager.gd" id="10_ubp83"]
 [ext_resource type="PackedScene" uid="uid://ca66y62ys1xkh" path="res://Peeps/peep.tscn" id="11_nv6fn"]
 [ext_resource type="Resource" uid="uid://dcrw61juxfsvs" path="res://Terrain/dirt.tres" id="12_jliyx"]
 [ext_resource type="Resource" uid="uid://dk382e4qklm34" path="res://Terrain/deciduous.tres" id="13_jic8h"]
 [ext_resource type="Resource" uid="uid://ctusbtwghbxrl" path="res://Terrain/savanna.tres" id="14_1rewk"]
-[ext_resource type="Script" path="res://Managers/scenery_manager.gd" id="14_62h3g"]
+[ext_resource type="Script" path="res://scenery_manager.gd" id="14_62h3g"]
+[ext_resource type="Script" path="res://terrain_layer.gd" id="15_l0i61"]
 [ext_resource type="Resource" uid="uid://c1csiys1jf20o" path="res://Animals/American Flamingo.tres" id="17_2vbol"]
 [ext_resource type="Script" path="res://Enclosures/Fences/enclosure_res.gd" id="20_k6451"]
 [ext_resource type="PackedScene" uid="uid://oa08vk0rrcpe" path="res://UI/UI selectable elements/ui_animal_element.tscn" id="21_a35of"]
@@ -45,7 +46,7 @@
 [ext_resource type="Script" path="res://Scenery/Decorations/decoration_resource.gd" id="26_0c60e"]
 [ext_resource type="PackedScene" uid="uid://cuiky1io0hfof" path="res://Scenery/Trees/tree_scene.tscn" id="26_vuik7"]
 [ext_resource type="PackedScene" uid="uid://bt8m7eb0se03i" path="res://UI/UI selectable elements/ui_scenery_element.tscn" id="27_5553e"]
-[ext_resource type="Script" path="res://Managers/building_manager.gd" id="27_mg3kq"]
+[ext_resource type="Script" path="res://building_manager.gd" id="27_mg3kq"]
 [ext_resource type="Resource" uid="uid://dqn36shhu7sgb" path="res://Scenery/Decorations/deer-statue.tres" id="27_r3jxo"]
 [ext_resource type="PackedScene" uid="uid://bb5olte5gphhj" path="res://UI/UI selectable elements/ui_building_element.tscn" id="28_04i1b"]
 [ext_resource type="Script" path="res://Buildings/building_res.gd" id="28_58uqa"]
@@ -59,34 +60,34 @@
 [ext_resource type="PackedScene" uid="uid://bgasmembo8g7r" path="res://Buildings/building.tscn" id="30_wk5yf"]
 [ext_resource type="Resource" uid="uid://b6yflquscb8la" path="res://Scenery/Trees/Palm 1.tres" id="30_yos0d"]
 [ext_resource type="Resource" uid="uid://ch0c44mjn0ono" path="res://Scenery/Vegetation/bush.tres" id="31_7jmpp"]
-[ext_resource type="Shader" path="res://Shaders/terrain.gdshader" id="31_e0m5j"]
+[ext_resource type="Shader" path="res://terrain.gdshader" id="31_e0m5j"]
 [ext_resource type="Resource" uid="uid://dsp7g10m8i1c5" path="res://Scenery/Trees/Palm 2.tres" id="31_m2uoq"]
 [ext_resource type="Texture2D" uid="uid://wj8tt8gnhkn5" path="res://Terrain/terrain_sheet.png" id="32_05eb2"]
 [ext_resource type="Resource" uid="uid://36wmkrb0dw5i" path="res://Scenery/Trees/Jacaranda.tres" id="32_weqx1"]
 [ext_resource type="Resource" uid="uid://d0guv3uxkjigw" path="res://Scenery/Trees/Acacia.tres" id="33_5f25m"]
 [ext_resource type="Resource" uid="uid://benyyn571ipab" path="res://Scenery/Trees/Araucaria.tres" id="34_7vtya"]
-[ext_resource type="PackedScene" uid="uid://iscokpw16nk" path="res://Managers/peep_group.tscn" id="40_rrrup"]
+[ext_resource type="PackedScene" uid="uid://iscokpw16nk" path="res://peep_group.tscn" id="40_rrrup"]
 [ext_resource type="Texture2D" uid="uid://cjyflttjg5wv5" path="res://Enclosures/Fences/fence_sheet.png" id="42_ahr0a"]
-[ext_resource type="Script" path="res://Managers/water_manager.gd" id="43_sh5qp"]
+[ext_resource type="Script" path="res://water_manager.gd" id="43_sh5qp"]
 [ext_resource type="PackedScene" uid="uid://dfb5pi2yfy3jh" path="res://Water/lake_scene.tscn" id="44_wq78x"]
-[ext_resource type="Script" path="res://Managers/fixture_manager.gd" id="45_u6xcc"]
+[ext_resource type="Script" path="res://fixture_manager.gd" id="45_u6xcc"]
 [ext_resource type="Script" path="res://Scenery/Fixtures/fixture_resource.gd" id="46_0jpxo"]
 [ext_resource type="PackedScene" uid="uid://dyw57ak1ghyxw" path="res://Scenery/Fixtures/Fixture_scene.tscn" id="46_f0e0b"]
 [ext_resource type="Resource" uid="uid://bsox4n3cixif" path="res://Scenery/Fixtures/wooden bench.tres" id="47_gvub1"]
-[ext_resource type="Script" path="res://Managers/popup_manager.gd" id="48_w8cen"]
-[ext_resource type="Script" path="res://Managers/shelter_manager.gd" id="49_hnjxi"]
+[ext_resource type="Script" path="res://popup_manager.gd" id="48_w8cen"]
+[ext_resource type="Script" path="res://shelter_manager.gd" id="49_hnjxi"]
 [ext_resource type="PackedScene" uid="uid://ddbum626vwima" path="res://UI/UI popups/ui_shop_popup.tscn" id="50_dyuu3"]
 [ext_resource type="Script" path="res://Enclosures/Shelters/shelter_res.gd" id="50_m3er2"]
 [ext_resource type="Resource" uid="uid://cuk4yesxl2kqy" path="res://Enclosures/Shelters/small_wooden_shelter.tres" id="51_row6q"]
 [ext_resource type="PackedScene" uid="uid://dasxyu5n8ncu0" path="res://UI/UI selectable elements/ui_shelter_element.tscn" id="52_30626"]
-[ext_resource type="Shader" path="res://Shaders/postfx.gdshader" id="53_fkgg7"]
+[ext_resource type="Shader" path="res://postfx.gdshader" id="53_fkgg7"]
 [ext_resource type="PackedScene" uid="uid://c0yqr1xdbc6do" path="res://UI/UI selectable elements/ui_enclosure_element.tscn" id="54_il7k7"]
-[ext_resource type="PackedScene" uid="uid://b020lesiynlbr" path="res://Enclosures/enclosure_scene.tscn" id="55_54dhb"]
-[ext_resource type="Script" path="res://Managers/peep_navigation_region.gd" id="61_8dedt"]
+[ext_resource type="PackedScene" uid="uid://b020lesiynlbr" path="res://enclosure_scene.tscn" id="55_54dhb"]
+[ext_resource type="Script" path="res://peep_navigation_region.gd" id="61_8dedt"]
 [ext_resource type="PackedScene" uid="uid://baic6x8rh68v8" path="res://UI/UI popups/ui_animal_popup.tscn" id="73_mv3dj"]
 [ext_resource type="Theme" uid="uid://qsq4gutgth07" path="res://UI/default_theme.tres" id="74_7k2ss"]
-[ext_resource type="Script" path="res://UI/ui_show.gd" id="74_d5mka"]
-[ext_resource type="Script" path="res://UI/ui_debug_shader.gd" id="87_1b22a"]
+[ext_resource type="Script" path="res://ui_show.gd" id="74_d5mka"]
+[ext_resource type="Script" path="res://ui_debug_shader.gd" id="87_1b22a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4oys"]
 
@@ -151,20 +152,6 @@ tile_shape = 1
 tile_layout = 5
 tile_size = Vector2i(64, 32)
 sources/0 = SubResource("TileSetAtlasSource_n2opu")
-
-[sub_resource type="GDScript" id="GDScript_5nkob"]
-script/source = "extends TileMapLayer
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-	#for tile in get_used_cells():
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_i0ey6"]
 
@@ -463,35 +450,35 @@ tile_set = SubResource("TileSet_awsfk")
 rendering_quadrant_size = 1
 collision_enabled = false
 navigation_enabled = false
-script = SubResource("GDScript_5nkob")
+script = ExtResource("15_l0i61")
 metadata/_edit_lock_ = true
 
 [node name="TerrainWang_E" type="TileMapLayer" parent="TileMap/TerrainLayer"]
 z_index = -4096
 texture_filter = 1
 tile_set = SubResource("TileSet_awsfk")
-script = SubResource("GDScript_5nkob")
+script = ExtResource("15_l0i61")
 metadata/_edit_lock_ = true
 
 [node name="TerrainWang_S" type="TileMapLayer" parent="TileMap/TerrainLayer"]
 z_index = -4096
 texture_filter = 1
 tile_set = SubResource("TileSet_awsfk")
-script = SubResource("GDScript_5nkob")
+script = ExtResource("15_l0i61")
 metadata/_edit_lock_ = true
 
 [node name="TerrainWang_W" type="TileMapLayer" parent="TileMap/TerrainLayer"]
 z_index = -4096
 texture_filter = 1
 tile_set = SubResource("TileSet_awsfk")
-script = SubResource("GDScript_5nkob")
+script = ExtResource("15_l0i61")
 metadata/_edit_lock_ = true
 
 [node name="TerrainWang_N" type="TileMapLayer" parent="TileMap/TerrainLayer"]
 z_index = -4096
 texture_filter = 1
 tile_set = SubResource("TileSet_awsfk")
-script = SubResource("GDScript_5nkob")
+script = ExtResource("15_l0i61")
 metadata/_edit_lock_ = true
 
 [node name="PathLayer" type="TileMapLayer" parent="TileMap" groups=["Navigation"]]

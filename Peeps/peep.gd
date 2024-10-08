@@ -14,6 +14,7 @@ var agent: NavigationAgent2D
 
 var position_offset : Vector2
 var group_position : Vector2
+var target_pos : Vector2
 
 var body_texture
 var head_texture
@@ -21,9 +22,12 @@ var head_texture
 var move_direction : Vector2
 var look_direction
 
-var frame = 0
-var sprite_x = 0
-var sprite_y = 0
+var frame := 0
+var sprite_x := 0
+var sprite_y := 0
+
+@onready var peepSprite = $PeepSprite
+@onready var screenNotifier = $VisibleOnScreenNotifier2D
 
 
 
@@ -33,7 +37,8 @@ func _ready() -> void:
 	$FrameTimer.wait_time = randf_range(0.4, 0.55)
 
 func _physics_process(delta: float) -> void:
-	var target_pos = (group_position + position_offset)
+	
+	target_pos = (group_position + position_offset)
 	
 	if global_position.distance_to(target_pos) < 5:
 		velocity = Vector2.ZERO
@@ -48,20 +53,21 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _process(delta: float) -> void:
-	if !$VisibleOnScreenNotifier2D.is_on_screen():
+	if !screenNotifier.is_on_screen():
 		return
 		
 	z_index = Helpers.get_current_tile_z_index(global_position)
+	
 	if peep_state == PEEP_STATES.MOVING:
 		if velocity == Vector2.ZERO:
 			sprite_x = 0
 		else:
 			if velocity.x > 0:
 				sprite_x = 2
-				$PeepSprite.flip_h=true
+				peepSprite.flip_h=true
 			else:
 				sprite_x = 2
-				$PeepSprite.flip_h=false
+				peepSprite.flip_h=false
 				
 			if velocity.y > 0:
 				sprite_y = 1
@@ -69,16 +75,16 @@ func _process(delta: float) -> void:
 				sprite_y = 0
 	if peep_state == PEEP_STATES.OBSERVING:
 		if abs(look_direction) > PI * 0.5:
-			$PeepSprite.flip_h = false
+			peepSprite.flip_h = false
 		else:
-			$PeepSprite.flip_h = true
+			peepSprite.flip_h = true
 			
 		if look_direction > 0:
 			sprite_y = 1
 		else:
 			sprite_y = 0
 		
-	$PeepSprite.frame_coords = Vector2(sprite_x + frame, sprite_y)
+	peepSprite.frame_coords = Vector2(sprite_x + frame, sprite_y)
 		
 func on_frame_timer():
 	if frame == 0:
@@ -90,13 +96,13 @@ func set_peep_visuals():
 	var shader_material = ShaderMaterial.new()
 	shader_material.shader = preload("res://Peeps/peep.gdshader") 
 	
-	$PeepSprite.texture = peep_sprites.pick_random()
+	peepSprite.texture = peep_sprites.pick_random()
 	
 	shader_material.set_shader_parameter("body_color", ColorRefs.body_colors.pick_random())
 	shader_material.set_shader_parameter("skin_color", ColorRefs.skin_colors.pick_random())
 	shader_material.set_shader_parameter("hair_color", ColorRefs.hair_colors.pick_random())
 	
-	$PeepSprite.material = shader_material
+	peepSprite.material = shader_material
 	
 func get_new_destination():
 	return peep_manager.generate_peep_destination()

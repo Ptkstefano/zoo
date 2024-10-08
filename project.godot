@@ -17,12 +17,12 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 [autoload]
 
 Helpers="*res://Scripts/helpers.gd"
-GameManager="*res://game_manager_data.gd"
+GameManager="*res://Managers/game_manager_data.gd"
 ColorRefs="*res://Autoload/color_refs.tscn"
 TileMapRef="*res://Autoload/tile_map_ref.tscn"
-NameRefs="*res://name_refs.gd"
-SignalBus="*res://signal_bus.gd"
-Effects="*res://effects.gd"
+NameRefs="*res://Autoload/name_refs.gd"
+SignalBus="*res://Autoload/signal_bus.gd"
+Effects="*res://Autoload/effects.gd"
 
 [display]
 
@@ -32,6 +32,10 @@ window/size/always_on_top=true
 window/stretch/aspect="expand"
 window/stretch/scale=1.2
 window/stretch/scale_mode="integer"
+
+[dotnet]
+
+project/assembly_name="Zoo"
 
 [global_group]
 

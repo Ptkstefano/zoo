@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Enclosure
 
-@onready var enclosure_scene = preload("res://enclosure_scene.tscn")
+@export var enclosure_scene : PackedScene
 
 var enclosure_cells = []
 
