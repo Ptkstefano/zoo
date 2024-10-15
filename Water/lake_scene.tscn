@@ -34,13 +34,11 @@ collision_mask = 2048
 polygon = PackedVector2Array(16, -14, -56, -82, -139, 51, 15, 150, 135, 41, 108, -40)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_ta1gu")
 enabled = false
 navigation_layers = 0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Enclosure"]]
-visible = false
 collision_layer = 2048
 collision_mask = 0
 
@@ -49,7 +47,6 @@ visible = false
 polygon = PackedVector2Array(-289, -136, -334, 137, 23, 411, 603, 174, 434, -90, 275, -272, -124, -276)
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 collision_layer = 32768
 collision_mask = 0
 

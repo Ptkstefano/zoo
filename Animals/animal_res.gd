@@ -21,6 +21,8 @@ class_name animal_resource
 @export var can_swim : bool
 @export var minimum_shelter_level : int
 
+@export var animal_rating : int
+
 
 @export_group("Animal preferences")
 ## Expresses minimum needed percentage of terrain types

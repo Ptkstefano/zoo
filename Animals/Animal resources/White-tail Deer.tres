@@ -15,6 +15,7 @@ base_speed = 15.0
 run_speed = 25.0
 can_swim = false
 minimum_shelter_level = 0
+animal_rating = 60
 terrain_preference = {}
 terrain_dislike = Array[int]([])
 needs_water = false

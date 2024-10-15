@@ -2,7 +2,9 @@ extends Node
 
 class_name building
 
-enum BUILDING_TYPES {FOOD}
+@export var shop_scene : PackedScene
+
+enum BUILDING_TYPES {SHOP}
 
 var building_type : BUILDING_TYPES
 
@@ -17,11 +19,13 @@ signal building_selected
 signal building_removed
 
 func _ready() -> void:
-	var building_instance = building_res.building_scene.instantiate()
-	building_instance.global_position = building_position
-	building_instance.z_index = Helpers.get_current_tile_z_index(building_position) + building_res.z_offset
-	building_instance.is_rotated = is_building_rotated
-	add_child(building_instance)
+	if building_res.building_type == NameRefs.BUILDING_TYPES.SHOP:
+		var building_instance = shop_scene.instantiate()
+		building_instance.building_res = building_res
+		building_instance.global_position = building_position
+		building_instance.z_index = Helpers.get_current_tile_z_index(building_position) + building_res.z_offset
+		building_instance.is_rotated = is_building_rotated
+		add_child(building_instance)
 
 func remove_building():
 	building_removed.emit(self)

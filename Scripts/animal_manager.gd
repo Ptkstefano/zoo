@@ -39,6 +39,12 @@ func spawn_animal(coordinate, animal_res):
 	if !found_enclosure:
 		return
 		
+	if found_enclosure.enclosure_species == null:
+		found_enclosure.enclosure_species = animal_res
+	else:
+		if found_enclosure.enclosure_species != animal_res:
+			return
+		
 	var spawned_animal = animal_scene.instantiate()
 	spawned_animal.initialize_animal(animal_res, coordinate, found_enclosure)
 	spawned_animal.animal_removed.connect(despawn_animal)
@@ -47,5 +53,5 @@ func spawn_animal(coordinate, animal_res):
 	found_enclosure.add_animal(spawned_animal)
 	animal_count += 1
 	
-func despawn_animal():
+func despawn_animal(animal):
 	animal_count -= 1

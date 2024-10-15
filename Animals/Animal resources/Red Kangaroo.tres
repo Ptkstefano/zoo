@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="animal_resource" load_steps=3 format=3 uid="uid://xncaf8r72rkb"]
+
+[ext_resource type="Script" path="res://Animals/animal_res.gd" id="1_kntb2"]
+[ext_resource type="Texture2D" uid="uid://3ld6nf83htbo" path="res://Animals/sprites/red kangaroo.png" id="2_pbl2i"]
+
+[resource]
+script = ExtResource("1_kntb2")
+name = "Red Kangaroo"
+species = 0
+texture = ExtResource("2_pbl2i")
+shadow_scale = 1.0
+sprite_y_offset = 4
+animation_speed_scale = 0.75
+base_speed = 15.0
+run_speed = 25.0
+can_swim = false
+minimum_shelter_level = 0
+animal_rating = 60
+terrain_preference = {}
+terrain_dislike = Array[int]([])
+needs_water = false
+minimum_habitat_size = 50
+minimum_vegetation_coverage = 0.6
+maximum_vegetation_coverage = 1.5
+minimum_herd_size = 4
+maximum_herd_density = 0.15

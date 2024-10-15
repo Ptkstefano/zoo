@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://5ju27qay4qx7"]
+
+[ext_resource type="Script" path="res://Buildings/building_shop.gd" id="1_81iwn"]
+[ext_resource type="Texture2D" uid="uid://cwvec4talel2p" path="res://Buildings/IceCreamShop.png" id="4_wfstm"]
+[ext_resource type="PackedScene" uid="uid://dkhxs71sdajj2" path="res://UI/detectable.tscn" id="5_jvc67"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3vnw5"]
+radius = 38.0526
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qm6cw"]
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_81iwn")
+
+[node name="Sprites" type="Node2D" parent="."]
+position = Vector2(18, -22)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites"]
+texture_filter = 1
+texture = ExtResource("4_wfstm")
+flip_h = true
+
+[node name="Detectable" parent="." instance=ExtResource("5_jvc67")]
+position = Vector2(-18, -21)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detectable"]
+shape = SubResource("CircleShape2D_3vnw5")
+
+[node name="SellPositions" type="Node2D" parent="."]
+position = Vector2(-49, -12)
+
+[node name="Node2D" type="Node2D" parent="SellPositions"]
+position = Vector2(14, 18)
+
+[node name="Node2D2" type="Node2D" parent="SellPositions"]
+position = Vector2(-2, 10)
+
+[node name="Node2D3" type="Node2D" parent="SellPositions"]
+position = Vector2(30, 26)
+
+[node name="SellPositionsRotated" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="SellPositionsRotated"]
+position = Vector2(19, 12)
+
+[node name="Node2D2" type="Node2D" parent="SellPositionsRotated"]
+position = Vector2(36, 4)
+
+[node name="Node2D3" type="Node2D" parent="SellPositionsRotated"]
+position = Vector2(52, -2)
+
+[node name="ShopArea" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShopArea"]
+shape = SubResource("CircleShape2D_qm6cw")

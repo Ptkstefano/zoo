@@ -1,24 +1,39 @@
 extends Node2D
+class_name Shop
 
-class_name building_food
+var product_types : Array[NameRefs.PRODUCT_TYPES]
+var available_products : Array[product_resource]
 
-@export var sprite_offset : Vector2
-@export var sprite_offset_rotated : Vector2
-
-@export var detectable_pos : Vector2
-@export var detectable_pos_rotated : Vector2
-
+var building_res : building_resource
 var shop_name
 var coordinates = []
+
+var sell_positions : Array[Vector2]
 
 var is_rotated : bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for sprite in $Sprites.get_children():
-		if is_rotated:
-			sprite.flip_h = true
-			sprite.offset = sprite_offset_rotated
-		else:
-			sprite.flip_h = false
-			sprite.offset = sprite_offset
+	product_types = building_res.product_types
+	available_products = building_res.available_products
+	$Sprites/Sprite2D.texture = building_res.texture
+	if is_rotated:
+		$Sprites/Sprite2D.flip_h = true
+		$Sprites.position = building_res.sprite_pos_rotated
+		for children in $SellPositionsRotated.get_children():
+			sell_positions.append(children.global_position)
+	else:
+		$Sprites/Sprite2D.flip_h = false
+		$Sprites.position = building_res.sprite_pos
+		for children in $SellPositions.get_children():
+			sell_positions.append(children.global_position)
+			
+	for product in available_products:
+		product.current_cost = product.base_sell_value
+
+func remove_building():
+	get_parent().remove_building()
+
+func buy(item : product_resource, peep_count : int):
+	return
+	print('Selling ' + str(peep_count) + ' ' + str(item.name))

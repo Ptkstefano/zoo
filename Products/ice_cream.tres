@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="product_resource" load_steps=2 format=3 uid="uid://chxwmmjp17tl7"]
+
+[ext_resource type="Script" path="res://Products/product_res.gd" id="1_0h3kp"]
+
+[resource]
+script = ExtResource("1_0h3kp")
+name = 0
+type = 0
+sell_cost = 2.0
+base_sell_value = 15.0
+perceived_value = 4.0

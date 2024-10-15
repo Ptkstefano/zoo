@@ -8,6 +8,8 @@ var enclosure_cells = []
 
 var enclosure_animals = []
 
+var enclosure_species : animal_resource
+
 var current_fence
 
 var vegetation_coverage : float
@@ -145,7 +147,14 @@ func remove_enclosure_fence():
 
 func add_animal(animal):
 	enclosure_animals.append(animal)
+	animal.animal_removed.connect(remove_animal)
 	call_deferred("calculate_enclosure_stats")
+	
+func remove_animal(animal):
+	enclosure_animals.erase(animal)
+	call_deferred("calculate_enclosure_stats")
+	if enclosure_animals.size() == 0:
+		enclosure_species = null
 	
 
 func redistribute_animals():

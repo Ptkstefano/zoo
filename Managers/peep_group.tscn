@@ -8,7 +8,7 @@
 size = Vector2(5, 5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tfdvk"]
-radius = 100.0
+radius = 223.002
 
 [node name="PeepGroup" type="Node2D"]
 y_sort_enabled = true
@@ -35,10 +35,28 @@ scale = Vector2(15.5, 15.5)
 texture = ExtResource("3_vbf7h")
 
 [node name="AnimalDetector" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimalDetector"]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_tfdvk")
+
+[node name="FixtureDetector" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FixtureDetector"]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_tfdvk")
+
+[node name="ShopDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShopDetector"]
 rotation = 1.5708
 shape = SubResource("CircleShape2D_tfdvk")
 

@@ -22,7 +22,7 @@ func on_close():
 	queue_free()
 
 func on_sell_animal():
-	animal_scene.queue_free()
+	animal_scene.remove_animal()
 	queue_free()
 
 func on_debug_update():

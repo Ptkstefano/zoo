@@ -175,7 +175,7 @@ func change_state(state):
 			current_state = ANIMAL_STATES.IDLE
 
 func remove_animal():
-	animal_removed.emit()
+	animal_removed.emit(self)
 	queue_free()
 
 func on_swim_start(area):

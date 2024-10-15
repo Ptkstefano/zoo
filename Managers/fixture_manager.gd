@@ -13,6 +13,8 @@ var used_cells = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_selection_menu()
+	SignalBus.path_erased.connect(remove_fixture)
+	SignalBus.path_changed.connect(replace_fixture)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -67,6 +69,23 @@ func place_fixture(press_start_pos, fixture_res):
 	fixture.fixture_res = fixture_res
 	fixture.global_position = path_central_pos
 	fixture.fixture_directions = fixture_direction
+	fixture.cell = path_cell
 	add_child(fixture)
 	used_cells.append(path_cell)
+	
+func remove_fixture(cell):
+	if cell not in used_cells:
+		return
+	
+	for child in get_children():
+		if child.cell == cell:
+			child.queue_free()
+
+func replace_fixture(cell):
+	if cell not in used_cells:
+		return
+	
+	remove_fixture(cell)
+	## TODO - correct fixture type
+	place_fixture(TileMapRef.map_to_local(cell), available_fixtures[0])
 	

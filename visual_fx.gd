@@ -1,9 +1,8 @@
 extends Node2D
 
 
-# Called when the node enters the scene tree for the first time.
+## Script used in instance of visual fx
 func _ready() -> void:
-	print(name)
 	$AnimationPlayer.play('start')
 	$AnimationPlayer.animation_finished.connect(on_finish)
 

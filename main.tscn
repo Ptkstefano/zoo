@@ -1,8 +1,9 @@
-[gd_scene load_steps=119 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=121 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" path="res://Scripts/game_controller.gd" id="1_nisry"]
 [ext_resource type="Script" path="res://Scripts/input_controller.gd" id="1_ojpln"]
 [ext_resource type="Script" path="res://Managers/zoo_management.gd" id="1_ufl1h"]
+[ext_resource type="Script" path="res://reputation_manager.gd" id="2_1b04k"]
 [ext_resource type="Script" path="res://Scripts/path_manager.gd" id="2_4bhy0"]
 [ext_resource type="PackedScene" uid="uid://cl4o0ja0kt0i1" path="res://Animals/animal.tscn" id="2_7ivxh"]
 [ext_resource type="Script" path="res://Managers/rendering_controller.gd" id="2_hhygd"]
@@ -19,9 +20,9 @@
 [ext_resource type="Script" path="res://Terrain/terrain_res.gd" id="5_j8eiy"]
 [ext_resource type="Resource" uid="uid://cea7u5xphaurx" path="res://Paths/cement_path.tres" id="5_yh37h"]
 [ext_resource type="Script" path="res://Scripts/highlight_layer.gd" id="6_5hq40"]
-[ext_resource type="Resource" uid="uid://c7pfv2es6r5oa" path="res://Animals/Capybara.tres" id="6_k8h6b"]
+[ext_resource type="Resource" uid="uid://c7pfv2es6r5oa" path="res://Animals/Animal resources/Capybara.tres" id="6_k8h6b"]
 [ext_resource type="Resource" uid="uid://b8jk8nfoxbpbo" path="res://Terrain/grass.tres" id="6_twhii"]
-[ext_resource type="Resource" uid="uid://c8vfd72bmgjcf" path="res://Animals/Giraffe.tres" id="7_4qpb4"]
+[ext_resource type="Resource" uid="uid://c8vfd72bmgjcf" path="res://Animals/Animal resources/Giraffe.tres" id="7_4qpb4"]
 [ext_resource type="Resource" uid="uid://cv3jbpbpoab6s" path="res://Terrain/sand.tres" id="7_i5ul7"]
 [ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="7_pw5dd"]
 [ext_resource type="PackedScene" uid="uid://loilhhqarje0" path="res://UI/UI selectable elements/ui_path_element.tscn" id="7_tmdpf"]
@@ -34,15 +35,16 @@
 [ext_resource type="Resource" uid="uid://dk382e4qklm34" path="res://Terrain/deciduous.tres" id="13_jic8h"]
 [ext_resource type="Resource" uid="uid://ctusbtwghbxrl" path="res://Terrain/savanna.tres" id="14_1rewk"]
 [ext_resource type="Script" path="res://Managers/scenery_manager.gd" id="14_62h3g"]
-[ext_resource type="Resource" uid="uid://c1csiys1jf20o" path="res://Animals/American Flamingo.tres" id="17_2vbol"]
+[ext_resource type="Resource" uid="uid://c1csiys1jf20o" path="res://Animals/Animal resources/American Flamingo.tres" id="17_2vbol"]
 [ext_resource type="Script" path="res://Enclosures/Fences/enclosure_res.gd" id="20_k6451"]
 [ext_resource type="PackedScene" uid="uid://oa08vk0rrcpe" path="res://UI/UI selectable elements/ui_animal_element.tscn" id="21_a35of"]
 [ext_resource type="Resource" uid="uid://camg8o6ropjnr" path="res://Enclosures/Fences/small.tres" id="21_ad55l"]
 [ext_resource type="Resource" uid="uid://b85gocjhm05am" path="res://Enclosures/Fences/steel.tres" id="22_kya8w"]
-[ext_resource type="Resource" uid="uid://ck55w4ejddxxs" path="res://Animals/White-tail Deer.tres" id="22_u5sqr"]
+[ext_resource type="Resource" uid="uid://ck55w4ejddxxs" path="res://Animals/Animal resources/White-tail Deer.tres" id="22_u5sqr"]
 [ext_resource type="Script" path="res://Scenery/Trees/tree_resource.gd" id="24_g51a1"]
 [ext_resource type="Resource" uid="uid://s5hkg34ufeu3" path="res://Scenery/Trees/Pine.tres" id="25_qvxwd"]
 [ext_resource type="Script" path="res://Scenery/Decorations/decoration_resource.gd" id="26_0c60e"]
+[ext_resource type="Resource" uid="uid://xncaf8r72rkb" path="res://Animals/Animal resources/Red Kangaroo.tres" id="26_jd5b2"]
 [ext_resource type="PackedScene" uid="uid://cuiky1io0hfof" path="res://Scenery/Trees/tree_scene.tscn" id="26_vuik7"]
 [ext_resource type="PackedScene" uid="uid://bt8m7eb0se03i" path="res://UI/UI selectable elements/ui_scenery_element.tscn" id="27_5553e"]
 [ext_resource type="Script" path="res://Managers/building_manager.gd" id="27_mg3kq"]
@@ -322,6 +324,9 @@ shader_parameter/palette_colors = null
 [node name="ZooManagement" type="Node" parent="."]
 script = ExtResource("1_ufl1h")
 
+[node name="ReputationManager" type="Node" parent="."]
+script = ExtResource("2_1b04k")
+
 [node name="RenderingController" type="Node2D" parent="."]
 script = ExtResource("2_hhygd")
 z_index_renderer = ExtResource("3_rhpto")
@@ -375,7 +380,7 @@ y_sort_enabled = true
 [node name="AnimalManager" type="Node2D" parent="Objects" node_paths=PackedStringArray("enclosure_manager")]
 y_sort_enabled = true
 script = ExtResource("4_xl85y")
-available_animals = Array[ExtResource("5_h2s5g")]([ExtResource("6_k8h6b"), ExtResource("7_4qpb4"), ExtResource("17_2vbol"), ExtResource("22_u5sqr")])
+available_animals = Array[ExtResource("5_h2s5g")]([ExtResource("6_k8h6b"), ExtResource("7_4qpb4"), ExtResource("17_2vbol"), ExtResource("22_u5sqr"), ExtResource("26_jd5b2")])
 enclosure_manager = NodePath("../../EnclosureManager")
 animal_scene = ExtResource("2_7ivxh")
 ui_animal_element = ExtResource("21_a35of")

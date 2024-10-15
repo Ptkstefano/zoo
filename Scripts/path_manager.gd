@@ -69,6 +69,7 @@ func remove_path(coordinates):
 		Effects.smoke(TileMapRef.map_to_local(coordinate))
 		await get_tree().create_timer(0.01).timeout
 		if coordinate in path_coordinates:
+			SignalBus.path_erased.emit(coordinate)
 			path_coordinates.erase(coordinate)
 	for coordinate in coordinates:
 		var neighbors = path_layer.get_surrounding_cells(coordinate)
@@ -115,6 +116,7 @@ func build_intersections(coordinate, path_res):
 		path_layer.set_cell(coordinate, 0, Vector2(10,path_layer.get_cell_atlas_coords(coordinate).y))
 	elif found_paths == [1,1,1,1]:
 		path_layer.set_cell(coordinate, 0, Vector2(2,path_layer.get_cell_atlas_coords(coordinate).y))
+	SignalBus.path_changed.emit(coordinate)
 
 #TileSet.CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE
 func generate_peep_destination():

@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_ob3tf")
 name = "Capybara"
+species = 0
 texture = ExtResource("2_uytuh")
 thumb = ExtResource("3_oveb4")
 shadow_scale = 1.0
@@ -16,6 +17,7 @@ base_speed = 20.0
 run_speed = 30.0
 can_swim = true
 minimum_shelter_level = 0
+animal_rating = 100
 terrain_preference = {
 0: 25.0,
 2: 25.0
