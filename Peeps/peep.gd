@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Peep
 
 
 const SPEED = 15.0

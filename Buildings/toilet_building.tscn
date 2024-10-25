@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://byxq15jhy21ri"]
+
+[ext_resource type="Texture2D" uid="uid://dm06psgn1qbfb" path="res://Buildings/Toilet1.png" id="1_b5p7a"]
+[ext_resource type="Script" path="res://Buildings/toilet_building.gd" id="1_e8333"]
+[ext_resource type="PackedScene" uid="uid://dkhxs71sdajj2" path="res://UI/detectable.tscn" id="2_kwixx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_crwau"]
+radius = 38.0526
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yyy8i"]
+
+[node name="ToiletBuilding" type="Node2D"]
+script = ExtResource("1_e8333")
+
+[node name="Sprites" type="Node2D" parent="."]
+position = Vector2(8, -32)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites"]
+texture_filter = 1
+texture = ExtResource("1_b5p7a")
+
+[node name="Detectable" parent="." instance=ExtResource("2_kwixx")]
+position = Vector2(15, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detectable"]
+shape = SubResource("CircleShape2D_crwau")
+
+[node name="EnterPositions" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="EnterPositions"]
+position = Vector2(-16, 6)
+
+[node name="EnterPositionsRotated" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="EnterPositionsRotated"]
+position = Vector2(17, 4)
+
+[node name="ToiletArea" type="Area2D" parent="."]
+position = Vector2(18, -11)
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToiletArea"]
+shape = SubResource("CircleShape2D_yyy8i")

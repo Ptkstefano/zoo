@@ -115,7 +115,6 @@ tile_set = SubResource("TileSet_o4u8v")
 navigation_enabled = false
 
 [node name="LandRegion" type="NavigationRegion2D" parent="." groups=["Enclosure"]]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_mv2b7")
 navigation_layers = 2
 

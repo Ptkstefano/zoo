@@ -12,7 +12,7 @@ var selected_res:
 	#set(value):
 		#selected_res = value
 		#
-#var selected_enclosure : enclosure_resource:
+#var selected_enclosure : fence_resource:
 	#set(value):
 		#selected_res = value
 		#

@@ -1,0 +1,63 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://5rinnmfg30fq"]
+
+[ext_resource type="FontFile" uid="uid://32dcop5n8krs" path="res://UI/RobotoCondensed-Medium.ttf" id="1_628j0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nc2ly"]
+content_margin_top = 30.0
+content_margin_bottom = 30.0
+border_width_top = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.144)
+shadow_size = 8
+shadow_offset = Vector2(7.13, 6.425)
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqlih"]
+content_margin_top = 30.0
+content_margin_bottom = 30.0
+border_width_top = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.144)
+shadow_size = 8
+shadow_offset = Vector2(7.13, 6.425)
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkece"]
+content_margin_top = 30.0
+content_margin_bottom = 30.0
+border_width_top = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.144)
+shadow_size = 8
+shadow_offset = Vector2(7.13, 6.425)
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0cgs1"]
+content_margin_top = 30.0
+content_margin_bottom = 30.0
+border_width_top = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.144)
+shadow_size = 8
+shadow_offset = Vector2(7.13, 6.425)
+anti_aliasing_size = 0.01
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_628j0")
+Button/styles/focus = SubResource("StyleBoxFlat_nc2ly")
+Button/styles/hover = SubResource("StyleBoxFlat_rqlih")
+Button/styles/normal = SubResource("StyleBoxFlat_vkece")
+Button/styles/pressed = SubResource("StyleBoxFlat_0cgs1")

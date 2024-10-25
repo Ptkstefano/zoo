@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhirp0hhplpxr"]
+
+[ext_resource type="Script" path="res://Autoload/audio_manager.gd" id="1_8b2js"]
+[ext_resource type="AudioStream" uid="uid://bkp58jdp2cq46" path="res://Sfx/path_1-6.wav" id="3_vhe33"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_8b2js")
+sfx_path_placed = ExtResource("3_vhe33")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vhe33")
+max_polyphony = 10

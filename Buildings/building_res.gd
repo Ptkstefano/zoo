@@ -8,7 +8,7 @@ class_name building_resource
 @export var texture : Texture2D
 
 @export_category("Products")
-@export var building_type : building.BUILDING_TYPES
+@export var building_type : NameRefs.BUILDING_TYPES
 @export var product_types : Array[NameRefs.PRODUCT_TYPES]
 @export var available_products : Array[product_resource]
 

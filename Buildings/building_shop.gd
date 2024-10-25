@@ -12,6 +12,8 @@ var sell_positions : Array[Vector2]
 
 var is_rotated : bool
 
+var sold_units = {}
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	product_types = building_res.product_types
@@ -30,10 +32,12 @@ func _ready() -> void:
 			
 	for product in available_products:
 		product.current_cost = product.base_sell_value
+		sold_units[product.name] = 0
 
 func remove_building():
 	get_parent().remove_building()
 
-func buy(item : product_resource, peep_count : int):
+func buy(product : product_resource, peep_count : int):
+	sold_units[product.name] += peep_count
 	return
-	print('Selling ' + str(peep_count) + ' ' + str(item.name))
+	print('Selling ' + str(peep_count) + ' ' + str(product.name))

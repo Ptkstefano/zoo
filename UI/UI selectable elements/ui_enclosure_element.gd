@@ -1,6 +1,6 @@
 extends Control
 
-var enclosure_res : enclosure_resource
+var enclosure_res : fence_resource
 
 signal enclosure_selected
 

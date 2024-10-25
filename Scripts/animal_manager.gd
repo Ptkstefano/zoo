@@ -31,17 +31,15 @@ func update_animal_menu():
 	$"../../UI".update_ui()
 
 
-func spawn_animal(coordinate, animal_res):
-		
+func spawn_animal(coordinate, animal_res, stats):
 	## Find what enclosure the player wants to add an animal to
 	var cell = TileMapRef.local_to_map(coordinate)
 	var found_enclosure = enclosure_manager.get_enclosure_by_cell(cell)
 	if !found_enclosure:
+		print('enclosure_not_found')
 		return
 		
-	if found_enclosure.enclosure_species == null:
-		found_enclosure.enclosure_species = animal_res
-	else:
+	if found_enclosure.enclosure_species != null:
 		if found_enclosure.enclosure_species != animal_res:
 			return
 		
@@ -52,6 +50,7 @@ func spawn_animal(coordinate, animal_res):
 	Effects.wobble(spawned_animal)
 	found_enclosure.add_animal(spawned_animal)
 	animal_count += 1
-	
+
+
 func despawn_animal(animal):
 	animal_count -= 1

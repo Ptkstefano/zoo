@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="fence_resource" load_steps=2 format=3 uid="uid://xk5hxkv0keyb"]
 
-[ext_resource type="Script" path="res://Enclosures/Fences/enclosure_res.gd" id="1_rn7st"]
+[ext_resource type="Script" path="res://Enclosures/Fences/fence_res.gd" id="1_rn7st"]
 
 [resource]
 script = ExtResource("1_rn7st")

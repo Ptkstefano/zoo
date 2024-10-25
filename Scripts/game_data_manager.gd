@@ -2,7 +2,7 @@ extends Node2D
 
 class_name EnclosureManager
 
-@export var available_enclosures : Array[enclosure_resource]
+@export var available_enclosures : Array[fence_resource]
 @onready var enclosure_menu = %EnclosureSelectionContainer
 @export var ui_enclosure_element : PackedScene
 
@@ -43,24 +43,32 @@ func build_enclosure(coordinates, fence_res):
 			var found_enclosure = get_enclosure_by_cell(coordinate)
 			if found_enclosure:
 				if !current_enclosure:
+					#print('Found enclosure')
 					current_enclosure = found_enclosure
 				elif current_enclosure != found_enclosure:
-					print('Not allowed to merge two enclosures')
+					#print('Not allowed to merge two enclosures')
 					return
 
 	##Create new enclosure
 	if !current_enclosure:
+		#print('create')
 		current_enclosure = enclosure_scene.instantiate()
 		add_child(current_enclosure)
+		current_enclosure.fence_res = selected_fence
 		current_enclosure.add_cells(coordinates, selected_fence)
 
 	##Expand existing enclosure
 	else:
-		print('Expanding enclosure')
+		current_enclosure.fence_res = selected_fence
 		current_enclosure.add_cells(coordinates, selected_fence)
 		
 	for coordinate in current_enclosure.enclosure_cells:
 		enclosure_layer.set_cell(coordinate, 0, Vector2i(0,0))
+		
+	SignalBus.save_game.emit()
+
+func return_enclosures():
+	return get_children()
 
 func get_existing_enclosures(coordinates):
 	var enclosures = []
@@ -69,13 +77,12 @@ func get_existing_enclosures(coordinates):
 			if child.enclosure_cells.has(coordinate):
 				if child not in enclosures:
 					enclosures.append(child)
-			
 	return enclosures
 	
-func get_enclosure_by_cell(cell):
+func get_enclosure_by_cell(cell : Vector2i):
 	for child in get_children():
-			if child.enclosure_cells.has(cell):
-				return child
+		if child.enclosure_cells.has(cell):
+			return child
 				
 	return null
 	
@@ -95,6 +102,8 @@ func remove_enclosure(coordinates):
 			if enclosure.enclosure_cells.has(coordinate):
 				working_enclosures.append(enclosure)
 				enclosure.remove_cells(coordinates)
+				
+	SignalBus.save_game.emit()
 
 func get_enclosure_overlap(cells):
 	var enclosure_cells = enclosure_layer.get_used_cells()

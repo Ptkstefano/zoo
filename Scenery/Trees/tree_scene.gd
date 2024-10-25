@@ -1,4 +1,6 @@
 extends StaticBody2D
+
+class_name SceneryTree
  
 @export var tree_sheet : Texture2D
 
@@ -7,6 +9,8 @@ var tree_res : tree_resource
 var texture : Texture2D
 
 var vegetation_weight
+
+var cached_position : Vector2
 
 signal object_removed
 
@@ -21,11 +25,9 @@ func _ready() -> void:
 	var x = -128 * 0.5
 	$Sprite2D.offset = Vector2(x,y)
 	$Sprite2D.z_index = Helpers.get_current_tile_z_index(global_position)
-	#$Shadow.z_index = Helpers.get_current_tile_z_index(global_position)
 	vegetation_weight = tree_res.vegetation_weight
 	Effects.wobble(self)
-	#await get_tree().create_timer(0.5).timeout
-	#$Sprite2D.visible = false
+	cached_position = global_position
 
 func on_removal(bulldozer):
 	$RemovalArea/CollisionShape2D.disabled = true

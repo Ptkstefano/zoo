@@ -1,8 +1,8 @@
-[gd_scene load_steps=121 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=122 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" path="res://Scripts/game_controller.gd" id="1_nisry"]
 [ext_resource type="Script" path="res://Scripts/input_controller.gd" id="1_ojpln"]
-[ext_resource type="Script" path="res://Managers/zoo_management.gd" id="1_ufl1h"]
+[ext_resource type="Script" path="res://main.gd" id="1_oseej"]
 [ext_resource type="Script" path="res://reputation_manager.gd" id="2_1b04k"]
 [ext_resource type="Script" path="res://Scripts/path_manager.gd" id="2_4bhy0"]
 [ext_resource type="PackedScene" uid="uid://cl4o0ja0kt0i1" path="res://Animals/animal.tscn" id="2_7ivxh"]
@@ -36,7 +36,7 @@
 [ext_resource type="Resource" uid="uid://ctusbtwghbxrl" path="res://Terrain/savanna.tres" id="14_1rewk"]
 [ext_resource type="Script" path="res://Managers/scenery_manager.gd" id="14_62h3g"]
 [ext_resource type="Resource" uid="uid://c1csiys1jf20o" path="res://Animals/Animal resources/American Flamingo.tres" id="17_2vbol"]
-[ext_resource type="Script" path="res://Enclosures/Fences/enclosure_res.gd" id="20_k6451"]
+[ext_resource type="Script" path="res://Enclosures/Fences/fence_res.gd" id="20_k6451"]
 [ext_resource type="PackedScene" uid="uid://oa08vk0rrcpe" path="res://UI/UI selectable elements/ui_animal_element.tscn" id="21_a35of"]
 [ext_resource type="Resource" uid="uid://camg8o6ropjnr" path="res://Enclosures/Fences/small.tres" id="21_ad55l"]
 [ext_resource type="Resource" uid="uid://b85gocjhm05am" path="res://Enclosures/Fences/steel.tres" id="22_kya8w"]
@@ -46,6 +46,7 @@
 [ext_resource type="Script" path="res://Scenery/Decorations/decoration_resource.gd" id="26_0c60e"]
 [ext_resource type="Resource" uid="uid://xncaf8r72rkb" path="res://Animals/Animal resources/Red Kangaroo.tres" id="26_jd5b2"]
 [ext_resource type="PackedScene" uid="uid://cuiky1io0hfof" path="res://Scenery/Trees/tree_scene.tscn" id="26_vuik7"]
+[ext_resource type="Resource" uid="uid://duuxwcbsqbfe" path="res://Animals/Animal resources/Red Panda.tres" id="26_wm1y2"]
 [ext_resource type="PackedScene" uid="uid://bt8m7eb0se03i" path="res://UI/UI selectable elements/ui_scenery_element.tscn" id="27_5553e"]
 [ext_resource type="Script" path="res://Managers/building_manager.gd" id="27_mg3kq"]
 [ext_resource type="Resource" uid="uid://dqn36shhu7sgb" path="res://Scenery/Decorations/deer-statue.tres" id="27_r3jxo"]
@@ -68,7 +69,6 @@
 [ext_resource type="Resource" uid="uid://d0guv3uxkjigw" path="res://Scenery/Trees/Acacia.tres" id="33_5f25m"]
 [ext_resource type="Resource" uid="uid://benyyn571ipab" path="res://Scenery/Trees/Araucaria.tres" id="34_7vtya"]
 [ext_resource type="PackedScene" uid="uid://iscokpw16nk" path="res://Managers/peep_group.tscn" id="40_rrrup"]
-[ext_resource type="Texture2D" uid="uid://cjyflttjg5wv5" path="res://Enclosures/Fences/fence_sheet.png" id="42_ahr0a"]
 [ext_resource type="Script" path="res://Managers/water_manager.gd" id="43_sh5qp"]
 [ext_resource type="PackedScene" uid="uid://dfb5pi2yfy3jh" path="res://Water/lake_scene.tscn" id="44_wq78x"]
 [ext_resource type="Script" path="res://Managers/fixture_manager.gd" id="45_u6xcc"]
@@ -81,6 +81,7 @@
 [ext_resource type="Script" path="res://Enclosures/Shelters/shelter_res.gd" id="50_m3er2"]
 [ext_resource type="Resource" uid="uid://cuk4yesxl2kqy" path="res://Enclosures/Shelters/small_wooden_shelter.tres" id="51_row6q"]
 [ext_resource type="PackedScene" uid="uid://dasxyu5n8ncu0" path="res://UI/UI selectable elements/ui_shelter_element.tscn" id="52_30626"]
+[ext_resource type="Resource" uid="uid://cw0qxk8uuda34" path="res://Buildings/toilet1.tres" id="53_1nclh"]
 [ext_resource type="Shader" path="res://Shaders/postfx.gdshader" id="53_fkgg7"]
 [ext_resource type="PackedScene" uid="uid://c0yqr1xdbc6do" path="res://UI/UI selectable elements/ui_enclosure_element.tscn" id="54_il7k7"]
 [ext_resource type="PackedScene" uid="uid://b020lesiynlbr" path="res://Enclosures/enclosure_scene.tscn" id="55_54dhb"]
@@ -88,6 +89,7 @@
 [ext_resource type="PackedScene" uid="uid://baic6x8rh68v8" path="res://UI/UI popups/ui_animal_popup.tscn" id="73_mv3dj"]
 [ext_resource type="Theme" uid="uid://qsq4gutgth07" path="res://UI/default_theme.tres" id="74_7k2ss"]
 [ext_resource type="Script" path="res://UI/ui_show.gd" id="74_d5mka"]
+[ext_resource type="Texture2D" uid="uid://bgsedt3bhj4my" path="res://Enclosures/Fences/fence_exp1.png" id="82_auu6y"]
 [ext_resource type="Script" path="res://UI/ui_debug_shader.gd" id="87_1b22a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4oys"]
@@ -103,7 +105,6 @@ region = Rect2(0, 0, 64, 42)
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mw1lm"]
 source_geometry_mode = 2
 source_geometry_group_name = &"Navigation"
-agent_radius = 5.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xst71"]
 shader = ExtResource("31_e0m5j")
@@ -153,20 +154,6 @@ tile_shape = 1
 tile_layout = 5
 tile_size = Vector2i(64, 32)
 sources/0 = SubResource("TileSetAtlasSource_n2opu")
-
-[sub_resource type="GDScript" id="GDScript_5nkob"]
-script/source = "extends TileMapLayer
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-	#for tile in get_used_cells():
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_i0ey6"]
 
@@ -273,20 +260,32 @@ tile_size = Vector2i(64, 32)
 sources/0 = SubResource("TileSetAtlasSource_628s1")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3qy8p"]
-texture = ExtResource("42_ahr0a")
-texture_region_size = Vector2i(80, 72)
+texture = ExtResource("82_auu6y")
+texture_region_size = Vector2i(66, 64)
 0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 16)
 1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 16)
 0:1/0 = 0
-0:1/0/texture_origin = Vector2i(0, 10)
+0:1/0/texture_origin = Vector2i(0, 16)
 1:1/0 = 0
-1:1/0/texture_origin = Vector2i(0, 10)
+1:1/0/texture_origin = Vector2i(0, 16)
 2:1/0 = 0
-2:1/0/texture_origin = Vector2i(0, 10)
+2:1/0/texture_origin = Vector2i(0, 16)
 3:1/0 = 0
-3:1/0/texture_origin = Vector2i(0, 10)
+3:1/0/texture_origin = Vector2i(0, 16)
 0:2/0 = 0
+0:2/0/texture_origin = Vector2i(0, 16)
 1:2/0 = 0
+1:2/0/texture_origin = Vector2i(0, 16)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 16)
+2:2/0 = 0
+2:2/0/texture_origin = Vector2i(0, 16)
+3:2/0 = 0
+3:2/0/texture_origin = Vector2i(0, 16)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, 16)
 
 [sub_resource type="TileSet" id="TileSet_78wrr"]
 tile_shape = 1
@@ -320,9 +319,7 @@ shader_parameter/use_palette = false
 shader_parameter/palette_colors = null
 
 [node name="Main" type="Node2D"]
-
-[node name="ZooManagement" type="Node" parent="."]
-script = ExtResource("1_ufl1h")
+script = ExtResource("1_oseej")
 
 [node name="ReputationManager" type="Node" parent="."]
 script = ExtResource("2_1b04k")
@@ -380,7 +377,7 @@ y_sort_enabled = true
 [node name="AnimalManager" type="Node2D" parent="Objects" node_paths=PackedStringArray("enclosure_manager")]
 y_sort_enabled = true
 script = ExtResource("4_xl85y")
-available_animals = Array[ExtResource("5_h2s5g")]([ExtResource("6_k8h6b"), ExtResource("7_4qpb4"), ExtResource("17_2vbol"), ExtResource("22_u5sqr"), ExtResource("26_jd5b2")])
+available_animals = Array[ExtResource("5_h2s5g")]([ExtResource("6_k8h6b"), ExtResource("7_4qpb4"), ExtResource("17_2vbol"), ExtResource("22_u5sqr"), ExtResource("26_jd5b2"), ExtResource("26_wm1y2")])
 enclosure_manager = NodePath("../../EnclosureManager")
 animal_scene = ExtResource("2_7ivxh")
 ui_animal_element = ExtResource("21_a35of")
@@ -414,7 +411,7 @@ wait_time = 5.0
 [node name="BuildingManager" type="Node2D" parent="Objects"]
 y_sort_enabled = true
 script = ExtResource("27_mg3kq")
-available_buildings = Array[ExtResource("28_58uqa")]([ExtResource("29_nh40u")])
+available_buildings = Array[ExtResource("28_58uqa")]([ExtResource("29_nh40u"), ExtResource("53_1nclh")])
 building_class_scene = ExtResource("30_wk5yf")
 ui_building_element = ExtResource("28_04i1b")
 
@@ -468,35 +465,30 @@ tile_set = SubResource("TileSet_awsfk")
 rendering_quadrant_size = 1
 collision_enabled = false
 navigation_enabled = false
-script = SubResource("GDScript_5nkob")
 metadata/_edit_lock_ = true
 
 [node name="TerrainWang_E" type="TileMapLayer" parent="TileMap/TerrainLayer"]
 z_index = -4096
 texture_filter = 1
 tile_set = SubResource("TileSet_awsfk")
-script = SubResource("GDScript_5nkob")
 metadata/_edit_lock_ = true
 
 [node name="TerrainWang_S" type="TileMapLayer" parent="TileMap/TerrainLayer"]
 z_index = -4096
 texture_filter = 1
 tile_set = SubResource("TileSet_awsfk")
-script = SubResource("GDScript_5nkob")
 metadata/_edit_lock_ = true
 
 [node name="TerrainWang_W" type="TileMapLayer" parent="TileMap/TerrainLayer"]
 z_index = -4096
 texture_filter = 1
 tile_set = SubResource("TileSet_awsfk")
-script = SubResource("GDScript_5nkob")
 metadata/_edit_lock_ = true
 
 [node name="TerrainWang_N" type="TileMapLayer" parent="TileMap/TerrainLayer"]
 z_index = -4096
 texture_filter = 1
 tile_set = SubResource("TileSet_awsfk")
-script = SubResource("GDScript_5nkob")
 metadata/_edit_lock_ = true
 
 [node name="PathLayer" type="TileMapLayer" parent="TileMap" groups=["Navigation"]]

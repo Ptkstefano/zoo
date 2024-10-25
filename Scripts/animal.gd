@@ -22,6 +22,9 @@ var agent: NavigationAgent2D
 
 var is_swimming : bool = false
 
+## Variable used so that global position is not accessed on save-game
+var cached_global_position : Vector2
+
 var needs_rest : float = 70:
 	set(value):
 		needs_rest = clamp(value,0,100)
@@ -86,9 +89,8 @@ func initialize_animal(res, coordinate, found_enclosure):
 		$NavigationAgent2D.set_navigation_layer_value(2, false)
 		$NavigationAgent2D.set_navigation_layer_value(3, true)
 		
-	
-	
 	global_position = coordinate
+	cached_global_position = global_position
 	enclosure = found_enclosure
 
 func _physics_process(delta: float) -> void:
@@ -259,3 +261,6 @@ func update_habitat_satifaction():
 		preference_herd_density_satisfied = true
 	else:
 		preference_herd_density_satisfied = false
+
+func update_cached_position():
+	cached_global_position = global_position

@@ -191,7 +191,7 @@ func handle_tooling_input(event):
 			if current_tool == TOOLS.TERRAIN:
 				$"../TerrainManager".build_terrain(cells, selected_res)
 			if current_tool == TOOLS.ANIMAL:
-				animal_manager.spawn_animal(touch_start_global_pos, selected_res)
+				animal_manager.spawn_animal(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.TREE:
 				if !is_bulldozing:
 					scenery_manager.place_tree(touch_start_global_pos, selected_res)

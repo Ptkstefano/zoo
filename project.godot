@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Zoo"
-run/main_scene="res://main.tscn"
+run/main_scene="res://MainMenu/main_menu.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [autoload]
@@ -23,6 +23,9 @@ TileMapRef="*res://Autoload/tile_map_ref.tscn"
 NameRefs="*res://Autoload/name_refs.gd"
 SignalBus="*res://Autoload/signal_bus.gd"
 Effects="*res://Autoload/effects.gd"
+AudioManager="*res://Autoload/audio_manager.tscn"
+ZooManager="*res://zoo_manager.gd"
+SaveManager="*res://Autoload/save_manager.tscn"
 
 [display]
 
@@ -53,7 +56,7 @@ pointing/emulate_touch_from_mouse=true
 2d_navigation/layer_3="water_animal_layer"
 2d_physics/layer_5="Observable"
 2d_physics/layer_6="Fixture"
-2d_physics/layer_7="Shop"
+2d_physics/layer_7="GuestBuilding"
 2d_physics/layer_9="Scenery"
 2d_physics/layer_10="click_detection"
 2d_physics/layer_11="Scenery"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://iscokpw16nk"]
+[gd_scene load_steps=7 format=3 uid="uid://iscokpw16nk"]
 
 [ext_resource type="Script" path="res://Managers/peep_group.gd" id="1_jl7ea"]
 [ext_resource type="PackedScene" uid="uid://ca66y62ys1xkh" path="res://Peeps/peep.tscn" id="2_7wr1u"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jviqp"]
 size = Vector2(5, 5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cnf5d"]
+radius = 153.326
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tfdvk"]
 radius = 223.002
@@ -16,16 +19,20 @@ texture_filter = 1
 script = ExtResource("1_jl7ea")
 peep_scene = ExtResource("2_7wr1u")
 
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0
 path_postprocessing = 1
+debug_enabled = true
 debug_path_custom_point_size = 4.36
 debug_path_custom_line_width = 0.83
 
 [node name="Peeps" type="Node" parent="."]
 
 [node name="Debug" type="Sprite2D" parent="."]
-visible = false
 texture = SubResource("PlaceholderTexture2D_jviqp")
 
 [node name="ShadowBig" type="Sprite2D" parent="."]
@@ -35,13 +42,12 @@ scale = Vector2(15.5, 15.5)
 texture = ExtResource("3_vbf7h")
 
 [node name="AnimalDetector" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimalDetector"]
 rotation = 1.5708
-shape = SubResource("CircleShape2D_tfdvk")
+shape = SubResource("CircleShape2D_cnf5d")
 
 [node name="FixtureDetector" type="Area2D" parent="."]
 visible = false
@@ -52,11 +58,11 @@ collision_mask = 32
 rotation = 1.5708
 shape = SubResource("CircleShape2D_tfdvk")
 
-[node name="ShopDetector" type="Area2D" parent="."]
+[node name="GuestBuilding" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 64
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShopDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GuestBuilding"]
 rotation = 1.5708
 shape = SubResource("CircleShape2D_tfdvk")
 

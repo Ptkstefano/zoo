@@ -1,8 +1,11 @@
 extends Node2D
 
+class_name SceneryVegetation
 
 var vegetation_res : vegetation_resource
 var vegetation_weight
+
+var cached_position : Vector2
 
 var texture
 
@@ -19,6 +22,7 @@ func _ready() -> void:
 	z_index = Helpers.get_current_tile_z_index(global_position)
 	vegetation_weight = vegetation_res.vegetation_weight
 	Effects.wobble(self)
+	cached_position = global_position
 	#await get_tree().create_timer(0.5).timeout
 	#$Sprite2D.visible = false
 

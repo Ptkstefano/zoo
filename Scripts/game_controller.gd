@@ -25,6 +25,7 @@ var peep_count = 0:
 		
 # Called when the node enters the scene tree f1or the first time.
 func _ready() -> void:
+	SignalBus.game_started.emit()
 	base_peep_spawn_timer = %PeepSpawnTimer.wait_time
 	%DebugSpawnPeeps.button_down.connect(start_spawn_peeps)
 	%DebugSpawnPeeps.button_up.connect(stop_spawn_peeps)

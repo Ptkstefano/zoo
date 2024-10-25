@@ -4,13 +4,15 @@ class_name Enclosure
 
 @export var enclosure_scene : PackedScene
 
+var id
+
 var enclosure_cells = []
 
 var enclosure_animals = []
 
 var enclosure_species : animal_resource
 
-var current_fence
+var fence_res : fence_resource
 
 var vegetation_coverage : float
 var water_availability : bool
@@ -61,14 +63,14 @@ func add_shelter(shelter):
 
 func add_cells(coordinates, fence_res):
 	if fence_res:
-		current_fence = fence_res
+		fence_res = fence_res
 	for coordinate in coordinates:
 		enclosure_tilemap.set_cell(coordinate, 0, Vector2i(0, 0))
 		if !enclosure_cells.has(coordinate):
 			enclosure_cells.append(coordinate)
-	build_fence(current_fence)
+	build_fence(fence_res)
 	update_central_point()
-	update_navigation_region()
+	call_deferred('update_navigation_region')
 	call_deferred("calculate_enclosure_stats")
 	update_enclosure_area()
 			
@@ -83,7 +85,7 @@ func remove_cells(coordinates):
 		return
 	
 	detect_continuity()
-	build_fence(current_fence)
+	build_fence(fence_res)
 	redistribute_animals()
 	update_central_point()
 	update_navigation_region()
@@ -135,17 +137,21 @@ func create_sibling_enclosure(cells):
 	var sibling = enclosure_scene.instantiate()
 	add_sibling(sibling)
 	remove_cells(cells)
-	sibling.add_cells(cells, current_fence)
+	sibling.add_cells(cells, fence_res)
 	
-func build_fence(current_fence):
+func build_fence(fence_res):
 	## Actually instantiates the visual nodes of the enclosure
 	remove_enclosure_fence()
-	enclosure_fence_manager.build_enclosure_fence(enclosure_cells, current_fence)
+	enclosure_fence_manager.build_enclosure_fence(enclosure_cells, fence_res)
 
 func remove_enclosure_fence():
 	enclosure_fence_manager.remove_enclosure_fence()
 
 func add_animal(animal):
+	if enclosure_species == null:
+		enclosure_species = animal.animal_res
+		id = ZooManager.generate_enclosure_id()
+		ZooManager.add_zoo_enclosure(self)
 	enclosure_animals.append(animal)
 	animal.animal_removed.connect(remove_animal)
 	call_deferred("calculate_enclosure_stats")
@@ -155,11 +161,12 @@ func remove_animal(animal):
 	call_deferred("calculate_enclosure_stats")
 	if enclosure_animals.size() == 0:
 		enclosure_species = null
-	
+		
 
 func redistribute_animals():
 	for animal in enclosure_animals:
 		animal.global_position = enclosure_tilemap.map_to_local(enclosure_cells.pick_random())
+		animal.update_cached_position()
 
 func remove_enclosure():
 	for animal in enclosure_animals:

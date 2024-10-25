@@ -1,4 +1,5 @@
 extends Node2D
+class_name Fixture
 
 var fixture_res : fixture_resource
 

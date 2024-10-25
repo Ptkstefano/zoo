@@ -50,6 +50,7 @@ func build_path(coordinates, path_res):
 		## Adds intersections to built paths
 		path_layer.set_cell(coordinate, 0, Vector2i(1,path_res.atlas_y))
 		Effects.smoke2(TileMapRef.map_to_local(coordinate))
+		AudioManager.play_stream('sfx_path_placed')
 		await get_tree().create_timer(0.01).timeout
 		
 		build_intersections(coordinate, path_res)
@@ -58,6 +59,7 @@ func build_path(coordinates, path_res):
 		build_intersections(neighbor, null)
 
 	SignalBus.peep_navigation_changed.emit()
+	SignalBus.save_game.emit()
 	
 func remove_path(coordinates):
 	var all_neighbors = []
@@ -81,6 +83,7 @@ func remove_path(coordinates):
 		## Adds instersections to neighbors of built paths
 		build_intersections(neighbor, null)
 	SignalBus.peep_navigation_changed.emit()
+	SignalBus.save_game.emit()
 
 func build_intersections(coordinate, path_res):
 	var path_y = null
