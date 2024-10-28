@@ -20,19 +20,20 @@ script = ExtResource("1_jl7ea")
 peep_scene = ExtResource("2_7wr1u")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0
 path_postprocessing = 1
-debug_enabled = true
 debug_path_custom_point_size = 4.36
 debug_path_custom_line_width = 0.83
 
 [node name="Peeps" type="Node" parent="."]
 
 [node name="Debug" type="Sprite2D" parent="."]
+visible = false
 texture = SubResource("PlaceholderTexture2D_jviqp")
 
 [node name="ShadowBig" type="Sprite2D" parent="."]

@@ -25,6 +25,8 @@ var agent : NavigationAgent2D
 var direction : Vector2
 
 var group_desired_destinations = []
+var group_desired_animals = [NameRefs.ANIMAL_SPECIES]
+var desired_enclosures_id = []
 
 var first_position_offset := Vector2(0, -5)
 var second_position_offset := Vector2(-5, 0)
@@ -51,6 +53,8 @@ var peep_group_inventory : Array[product_resource]
 
 ## Defines how tolerant peep group is to product's prices
 var utility_score_tolerance : float
+
+var cached_position : Vector2
 
 signal peep_group_left
 
@@ -79,11 +83,12 @@ var hunger_drain_rate := 5.0
 var rest_drain_rate := 8.0
 var toilet_drain_rate := 10.0
 
-var peep_count
+var peep_count = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	peep_count = randi_range(1,4)
+	if !peep_count:
+		peep_count = randi_range(1,4)
 	for i in range(peep_count):
 		var peep = peep_scene.instantiate()
 		peeps.append(peep)
@@ -132,7 +137,7 @@ func on_agent_target_reached():
 	elif group_state == group_states.GOING_TO_FOOD:
 		buy_food()
 	elif group_state == group_states.GOING_TO_EXIT:
-		peep_group_left.emit(self)
+		leave_zoo()
 	elif group_state == group_states.GOING_TO_TOILET:
 		use_toilet()
 	else:
@@ -316,14 +321,26 @@ func initialize_peep_group_destinations():
 	var keys = ZooManager.zoo_enclosures.keys()
 	if keys.size() == 0:
 		return
-	var picked_keys = []
-	for i in range(5):
-		if keys.size() == 0:
-			return
-		var enclosure_key = keys.pick_random()
-		keys.erase(enclosure_key)
-		picked_keys.append(enclosure_key)
-		group_desired_destinations.append(ZooManager.zoo_enclosures[enclosure_key])
+	
+	if desired_enclosures_id.is_empty():
+		## Generate random resired destinations
+		for i in range(5):
+			if keys.size() == 0:
+				return
+			var enclosure_key = keys.pick_random()
+			keys.erase(enclosure_key)
+			desired_enclosures_id.append(enclosure_key)
+			group_desired_destinations.append(ZooManager.zoo_enclosures[enclosure_key])
+			
+	else:
+		## Restore previously generated desired destinations
+		for id in desired_enclosures_id:
+			group_desired_destinations.append(ZooManager.zoo_enclosures[id])
 			
 	## TODO - Sort group_desired_destinations
 	
+func leave_zoo():
+	peep_group_left.emit(self)
+
+func update_cached_position():
+	cached_position = global_position

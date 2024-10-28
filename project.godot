@@ -17,7 +17,7 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 [autoload]
 
 Helpers="*res://Scripts/helpers.gd"
-GameManager="*res://Managers/game_manager_data.gd"
+GameManager="*res://Managers/game_manager.gd"
 ColorRefs="*res://Autoload/color_refs.tscn"
 TileMapRef="*res://Autoload/tile_map_ref.tscn"
 NameRefs="*res://Autoload/name_refs.gd"

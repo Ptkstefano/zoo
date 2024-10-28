@@ -2,6 +2,8 @@ extends Node2D
 
 class_name SceneryDecoration
 
+var type = NameRefs.SCENERY_TYPES.DECORATION
+
 var category = 'decoration'
 
 var resource : decoration_resource

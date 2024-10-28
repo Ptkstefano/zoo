@@ -25,21 +25,38 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#queue_redraw()
 	pass
+	
+func update_peeps_cached_positions():
+	for group in peep_groups:
+		group.update_cached_position()
 
 func on_peep_spawn_timeout():
+	instantiate_peep_group(null)
+	
+func on_peep_group_left(group):
+	## TODO - update zoo status
+	peep_count -= group.peep_count
+	peep_groups.erase(group)
+	group.queue_free()
+
+func instantiate_peep_group(data):
 	var new_peep_group = peep_group_scene.instantiate()
-	new_peep_group.global_position = spawn_location
+	if data:
+		new_peep_group.global_position = data.spawn_location
+		new_peep_group.needs_rest = data.needs_rest
+		new_peep_group.needs_hunger = data.needs_hunger
+		new_peep_group.needs_toilet  = data.needs_toilet
+		new_peep_group.desired_destinations_id = data.desired_destinations_id
+		for animal in data.observed_animals:
+			new_peep_group.observed_animals.append(animal)
+		new_peep_group.peep_count = data.peep_count
+	else:
+		new_peep_group.global_position = spawn_location
 	new_peep_group.peep_manager = self
 	add_child(new_peep_group)
 	peep_groups.append(new_peep_group)
 	new_peep_group.peep_group_left.connect(on_peep_group_left)
 	peep_count += new_peep_group.peep_count
-	
-func on_peep_group_left(group):
-	## TODO - update zoo status
-	peep_count -= group.peep_count
-	group.queue_free()
-
 
 func generate_peep_destination():
 	## DEPRECATED

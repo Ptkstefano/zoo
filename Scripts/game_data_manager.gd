@@ -33,7 +33,7 @@ func update_terrain_menu():
 	selected_fence = available_enclosures[0]
 	
 	
-func build_enclosure(coordinates, fence_res):
+func build_enclosure(coordinates, fence_res, id):
 	##Check if there is already enclosure
 	if fence_res:
 		selected_fence = fence_res
@@ -54,7 +54,12 @@ func build_enclosure(coordinates, fence_res):
 		#print('create')
 		current_enclosure = enclosure_scene.instantiate()
 		add_child(current_enclosure)
+		if id == null:
+			current_enclosure.set_id(ZooManager.generate_enclosure_id())
+		else:
+			current_enclosure.set_id(id)
 		current_enclosure.fence_res = selected_fence
+		current_enclosure.create_sibling_enclosure.connect(build_enclosure)
 		current_enclosure.add_cells(coordinates, selected_fence)
 
 	##Expand existing enclosure
@@ -93,8 +98,8 @@ func check_for_vegetation_update(vegetation_position):
 		enclosure.call_deferred("calculate_enclosure_stats")
 	
 	
-func remove_enclosure(coordinates):
-	## Find corresponding enclosure 
+func remove_enclosure_cells(coordinates):
+	## TODO - Find corresponding enclosure REMOVE FROM GAMEMANAGER
 	var working_enclosures = []
 	for coordinate in coordinates:
 		enclosure_layer.set_cell(coordinate, -1, Vector2i(-1,-1))
@@ -104,6 +109,7 @@ func remove_enclosure(coordinates):
 				enclosure.remove_cells(coordinates)
 				
 	SignalBus.save_game.emit()
+	
 
 func get_enclosure_overlap(cells):
 	var enclosure_cells = enclosure_layer.get_used_cells()

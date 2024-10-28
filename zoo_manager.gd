@@ -5,7 +5,8 @@ var zoo_rating : int:
 		zoo_rating = value
 		
 var zoo_enclosures = {}
-var used_enclosure_ids : Array[int]
+var next_enclosure_id = 1
+
 		
 var zoo_value : int
 var zoo_animal_rating : int
@@ -18,14 +19,14 @@ func _ready() -> void:
 
 
 func add_zoo_enclosure(enclosure : Enclosure):
-	zoo_enclosures[enclosure.id] = {"location": enclosure.enclosure_central_point, "species_rating": enclosure.enclosure_species.animal_rating, "especies": enclosure.enclosure_species}
-
+	zoo_enclosures[enclosure.id] = {"location": enclosure.enclosure_central_point, "especies": enclosure.enclosure_species}
+	
+func update_zoo_enclosure(enclosure):
+	zoo_enclosures[enclosure.id] = {"location": enclosure.enclosure_central_point, "especies": enclosure.enclosure_species}
+	
 func remove_zoo_enclosure(enclosure):
-	pass
+	zoo_enclosures.erase(enclosure.id)
 
 func generate_enclosure_id() -> int:
-	var i = 1
-	while used_enclosure_ids.has(i):
-		i += 1
-	used_enclosure_ids.append(i)
-	return i
+	next_enclosure_id += 1
+	return next_enclosure_id

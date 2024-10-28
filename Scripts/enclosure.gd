@@ -4,7 +4,7 @@ class_name Enclosure
 
 @export var enclosure_scene : PackedScene
 
-var id
+var id : int
 
 var enclosure_cells = []
 
@@ -26,6 +26,8 @@ var enclosure_central_point : Vector2
 @onready var enclosure_tilemap = $EnclosureTiles
 @onready var enclosure_fence_manager : EnclosureFenceManager = $EnclosureFenceManager
 
+
+signal create_sibling_enclosure
 signal enclosure_stats_updated
 
 # Called when the node enters the scene tree for the first time.
@@ -115,7 +117,7 @@ func detect_continuity():
 		for i in existing_enclosures.size():
 			if i == 0:
 				continue
-			create_sibling_enclosure(existing_enclosures[i])
+			create_sibling(existing_enclosures[i])
 		
 func get_isolated_enclosure(starting_coordinate):
 	var current_iterated_coordinates = [starting_coordinate]
@@ -133,11 +135,12 @@ func find_first_coordinate_not_matching(iterated_coordinates):
 		if coordinate not in iterated_coordinates:
 			return enclosure_cells.find(coordinate)
 			
-func create_sibling_enclosure(cells):
-	var sibling = enclosure_scene.instantiate()
-	add_sibling(sibling)
-	remove_cells(cells)
-	sibling.add_cells(cells, fence_res)
+func create_sibling(cells):
+	create_sibling_enclosure.emit(cells, fence_res, null)
+	#var sibling = enclosure_scene.instantiate()
+	#add_sibling(sibling)
+	#remove_cells(cells)
+	#sibling.add_cells(cells, fence_res)
 	
 func build_fence(fence_res):
 	## Actually instantiates the visual nodes of the enclosure
@@ -150,11 +153,15 @@ func remove_enclosure_fence():
 func add_animal(animal):
 	if enclosure_species == null:
 		enclosure_species = animal.animal_res
-		id = ZooManager.generate_enclosure_id()
-		ZooManager.add_zoo_enclosure(self)
+		ZooManager.update_zoo_enclosure(self)
+		#id = ZooManager.generate_enclosure_id()
 	enclosure_animals.append(animal)
 	animal.animal_removed.connect(remove_animal)
 	call_deferred("calculate_enclosure_stats")
+	
+func set_id(i : int):
+	id = i
+	ZooManager.add_zoo_enclosure(self)
 	
 func remove_animal(animal):
 	enclosure_animals.erase(animal)
@@ -172,6 +179,7 @@ func remove_enclosure():
 	for animal in enclosure_animals:
 		animal.remove_animal()
 		
+	ZooManager.remove_zoo_enclosure(self)
 	queue_free()
 
 func update_central_point():

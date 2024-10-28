@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=123 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" path="res://Scripts/game_controller.gd" id="1_nisry"]
 [ext_resource type="Script" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -54,6 +54,7 @@
 [ext_resource type="Script" path="res://Buildings/building_res.gd" id="28_58uqa"]
 [ext_resource type="Resource" uid="uid://xk5hxkv0keyb" path="res://Enclosures/Fences/concrete.tres" id="28_ldw2x"]
 [ext_resource type="Script" path="res://Scenery/Vegetation/vegetation_res.gd" id="28_wajut"]
+[ext_resource type="Resource" uid="uid://i3fj56d1ocsa" path="res://Animals/Animal resources/Jaguar.tres" id="28_yg6bb"]
 [ext_resource type="Resource" uid="uid://bin28cl7rvgjd" path="res://Scenery/Vegetation/short_grass.tres" id="29_d00f0"]
 [ext_resource type="PackedScene" uid="uid://32hy2cqq5ww0" path="res://Scenery/Vegetation/vegetation_scene.tscn" id="29_kyg12"]
 [ext_resource type="Resource" uid="uid://csjatom74kl3h" path="res://Buildings/ice_cream_shop.tres" id="29_nh40u"]
@@ -377,7 +378,7 @@ y_sort_enabled = true
 [node name="AnimalManager" type="Node2D" parent="Objects" node_paths=PackedStringArray("enclosure_manager")]
 y_sort_enabled = true
 script = ExtResource("4_xl85y")
-available_animals = Array[ExtResource("5_h2s5g")]([ExtResource("6_k8h6b"), ExtResource("7_4qpb4"), ExtResource("17_2vbol"), ExtResource("22_u5sqr"), ExtResource("26_jd5b2"), ExtResource("26_wm1y2")])
+available_animals = Array[ExtResource("5_h2s5g")]([ExtResource("6_k8h6b"), ExtResource("7_4qpb4"), ExtResource("17_2vbol"), ExtResource("22_u5sqr"), ExtResource("26_jd5b2"), ExtResource("26_wm1y2"), ExtResource("28_yg6bb")])
 enclosure_manager = NodePath("../../EnclosureManager")
 animal_scene = ExtResource("2_7ivxh")
 ui_animal_element = ExtResource("21_a35of")

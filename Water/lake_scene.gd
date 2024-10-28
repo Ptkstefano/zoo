@@ -1,4 +1,6 @@
 extends Node2D
+class_name Lake
+
 
 var line_points
 var shoreline_points
@@ -30,7 +32,7 @@ func on_removal(bulldozer):
 	lake_removed.emit(cells)
 	queue_free()
 
-func shrink_polygon(vertices: Array[Vector2], shrink_factor: float):
+func shrink_polygon(vertices, shrink_factor: float):
 	# Step 1: Calculate the centroid of the polygon
 	var centroid = Vector2(0, 0)
 	for vertex in vertices:

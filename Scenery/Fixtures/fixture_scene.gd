@@ -3,6 +3,8 @@ class_name Fixture
 
 var fixture_res : fixture_resource
 
+var cached_position : Vector2
+
 var fixture_directions : Array
 var cell
 
@@ -19,6 +21,7 @@ func _ready() -> void:
 			children.find_child(children.name).texture = fixture_res.texture
 			available_fixtures[children.name] = {'dir': children.name, 'available': true, 'p1': children.get_node('p1').global_position, 'p2': children.get_node('p2').global_position}
 	z_index = Helpers.get_current_tile_z_index(global_position)
+	cached_position = global_position
 
 func get_available():
 	for key in available_fixtures.keys():

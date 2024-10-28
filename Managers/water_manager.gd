@@ -1,4 +1,5 @@
 extends Node2D
+class_name WaterManager
 
 @export var lake_scene : PackedScene
 

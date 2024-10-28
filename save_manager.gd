@@ -10,14 +10,23 @@ var TerrainWangW
 var TerrainWangN
 
 var enclosureManager
-var enclosureList = []
+var enclosure_list = []
 
 var animalManager
-var animalList = []
+var animal_list = []
 var animal_data = {}
 
 var sceneryManager
-var sceneryList = []
+var scenery_list = []
+
+var fixtureManager
+var fixture_list = []
+
+var peepManager
+var peepGroupList = []
+
+var waterManager
+var water_list = []
 
 var tilemap_layers = []
 
@@ -52,11 +61,19 @@ func start_save_manager():
 	}
 	
 	enclosureManager = main_node.get_node("EnclosureManager") as EnclosureManager
-	enclosureList = enclosureManager.get_children()
+	enclosure_list = enclosureManager.get_children()
 	animalManager = main_node.get_node("Objects").get_node('AnimalManager') as AnimalManager
-	animalList = animalManager.get_children()
+	animal_list = animalManager.get_children()
 	sceneryManager = main_node.get_node("Objects").get_node('SceneryManager') as SceneryManager
-	sceneryList = sceneryManager.get_children()
+	scenery_list = sceneryManager.get_children()
+	fixtureManager = main_node.get_node("Objects").get_node('FixtureManager') as FixtureManager
+	fixture_list = fixtureManager.get_children()
+	waterManager = main_node.get_node("Objects").get_node('WaterManager') as WaterManager
+	water_list = waterManager.get_children()
+	peepManager = main_node.get_node("Objects").get_node('PeepManager')
+	peepManager.update_peeps_cached_positions()
+	peepGroupList = peepManager.peep_groups
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -69,6 +86,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				load_game()
 
 func thread_save_game():
+	## Avoids saving the game while it is loading
+	if !GameManager.game_running:
+		return
 	start_save_manager()
 	if thread.is_alive():
 		return
@@ -92,35 +112,69 @@ func save_game():
 	var enclosure_data = {}
 	var i = 1
 	
-	for enclosure in enclosureList:
+	for enclosure in enclosure_list:
 		enclosure_data[i] = get_enclosure_data(enclosure)
 		i += 1
 	save_data['enclosureData'] = enclosure_data
 	
 	## Save animal data
 	i = 1
-	for animal in animalList:
+	for animal in animal_list:
 		animal_data[i] = get_animal_data(animal)
 		i += 1
 
 	save_data['animalData'] = animal_data
 	
-	## Save scenery data - TODO
+	## Save scenery data
 	i = 1
 	var scenery_data = {}
-	for scenery in sceneryList:
+	for scenery in scenery_list:
 		scenery_data[i] = get_scenery_data(scenery)
 		i += 1
 	save_data['sceneryData'] = scenery_data
 		
-	
 	## Save peep data - TODO
+	i = 1
+	var peep_group_data = {}
+	for peep_group in peepGroupList:
+		peep_group_data[i] = get_peep_group_data(peep_group)
+		i += 1
+	save_data['peepGroupData'] = peep_group_data
+	
+	var zoo_manager_data = {}
+	zoo_manager_data['next_enclosure_id'] = ZooManager.next_enclosure_id
+	save_data['zoo_manager_data'] = zoo_manager_data
+	
 	
 	## Save building data - TODO
 	
-	## Save fixture data - TODO
+	## Save water data
+	i = 1
+	var water_data = {}
+	for water in water_list:
+		if water is Lake:
+			water_data[i] = get_water_data(water)
+			i += 1
+	save_data['waterData'] = water_data
+	
+	## Save shelter data - TODO
+	
+	## Save fixture data
+	i = 1
+	var fixture_data = {}
+	for fixture in fixture_list:
+		fixture_data[i] = get_fixture_data(fixture)
+		i += 1
+	save_data['fixtureData'] = fixture_data
+	
+	var json_data = JSON.stringify(save_data)
+	
+	if json_data.is_empty():
+		print('save failed')
+		return
 		
-	saveFile.store_string(JSON.stringify(save_data))
+	saveFile.store_string(json_data)
+	#saveFile.call_deferred('store_string', JSON.stringify(save_data))
 	
 	call_deferred('save_finished')
 	
@@ -136,7 +190,10 @@ func load_game():
 		return
 	if file:
 		var json = JSON.new()
-		var data = json.parse_string(file.get_as_text())  # Parse the file content
+		var data = json.parse_string(file.get_as_text())  
+		
+		if !data:
+			return
 
 		for tilemap in tilemap_layers.keys():
 			if data["tilemapData"].has(tilemap):
@@ -149,9 +206,10 @@ func load_game():
 			for key in data["enclosureData"]:
 				var enclosure_cells = []
 				var fence_res = load(data["enclosureData"][key]['fence_res'])
+				var enclosure_id = int(data["enclosureData"][key]['fence_res'])
 				for cell in data["enclosureData"][key]['enclosure_cells']:
 					enclosure_cells.append(Vector2i(data["enclosureData"][key]['enclosure_cells'][cell].x, data["enclosureData"][key]['enclosure_cells'][cell].y))
-				enclosureManager.build_enclosure(enclosure_cells, fence_res)
+				enclosureManager.build_enclosure(enclosure_cells, fence_res, enclosure_id)
 			
 		if data.has('animalData'):
 			for key in data["animalData"]:
@@ -162,6 +220,48 @@ func load_game():
 							'needs_playr': data['animalData'][key]['needs_play']
 				}
 				animalManager.call_deferred('spawn_animal', position, animal_res, stats)
+				
+		if data.has('sceneryData'):
+			for key in data["sceneryData"]:
+				var position = Vector2i(data["sceneryData"][key]['x_pos'], data["sceneryData"][key]['y_pos'])
+				if data["sceneryData"][key]['scenery_type'] == NameRefs.SCENERY_TYPES.VEGETATION:
+					var res = load(data["sceneryData"][key]['vegetation_res'])
+					sceneryManager.place_vegetation(position, res)
+				elif data["sceneryData"][key]['scenery_type'] == NameRefs.SCENERY_TYPES.TREE:
+					var res = load(data["sceneryData"][key]['tree_res'])
+					sceneryManager.place_tree(position, res)
+				elif data["sceneryData"][key]['scenery_type'] == NameRefs.SCENERY_TYPES.DECORATION:
+					var res = load(data["sceneryData"][key]['decoration_res'])
+					sceneryManager.place_decoration(position, res)
+					
+		if data.has('fixtureData'):
+			for key in data["fixtureData"]:
+				var position = Vector2i(data["fixtureData"][key]['x_pos'], data["fixtureData"][key]['y_pos'])
+				var fixture_res = load(data['fixtureData'][key]['fixture_res'])
+				fixtureManager.call_deferred('place_fixture', position, fixture_res)
+		
+		if data.has('waterData'):
+			for key in data["waterData"]:
+				var line_points = []
+				for point in data["waterData"][key]:
+					var vector = Vector2(data["waterData"][key][point]['x_pos'], data["waterData"][key][point]['y_pos'])
+					line_points.append(vector)
+				waterManager.call_deferred('create_water_body', line_points)
+				
+		if data.has('peepGroupData'):
+			for key in data["peepGroupData"]:
+				var groupData = {}
+				groupData['spawn_location'] = Vector2(data["peepGroupData"][key]['x_pos'], data["peepGroupData"][key]['y_pos'])
+				groupData['peep_count'] = data["peepGroupData"][key]['peep_count']
+				groupData['observed_animals'] = data["peepGroupData"][key]['observed_animals']
+				groupData['needs_hunger'] = data["peepGroupData"][key]['needs_hunger']
+				groupData['needs_toilet'] = data["peepGroupData"][key]['needs_toilet']
+				groupData['needs_rest'] = data["peepGroupData"][key]['needs_rest']
+				groupData['desired_destinations_id'] = data["peepGroupData"][key]['desired_destinations_id']
+				peepManager.instantiate_peep_group(groupData)
+				
+		if data.has('zoo_manager_data'):
+			ZooManager.next_enclosure_id = data['zoo_manager_data']['next_enclosure_id']
 				
 		SignalBus.peep_navigation_changed.emit()
 
@@ -182,6 +282,8 @@ func get_tilemap_data(tilemap):
 func get_enclosure_data(enclosure):
 	var data = {}
 	var enclosure_cells = {}
+	if !enclosure:
+		return
 	var i = 1
 	for cell in enclosure.enclosure_cells:
 		var tile_data = {}
@@ -190,6 +292,7 @@ func get_enclosure_data(enclosure):
 		enclosure_cells[i] = tile_data
 		i += 1
 	data['enclosure_cells'] = enclosure_cells
+	data['enclosure_id'] = enclosure.id
 	data['enclosure_animals'] = enclosure.enclosure_animals
 	data['fence_res'] = enclosure.fence_res.get_path()
 	return data
@@ -202,18 +305,51 @@ func get_animal_data(animal):
 	data['needs_rest'] = animal.needs_rest
 	data['needs_hunger'] = animal.needs_hunger
 	data['needs_play'] = animal.needs_play
+
 	return data
+
+func get_peep_group_data(peep_group):
+	var data = {}
+	data['x_pos'] = peep_group.cached_position.x
+	data['y_pos'] = peep_group.cached_position.y
+	data['peep_count'] = peep_group.peep_count
+	data['needs_rest'] = peep_group.needs_rest
+	data['needs_hunger'] = peep_group.needs_hunger
+	data['needs_toilet'] = peep_group.needs_toilet
+	data['observed_animals'] = peep_group.observed_animals
+	data['desired_destinations_id'] = peep_group.desired_enclosures_id
+	## TODO - Peep visited shops
+	## TODO - Peep inventory
+	return data
+	
 
 func get_scenery_data(scenery):
 	var data = {}
-	var scenery_class = scenery.get_class() 
-	data['scenery_type'] = scenery_class
+	var scenery_type = scenery.type
+	data['scenery_type'] = scenery_type
 	data['x_pos'] = scenery.cached_position.x
-	data['y_pos'] = scenery.cached_position.x
-	if scenery_class == 'SceneryVegetation':
+	data['y_pos'] = scenery.cached_position.y
+	if scenery_type == NameRefs.SCENERY_TYPES.VEGETATION:
 		data['vegetation_res'] = scenery.vegetation_res.get_path()
-	elif scenery_class == 'SceneryTree':
+	elif scenery_type == NameRefs.SCENERY_TYPES.TREE:
 		data['tree_res'] = scenery.tree_res.get_path()
-	elif scenery_class == 'SceneryDecoration':
+	elif scenery_type == NameRefs.SCENERY_TYPES.DECORATION:
 		data['decoration_res'] = scenery.decoration_res.get_path()
+	return data
+
+func get_fixture_data(fixture):
+	var data = {}
+	data['x_pos'] = fixture.cached_position.x
+	data['y_pos'] = fixture.cached_position.y
+	data['fixture_res'] = fixture.fixture_res.get_path()
+	return data
+
+func get_water_data(water):
+	var data = {}
+	var i = 1
+	for point in water.line_points:
+		var cell = {}
+		cell = { 'x_pos': point.x, 'y_pos': point.y }
+		data[i] = cell
+		i += 1
 	return data

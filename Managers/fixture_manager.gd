@@ -1,4 +1,5 @@
 extends Node2D
+class_name FixtureManager
 
 @export var available_fixtures : Array[fixture_resource]
 
@@ -72,6 +73,7 @@ func place_fixture(press_start_pos, fixture_res):
 	fixture.cell = path_cell
 	add_child(fixture)
 	used_cells.append(path_cell)
+	SignalBus.save_game.emit()
 	
 func remove_fixture(cell):
 	if cell not in used_cells:

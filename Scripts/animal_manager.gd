@@ -50,7 +50,9 @@ func spawn_animal(coordinate, animal_res, stats):
 	Effects.wobble(spawned_animal)
 	found_enclosure.add_animal(spawned_animal)
 	animal_count += 1
+	SignalBus.save_game.emit()
 
 
 func despawn_animal(animal):
 	animal_count -= 1
+	SignalBus.save_game.emit()

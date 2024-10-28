@@ -2,6 +2,8 @@ extends StaticBody2D
 
 class_name SceneryTree
  
+var type = NameRefs.SCENERY_TYPES.TREE
+
 @export var tree_sheet : Texture2D
 
 var tree_res : tree_resource

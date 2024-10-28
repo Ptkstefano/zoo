@@ -183,11 +183,11 @@ func handle_tooling_input(event):
 				$"../PathManager".build_path(cells, selected_res)
 			if current_tool == TOOLS.ENCLOSURE:
 				if is_bulldozing:
-					$"../EnclosureManager".remove_enclosure(cells)
+					$"../EnclosureManager".remove_enclosure_cells(cells)
 					return
 				if $"../PathManager".get_path_overlap(cells):
 					return
-				$"../EnclosureManager".build_enclosure(cells, selected_res)
+				$"../EnclosureManager".build_enclosure(cells, selected_res, null)
 			if current_tool == TOOLS.TERRAIN:
 				$"../TerrainManager".build_terrain(cells, selected_res)
 			if current_tool == TOOLS.ANIMAL:

@@ -14,7 +14,7 @@ var current_state = ANIMAL_STATES.IDLE
 var next_state = null
 
 var animal_name
-var animal_species
+var animal_species : NameRefs.ANIMAL_SPECIES
 
 var enclosure : Enclosure
 
