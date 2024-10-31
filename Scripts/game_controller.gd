@@ -47,7 +47,7 @@ func _process(delta: float) -> void:
 	reputation_label.text = ("Reputation: "+str(ZooManager.reputation))
 
 func start_spawn_peeps():
-	%PeepSpawnTimer.wait_time = 0.1
+	%PeepSpawnTimer.wait_time = 0.01
 	%PeepSpawnTimer.start()
 
 func stop_spawn_peeps():

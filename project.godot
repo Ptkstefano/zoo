@@ -27,6 +27,7 @@ AudioManager="*res://Autoload/audio_manager.tscn"
 ZooManager="*res://zoo_manager.gd"
 SaveManager="*res://Autoload/save_manager.tscn"
 ModifierManager="*res://modifier_manager.gd"
+DataManager="*res://data_manager.gd"
 
 [display]
 

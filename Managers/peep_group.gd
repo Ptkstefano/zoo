@@ -218,8 +218,8 @@ func change_state(state):
 				peeps[1].change_state(3)
 				peeps[1].global_position = fixture_available['p2']
 				peeps[1].set_look_direction(fixture_available['dir'])
-			#else:
-				#peeps[i].change_state(0)
+			else:
+				peeps[i].change_state(0)
 	elif state == group_states.GOING_TO_FOOD:
 		for peep in peeps:
 			peep.change_state(1)

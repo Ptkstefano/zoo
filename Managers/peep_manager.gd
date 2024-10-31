@@ -25,7 +25,8 @@ func _ready() -> void:
 	
 func update_peeps_cached_positions():
 	for group in peep_groups:
-		group.update_cached_position()
+		if group:
+			group.update_cached_position()
 
 func on_peep_spawn_timeout():
 	## Controls flow of spawns
@@ -44,6 +45,7 @@ func on_peep_spawn_timeout():
 func on_peep_group_left(group, rating):
 	## TODO - update zoo status
 	ZooManager.update_rating(rating)
+	DataManager.add_peep_group_modifiers(group.modifiers)
 	peep_count -= group.peep_count
 	peep_groups.erase(group)
 	group.queue_free()

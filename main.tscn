@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=126 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" path="res://Scripts/game_controller.gd" id="1_nisry"]
 [ext_resource type="Script" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -93,6 +93,7 @@
 [ext_resource type="Script" path="res://UI/ui_show.gd" id="74_d5mka"]
 [ext_resource type="Texture2D" uid="uid://bgsedt3bhj4my" path="res://Enclosures/Fences/fence_exp1.png" id="82_auu6y"]
 [ext_resource type="Script" path="res://UI/ui_debug_shader.gd" id="87_1b22a"]
+[ext_resource type="PackedScene" uid="uid://bie8wky7dopo4" path="res://UI/UI popups/ui_mgmt_popup.tscn" id="90_kjtd0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4oys"]
 
@@ -556,6 +557,7 @@ ui_animal_popup = ExtResource("73_mv3dj")
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("inputController")]
 script = ExtResource("10_pctuh")
+mgmg_popup = ExtResource("90_kjtd0")
 inputController = NodePath("../InputController")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI"]
@@ -1006,7 +1008,6 @@ size_flags_vertical = 0
 
 [node name="DropDownMenu" type="PanelContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/VBoxContainer/Control"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 offset_top = 4.0
@@ -1041,11 +1042,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Staff"
 
-[node name="AdmMenu" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/VBoxContainer/Control/DropDownMenu/MarginContainer/VBoxContainer2/DropDownMenu"]
+[node name="MgmtMenu" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/VBoxContainer/Control/DropDownMenu/MarginContainer/VBoxContainer2/DropDownMenu"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Adm."
+text = "Mgmt"
 
 [node name="DebugToggle" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/VBoxContainer/Control/DropDownMenu/MarginContainer/VBoxContainer2/DropDownMenu"]
 unique_name_in_owner = true

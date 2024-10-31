@@ -3,6 +3,8 @@ extends CanvasLayer
 signal path_tool_selected
 signal enclosure_tool_selected
 
+@export var mgmg_popup : PackedScene
+
 var selected_res:
 	set(value):
 		selected_res = value
@@ -43,6 +45,8 @@ func _ready() -> void:
 	
 	%RightMenuToggle.toggled.connect(on_right_menu_toggle)
 	%DebugToggle.pressed.connect(on_debug_toggle)
+	
+	%MgmtMenu.pressed.connect(on_popup_pressed.bind('mgmt'))
 	
 	%AnimalTool.pressed.connect(on_animal_tool)
 	%SceneryTool.pressed.connect(on_scenery_tool)
@@ -363,3 +367,12 @@ func on_building_tool():
 	on_tool_selected(inputController.TOOLS.BUILDING)
 func on_water_tool():
 	on_tool_selected(inputController.TOOLS.WATER)
+
+func on_popup_pressed(popup):
+	var new_popup
+	if popup == 'mgmt':
+		new_popup = mgmg_popup.instantiate()
+	
+	if new_popup:
+		add_child(new_popup)
+	
