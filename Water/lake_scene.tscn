@@ -10,6 +10,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32
 outlines = Array[PackedVector2Array]([PackedVector2Array(-76, 104, 222, 146, 314, -80, -214, -236, -434, 18, -319, 277, -68, 153)])
 
 [node name="LakeScene" type="Node2D"]
+z_index = -300
 texture_filter = 1
 script = ExtResource("1_x45p8")
 
@@ -32,6 +33,7 @@ default_color = Color(0.933333, 0.764706, 0.603922, 1)
 visible = false
 collision_layer = 0
 collision_mask = 2048
+monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RemovalArea"]
 polygon = PackedVector2Array(16, -14, -56, -82, -139, 51, 15, 150, 135, 41, 108, -40)
@@ -46,11 +48,4 @@ collision_layer = 2048
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-visible = false
 polygon = PackedVector2Array(-289, -136, -334, 137, 23, 411, 603, 174, 434, -90, 275, -272, -124, -276)
-
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 32768
-collision_mask = 0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]

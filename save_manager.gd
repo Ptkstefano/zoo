@@ -206,7 +206,7 @@ func load_game():
 			for key in data["enclosureData"]:
 				var enclosure_cells = []
 				var fence_res = load(data["enclosureData"][key]['fence_res'])
-				var enclosure_id = int(data["enclosureData"][key]['fence_res'])
+				var enclosure_id = int(data["enclosureData"][key]['enclosure_id'])
 				for cell in data["enclosureData"][key]['enclosure_cells']:
 					enclosure_cells.append(Vector2i(data["enclosureData"][key]['enclosure_cells'][cell].x, data["enclosureData"][key]['enclosure_cells'][cell].y))
 				enclosureManager.build_enclosure(enclosure_cells, fence_res, enclosure_id)

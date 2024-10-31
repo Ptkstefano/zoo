@@ -61,8 +61,9 @@ func _ready() -> void:
 	$StateTimer.timeout.connect(on_state_timer_timeout)
 	$DecayTimer.timeout.connect(on_decay_timer_timeout)
 	agent.set_target_position(get_new_destination())
-	$SwimDetection.area_entered.connect(on_swim_start)
-	$SwimDetection.area_exited.connect(on_swim_stop)
+	#$SwimDetection.area_entered.connect(on_swim_start)
+	#$SwimDetection.area_exited.connect(on_swim_stop)
+	
 	$NoSwimTimer.timeout.connect(on_no_swim_timer_timeout)
 	$StateTimer.start()
 	enclosure.enclosure_stats_updated.connect(update_habitat_satifaction)
@@ -105,6 +106,12 @@ func _physics_process(delta: float) -> void:
 		if needs_rest > 90:
 			on_state_timer_timeout()
 	elif current_state == ANIMAL_STATES.RUNNING or current_state == ANIMAL_STATES.MOVING_TOWARDS:
+		if $SwimRaycast.is_colliding():
+			if !is_swimming:
+				on_swim_start(null)
+		else:
+			if is_swimming:
+				on_swim_stop(null)
 		if current_state == ANIMAL_STATES.RUNNING:
 			needs_play += play_restore_rate
 			speed = run_speed
@@ -120,7 +127,7 @@ func _physics_process(delta: float) -> void:
 				agent.target_position=get_new_destination()
 			if current_state == ANIMAL_STATES.MOVING_TOWARDS:
 				if !next_state:
-					current_state = ANIMAL_STATES.IDLE
+					change_state('idle')
 					$StateTimer.start()
 				else:
 					current_state = next_state
@@ -181,13 +188,15 @@ func remove_animal():
 	queue_free()
 
 func on_swim_start(area):
+	print('swim')
 	is_swimming = true
 	
 func on_swim_stop(area):
-	is_swimming = false
-	$NavigationAgent2D.set_navigation_layer_value(3, false)
-	$NavigationAgent2D.set_navigation_layer_value(2, true)
-	$NoSwimTimer.start()
+	if is_swimming:
+		is_swimming = false
+		$NavigationAgent2D.set_navigation_layer_value(3, false)
+		$NavigationAgent2D.set_navigation_layer_value(2, true)
+		$NoSwimTimer.start()
 	
 ## Animal takes a break from swimming for a while
 func on_no_swim_timer_timeout():
@@ -215,7 +224,7 @@ func play_animation():
 			#direction = '_N'
 			
 	if current_state == ANIMAL_STATES.MOVING_TOWARDS or current_state == ANIMAL_STATES.RUNNING:
-		if abs(velocity) != Vector2.ZERO:
+		if velocity != Vector2.ZERO:
 			if is_swimming:
 				$AnimationPlayer.play('Swim'+direction)
 			else:

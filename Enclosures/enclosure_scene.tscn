@@ -115,12 +115,14 @@ tile_set = SubResource("TileSet_o4u8v")
 navigation_enabled = false
 
 [node name="LandRegion" type="NavigationRegion2D" parent="." groups=["Enclosure"]]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_mv2b7")
+use_edge_connections = false
 navigation_layers = 2
 
 [node name="WaterRegion" type="NavigationRegion2D" parent="."]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_k6c81")
+use_edge_connections = false
 navigation_layers = 4
 
 [node name="EnclosureFenceManager" type="Node2D" parent="."]
@@ -151,6 +153,7 @@ collision_enabled = false
 [node name="FenceInstances" type="Node2D" parent="EnclosureFenceManager"]
 
 [node name="VegetationDetectionArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 4096
 

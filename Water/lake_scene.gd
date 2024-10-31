@@ -20,8 +20,8 @@ func _ready() -> void:
 	NavigationServer2D.bake_from_source_geometry_data(new_navigation_mesh, NavigationMeshSourceGeometryData2D.new());
 	$NavigationRegion2D.navigation_polygon = new_navigation_mesh
 	#$NavigationObstacle2D.vertices = line_points
-	$StaticBody2D/CollisionPolygon2D.polygon = line_points
-	$Area2D/CollisionPolygon2D.polygon = shrink_polygon(line_points, 0.04)
+	$StaticBody2D/CollisionPolygon2D.polygon = shrink_polygon(line_points, 0.04)
+	#$Area2D/CollisionPolygon2D.polygon = shrink_polygon(line_points, 0.04)
 	SignalBus.obstacle_changed.emit()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

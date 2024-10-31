@@ -16,6 +16,7 @@ offset = Vector2(0, -15)
 [node name="RemovalArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 256
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RemovalArea"]
 shape = SubResource("CircleShape2D_vktyh")

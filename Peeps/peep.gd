@@ -1,6 +1,5 @@
-extends CharacterBody2D
+extends Node2D
 class_name Peep
-
 
 const SPEED = 15.0
 
@@ -32,52 +31,34 @@ var sprite_y := 0
 @onready var peepSprite = $PeepSprite
 @onready var screenNotifier = $VisibleOnScreenNotifier2D
 
-
+var half_pi = PI * 0.5
 
 func _ready() -> void:
 	$FrameTimer.timeout.connect(on_frame_timer)
 	set_peep_visuals()
 	$FrameTimer.wait_time = randf_range(0.4, 0.55)
 
-func _physics_process(delta: float) -> void:
-	if peep_state != PEEP_STATES.RESTING:
-		target_pos = (group_position + position_offset)
-		
-		if global_position.distance_to(target_pos) < 5:
-			velocity = Vector2.ZERO
-			return
-			
-		move_direction = global_position.direction_to(target_pos)
-		
-		if global_position.distance_to(target_pos) > 25:
-			velocity = move_direction * SPEED * 2
-		else:
-			velocity = move_direction * SPEED
-		move_and_slide()
-
 func _process(delta: float) -> void:
 	if !screenNotifier.is_on_screen():
 		return
-		
-	z_index = Helpers.get_current_tile_z_index(global_position)
 	
 	if peep_state == PEEP_STATES.MOVING:
-		if velocity == Vector2.ZERO:
-			sprite_x = 0
-		else:
-			if velocity.x > 0:
+		#if velocity == Vector2.ZERO:
+			#sprite_x = 0
+		#else:
+			if move_direction.x > 0:
 				sprite_x = 2
 				peepSprite.flip_h=true
 			else:
 				sprite_x = 2
 				peepSprite.flip_h=false
 				
-			if velocity.y > 0:
+			if move_direction.y > 0:
 				sprite_y = 1
-			elif velocity.y < 0:
+			elif move_direction.y < 0:
 				sprite_y = 0
 	elif peep_state == PEEP_STATES.OBSERVING:
-		if abs(look_direction) > PI * 0.5:
+		if abs(look_direction) > half_pi:
 			peepSprite.flip_h = false
 		else:
 			peepSprite.flip_h = true
@@ -115,7 +96,7 @@ func set_peep_visuals():
 	shader_material.shader = preload("res://Peeps/peep.gdshader") 
 	
 	peepSprite.texture = sprite_sheet
-	peepSprite.vframes = sprite_sheet.get_height() / 23
+	peepSprite.vframes = sprite_sheet.get_height() / 21
 	
 	base_y = [0, 2].pick_random()
 	

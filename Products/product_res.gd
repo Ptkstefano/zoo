@@ -10,4 +10,4 @@ class_name product_resource
 @export var base_sell_value : float
 @export var perceived_value : float
 
-var current_cost = base_sell_value
+var current_cost = sell_cost

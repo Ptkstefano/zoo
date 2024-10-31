@@ -15,7 +15,7 @@ signal object_removed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$RemovalArea.area_entered.connect(on_removal)
+	$Area.area_entered.connect(on_area_entered)
 	$Sprite2D.texture = vegetation_res.texture
 	texture = vegetation_res.texture
 	var y = -texture.get_height()
@@ -29,6 +29,7 @@ func _ready() -> void:
 	#$Sprite2D.visible = false
 
 
-func on_removal(bulldozer):
-	$RemovalArea/CollisionShape2D.disabled = true
-	object_removed.emit(self)
+func on_area_entered(area):
+	if area is Bulldozer:
+		$RemovalArea/CollisionShape2D.disabled = true
+		object_removed.emit(self)

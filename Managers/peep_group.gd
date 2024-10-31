@@ -2,7 +2,7 @@ extends Node2D
 
 @export var peep_scene : PackedScene
 
-const SPEED := 20.0
+var speed := 20.0
 
 var peep_manager : PeepManager
 
@@ -35,26 +35,33 @@ var third_position_offset := Vector2(5, 0)
 var position_offsets = [Vector2(0, -7), Vector2(-7, 0), Vector2(7, 0), Vector2(0, 7), Vector2(0, 0)]
 
 var observed_animals : Array[NameRefs.ANIMAL_SPECIES]
+var favorite_animal : NameRefs.ANIMAL_SPECIES
 
 var searching_rest_spot : bool = false
 #var moving_towards_fixture : bool = false
 var searching_food_spot : bool = false
 #var moving_towards_food : bool = false
-var searching_toilet : bool = true
+var searching_toilet : bool = false
 
 var moving_towards_exit : bool = false
 
 var fixture : Fixture = null
-var fixture_available : Dictionary
+var fixture_available ## Dict or null
 
 var shop : Shop = null
 var visited_shops : Array[Shop] = []
 var peep_group_inventory : Array[product_resource]
 
-## Defines how tolerant peep group is to product's prices
-var utility_score_tolerance : float
+var modifiers = []
+
+## Defines how tolerant peep group is to product's prices, higher is more exigent
+var min_utility_score_tolerance : float
+
+var zoo_rating_score : float = 3
 
 var cached_position : Vector2
+
+var z_index_value
 
 signal peep_group_left
 
@@ -65,25 +72,36 @@ var needs_rest : float = 100:
 		needs_rest = clamp(value,0,100)
 		if value < 35:
 			searching_rest_spot = true
+		if needs_rest < 1:
+			if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_REST_SPOT):
+				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_REST_SPOT)
 
 var needs_hunger : float = 80:
 	set(value):
 		needs_hunger = clamp(value,0,100)
 		if value < 35:
 			searching_food_spot = true
+		if needs_hunger < 1:
+			if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_FOOD):
+				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_FOOD)
 			
 var needs_toilet : float = 35:
 	set(value):
 		needs_hunger = clamp(value,0,100)
 		if value < 35:
 			searching_toilet = true
+		if needs_toilet < 1:
+			if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_TOILET):
+				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_TOILET)
 		
 		
 var hunger_drain_rate := 5.0
 var rest_drain_rate := 8.0
-var toilet_drain_rate := 10.0
+var toilet_drain_rate := 5.0
 
 var peep_count = null
+
+@onready var screenNotifier = $VisibleOnScreenNotifier2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -97,38 +115,60 @@ func _ready() -> void:
 		peep.global_position = global_position + position_offsets[i]
 		$Peeps.add_child(peep)
 	
+	if !favorite_animal:
+		favorite_animal = randi_range(0, NameRefs.ANIMAL_SPECIES.size() - 1)
+	
+	speed = randi_range(16, 24)
+	
 	agent = $NavigationAgent2D as NavigationAgent2D
 	await get_tree().create_timer(0.5).timeout
+	agent.path_desired_distance = randi_range(5, 20)
 	
-	utility_score_tolerance = randf_range(0.6, 1.2)
+	min_utility_score_tolerance = randf_range(0.6, 1.5)
 	
 	agent.waypoint_reached.connect(on_agent_waypoint_reached)
 	
-	$AnimalDetector.body_entered.connect(on_animal_detector_body_entered)
-	$FixtureDetector.area_entered.connect(on_fixture_detector_area_entered)
-	$GuestBuilding.area_entered.connect(on_guest_building_detector_area_entered)
+	#$AnimalDetector.body_entered.connect(on_animal_detector_body_entered)
+	#$FixtureDetector.area_entered.connect(on_fixture_detector_area_entered)
+	#$GuestBuilding.area_entered.connect(on_guest_building_detector_area_entered)
+	
+	$Detector.area_entered.connect(on_detector_area_entered)
+	$Detector.body_entered.connect(on_detector_body_entered)
+	
 	$StateTimer.timeout.connect(on_state_timer_timeout)
 	$DecayTimer.timeout.connect(on_decay_timer_timeout)
+	
+	$VisibleOnScreenNotifier2D.screen_entered.connect(on_visibility_entered)
 	
 	initialize_peep_group_destinations()
 	get_new_destination()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$Label.text = str(group_state)
+	if !screenNotifier.is_on_screen():
+		for peep in peeps:
+			peep.visible = false
+		return
+		
+	#$Label.text = str(group_state)
 	if group_state in move_states:
 		move_toward_direction(direction, delta)
+		z_index_value = Helpers.get_current_tile_z_index(global_position)
 		for peep in peeps:
-			peep.group_position = global_position
+			peep.z_index = z_index_value
+			peep.global_position = global_position + peep.position_offset
+			peep.move_direction = direction
 			
 		if agent.is_navigation_finished():
 			on_agent_target_reached()
 
+func on_visibility_entered():
+		for peep in peeps:
+			peep.visible = true
+
 func on_agent_waypoint_reached(d):
 	await get_tree().create_timer(0.05).timeout
 	direction = (agent.get_next_path_position() - global_position).normalized()
-	#if agent.is_navigation_finished():
-		#on_agent_target_reached()
 	
 func on_agent_target_reached():
 	if group_state == group_states.GOING_TO_FIXTURE:
@@ -210,9 +250,9 @@ func get_new_destination():
 
 
 func move_toward_direction(direction: Vector2, delta: float):
-	global_position += direction * SPEED * delta
-
-func on_animal_detector_body_entered(body):
+	global_position += direction * speed * delta
+	
+func on_detector_body_entered(body):
 	if group_state in busy_states:
 		return
 	if body is Animal:
@@ -226,39 +266,37 @@ func on_animal_detector_body_entered(body):
 		for destination in group_desired_destinations:
 			if destination.especies == body.animal_res:
 				group_desired_destinations.erase(destination)
-	
 
-func on_fixture_detector_area_entered(area):
+func on_detector_area_entered(area):
 	if group_state in busy_states:
 		return
 	if searching_rest_spot:
-		fixture = area.get_parent()
-		fixture_available = fixture.get_available()
-		if !fixture_available:
-			change_state(group_states.STOPPED)
-			return
-		if fixture.type == NameRefs.FIXTURES.BENCH:
-			agent.target_position = fixture.global_position
-			direction = (agent.get_next_path_position() - global_position).normalized()
-			change_state(group_states.GOING_TO_FIXTURE)
-			searching_rest_spot = false
-			
-func on_guest_building_detector_area_entered(area):
-	if group_state in busy_states:
-		return
-	var parent = area.get_parent()
-	if parent is Shop:
-		shop = area.get_parent()
-		if shop in visited_shops:
-			return
-		if searching_food_spot:
-			if NameRefs.PRODUCT_TYPES.FOOD in shop.product_types:
-				agent.target_position = shop.sell_positions.pick_random()
-				change_state(group_states.GOING_TO_FOOD)
-	if parent is Toilet:
-		if searching_toilet:
-			agent.target_position = parent.enter_positions.pick_random()
-			change_state(group_states.GOING_TO_TOILET)
+		if area.get_parent() is Fixture:
+			fixture = area.get_parent()
+			fixture_available = fixture.get_available()
+			if !fixture_available:
+				change_state(group_states.STOPPED)
+				return
+			if fixture.type == NameRefs.FIXTURES.BENCH:
+				agent.target_position = fixture.global_position
+				direction = (agent.get_next_path_position() - global_position).normalized()
+				change_state(group_states.GOING_TO_FIXTURE)
+				searching_rest_spot = false
+	if searching_food_spot:
+		if area.get_parent() is Shop:
+			shop = area.get_parent()
+			if shop in visited_shops:
+				return
+			if searching_food_spot:
+				if NameRefs.PRODUCT_TYPES.FOOD in shop.product_types:
+					agent.target_position = shop.sell_positions.pick_random()
+					change_state(group_states.GOING_TO_FOOD)
+	if searching_toilet:
+		if area.get_parent() is Toilet:
+			if searching_toilet:
+				agent.target_position = area.get_parent().enter_positions.pick_random()
+				change_state(group_states.GOING_TO_TOILET)
+
 
 func on_state_timer_timeout():
 	if group_state == group_states.OBSERVING:
@@ -278,6 +316,8 @@ func buy_food():
 	change_state(group_states.STOPPED)
 	var available_items = {}
 	## Fix bug if shop ceases to exist
+	if !shop:
+		return
 	for item in shop.available_products:
 		if item.type == NameRefs.PRODUCT_TYPES.FOOD:
 			available_items[item] = item.perceived_value / item.current_cost
@@ -289,10 +329,12 @@ func buy_food():
 		var utility_score = available_items[item]
 		if utility_score > highest_utility:
 			highest_utility = utility_score
-			if utility_score < utility_score_tolerance:
+			#print('tolerance: ' + str(min_utility_score_tolerance), 'utility score:' + str(utility_score))
+			if utility_score < min_utility_score_tolerance:
 				continue
 			else:
 				best_item = item
+
 	
 	if best_item != null:
 		## Buy
@@ -300,10 +342,13 @@ func buy_food():
 		peep_group_inventory.append(best_item)
 		needs_hunger = 100
 		searching_food_spot = false
+		if available_items[best_item] > 1.5:
+			modifiers.append(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
 	else:
 		## Ensures peeps won't come back to this shop
 		visited_shops.append(shop)
-		print("No adequately priced items available.")
+		modifiers.append(ModifierManager.PEEP_MODIFIERS.TOO_EXPENSIVE)
+		#print("No adequately priced items available.")
 		
 	change_state(group_states.STOPPED)
 
@@ -335,12 +380,28 @@ func initialize_peep_group_destinations():
 	else:
 		## Restore previously generated desired destinations
 		for id in desired_enclosures_id:
-			group_desired_destinations.append(ZooManager.zoo_enclosures[id])
+			if id in ZooManager.zoo_enclosures.keys():
+				group_desired_destinations.append(ZooManager.zoo_enclosures[id])
 			
 	## TODO - Sort group_desired_destinations
 	
 func leave_zoo():
-	peep_group_left.emit(self)
+	if group_desired_destinations.size() == 0 and observed_animals.size() > 2:
+		modifiers.append(ModifierManager.PEEP_MODIFIERS.SEEN_ALL_DESIRED_ANIMALS)
+	if group_desired_destinations.size() > 0:
+		modifiers.append(ModifierManager.PEEP_MODIFIERS.MISSED_ANIMAL)
+	if favorite_animal in observed_animals:
+		modifiers.append(ModifierManager.PEEP_MODIFIERS.SEEN_FAVORITE_ANIMAL)
+	if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_TOILET) and !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_FOOD) and !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_REST_SPOT):
+		modifiers.append(ModifierManager.PEEP_MODIFIERS.FILLED_NEEDS)
+	var rating = calculate_perceived_zoo_rating()
+	peep_group_left.emit(self, rating)
 
 func update_cached_position():
 	cached_position = global_position
+
+func calculate_perceived_zoo_rating():
+	var sum = 0
+	for modifier in modifiers:
+		sum += ModifierManager.peep_modifiers[modifier].point_value
+	return clamp(zoo_rating_score + sum, 0, 5)

@@ -18,7 +18,7 @@ signal object_removed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$RemovalArea.area_entered.connect(on_removal)
+	$Area.area_entered.connect(on_area_entered)
 	$Sprite2D.vframes = tree_sheet.get_height() / 128
 	$Sprite2D.hframes = tree_sheet.get_width() / 128
 	$Sprite2D.frame_coords = Vector2(tree_res.texture_y, 0)
@@ -31,7 +31,8 @@ func _ready() -> void:
 	Effects.wobble(self)
 	cached_position = global_position
 
-func on_removal(bulldozer):
-	$RemovalArea/CollisionShape2D.disabled = true
-	object_removed.emit(self)
-	#queue_free()
+func on_area_entered(area):
+	if area is Bulldozer:
+		#$RemovalArea/CollisionShape2D.disabled = true
+		object_removed.emit(self)
+		#queue_free()

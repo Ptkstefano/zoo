@@ -26,6 +26,7 @@ Effects="*res://Autoload/effects.gd"
 AudioManager="*res://Autoload/audio_manager.tscn"
 ZooManager="*res://zoo_manager.gd"
 SaveManager="*res://Autoload/save_manager.tscn"
+ModifierManager="*res://modifier_manager.gd"
 
 [display]
 
@@ -63,6 +64,12 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_12="water"
 2d_physics/layer_13="Vegetation"
 2d_physics/layer_16="water_detection"
+
+[physics]
+
+2d/run_on_separate_thread=true
+common/physics_ticks_per_second=30
+2d/solver/solver_iterations=8
 
 [rendering]
 

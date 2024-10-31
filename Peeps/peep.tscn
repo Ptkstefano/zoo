@@ -1,36 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca66y62ys1xkh"]
+[gd_scene load_steps=3 format=3 uid="uid://ca66y62ys1xkh"]
 
 [ext_resource type="Script" path="res://Peeps/peep.gd" id="1_kks3u"]
-[ext_resource type="Texture2D" uid="uid://cb3u3ufyd4no" path="res://Peeps/peep-sheet.png" id="2_fhgs5"]
+[ext_resource type="Texture2D" uid="uid://davt3dtp40gvd" path="res://Peeps/peep-sheet-trim.png" id="2_rusm1"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_uvgr3"]
-radius = 1.0
-
-[node name="Peep" type="CharacterBody2D"]
+[node name="Peep" type="Node2D"]
 light_mask = 0
 y_sort_enabled = true
-collision_layer = 0
-collision_mask = 0
-motion_mode = 1
-slide_on_ceiling = false
-floor_stop_on_slope = false
-floor_block_on_wall = false
-platform_floor_layers = 4294966271
 script = ExtResource("1_kks3u")
-sprite_sheet = ExtResource("2_fhgs5")
+sprite_sheet = ExtResource("2_rusm1")
 
 [node name="PeepSprite" type="Sprite2D" parent="."]
 light_mask = 0
 texture_filter = 1
 position = Vector2(0, -9)
-texture = ExtResource("2_fhgs5")
-hframes = 8
+texture = ExtResource("2_rusm1")
+hframes = 10
 vframes = 4
-frame = 15
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("CircleShape2D_uvgr3")
+frame = 39
 
 [node name="FrameTimer" type="Timer" parent="."]
 wait_time = 0.5

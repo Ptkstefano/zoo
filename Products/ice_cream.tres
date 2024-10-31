@@ -6,6 +6,6 @@
 script = ExtResource("1_0h3kp")
 name = 0
 type = 0
-sell_cost = 2.0
+sell_cost = 1.0
 base_sell_value = 4.0
 perceived_value = 4.0

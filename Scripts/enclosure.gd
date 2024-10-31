@@ -59,7 +59,6 @@ func calculate_enclosure_stats():
 	herd_density =  float(enclosure_animals.size()) / float(enclosure_cells.size())
 	enclosure_stats_updated.emit()
 	
-	
 func add_shelter(shelter):
 	available_shelters.append(shelter)
 
@@ -200,8 +199,9 @@ func update_central_point():
 	enclosure_central_point = Helpers.get_global_pos_of_cell(central_point)
 	
 func update_navigation_region():
-	$LandRegion.bake_navigation_polygon()
-	$WaterRegion.bake_navigation_polygon()
+	if GameManager.game_running:
+		$LandRegion.bake_navigation_polygon()
+		$WaterRegion.bake_navigation_polygon()
 	
 func update_enclosure_area():
 	var coordinates = []
