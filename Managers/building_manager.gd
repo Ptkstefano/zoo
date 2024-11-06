@@ -30,9 +30,9 @@ func update_building_menu():
 		
 	$"../../UI".update_ui()
 
-func build_building(building_res, starting_coord, rotate, coords):
+func build_building(building_res, start_tile, rotate, coords):
 	var new_building = building_class_scene.instantiate()
-	new_building.building_position = $"../../TileMap/TerrainLayer".map_to_local(starting_coord)
+	new_building.start_tile = start_tile
 	new_building.is_building_rotated = rotate
 	new_building.building_res = building_res
 	new_building.used_coordinates = coords

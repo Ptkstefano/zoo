@@ -14,7 +14,7 @@ var current_state = ANIMAL_STATES.IDLE
 var next_state = null
 
 var animal_name
-var animal_species : NameRefs.ANIMAL_SPECIES
+var animal_species : IdRefs.ANIMAL_SPECIES
 
 var enclosure : Enclosure
 
@@ -188,7 +188,6 @@ func remove_animal():
 	queue_free()
 
 func on_swim_start(area):
-	print('swim')
 	is_swimming = true
 	
 func on_swim_stop(area):

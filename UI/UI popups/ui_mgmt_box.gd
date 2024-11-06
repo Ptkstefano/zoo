@@ -7,8 +7,12 @@ var review_count = {}
 func _ready():
 	%CloseButton.pressed.connect(queue_free)
 	generate_reviews_tab()
+	DataManager.reviews_changed.connect(generate_reviews_tab)
 
 func generate_reviews_tab():
+	review_count.clear()
+	for child in %ReviewContainer.get_children():
+		child.queue_free()
 	for modifier in DataManager.modifier_list:
 		if modifier in review_count.keys():
 			review_count[modifier] += 1

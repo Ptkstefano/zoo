@@ -2,13 +2,15 @@ extends Node
 
 @export var ui_shop_popup : PackedScene
 @export var ui_animal_popup : PackedScene
+@export var ui_mgmt_popup : PackedScene
 
 var opened_popup
 
 func _ready() -> void:
-	SignalBus.clickable_element_clicked.connect(on_detectable_element_selected)
+	SignalBus.open_popup.connect(open_popup)
+	SignalBus.open_box.connect(open_box)
 
-func on_detectable_element_selected(detector_pos, element):
+func open_popup(detector_pos, element):
 	if opened_popup != null:
 		opened_popup.queue_free()
 		opened_popup = null
@@ -16,6 +18,13 @@ func on_detectable_element_selected(detector_pos, element):
 		open_animal_popup(element, detector_pos)
 	if element is Shop:
 		open_shop_popup(element)
+
+func open_box(box):
+	if opened_popup != null:
+		opened_popup.queue_free()
+		opened_popup = null
+	if box == IdRefs.UI_BOXES.MANAGEMENT:
+		open_mgmt_box()
 
 func open_shop_popup(shop_node):
 	print(shop_node)
@@ -26,4 +35,8 @@ func open_shop_popup(shop_node):
 func open_animal_popup(animal_node, detector_pos):
 	opened_popup = ui_animal_popup.instantiate()
 	opened_popup.animal_scene = animal_node
+	add_child(opened_popup)
+
+func open_mgmt_box():
+	opened_popup = ui_mgmt_popup.instantiate()
 	add_child(opened_popup)

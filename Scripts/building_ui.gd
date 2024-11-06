@@ -3,85 +3,56 @@ extends CanvasLayer
 signal path_tool_selected
 signal enclosure_tool_selected
 
-@export var mgmg_popup : PackedScene
-
 var selected_res:
 	set(value):
 		selected_res = value
 		inputController.selected_res = value
 		
-#var selected_path : path_resource:
-	#set(value):
-		#selected_res = value
-		#
-#var selected_enclosure : fence_resource:
-	#set(value):
-		#selected_res = value
-		#
-#var selected_animal : animal_resource:
-	#set(value):
-		#selected_res = value
-#var selected_scenery
-#
-#var selected_terrain : terrain_resource:
-	#set(value):
-		#selected_res = value
-		#
-#var selected_building : building_resource:
-	#set(value):
-		#selected_res = value
-	
-
 var build_mode : bool = false
 
 @export var inputController : InputController
 
-@onready var info_label = %InfoLabel
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	%PathTool.pressed.connect(on_path_tool)
-	%EnclosureTool.pressed.connect(on_enclosure_tool)
+	SignalBus.ui_visibility.connect(ui_visibility)
 	
 	%RightMenuToggle.toggled.connect(on_right_menu_toggle)
 	%DebugToggle.pressed.connect(on_debug_toggle)
 	
-	%MgmtMenu.pressed.connect(on_popup_pressed.bind('mgmt'))
-	
-	%AnimalTool.pressed.connect(on_animal_tool)
-	%SceneryTool.pressed.connect(on_scenery_tool)
-	%TerrainTool.pressed.connect(on_terrain_tool)
-	%BuildingTool.pressed.connect(on_building_tool)
-	%WaterTool.pressed.connect(on_water_tool)
+	%MgmtMenu.pressed.connect(on_box_pressed.bind(IdRefs.UI_BOXES.MANAGEMENT))
 	
 	%BuildPanelOpener.pressed.connect(on_open_build_panel)
 	
-	%BulldozerTool.button_down.connect(on_bulldozer_tool_press)
-	%BulldozerTool.button_up.connect(on_bulldozer_tool_release)
+	%BulldozerTool.button_down.connect(on_bulldozer_tool.bind(true))
+	%BulldozerTool.button_up.connect(on_bulldozer_tool.bind(false))
 	
-	%CameraTool.button_down.connect(on_camera_tool_press)
-	%CameraTool.button_up.connect(on_camera_tool_release)
+	%CameraTool.button_down.connect(on_camera_tool.bind(true))
+	%CameraTool.button_up.connect(on_camera_tool.bind(false))
 	
 	%RotateTool.pressed.connect(on_rotate_tool_press)
 	
 	%BuildTool.pressed.connect(on_build_tool_press)
+	%PathTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.PATH))
+	%EnclosureTool.pressed.connect((open_subpanel.bind('EnclosureSubpanel')))
 	
-	%EnclosureFenceTool.pressed.connect(on_enclosure_fence_tool_press)
-	%EnclosureShelterTool.pressed.connect(on_enclosure_shelter_tool_press)
+	%EnclosureFenceTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.ENCLOSURE))
+	%EnclosureShelterTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.SHELTER))
 	
-	%SceneryTreesTool.pressed.connect(on_scenery_trees_tool_press)
-	%SceneryDecorationTool.pressed.connect(on_scenery_decorations_tool_press)
-	%SceneryVegetationTool.pressed.connect(on_scenery_vegetations_tool_press)
-	%SceneryFixtureTool.pressed.connect(on_scenery_fixtures_tool_press) 
+	%AnimalTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.ANIMAL))
+	%SceneryTool.pressed.connect(open_subpanel.bind('ScenerySubpanel'))
+	%TerrainTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.TERRAIN))
+	%BuildingTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.BUILDING))
+	%WaterTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.WATER))
+	%EntranceTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.ENTRANCE))
+	
+	%SceneryTreesTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.TREE))
+	%SceneryDecorationTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.SCENERY))
+	%SceneryVegetationTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.VEGETATION))
+	%SceneryFixtureTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.FIXTURE)) 
 	
 	inputController.building_placed.connect(on_building_placed)
 	inputController.building_built.connect(on_building_built)
 	
 	hide_selection_menu()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	update_info_label()
 
 func update_ui():
 	for element in %AnimalSelectionContainer.get_children():
@@ -114,61 +85,6 @@ func update_ui():
 	for element in %DecorationSelectionContainer.get_children():
 		if element:
 			element.scenery_selected.connect(on_scenery_selected)
-			
-func update_info_label():
-	if inputController.current_tool == inputController.TOOLS.NONE:
-		%InfoContainer.visible = false
-		return
-	else:
-		%InfoContainer.visible = true
-	if inputController.is_camera_tool_selected:
-		info_label.text = 'Moving camera freely'
-		return
-	if inputController.current_tool == inputController.TOOLS.ANIMAL:
-		info_label.text = 'Placing animal'
-		return
-	elif inputController.current_tool == inputController.TOOLS.PATH:
-		if inputController.is_bulldozing:
-			info_label.text = 'Removing path'
-			return
-		info_label.text = 'Building path'
-		return
-	elif inputController.current_tool == inputController.TOOLS.ENCLOSURE:
-		if inputController.is_bulldozing:
-			info_label.text = 'Removing enclosure'
-			return
-		info_label.text = 'Building enclosure'
-		return
-	elif inputController.current_tool == inputController.TOOLS.TREE:
-		if inputController.is_bulldozing:
-			info_label.text = 'Removing scenery'
-			return
-		info_label.text = 'Placing single tree'
-		return
-	elif inputController.current_tool == inputController.TOOLS.VEGETATION:
-		if inputController.is_bulldozing:
-			info_label.text = 'Removing scenery'
-			return
-		info_label.text = 'Placing vegetation'
-		return
-	elif inputController.current_tool == inputController.TOOLS.DECORATION:
-		if inputController.is_bulldozing:
-			info_label.text = 'Removing scenery'
-			return
-		info_label.text = 'Placing decoration'
-		return
-	elif inputController.current_tool == inputController.TOOLS.TERRAIN:
-		info_label.text = 'Adding terrain'
-		return
-	elif inputController.current_tool == inputController.TOOLS.WATER:
-		if inputController.is_bulldozing:
-			info_label.text = 'Removing lake'
-			return
-		info_label.text = 'Placing lake'
-		return
-	elif inputController.current_tool == inputController.TOOLS.BUILDING:
-		info_label.text = 'Placing building'
-		return
 
 func on_right_menu_toggle(toggled):
 	if toggled:
@@ -181,6 +97,19 @@ func on_debug_toggle():
 		%DebugScreen.visible = false
 	else:
 		%DebugScreen.visible = true
+	
+func ui_visibility(value : bool):
+	var tween = get_tree().create_tween()
+	if value:
+		tween.tween_property($MarginContainer, "modulate:a", 1.0, 0.25)
+	else:
+		tween.tween_property($MarginContainer, "modulate:a", 0.0, 0.25)
+	
+	
+	
+	#$"MarginContainer/Top-Left".visible = value
+	#$"MarginContainer/Top-Right".visible = value
+	#$MarginContainer/Bottom.visible = value
 	
 
 func deselect_main():
@@ -310,18 +239,16 @@ func on_tool_selected(tool):
 	if tool == inputController.TOOLS.WATER:
 		%ConstructionSidePanel.show()
 		inputController.current_tool = inputController.TOOLS.WATER
+	if tool == inputController.TOOLS.ENTRANCE:
+		%EnclosureSubpanel.show()
+		%EnclosureMenu.show()
+		inputController.current_tool = inputController.TOOLS.ENTRANCE
 
-func on_bulldozer_tool_press():
-	inputController.is_bulldozing = true
+func on_bulldozer_tool(value : bool):
+	inputController.is_bulldozing = value
 	
-func on_bulldozer_tool_release():
-	inputController.is_bulldozing = false
-	
-func on_camera_tool_press():
-	inputController.is_camera_tool_selected = true
-	
-func on_camera_tool_release():
-	inputController.is_camera_tool_selected = false
+func on_camera_tool(value : bool):
+	inputController.is_camera_tool_selected = value
 	
 func on_rotate_tool_press():
 	inputController.rotate_building_toggle()
@@ -340,39 +267,5 @@ func open_subpanel(subpanel_name):
 		else:
 			children.show()
 	
-
-func on_path_tool():
-	on_tool_selected(inputController.TOOLS.PATH)
-func on_enclosure_tool():
-	open_subpanel('EnclosureSubpanel')
-func on_animal_tool():
-	on_tool_selected(inputController.TOOLS.ANIMAL)
-func on_terrain_tool():
-	on_tool_selected(inputController.TOOLS.TERRAIN)
-func on_scenery_tool():
-	open_subpanel('ScenerySubpanel')
-func on_scenery_trees_tool_press():
-	on_tool_selected(inputController.TOOLS.TREE)
-func on_scenery_decorations_tool_press():
-	on_tool_selected(inputController.TOOLS.DECORATION)
-func on_scenery_vegetations_tool_press():
-	on_tool_selected(inputController.TOOLS.VEGETATION)
-func on_enclosure_fence_tool_press():
-	on_tool_selected(inputController.TOOLS.ENCLOSURE)
-func on_enclosure_shelter_tool_press():
-	on_tool_selected(inputController.TOOLS.SHELTER)
-func on_scenery_fixtures_tool_press():
-	on_tool_selected(inputController.TOOLS.FIXTURE)
-func on_building_tool():
-	on_tool_selected(inputController.TOOLS.BUILDING)
-func on_water_tool():
-	on_tool_selected(inputController.TOOLS.WATER)
-
-func on_popup_pressed(popup):
-	var new_popup
-	if popup == 'mgmt':
-		new_popup = mgmg_popup.instantiate()
-	
-	if new_popup:
-		add_child(new_popup)
-	
+func on_box_pressed(box):
+	SignalBus.open_box.emit(box)

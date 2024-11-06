@@ -31,7 +31,7 @@ func update_shelter_menu():
 
 func build_shelter(shelter_res, starting_coord, rotate, coords):
 	var new_shelter = shelter_res.shelter_scene.instantiate()
-	new_shelter.shelter_position = $"../../TileMap/TerrainLayer".map_to_local(starting_coord)
+	new_shelter.shelter_position = TileMapRef.map_to_local(starting_coord)
 	#new_shelter.is_shelter_rotated = rotate
 	new_shelter.shelter_res = shelter_res
 	new_shelter.used_coordinates = coords

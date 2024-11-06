@@ -1,10 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddbum626vwima"]
+[gd_scene load_steps=6 format=3 uid="uid://ddbum626vwima"]
 
 [ext_resource type="Script" path="res://UI/UI popups/ui_shop_popup.gd" id="1_w81ri"]
+[ext_resource type="PackedScene" uid="uid://dkyq54bpawtoq" path="res://UI/UI popups/elements/ui_product_element.tscn" id="2_ts5ku"]
+[ext_resource type="PackedScene" uid="uid://c6fgf62ytu0xe" path="res://UI/UI popups/elements/shop_modifier_element.tscn" id="3_ul87g"]
+[ext_resource type="PackedScene" uid="uid://we0wd88u1111" path="res://UI/UI popups/elements/product_history_element.tscn" id="4_vhx3g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvjfy"]
+bg_color = Color(0.27, 0.27, 0.27, 0.901)
 
 [node name="UI_ShopPopup" type="CanvasLayer"]
 layer = 2
 script = ExtResource("1_w81ri")
+product_element = ExtResource("2_ts5ku")
+shop_modifier_element = ExtResource("3_ul87g")
+product_history_element = ExtResource("4_vhx3g")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -12,14 +21,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
+mouse_filter = 2
 theme_override_constants/margin_left = 250
-theme_override_constants/margin_top = 200
+theme_override_constants/margin_top = 150
 theme_override_constants/margin_right = 250
-theme_override_constants/margin_bottom = 250
+theme_override_constants/margin_bottom = 200
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rvjfy")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
@@ -42,16 +52,111 @@ theme_override_font_sizes/font_size = 48
 text = "Ice Cream Shop"
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+current_tab = 1
 
-[node name="RemoveBuildingButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Products" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ProductList" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products/ScrollContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Remove building"
+size_flags_vertical = 3
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Stats" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Stats" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Stats"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Sell history"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Stats"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ProductHistoryList" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Stats/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ProductHistoryElement" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Stats/ScrollContainer/ProductHistoryList" instance=ExtResource("4_vhx3g")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Stats"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Modifiers" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Modifiers"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Latest comments"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Modifiers"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ShopModifierList" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Modifiers/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ShopModifierElement" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Modifiers/ScrollContainer/ShopModifierList" instance=ExtResource("3_ul87g")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Modifiers"]
+layout_mode = 2
 
 [node name="CloseButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer"]
 unique_name_in_owner = true

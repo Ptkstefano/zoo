@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=130 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" path="res://Scripts/game_controller.gd" id="1_nisry"]
 [ext_resource type="Script" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -88,12 +88,15 @@
 [ext_resource type="PackedScene" uid="uid://c0yqr1xdbc6do" path="res://UI/UI selectable elements/ui_enclosure_element.tscn" id="54_il7k7"]
 [ext_resource type="PackedScene" uid="uid://b020lesiynlbr" path="res://Enclosures/enclosure_scene.tscn" id="55_54dhb"]
 [ext_resource type="Script" path="res://Managers/peep_navigation_region.gd" id="61_8dedt"]
+[ext_resource type="PackedScene" uid="uid://c2x0h40jh0wj6" path="res://staff.tscn" id="69_ba76w"]
 [ext_resource type="PackedScene" uid="uid://baic6x8rh68v8" path="res://UI/UI popups/ui_animal_popup.tscn" id="73_mv3dj"]
 [ext_resource type="Theme" uid="uid://qsq4gutgth07" path="res://UI/default_theme.tres" id="74_7k2ss"]
 [ext_resource type="Script" path="res://UI/ui_show.gd" id="74_d5mka"]
 [ext_resource type="Texture2D" uid="uid://bgsedt3bhj4my" path="res://Enclosures/Fences/fence_exp1.png" id="82_auu6y"]
 [ext_resource type="Script" path="res://UI/ui_debug_shader.gd" id="87_1b22a"]
-[ext_resource type="PackedScene" uid="uid://bie8wky7dopo4" path="res://UI/UI popups/ui_mgmt_popup.tscn" id="90_kjtd0"]
+[ext_resource type="PackedScene" uid="uid://bie8wky7dopo4" path="res://UI/UI popups/ui_mgmt_box.tscn" id="90_kjtd0"]
+[ext_resource type="Script" path="res://UI_info_label.gd" id="94_3glsp"]
+[ext_resource type="Shader" path="res://replace_color.gdshader" id="97_84xii"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4oys"]
 
@@ -312,6 +315,12 @@ bg_color = Color(0.745479, 0.49032, 0.166407, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0dfji"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ogm70"]
+shader = ExtResource("97_84xii")
+shader_parameter/r = 0.0
+shader_parameter/g = 0.12
+shader_parameter/b = 0.22
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_if1ac"]
 shader = ExtResource("53_fkgg7")
 shader_parameter/saturation_r = 1.0
@@ -366,7 +375,7 @@ collision_mask = 512
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InputController/DetectableCollider"]
 shape = SubResource("CircleShape2D_l4oys")
 
-[node name="PathManager" type="Node2D" parent="."]
+[node name="PathManager" type="Node2D" parent="." groups=["PathManager"]]
 script = ExtResource("2_4bhy0")
 available_paths = Array[ExtResource("4_5g54g")]([ExtResource("5_yh37h")])
 ui_element = ExtResource("7_tmdpf")
@@ -447,6 +456,11 @@ pathLayer = NodePath("../../TileMap/PathLayer")
 script = ExtResource("49_hnjxi")
 available_shelters = Array[ExtResource("50_m3er2")]([ExtResource("51_row6q")])
 ui_shelter_element = ExtResource("52_30626")
+
+[node name="StaffManager" type="Node2D" parent="Objects"]
+
+[node name="Staff" parent="Objects/StaffManager" instance=ExtResource("69_ba76w")]
+position = Vector2(-1343, 690)
 
 [node name="EnclosureManager" type="Node2D" parent="."]
 script = ExtResource("3_3jjmw")
@@ -554,10 +568,10 @@ layer = 2
 script = ExtResource("48_w8cen")
 ui_shop_popup = ExtResource("50_dyuu3")
 ui_animal_popup = ExtResource("73_mv3dj")
+ui_mgmt_popup = ExtResource("90_kjtd0")
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("inputController")]
 script = ExtResource("10_pctuh")
-mgmg_popup = ExtResource("90_kjtd0")
 inputController = NodePath("../InputController")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI"]
@@ -599,7 +613,6 @@ layout_mode = 2
 
 [node name="ToolPanel" type="VBoxContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 offset_left = 4.0
 offset_right = 1104.0
@@ -1086,6 +1099,7 @@ offset_right = 210.0
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 25
@@ -1216,13 +1230,15 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="InfoLabel" type="Label" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/InfoContainer/HBoxContainer2/PanelContainer/MarginContainer"]
+[node name="InfoLabel" type="Label" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/InfoContainer/HBoxContainer2/PanelContainer/MarginContainer" node_paths=PackedStringArray("inputController")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 30
 text = "Building PATH"
 horizontal_alignment = 1
+script = ExtResource("94_3glsp")
+inputController = NodePath("../../../../../../../../../../InputController")
 
 [node name="MarginContainer2" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer"]
 layout_mode = 1
@@ -1263,7 +1279,6 @@ horizontal_alignment = 2
 
 [node name="SelectionMenu" type="VBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 10
 mouse_filter = 2
@@ -1337,7 +1352,6 @@ layout_mode = 2
 
 [node name="EnclosureMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/EnclosureMenu"]
@@ -1350,9 +1364,21 @@ theme_override_constants/margin_bottom = 5
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer"]
 layout_mode = 2
 
-[node name="EnclosureSelectionContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EnclosureSelectionContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer/ScrollContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="EntranceTool" type="Button" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer/ScrollContainer/HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.404932, 1, 0.136147, 1)
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Entrance"
 
 [node name="ShelterMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
 unique_name_in_owner = true
@@ -1398,6 +1424,7 @@ layout_mode = 2
 
 [node name="BuildingMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/BuildingMenu"]
@@ -1454,6 +1481,7 @@ layout_mode = 2
 
 [node name="FixtureMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/FixtureMenu"]
@@ -1508,6 +1536,19 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="TODO REPLACE COLOR" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="TODO REPLACE COLOR"]
+material = SubResource("ShaderMaterial_ogm70")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+metadata/_edit_lock_ = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
 
@@ -1518,4 +1559,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(1, 1, 1, 0)
 metadata/_edit_lock_ = true

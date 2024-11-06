@@ -2,7 +2,7 @@ extends Node2D
 
 class_name SceneryVegetation
 
-var type = NameRefs.SCENERY_TYPES.VEGETATION
+var type = IdRefs.SCENERY_TYPES.VEGETATION
 
 var vegetation_res : vegetation_resource
 var vegetation_weight

@@ -1,7 +1,7 @@
 extends Node2D
 class_name Shop
 
-var product_types : Array[NameRefs.PRODUCT_TYPES]
+var product_types : Array[IdRefs.PRODUCT_TYPES]
 var available_products : Array[product_resource]
 
 var building_res : building_resource
@@ -10,9 +10,13 @@ var coordinates = []
 
 var sell_positions : Array[Vector2]
 
+var peep_modifiers : Array[ModifierManager.PEEP_MODIFIERS] = []
+
 var is_rotated : bool
 
 var sold_units = {}
+
+signal update_stats
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,5 +43,15 @@ func remove_building():
 
 func buy(product : product_resource, peep_count : int):
 	sold_units[product.name] += peep_count
+	update_stats.emit()
 	return
 	print('Selling ' + str(peep_count) + ' ' + str(product.name))
+
+func add_peep_modifier(modifier : ModifierManager.PEEP_MODIFIERS):
+	if peep_modifiers.size() > 100:
+		peep_modifiers.remove_at(0)
+		
+	peep_modifiers.append(modifier)
+	update_stats.emit()
+
+	

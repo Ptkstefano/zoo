@@ -8,7 +8,7 @@ var cached_position : Vector2
 var fixture_directions : Array
 var cell
 
-var type = NameRefs.FIXTURES.BENCH
+var type = IdRefs.FIXTURES.BENCH
 
 var available_fixtures : Dictionary
 

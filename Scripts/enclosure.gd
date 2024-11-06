@@ -23,6 +23,8 @@ var herd_density : float
 
 var enclosure_central_point : Vector2
 
+var entrance_cell : Vector2
+
 @onready var enclosure_tilemap = $EnclosureTiles
 @onready var enclosure_fence_manager : EnclosureFenceManager = $EnclosureFenceManager
 
@@ -69,7 +71,7 @@ func add_cells(coordinates, fence_res):
 		enclosure_tilemap.set_cell(coordinate, 0, Vector2i(0, 0))
 		if !enclosure_cells.has(coordinate):
 			enclosure_cells.append(coordinate)
-	build_fence(fence_res)
+	build_fence()
 	update_central_point()
 	call_deferred('update_navigation_region')
 	call_deferred("calculate_enclosure_stats")
@@ -86,12 +88,15 @@ func remove_cells(coordinates):
 		return
 	
 	detect_continuity()
-	build_fence(fence_res)
+	build_fence()
 	redistribute_animals()
 	update_central_point()
 	update_navigation_region()
 	call_deferred("calculate_enclosure_stats")
 	update_enclosure_area()
+	
+func place_entrance(cell):
+	$EnclosureFenceManager.place_entrance(cell)
 	
 func detect_continuity():
 	## Figures out if current enclosure was broken into multiple enclosures and instantiates newly created enclosures as siblings
@@ -141,13 +146,13 @@ func create_sibling(cells):
 	#remove_cells(cells)
 	#sibling.add_cells(cells, fence_res)
 	
-func build_fence(fence_res):
+func build_fence():
 	## Actually instantiates the visual nodes of the enclosure
-	remove_enclosure_fence()
-	enclosure_fence_manager.build_enclosure_fence(enclosure_cells, fence_res)
-
-func remove_enclosure_fence():
 	enclosure_fence_manager.remove_enclosure_fence()
+	enclosure_fence_manager.enclosure_cells = enclosure_cells
+	enclosure_fence_manager.fence_res = fence_res
+	enclosure_fence_manager.build_enclosure_fence()
+	
 
 func add_animal(animal):
 	if enclosure_species == null:

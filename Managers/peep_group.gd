@@ -1,4 +1,5 @@
 extends Node2D
+class_name PeepGroup
 
 @export var peep_scene : PackedScene
 
@@ -8,10 +9,10 @@ var peep_manager : PeepManager
 
 #@export var peep_texture : Texture2D
 
-enum group_states {STOPPED, WALKING, OBSERVING, RESTING, USING_TOILET, GOING_TO_FOOD, GOING_TO_FIXTURE, GOING_TO_EXIT, GOING_TO_TOILET}
+enum group_states {STOPPED, WALKING, OBSERVING, RESTING, USING_TOILET, GOING_TO_FOOD, GOING_TO_FIXTURE, GOING_TO_EXIT, GOING_TO_TOILET, GOING_TO_ENCLOSURE, WAITING_ANIMAL}
 
 ## move_states are processed into actual movement
-var move_states : Array[group_states] = [group_states.WALKING, group_states.GOING_TO_FOOD, group_states.GOING_TO_FIXTURE, group_states.GOING_TO_EXIT, group_states.GOING_TO_TOILET]
+var move_states : Array[group_states] = [group_states.WALKING, group_states.GOING_TO_ENCLOSURE, group_states.GOING_TO_FOOD, group_states.GOING_TO_FIXTURE, group_states.GOING_TO_EXIT, group_states.GOING_TO_TOILET]
 
 ## busy_states can't be overriden by another state
 var busy_states : Array[group_states] = [group_states.GOING_TO_FOOD, group_states.GOING_TO_FIXTURE, group_states.GOING_TO_TOILET]
@@ -25,7 +26,7 @@ var agent : NavigationAgent2D
 var direction : Vector2
 
 var group_desired_destinations = []
-var group_desired_animals = [NameRefs.ANIMAL_SPECIES]
+var group_desired_animals : Array[IdRefs.ANIMAL_SPECIES] = []
 var desired_enclosures_id = []
 
 var first_position_offset := Vector2(0, -5)
@@ -34,8 +35,8 @@ var third_position_offset := Vector2(5, 0)
 
 var position_offsets = [Vector2(0, -7), Vector2(-7, 0), Vector2(7, 0), Vector2(0, 7), Vector2(0, 0)]
 
-var observed_animals : Array[NameRefs.ANIMAL_SPECIES]
-var favorite_animal : NameRefs.ANIMAL_SPECIES
+var observed_animals : Array[IdRefs.ANIMAL_SPECIES]
+var favorite_animal : IdRefs.ANIMAL_SPECIES
 
 var searching_rest_spot : bool = false
 #var moving_towards_fixture : bool = false
@@ -72,7 +73,7 @@ var needs_rest : float = 100:
 		needs_rest = clamp(value,0,100)
 		if value < 35:
 			searching_rest_spot = true
-		if needs_rest < 1:
+		if value < 1:
 			if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_REST_SPOT):
 				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_REST_SPOT)
 
@@ -81,16 +82,16 @@ var needs_hunger : float = 80:
 		needs_hunger = clamp(value,0,100)
 		if value < 35:
 			searching_food_spot = true
-		if needs_hunger < 1:
+		if value < 1:
 			if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_FOOD):
 				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_FOOD)
 			
 var needs_toilet : float = 35:
 	set(value):
-		needs_hunger = clamp(value,0,100)
+		needs_hunger = clamp(value,0,100.0)
 		if value < 35:
 			searching_toilet = true
-		if needs_toilet < 1:
+		if value < 1:
 			if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_TOILET):
 				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_TOILET)
 		
@@ -116,7 +117,7 @@ func _ready() -> void:
 		$Peeps.add_child(peep)
 	
 	if !favorite_animal:
-		favorite_animal = randi_range(0, NameRefs.ANIMAL_SPECIES.size() - 1)
+		favorite_animal = randi_range(0, IdRefs.ANIMAL_SPECIES.size() - 1)
 	
 	speed = randi_range(16, 24)
 	
@@ -137,6 +138,8 @@ func _ready() -> void:
 	
 	$StateTimer.timeout.connect(on_state_timer_timeout)
 	$DecayTimer.timeout.connect(on_decay_timer_timeout)
+	
+	$AnimalWaitTimer.timeout.connect(on_animal_wait_timer_timeout)
 	
 	$VisibleOnScreenNotifier2D.screen_entered.connect(on_visibility_entered)
 	
@@ -171,8 +174,10 @@ func on_agent_waypoint_reached(d):
 	direction = (agent.get_next_path_position() - global_position).normalized()
 	
 func on_agent_target_reached():
-	if group_state == group_states.GOING_TO_FIXTURE:
-		if fixture.type == NameRefs.FIXTURES.BENCH:
+	if group_state == group_states.GOING_TO_ENCLOSURE:
+		change_state(group_states.WAITING_ANIMAL)
+	elif group_state == group_states.GOING_TO_FIXTURE:
+		if fixture.type == IdRefs.FIXTURES.BENCH:
 			change_state(group_states.RESTING)
 	elif group_state == group_states.GOING_TO_FOOD:
 		buy_food()
@@ -185,11 +190,20 @@ func on_agent_target_reached():
 
 func change_state(state):
 	group_state = state
-	if state == group_states.OBSERVING:
+	if state == group_states.GOING_TO_ENCLOSURE:
+		agent.target_position = group_desired_destinations.front().location
+		direction = (agent.get_next_path_position() - global_position).normalized()
+		for peep in peeps:
+			peep.change_state(1)
+	elif state == group_states.OBSERVING:
 		$StateTimer.wait_time = 10
 		$StateTimer.start()
 		for peep in peeps:
 			peep.change_state(state)
+	elif state == group_states.WAITING_ANIMAL:
+		$AnimalWaitTimer.start()
+		for peep in peeps:
+			peep.change_state(0)
 	elif state == group_states.WALKING:
 		agent.target_position = group_desired_destinations.front().location
 		direction = (agent.get_next_path_position() - global_position).normalized()
@@ -246,7 +260,7 @@ func get_new_destination():
 		change_state(group_states.GOING_TO_EXIT)
 		return
 	else:
-		change_state(group_states.WALKING)
+		change_state(group_states.GOING_TO_ENCLOSURE)
 
 
 func move_toward_direction(direction: Vector2, delta: float):
@@ -259,9 +273,13 @@ func on_detector_body_entered(body):
 		if body.animal_species not in observed_animals:
 			observed_animals.append(body.animal_species)
 			change_state(group_states.OBSERVING)
+			$AnimalWaitTimer.stop()
 			for peep in peeps:
 				var dir = global_position.direction_to(body.global_position).angle()
 				peep.look_direction = dir
+				
+			if body.animal_species in group_desired_animals:
+				group_desired_animals.erase(body.animal_species)
 		
 		for destination in group_desired_destinations:
 			if destination.especies == body.animal_res:
@@ -270,28 +288,28 @@ func on_detector_body_entered(body):
 func on_detector_area_entered(area):
 	if group_state in busy_states:
 		return
-	if searching_rest_spot:
+	elif searching_rest_spot:
 		if area.get_parent() is Fixture:
 			fixture = area.get_parent()
 			fixture_available = fixture.get_available()
 			if !fixture_available:
 				change_state(group_states.STOPPED)
 				return
-			if fixture.type == NameRefs.FIXTURES.BENCH:
+			if fixture.type == IdRefs.FIXTURES.BENCH:
 				agent.target_position = fixture.global_position
 				direction = (agent.get_next_path_position() - global_position).normalized()
 				change_state(group_states.GOING_TO_FIXTURE)
 				searching_rest_spot = false
-	if searching_food_spot:
+	elif searching_food_spot:
 		if area.get_parent() is Shop:
 			shop = area.get_parent()
 			if shop in visited_shops:
 				return
 			if searching_food_spot:
-				if NameRefs.PRODUCT_TYPES.FOOD in shop.product_types:
+				if IdRefs.PRODUCT_TYPES.FOOD in shop.product_types:
 					agent.target_position = shop.sell_positions.pick_random()
 					change_state(group_states.GOING_TO_FOOD)
-	if searching_toilet:
+	elif searching_toilet:
 		if area.get_parent() is Toilet:
 			if searching_toilet:
 				agent.target_position = area.get_parent().enter_positions.pick_random()
@@ -312,6 +330,11 @@ func on_decay_timer_timeout():
 	needs_hunger -= hunger_drain_rate
 	needs_toilet -= toilet_drain_rate
 
+func on_animal_wait_timer_timeout():
+	group_desired_destinations.erase(group_desired_destinations.front())
+	
+	change_state(group_states.STOPPED)
+
 func buy_food():
 	change_state(group_states.STOPPED)
 	var available_items = {}
@@ -319,7 +342,7 @@ func buy_food():
 	if !shop:
 		return
 	for item in shop.available_products:
-		if item.type == NameRefs.PRODUCT_TYPES.FOOD:
+		if item.type == IdRefs.PRODUCT_TYPES.FOOD:
 			available_items[item] = item.perceived_value / item.current_cost
 			
 	var best_item = null
@@ -343,10 +366,12 @@ func buy_food():
 		needs_hunger = 100
 		searching_food_spot = false
 		if available_items[best_item] > 1.5:
+			shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
 			modifiers.append(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
 	else:
 		## Ensures peeps won't come back to this shop
 		visited_shops.append(shop)
+		shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.TOO_EXPENSIVE)
 		modifiers.append(ModifierManager.PEEP_MODIFIERS.TOO_EXPENSIVE)
 		#print("No adequately priced items available.")
 		
@@ -356,7 +381,8 @@ func use_toilet():
 	group_state = group_states.USING_TOILET
 	for peep in peeps:
 		peep.visible = false
-	needs_toilet = 100
+	needs_toilet = 100.0
+	searching_toilet = false
 	await get_tree().create_timer(10).timeout
 	for peep in peeps:
 		peep.visible = true
@@ -374,8 +400,16 @@ func initialize_peep_group_destinations():
 				return
 			var enclosure_key = keys.pick_random()
 			keys.erase(enclosure_key)
+			
+			if ZooManager.zoo_enclosures[enclosure_key]['especies'] == null:
+				continue
+
+			## Used for save data
 			desired_enclosures_id.append(enclosure_key)
+			
 			group_desired_destinations.append(ZooManager.zoo_enclosures[enclosure_key])
+			group_desired_animals.append(ZooManager.zoo_enclosures[enclosure_key]['especies'].species)
+			
 			
 	else:
 		## Restore previously generated desired destinations
@@ -388,7 +422,7 @@ func initialize_peep_group_destinations():
 func leave_zoo():
 	if group_desired_destinations.size() == 0 and observed_animals.size() > 2:
 		modifiers.append(ModifierManager.PEEP_MODIFIERS.SEEN_ALL_DESIRED_ANIMALS)
-	if group_desired_destinations.size() > 0:
+	if group_desired_animals.size() > 0:
 		modifiers.append(ModifierManager.PEEP_MODIFIERS.MISSED_ANIMAL)
 	if favorite_animal in observed_animals:
 		modifiers.append(ModifierManager.PEEP_MODIFIERS.SEEN_FAVORITE_ANIMAL)

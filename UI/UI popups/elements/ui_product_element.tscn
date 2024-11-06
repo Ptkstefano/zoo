@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkyq54bpawtoq"]
+
+[ext_resource type="Script" path="res://UI/UI popups/elements/ui_product_element.gd" id="1_vpxgb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1mjrf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f6yke"]
+
+[node name="ProductElement" type="PanelContainer"]
+script = ExtResource("1_vpxgb")
+
+[node name="Element" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Element"]
+layout_mode = 2
+
+[node name="ProductName" type="Label" parent="Element/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 45
+text = "Ice Cream"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Element/HBoxContainer"]
+layout_mode = 2
+
+[node name="Minus" type="Button" parent="Element/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "-"
+
+[node name="VSeparator2" type="VSeparator" parent="Element/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_1mjrf")
+
+[node name="Price" type="Label" parent="Element/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "2.00
+"
+
+[node name="VSeparator" type="VSeparator" parent="Element/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_f6yke")
+
+[node name="Plus" type="Button" parent="Element/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "+"

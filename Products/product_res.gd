@@ -2,8 +2,8 @@ extends Resource
 
 class_name product_resource
 
-@export var name : NameRefs.PRODUCTS
-@export var type : NameRefs.PRODUCT_TYPES
+@export var name : IdRefs.PRODUCTS
+@export var type : IdRefs.PRODUCT_TYPES
 @export var thumb : Texture2D
 
 @export var sell_cost : float

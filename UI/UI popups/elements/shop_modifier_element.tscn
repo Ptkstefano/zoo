@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6fgf62ytu0xe"]
+
+[ext_resource type="Script" path="res://UI/UI popups/UI_shop_modifier_element.gd" id="1_06r8a"]
+
+[node name="ShopModifierElement" type="HBoxContainer"]
+script = ExtResource("1_06r8a")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Abklegbnmruiogvndsuvnds"

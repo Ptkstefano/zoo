@@ -40,9 +40,10 @@ var is_camera_tool_selected : bool = false
 
 var rotate_building : bool = false
 
-enum TOOLS {NONE,PATH,ENCLOSURE,SHELTER,ANIMAL,SCENERY,TERRAIN,BUILDING,BULLDOZER,TREE,VEGETATION,FIXTURE,DECORATION,WATER}
+enum TOOLS {NONE,PATH,ENCLOSURE,SHELTER,ANIMAL,SCENERY,TERRAIN,BUILDING,BULLDOZER,TREE,VEGETATION,FIXTURE,DECORATION,WATER,ENTRANCE}
 var current_tool = TOOLS.NONE
 var free_cam_tools = [TOOLS.NONE, TOOLS.BUILDING]
+var hide_ui_tools = [TOOLS.ENCLOSURE, TOOLS.PATH, TOOLS.TERRAIN]
 var scenery_tools = [TOOLS.TREE, TOOLS.VEGETATION, TOOLS.DECORATION, TOOLS.FIXTURE, TOOLS.WATER]
 var building_placement_tools = [TOOLS.SHELTER, TOOLS.BUILDING]
 
@@ -58,9 +59,10 @@ var previous_touches_distance = 0
 
 var zoom_started : bool = false
 
-
 var cells : Array[Vector2i] = []
 var dir
+
+signal ui_visibility
 
 func _ready() -> void:
 	pass
@@ -135,6 +137,8 @@ func handle_tooling_input(event):
 			
 	if event is InputEventScreenDrag:
 		if is_pressing:
+			if current_tool in hide_ui_tools:
+				SignalBus.ui_visibility.emit(false)
 			if !Helpers.is_valid_cell(touch_start_global_pos) or !Helpers.is_valid_cell(touch_current_global_pos):
 				return
 			if current_tool == TOOLS.PATH:
@@ -157,8 +161,6 @@ func handle_tooling_input(event):
 						water_points.append(touch_current_global_pos)
 						$"../Objects/WaterManager".draw_placeholder(water_points)
 					#print(touch_current_global_pos.distance_to(water_points[water_points.size()-1]))
-					
-					
 
 	if event is InputEventScreenTouch:
 		if event.is_pressed():
@@ -168,6 +170,7 @@ func handle_tooling_input(event):
 				water_starting_point = touch_start_global_pos
 				water_points.append(water_starting_point)
 		if event.is_released():
+			SignalBus.ui_visibility.emit(true)
 			if current_tool in building_placement_tools:
 				building_placed.emit()
 				highlight_building_area()
@@ -213,6 +216,8 @@ func handle_tooling_input(event):
 				else:
 					$"../Objects/WaterManager".clear_placeholder()
 					water_points = []
+			if current_tool == TOOLS.ENTRANCE:
+				$"../EnclosureManager".place_entrance(touch_start_global_pos)
 
 
 func handle_selection(event):

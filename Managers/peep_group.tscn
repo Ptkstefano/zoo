@@ -56,6 +56,10 @@ one_shot = true
 wait_time = 15.0
 autostart = true
 
+[node name="AnimalWaitTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(1.50001, 5.5)
 scale = Vector2(7.65, 8.35)

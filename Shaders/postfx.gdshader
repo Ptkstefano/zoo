@@ -42,4 +42,11 @@ COLOR.rgb += vec3(b);
 
 // color quantization
 COLOR.rgb = round(COLOR.rgb*color_quantization)/color_quantization;
+
+vec4 tex_color = texture(TEXTURE, UV);
+
+	if (COLOR == vec4(0.0, 0.0, 0.0, 1.0)) {
+	    COLOR = vec4(1.0, 1.0, 1.0, tex_color.a); // Set to white if black
+	}
+
 }

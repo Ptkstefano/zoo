@@ -5,7 +5,7 @@ class_name animal_resource
 @export_group("Animal settings")
 
 @export var name : String
-@export var species : NameRefs.ANIMAL_SPECIES
+@export var species : IdRefs.ANIMAL_SPECIES
 @export var texture : Texture2D
 @export var thumb : Texture2D
 

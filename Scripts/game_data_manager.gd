@@ -110,6 +110,14 @@ func remove_enclosure_cells(coordinates):
 				
 	SignalBus.save_game.emit()
 	
+func place_entrance(coordinates):
+	var cell = TileMapRef.local_to_map(coordinates)
+	var enclosure = get_enclosure_by_cell(cell)
+	if !enclosure:
+		return
+	else:
+		enclosure.place_entrance(cell)
+	
 
 func get_enclosure_overlap(cells):
 	var enclosure_cells = enclosure_layer.get_used_cells()

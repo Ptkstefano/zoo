@@ -26,3 +26,9 @@ func update_collision(x):
 		$CollisionSides/S.disabled = false
 	if x == 3:
 		$CollisionSides/E.disabled = false
+
+func make_entrance():
+	$Sprite2D.frame_coords = Vector2($Sprite2D.frame_coords.x + 4, $Sprite2D.frame_coords.y)
+
+func remove_entrance():
+	$Sprite2D.frame_coords = Vector2($Sprite2D.frame_coords.x - 4, $Sprite2D.frame_coords.y)

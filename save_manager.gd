@@ -25,6 +25,9 @@ var fixture_list = []
 var peepManager
 var peepGroupList = []
 
+var buildingManager
+var building_list = []
+
 var waterManager
 var water_list = []
 
@@ -70,6 +73,8 @@ func start_save_manager():
 	fixture_list = fixtureManager.get_children()
 	waterManager = main_node.get_node("Objects").get_node('WaterManager') as WaterManager
 	water_list = waterManager.get_children()
+	buildingManager = main_node.get_node("Objects").get_node('BuildingManager') as BuildingManager
+	building_list = buildingManager.get_children()
 	peepManager = main_node.get_node("Objects").get_node('PeepManager')
 	peepManager.update_peeps_cached_positions()
 	peepGroupList = peepManager.peep_groups
@@ -147,6 +152,12 @@ func save_game():
 	
 	
 	## Save building data - TODO
+	i = 1
+	var building_data = {}
+	for building in building_list:
+		building_data[i] = get_building_data(building)
+		i += 1
+	save_data['buildingData'] = building_data
 	
 	## Save water data
 	i = 1
@@ -224,13 +235,13 @@ func load_game():
 		if data.has('sceneryData'):
 			for key in data["sceneryData"]:
 				var position = Vector2i(data["sceneryData"][key]['x_pos'], data["sceneryData"][key]['y_pos'])
-				if data["sceneryData"][key]['scenery_type'] == NameRefs.SCENERY_TYPES.VEGETATION:
+				if data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.VEGETATION:
 					var res = load(data["sceneryData"][key]['vegetation_res'])
 					sceneryManager.place_vegetation(position, res)
-				elif data["sceneryData"][key]['scenery_type'] == NameRefs.SCENERY_TYPES.TREE:
+				elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.TREE:
 					var res = load(data["sceneryData"][key]['tree_res'])
 					sceneryManager.place_tree(position, res)
-				elif data["sceneryData"][key]['scenery_type'] == NameRefs.SCENERY_TYPES.DECORATION:
+				elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.DECORATION:
 					var res = load(data["sceneryData"][key]['decoration_res'])
 					sceneryManager.place_decoration(position, res)
 					
@@ -247,6 +258,18 @@ func load_game():
 					var vector = Vector2(data["waterData"][key][point]['x_pos'], data["waterData"][key][point]['y_pos'])
 					line_points.append(vector)
 				waterManager.call_deferred('create_water_body', line_points)
+				
+		if data.has('buildingData'):
+			for key in data['buildingData']:
+				# (building_res, pos, rotate, coords)
+				var building_res = load(data['buildingData'][key]['building_res'])
+				var pos = Vector2(data['buildingData'][key]['start_tile']['x_pos'], data['buildingData'][key]['start_tile']['y_pos'])
+				var is_rotated = data['buildingData'][key]['is_rotated']
+				var used_coords = []
+				for entry in data["buildingData"][key]['used_coordinates']:
+					var vector = Vector2(data["buildingData"][key]['used_coordinates'][entry]['x_pos'], data["buildingData"][key]['used_coordinates'][entry]['y_pos'])
+					used_coords.append(vector)
+				buildingManager.build_building(building_res, pos, is_rotated, used_coords)
 				
 		if data.has('peepGroupData'):
 			for key in data["peepGroupData"]:
@@ -329,11 +352,11 @@ func get_scenery_data(scenery):
 	data['scenery_type'] = scenery_type
 	data['x_pos'] = scenery.cached_position.x
 	data['y_pos'] = scenery.cached_position.y
-	if scenery_type == NameRefs.SCENERY_TYPES.VEGETATION:
+	if scenery_type == IdRefs.SCENERY_TYPES.VEGETATION:
 		data['vegetation_res'] = scenery.vegetation_res.get_path()
-	elif scenery_type == NameRefs.SCENERY_TYPES.TREE:
+	elif scenery_type == IdRefs.SCENERY_TYPES.TREE:
 		data['tree_res'] = scenery.tree_res.get_path()
-	elif scenery_type == NameRefs.SCENERY_TYPES.DECORATION:
+	elif scenery_type == IdRefs.SCENERY_TYPES.DECORATION:
 		data['decoration_res'] = scenery.decoration_res.get_path()
 	return data
 
@@ -352,4 +375,22 @@ func get_water_data(water):
 		cell = { 'x_pos': point.x, 'y_pos': point.y }
 		data[i] = cell
 		i += 1
+	return data
+
+func get_building_data(building):
+	var data = {}
+	data['building_type'] = building.building_type
+	data['building_res'] = building.building_res.get_path()
+	data['is_rotated'] = building.is_building_rotated
+	var start_tile = { 'x_pos': building.start_tile.x, 'y_pos': building.start_tile.y }
+	data['start_tile'] = start_tile
+	var used_coordinates = {}
+	var i = 0
+	for coordinate in building.used_coordinates:
+		coordinate = { 'x_pos': coordinate.x, 'y_pos': coordinate.y }
+		used_coordinates[i] = coordinate
+		i += 1
+	data['used_coordinates'] = used_coordinates
+	## TODO - Restore building products and stats
+
 	return data

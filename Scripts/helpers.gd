@@ -22,7 +22,6 @@ func get_current_tile_z_index(global_position):
 	var coordinate = TileMapRef.local_to_map(global_position)
 	return ((coordinate.x + coordinate.y) * 3)
 	
-
 func get_global_pos_of_cell(coordinate):
 	return TileMapRef.map_to_local(coordinate)
 
