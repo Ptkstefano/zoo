@@ -61,22 +61,38 @@ func feed_enclosure():
 	$StateTimer.start()
 	
 func get_enclosure_entrance_destination():
-	var random_enclosure = ZooManager.zoo_enclosures.keys().pick_random()
-	if !random_enclosure:
+	var enclosure_amount = ZooManager.zoo_enclosures.keys().size()
+	if enclosure_amount < 1:
 		change_state(zookeeper_states.STOPPED)
 		return
 		
-	var selected_enclosure = ZooManager.zoo_enclosures[random_enclosure]
+	var i = 0
+	while true:
+		
+		if i > enclosure_amount * 2:
+			change_state(zookeeper_states.STOPPED)
+			break
+			
+		var random_enclosure = ZooManager.zoo_enclosures.keys().pick_random()
+		var selected_enclosure = ZooManager.zoo_enclosures[random_enclosure]
 	
-	if !selected_enclosure.entrance_cell:
-		change_state(zookeeper_states.STOPPED)
-		return
+		if !selected_enclosure.entrance_cell:
+			i += 1
+			continue
 		
-	destination_enclosure = selected_enclosure.node
-	var destination = TileMapRef.map_to_local(selected_enclosure.entrance_cell)
+		if selected_enclosure.node.animal_feed:
+			if selected_enclosure.node.animal_feed.amount > 70:
+				i += 1
+				continue
+		
 
-	destination_updated.emit(destination)
-	change_state(zookeeper_states.GOING_TO_ENCLOSURE)
+		
+		destination_enclosure = selected_enclosure.node
+		var destination = TileMapRef.map_to_local(selected_enclosure.entrance_cell)
+		destination_updated.emit(destination)
+		change_state(zookeeper_states.GOING_TO_ENCLOSURE)
+		return
+
 
 func get_enclosure_exit_destination():
 	var destination = TileMapRef.map_to_local(destination_enclosure.entrance_door_cell)
@@ -84,6 +100,8 @@ func get_enclosure_exit_destination():
 
 
 func enter_enclosure():
+	if !is_instance_valid(destination_enclosure.enclosure_fence_manager.entrance_node):
+		change_state(zookeeper_states.STOPPED)
 	leap_towards.emit(TileMapRef.map_to_local(destination_enclosure.entrance_door_cell), true)
 	destination_enclosure.open_door()
 	await get_tree().create_timer(2).timeout

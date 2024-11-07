@@ -181,16 +181,16 @@ func handle_tooling_input(event):
 				if is_bulldozing:
 					$"../PathManager".remove_path(cells)
 					return
-				if $"../EnclosureManager".get_enclosure_overlap(cells):
+				if $"../Objects/EnclosureManager".get_enclosure_overlap(cells):
 					return
 				$"../PathManager".build_path(cells, selected_res)
 			if current_tool == TOOLS.ENCLOSURE:
 				if is_bulldozing:
-					$"../EnclosureManager".remove_enclosure_cells(cells)
+					$"../Objects/EnclosureManager".remove_enclosure_cells(cells)
 					return
 				if $"../PathManager".get_path_overlap(cells):
 					return
-				$"../EnclosureManager".build_enclosure(cells, selected_res, null)
+				$"../Objects/EnclosureManager".build_enclosure(cells, selected_res, null)
 			if current_tool == TOOLS.TERRAIN:
 				$"../TerrainManager".build_terrain(cells, selected_res)
 			if current_tool == TOOLS.ANIMAL:
@@ -217,7 +217,7 @@ func handle_tooling_input(event):
 					$"../Objects/WaterManager".clear_placeholder()
 					water_points = []
 			if current_tool == TOOLS.ENTRANCE:
-				$"../EnclosureManager".place_entrance(touch_start_global_pos)
+				$"../Objects/EnclosureManager".place_entrance(touch_start_global_pos)
 
 
 func handle_selection(event):
@@ -331,11 +331,11 @@ func highlight_building_area():
 				var new_coordinate = Vector2i(start_tile_pos.x - y, start_tile_pos.y - x)
 				cells.append(new_coordinate)
 	if current_tool == TOOLS.BUILDING:
-		if $"../EnclosureManager".get_enclosure_overlap(cells):
+		if $"../Objects/EnclosureManager".get_enclosure_overlap(cells):
 			$"../TileMap/HighlightLayer".clear_highlight()
 			return
 	if current_tool == TOOLS.SHELTER:
-		if !$"../EnclosureManager".get_enclosure_overlap(cells):
+		if !$"../Objects/EnclosureManager".get_enclosure_overlap(cells):
 			$"../TileMap/HighlightLayer".clear_highlight()
 			return
 	$"../TileMap/HighlightLayer".apply_highlight(cells, false)

@@ -9,9 +9,9 @@ class_name EnclosureFenceManager
 
 var enclosure_tilemap
 
-var enclosure_cells = []
+var enclosure_cells : Array[Vector2i] = []
 
-var fence_cells = []
+var fence_cells : Array[Vector2i] = []
 var enclosure_cells_dict = {}
 
 var fence_instances = {}
@@ -90,12 +90,15 @@ func instantiate_fence_instances():
 		direction_index -= 1
 
 func place_entrance(cell):
+	print(fence_cells)
+	print(cell)
 	if cell not in fence_cells:
 		if Vector2(cell.x, cell.y + 1) in fence_cells:
 			cell = Vector2(cell.x, cell.y + 1)
 		elif Vector2(cell.x - 1, cell.y) in fence_cells:
 			cell = Vector2(cell.x - 1,  cell.y)
 		else:
+			print('fail')
 			return
 		
 	## Continue only if it's not corner cell
@@ -112,8 +115,10 @@ func place_entrance(cell):
 				#print('edge cell')
 				return
 				
-	if entrance_node:
+	if is_instance_valid(entrance_node):
 		entrance_node.remove_entrance()
+		
+	print('bfgfgdf')
 	
 	entrance_node = fence_instances[str(cell.x) + ',' + str(cell.y)]
 	var entrance_cell = entrance_node.make_entrance()
@@ -127,4 +132,5 @@ func place_entrance(cell):
 		return Vector2(cell.x + 1, cell.y)
 	
 func open_door():
-	entrance_node.open_door()
+	if is_instance_valid(entrance_node):
+		entrance_node.open_door()

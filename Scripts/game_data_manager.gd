@@ -6,7 +6,7 @@ class_name EnclosureManager
 @onready var enclosure_menu = %EnclosureSelectionContainer
 @export var ui_enclosure_element : PackedScene
 
-@onready var enclosure_layer = $"../TileMap/EnclosureLayer"
+@onready var enclosure_layer = $"../../TileMap/EnclosureLayer"
 
 var selected_fence
 
@@ -28,7 +28,7 @@ func update_terrain_menu():
 		element.enclosure_res = enclosure_res
 		enclosure_menu.add_child(element)
 		
-	$"../UI".update_ui()
+	$"../../UI".update_ui()
 	
 	selected_fence = available_enclosures[0]
 	

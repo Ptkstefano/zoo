@@ -288,6 +288,24 @@ func on_detector_body_entered(body):
 func on_detector_area_entered(area):
 	if group_state in busy_states:
 		return
+		
+	if area.get_parent() is Animal:
+		var animal = area.get_parent()
+		if animal.animal_species not in observed_animals:
+			observed_animals.append(animal.animal_species)
+			change_state(group_states.OBSERVING)
+			$AnimalWaitTimer.stop()
+			for peep in peeps:
+				var dir = global_position.direction_to(animal.global_position).angle()
+				peep.look_direction = dir
+				
+			if animal.animal_species in group_desired_animals:
+				group_desired_animals.erase(animal.animal_species)
+		
+		for destination in group_desired_destinations:
+			if destination.especies == animal.animal_res:
+				group_desired_destinations.erase(destination)
+		
 	elif searching_rest_spot:
 		if area.get_parent() is Fixture:
 			fixture = area.get_parent()

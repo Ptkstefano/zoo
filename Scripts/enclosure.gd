@@ -6,7 +6,7 @@ class_name Enclosure
 
 var id : int
 
-var enclosure_cells = []
+var enclosure_cells : Array[Vector2i] = []
 
 var enclosure_animals = []
 
@@ -27,8 +27,8 @@ var herd_density : float
 
 var enclosure_central_point : Vector2
 
-var entrance_cell : Vector2
-var entrance_door_cell : Vector2
+var entrance_cell : Vector2i
+var entrance_door_cell : Vector2i
 
 @onready var enclosure_tilemap = $EnclosureTiles
 @onready var enclosure_fence_manager : EnclosureFenceManager = $EnclosureFenceManager
@@ -77,16 +77,21 @@ func add_cells(coordinates, fence_res):
 		if !enclosure_cells.has(coordinate):
 			enclosure_cells.append(coordinate)
 	build_fence()
+	if entrance_door_cell:
+		call_deferred("place_entrance", entrance_door_cell)
 	update_central_point()
 	call_deferred('update_navigation_region')
 	call_deferred("calculate_enclosure_stats")
 	update_enclosure_area()
+
 			
 func remove_cells(coordinates):
 	for coordinate in coordinates:
 		enclosure_tilemap.set_cell(coordinate, -1, Vector2i(-1,-1))
 		if enclosure_cells.has(coordinate):
 			enclosure_cells.erase(coordinate)
+		if entrance_door_cell and enclosure_cells.has(entrance_door_cell):
+			call_deferred("place_entrance", entrance_door_cell)
 			
 	if enclosure_cells.size() == 0:
 		remove_enclosure()

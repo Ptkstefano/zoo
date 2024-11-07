@@ -54,6 +54,7 @@ pointing/emulate_touch_from_mouse=true
 [layer_names]
 
 2d_navigation/layer_1="Peep_layer"
+2d_physics/layer_2="Animal"
 2d_navigation/layer_2="land_animal_layer"
 2d_navigation/layer_3="water_animal_layer"
 2d_physics/layer_5="Observable"

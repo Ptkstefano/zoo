@@ -63,7 +63,7 @@ func start_save_manager():
 		'TerrainWangN': TerrainWangN
 	}
 	
-	enclosureManager = main_node.get_node("EnclosureManager") as EnclosureManager
+	enclosureManager = main_node.get_node("Objects").get_node("EnclosureManager") as EnclosureManager
 	enclosure_list = enclosureManager.get_children()
 	animalManager = main_node.get_node("Objects").get_node('AnimalManager') as AnimalManager
 	animal_list = animalManager.get_children()

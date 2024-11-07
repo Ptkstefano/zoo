@@ -389,11 +389,18 @@ ui_terrain_element = ExtResource("8_qghle")
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="EnclosureManager" type="Node2D" parent="Objects"]
+y_sort_enabled = true
+script = ExtResource("3_3jjmw")
+available_enclosures = Array[ExtResource("20_k6451")]([ExtResource("21_ad55l"), ExtResource("22_kya8w"), ExtResource("28_ldw2x")])
+ui_enclosure_element = ExtResource("54_il7k7")
+enclosure_scene = ExtResource("55_54dhb")
+
 [node name="AnimalManager" type="Node2D" parent="Objects" node_paths=PackedStringArray("enclosure_manager")]
 y_sort_enabled = true
 script = ExtResource("4_xl85y")
 available_animals = Array[ExtResource("5_h2s5g")]([ExtResource("6_k8h6b"), ExtResource("7_4qpb4"), ExtResource("17_2vbol"), ExtResource("22_u5sqr"), ExtResource("26_jd5b2"), ExtResource("26_wm1y2"), ExtResource("28_yg6bb")])
-enclosure_manager = NodePath("../../EnclosureManager")
+enclosure_manager = NodePath("../EnclosureManager")
 animal_scene = ExtResource("2_7ivxh")
 ui_animal_element = ExtResource("21_a35of")
 
@@ -461,12 +468,6 @@ ui_shelter_element = ExtResource("52_30626")
 
 [node name="Staff" parent="Objects/StaffManager" instance=ExtResource("69_ba76w")]
 position = Vector2(-1343, 690)
-
-[node name="EnclosureManager" type="Node2D" parent="."]
-script = ExtResource("3_3jjmw")
-available_enclosures = Array[ExtResource("20_k6451")]([ExtResource("21_ad55l"), ExtResource("22_kya8w"), ExtResource("28_ldw2x")])
-ui_enclosure_element = ExtResource("54_il7k7")
-enclosure_scene = ExtResource("55_54dhb")
 
 [node name="PeepNavigationRegion" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_mw1lm")

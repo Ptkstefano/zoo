@@ -6,7 +6,7 @@ var food_available : bool = true
 
 var amount : float = 100:
 	set(value):
-		amount = clamp(amount, 0, 100)
+		amount = clamp(value, 0, 100)
 		set_sprite()
 
 func eat(value):
@@ -28,4 +28,5 @@ func feed_empty():
 		queue_free()
 
 func fill():
+	print('filling')
 	amount = 100
