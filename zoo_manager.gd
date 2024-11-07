@@ -41,10 +41,10 @@ func _ready() -> void:
 
 
 func add_zoo_enclosure(enclosure : Enclosure):
-	zoo_enclosures[enclosure.id] = {"location": enclosure.enclosure_central_point, "especies": enclosure.enclosure_species}
+	zoo_enclosures[enclosure.id] = {"node": enclosure, "location": enclosure.enclosure_central_point, "especies": enclosure.enclosure_species, "entrance_cell": null}
 	
 func update_zoo_enclosure(enclosure):
-	zoo_enclosures[enclosure.id] = {"location": enclosure.enclosure_central_point, "especies": enclosure.enclosure_species}
+	zoo_enclosures[enclosure.id] = {"node": enclosure, "location": enclosure.enclosure_central_point, "especies": enclosure.enclosure_species, "entrance_cell": enclosure.entrance_cell}
 	if enclosure.enclosure_species:
 		if enclosure.enclosure_species.name not in zoo_animals:
 			zoo_animals[enclosure.enclosure_species.name] = {"rating": enclosure.enclosure_species.animal_rating}
@@ -52,6 +52,7 @@ func update_zoo_enclosure(enclosure):
 	
 func remove_zoo_enclosure(enclosure):
 	zoo_enclosures.erase(enclosure.id)
+	## Remove animal?
 
 func generate_enclosure_id() -> int:
 	next_enclosure_id += 1

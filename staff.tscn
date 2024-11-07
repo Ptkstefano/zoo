@@ -1,15 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2x0h40jh0wj6"]
+[gd_scene load_steps=4 format=3 uid="uid://c2x0h40jh0wj6"]
 
 [ext_resource type="Script" path="res://staff.gd" id="1_mje0d"]
+[ext_resource type="Script" path="res://zookeeper.gd" id="2_ixoj0"]
 [ext_resource type="Texture2D" uid="uid://y58qbt4c1j70" path="res://Staff/peep_staff.png" id="2_pyshd"]
 
 [node name="Staff" type="Node2D"]
 script = ExtResource("1_mje0d")
 
+[node name="Zookeeper" type="Node" parent="."]
+script = ExtResource("2_ixoj0")
+
+[node name="StateTimer" type="Timer" parent="Zookeeper"]
+wait_time = 5.0
+one_shot = true
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0
+target_desired_distance = 2.0
 path_postprocessing = 1
 path_metadata_flags = 0
+debug_enabled = true
 debug_path_custom_point_size = 4.36
 debug_path_custom_line_width = 0.83
 

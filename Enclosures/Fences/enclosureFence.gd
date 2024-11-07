@@ -11,6 +11,7 @@ func _ready() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", Vector2(g_pos.x, g_pos.y), 0.5).set_trans(Tween.TRANS_ELASTIC)
 	await get_tree().create_timer(0.2).timeout
+	z_index = Helpers.get_current_tile_z_index(g_pos)
 	Effects.smoke2(g_pos)
 
 func update_fence_instance(enclosure_res):
@@ -29,6 +30,15 @@ func update_collision(x):
 
 func make_entrance():
 	$Sprite2D.frame_coords = Vector2($Sprite2D.frame_coords.x + 4, $Sprite2D.frame_coords.y)
+	return sprite_x
 
 func remove_entrance():
 	$Sprite2D.frame_coords = Vector2($Sprite2D.frame_coords.x - 4, $Sprite2D.frame_coords.y)
+
+func open_door():
+	if $Sprite2D.frame_coords.x < 4:
+		return
+	else:
+		$Sprite2D.frame_coords.x = $Sprite2D.frame_coords.x + 4
+		await get_tree().create_timer(2.5).timeout
+		$Sprite2D.frame_coords.x = $Sprite2D.frame_coords.x - 4

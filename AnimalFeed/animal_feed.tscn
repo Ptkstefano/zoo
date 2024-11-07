@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvmurmcktg0lh"]
+
+[ext_resource type="Script" path="res://animal_feed.gd" id="1_cnokl"]
+[ext_resource type="Texture2D" uid="uid://xbhjh8lx4squ" path="res://AnimalFeed/animal_feed.png" id="2_vprf6"]
+
+[node name="AnimalFeed" type="Node2D"]
+script = ExtResource("1_cnokl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_vprf6")
+hframes = 3

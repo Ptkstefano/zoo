@@ -113,9 +113,15 @@ func remove_enclosure_cells(coordinates):
 func place_entrance(coordinates):
 	var cell = TileMapRef.local_to_map(coordinates)
 	var enclosure = get_enclosure_by_cell(cell)
+	## Try for adjacent cells in case player doesn't tap precisely
 	if !enclosure:
-		return
-	else:
+		for adjancent_cell in Helpers.get_adjacent(cell):
+			cell = adjancent_cell
+			enclosure = get_enclosure_by_cell(adjancent_cell)
+			if enclosure:
+				break
+				
+	if enclosure:
 		enclosure.place_entrance(cell)
 	
 

@@ -9,7 +9,7 @@ var run_speed : float
 
 var speed
 
-enum ANIMAL_STATES {IDLE, MOVING_TOWARDS, EATING, RUNNING, RESTING}
+enum ANIMAL_STATES {IDLE, MOVING_TOWARDS, MOVING_TOWARDS_FOOD, EATING, RUNNING, RESTING}
 var current_state = ANIMAL_STATES.IDLE
 var next_state = null
 
@@ -97,15 +97,11 @@ func initialize_animal(res, coordinate, found_enclosure):
 func _physics_process(delta: float) -> void:
 	z_index = Helpers.get_current_tile_z_index(global_position)
 	play_animation()
-	if current_state == ANIMAL_STATES.EATING:
-		needs_hunger += hunger_restore_rate
-		if needs_hunger > 90:
-			on_state_timer_timeout()
-	elif current_state == ANIMAL_STATES.RESTING:
+	if current_state == ANIMAL_STATES.RESTING:
 		needs_rest += rest_restore_rate
 		if needs_rest > 90:
 			on_state_timer_timeout()
-	elif current_state == ANIMAL_STATES.RUNNING or current_state == ANIMAL_STATES.MOVING_TOWARDS:
+	elif current_state == ANIMAL_STATES.RUNNING or current_state == ANIMAL_STATES.MOVING_TOWARDS or current_state == ANIMAL_STATES.MOVING_TOWARDS_FOOD:
 		if $SwimRaycast.is_colliding():
 			if !is_swimming:
 				on_swim_start(null)
@@ -125,6 +121,8 @@ func _physics_process(delta: float) -> void:
 		if agent.is_navigation_finished():
 			if current_state == ANIMAL_STATES.RUNNING:
 				agent.target_position=get_new_destination()
+			if current_state == ANIMAL_STATES.MOVING_TOWARDS_FOOD:
+				change_state('eat')
 			if current_state == ANIMAL_STATES.MOVING_TOWARDS:
 				if !next_state:
 					change_state('idle')
@@ -142,8 +140,10 @@ func get_new_destination():
 func on_state_timer_timeout():
 	## Check for what animal wants to do, according to priorities.
 	if needs_hunger < 50:
-		change_state('eat')
-	elif needs_rest < 30:
+		if enclosure.animal_feed:
+			change_state('search_food')
+			return
+	if needs_rest < 30:
 		change_state('rest')
 	elif needs_play < 75:
 		change_state('play')
@@ -157,7 +157,11 @@ func change_state(state):
 		agent.target_position=get_new_destination()
 		$StateTimer.start()
 		return
+	if state == 'search_food':
+		search_for_feed()
+		current_state = ANIMAL_STATES.EATING
 	if state == 'eat':
+		eat()
 		current_state = ANIMAL_STATES.EATING
 	if state == 'play':
 		current_state = ANIMAL_STATES.RUNNING
@@ -190,6 +194,18 @@ func remove_animal():
 func on_swim_start(area):
 	is_swimming = true
 	
+func search_for_feed():
+	if enclosure.animal_feed:
+		agent.target_position = enclosure.animal_feed.global_position
+	else:
+		change_state('idle')
+	
+func eat():
+	if enclosure.animal_feed:
+		enclosure.animal_feed.eat(10)
+		needs_hunger = 100
+		$StateTimer.start()
+		
 func on_swim_stop(area):
 	if is_swimming:
 		is_swimming = false

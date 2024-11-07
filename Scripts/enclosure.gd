@@ -14,6 +14,10 @@ var enclosure_species : animal_resource
 
 var fence_res : fence_resource
 
+var animal_feed_scene : PackedScene = preload("res://AnimalFeed/animal_feed.tscn")
+var animal_feed : AnimalFeed = null
+var feed_position : Vector2
+
 var vegetation_coverage : float
 var water_availability : bool
 var terrain_coverage : Dictionary
@@ -24,6 +28,7 @@ var herd_density : float
 var enclosure_central_point : Vector2
 
 var entrance_cell : Vector2
+var entrance_door_cell : Vector2
 
 @onready var enclosure_tilemap = $EnclosureTiles
 @onready var enclosure_fence_manager : EnclosureFenceManager = $EnclosureFenceManager
@@ -96,7 +101,14 @@ func remove_cells(coordinates):
 	update_enclosure_area()
 	
 func place_entrance(cell):
-	$EnclosureFenceManager.place_entrance(cell)
+	var new_entrance = $EnclosureFenceManager.place_entrance(cell)
+	if new_entrance:
+		entrance_cell = new_entrance
+		entrance_door_cell = cell
+		
+	#feed_position = TileMapRef.map_to_local(Vector2(entrance_door_cell.x, entrance_door_cell.y + 1))
+	ZooManager.update_zoo_enclosure(self)
+	
 	
 func detect_continuity():
 	## Figures out if current enclosure was broken into multiple enclosures and instantiates newly created enclosures as siblings
@@ -203,6 +215,7 @@ func update_central_point():
 
 	enclosure_central_point = Helpers.get_global_pos_of_cell(central_point)
 	
+	
 func update_navigation_region():
 	if GameManager.game_running:
 		$LandRegion.bake_navigation_polygon()
@@ -266,3 +279,15 @@ func get_neighbors(cell: Vector2i) -> Array:
 	neighbors.append(cell + Vector2i(-1, -1)) # Top-Left
 
 	return neighbors
+
+func open_door():
+	$EnclosureFenceManager.open_door()
+
+func add_animal_feed():
+	if !animal_feed:
+		animal_feed = animal_feed_scene.instantiate()
+		var random_position = TileMapRef.map_to_local(enclosure_cells.pick_random())
+		animal_feed.global_position = random_position
+		add_child(animal_feed)
+	else:
+		animal_feed.fill()

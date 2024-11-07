@@ -91,7 +91,12 @@ func instantiate_fence_instances():
 
 func place_entrance(cell):
 	if cell not in fence_cells:
-		return
+		if Vector2(cell.x, cell.y + 1) in fence_cells:
+			cell = Vector2(cell.x, cell.y + 1)
+		elif Vector2(cell.x - 1, cell.y) in fence_cells:
+			cell = Vector2(cell.x - 1,  cell.y)
+		else:
+			return
 		
 	## Continue only if it's not corner cell
 	var is_neighbor = []
@@ -111,18 +116,15 @@ func place_entrance(cell):
 		entrance_node.remove_entrance()
 	
 	entrance_node = fence_instances[str(cell.x) + ',' + str(cell.y)]
-	entrance_node.make_entrance()
+	var entrance_cell = entrance_node.make_entrance()
+	if entrance_cell == 0:
+		return Vector2(cell.x, cell.y - 1)
+	if entrance_cell == 1:
+		return Vector2(cell.x - 1, cell.y)
+	if entrance_cell == 2:
+		return Vector2(cell.x, cell.y + 1)
+	if entrance_cell == 3:
+		return Vector2(cell.x + 1, cell.y)
 	
-	## Removes previous entrance
-	#for child in get_children():
-		#if child is TileMapLayer:
-			#for used_cell in child.get_used_cells():
-				#if used_cell == cell:
-					#child.set_cell(used_cell, 0, Vector2i(1,0))
-				#else:
-					#child.set_cell(used_cell, 0, Vector2i(0,0))
-				
-	#for enclosure_layer in get_children():
-		#if enclosure_layer is TileMapLayer:
-			#if enclosure_layer.get_cell_atlas_coords(cell) != Vector2i(-1,-1):
-				#enclosure_layer.set_cell()
+func open_door():
+	entrance_node.open_door()
