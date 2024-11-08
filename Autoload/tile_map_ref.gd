@@ -28,5 +28,5 @@ func update_enclosures(cells):
 
 func get_enclosure_by_cell(cell):
 	var main_node = get_tree().root.get_node("Main")
-	var enclosure_manager = main_node.get_node("EnclosureManager")
+	var enclosure_manager = main_node.get_node("Objects").get_node("EnclosureManager")
 	return enclosure_manager.get_enclosure_by_cell(cell)

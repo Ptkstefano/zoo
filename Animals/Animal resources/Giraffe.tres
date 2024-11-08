@@ -10,6 +10,7 @@ name = "Kardofan Giraffe"
 species = 2
 texture = ExtResource("2_t6epv")
 thumb = ExtResource("3_laca4")
+feed = 1
 shadow_scale = 1.8
 sprite_y_offset = 4
 animation_speed_scale = 0.5

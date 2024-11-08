@@ -8,6 +8,7 @@ class_name animal_resource
 @export var species : IdRefs.ANIMAL_SPECIES
 @export var texture : Texture2D
 @export var thumb : Texture2D
+@export var feed : IdRefs.FEED_TYPES
 
 @export var shadow_scale : float = 1
 @export var sprite_y_offset : int = 0

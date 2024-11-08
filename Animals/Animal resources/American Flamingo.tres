@@ -8,6 +8,7 @@ script = ExtResource("1_5v5j4")
 name = "American Flamingo"
 species = 1
 texture = ExtResource("2_exngk")
+feed = 1
 shadow_scale = 1.0
 sprite_y_offset = 0
 animation_speed_scale = 0.5

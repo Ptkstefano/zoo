@@ -322,6 +322,8 @@ func get_enclosure_data(enclosure):
 	
 func get_animal_data(animal):
 	var data = {}
+	if !is_instance_valid(animal):
+		return
 	data['x_pos'] = animal.cached_global_position.x
 	data['y_pos'] = animal.cached_global_position.y
 	data['animal_res'] = animal.animal_res.get_path()

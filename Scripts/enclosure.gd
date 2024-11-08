@@ -120,25 +120,28 @@ func detect_continuity():
 	if enclosure_cells.size() == 0:
 		return
 	var iterated_coordinates = []
-	var existing_enclosures = []
+	var existing_enclosures = {}
 	var n_enclosures = 0
 	
+	var i = 0
 	while(iterated_coordinates.size() != enclosure_cells.size()):
 		var starting_cell = find_first_coordinate_not_matching(iterated_coordinates)
 		n_enclosures += 1
-		var current_enclosure = []
+		var current_enclosure_cells : Array[Vector2i] = []
 		for coordinate in get_isolated_enclosure(enclosure_cells[starting_cell]):
 			if !iterated_coordinates.has(coordinate):
-				current_enclosure.append(coordinate)
-				iterated_coordinates.append(coordinate)
-		existing_enclosures.append(current_enclosure)
+				current_enclosure_cells.append(Vector2i(coordinate.x, coordinate.y))
+				iterated_coordinates.append(Vector2i(coordinate.x, coordinate.y))
+		existing_enclosures[i] = current_enclosure_cells
+		i += 1
 	
-	if existing_enclosures.size() > 1:
+	if existing_enclosures.keys().size() > 1:
 		enclosure_cells = existing_enclosures[0]
-		for i in existing_enclosures.size():
-			if i == 0:
+		for key in existing_enclosures.keys():
+			if key == 0:
 				continue
-			create_sibling(existing_enclosures[i])
+			else:
+				create_sibling(existing_enclosures[key])
 		
 func get_isolated_enclosure(starting_coordinate):
 	var current_iterated_coordinates = [starting_coordinate]
@@ -289,10 +292,18 @@ func open_door():
 	$EnclosureFenceManager.open_door()
 
 func add_animal_feed():
+	## TODO - Spawn feed in a specific cell
+	var feed_x = 0
+	if enclosure_animals.is_empty():
+		return
+	else:
+		feed_x = enclosure_animals[0].animal_res.feed
 	if !animal_feed:
 		animal_feed = animal_feed_scene.instantiate()
+		animal_feed.base_x = feed_x * 3
 		var random_position = TileMapRef.map_to_local(enclosure_cells.pick_random())
 		animal_feed.global_position = random_position
+		feed_position = random_position
 		add_child(animal_feed)
 	else:
 		animal_feed.fill()
