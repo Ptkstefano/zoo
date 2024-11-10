@@ -8,6 +8,7 @@ script = ExtResource("1_mcgls")
 name = "Jaguar"
 species = 9
 texture = ExtResource("2_nla5u")
+feed = 0
 shadow_scale = 1.0
 sprite_y_offset = 4
 animation_speed_scale = 1.0

@@ -141,17 +141,17 @@ func _ready() -> void:
 	
 	$AnimalWaitTimer.timeout.connect(on_animal_wait_timer_timeout)
 	
-	$VisibleOnScreenNotifier2D.screen_entered.connect(on_visibility_entered)
+	#$VisibleOnScreenNotifier2D.screen_entered.connect(on_visibility_entered)
 	
 	initialize_peep_group_destinations()
 	get_new_destination()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if !screenNotifier.is_on_screen():
-		for peep in peeps:
-			peep.visible = false
-		return
+	#if !screenNotifier.is_on_screen():
+		#for peep in peeps:
+			#peep.visible = false
+		#return
 		
 	#$Label.text = str(group_state)
 	if group_state in move_states:
@@ -340,8 +340,11 @@ func on_state_timer_timeout():
 	if group_state == group_states.STOPPED:
 		get_new_destination()
 	if group_state == group_states.RESTING:
-		fixture.make_available(fixture_available)
-		get_new_destination()
+		if is_instance_valid(fixture):
+			fixture.make_available(fixture_available)
+			get_new_destination()
+		else:
+			get_new_destination()
 
 func on_decay_timer_timeout():
 	needs_rest -= rest_drain_rate

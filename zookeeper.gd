@@ -56,7 +56,6 @@ func destination_reached():
 		get_new_task()
 
 func feed_enclosure():
-	print('adding feed')
 	destination_enclosure.add_animal_feed()
 	$StateTimer.start()
 	
@@ -80,7 +79,7 @@ func get_enclosure_entrance_destination():
 			i += 1
 			continue
 		
-		if selected_enclosure.node.animal_feed:
+		if is_instance_valid(selected_enclosure.node.animal_feed):
 			if selected_enclosure.node.animal_feed.amount > 70:
 				i += 1
 				continue
@@ -95,9 +94,12 @@ func get_enclosure_entrance_destination():
 
 
 func get_enclosure_exit_destination():
+	if !is_instance_valid(destination_enclosure):
+		change_state(zookeeper_states.STOPPED)
+		return
 	var destination = TileMapRef.map_to_local(destination_enclosure.entrance_door_cell)
 	destination_updated.emit(destination)
-
+		
 
 func enter_enclosure():
 	if !is_instance_valid(destination_enclosure.enclosure_fence_manager.entrance_node):

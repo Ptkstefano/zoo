@@ -2,7 +2,7 @@ extends Node2D
 
 class_name AnimalManager
 
-@export var available_animals : Array[animal_resource]
+var available_animals : Array[animal_resource]
 
 @export var enclosure_manager : EnclosureManager
 @export var animal_scene : PackedScene
@@ -13,6 +13,9 @@ var animal_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	## TODO - Generate list according to unlocks
+	for key in ContentManager.animals.keys():
+		available_animals.append(ContentManager.animals[key])
 	update_animal_menu()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,7 +39,10 @@ func spawn_animal(coordinate, animal_res, stats):
 	var cell = TileMapRef.local_to_map(coordinate)
 	var found_enclosure = enclosure_manager.get_enclosure_by_cell(cell)
 	if !found_enclosure:
-		print('enclosure_not_found')
+		SignalBus.tooltip.emit('Animal requires enclosure')
+		return
+	if !found_enclosure.entrance_door_cell:
+		SignalBus.tooltip.emit('Enclosure requires entrance')
 		return
 		
 	if found_enclosure.enclosure_species != null:

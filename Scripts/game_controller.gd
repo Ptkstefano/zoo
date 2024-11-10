@@ -29,8 +29,7 @@ var peep_count = 0:
 func _ready() -> void:
 	SignalBus.game_started.emit()
 	base_peep_spawn_timer = %PeepSpawnTimer.wait_time
-	%DebugSpawnPeeps.button_down.connect(start_spawn_peeps)
-	%DebugSpawnPeeps.button_up.connect(stop_spawn_peeps)
+	%DebugSpawnPeeps.button_down.connect(spawn_peep_group)
 	%DebugRemovePeeps.pressed.connect(remove_peeps)
 
 
@@ -46,12 +45,8 @@ func _process(delta: float) -> void:
 	draw_label.text = ("Draw calls: "+str(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)))
 	reputation_label.text = ("Reputation: "+str(ZooManager.reputation))
 
-func start_spawn_peeps():
-	%PeepSpawnTimer.wait_time = 0.01
-	%PeepSpawnTimer.start()
-
-func stop_spawn_peeps():
-	%PeepSpawnTimer.wait_time = base_peep_spawn_timer
+func spawn_peep_group():
+	$"../Objects/PeepManager".instantiate_peep_group(null)
 	
 func remove_peeps():
 	$"../Objects/PeepManager".debug_clear_peeps()

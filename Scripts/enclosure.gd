@@ -73,9 +73,9 @@ func add_cells(coordinates, fence_res):
 	if fence_res:
 		fence_res = fence_res
 	for coordinate in coordinates:
-		enclosure_tilemap.set_cell(coordinate, 0, Vector2i(0, 0))
 		if !enclosure_cells.has(coordinate):
 			enclosure_cells.append(coordinate)
+	set_enclosure_tilemap_cells()
 	build_fence()
 	if entrance_door_cell:
 		call_deferred("place_entrance", entrance_door_cell)
@@ -98,6 +98,7 @@ func remove_cells(coordinates):
 		return
 	
 	detect_continuity()
+	set_enclosure_tilemap_cells()
 	build_fence()
 	redistribute_animals()
 	update_central_point()
@@ -226,8 +227,8 @@ func update_central_point():
 	
 func update_navigation_region():
 	if GameManager.game_running:
-		$LandRegion.bake_navigation_polygon()
-		$WaterRegion.bake_navigation_polygon()
+		$LandRegion.call_deferred('bake_navigation_polygon')
+		$WaterRegion.call_deferred('bake_navigation_polygon')
 	
 func update_enclosure_area():
 	var coordinates = []
@@ -307,3 +308,10 @@ func add_animal_feed():
 		add_child(animal_feed)
 	else:
 		animal_feed.fill()
+
+func set_enclosure_tilemap_cells():
+	for cell in enclosure_tilemap.get_used_cells():
+		enclosure_tilemap.set_cell(cell, -1, Vector2(-1, -1))
+	for coordinate in enclosure_cells:
+		enclosure_tilemap.set_cell(coordinate, 1, Vector2i(1, 1))
+		

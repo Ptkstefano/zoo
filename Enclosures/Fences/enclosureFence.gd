@@ -16,17 +16,7 @@ func _ready() -> void:
 
 func update_fence_instance(enclosure_res):
 	$Sprite2D.frame_coords = Vector2(sprite_x, enclosure_res.atlas_y)
-	update_collision(sprite_x)
 
-func update_collision(x):
-	if x == 0:
-		$CollisionSides/N.disabled = false
-	if x == 1:
-		$CollisionSides/W.disabled = false
-	if x == 2:
-		$CollisionSides/S.disabled = false
-	if x == 3:
-		$CollisionSides/E.disabled = false
 
 func make_entrance():
 	$Sprite2D.frame_coords = Vector2($Sprite2D.frame_coords.x + 4, $Sprite2D.frame_coords.y)

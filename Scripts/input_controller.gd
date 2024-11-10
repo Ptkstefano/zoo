@@ -261,6 +261,12 @@ func debug_keyboard_input(event):
 				is_camera_tool_selected = true
 			elif event.is_released():
 				is_camera_tool_selected = false
+				
+		if event.keycode == KEY_APOSTROPHE:
+			if event.is_pressed():
+				Engine.time_scale = 8
+			elif event.is_released():
+				Engine.time_scale = 1
 
 func highlight_path():
 	var tile_map_layer = $"../TileMap/TerrainLayer" as TileMapLayer

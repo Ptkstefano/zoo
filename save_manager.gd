@@ -37,6 +37,7 @@ var thread : Thread
 
 func _ready() -> void:
 	SignalBus.save_game.connect(thread_save_game)
+	SignalBus.save_new_scenery.connect(save_new_scenery)
 	thread = Thread.new()
 	#SignalBus.game_started.connect(load_game)
 
@@ -396,3 +397,29 @@ func get_building_data(building):
 	## TODO - Restore building products and stats
 
 	return data
+
+	
+func save_new_scenery(scenery):
+	if(FileAccess.get_open_error() != OK):
+		return
+	var saveFile = FileAccess.open("user://save_game.json", FileAccess.READ_WRITE)
+	
+	var save_content = saveFile.get_as_text()
+
+	
+	var save_data = JSON.parse_string(save_content)
+	saveFile.close()
+	if save_data.has('sceneryData'):
+		var last_key = save_data['sceneryData'].size()
+		save_data['sceneryData'][last_key + 1] = get_scenery_data(scenery)
+	
+	var json_data = JSON.stringify(save_data)
+	
+	if json_data.is_empty():
+		print('save failed')
+		return
+		
+	saveFile.store_string(json_data)
+	saveFile.close()
+	print('saved scenery')
+	

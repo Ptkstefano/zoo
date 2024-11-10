@@ -22,7 +22,7 @@ func get_water_availability(cells):
 
 func update_enclosures(cells):
 	var main_node = get_tree().root.get_node("Main")
-	var enclosure_manager = main_node.get_node("EnclosureManager")
+	var enclosure_manager = main_node.get_node("Objects").get_node("EnclosureManager")
 	for enclosure in enclosure_manager.get_existing_enclosures(cells):
 		enclosure.call_deferred("calculate_enclosure_stats")
 

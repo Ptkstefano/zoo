@@ -22,6 +22,10 @@ var fence_res
 
 var entrance_node : Node2D
 
+var E_fence_cells = []
+var S_fence_cells = []
+var W_fence_cells = []
+var N_fence_cells = []
 
 func _ready() -> void:
 	$E.visible = false
@@ -32,6 +36,11 @@ func _ready() -> void:
 
 func build_enclosure_fence():
 	## Sets cells in the invisible tilemaps
+	E_fence_cells = []
+	S_fence_cells = []
+	W_fence_cells = []
+	N_fence_cells = []
+	
 	for coordinate in enclosure_cells:
 		var east_cell = Vector2i(coordinate.x + 1, coordinate.y)
 		var south_cell = Vector2i(coordinate.x, coordinate.y + 1)
@@ -41,18 +50,40 @@ func build_enclosure_fence():
 		## Figures out which cells are bordered by out-of-bounds cells
 		if enclosure_tilemap.get_cell_atlas_coords(east_cell) == Vector2i(-1,-1):
 			enclosure_layer_E.set_cell(coordinate, 0, Vector2i(0,0))
+			enclosure_tilemap.set_cell(coordinate, 1, Vector2i(2,1))
+			E_fence_cells.append(coordinate)
 			fence_cells.append(coordinate)
 		if enclosure_tilemap.get_cell_atlas_coords(north_cell) == Vector2i(-1,-1):
 			enclosure_layer_N.set_cell(coordinate, 0, Vector2i(0,0))
+			enclosure_tilemap.set_cell(coordinate, 1, Vector2i(1,0))
+			N_fence_cells.append(coordinate)
 			fence_cells.append(coordinate)
 		if enclosure_tilemap.get_cell_atlas_coords(west_cell) == Vector2i(-1,-1):
 			enclosure_layer_W.set_cell(coordinate, 0, Vector2i(0,0))
+			enclosure_tilemap.set_cell(coordinate, 1, Vector2i(0,1))
+			W_fence_cells.append(coordinate)
 			fence_cells.append(coordinate)
 		if enclosure_tilemap.get_cell_atlas_coords(south_cell) == Vector2i(-1,-1):
 			enclosure_layer_S.set_cell(coordinate, 0, Vector2i(0,0))
+			enclosure_tilemap.set_cell(coordinate, 1, Vector2i(1,2))
+			S_fence_cells.append(coordinate)
 			fence_cells.append(coordinate)
 			
-		## PROBLEMA
+	## Set edge cells on nav_tilemap
+	for cell in E_fence_cells:
+		if cell in N_fence_cells:
+			enclosure_tilemap.set_cell(cell, 1, Vector2i(2,0))
+		if cell in S_fence_cells:
+			enclosure_tilemap.set_cell(cell, 1, Vector2i(2,2))
+			
+	for cell in W_fence_cells:
+		if cell in N_fence_cells:
+			enclosure_tilemap.set_cell(cell, 1, Vector2i(0,0))
+		if cell in S_fence_cells:
+			enclosure_tilemap.set_cell(cell, 1, Vector2i(0,2))
+			
+	#for cell in
+
 	instantiate_fence_instances()
 			
 

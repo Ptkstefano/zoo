@@ -30,6 +30,9 @@ func _process(delta: float) -> void:
 	if is_moving:
 		move_toward_direction(direction, delta)
 		
+		if !agent.is_target_reachable():
+			print('unreacheable')
+		
 		if agent.is_navigation_finished():
 			on_agent_target_reached()
 			
@@ -72,7 +75,7 @@ func on_leap_towards(final_pos, entering_enclosure):
 		$NavigationAgent2D.set_navigation_layer_value(1, false)
 		$NavigationAgent2D.set_navigation_layer_value(2, true)
 		sprite_x = 0
-	else:		
+	else:
 		var tween = get_tree().create_tween()
 		sprite_x = 2
 		direction = global_position.direction_to(final_pos)

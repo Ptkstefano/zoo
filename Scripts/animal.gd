@@ -104,6 +104,8 @@ func initialize_animal(res, coordinate, found_enclosure):
 	enclosure = found_enclosure
 
 func _physics_process(delta: float) -> void:
+	#$Label.text = str(current_state)
+	
 	if screenNotifier.is_on_screen():
 		z_index = Helpers.get_current_tile_z_index(global_position)
 		animal_sprite.frame_coords = Vector2(sprite_x + frame, sprite_y)
@@ -147,7 +149,7 @@ func on_state_timer_timeout():
 	## Check for what animal wants to do, according to priorities.
 	$StateTimer.start()
 	if needs_hunger < 50:
-		if enclosure.animal_feed:
+		if is_instance_valid(enclosure.animal_feed):
 			change_state(ANIMAL_STATES.MOVING_TOWARDS_FOOD)
 			return
 	if needs_rest < 30:
@@ -163,6 +165,7 @@ func change_state(state : ANIMAL_STATES):
 	$DecayTimer.start()
 	if state == ANIMAL_STATES.WANDER:
 		$StateTimer.start()
+		agent.target_position = get_new_destination()
 		sprite_x = 2
 	elif state == ANIMAL_STATES.SWIMMING:
 		on_swim_start()
@@ -178,10 +181,9 @@ func change_state(state : ANIMAL_STATES):
 		$StateTimer.stop()
 		sprite_x = 4
 	elif state == ANIMAL_STATES.RESTING:
-		rest()
 		$StateTimer.stop()
-		sprite_x = 6
 		$DecayTimer.stop()
+		sprite_x = 6
 	elif state == ANIMAL_STATES.RUNNING:
 		speed = run_speed
 		$StateTimer.stop()
@@ -228,7 +230,7 @@ func on_swim_start():
 	is_swimming = true
 	
 func search_for_feed():
-	if enclosure.animal_feed:
+	if is_instance_valid(enclosure.animal_feed):
 		agent.target_position = enclosure.animal_feed.global_position
 	else:
 		change_state(ANIMAL_STATES.IDLE)
@@ -247,8 +249,6 @@ func eat():
 		enclosure.animal_feed.eat(10)
 		$StateTimer.start()
 		
-func rest():
-	return
 		
 func on_swim_stop():
 	change_state(ANIMAL_STATES.IDLE)

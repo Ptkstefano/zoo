@@ -33,5 +33,4 @@ func feed_empty():
 		queue_free()
 
 func fill():
-	print('filling')
 	amount = 100

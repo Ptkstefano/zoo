@@ -24,10 +24,11 @@ IdRefs="*res://Autoload/id_refs.gd"
 SignalBus="*res://Autoload/signal_bus.gd"
 Effects="*res://Autoload/effects.gd"
 AudioManager="*res://Autoload/audio_manager.tscn"
-ZooManager="*res://zoo_manager.gd"
+ZooManager="*res://Autoload/zoo_manager.gd"
 SaveManager="*res://Autoload/save_manager.tscn"
 ModifierManager="*res://modifier_manager.gd"
-DataManager="*res://data_manager.gd"
+DataManager="*res://Autoload/data_manager.gd"
+ContentManager="*res://Autoload/content_manager.gd"
 
 [display]
 
@@ -37,6 +38,7 @@ window/size/always_on_top=true
 window/stretch/aspect="expand"
 window/stretch/scale=1.2
 window/stretch/scale_mode="integer"
+window/handheld/orientation=6
 
 [dotnet]
 

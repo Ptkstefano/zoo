@@ -38,8 +38,15 @@ func on_peep_spawn_timeout():
 		
 	instantiate_peep_group(null)
 	
-	var ratio = ZooManager.zoo_attractiveness / peep_count
-	%PeepSpawnTimer.wait_time = base_spawn_time / ratio
+	var spawn_ratio
+	if peep_count == 0: 
+		spawn_ratio = ZooManager.zoo_attractiveness
+	else:
+		spawn_ratio = ZooManager.zoo_attractiveness / peep_count
+		
+	spawn_ratio = clamp(spawn_ratio, 0.1, 10)
+		
+	%PeepSpawnTimer.wait_time = base_spawn_time / spawn_ratio
 	
 	
 func on_peep_group_left(group, rating):
@@ -74,7 +81,8 @@ func generate_peep_destination():
 	return path_manager.generate_peep_destination()
 	
 func debug_clear_peeps():
-	for peep in get_children():
-		if peep is not Timer:
-			peep.queue_free()
-			peep_count -= 1
+	for peep_group in get_children():
+		if peep_group is PeepGroup:
+			peep_count -= peep_group.peep_count
+			peep_group.queue_free()
+			

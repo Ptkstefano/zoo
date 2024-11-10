@@ -1,33 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7x3g6837s0x8"]
+[gd_scene load_steps=3 format=3 uid="uid://c7x3g6837s0x8"]
 
 [ext_resource type="Script" path="res://Enclosures/Fences/enclosureFence.gd" id="1_fnwc4"]
-[ext_resource type="Texture2D" uid="uid://boftg0lq7xdqp" path="res://Sprites/terrain_sheet.png" id="3_jltj5"]
 [ext_resource type="Texture2D" uid="uid://48gmb1u25t2f" path="res://Enclosures/Fences/fence_sheet.png" id="3_p5py8"]
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_uu5tt"]
-a = Vector2(32, 0)
-b = Vector2(0, 16)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_ohxp0"]
-a = Vector2(-32, 0)
-b = Vector2(0, 16)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_ayinj"]
-a = Vector2(-32, 0)
-b = Vector2(0, -16)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_svdy0"]
-a = Vector2(32, 0)
-b = Vector2(0, -16)
 
 [node name="Fence" type="Node2D"]
 script = ExtResource("1_fnwc4")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-visible = false
-texture_filter = 1
-texture = ExtResource("3_jltj5")
-hframes = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -35,22 +12,4 @@ position = Vector2(0, -13)
 texture = ExtResource("3_p5py8")
 hframes = 12
 vframes = 3
-frame = 27
-
-[node name="CollisionSides" type="StaticBody2D" parent="."]
-
-[node name="E" type="CollisionShape2D" parent="CollisionSides"]
-shape = SubResource("SegmentShape2D_uu5tt")
-disabled = true
-
-[node name="S" type="CollisionShape2D" parent="CollisionSides"]
-shape = SubResource("SegmentShape2D_ohxp0")
-disabled = true
-
-[node name="W" type="CollisionShape2D" parent="CollisionSides"]
-shape = SubResource("SegmentShape2D_ayinj")
-disabled = true
-
-[node name="N" type="CollisionShape2D" parent="CollisionSides"]
-shape = SubResource("SegmentShape2D_svdy0")
-disabled = true
+frame = 34
