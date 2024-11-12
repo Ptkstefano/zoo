@@ -16,6 +16,7 @@ var building_path_coordinates = []
 func _ready() -> void:
 	path_coordinates = path_layer.get_used_cells()
 	update_path_menu()
+	SignalBus.load_paths.connect(on_load_paths)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,7 +35,7 @@ func update_path_menu():
 	$"../UI".update_ui()
 	
 
-func build_path(coordinates, path_res):
+func build_path(coordinates, atlas_y : int):
 	## Builds a straight path and lists neighbor paths
 	var all_neighbors = []
 	for coordinate in coordinates:
@@ -48,18 +49,20 @@ func build_path(coordinates, path_res):
 				if neighbor not in all_neighbors:
 					all_neighbors.append(neighbor)
 		## Adds intersections to built paths
-		path_layer.set_cell(coordinate, 0, Vector2i(1,path_res.atlas_y))
-		Effects.smoke2(TileMapRef.map_to_local(coordinate))
-		AudioManager.play_stream('sfx_path_placed')
-		await get_tree().create_timer(0.01).timeout
+		path_layer.set_cell(coordinate, 0, Vector2i(1,atlas_y))
+		if GameManager.game_running:
+			Effects.smoke2(TileMapRef.map_to_local(coordinate))
+			AudioManager.play_stream('sfx_path_placed')
+			await get_tree().create_timer(0.01).timeout
 		
-		build_intersections(coordinate, path_res)
+		build_intersections(coordinate, atlas_y)
 	for neighbor in all_neighbors:
 		## Adds instersections to neighbors of built paths
 		build_intersections(neighbor, null)
 
 	SignalBus.peep_navigation_changed.emit()
-	SignalBus.save_game.emit()
+	SignalBus.save_path_changes.emit(coordinates, atlas_y)
+	#SignalBus.save_game.emit()
 	
 func remove_path(coordinates):
 	var all_neighbors = []
@@ -85,10 +88,10 @@ func remove_path(coordinates):
 	SignalBus.peep_navigation_changed.emit()
 	SignalBus.save_game.emit()
 
-func build_intersections(coordinate, path_res):
+func build_intersections(coordinate, atlas_y):
 	var path_y = null
-	if path_res:
-		path_y = path_res.atlas_y
+	if atlas_y:
+		path_y = atlas_y
 	var found_paths = []
 	var neighbors = path_layer.get_surrounding_cells(coordinate)
 	for neighbor in neighbors:
@@ -136,4 +139,7 @@ func get_path_overlap(coordinates):
 
 func build_building_path(coordinates):
 	building_path_coordinates.append(coordinates)
-	build_path(coordinates,null_path)
+	build_path(coordinates,0)
+
+func on_load_paths(coordinates, atlas_y):
+	build_path(coordinates, atlas_y)

@@ -28,10 +28,10 @@ func _process(delta: float) -> void:
 	z_index = Helpers.get_current_tile_z_index(global_position) + 1
 	
 	if is_moving:
-		move_toward_direction(direction, delta)
-		
 		if !agent.is_target_reachable():
-			print('unreacheable')
+			staff_class.target_unreacheable()
+			
+		move_toward_direction(direction, delta)
 		
 		if agent.is_navigation_finished():
 			on_agent_target_reached()

@@ -36,8 +36,8 @@ var tilemap_layers = []
 var thread : Thread
 
 func _ready() -> void:
-	SignalBus.save_game.connect(thread_save_game)
-	SignalBus.save_new_scenery.connect(save_new_scenery)
+	#SignalBus.save_game.connect(thread_save_game)
+	#SignalBus.save_new_scenery.connect(save_new_scenery)
 	thread = Thread.new()
 	#SignalBus.game_started.connect(load_game)
 

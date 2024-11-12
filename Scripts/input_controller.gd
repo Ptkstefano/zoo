@@ -142,7 +142,7 @@ func handle_tooling_input(event):
 			if !Helpers.is_valid_cell(touch_start_global_pos) or !Helpers.is_valid_cell(touch_current_global_pos):
 				return
 			if current_tool == TOOLS.PATH:
-				highlight_path()
+				highlight_area()
 			if current_tool == TOOLS.ENCLOSURE:
 				highlight_area()
 			if current_tool == TOOLS.TERRAIN:
@@ -183,16 +183,16 @@ func handle_tooling_input(event):
 					return
 				if $"../Objects/EnclosureManager".get_enclosure_overlap(cells):
 					return
-				$"../PathManager".build_path(cells, selected_res)
+				$"../PathManager".build_path(cells, selected_res.atlas_y)
 			if current_tool == TOOLS.ENCLOSURE:
 				if is_bulldozing:
 					$"../Objects/EnclosureManager".remove_enclosure_cells(cells)
 					return
 				if $"../PathManager".get_path_overlap(cells):
 					return
-				$"../Objects/EnclosureManager".build_enclosure(cells, selected_res, null)
+				$"../Objects/EnclosureManager".build_enclosure(null, cells, null, selected_res)
 			if current_tool == TOOLS.TERRAIN:
-				$"../TerrainManager".build_terrain(cells, selected_res)
+				$"../TerrainManager".build_terrain(cells, selected_res.atlas.y)
 			if current_tool == TOOLS.ANIMAL:
 				animal_manager.spawn_animal(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.TREE:

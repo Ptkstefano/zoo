@@ -12,6 +12,7 @@ var is_inside_enclosure : bool = false
 signal destination_updated
 signal leap_towards
 
+
 func _ready() -> void:
 	$StateTimer.timeout.connect(on_state_timer_timeout)
 	$StateTimer.start()
@@ -116,4 +117,7 @@ func leave_enclosure():
 	await get_tree().create_timer(2).timeout
 	is_inside_enclosure = false
 	destination_enclosure = null
+	change_state(zookeeper_states.STOPPED)
+
+func target_unreacheable():
 	change_state(zookeeper_states.STOPPED)

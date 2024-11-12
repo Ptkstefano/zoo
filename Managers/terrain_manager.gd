@@ -12,6 +12,7 @@ class_name TerrainManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalBus.load_terrain.connect(build_terrain)
 	update_terrain_menu()
 
 
@@ -26,17 +27,19 @@ func update_terrain_menu():
 		
 	$"../UI".update_ui()
 
-func build_terrain(coords, selected_res : terrain_resource):
+func build_terrain(coords, atlas_y):
 	var neighbors = []
 	for coord in coords:
-		terrain_layer.set_cell(coord, 0, selected_res.atlas)
+		terrain_layer.set_cell(coord, 0, Vector2(0, atlas_y))
 		for neighbor in Helpers.get_adjacent(coord):
 			if neighbor not in neighbors:
 				if neighbor not in coords:
 					neighbors.append(neighbor)
 					
-	apply_wang(coords, selected_res)
+	apply_wang(coords, atlas_y)
 	TileMapRef.update_enclosures(coords)
+	if GameManager.game_running:
+		SignalBus.save_terrain_changes.emit(coords, atlas_y)
 	
 	
 func get_terrain_coverage(cells):
@@ -53,30 +56,30 @@ func get_terrain_coverage(cells):
 		
 	return terrain_coverage
 	
-func apply_wang(coords, selected_res):
-	remove_wang(coords, selected_res)
+func apply_wang(coords, atlas_y):
+	remove_wang(coords)
 	for coord in coords:
 		var i = 0
 		for neighbor in Helpers.get_adjacent(coord):
 			var neighbor_y = terrain_layer.get_cell_atlas_coords(neighbor).y
-			if neighbor_y != selected_res.atlas.y:
+			if neighbor_y != atlas_y:
 				if i == 0:
 					$"../TileMap/TerrainLayer/TerrainWang_E".set_cell(coord, 0, Vector2(4, neighbor_y))
-					$"../TileMap/TerrainLayer/TerrainWang_W".set_cell(neighbor, 0, Vector2(2, selected_res.atlas.y))
+					$"../TileMap/TerrainLayer/TerrainWang_W".set_cell(neighbor, 0, Vector2(2, atlas_y))
 				if i == 1:
 					$"../TileMap/TerrainLayer/TerrainWang_S".set_cell(coord, 0, Vector2(3, neighbor_y))
-					$"../TileMap/TerrainLayer/TerrainWang_N".set_cell(neighbor, 0, Vector2(1, selected_res.atlas.y))
+					$"../TileMap/TerrainLayer/TerrainWang_N".set_cell(neighbor, 0, Vector2(1, atlas_y))
 				if i == 2:
 					$"../TileMap/TerrainLayer/TerrainWang_W".set_cell(coord, 0, Vector2(2, neighbor_y))
-					$"../TileMap/TerrainLayer/TerrainWang_E".set_cell(neighbor, 0, Vector2(4, selected_res.atlas.y))
+					$"../TileMap/TerrainLayer/TerrainWang_E".set_cell(neighbor, 0, Vector2(4, atlas_y))
 				if i == 3:
 					$"../TileMap/TerrainLayer/TerrainWang_N".set_cell(coord, 0, Vector2(1, neighbor_y))
-					$"../TileMap/TerrainLayer/TerrainWang_S".set_cell(neighbor, 0, Vector2(3, selected_res.atlas.y))
+					$"../TileMap/TerrainLayer/TerrainWang_S".set_cell(neighbor, 0, Vector2(3, atlas_y))
 			i += 1
 	
 
 
-func remove_wang(coords, selected_res):
+func remove_wang(coords):
 	for coord in coords:
 		## Clear the wang of changed cells
 		$"../TileMap/TerrainLayer/TerrainWang_E".set_cell(coord)
