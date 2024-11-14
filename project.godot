@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [autoload]
 
+ContentManager="*res://Autoload/content_manager.tscn"
 Helpers="*res://Scripts/helpers.gd"
 GameManager="*res://Managers/game_manager.gd"
 ColorRefs="*res://Autoload/color_refs.tscn"
@@ -28,7 +29,6 @@ ZooManager="*res://Autoload/zoo_manager.gd"
 SaveManager="*res://Autoload/save_manager.tscn"
 ModifierManager="*res://modifier_manager.gd"
 DataManager="*res://Autoload/data_manager.gd"
-ContentManager="*res://Autoload/content_manager.gd"
 SqlManager="*res://sql_manager.gd"
 
 [display]

@@ -10,6 +10,8 @@ var resource : decoration_resource
 
 signal removed
 
+var id : int
+
 var cached_position : Vector2
 
 var cell : Vector2

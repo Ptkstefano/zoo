@@ -9,6 +9,8 @@ var vegetation_weight
 
 var cached_position : Vector2
 
+var id : int
+
 var texture
 
 signal object_removed

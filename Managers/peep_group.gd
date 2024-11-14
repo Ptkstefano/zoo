@@ -21,6 +21,8 @@ var group_state : group_states = group_states.WALKING
 
 var peeps : Array[Peep] = []
 
+var id : int
+
 var agent : NavigationAgent2D
 
 var direction : Vector2
@@ -106,8 +108,6 @@ var peep_count = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if !peep_count:
-		peep_count = randi_range(1,4)
 	for i in range(peep_count):
 		var peep = peep_scene.instantiate()
 		peeps.append(peep)
@@ -140,6 +140,7 @@ func _ready() -> void:
 	$DecayTimer.timeout.connect(on_decay_timer_timeout)
 	
 	$AnimalWaitTimer.timeout.connect(on_animal_wait_timer_timeout)
+	$SaveTimer.timeout.connect(on_save_timer_timeout)
 	
 	#$VisibleOnScreenNotifier2D.screen_entered.connect(on_visibility_entered)
 	
@@ -460,3 +461,15 @@ func calculate_perceived_zoo_rating():
 	for modifier in modifiers:
 		sum += ModifierManager.peep_modifiers[modifier].point_value
 	return clamp(zoo_rating_score + sum, 0, 5)
+
+func on_save_timer_timeout():
+	var data = {
+		"coordinates": global_position,
+		"needs_hunger": needs_hunger,
+		"needs_rest": needs_rest,
+		"needs_toilet": needs_toilet,
+		"desired_destinations": JSON.stringify(desired_enclosures_id),
+		"observed_animals": JSON.stringify(observed_animals),
+		"modifiers": JSON.stringify(modifiers),
+	}
+	SignalBus.save_update_peep_group.emit(id, data)

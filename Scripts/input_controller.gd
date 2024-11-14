@@ -197,16 +197,16 @@ func handle_tooling_input(event):
 				animal_manager.spawn_animal(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.TREE:
 				if !is_bulldozing:
-					scenery_manager.place_tree(touch_start_global_pos, selected_res)
+					scenery_manager.place_tree(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.VEGETATION:
 				if !is_bulldozing:
-					scenery_manager.place_vegetation(touch_start_global_pos, selected_res)
+					scenery_manager.place_vegetation(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.FIXTURE:
 				if !is_bulldozing:
 					$"../Objects/FixtureManager".place_fixture(touch_start_global_pos, selected_res)
 			if current_tool == TOOLS.DECORATION:
 				if !is_bulldozing:
-					scenery_manager.place_decoration(touch_start_global_pos, selected_res)
+					scenery_manager.place_decoration(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.WATER:
 				if !is_bulldozing:
 					is_placing_water = false

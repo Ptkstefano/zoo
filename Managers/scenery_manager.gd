@@ -18,13 +18,17 @@ var used_cells = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	SignalBus.load_scenery.connect(on_load_scenery)
 	update_selection_menu()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func on_load_scenery(scenery_type, id, coordinates, res):
+	if scenery_type == IdRefs.SCENERY_TYPES.TREE:
+		place_tree(coordinates, res, id)
+	elif scenery_type == IdRefs.SCENERY_TYPES.VEGETATION:
+		place_vegetation(coordinates, res, id)
+	elif scenery_type == IdRefs.SCENERY_TYPES.DECORATION:
+		place_decoration(coordinates, res, id)
 	
 func update_selection_menu():
 	for child in %TreesSelectionContainer.get_children():
@@ -52,10 +56,14 @@ func update_selection_menu():
 		
 	$"../../UI".update_ui()
 
-func place_tree(press_start_pos, tree_res):
+func place_tree(press_start_pos, tree_res, id):
 	var tree = tree_scene.instantiate()
 	tree.tree_res = tree_res
 	tree.global_position = press_start_pos
+	if !id:
+		tree.id = ZooManager.generate_scenery_id()
+	else:
+		tree.id = id
 	add_child(tree)
 	await get_tree().create_timer(0.3).timeout
 	#$"../../RenderingController".add_object(tree)
@@ -65,12 +73,16 @@ func place_tree(press_start_pos, tree_res):
 		enclosure.call_deferred('update_navigation_region')
 	SignalBus.vegetation_placed.emit(tree.global_position)
 	#SignalBus.save_game.emit()
-	SignalBus.save_new_scenery.emit(tree)
+	SignalBus.save_new_scenery.emit(IdRefs.SCENERY_TYPES.TREE, tree.id, tree.global_position, tree_res.get_path())
 	
-func place_vegetation(press_start_pos, vegetation_res):
+func place_vegetation(press_start_pos, vegetation_res, id):
 	var vegetation = vegetation_scene.instantiate()
 	vegetation.vegetation_res = vegetation_res
 	vegetation.global_position = press_start_pos
+	if !id:
+		vegetation.id = ZooManager.generate_scenery_id()
+	else:
+		vegetation.id = id
 	add_child(vegetation)
 	await get_tree().create_timer(0.3).timeout
 	#$"../../RenderingController".add_object(vegetation)
@@ -78,9 +90,9 @@ func place_vegetation(press_start_pos, vegetation_res):
 	Effects.wobble(vegetation)
 	SignalBus.vegetation_placed.emit(vegetation.global_position)
 	#SignalBus.save_game.emit()
-	SignalBus.save_new_scenery.emit(vegetation)
+	SignalBus.save_new_scenery.emit(IdRefs.SCENERY_TYPES.VEGETATION, vegetation.id, vegetation.global_position, vegetation_res.get_path())
 	
-func place_decoration(press_start_pos, decoration_res):
+func place_decoration(press_start_pos, decoration_res, id):
 	var decoration_position_cell = TileMapRef.local_to_map(press_start_pos)
 	var decoration_position_local = TileMapRef.map_to_local(decoration_position_cell)
 	if decoration_position_cell in used_cells:
@@ -88,13 +100,17 @@ func place_decoration(press_start_pos, decoration_res):
 	var decoration = decoration_scene.instantiate()
 	decoration.resource = decoration_res
 	decoration.global_position = decoration_position_local
+	if !id:
+		decoration.id = ZooManager.generate_scenery_id()
+	else:
+		decoration.id = id
 	decoration.cell = decoration_position_cell
 	decoration.removed.connect(on_decoration_removed)
 	used_cells.append(decoration_position_cell)
 	add_child(decoration)
 	Effects.wobble(decoration)
 	#SignalBus.save_game.emit()
-	SignalBus.save_new_scenery.emit(decoration)
+	SignalBus.save_new_scenery.emit(IdRefs.SCENERY_TYPES.DECORATION, decoration.id, decoration.global_position, decoration_res.get_path())
 	
 func on_decoration_removed(cell):
 	used_cells.erase(Vector2i(cell.x, cell.y))

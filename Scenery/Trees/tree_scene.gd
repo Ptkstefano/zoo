@@ -12,6 +12,8 @@ var texture : Texture2D
 
 var vegetation_weight
 
+var id : int
+
 var cached_position : Vector2
 
 signal object_removed

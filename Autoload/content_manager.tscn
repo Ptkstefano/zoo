@@ -1,0 +1,15 @@
+[gd_scene load_steps=10 format=3 uid="uid://mqvvqf6wxoe8"]
+
+[ext_resource type="Script" path="res://Autoload/content_manager.gd" id="1_0xc5w"]
+[ext_resource type="Script" path="res://Animals/animal_res.gd" id="2_3584o"]
+[ext_resource type="Resource" uid="uid://c1csiys1jf20o" path="res://Animals/AnimalResources/American Flamingo.tres" id="3_fp7ms"]
+[ext_resource type="Resource" uid="uid://c7pfv2es6r5oa" path="res://Animals/AnimalResources/Capybara.tres" id="4_gewqj"]
+[ext_resource type="Resource" uid="uid://c8vfd72bmgjcf" path="res://Animals/AnimalResources/Giraffe.tres" id="5_mbt8i"]
+[ext_resource type="Resource" uid="uid://i3fj56d1ocsa" path="res://Animals/AnimalResources/Jaguar.tres" id="6_6f7jl"]
+[ext_resource type="Resource" uid="uid://xncaf8r72rkb" path="res://Animals/AnimalResources/Red Kangaroo.tres" id="7_m8nde"]
+[ext_resource type="Resource" uid="uid://duuxwcbsqbfe" path="res://Animals/AnimalResources/Red Panda.tres" id="8_8irge"]
+[ext_resource type="Resource" uid="uid://ck55w4ejddxxs" path="res://Animals/AnimalResources/White-tail Deer.tres" id="9_3wn2c"]
+
+[node name="ContentManager" type="Node"]
+script = ExtResource("1_0xc5w")
+animal_files = Array[ExtResource("2_3584o")]([ExtResource("3_fp7ms"), ExtResource("4_gewqj"), ExtResource("5_mbt8i"), ExtResource("6_6f7jl"), ExtResource("7_m8nde"), ExtResource("8_8irge"), ExtResource("9_3wn2c")])

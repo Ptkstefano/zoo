@@ -9,6 +9,8 @@ var run_speed : float
 
 var speed
 
+var id : int
+
 enum ANIMAL_STATES {IDLE, WANDER, SWIMMING, MOVING_TOWARDS_REST, MOVING_TOWARDS_FOOD, EATING, RUNNING, RESTING}
 var current_state = ANIMAL_STATES.IDLE
 

@@ -15,8 +15,14 @@ var zoo_attractiveness : int
 var zoo_animals : Dictionary = {}
 var animal_rating : int
 		
+var next_animal_id = 0
+
+var next_scenery_id = 0
+
+var used_peep_group_ids = []
+		
 var zoo_enclosures : Dictionary = {}
-var next_enclosure_id = 1
+var next_enclosure_id = 0
 
 var active_boosts : Dictionary = {}
 var boost_rating : int = 0
@@ -58,6 +64,24 @@ func generate_enclosure_id() -> int:
 	next_enclosure_id += 1
 	return next_enclosure_id
 
+func generate_animal_id() -> int:
+	next_animal_id += 1
+	return next_animal_id
+
+func generate_scenery_id() -> int :
+	next_scenery_id += 1
+	return next_scenery_id
+
+func generate_peep_group_id():
+	var i = 0
+	while i in used_peep_group_ids:
+		i += 1
+	used_peep_group_ids.append(i)
+	return i
+		
+func remove_peep_group_id(id):
+	used_peep_group_ids.erase(id)
+		
 func calculate_animal_rating():
 	animal_rating = 0
 	for animal in zoo_animals:
