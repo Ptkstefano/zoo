@@ -39,8 +39,9 @@ func build_terrain(coords, atlas_y):
 					
 	apply_wang(coords, atlas_y)
 	TileMapRef.update_enclosures(coords)
-	if GameManager.game_running:
-		SignalBus.save_terrain_changes.emit(coords, atlas_y)
+	#if GameManager.game_running:
+		#var save_data = {"savetype": IdRefs.SAVE_TYPES.TERRAIN, "coordinates": coords, "atlay_y": atlas_y}
+		#SignalBus.save_terrain_changes.emit(save_data)
 	
 	
 func get_terrain_coverage(cells):

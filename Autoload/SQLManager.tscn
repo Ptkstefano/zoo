@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dslpyl8xsyelj"]
+
+[ext_resource type="Script" path="res://sql_manager.gd" id="1_gu7ul"]
+
+[node name="SqlManager" type="Node"]
+script = ExtResource("1_gu7ul")
+
+[node name="ConstructionQueueTimer" type="Timer" parent="."]
+wait_time = 0.1

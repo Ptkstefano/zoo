@@ -16,7 +16,7 @@ var building_path_coordinates = []
 func _ready() -> void:
 	path_coordinates = path_layer.get_used_cells()
 	update_path_menu()
-	SignalBus.load_paths.connect(on_load_paths)
+	#SignalBus.load_paths.connect(on_load_paths)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,7 +49,11 @@ func build_path(coordinates, atlas_y : int):
 				if neighbor not in all_neighbors:
 					all_neighbors.append(neighbor)
 		## Adds intersections to built paths
-		path_layer.set_cell(coordinate, 0, Vector2i(1,atlas_y))
+		if atlas_y != -1:
+			path_layer.set_cell(coordinate, 0, Vector2i(1,atlas_y))
+		else:
+			## Restores removed paths from savegame
+			path_layer.set_cell(coordinate, 0, Vector2i(-1,atlas_y))
 		if GameManager.game_running:
 			Effects.smoke2(TileMapRef.map_to_local(coordinate))
 			AudioManager.play_stream('sfx_path_placed')
@@ -61,8 +65,8 @@ func build_path(coordinates, atlas_y : int):
 		build_intersections(neighbor, null)
 
 	SignalBus.peep_navigation_changed.emit()
-	SignalBus.save_path_changes.emit(coordinates, atlas_y)
-	#SignalBus.save_game.emit()
+	#var save_data = {"savetype": IdRefs.SAVE_TYPES.PATH, "coordinates": coordinates, "atlas_y": atlas_y}
+	#SignalBus.save_path_changes.emit(save_data)
 	
 func remove_path(coordinates):
 	var all_neighbors = []
@@ -86,7 +90,8 @@ func remove_path(coordinates):
 		## Adds instersections to neighbors of built paths
 		build_intersections(neighbor, null)
 	SignalBus.peep_navigation_changed.emit()
-	SignalBus.save_game.emit()
+	var save_data = {"savetype": IdRefs.SAVE_TYPES.PATH, "coordinates": coordinates, "atlas_y": -1}
+	SignalBus.save_path_changes.emit(save_data)
 
 func build_intersections(coordinate, atlas_y):
 	var path_y = null
@@ -141,5 +146,9 @@ func build_building_path(coordinates):
 	building_path_coordinates.append(coordinates)
 	build_path(coordinates,0)
 
-func on_load_paths(coordinates, atlas_y):
-	build_path(coordinates, atlas_y)
+func on_load_paths(path_data):
+	for key in path_data.keys():
+		if key != -1:
+			build_path(path_data[key], key)
+		else:
+			remove_path(path_data[key])

@@ -42,9 +42,8 @@ var current_marketing_value : int
 
 
 func _ready() -> void:
-	
+	#SignalBus.load_zoo_management.connect(on_load_management_data)
 	pass # Replace with function body.
-
 
 func add_zoo_enclosure(enclosure : Enclosure):
 	zoo_enclosures[enclosure.id] = {"node": enclosure, "location": enclosure.enclosure_central_point, "especies": enclosure.enclosure_species, "entrance_cell": null}
@@ -95,6 +94,7 @@ func calculate_zoo_rating():
 	calculate_zoo_attractiveness()
 
 func calculate_zoo_attractiveness():
+	save_management_data()
 	zoo_attractiveness = float(zoo_rating * rating_ratio) * (reputation * 0.20)
 
 func update_rating(new_rating):
@@ -106,3 +106,24 @@ func update_rating(new_rating):
 		
 	median = median / last_guest_ratings.size()
 	reputation = median
+
+func save_management_data():
+	var data = {
+		"reputation": reputation,
+		"next_animal_id": next_animal_id,
+		"next_enclosure_id": next_enclosure_id,
+		"next_scenery_id": next_scenery_id
+	}
+	#SignalBus.save_zoo_management.emit(data)
+
+func on_load_management_data(data):
+	print('DATA')
+	print(data)
+	reputation = data.reputation
+	next_animal_id = data.next_animal_id
+	next_enclosure_id = data.next_enclosure_id
+	next_scenery_id = data.next_scenery_id
+	
+
+func add_peep_group_id(id):
+	used_peep_group_ids.append(id)

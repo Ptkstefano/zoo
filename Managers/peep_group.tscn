@@ -65,5 +65,5 @@ position = Vector2(1.50001, 5.5)
 scale = Vector2(7.65, 8.35)
 
 [node name="SaveTimer" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 25.0
 autostart = true

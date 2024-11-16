@@ -18,7 +18,7 @@ var used_cells = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalBus.load_scenery.connect(on_load_scenery)
+	#SignalBus.load_scenery.connect(on_load_scenery)
 	update_selection_menu()
 
 
@@ -73,7 +73,7 @@ func place_tree(press_start_pos, tree_res, id):
 		enclosure.call_deferred('update_navigation_region')
 	SignalBus.vegetation_placed.emit(tree.global_position)
 	#SignalBus.save_game.emit()
-	SignalBus.save_new_scenery.emit(IdRefs.SCENERY_TYPES.TREE, tree.id, tree.global_position, tree_res.get_path())
+	#SignalBus.save_new_scenery.emit(IdRefs.SCENERY_TYPES.TREE, tree.id, tree.global_position, tree_res.get_path())
 	
 func place_vegetation(press_start_pos, vegetation_res, id):
 	var vegetation = vegetation_scene.instantiate()
@@ -90,7 +90,7 @@ func place_vegetation(press_start_pos, vegetation_res, id):
 	Effects.wobble(vegetation)
 	SignalBus.vegetation_placed.emit(vegetation.global_position)
 	#SignalBus.save_game.emit()
-	SignalBus.save_new_scenery.emit(IdRefs.SCENERY_TYPES.VEGETATION, vegetation.id, vegetation.global_position, vegetation_res.get_path())
+	#SignalBus.save_new_scenery.emit(IdRefs.SCENERY_TYPES.VEGETATION, vegetation.id, vegetation.global_position, vegetation_res.get_path())
 	
 func place_decoration(press_start_pos, decoration_res, id):
 	var decoration_position_cell = TileMapRef.local_to_map(press_start_pos)
@@ -110,7 +110,8 @@ func place_decoration(press_start_pos, decoration_res, id):
 	add_child(decoration)
 	Effects.wobble(decoration)
 	#SignalBus.save_game.emit()
-	SignalBus.save_new_scenery.emit(IdRefs.SCENERY_TYPES.DECORATION, decoration.id, decoration.global_position, decoration_res.get_path())
+	var save_data = {"savetype": IdRefs.SAVE_TYPES.NEW_SCENERY, "scenery_type":IdRefs.SCENERY_TYPES.DECORATION, "id": decoration.id, "position": decoration.global_position, "res_path": decoration_res.get_path()}
+	#SignalBus.save_new_scenery.emit(save_data)
 	
 func on_decoration_removed(cell):
 	used_cells.erase(Vector2i(cell.x, cell.y))

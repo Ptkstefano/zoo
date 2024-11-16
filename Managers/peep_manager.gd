@@ -21,7 +21,7 @@ var peep_count : int = 0
 func _ready() -> void:
 	spawn_location = path_manager.path_layer.map_to_local(Vector2(0,48))
 	$PeepSpawnTimer.timeout.connect(on_peep_spawn_timeout)
-	SignalBus.load_peep_group.connect(instantiate_peep_group)
+	#SignalBus.load_peep_group.connect(instantiate_peep_group)
 
 	
 func update_peeps_cached_positions():
@@ -54,7 +54,7 @@ func on_peep_group_left(group, rating):
 	## TODO - update zoo status
 	ZooManager.update_rating(rating)
 	ZooManager.remove_peep_group_id(group.id)
-	SignalBus.save_remove_peep_group.emit(group.id)
+	#SignalBus.save_remove_peep_group.emit(group.id)
 	DataManager.add_peep_group_modifiers(group.modifiers)
 	peep_count -= group.peep_count
 	peep_groups.erase(group)
@@ -64,6 +64,7 @@ func instantiate_peep_group(data):
 	var new_peep_group = peep_group_scene.instantiate()
 	if data:
 		new_peep_group.id = data.id
+		ZooManager.add_peep_group_id(data.id)
 		if data.coordinates:
 			new_peep_group.global_position = data.coordinates
 		else:
@@ -79,7 +80,7 @@ func instantiate_peep_group(data):
 		new_peep_group.global_position = spawn_location
 		new_peep_group.peep_count = randi_range(1,4)
 		new_peep_group.id = ZooManager.generate_peep_group_id()
-		SignalBus.save_new_peep_group.emit(new_peep_group.id, new_peep_group.peep_count, new_peep_group.desired_enclosures_id)
+		#SignalBus.save_new_peep_group.emit(new_peep_group.id, new_peep_group.peep_count, new_peep_group.desired_enclosures_id)
 	new_peep_group.peep_manager = self
 	add_child(new_peep_group)
 	peep_groups.append(new_peep_group)
