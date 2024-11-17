@@ -17,6 +17,7 @@ func _ready() -> void:
 	
 	%RightMenuToggle.toggled.connect(on_right_menu_toggle)
 	%DebugToggle.pressed.connect(on_debug_toggle)
+	%SaveGame.pressed.connect(on_save_game)
 	
 	%MgmtMenu.pressed.connect(on_box_pressed.bind(IdRefs.UI_BOXES.MANAGEMENT))
 	
@@ -217,7 +218,7 @@ func on_tool_selected(tool):
 	if tool == inputController.TOOLS.ANIMAL:
 		%AnimalMenu.show()
 	if tool == inputController.TOOLS.SCENERY:
-		%SceneryMenu.show()
+		%DecorationMenu.show()
 	if tool == inputController.TOOLS.TERRAIN:
 		%TerrainMenu.show()
 	if tool == inputController.TOOLS.BUILDING:
@@ -269,3 +270,6 @@ func open_subpanel(subpanel_name):
 	
 func on_box_pressed(box):
 	SignalBus.open_box.emit(box)
+
+func on_save_game():
+	SignalBus.save_game.emit()

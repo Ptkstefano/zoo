@@ -6,7 +6,7 @@ var type = IdRefs.SCENERY_TYPES.DECORATION
 
 var category = 'decoration'
 
-var resource : decoration_resource
+var decoration_res : decoration_resource
 
 signal removed
 
@@ -18,8 +18,8 @@ var cell : Vector2
 
 func _ready() -> void:
 	$RemovalArea.area_entered.connect(on_removal)
-	$Sprite2D.texture = resource.texture
-	$Sprite2D.offset = resource.texture_offset
+	$Sprite2D.texture = decoration_res.texture
+	$Sprite2D.offset = decoration_res.texture_offset
 	z_index = Helpers.get_current_tile_z_index(global_position)
 	cached_position = global_position
 

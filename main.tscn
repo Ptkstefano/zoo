@@ -1073,6 +1073,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Debug"
 
+[node name="SaveGame" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/VBoxContainer/Control/DropDownMenu/MarginContainer/VBoxContainer2/DropDownMenu"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Save"
+
 [node name="Bottom" type="Control" parent="UI/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8

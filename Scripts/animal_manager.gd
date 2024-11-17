@@ -14,7 +14,6 @@ var animal_count = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	## TODO - Generate list according to unlocks
-	SignalBus.load_animal.connect(spawn_animal)
 	for key in ContentManager.animals.keys():
 		available_animals.append(ContentManager.animals[key])
 	update_animal_menu()
@@ -63,10 +62,7 @@ func spawn_animal(coordinate, animal_res, stats):
 	Effects.wobble(spawned_animal)
 	found_enclosure.add_animal(spawned_animal)
 	animal_count += 1
-	SignalBus.save_new_animal.emit(spawned_animal.id, coordinate, spawned_animal.animal_res.get_path())
-	#SignalBus.save_game.emit()
 
 
 func despawn_animal(animal):
 	animal_count -= 1
-	SignalBus.save_game.emit()

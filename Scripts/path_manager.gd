@@ -16,8 +16,6 @@ var building_path_coordinates = []
 func _ready() -> void:
 	path_coordinates = path_layer.get_used_cells()
 	update_path_menu()
-	SignalBus.load_paths.connect(on_load_paths)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -61,8 +59,6 @@ func build_path(coordinates, atlas_y : int):
 		build_intersections(neighbor, null)
 
 	SignalBus.peep_navigation_changed.emit()
-	SignalBus.save_path_changes.emit(coordinates, atlas_y)
-	#SignalBus.save_game.emit()
 	
 func remove_path(coordinates):
 	var all_neighbors = []
@@ -86,7 +82,6 @@ func remove_path(coordinates):
 		## Adds instersections to neighbors of built paths
 		build_intersections(neighbor, null)
 	SignalBus.peep_navigation_changed.emit()
-	SignalBus.save_game.emit()
 
 func build_intersections(coordinate, atlas_y):
 	var path_y = null

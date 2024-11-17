@@ -16,9 +16,6 @@ var selected_fence
 func _ready() -> void:
 	update_terrain_menu()
 	SignalBus.vegetation_placed.connect(check_for_vegetation_update)
-	SignalBus.load_enclosure.connect(build_enclosure)
-
-
 
 func update_terrain_menu():
 	for child in enclosure_menu.get_children():
@@ -62,21 +59,17 @@ func build_enclosure(id, coordinates, entrance_cell, fence_res):
 		current_enclosure.fence_res = selected_fence
 		current_enclosure.create_sibling_enclosure.connect(build_enclosure)
 		current_enclosure.add_cells(coordinates, selected_fence)
-		print('a')
-		SignalBus.save_new_enclosure.emit(current_enclosure.id, coordinates, fence_res.get_path())
 
 	##Expand existing enclosure
 	else:
 		current_enclosure.fence_res = selected_fence
 		current_enclosure.add_cells(coordinates, selected_fence)
-		SignalBus.save_update_enclosure.emit(current_enclosure.id, current_enclosure.enclosure_cells, current_enclosure.entrance_door_cell, current_enclosure.fence_res.get_path())
 		
 	for coordinate in current_enclosure.enclosure_cells:
 		enclosure_layer.set_cell(coordinate, 0, Vector2i(0,0))
 		
 	if entrance_cell:
 		current_enclosure.place_entrance(entrance_cell)
-	#SignalBus.save_game.emit()
 
 func return_enclosures():
 	return get_children()
@@ -113,7 +106,6 @@ func remove_enclosure_cells(coordinates):
 			if enclosure.enclosure_cells.has(coordinate):
 				working_enclosures.append(enclosure)
 				enclosure.remove_cells(coordinates)
-				SignalBus.save_update_enclosure.emit(enclosure.id, enclosure.enclosure_cells, enclosure.entrance_door_cell, enclosure.fence_res.get_path())
 	
 func place_entrance(coordinates):
 	var cell = TileMapRef.local_to_map(coordinates)
@@ -128,7 +120,6 @@ func place_entrance(coordinates):
 				
 	if enclosure:
 		enclosure.place_entrance(cell)
-		SignalBus.save_update_enclosure.emit(enclosure.id, enclosure.enclosure_cells, enclosure.entrance_door_cell, enclosure.fence_res.get_path())
 	
 
 func get_enclosure_overlap(cells):

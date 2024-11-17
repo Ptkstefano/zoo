@@ -472,4 +472,3 @@ func on_save_timer_timeout():
 		"observed_animals": JSON.stringify(observed_animals),
 		"modifiers": JSON.stringify(modifiers),
 	}
-	SignalBus.save_update_peep_group.emit(id, data)

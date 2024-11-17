@@ -12,7 +12,6 @@ class_name TerrainManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalBus.load_terrain.connect(build_terrain)
 	update_terrain_menu()
 
 
@@ -39,8 +38,6 @@ func build_terrain(coords, atlas_y):
 					
 	apply_wang(coords, atlas_y)
 	TileMapRef.update_enclosures(coords)
-	if GameManager.game_running:
-		SignalBus.save_terrain_changes.emit(coords, atlas_y)
 	
 	
 func get_terrain_coverage(cells):

@@ -10,7 +10,7 @@ size = Vector2(5, 5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_cnf5d"]
 radius = 153.326
 
-[node name="PeepGroup" type="Node2D"]
+[node name="PeepGroup" type="Node2D" groups=["PeepGroups"]]
 y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_jl7ea")

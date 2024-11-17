@@ -36,11 +36,14 @@ var tilemap_layers = []
 var thread : Thread
 
 func _ready() -> void:
-	#SignalBus.save_game.connect(thread_save_game)
-	#SignalBus.save_new_scenery.connect(save_new_scenery)
-	thread = Thread.new()
+	SignalBus.save_game.connect(thread_save_game)
 	#SignalBus.game_started.connect(load_game)
+	thread = Thread.new()
+	$AutoSaveTimer.timeout.connect(on_autosave)
 
+
+func on_autosave():
+	thread_save_game()
 
 func start_save_manager():
 	var main_node = get_tree().root.get_node("Main")
@@ -78,7 +81,8 @@ func start_save_manager():
 	building_list = buildingManager.get_children()
 	peepManager = main_node.get_node("Objects").get_node('PeepManager')
 	peepManager.update_peeps_cached_positions()
-	peepGroupList = peepManager.peep_groups
+	peepGroupList = get_tree().get_nodes_in_group('PeepGroups')
+	#peepGroupList = peepManager.peep_groups
 	
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -87,9 +91,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			if event.keycode == 4194336:
 				## F5 
 				thread_save_game()
-			if event.keycode == 4194340:
-				## F9
-				load_game()
+			#if event.keycode == 4194340:
+				### F9
+				#get_tree().reload_current_scene()
+				#load_game()
 
 func thread_save_game():
 	## Avoids saving the game while it is loading
@@ -101,6 +106,7 @@ func thread_save_game():
 	thread.start(save_game)
 
 func save_game():
+	print('starting save')
 	
 	if(FileAccess.get_open_error() != OK):
 		return
@@ -196,6 +202,7 @@ func save_finished():
 	
 
 func load_game():
+	print('loading game')
 	start_save_manager()
 	var file = FileAccess.open("user://save_game.json", FileAccess.READ)
 	if !file:
@@ -221,15 +228,21 @@ func load_game():
 				var enclosure_id = int(data["enclosureData"][key]['enclosure_id'])
 				for cell in data["enclosureData"][key]['enclosure_cells']:
 					enclosure_cells.append(Vector2i(data["enclosureData"][key]['enclosure_cells'][cell].x, data["enclosureData"][key]['enclosure_cells'][cell].y))
-				enclosureManager.build_enclosure(enclosure_cells, fence_res, enclosure_id)
+				var entrance_cell = null
+				if data["enclosureData"][key]['enclosure_entrance']:
+					entrance_cell = Vector2i(data["enclosureData"][key]['enclosure_entrance'].x, data["enclosureData"][key]['enclosure_entrance'].y)
+				enclosureManager.build_enclosure(enclosure_id, enclosure_cells, entrance_cell, fence_res)
 			
 		if data.has('animalData'):
 			for key in data["animalData"]:
 				var position = Vector2i(data["animalData"][key]['x_pos'], data["animalData"][key]['y_pos'])
 				var animal_res = load(data['animalData'][key]['animal_res'])
-				var stats = {'needs_hunger': data['animalData'][key]['needs_hunger'],
+				var stats = {
+							'id': data['animalData'][key]['id'],
+							'needs_hunger': data['animalData'][key]['needs_hunger'],
 							'needs_rest': data['animalData'][key]['needs_rest'],
 							'needs_playr': data['animalData'][key]['needs_play']
+							
 				}
 				animalManager.call_deferred('spawn_animal', position, animal_res, stats)
 				
@@ -238,13 +251,13 @@ func load_game():
 				var position = Vector2i(data["sceneryData"][key]['x_pos'], data["sceneryData"][key]['y_pos'])
 				if data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.VEGETATION:
 					var res = load(data["sceneryData"][key]['vegetation_res'])
-					sceneryManager.place_vegetation(position, res)
+					sceneryManager.place_vegetation(position, res, null)
 				elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.TREE:
 					var res = load(data["sceneryData"][key]['tree_res'])
-					sceneryManager.place_tree(position, res)
+					sceneryManager.place_tree(position, res, null)
 				elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.DECORATION:
 					var res = load(data["sceneryData"][key]['decoration_res'])
-					sceneryManager.place_decoration(position, res)
+					sceneryManager.place_decoration(position, res, null)
 					
 		if data.has('fixtureData'):
 			for key in data["fixtureData"]:
@@ -275,6 +288,7 @@ func load_game():
 		if data.has('peepGroupData'):
 			for key in data["peepGroupData"]:
 				var groupData = {}
+				groupData['id'] = data["peepGroupData"][key]['id']
 				groupData['spawn_location'] = Vector2(data["peepGroupData"][key]['x_pos'], data["peepGroupData"][key]['y_pos'])
 				groupData['peep_count'] = data["peepGroupData"][key]['peep_count']
 				groupData['observed_animals'] = data["peepGroupData"][key]['observed_animals']
@@ -318,6 +332,10 @@ func get_enclosure_data(enclosure):
 	data['enclosure_cells'] = enclosure_cells
 	data['enclosure_id'] = enclosure.id
 	data['enclosure_animals'] = enclosure.enclosure_animals
+	if enclosure.entrance_door_cell:
+		data['enclosure_entrance'] = {'x': enclosure.entrance_door_cell.x, 'y': enclosure.entrance_door_cell.y}
+	else:
+		data['enclosure_entrance'] = null
 	data['fence_res'] = enclosure.fence_res.get_path()
 	return data
 	
@@ -325,6 +343,7 @@ func get_animal_data(animal):
 	var data = {}
 	if !is_instance_valid(animal):
 		return
+	data['id'] = animal.id
 	data['x_pos'] = animal.cached_global_position.x
 	data['y_pos'] = animal.cached_global_position.y
 	data['animal_res'] = animal.animal_res.get_path()
@@ -336,6 +355,7 @@ func get_animal_data(animal):
 
 func get_peep_group_data(peep_group):
 	var data = {}
+	data['id'] = peep_group.id
 	data['x_pos'] = peep_group.cached_position.x
 	data['y_pos'] = peep_group.cached_position.y
 	data['peep_count'] = peep_group.peep_count
