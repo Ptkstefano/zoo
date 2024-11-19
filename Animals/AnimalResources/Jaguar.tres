@@ -7,6 +7,7 @@
 script = ExtResource("1_mcgls")
 name = "Jaguar"
 species = 9
+cost = 350.0
 texture = ExtResource("2_nla5u")
 feed = 0
 shadow_scale = 1.0

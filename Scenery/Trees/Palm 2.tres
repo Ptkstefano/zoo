@@ -5,5 +5,6 @@
 [resource]
 script = ExtResource("1_kyhpm")
 name = "Palm Tree (large)"
+cost = 10.0
 texture_y = 2
 vegetation_weight = 2.0

@@ -169,10 +169,8 @@ func create_sibling(cells):
 	
 func build_fence():
 	## Actually instantiates the visual nodes of the enclosure
-	enclosure_fence_manager.remove_enclosure_fence()
-	enclosure_fence_manager.enclosure_cells = enclosure_cells
 	enclosure_fence_manager.fence_res = fence_res
-	enclosure_fence_manager.build_enclosure_fence()
+	enclosure_fence_manager.build_enclosure_fence(enclosure_cells)
 	
 
 func add_animal(animal):
@@ -247,6 +245,7 @@ func order_edge_cells(edge_cells: Array) -> Array:
 	var visited_cells = {}
 
 	# Choose a starting cell
+	
 	var current_cell = edge_cells[0]
 	ordered_cells.append(current_cell)
 	visited_cells[current_cell] = true

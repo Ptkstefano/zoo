@@ -48,6 +48,8 @@ func build_path(coordinates, atlas_y : int):
 					all_neighbors.append(neighbor)
 		## Adds intersections to built paths
 		path_layer.set_cell(coordinate, 0, Vector2i(1,atlas_y))
+		FinanceManager.remove(10.0)
+		SignalBus.money_tooltip.emit(10.0, false, TileMapRef.map_to_local(coordinate))
 		if GameManager.game_running:
 			Effects.smoke2(TileMapRef.map_to_local(coordinate))
 			AudioManager.play_stream('sfx_path_placed')

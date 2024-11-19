@@ -4,19 +4,39 @@ extends CanvasLayer
 
 func _ready() -> void:
 	SignalBus.tooltip.connect(on_tooltip_emitted)
+	SignalBus.money_tooltip.connect(on_money_tooltip_emitted)
 	
 func on_tooltip_emitted(tooltip):
 	var label = notification_scene.instantiate()
 	label.text = tooltip
-	var pos = ($"../InputController".touch_start_global_pos - $"../Camera2D".global_position);
+	var pos = ($"../InputController".touch_start_global_pos - $"../Camera2D".global_position) * $"../Camera2D".zoom.x;
 	label.position = pos
 	add_child(label)
 	label.show()
 	var tween = get_tree().create_tween()
+	tween.parallel()
 	tween.tween_property(label, 'modulate', Color.TRANSPARENT, 2).set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(label, 'position', Vector2(label.position.x, label.position.y - 50), 3)
 	
 	await get_tree().create_timer(3).timeout
 	label.hide()
 	
+func on_money_tooltip_emitted(value, earned : bool, global_pos : Vector2):
+	if !GameManager.game_running:
+		return
+	var label = notification_scene.instantiate()
+	label.text = "$"+str(value)
+	var pos = (global_pos - $"../Camera2D".global_position) * $"../Camera2D".zoom.x;
+	if !earned:
+		label.add_theme_color_override("font_color", ColorRefs.money_spent_label)
+	else:
+		label.add_theme_color_override("font_color", ColorRefs.money_earned_label)
+	label.position = pos
+	add_child(label)
+	label.show()
+	var tween = get_tree().create_tween()
+	tween.parallel().tween_property(label, 'modulate', Color.TRANSPARENT, 2).set_trans(Tween.TRANS_QUAD)
+	tween.parallel().tween_property(label, 'position', Vector2(label.position.x, label.position.y - 50), 3)
 	
+	await get_tree().create_timer(3).timeout
+	label.hide()

@@ -12,6 +12,7 @@ var enclosure_tilemap
 var enclosure_cells : Array[Vector2i] = []
 
 var fence_cells : Array[Vector2i] = []
+var previous_fence_cells : Array[Vector2i] = [] ## Used for figuring out what coordinates are new when updating an existing fence
 var enclosure_cells_dict = {}
 
 var fence_instances = {}
@@ -34,14 +35,21 @@ func _ready() -> void:
 	$N.visible = false
 
 
-func build_enclosure_fence():
+func build_enclosure_fence(cells):
 	## Sets cells in the invisible tilemaps
+	
 	E_fence_cells = []
 	S_fence_cells = []
 	W_fence_cells = []
 	N_fence_cells = []
 	
-	for coordinate in enclosure_cells:
+	remove_enclosure_fence()
+	
+	for coordinate in cells:
+		
+		if coordinate not in enclosure_cells:
+			enclosure_cells.append(coordinate)
+		
 		var east_cell = Vector2i(coordinate.x + 1, coordinate.y)
 		var south_cell = Vector2i(coordinate.x, coordinate.y + 1)
 		var west_cell= Vector2i(coordinate.x - 1, coordinate.y)
@@ -82,10 +90,14 @@ func build_enclosure_fence():
 		if cell in S_fence_cells:
 			enclosure_tilemap.set_cell(cell, 1, Vector2i(0,2))
 			
-	#for cell in
+	for cell in fence_cells:
+		if cell not in previous_fence_cells:
+			previous_fence_cells.append(cell)
+			FinanceManager.remove(10.0)
+			SignalBus.money_tooltip.emit(10.0, false, TileMapRef.map_to_local(cell))
 
 	instantiate_fence_instances()
-			
+
 
 func remove_enclosure_fence():
 	for enclosure_layer in get_children():

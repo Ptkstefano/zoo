@@ -8,9 +8,10 @@ var scenery_type
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$PanelContainer/Button.pressed.connect(on_scenery_selected)
-	%BuildingName.text = resource.name
+	%Button.pressed.connect(on_scenery_selected)
+	%Scenery.text = resource.name
 	%Thumbnail.texture = resource.thumb
+	%SceneryCost.text = Helpers.money_text(resource.cost)
 	
 func on_scenery_selected():
 	scenery_selected.emit(resource, scenery_type)

@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_fes8f")
 name = "Savanna"
+cost = 5.0
 atlas = Vector2i(0, 4)

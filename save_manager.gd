@@ -185,6 +185,9 @@ func save_game():
 		i += 1
 	save_data['fixtureData'] = fixture_data
 	
+	## Save finance data
+	save_data['financeData'] = get_finance_data()
+	
 	var json_data = JSON.stringify(save_data)
 	
 	if json_data.is_empty():
@@ -300,6 +303,9 @@ func load_game():
 				
 		if data.has('zoo_manager_data'):
 			ZooManager.next_enclosure_id = data['zoo_manager_data']['next_enclosure_id']
+			
+		if data.has('financeData'):
+			FinanceManager.current_money = data['financeData']['current_money']
 				
 		SignalBus.peep_navigation_changed.emit()
 
@@ -399,6 +405,13 @@ func get_water_data(water):
 		data[i] = cell
 		i += 1
 	return data
+
+func get_finance_data():
+	var data = {
+		'current_money' = FinanceManager.current_money
+	}
+	return data
+
 
 func get_building_data(building):
 	var data = {}

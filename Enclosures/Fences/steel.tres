@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_stf4y")
 name = "Steel"
+segment_cost = 15.0
 atlas_y = 1

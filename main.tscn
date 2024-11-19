@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=128 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" path="res://Scripts/game_controller.gd" id="1_nisry"]
 [ext_resource type="Script" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -85,6 +85,8 @@
 [ext_resource type="Theme" uid="uid://qsq4gutgth07" path="res://UI/default_theme.tres" id="74_7k2ss"]
 [ext_resource type="Script" path="res://UI/ui_show.gd" id="74_d5mka"]
 [ext_resource type="Texture2D" uid="uid://bgsedt3bhj4my" path="res://Enclosures/Fences/fence_exp1.png" id="82_auu6y"]
+[ext_resource type="Texture2D" uid="uid://boc2fhvy7oxq2" path="res://UI/Icons/brickwall.png" id="85_2nbob"]
+[ext_resource type="Theme" uid="uid://dnjl2onbgc2xp" path="res://UI/main_tool_panel.tres" id="86_vgvmu"]
 [ext_resource type="Script" path="res://UI/ui_debug_shader.gd" id="87_1b22a"]
 [ext_resource type="PackedScene" uid="uid://bie8wky7dopo4" path="res://UI/UI popups/ui_mgmt_box.tscn" id="90_kjtd0"]
 [ext_resource type="Script" path="res://UI_info_label.gd" id="94_3glsp"]
@@ -295,6 +297,16 @@ tile_shape = 1
 tile_layout = 5
 tile_size = Vector2i(64, 32)
 sources/2 = SubResource("TileSetAtlasSource_3qy8p")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xw6u2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_py85x"]
+content_margin_top = 15.0
+bg_color = Color(0.87451, 0.376471, 0.14902, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfsr6"]
 bg_color = Color(0.772697, 0.923297, 0.949193, 1)
@@ -580,6 +592,7 @@ theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 25
+metadata/_edit_lock_ = true
 
 [node name="Top-Left" type="Control" parent="UI/MarginContainer"]
 layout_mode = 2
@@ -588,10 +601,13 @@ size_flags_vertical = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/Top-Left"]
 layout_mode = 1
+offset_right = 129.0
+offset_bottom = 125.0
 
 [node name="PanelContainer" type="PanelContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xw6u2")
 
 [node name="BuildPanelOpener" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/PanelContainer"]
 unique_name_in_owner = true
@@ -599,9 +615,26 @@ custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_py85x")
 toggle_mode = true
 action_mode = 0
-text = "Build"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/PanelContainer/BuildPanelOpener"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="UI/MarginContainer/Top-Left/HBoxContainer/PanelContainer/BuildPanelOpener/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("85_2nbob")
+expand_mode = 5
 
 [node name="OpenableToolPanel" type="Control" parent="UI/MarginContainer/Top-Left/HBoxContainer"]
 layout_mode = 2
@@ -617,6 +650,7 @@ script = ExtResource("74_d5mka")
 [node name="MainPanel" type="PanelContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("86_vgvmu")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/MainPanel"]
 layout_mode = 2
@@ -800,6 +834,7 @@ mouse_filter = 2
 
 [node name="DebugScreen" type="HBoxContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 2
@@ -1281,7 +1316,8 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="Label2" type="Label" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/MarginContainer2/HBoxContainer2/PanelContainer/MarginContainer"]
+[node name="MoneyLabel" type="Label" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/MarginContainer2/HBoxContainer2/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "$ 1000,00"
@@ -1294,6 +1330,7 @@ size_flags_vertical = 10
 mouse_filter = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
@@ -1335,9 +1372,9 @@ text = "Oceania"
 
 [node name="SelectionPanel" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 165)
+custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_vertical = 8
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_0dfji")
 
@@ -1540,6 +1577,7 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer"]
+clip_contents = false
 layout_mode = 2
 
 [node name="TerrainSelectionContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer"]

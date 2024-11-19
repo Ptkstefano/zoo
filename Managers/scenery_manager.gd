@@ -61,6 +61,8 @@ func place_tree(press_start_pos, tree_res, id):
 	tree.global_position = press_start_pos
 	if !id:
 		tree.id = ZooManager.generate_scenery_id()
+		FinanceManager.remove(tree_res.cost)
+		SignalBus.money_tooltip.emit(tree_res.cost, false, press_start_pos)
 	else:
 		tree.id = id
 	add_child(tree)
@@ -78,6 +80,8 @@ func place_vegetation(press_start_pos, vegetation_res, id):
 	vegetation.global_position = press_start_pos
 	if !id:
 		vegetation.id = ZooManager.generate_scenery_id()
+		FinanceManager.remove(vegetation_res.cost)
+		SignalBus.money_tooltip.emit(vegetation_res.cost, false, press_start_pos)
 	else:
 		vegetation.id = id
 	add_child(vegetation)
@@ -97,6 +101,8 @@ func place_decoration(press_start_pos, decoration_res, id):
 	decoration.global_position = decoration_position_local
 	if !id:
 		decoration.id = ZooManager.generate_scenery_id()
+		FinanceManager.remove(decoration_res.cost)
+		SignalBus.money_tooltip.emit(decoration_res.cost, false, press_start_pos)
 	else:
 		decoration.id = id
 	decoration.cell = decoration_position_cell

@@ -1,6 +1,7 @@
 extends Node
 
 signal tooltip
+signal money_tooltip
 
 signal obstacle_changed
 signal vegetation_placed
@@ -16,6 +17,8 @@ signal enclosure_removed  ## Emitted by: enclosure_scene
 
 signal save_game
 signal game_started
+
+signal money_changed
 
 
 signal ui_visibility ## Emitted by: inputController

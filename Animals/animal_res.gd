@@ -6,6 +6,7 @@ class_name animal_resource
 
 @export var name : String
 @export var species : IdRefs.ANIMAL_SPECIES
+@export var cost : float
 @export var texture : Texture2D
 @export var thumb : Texture2D
 @export var feed : IdRefs.FEED_TYPES

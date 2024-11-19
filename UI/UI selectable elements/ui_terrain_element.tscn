@@ -1,51 +1,66 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvjtneek7b62q"]
+[gd_scene load_steps=6 format=3 uid="uid://dvjtneek7b62q"]
 
+[ext_resource type="Theme" uid="uid://dssdalpin0m5v" path="res://UI/selectable_element_theme.tres" id="1_3qol8"]
 [ext_resource type="Script" path="res://UI/UI selectable elements/ui_terrain_element.gd" id="1_kvjl6"]
 [ext_resource type="Texture2D" uid="uid://c83xp6l2j8d6s" path="res://Sprites/thumbs/giraffe thumb.png" id="2_jeyu1"]
 
-[node name="UiTerrainElement" type="Control"]
-custom_minimum_size = Vector2(200, 148)
-layout_mode = 3
-anchors_preset = 0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r1oj3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o3uhc"]
+
+[node name="UiTerrainElement" type="PanelContainer"]
+offset_right = 182.0
+offset_bottom = 166.0
 size_flags_horizontal = 0
+theme = ExtResource("1_3qol8")
 script = ExtResource("1_kvjl6")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 0
-
-[node name="Button" type="Button" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Button"]
-layout_mode = 2
-offset_right = 200.0
-offset_bottom = 148.0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Button/MarginContainer"]
+[node name="Button" type="Button" parent="MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TerrainName" type="Label" parent="PanelContainer/Button/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_r1oj3")
+
+[node name="TerrainName" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 0
+size_flags_vertical = 6
 text = "Giraffe"
 horizontal_alignment = 1
 
-[node name="Thumbnail" type="TextureRect" parent="PanelContainer/Button/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-texture_filter = 1
-custom_minimum_size = Vector2(0, 110)
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(180, 100)
 layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_o3uhc")
+
+[node name="Thumbnail" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("2_jeyu1")
-expand_mode = 5
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TerrainCost" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+text = "$50"
+horizontal_alignment = 1

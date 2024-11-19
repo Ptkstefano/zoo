@@ -7,6 +7,7 @@
 script = ExtResource("1_hthtb")
 name = "White-tail Deer"
 species = 3
+cost = 175.0
 texture = ExtResource("2_qse5u")
 feed = 1
 shadow_scale = 1.0

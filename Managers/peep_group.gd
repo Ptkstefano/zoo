@@ -390,6 +390,9 @@ func buy_food():
 		if available_items[best_item] > 1.5:
 			shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
 			modifiers.append(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
+		for peep in peeps:
+			FinanceManager.add(best_item.sell_cost)
+			SignalBus.money_tooltip.emit(best_item.sell_cost, true, peep.global_position)
 	else:
 		## Ensures peeps won't come back to this shop
 		visited_shops.append(shop)

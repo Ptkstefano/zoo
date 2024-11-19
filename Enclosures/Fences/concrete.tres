@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_rn7st")
 name = "Concrete"
+segment_cost = 20.0
 atlas_y = 2

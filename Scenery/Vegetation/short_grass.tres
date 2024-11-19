@@ -8,6 +8,7 @@ load_path = "res://.godot/imported/vegetation1.png-386034bd32eca66cb70cc157782c7
 [resource]
 script = ExtResource("1_f8ked")
 name = "Short grass"
+cost = 1.0
 texture = SubResource("CompressedTexture2D_px4sa")
 texture_offset = Vector2(0, 0)
 vegetation_weight = 0.1

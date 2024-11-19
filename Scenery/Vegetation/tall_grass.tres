@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_l0d11")
 name = "Tall grass"
+cost = 1.0
 texture = ExtResource("2_61s3m")
 texture_offset = Vector2(0, 0)
 vegetation_weight = 0.3

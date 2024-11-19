@@ -1,51 +1,57 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0yqr1xdbc6do"]
+[gd_scene load_steps=4 format=3 uid="uid://c0yqr1xdbc6do"]
 
+[ext_resource type="Theme" uid="uid://dssdalpin0m5v" path="res://UI/selectable_element_theme.tres" id="1_gvunc"]
 [ext_resource type="Script" path="res://UI/UI selectable elements/ui_enclosure_element.gd" id="1_x64s8"]
 [ext_resource type="Texture2D" uid="uid://c83xp6l2j8d6s" path="res://Sprites/thumbs/giraffe thumb.png" id="2_ewvix"]
 
-[node name="UiEnclosureElement" type="Control"]
+[node name="UiEnclosureElement" type="PanelContainer"]
 custom_minimum_size = Vector2(200, 148)
-layout_mode = 3
-anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 164.0
 size_flags_horizontal = 0
+theme = ExtResource("1_gvunc")
 script = ExtResource("1_x64s8")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 0
-
-[node name="Button" type="Button" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Button"]
-layout_mode = 2
-offset_right = 200.0
-offset_bottom = 148.0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Button/MarginContainer"]
+[node name="Button" type="Button" parent="MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="EnclosureName" type="Label" parent="PanelContainer/Button/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="FenceName" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 0
+size_flags_vertical = 6
 text = "Giraffe"
 horizontal_alignment = 1
 
-[node name="Thumbnail" type="TextureRect" parent="PanelContainer/Button/MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(180, 100)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Thumbnail" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer"]
 unique_name_in_owner = true
 texture_filter = 1
-custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("2_ewvix")
-expand_mode = 5
+expand_mode = 1
+stretch_mode = 6
+
+[node name="FenceCost" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+text = "$50"
+horizontal_alignment = 1

@@ -44,3 +44,6 @@ func generate_random_position_at_distance_from_origin(origin : Vector2, distance
 	var y: float = sin(random_angle) * distance
 
 	return Vector2(x, y) + origin
+
+func money_text(value) -> String:
+	return "$ " + str(value)

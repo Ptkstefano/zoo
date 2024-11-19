@@ -8,6 +8,7 @@
 script = ExtResource("1_ob3tf")
 name = "Capybara"
 species = 0
+cost = 75.0
 texture = ExtResource("2_uytuh")
 thumb = ExtResource("3_oveb4")
 feed = 1

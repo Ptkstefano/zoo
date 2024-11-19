@@ -8,3 +8,4 @@ script = ExtResource("1_2ij5e")
 name = "Wooden bench"
 texture = ExtResource("2_cwntl")
 type = 0
+cost = 10.0

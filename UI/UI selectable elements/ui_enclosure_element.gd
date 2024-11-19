@@ -6,9 +6,10 @@ signal enclosure_selected
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$PanelContainer/Button.pressed.connect(on_enclosure_selected)
-	%EnclosureName.text = enclosure_res.name
+	%Button.pressed.connect(on_enclosure_selected)
+	%FenceName.text = enclosure_res.name
 	%Thumbnail.texture = enclosure_res.thumb
+	%FenceCost.text = Helpers.money_text(enclosure_res.segment_cost)
 	
 func on_enclosure_selected():
 	enclosure_selected.emit(enclosure_res)
