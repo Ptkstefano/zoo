@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddbum626vwima"]
+[gd_scene load_steps=7 format=3 uid="uid://ddbum626vwima"]
 
 [ext_resource type="Script" path="res://UI/UI popups/ui_shop_popup.gd" id="1_w81ri"]
 [ext_resource type="PackedScene" uid="uid://dkyq54bpawtoq" path="res://UI/UI popups/elements/ui_product_element.tscn" id="2_ts5ku"]
 [ext_resource type="PackedScene" uid="uid://c6fgf62ytu0xe" path="res://UI/UI popups/elements/shop_modifier_element.tscn" id="3_ul87g"]
 [ext_resource type="PackedScene" uid="uid://we0wd88u1111" path="res://UI/UI popups/elements/product_history_element.tscn" id="4_vhx3g"]
+[ext_resource type="PackedScene" uid="uid://8uotlvt85h4j" path="res://UI/UI popups/ui_available_products_popup.tscn" id="5_toidr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvjfy"]
 bg_color = Color(0.27, 0.27, 0.27, 0.901)
@@ -14,6 +15,7 @@ script = ExtResource("1_w81ri")
 product_element = ExtResource("2_ts5ku")
 shop_modifier_element = ExtResource("3_ul87g")
 product_history_element = ExtResource("4_vhx3g")
+available_products_popup = ExtResource("5_toidr")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -56,10 +58,9 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
-current_tab = 1
+current_tab = 0
 
 [node name="Products" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -81,7 +82,15 @@ size_flags_vertical = 3
 layout_mode = 2
 theme_override_constants/separation = 20
 
+[node name="AddProductButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 115)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Add product"
+
 [node name="Stats" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 

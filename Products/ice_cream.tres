@@ -4,8 +4,9 @@
 
 [resource]
 script = ExtResource("1_0h3kp")
-name = 0
+id = 0
 type = 0
-sell_cost = 1.0
+name = "Ice cream"
 base_sell_value = 4.0
-perceived_value = 4.0
+perceived_value = 3.5
+stock_cost = 2.5

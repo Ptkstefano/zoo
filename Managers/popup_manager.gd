@@ -3,6 +3,7 @@ extends Node
 @export var ui_shop_popup : PackedScene
 @export var ui_animal_popup : PackedScene
 @export var ui_mgmt_popup : PackedScene
+@export var ui_peep_group_popup : PackedScene
 
 var opened_popup
 
@@ -18,6 +19,8 @@ func open_popup(detector_pos, element):
 		open_animal_popup(element, detector_pos)
 	if element is Shop:
 		open_shop_popup(element)
+	if element is PeepGroup:
+		open_peepgroup_popup(element)
 
 func open_box(box):
 	if opened_popup != null:
@@ -39,4 +42,9 @@ func open_animal_popup(animal_node, detector_pos):
 
 func open_mgmt_box():
 	opened_popup = ui_mgmt_popup.instantiate()
+	add_child(opened_popup)
+
+func open_peepgroup_popup(peepgroup_node):
+	opened_popup = ui_peep_group_popup.instantiate()
+	opened_popup.peep_group_node = peepgroup_node
 	add_child(opened_popup)

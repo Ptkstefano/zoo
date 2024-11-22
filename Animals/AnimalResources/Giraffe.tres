@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_udr7q")
 name = "Kardofan Giraffe"
-species = 2
+species_id = 2
 cost = 200.0
 texture = ExtResource("2_t6epv")
 thumb = ExtResource("3_bp2hk")

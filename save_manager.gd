@@ -360,19 +360,20 @@ func get_animal_data(animal):
 	return data
 
 func get_peep_group_data(peep_group):
-	var data = {}
-	data['id'] = peep_group.id
-	data['x_pos'] = peep_group.cached_position.x
-	data['y_pos'] = peep_group.cached_position.y
-	data['peep_count'] = peep_group.peep_count
-	data['needs_rest'] = peep_group.needs_rest
-	data['needs_hunger'] = peep_group.needs_hunger
-	data['needs_toilet'] = peep_group.needs_toilet
-	data['observed_animals'] = peep_group.observed_animals
-	data['desired_destinations_id'] = peep_group.desired_enclosures_id
-	## TODO - Peep visited shops
-	## TODO - Peep inventory
-	return data
+	if is_instance_valid(peep_group):
+		var data = {}
+		data['id'] = peep_group.id
+		data['x_pos'] = peep_group.cached_position.x
+		data['y_pos'] = peep_group.cached_position.y
+		data['peep_count'] = peep_group.peep_count
+		data['needs_rest'] = peep_group.needs_rest
+		data['needs_hunger'] = peep_group.needs_hunger
+		data['needs_toilet'] = peep_group.needs_toilet
+		data['observed_animals'] = peep_group.observed_animals
+		data['desired_destinations_id'] = peep_group.desired_enclosures_id
+		## TODO - Peep visited shops
+		## TODO - Peep inventory
+		return data
 	
 
 func get_scenery_data(scenery):

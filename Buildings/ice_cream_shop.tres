@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="building_resource" load_steps=5 format=3 uid="uid://csjatom74kl3h"]
+[gd_resource type="Resource" script_class="building_resource" load_steps=6 format=3 uid="uid://csjatom74kl3h"]
 
 [ext_resource type="Script" path="res://Buildings/building_res.gd" id="1_7ywjo"]
 [ext_resource type="Script" path="res://Products/product_res.gd" id="1_xwv1t"]
 [ext_resource type="Texture2D" uid="uid://cwvec4talel2p" path="res://Buildings/IceCreamShop.png" id="2_ka74h"]
 [ext_resource type="Resource" uid="uid://chxwmmjp17tl7" path="res://Products/ice_cream.tres" id="2_yeupl"]
+[ext_resource type="Resource" uid="uid://4jweia6u5lfm" path="res://Products/milk_shake.tres" id="3_p7ld5"]
 
 [resource]
 script = ExtResource("1_7ywjo")
@@ -12,7 +13,7 @@ thumb = ExtResource("2_ka74h")
 texture = ExtResource("2_ka74h")
 building_type = 0
 product_types = Array[int]([0])
-available_products = Array[ExtResource("1_xwv1t")]([ExtResource("2_yeupl")])
+possible_products = Array[ExtResource("1_xwv1t")]([ExtResource("2_yeupl"), ExtResource("3_p7ld5")])
 size = Vector2i(2, 1)
 sprite_pos = Vector2(-19, -22)
 detectable_pos = Vector2(-18, -21)

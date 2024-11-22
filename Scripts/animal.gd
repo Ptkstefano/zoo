@@ -95,7 +95,7 @@ func initialize_animal(res, coordinate, found_enclosure):
 	$Sprite2D.offset = Vector2(0, (($Sprite2D.texture.get_height() * -0.25) + animal_res.sprite_y_offset))
 	
 	animal_name = animal_res.name
-	animal_species = animal_res.species
+	animal_species = animal_res.species_id
 	
 	if animal_res.can_swim:
 		$NavigationAgent2D.set_navigation_layer_value(2, false)

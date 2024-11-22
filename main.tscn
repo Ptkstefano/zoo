@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=129 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" path="res://Scripts/game_controller.gd" id="1_nisry"]
 [ext_resource type="Script" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/path_manager.gd" id="2_4bhy0"]
 [ext_resource type="PackedScene" uid="uid://cl4o0ja0kt0i1" path="res://Animals/animal.tscn" id="2_7ivxh"]
 [ext_resource type="Script" path="res://Managers/rendering_controller.gd" id="2_hhygd"]
-[ext_resource type="Script" path="res://Scripts/game_data_manager.gd" id="3_3jjmw"]
+[ext_resource type="Script" path="res://Scripts/EnclosureManager.gd" id="3_3jjmw"]
 [ext_resource type="PackedScene" uid="uid://diabcxnc3u1uu" path="res://Managers/z_index_renderer.tscn" id="3_rhpto"]
 [ext_resource type="Texture2D" uid="uid://bw474aur5qc4s" path="res://Sprites/tile3.png" id="3_s04uj"]
 [ext_resource type="Script" path="res://Paths/path_res.gd" id="4_5g54g"]
@@ -85,6 +85,7 @@
 [ext_resource type="Theme" uid="uid://qsq4gutgth07" path="res://UI/default_theme.tres" id="74_7k2ss"]
 [ext_resource type="Script" path="res://UI/ui_show.gd" id="74_d5mka"]
 [ext_resource type="Texture2D" uid="uid://bgsedt3bhj4my" path="res://Enclosures/Fences/fence_exp1.png" id="82_auu6y"]
+[ext_resource type="PackedScene" uid="uid://fhgu3i03484t" path="res://UI/UI popups/ui_peep_group_popup.tscn" id="83_4rd2l"]
 [ext_resource type="Texture2D" uid="uid://boc2fhvy7oxq2" path="res://UI/Icons/brickwall.png" id="85_2nbob"]
 [ext_resource type="Theme" uid="uid://dnjl2onbgc2xp" path="res://UI/main_tool_panel.tres" id="86_vgvmu"]
 [ext_resource type="Script" path="res://UI/ui_debug_shader.gd" id="87_1b22a"]
@@ -576,6 +577,7 @@ script = ExtResource("48_w8cen")
 ui_shop_popup = ExtResource("50_dyuu3")
 ui_animal_popup = ExtResource("73_mv3dj")
 ui_mgmt_popup = ExtResource("90_kjtd0")
+ui_peep_group_popup = ExtResource("83_4rd2l")
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("inputController")]
 script = ExtResource("10_pctuh")
@@ -1372,7 +1374,7 @@ text = "Oceania"
 
 [node name="SelectionPanel" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 180)
+custom_minimum_size = Vector2(0, 230)
 layout_mode = 2
 size_flags_vertical = 8
 mouse_filter = 2

@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_kntb2")
 name = "Red Kangaroo"
-species = 0
+species_id = 4
 cost = 250.0
 texture = ExtResource("2_pbl2i")
 feed = 1

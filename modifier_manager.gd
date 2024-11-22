@@ -14,6 +14,9 @@ enum PEEP_MODIFIERS {
 	NO_FOOD,
 	NO_REST_SPOT,
 	TOO_EXPENSIVE,
+	NO_SHOP_STOCK,
+	EMPTY_SHOP,
+	NO_DESIRABLE_QUALITY
 }
 
 var peep_modifiers = {
@@ -28,5 +31,8 @@ var peep_modifiers = {
 	PEEP_MODIFIERS.NO_TOILET: PeepModifier.new("Group could not find a toilet in time", -2),
 	PEEP_MODIFIERS.NO_FOOD: PeepModifier.new("Group could not find food in time", -1),
 	PEEP_MODIFIERS.NO_REST_SPOT: PeepModifier.new("Group could not find a rest spot in time", -1),
-	PEEP_MODIFIERS.TOO_EXPENSIVE: PeepModifier.new("Group found no adequately priced items in shop", -0.25)
+	PEEP_MODIFIERS.TOO_EXPENSIVE: PeepModifier.new("Group found no adequately priced items in shop", -0.25),
+	PEEP_MODIFIERS.NO_SHOP_STOCK: PeepModifier.new("Group wanted to buy out of stock item", -0.5),
+	PEEP_MODIFIERS.EMPTY_SHOP: PeepModifier.new("Group found shop with no items available", -0.25),
+	PEEP_MODIFIERS.NO_DESIRABLE_QUALITY: PeepModifier.new("Group found no item of suitable quality level", -0.25),
 }

@@ -4,6 +4,7 @@ extends CanvasLayer
 
 @export var shop_modifier_element : PackedScene
 @export var product_history_element : PackedScene
+@export var available_products_popup : PackedScene
 
 var shop_node
 
@@ -13,30 +14,31 @@ var products = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	shop_node.update_stats.connect(generate_stats_tab)
+	shop_node.update_stats.connect(update_stats)
 	%CloseButton.pressed.connect(queue_free)
+	%AddProductButton.pressed.connect(open_product_menu)
 	generate_stats_tab()
+	generate_products_tab()
 	
 	#%RemoveBuildingButton.pressed.connect(on_remove_building)
-	var i = 0
-	for product in shop_node.available_products:
-		var element = product_element.instantiate()
-		element.product_name = product.name
-		element.cost = product.current_cost
-		element.id = i
-		element.cost_changed.connect(on_product_cost_changed)
-		products[i] = {'element': element, 'product': product}
-		%ProductList.add_child(element)
-		i += 1
+
 		
 	
 func on_product_cost_changed(id, new_cost):
-	products[id].product.current_cost = new_cost
-	print(products[id].product.current_cost)
+	shop_node.update_product_price(id, new_cost)
+	#products[id].product.current_price = new_cost
+	
+func on_product_stock_replenish(id):
+	shop_node.replenish_item_stock(id)
+	
 	
 func on_remove_building():
 	shop_node.remove_building()
 	queue_free()
+
+func update_stats():
+	generate_stats_tab()
+	generate_products_tab()
 
 func generate_stats_tab():
 	## Sell stats list
@@ -66,3 +68,39 @@ func generate_stats_tab():
 		%ShopModifierList.add_child(element)
 		
 		
+func generate_products_tab():
+	for child in %ProductList.get_children():
+		child.queue_free()
+		
+	for id in shop_node.available_products:
+		var product = shop_node.available_products[id]
+		var element = product_element.instantiate()
+		element.product_name = product.name
+		element.price = product.current_price
+		element.id = product.id
+		element.price_changed.connect(on_product_cost_changed)
+		element.replenish_stock.connect(on_product_stock_replenish)
+		element.remove_product.connect(on_remove_product)
+		element.update_stock(product.current_stock, shop_node.maximum_stock)
+		products[product.id] = {'element': element, 'product': product}
+		%ProductList.add_child(element)
+
+func open_product_menu():
+	var popup = available_products_popup.instantiate()
+	## TODO - Change to unlocked products
+	for product in shop_node.building_res.possible_products:
+		if product.id not in shop_node.available_products.keys():
+			popup.products.append(product)
+	#popup.products = shop_node.building_res.possible_products
+	popup.product_selected.connect(on_new_product_added)
+	add_child(popup)
+	
+func on_new_product_added(product):
+	shop_node.add_product(product)
+	products[product.id] = product
+	generate_products_tab()
+
+func on_remove_product(id):
+	shop_node.remove_product(id)
+	products.erase(id)
+	generate_products_tab()

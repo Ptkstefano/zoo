@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_hthtb")
 name = "White-tail Deer"
-species = 3
+species_id = 3
 cost = 175.0
 texture = ExtResource("2_qse5u")
 feed = 1

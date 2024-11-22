@@ -59,10 +59,13 @@ var modifiers = []
 
 ## Defines how tolerant peep group is to product's prices, higher is more exigent
 var min_utility_score_tolerance : float
+var min_product_level : int
 
 var zoo_rating_score : float = 3
 
 var cached_position : Vector2
+
+var spent_money : float = 0
 
 var z_index_value
 
@@ -70,7 +73,7 @@ signal peep_group_left
 
 
 
-var needs_rest : float = 100:
+var needs_rest : float = randf_range(75, 100):
 	set(value):
 		needs_rest = clamp(value,0,100)
 		if value < 35:
@@ -79,16 +82,16 @@ var needs_rest : float = 100:
 			if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_REST_SPOT):
 				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_REST_SPOT)
 
-var needs_hunger : float = 80:
+var needs_hunger : float = randf_range(35, 90):
 	set(value):
 		needs_hunger = clamp(value,0,100)
-		if value < 35:
+		if value <= 35:
 			searching_food_spot = true
 		if value < 1:
 			if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_FOOD):
 				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_FOOD)
 			
-var needs_toilet : float = 35:
+var needs_toilet : float = randf_range(50, 90):
 	set(value):
 		needs_hunger = clamp(value,0,100.0)
 		if value < 35:
@@ -98,9 +101,9 @@ var needs_toilet : float = 35:
 				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_TOILET)
 		
 		
-var hunger_drain_rate := 5.0
-var rest_drain_rate := 8.0
-var toilet_drain_rate := 5.0
+var hunger_drain_rate : float = randf_range(1.5, 4)
+var rest_drain_rate : float = randf_range(1.5, 2.5)
+var toilet_drain_rate : float = randf_range(1.0, 2.0)
 
 var peep_count = null
 
@@ -117,7 +120,7 @@ func _ready() -> void:
 		$Peeps.add_child(peep)
 	
 	if !favorite_animal:
-		favorite_animal = randi_range(0, IdRefs.ANIMAL_SPECIES.size() - 1)
+		favorite_animal = ContentManager.animals.keys().pick_random()
 	
 	speed = randi_range(16, 24)
 	
@@ -127,6 +130,16 @@ func _ready() -> void:
 	
 	min_utility_score_tolerance = randf_range(0.6, 1.5)
 	
+	var randi = randi_range(0,10)
+	if randi <= 6:
+		min_product_level = 1
+	elif randi <= 9:
+		min_product_level = 2
+	else:
+		min_product_level = 3
+	
+	spent_money += (ZooManager.entrance_price * peep_count)
+	
 	agent.waypoint_reached.connect(on_agent_waypoint_reached)
 	
 	#$AnimalDetector.body_entered.connect(on_animal_detector_body_entered)
@@ -134,7 +147,7 @@ func _ready() -> void:
 	#$GuestBuilding.area_entered.connect(on_guest_building_detector_area_entered)
 	
 	$Detector.area_entered.connect(on_detector_area_entered)
-	$Detector.body_entered.connect(on_detector_body_entered)
+	#$Detector.body_entered.connect(on_detector_body_entered)
 	
 	$StateTimer.timeout.connect(on_state_timer_timeout)
 	$DecayTimer.timeout.connect(on_decay_timer_timeout)
@@ -267,24 +280,24 @@ func get_new_destination():
 func move_toward_direction(direction: Vector2, delta: float):
 	global_position += direction * speed * delta
 	
-func on_detector_body_entered(body):
-	if group_state in busy_states:
-		return
-	if body is Animal:
-		if body.animal_species not in observed_animals:
-			observed_animals.append(body.animal_species)
-			change_state(group_states.OBSERVING)
-			$AnimalWaitTimer.stop()
-			for peep in peeps:
-				var dir = global_position.direction_to(body.global_position).angle()
-				peep.look_direction = dir
-				
-			if body.animal_species in group_desired_animals:
-				group_desired_animals.erase(body.animal_species)
-		
-		for destination in group_desired_destinations:
-			if destination.especies == body.animal_res:
-				group_desired_destinations.erase(destination)
+#func on_detector_body_entered(body):
+	#if group_state in busy_states:
+		#return
+	#if body is Animal:
+		#if body.animal_species not in observed_animals:
+			#observed_animals.append(body.animal_species)
+			#change_state(group_states.OBSERVING)
+			#$AnimalWaitTimer.stop()
+			#for peep in peeps:
+				#var dir = global_position.direction_to(body.global_position).angle()
+				#peep.look_direction = dir
+				#
+			#if body.animal_species in group_desired_animals:
+				#group_desired_animals.erase(body.animal_species)
+		#
+		#for destination in group_desired_destinations:
+			#if destination.especies == body.animal_res:
+				#group_desired_destinations.erase(destination)
 
 func on_detector_area_entered(area):
 	if group_state in busy_states:
@@ -360,16 +373,32 @@ func on_animal_wait_timer_timeout():
 func buy_food():
 	change_state(group_states.STOPPED)
 	var available_items = {}
-	## Fix bug if shop ceases to exist
+	
+	## In case shop has ceased to exist
 	if !shop:
+		change_state(group_states.STOPPED)
 		return
-	for item in shop.available_products:
+		
+	if shop.available_products.size() == 0:
+		shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.EMPTY_SHOP)
+		modifiers.append(ModifierManager.PEEP_MODIFIERS.EMPTY_SHOP)
+		
+	## Remove items of undesirable quality
+	for id in shop.available_products:
+		var item = shop.available_products[id] as product_resource
 		if item.type == IdRefs.PRODUCT_TYPES.FOOD:
-			available_items[item] = item.perceived_value / item.current_cost
+			if item.product_level >= min_product_level:
+				available_items[item] = item.perceived_value / item.current_price
+			
+	if available_items.size() == 0:
+		shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.EMPTY_SHOP)
+		modifiers.append(ModifierManager.PEEP_MODIFIERS.EMPTY_SHOP)
+		
 			
 	var best_item = null
 	var highest_utility = 0
 	
+	## Choose preferred item based on best perceived value
 	for item in available_items:
 		var utility_score = available_items[item]
 		if utility_score > highest_utility:
@@ -380,24 +409,34 @@ func buy_food():
 			else:
 				best_item = item
 
+	if available_items.size() == 0:
+		shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_DESIRABLE_QUALITY)
+		modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_DESIRABLE_QUALITY)
+
 	
 	if best_item != null:
-		## Buy
-		shop.buy(best_item, peep_count)
-		peep_group_inventory.append(best_item)
-		needs_hunger = 100
-		searching_food_spot = false
-		if available_items[best_item] > 1.5:
-			shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
-			modifiers.append(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
-		for peep in peeps:
-			FinanceManager.add(best_item.sell_cost)
-			SignalBus.money_tooltip.emit(best_item.sell_cost, true, peep.global_position)
+		## Found item of desirable cost and quality
+		if shop.buy(best_item, peep_count):
+			peep_group_inventory.append(best_item)
+			needs_hunger = 100
+			searching_food_spot = false
+			spent_money += best_item.current_price * peep_count
+			if available_items[best_item] > 1.5:
+				shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
+				modifiers.append(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
+			for peep in peeps:
+				FinanceManager.add(best_item.current_price)
+				SignalBus.money_tooltip.emit(best_item.current_price, true, peep.global_position)
+		else:
+			shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
+			modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
+	## Found no items of desirable cost
 	else:
 		## Ensures peeps won't come back to this shop
 		visited_shops.append(shop)
 		shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.TOO_EXPENSIVE)
 		modifiers.append(ModifierManager.PEEP_MODIFIERS.TOO_EXPENSIVE)
+		
 		#print("No adequately priced items available.")
 		
 	change_state(group_states.STOPPED)
@@ -433,7 +472,7 @@ func initialize_peep_group_destinations():
 			desired_enclosures_id.append(enclosure_key)
 			
 			group_desired_destinations.append(ZooManager.zoo_enclosures[enclosure_key])
-			group_desired_animals.append(ZooManager.zoo_enclosures[enclosure_key]['especies'].species)
+			group_desired_animals.append(ZooManager.zoo_enclosures[enclosure_key]['especies'].species_id)
 			
 			
 	else:

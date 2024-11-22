@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="product_resource" load_steps=2 format=3 uid="uid://4jweia6u5lfm"]
+
+[ext_resource type="Script" path="res://Products/product_res.gd" id="1_mkg0g"]
+
+[resource]
+script = ExtResource("1_mkg0g")
+id = 1
+type = 0
+name = "Milk shake"
+base_sell_value = 5.0
+perceived_value = 4.5
+product_level = 2
+stock_cost = 3.5
+maintenance = 0.0
