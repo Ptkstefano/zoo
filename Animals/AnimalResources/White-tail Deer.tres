@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="animal_resource" load_steps=3 format=3 uid="uid://ck55w4ejddxxs"]
+[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://ck55w4ejddxxs"]
 
 [ext_resource type="Script" path="res://Animals/animal_res.gd" id="1_hthtb"]
 [ext_resource type="Texture2D" uid="uid://ch5nicona3f7r" path="res://Animals/sprites/deer.png" id="2_qse5u"]
+[ext_resource type="Texture2D" uid="uid://dsv6levbc3rv3" path="res://Animals/thumbs/animal_whitetail_deer.png" id="3_3lfbr"]
 
 [resource]
 script = ExtResource("1_hthtb")
-name = "White-tail Deer"
+name = "Whitetail Deer "
 species_id = 3
 cost = 175.0
 texture = ExtResource("2_qse5u")
+thumb = ExtResource("3_3lfbr")
 feed = 1
 shadow_scale = 1.0
 sprite_y_offset = 4

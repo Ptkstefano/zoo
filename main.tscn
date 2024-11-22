@@ -1374,7 +1374,7 @@ text = "Oceania"
 
 [node name="SelectionPanel" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 230)
+custom_minimum_size = Vector2(0, 290)
 layout_mode = 2
 size_flags_vertical = 8
 mouse_filter = 2
@@ -1401,6 +1401,7 @@ layout_mode = 2
 
 [node name="EnclosureMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/EnclosureMenu"]
@@ -1450,7 +1451,6 @@ layout_mode = 2
 
 [node name="AnimalMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/AnimalMenu"]
@@ -1465,7 +1465,6 @@ layout_mode = 2
 
 [node name="AnimalSelectionContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/AnimalMenu/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
 [node name="AnimalElement" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/AnimalMenu/MarginContainer/ScrollContainer/AnimalSelectionContainer" instance=ExtResource("21_a35of")]

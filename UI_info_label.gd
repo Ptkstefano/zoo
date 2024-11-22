@@ -15,7 +15,7 @@ func update_info_label():
 		text = 'Moving camera freely'
 		return
 	if inputController.current_tool == inputController.TOOLS.ANIMAL:
-		text = 'Placing animal'
+		text = 'Placing ' + inputController.selected_res.name
 		return
 	elif inputController.current_tool == inputController.TOOLS.PATH:
 		if inputController.is_bulldozing:

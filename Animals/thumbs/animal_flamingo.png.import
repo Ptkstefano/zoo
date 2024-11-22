@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gykuorv0xa2s"
-path="res://.godot/imported/animal_giraffe.png-29b67de20188bbe71e6aed633f48f61f.ctex"
+uid="uid://dwatfreksqvay"
+path="res://.godot/imported/animal_flamingo.png-6cf5b03ed3928704d8e7acff10a10340.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animals/thumbs/animal_giraffe.png"
-dest_files=["res://.godot/imported/animal_giraffe.png-29b67de20188bbe71e6aed633f48f61f.ctex"]
+source_file="res://Animals/thumbs/animal_flamingo.png"
+dest_files=["res://.godot/imported/animal_flamingo.png-6cf5b03ed3928704d8e7acff10a10340.ctex"]
 
 [params]
 

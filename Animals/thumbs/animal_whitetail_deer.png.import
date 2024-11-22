@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gykuorv0xa2s"
-path="res://.godot/imported/animal_giraffe.png-29b67de20188bbe71e6aed633f48f61f.ctex"
+uid="uid://dsv6levbc3rv3"
+path="res://.godot/imported/animal_whitetail_deer.png-1a5a4b9a549c9f6c3b5ad0bc1ad0a410.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animals/thumbs/animal_giraffe.png"
-dest_files=["res://.godot/imported/animal_giraffe.png-29b67de20188bbe71e6aed633f48f61f.ctex"]
+source_file="res://Animals/thumbs/animal_whitetail_deer.png"
+dest_files=["res://.godot/imported/animal_whitetail_deer.png-1a5a4b9a549c9f6c3b5ad0bc1ad0a410.ctex"]
 
 [params]
 
