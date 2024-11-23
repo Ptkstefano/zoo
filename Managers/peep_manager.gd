@@ -91,3 +91,7 @@ func debug_clear_peeps():
 			peep_count -= peep_group.peep_count
 			peep_group.queue_free()
 			
+func debug_hungry_peeps():
+	for peep_group in get_children():
+		if peep_group is PeepGroup:
+			peep_group.needs_hunger = 10.0

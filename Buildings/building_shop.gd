@@ -38,12 +38,13 @@ func _ready() -> void:
 func remove_building():
 	get_parent().remove_building()
 
-func buy(product : product_resource, peep_count : int) -> bool:
+func buy(product_id : int, peep_count : int) -> bool:
 	## Called by peep_groups and returns whether purchase was succesful
-	if product.current_stock >= peep_count:
-		sold_units[product.id] += peep_count
-		product.current_stock -= peep_count
+	if available_products[product_id].current_stock >= peep_count:
+		sold_units[product_id] += peep_count
+		available_products[product_id].current_stock -= peep_count
 		update_stats.emit()
+		FinanceManager.add(available_products[product_id].current_price)
 		return true
 	else:
 		return false
@@ -60,16 +61,19 @@ func update_product_price(id, new_value):
 	
 
 func replenish_item_stock(id):
-	var items_to_replenish = maximum_stock - available_products[id].current_stock
-	var replenish_cost = items_to_replenish * available_products[id].stock_cost
+	var items_to_replenish = available_products[id].product.max_stock - available_products[id].current_stock
+	var replenish_cost = items_to_replenish * available_products[id].product.stock_cost
 	FinanceManager.remove(replenish_cost)
 	SignalBus.money_tooltip.emit(replenish_cost, false, global_position)
-	available_products[id].current_stock = maximum_stock
+	available_products[id].current_stock = available_products[id].product.max_stock
 	update_stats.emit()
 
-func add_product(product):
-	available_products[product.id] = product
-	available_products[product.id].current_price = product.base_sell_value
+func add_product(product : product_resource):
+	available_products[product.id] = {
+		'product': product,
+		'current_price': product.base_sell_value,
+		'current_stock': product.max_stock
+		}
 	if !sold_units.keys().has(product.id):
 		sold_units[product.id] = 0
 

@@ -30,12 +30,14 @@ func update_building_menu():
 		
 	$"../../UI".update_ui()
 
-func build_building(building_res, start_tile, rotate, coords):
+func build_building(building_res, start_tile, rotate, coords, data):
 	var new_building = building_class_scene.instantiate()
 	new_building.start_tile = start_tile
 	new_building.is_building_rotated = rotate
 	new_building.building_res = building_res
 	new_building.used_coordinates = coords
+	if !data:
+		new_building.id = ZooManager.generate_building_id()
 	add_child(new_building)
 	new_building.building_selected.connect(on_building_selected)
 	new_building.building_removed.connect(on_building_removed)

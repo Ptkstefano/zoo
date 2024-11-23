@@ -357,7 +357,7 @@ func rotate_building_toggle():
 func build_building():
 	$"../TileMap/HighlightLayer".clear_highlight()
 	building_built.emit()
-	$"../Objects/BuildingManager".build_building(selected_res, start_tile_pos, rotate_building, cells)
+	$"../Objects/BuildingManager".build_building(selected_res, start_tile_pos, rotate_building, cells, null)
 
 func build_shelter():
 	$"../TileMap/HighlightLayer".clear_highlight()

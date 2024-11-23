@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://oa08vk0rrcpe"]
 
-[ext_resource type="Script" path="res://UI/UI selectable elements/ui_animal_element.gd" id="1_1a1p2"]
+[ext_resource type="Script" uid="uid://bj4d54wxu72f1" path="res://UI/UI selectable elements/ui_animal_element.gd" id="1_1a1p2"]
 [ext_resource type="Theme" uid="uid://dssdalpin0m5v" path="res://UI/selectable_element_theme.tres" id="1_px6ac"]
 [ext_resource type="FontFile" uid="uid://cfilyiycg7mlj" path="res://UI/Logic_Loop_Monospaced.ttf" id="4_cdtp4"]
 

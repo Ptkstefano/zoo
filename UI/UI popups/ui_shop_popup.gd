@@ -75,14 +75,14 @@ func generate_products_tab():
 	for id in shop_node.available_products:
 		var product = shop_node.available_products[id]
 		var element = product_element.instantiate()
-		element.product_name = product.name
+		element.product_name = product.product.name
 		element.price = product.current_price
-		element.id = product.id
+		element.id = product.product.id
 		element.price_changed.connect(on_product_cost_changed)
 		element.replenish_stock.connect(on_product_stock_replenish)
 		element.remove_product.connect(on_remove_product)
-		element.update_stock(product.current_stock, shop_node.maximum_stock)
-		products[product.id] = {'element': element, 'product': product}
+		element.update_stock(product.current_stock, product.product.max_stock)
+		products[product.product.id] = {'element': element, 'product': product.product}
 		%ProductList.add_child(element)
 
 func open_product_menu():

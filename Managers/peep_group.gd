@@ -382,63 +382,59 @@ func buy_food():
 	if shop.available_products.size() == 0:
 		shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.EMPTY_SHOP)
 		modifiers.append(ModifierManager.PEEP_MODIFIERS.EMPTY_SHOP)
+		return
 		
 	## Remove items of undesirable quality
 	for id in shop.available_products:
-		var item = shop.available_products[id] as product_resource
-		if item.type == IdRefs.PRODUCT_TYPES.FOOD:
-			if item.product_level >= min_product_level:
-				available_items[item] = item.perceived_value / item.current_price
+		if shop.available_products[id].product.type == IdRefs.PRODUCT_TYPES.FOOD:
+			if shop.available_products[id].product.product_level >= min_product_level:
+				available_items[shop.available_products[id].product.id] = {
+					'utility_score': shop.available_products[id].product.perceived_value / shop.available_products[id].current_price
+					}
 			
-	if available_items.size() == 0:
-		shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.EMPTY_SHOP)
-		modifiers.append(ModifierManager.PEEP_MODIFIERS.EMPTY_SHOP)
-		
-			
-	var best_item = null
-	var highest_utility = 0
-	
-	## Choose preferred item based on best perceived value
-	for item in available_items:
-		var utility_score = available_items[item]
-		if utility_score > highest_utility:
-			highest_utility = utility_score
-			#print('tolerance: ' + str(min_utility_score_tolerance), 'utility score:' + str(utility_score))
-			if utility_score < min_utility_score_tolerance:
-				continue
-			else:
-				best_item = item
-
 	if available_items.size() == 0:
 		shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_DESIRABLE_QUALITY)
 		modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_DESIRABLE_QUALITY)
-
+		return
+		
+			
+	var best_item_id = null
+	var highest_utility = 0
 	
-	if best_item != null:
-		## Found item of desirable cost and quality
-		if shop.buy(best_item, peep_count):
-			peep_group_inventory.append(best_item)
-			needs_hunger = 100
-			searching_food_spot = false
-			spent_money += best_item.current_price * peep_count
-			if available_items[best_item] > 1.5:
-				shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
-				modifiers.append(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
-			for peep in peeps:
-				FinanceManager.add(best_item.current_price)
-				SignalBus.money_tooltip.emit(best_item.current_price, true, peep.global_position)
-		else:
-			shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
-			modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
+	## Choose preferred item based on best perceived value
+	for id in available_items:
+		if available_items[id].utility_score > highest_utility:
+			if available_items[id].utility_score < min_utility_score_tolerance:
+				continue
+			highest_utility = available_items[id].utility_score
+			best_item_id = id
+
 	## Found no items of desirable cost
-	else:
-		## Ensures peeps won't come back to this shop
+	if best_item_id == null:
+		print('no best item')
 		visited_shops.append(shop)
 		shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.TOO_EXPENSIVE)
 		modifiers.append(ModifierManager.PEEP_MODIFIERS.TOO_EXPENSIVE)
-		
-		#print("No adequately priced items available.")
-		
+		return
+
+	print('try buy')
+	## Found item of desirable cost and quality
+	if shop.buy(best_item_id, peep_count):
+		print('bought')
+		peep_group_inventory.append(best_item_id)
+		needs_hunger = 100
+		searching_food_spot = false
+		spent_money += shop.available_products[best_item_id].current_price * peep_count
+		if available_items[best_item_id].utility_score > 1.5:
+			shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
+			modifiers.append(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
+		for peep in peeps:
+			SignalBus.money_tooltip.emit(shop.available_products[best_item_id].current_price, true, peep.global_position)
+	else:
+		shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
+		modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
+	
+
 	change_state(group_states.STOPPED)
 
 func use_toilet():

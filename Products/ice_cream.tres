@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="product_resource" load_steps=2 format=3 uid="uid://chxwmmjp17tl7"]
 
-[ext_resource type="Script" path="res://Products/product_res.gd" id="1_0h3kp"]
+[ext_resource type="Script" uid="uid://cq5yhojsat81w" path="res://Products/product_res.gd" id="1_0h3kp"]
 
 [resource]
 script = ExtResource("1_0h3kp")
@@ -9,4 +9,7 @@ type = 0
 name = "Ice cream"
 base_sell_value = 4.0
 perceived_value = 3.5
+product_level = 1
 stock_cost = 2.5
+max_stock = 500
+maintenance = 100.0

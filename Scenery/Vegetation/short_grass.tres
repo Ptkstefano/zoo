@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="vegetation_resource" load_steps=3 format=3 uid="uid://bin28cl7rvgjd"]
 
-[ext_resource type="Script" path="res://Scenery/Vegetation/vegetation_res.gd" id="1_f8ked"]
+[ext_resource type="Script" uid="uid://d3riapnnqoikx" path="res://Scenery/Vegetation/vegetation_res.gd" id="1_f8ked"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_px4sa"]
 load_path = "res://.godot/imported/vegetation1.png-386034bd32eca66cb70cc157782c7f92.ctex"

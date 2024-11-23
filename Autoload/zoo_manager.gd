@@ -22,6 +22,8 @@ var next_animal_id = 0
 
 var next_scenery_id = 0
 
+var next_building_id = 0
+
 var used_peep_group_ids = []
 		
 var zoo_enclosures : Dictionary = {}
@@ -75,6 +77,10 @@ func generate_scenery_id() -> int :
 	next_scenery_id += 1
 	return next_scenery_id
 
+func generate_building_id() -> int:
+	next_building_id += 1
+	return next_scenery_id
+	
 func generate_peep_group_id():
 	var i = 0
 	while i in used_peep_group_ids:

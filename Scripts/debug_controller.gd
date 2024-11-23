@@ -31,22 +31,28 @@ func _ready() -> void:
 	base_peep_spawn_timer = %PeepSpawnTimer.wait_time
 	%DebugSpawnPeeps.button_down.connect(spawn_peep_group)
 	%DebugRemovePeeps.pressed.connect(remove_peeps)
+	%DebugHungryPeeps.pressed.connect(hungry_peeps)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	fps_label.text = ("FPS: " + str(Engine.get_frames_per_second()))
-	mouse_pos_label.text = str(get_global_mouse_position())
-	mouse_coordinate_label.text = str(highlight_layer.local_to_map(get_global_mouse_position()))
-	animal_count_label.text = "Animals: " + str($"../Objects/AnimalManager".animal_count)
-	peep_count_label.text = "Peeps: " + str($"../Objects/PeepManager".peep_count)
-	physics_time_label.text = ("Physics: "+str(Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS)))
-	z_index_label.text = ("Tile Z: "+str(Helpers.get_current_tile_z_index(get_global_mouse_position())))
-	draw_label.text = ("Draw calls: "+str(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)))
-	reputation_label.text = ("Reputation: "+str(ZooManager.reputation))
+	if %DebugScreen.is_visible():
+		fps_label.text = ("FPS: " + str(Engine.get_frames_per_second()))
+		mouse_pos_label.text = str(get_global_mouse_position())
+		mouse_coordinate_label.text = str(highlight_layer.local_to_map(get_global_mouse_position()))
+		animal_count_label.text = "Animals: " + str($"../Objects/AnimalManager".animal_count)
+		peep_count_label.text = "Peeps: " + str($"../Objects/PeepManager".peep_count)
+		physics_time_label.text = ("Physics: "+str(Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS)))
+		z_index_label.text = ("Tile Z: "+str(Helpers.get_current_tile_z_index(get_global_mouse_position())))
+		draw_label.text = ("Draw calls: "+str(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)))
+		reputation_label.text = ("Reputation: "+str(ZooManager.reputation))
 
 func spawn_peep_group():
 	$"../Objects/PeepManager".instantiate_peep_group(null)
 	
 func remove_peeps():
 	$"../Objects/PeepManager".debug_clear_peeps()
+	
+func hungry_peeps():
+	$"../Objects/PeepManager".debug_hungry_peeps()

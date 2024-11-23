@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="building_resource" load_steps=6 format=3 uid="uid://csjatom74kl3h"]
 
-[ext_resource type="Script" path="res://Buildings/building_res.gd" id="1_7ywjo"]
-[ext_resource type="Script" path="res://Products/product_res.gd" id="1_xwv1t"]
+[ext_resource type="Script" uid="uid://b3dk3jci5ihs8" path="res://Buildings/building_res.gd" id="1_7ywjo"]
+[ext_resource type="Script" uid="uid://cq5yhojsat81w" path="res://Products/product_res.gd" id="1_xwv1t"]
 [ext_resource type="Texture2D" uid="uid://cwvec4talel2p" path="res://Buildings/IceCreamShop.png" id="2_ka74h"]
 [ext_resource type="Resource" uid="uid://chxwmmjp17tl7" path="res://Products/ice_cream.tres" id="2_yeupl"]
 [ext_resource type="Resource" uid="uid://4jweia6u5lfm" path="res://Products/milk_shake.tres" id="3_p7ld5"]

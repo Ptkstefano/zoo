@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://mqvvqf6wxoe8"]
 
-[ext_resource type="Script" path="res://Autoload/content_manager.gd" id="1_0xc5w"]
-[ext_resource type="Script" path="res://Animals/animal_res.gd" id="2_3584o"]
+[ext_resource type="Script" uid="uid://da6bglapjw4jm" path="res://Autoload/content_manager.gd" id="1_0xc5w"]
+[ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="2_3584o"]
 [ext_resource type="Resource" uid="uid://c1csiys1jf20o" path="res://Animals/AnimalResources/American Flamingo.tres" id="3_fp7ms"]
 [ext_resource type="Resource" uid="uid://c7pfv2es6r5oa" path="res://Animals/AnimalResources/Capybara.tres" id="4_gewqj"]
 [ext_resource type="Resource" uid="uid://c8vfd72bmgjcf" path="res://Animals/AnimalResources/Giraffe.tres" id="5_mbt8i"]
@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://xncaf8r72rkb" path="res://Animals/AnimalResources/Red Kangaroo.tres" id="7_m8nde"]
 [ext_resource type="Resource" uid="uid://duuxwcbsqbfe" path="res://Animals/AnimalResources/Red Panda.tres" id="8_8irge"]
 [ext_resource type="Resource" uid="uid://ck55w4ejddxxs" path="res://Animals/AnimalResources/White-tail Deer.tres" id="9_3wn2c"]
-[ext_resource type="Script" path="res://Products/product_res.gd" id="10_k1pd2"]
+[ext_resource type="Script" uid="uid://cq5yhojsat81w" path="res://Products/product_res.gd" id="10_k1pd2"]
 [ext_resource type="Resource" uid="uid://chxwmmjp17tl7" path="res://Products/ice_cream.tres" id="11_xkxqe"]
 [ext_resource type="Resource" uid="uid://4jweia6u5lfm" path="res://Products/milk_shake.tres" id="12_2cy81"]
 

@@ -155,6 +155,9 @@ func save_game():
 	
 	var zoo_manager_data = {}
 	zoo_manager_data['next_enclosure_id'] = ZooManager.next_enclosure_id
+	zoo_manager_data['next_animal_id'] = ZooManager.next_animal_id
+	zoo_manager_data['next_building_id'] = ZooManager.next_building_id
+	zoo_manager_data['next_scenery_id'] = ZooManager.next_scenery_id
 	save_data['zoo_manager_data'] = zoo_manager_data
 	
 	
@@ -283,10 +286,12 @@ func load_game():
 				var pos = Vector2(data['buildingData'][key]['start_tile']['x_pos'], data['buildingData'][key]['start_tile']['y_pos'])
 				var is_rotated = data['buildingData'][key]['is_rotated']
 				var used_coords = []
+				print(data['buildingData'][key]['building_data'])
 				for entry in data["buildingData"][key]['used_coordinates']:
 					var vector = Vector2(data["buildingData"][key]['used_coordinates'][entry]['x_pos'], data["buildingData"][key]['used_coordinates'][entry]['y_pos'])
 					used_coords.append(vector)
-				buildingManager.build_building(building_res, pos, is_rotated, used_coords)
+				var buuilding_data = null ## TODO
+				buildingManager.build_building(building_res, pos, is_rotated, used_coords, buuilding_data)
 				
 		if data.has('peepGroupData'):
 			for key in data["peepGroupData"]:
@@ -303,6 +308,9 @@ func load_game():
 				
 		if data.has('zoo_manager_data'):
 			ZooManager.next_enclosure_id = data['zoo_manager_data']['next_enclosure_id']
+			ZooManager.next_animal_id = data['zoo_manager_data']['next_animal_id']
+			ZooManager.next_building_id = data['zoo_manager_data']['next_building_id']
+			ZooManager.next_scenery_id = data['zoo_manager_data']['next_scenery_id']
 			
 		if data.has('financeData'):
 			FinanceManager.current_money = data['financeData']['current_money']
@@ -371,6 +379,7 @@ func get_peep_group_data(peep_group):
 		data['needs_toilet'] = peep_group.needs_toilet
 		data['observed_animals'] = peep_group.observed_animals
 		data['desired_destinations_id'] = peep_group.desired_enclosures_id
+		#data['visited_shops'] = peep_group.
 		## TODO - Peep visited shops
 		## TODO - Peep inventory
 		return data
@@ -417,6 +426,20 @@ func get_finance_data():
 func get_building_data(building):
 	var data = {}
 	data['building_type'] = building.building_type
+	data['building_id'] = building.id
+	if building.building_type == IdRefs.BUILDING_TYPES.SHOP:
+		var products = {}
+		for product in building.building_scene.available_products:
+			products[product] = {
+				'product_res': building.building_scene.available_products[product].product.get_path(),
+				'current_price': building.building_scene.available_products[product].current_price,
+				'current_stock': building.building_scene.available_products[product].current_stock
+			}
+		var building_data = {
+				'products': products
+			}
+		data['building_data'] = building_data
+
 	data['building_res'] = building.building_res.get_path()
 	data['is_rotated'] = building.is_building_rotated
 	var start_tile = { 'x_pos': building.start_tile.x, 'y_pos': building.start_tile.y }

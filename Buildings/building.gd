@@ -7,7 +7,11 @@ class_name building
 
 var building_type : IdRefs.BUILDING_TYPES
 
+var building_scene
+
 var building_res : building_resource
+
+var id : int
 
 var used_coordinates = []
 var start_tile : Vector2
@@ -27,6 +31,7 @@ func _ready() -> void:
 	building_instance.global_position = TileMapRef.map_to_local(start_tile)
 	building_instance.z_index = Helpers.get_current_tile_z_index(building_instance.global_position) + building_res.z_offset
 	building_instance.is_rotated = is_building_rotated
+	building_scene = building_instance
 	add_child(building_instance)
 
 func remove_building():

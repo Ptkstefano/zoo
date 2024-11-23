@@ -57,10 +57,9 @@ func update_popup_data():
 		label.text = str(item.name) + ' x ' + str(peep_group_node.peep_count)
 		%InventoryList.add_child(label)
 		
-	for child in %InventoryList.get_children():
+	for child in %ThoughtList.get_children():
 		child.queue_free()
 		
-	print(peep_group_node.modifiers)
 	for modifier in peep_group_node.modifiers:
 		var label = Label.new()
 		label.text = str(ModifierManager.peep_modifiers[modifier].description)
