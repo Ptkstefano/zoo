@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=139 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" uid="uid://o2egpp0b02e2" path="res://Scripts/debug_controller.gd" id="1_nisry"]
 [ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -34,6 +34,7 @@
 [ext_resource type="Resource" uid="uid://ctusbtwghbxrl" path="res://Terrain/savanna.tres" id="14_1rewk"]
 [ext_resource type="Script" uid="uid://bjwm8a55y7i7h" path="res://Managers/scenery_manager.gd" id="14_62h3g"]
 [ext_resource type="Script" uid="uid://bvnak0w5oxnhm" path="res://Enclosures/Fences/fence_res.gd" id="20_k6451"]
+[ext_resource type="Texture2D" uid="uid://cfp2cyqpum0g5" path="res://Buildings/entrance.png" id="21_41lik"]
 [ext_resource type="PackedScene" uid="uid://oa08vk0rrcpe" path="res://UI/UI selectable elements/ui_animal_element.tscn" id="21_a35of"]
 [ext_resource type="Resource" uid="uid://camg8o6ropjnr" path="res://Enclosures/Fences/small.tres" id="21_ad55l"]
 [ext_resource type="Resource" uid="uid://b85gocjhm05am" path="res://Enclosures/Fences/steel.tres" id="22_kya8w"]
@@ -68,17 +69,24 @@
 [ext_resource type="Script" uid="uid://cu2j3songpy3l" path="res://Managers/fixture_manager.gd" id="45_u6xcc"]
 [ext_resource type="Script" uid="uid://5ejtocxcdxha" path="res://Scenery/Fixtures/fixture_resource.gd" id="46_0jpxo"]
 [ext_resource type="PackedScene" uid="uid://dyw57ak1ghyxw" path="res://Scenery/Fixtures/Fixture_scene.tscn" id="46_f0e0b"]
+[ext_resource type="Script" uid="uid://bgsyapjwrjvwf" path="res://Scenery/Rocks/rock_resource.gd" id="46_inymm"]
 [ext_resource type="Resource" uid="uid://bsox4n3cixif" path="res://Scenery/Fixtures/wooden bench.tres" id="47_gvub1"]
+[ext_resource type="Resource" uid="uid://c20l3l7d4n8e5" path="res://Scenery/Rocks/rock1.tres" id="47_jcxqu"]
+[ext_resource type="Resource" uid="uid://gk6rd1nfkfuo" path="res://Scenery/Rocks/rock2.tres" id="48_0arob"]
 [ext_resource type="Script" uid="uid://djfaqc8j8g763" path="res://Managers/popup_manager.gd" id="48_w8cen"]
+[ext_resource type="Resource" uid="uid://dwomu3s1tuou4" path="res://Scenery/Rocks/rock3.tres" id="49_dij0e"]
 [ext_resource type="Script" uid="uid://bb51mdph56ind" path="res://Managers/shelter_manager.gd" id="49_hnjxi"]
 [ext_resource type="PackedScene" uid="uid://ddbum626vwima" path="res://UI/UI popups/ui_shop_popup.tscn" id="50_dyuu3"]
+[ext_resource type="Resource" uid="uid://d07435lk4khj5" path="res://Scenery/Rocks/rock4.tres" id="50_k1udn"]
 [ext_resource type="Script" uid="uid://ci0g6eukld5d" path="res://Enclosures/Shelters/shelter_res.gd" id="50_m3er2"]
 [ext_resource type="Resource" uid="uid://cuk4yesxl2kqy" path="res://Enclosures/Shelters/small_wooden_shelter.tres" id="51_row6q"]
+[ext_resource type="Resource" uid="uid://dwwf1t208xn6v" path="res://Scenery/Rocks/rock5.tres" id="51_wat4s"]
 [ext_resource type="PackedScene" uid="uid://dasxyu5n8ncu0" path="res://UI/UI selectable elements/ui_shelter_element.tscn" id="52_30626"]
 [ext_resource type="Resource" uid="uid://cw0qxk8uuda34" path="res://Buildings/toilet1.tres" id="53_1nclh"]
 [ext_resource type="Shader" uid="uid://cy6xjukasrqil" path="res://Shaders/postfx.gdshader" id="53_fkgg7"]
 [ext_resource type="PackedScene" uid="uid://c0yqr1xdbc6do" path="res://UI/UI selectable elements/ui_enclosure_element.tscn" id="54_il7k7"]
 [ext_resource type="PackedScene" uid="uid://b020lesiynlbr" path="res://Enclosures/enclosure_scene.tscn" id="55_54dhb"]
+[ext_resource type="PackedScene" uid="uid://dvlhldkt22u1u" path="res://Scenery/Rocks/rock_piece.tscn" id="55_ywjan"]
 [ext_resource type="Script" uid="uid://523fsfqlnuv" path="res://Managers/peep_navigation_region.gd" id="61_8dedt"]
 [ext_resource type="PackedScene" uid="uid://c2x0h40jh0wj6" path="res://staff.tscn" id="69_ba76w"]
 [ext_resource type="PackedScene" uid="uid://baic6x8rh68v8" path="res://UI/UI popups/ui_animal_popup.tscn" id="73_mv3dj"]
@@ -93,6 +101,7 @@
 [ext_resource type="Script" uid="uid://bon5xqjo8ybh6" path="res://UI_info_label.gd" id="94_3glsp"]
 [ext_resource type="Shader" uid="uid://bu1lv0m1sqnci" path="res://replace_color.gdshader" id="97_84xii"]
 [ext_resource type="Script" uid="uid://bx7r3upcavvb4" path="res://notification_manager.gd" id="98_yvsr8"]
+[ext_resource type="Script" uid="uid://bg7ua3j074tf6" path="res://time_progress_bar.gd" id="99_jcxqu"]
 [ext_resource type="PackedScene" uid="uid://c1lavh6yvgdgb" path="res://UI/notification_label.tscn" id="99_vieuh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4oys"]
@@ -108,9 +117,11 @@ region = Rect2(0, 0, 64, 42)
 [sub_resource type="MultiMesh" id="MultiMesh_mn50c"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mw1lm"]
+sample_partition_type = 1
 source_geometry_mode = 2
 source_geometry_group_name = &"Navigation"
-cell_size = 32.0
+cell_size = 16.0
+agent_radius = 12.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xst71"]
 shader = ExtResource("31_e0m5j")
@@ -323,6 +334,22 @@ bg_color = Color(0.745479, 0.49032, 0.166407, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0dfji"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inymm"]
+draw_center = false
+border_width_left = 5
+border_width_top = 7
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.978702, 0.770664, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ogm70"]
 shader = ExtResource("97_84xii")
 shader_parameter/r = 0.0
@@ -397,6 +424,18 @@ ui_terrain_element = ExtResource("8_qghle")
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="Entrance" type="Node2D" parent="Objects"]
+position = Vector2(-1377, 692)
+
+[node name="Sprite2D" type="Sprite2D" parent="Objects/Entrance"]
+texture = ExtResource("21_41lik")
+
+[node name="EntranceSpot" type="Node2D" parent="Objects/Entrance" groups=["EntranceSpot"]]
+position = Vector2(26, 42)
+
+[node name="EntranceSpot2" type="Node2D" parent="Objects/Entrance" groups=["EntranceSpot"]]
+position = Vector2(-29, 14)
+
 [node name="EnclosureManager" type="Node2D" parent="Objects"]
 y_sort_enabled = true
 script = ExtResource("3_3jjmw")
@@ -417,9 +456,11 @@ script = ExtResource("14_62h3g")
 available_trees = Array[ExtResource("24_g51a1")]([ExtResource("25_qvxwd"), ExtResource("30_yos0d"), ExtResource("31_m2uoq"), ExtResource("32_weqx1"), ExtResource("33_5f25m"), ExtResource("34_7vtya")])
 available_decorations = Array[ExtResource("26_0c60e")]([ExtResource("27_r3jxo")])
 available_vegetations = Array[ExtResource("28_wajut")]([ExtResource("29_d00f0"), ExtResource("30_dvure"), ExtResource("31_7jmpp")])
+available_rocks = Array[ExtResource("46_inymm")]([ExtResource("47_jcxqu"), ExtResource("48_0arob"), ExtResource("49_dij0e"), ExtResource("50_k1udn"), ExtResource("51_wat4s")])
 tree_scene = ExtResource("26_vuik7")
 vegetation_scene = ExtResource("29_kyg12")
 decoration_scene = ExtResource("29_xj5w8")
+rock_scene = ExtResource("55_ywjan")
 ui_scenery_element = ExtResource("27_5553e")
 buildingManager = NodePath("../BuildingManager")
 
@@ -528,7 +569,7 @@ light_mask = 0
 z_index = -200
 y_sort_enabled = true
 texture_filter = 1
-tile_map_data = PackedByteArray("AAAAAC0AAAACAAEAAAAAACwAAAACAAEAAAAAACsAAAACAAEAAAAAACoAAAACAAEAAAAAAC4AAAACAAEAAAAAAC8AAAACAAEAAAAAADAAAAACAAEAAAACAC8AAAAFAAEAAAD+/y8AAAADAAEAAAACADAAAAAJAAEAAAD+/zAAAAAKAAEAAAD//y8AAAACAAEAAAABAC8AAAACAAEAAAABADAAAAACAAEAAAD//zAAAAACAAEAAAAAACkAAAACAAEAAAABACkAAAACAAEAAAACACkAAAAIAAEAAAADACkAAAAIAAEAAAAEACkAAAAGAAEAAAD//ykAAAACAAEAAAD+/ykAAAAIAAEAAAD9/ykAAAAIAAEAAAD8/ykAAAAEAAEAAAABAC4AAAAJAAEAAAABAC0AAAAJAAEAAAABACwAAAAJAAEAAAABACsAAAAJAAEAAAABACoAAAAJAAEAAAD//y4AAAAKAAEAAAD//y0AAAAKAAEAAAD//ywAAAAKAAEAAAD//ysAAAAKAAEAAAD//yoAAAAKAAEAAAAEACgAAAAFAAEAAAADACgAAAAHAAEAAAACACgAAAAHAAEAAAABACgAAAAHAAEAAAAAACgAAAAHAAEAAAD//ygAAAAHAAEAAAD+/ygAAAAHAAEAAAD9/ygAAAAHAAEAAAD8/ygAAAADAAEAAAA=")
+tile_map_data = PackedByteArray("AAAAAC0AAAAHAAEAAAAAACwAAAAAAAAAAAAAACsAAAAIAAEAAAAAACoAAAACAAEAAAAAAC4AAAACAAEAAAAAAC8AAAACAAEAAAAAADAAAAACAAEAAAACAC8AAAAFAAEAAAD+/y8AAAADAAEAAAACADAAAAAJAAEAAAD+/zAAAAAKAAEAAAD//y8AAAACAAEAAAABAC8AAAACAAEAAAABADAAAAACAAEAAAD//zAAAAACAAEAAAAAACkAAAACAAEAAAABACkAAAACAAEAAAACACkAAAAIAAEAAAADACkAAAAIAAEAAAAEACkAAAAGAAEAAAD//ykAAAACAAEAAAD+/ykAAAAIAAEAAAD9/ykAAAAIAAEAAAD8/ykAAAAEAAEAAAABAC4AAAAJAAEAAAABAC0AAAAJAAEAAAABACwAAAABAAEAAAABACsAAAAJAAEAAAABACoAAAAJAAEAAAD//y4AAAAKAAEAAAD//y0AAAAKAAEAAAD//ywAAAABAAEAAAD//ysAAAAKAAEAAAD//yoAAAAKAAEAAAAEACgAAAAFAAEAAAADACgAAAAHAAEAAAACACgAAAAHAAEAAAABACgAAAAHAAEAAAAAACgAAAAHAAEAAAD//ygAAAAHAAEAAAD+/ygAAAAHAAEAAAD9/ygAAAAHAAEAAAD8/ygAAAADAAEAAAA=")
 tile_set = SubResource("TileSet_qn1u4")
 collision_enabled = false
 navigation_enabled = false
@@ -559,10 +600,10 @@ metadata/_edit_lock_ = true
 [node name="OutOfBoundsLayer" type="TileMapLayer" parent="TileMap"]
 texture_filter = 1
 material = ExtResource("4_21t5t")
-tile_map_data = PackedByteArray("AAACAC4AAgAAAAEAAAADAC4AAgAAAAEAAAAEAC4AAgAAAAEAAAAFAC4AAgAAAAEAAAAGAC4AAgAAAAEAAAAHAC4AAgAAAAEAAAAIAC4AAgAAAAEAAAAJAC4AAgAAAAEAAAAKAC4AAgAAAAEAAAALAC4AAgAAAAEAAAAMAC4AAgAAAAEAAAANAC4AAgAAAAEAAAAOAC4AAgAAAAEAAAAPAC4AAgAAAAEAAAAQAC4AAgAAAAEAAAARAC4AAgAAAAEAAAASAC4AAgAAAAEAAAATAC4AAgAAAAEAAAAUAC4AAgAAAAEAAAAVAC4AAgAAAAEAAAAWAC4AAgAAAAEAAAAXAC4AAgAAAAEAAAAYAC4AAgAAAAEAAAAZAC4AAgAAAAEAAAAaAC4AAgAAAAEAAAAbAC4AAgAAAAEAAAAcAC4AAgAAAAEAAAAdAC4AAgAAAAEAAAAeAC4AAgAAAAEAAAAfAC4AAgAAAAEAAAAgAC4AAgAAAAEAAAAhAC4AAgAAAAEAAAAiAC4AAgAAAAEAAAAjAC4AAgAAAAEAAAAkAC4AAgAAAAEAAAAlAC4AAgAAAAEAAAAmAC4AAgAAAAEAAAAnAC4AAgAAAAEAAAAoAC4AAgAAAAEAAAApAC4AAgAAAAEAAAAqAC4AAgAAAAEAAAArAC4AAgAAAAEAAAAsAC4AAgAAAAEAAAAtAC0AAgABAAEAAAAtACwAAgABAAEAAAAtACsAAgABAAEAAAAtACoAAgABAAEAAAAtACkAAgABAAEAAAAtACgAAgABAAEAAAAtACcAAgABAAEAAAAtACYAAgABAAEAAAAtACUAAgABAAEAAAAtACQAAgABAAEAAAAtACMAAgABAAEAAAAtACIAAgABAAEAAAAtACEAAgABAAEAAAAtACAAAgABAAEAAAAtAB8AAgABAAEAAAAtAB4AAgABAAEAAAAtAB0AAgABAAEAAAAtABwAAgABAAEAAAAtABsAAgABAAEAAAAtABoAAgABAAEAAAAtABkAAgABAAEAAAAtABgAAgABAAEAAAAtABcAAgABAAEAAAAtABYAAgABAAEAAAAtABUAAgABAAEAAAAtABQAAgABAAEAAAAtABMAAgABAAEAAAAtABIAAgABAAEAAAAtABEAAgABAAEAAAAtABAAAgABAAEAAAAtAA8AAgABAAEAAAAtAA4AAgABAAEAAAAtAA0AAgABAAEAAAAtAAwAAgABAAEAAAAtAAsAAgABAAEAAAAtAAoAAgABAAEAAAAtAAkAAgABAAEAAAAtAAgAAgABAAEAAAAtAAcAAgABAAEAAAAtAAYAAgABAAEAAAAtAAUAAgABAAEAAAAtAAQAAgABAAEAAAAtAAMAAgABAAEAAAAtAAIAAgABAAEAAAAtAAEAAgABAAEAAAAtAAAAAgABAAEAAAAtAP//AgABAAEAAAAtAP7/AgABAAEAAAAtAP3/AgABAAEAAAAtAPz/AgABAAEAAAAtAPv/AgABAAEAAAAtAPr/AgABAAEAAAAtAPn/AgABAAEAAAAtAPj/AgABAAEAAAAtAPf/AgABAAEAAAAtAPb/AgABAAEAAAAtAPX/AgABAAEAAAAtAPT/AgABAAEAAAAtAPP/AgABAAEAAAAtAPL/AgABAAEAAAAtAPH/AgABAAEAAAAtAPD/AgABAAEAAAAtAO//AgABAAEAAAAtAO7/AgABAAEAAAAtAO3/AgABAAEAAAAtAOz/AgABAAEAAAAtAOv/AgABAAEAAAAtAOr/AgABAAEAAAAtAOn/AgABAAEAAAAtAOj/AgABAAEAAAAtAOf/AgABAAEAAAAtAOb/AgABAAEAAAAtAOX/AgABAAEAAAAtAOT/AgABAAEAAAAtAOP/AgABAAEAAAAtAOL/AgABAAEAAAAtAOH/AgABAAEAAAAtAOD/AgABAAEAAAAtAN//AgABAAEAAAAtAN7/AgABAAEAAAAtAN3/AgABAAEAAAAtANz/AgABAAEAAAAtANv/AgABAAEAAAAtANr/AgABAAEAAAAtANn/AgABAAEAAAAtANj/AgABAAEAAAAtANf/AgABAAEAAAAtANb/AgABAAEAAAAtANX/AgABAAEAAAAtANT/AgABAAEAAAAsANP/AgACAAEAAAArANP/AgACAAEAAAAqANP/AgACAAEAAAApANP/AgACAAEAAAAoANP/AgACAAEAAAAnANP/AgACAAEAAAAmANP/AgACAAEAAAAlANP/AgACAAEAAAAkANP/AgACAAEAAAAjANP/AgACAAEAAAAiANP/AgACAAEAAAAhANP/AgACAAEAAAAgANP/AgACAAEAAAAfANP/AgACAAEAAAAeANP/AgACAAEAAAAdANP/AgACAAEAAAAcANP/AgACAAEAAAAbANP/AgACAAEAAAAaANP/AgACAAEAAAAZANP/AgACAAEAAAAYANP/AgACAAEAAAAXANP/AgACAAEAAAAWANP/AgACAAEAAAAVANP/AgACAAEAAAAUANP/AgACAAEAAAATANP/AgACAAEAAAASANP/AgACAAEAAAARANP/AgACAAEAAAAQANP/AgACAAEAAAAPANP/AgACAAEAAAAOANP/AgACAAEAAAANANP/AgACAAEAAAAMANP/AgACAAEAAAALANP/AgACAAEAAAAKANP/AgACAAEAAAAJANP/AgACAAEAAAAIANP/AgACAAEAAAAHANP/AgACAAEAAAAGANP/AgACAAEAAAAFANP/AgACAAEAAAAEANP/AgACAAEAAAADANP/AgACAAEAAAACANP/AgACAAEAAAABANP/AgACAAEAAAAAANP/AgACAAEAAAD//9P/AgACAAEAAAD+/9P/AgACAAEAAAD9/9P/AgACAAEAAAD8/9P/AgACAAEAAAD7/9P/AgACAAEAAAD6/9P/AgACAAEAAAD5/9P/AgACAAEAAAD4/9P/AgACAAEAAAD3/9P/AgACAAEAAAD2/9P/AgACAAEAAAD1/9P/AgACAAEAAAD0/9P/AgACAAEAAADz/9P/AgACAAEAAADy/9P/AgACAAEAAADx/9P/AgACAAEAAADw/9P/AgACAAEAAADv/9P/AgACAAEAAADu/9P/AgACAAEAAADt/9P/AgACAAEAAADs/9P/AgACAAEAAADr/9P/AgACAAEAAADq/9P/AgACAAEAAADp/9P/AgACAAEAAADo/9P/AgACAAEAAADn/9P/AgACAAEAAADm/9P/AgACAAEAAADl/9P/AgACAAEAAADk/9P/AgACAAEAAADj/9P/AgACAAEAAADi/9P/AgACAAEAAADh/9P/AgACAAEAAADg/9P/AgACAAEAAADf/9P/AgACAAEAAADe/9P/AgACAAEAAADd/9P/AgACAAEAAADc/9P/AgACAAEAAADb/9P/AgACAAEAAADa/9P/AgACAAEAAADZ/9P/AgACAAEAAADY/9P/AgACAAEAAADX/9P/AgACAAEAAADW/9P/AgACAAEAAADV/9P/AgACAAEAAADU/9P/AgACAAEAAADT/9P/AgACAAEAAADS/9T/AgADAAEAAADS/9X/AgADAAEAAADS/9b/AgADAAEAAADS/9f/AgADAAEAAADS/9j/AgADAAEAAADS/9n/AgADAAEAAADS/9r/AgADAAEAAADS/9v/AgADAAEAAADS/9z/AgADAAEAAADS/93/AgADAAEAAADS/97/AgADAAEAAADS/9//AgADAAEAAADS/+D/AgADAAEAAADS/+H/AgADAAEAAADS/+L/AgADAAEAAADS/+P/AgADAAEAAADS/+T/AgADAAEAAADS/+X/AgADAAEAAADS/+b/AgADAAEAAADS/+f/AgADAAEAAADS/+j/AgADAAEAAADS/+n/AgADAAEAAADS/+r/AgADAAEAAADS/+v/AgADAAEAAADS/+z/AgADAAEAAADS/+3/AgADAAEAAADS/+7/AgADAAEAAADS/+//AgADAAEAAADS//D/AgADAAEAAADS//H/AgADAAEAAADS//L/AgADAAEAAADS//P/AgADAAEAAADS//T/AgADAAEAAADS//X/AgADAAEAAADS//b/AgADAAEAAADS//f/AgADAAEAAADS//j/AgADAAEAAADS//n/AgADAAEAAADS//r/AgADAAEAAADS//v/AgADAAEAAADS//z/AgADAAEAAADS//3/AgADAAEAAADS//7/AgADAAEAAADS////AgADAAEAAADS/wAAAgADAAEAAADS/wEAAgADAAEAAADS/wIAAgADAAEAAADS/wMAAgADAAEAAADS/wQAAgADAAEAAADS/wUAAgADAAEAAADS/wYAAgADAAEAAADS/wcAAgADAAEAAADS/wgAAgADAAEAAADS/wkAAgADAAEAAADS/woAAgADAAEAAADS/wsAAgADAAEAAADS/wwAAgADAAEAAADS/w0AAgADAAEAAADS/w4AAgADAAEAAADS/w8AAgADAAEAAADS/xAAAgADAAEAAADS/xEAAgADAAEAAADS/xIAAgADAAEAAADS/xMAAgADAAEAAADS/xQAAgADAAEAAADS/xUAAgADAAEAAADS/xYAAgADAAEAAADS/xcAAgADAAEAAADS/xgAAgADAAEAAADS/xkAAgADAAEAAADS/xoAAgADAAEAAADS/xsAAgADAAEAAADS/xwAAgADAAEAAADS/x0AAgADAAEAAADS/x4AAgADAAEAAADS/x8AAgADAAEAAADS/yAAAgADAAEAAADS/yEAAgADAAEAAADS/yIAAgADAAEAAADS/yMAAgADAAEAAADS/yQAAgADAAEAAADS/yUAAgADAAEAAADS/yYAAgADAAEAAADS/ycAAgADAAEAAADS/ygAAgADAAEAAADS/ykAAgADAAEAAADS/yoAAgADAAEAAADS/ysAAgADAAEAAADS/ywAAgADAAEAAADS/y0AAgADAAEAAADT/y4AAgAAAAEAAADU/y4AAgAAAAEAAADV/y4AAgAAAAEAAADW/y4AAgAAAAEAAADX/y4AAgAAAAEAAADY/y4AAgAAAAEAAADZ/y4AAgAAAAEAAADa/y4AAgAAAAEAAADb/y4AAgAAAAEAAADc/y4AAgAAAAEAAADd/y4AAgAAAAEAAADe/y4AAgAAAAEAAADf/y4AAgAAAAEAAADg/y4AAgAAAAEAAADh/y4AAgAAAAEAAADi/y4AAgAAAAEAAADj/y4AAgAAAAEAAADk/y4AAgAAAAEAAADl/y4AAgAAAAEAAADm/y4AAgAAAAEAAADn/y4AAgAAAAEAAADo/y4AAgAAAAEAAADp/y4AAgAAAAEAAADq/y4AAgAAAAEAAADr/y4AAgAAAAEAAADs/y4AAgAAAAEAAADt/y4AAgAAAAEAAADu/y4AAgAAAAEAAADv/y4AAgAAAAEAAADw/y4AAgAAAAEAAADx/y4AAgAAAAEAAADy/y4AAgAAAAEAAADz/y4AAgAAAAEAAAD0/y4AAgAAAAEAAAD1/y4AAgAAAAEAAAD2/y4AAgAAAAEAAAD3/y4AAgAAAAEAAAD4/y4AAgAAAAEAAAD5/y4AAgAAAAEAAAD6/y4AAgAAAAEAAAD7/y4AAgAAAAEAAAD8/y4AAgAAAAEAAAD9/y4AAgAAAAEAAAD+/y4AAgAAAAEAAAA=")
+tile_map_data = PackedByteArray("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AAAaANP/AgACAAEAAAAZANP/AgACAAEAAAAYANP/AgACAAEAAAAXANP/AgACAAEAAAAWANP/AgACAAEAAAAVANP/AgACAAEAAAAUANP/AgACAAEAAAATANP/AgACAAEAAAASANP/AgACAAEAAAARANP/AgACAAEAAAAQANP/AgACAAEAAAAPANP/AgACAAEAAAAOANP/AgACAAEAAAANANP/AgACAAEAAAAMANP/AgACAAEAAAALANP/AgACAAEAAAAKANP/AgACAAEAAAAJANP/AgACAAEAAAAIANP/AgACAAEAAAAHANP/AgACAAEAAAAGANP/AgACAAEAAAAFANP/AgACAAEAAAAEANP/AgACAAEAAAADANP/AgACAAEAAAACANP/AgACAAEAAAABANP/AgACAAEAAAAAANP/AgACAAEAAAD//9P/AgACAAEAAAD+/9P/AgACAAEAAAD9/9P/AgACAAEAAAD8/9P/AgACAAEAAAD7/9P/AgACAAEAAAD6/9P/AgACAAEAAAD5/9P/AgACAAEAAAD4/9P/AgACAAEAAAD3/9P/AgACAAEAAAD2/9P/AgACAAEAAAD1/9P/AgACAAEAAAD0/9P/AgACAAEAAADz/9P/AgACAAEAAADy/9P/AgACAAEAAADx/9P/AgACAAEAAADw/9P/AgACAAEAAADv/9P/AgACAAEAAADu/9P/AgACAAEAAADt/9P/AgACAAEAAADs/9P/AgACAAEAAADr/9P/AgACAAEAAADq/9P/AgACAAEAAADp/9P/AgACAAEAAADo/9P/AgACAAEAAADn/9P/AgACAAEAAADm/9P/AgACAAEAAADl/9P/AgACAAEAAADk/9P/AgACAAEAAADj/9P/AgACAAEAAADi/9P/AgACAAEAAADh/9P/AgACAAEAAADg/9P/AgACAAEAAADf/9P/AgACAAEAAADe/9P/AgACAAEAAADd/9P/AgACAAEAAADc/9P/AgACAAEAAADb/9P/AgACAAEAAADa/9P/AgACAAEAAADZ/9P/AgACAAEAAADY/9P/AgACAAEAAADX/9P/AgACAAEAAADW/9P/AgACAAEAAADV/9P/AgACAAEAAADU/9P/AgACAAEAAADT/9P/AgACAAEAAADS/9T/AgADAAEAAADS/9X/AgADAAEAAADS/9b/AgADAAEAAADS/9f/AgADAAEAAADS/9j/AgADAAEAAADS/9n/AgADAAEAAADS/9r/AgADAAEAAADS/9v/AgADAAEAAADS/9z/AgADAAEAAADS/93/AgADAAEAAADS/97/AgADAAEAAADS/9//AgADAAEAAADS/+D/AgADAAEAAADS/+H/AgADAAEAAADS/+L/AgADAAEAAADS/+P/AgADAAEAAADS/+T/AgADAAEAAADS/+X/AgADAAEAAADS/+b/AgADAAEAAADS/+f/AgADAAEAAADS/+j/AgADAAEAAADS/+n/AgADAAEAAADS/+r/AgADAAEAAADS/+v/AgADAAEAAADS/+z/AgADAAEAAADS/+3/AgADAAEAAADS/+7/AgADAAEAAADS/+//AgADAAEAAADS//D/AgADAAEAAADS//H/AgADAAEAAADS//L/AgADAAEAAADS//P/AgADAAEAAADS//T/AgADAAEAAADS//X/AgADAAEAAADS//b/AgADAAEAAADS//f/AgADAAEAAADS//j/AgADAAEAAADS//n/AgADAAEAAADS//r/AgADAAEAAADS//v/AgADAAEAAADS//z/AgADAAEAAADS//3/AgADAAEAAADS//7/AgADAAEAAADS////AgADAAEAAADS/wAAAgADAAEAAADS/wEAAgADAAEAAADS/wIAAgADAAEAAADS/wMAAgADAAEAAADS/wQAAgADAAEAAADS/wUAAgADAAEAAADS/wYAAgADAAEAAADS/wcAAgADAAEAAADS/wgAAgADAAEAAADS/wkAAgADAAEAAADS/woAAgADAAEAAADS/wsAAgADAAEAAADS/wwAAgADAAEAAADS/w0AAgADAAEAAADS/w4AAgADAAEAAADS/w8AAgADAAEAAADS/xAAAgADAAEAAADS/xEAAgADAAEAAADS/xIAAgADAAEAAADS/xMAAgADAAEAAADS/xQAAgADAAEAAADS/xUAAgADAAEAAADS/xYAAgADAAEAAADS/xcAAgADAAEAAADS/xgAAgADAAEAAADS/xkAAgADAAEAAADS/xoAAgADAAEAAADS/xsAAgADAAEAAADS/xwAAgADAAEAAADS/x0AAgADAAEAAADS/x4AAgADAAEAAADS/x8AAgADAAEAAADS/yAAAgADAAEAAADS/yEAAgADAAEAAADS/yIAAgADAAEAAADS/yMAAgADAAEAAADS/yQAAgADAAEAAADS/yUAAgADAAEAAADS/yYAAgADAAEAAADS/ycAAgADAAEAAADS/ygAAgADAAEAAADS/ykAAgADAAEAAADS/yoAAgADAAEAAADS/ysAAgADAAEAAADS/ywAAgADAAEAAADS/y0AAgADAAEAAADT/y4AAgAAAAEAAADU/y4AAgAAAAEAAADV/y4AAgAAAAEAAADW/y4AAgAAAAEAAADX/y4AAgAAAAEAAADY/y4AAgAAAAEAAADZ/y4AAgAAAAEAAADa/y4AAgAAAAEAAADb/y4AAgAAAAEAAADc/y4AAgAAAAEAAADd/y4AAgAAAAEAAADe/y4AAgAAAAEAAADf/y4AAgAAAAEAAADg/y4AAgAAAAEAAADh/y4AAgAAAAEAAADi/y4AAgAAAAEAAADj/y4AAgAAAAEAAADk/y4AAgAAAAEAAADl/y4AAgAAAAEAAADm/y4AAgAAAAEAAADn/y4AAgAAAAEAAADo/y4AAgAAAAEAAADp/y4AAgAAAAEAAADq/y4AAgAAAAEAAADr/y4AAgAAAAEAAADs/y4AAgAAAAEAAADt/y4AAgAAAAEAAADu/y4AAgAAAAEAAADv/y4AAgAAAAEAAADw/y4AAgAAAAEAAADx/y4AAgAAAAEAAADy/y4AAgAAAAEAAADz/y4AAgAAAAEAAAD0/y4AAgAAAAEAAAD1/y4AAgAAAAEAAAD2/y4AAgAAAAEAAAD3/y4AAgAAAAEAAAD4/y4AAgAAAAEAAAD5/y4AAgAAAAEAAAD6/y4AAgAAAAEAAAD7/y4AAgAAAAEAAAD8/y4AAgAAAAEAAAD9/y4AAgAAAAEAAAADAC0AAgABAAEAAAD9/y0AAgADAAEAAAA=")
 tile_set = SubResource("TileSet_78wrr")
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("inputController")]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("inputController") groups=["Camera"]]
 position = Vector2(-990, 636)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
@@ -590,10 +631,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("74_7k2ss")
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 25
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
 metadata/_edit_lock_ = true
 
 [node name="Top-Left" type="Control" parent="UI/MarginContainer"]
@@ -733,7 +774,6 @@ layout_mode = 2
 
 [node name="ScenerySubpanel" type="MarginContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/Subpanel"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/margin_left = 10
@@ -779,8 +819,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Decorations"
 
+[node name="SceneryRockTool" type="Button" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rocks"
+
 [node name="EnclosureSubpanel" type="MarginContainer" parent="UI/MarginContainer/Top-Left/HBoxContainer/OpenableToolPanel/ToolPanel/Subpanel"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
@@ -876,6 +924,12 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "Clear peeps"
+
+[node name="DebugPassMonth" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+text = "Pass month"
 
 [node name="Debug" type="PanelContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen"]
 layout_mode = 2
@@ -1252,7 +1306,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Rotate"
 
-[node name="InfoContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer"]
+[node name="ToolLabelContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 7
@@ -1270,22 +1324,22 @@ size_flags_vertical = 8
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/InfoContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/ToolLabelContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/InfoContainer/HBoxContainer2"]
+[node name="PanelContainer" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/ToolLabelContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/InfoContainer/HBoxContainer2/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/ToolLabelContainer/HBoxContainer2/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="InfoLabel" type="Label" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/InfoContainer/HBoxContainer2/PanelContainer/MarginContainer" node_paths=PackedStringArray("inputController")]
+[node name="ToolLabel" type="Label" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/ToolLabelContainer/HBoxContainer2/PanelContainer/MarginContainer" node_paths=PackedStringArray("inputController")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1311,22 +1365,42 @@ size_flags_vertical = 8
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/MarginContainer2"]
+[node name="InfoPanelContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/MarginContainer2/HBoxContainer2"]
+[node name="TimeContainer" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/MarginContainer2/InfoPanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/MarginContainer2/HBoxContainer2/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/MarginContainer2/InfoPanelContainer/TimeContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="MoneyLabel" type="Label" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/MarginContainer2/HBoxContainer2/PanelContainer/MarginContainer"]
+[node name="TimeProgressBar" type="ProgressBar" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/MarginContainer2/InfoPanelContainer/TimeContainer/MarginContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 1
+step = 1.0
+value = 100.0
+show_percentage = false
+script = ExtResource("99_jcxqu")
+
+[node name="MoneyContainer" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/MarginContainer2/InfoPanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/MarginContainer2/InfoPanelContainer/MoneyContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="MoneyLabel" type="Label" parent="UI/MarginContainer/Bottom/BottomMenu/HBoxContainer/MarginContainer2/InfoPanelContainer/MoneyContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1459,6 +1533,7 @@ layout_mode = 2
 
 [node name="AnimalMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/AnimalMenu"]
@@ -1573,6 +1648,24 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="RockMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/RockMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/RockMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="RockSelectionContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/RockMenu/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="TerrainMenu" type="PanelContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel"]
 unique_name_in_owner = true
 visible = false
@@ -1592,6 +1685,19 @@ layout_mode = 2
 [node name="TerrainSelectionContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="InfoBorder" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="InfoBorderPanel" type="Panel" parent="InfoBorder"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inymm")
 
 [node name="TODO REPLACE COLOR" type="CanvasLayer" parent="."]
 layer = 0
@@ -1620,5 +1726,6 @@ color = Color(1, 1, 1, 0)
 metadata/_edit_lock_ = true
 
 [node name="NotificationManager" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 script = ExtResource("98_yvsr8")
 notification_scene = ExtResource("99_vieuh")

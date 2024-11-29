@@ -4,7 +4,9 @@ class_name AnimalFeed
 
 var food_available : bool = true
 
-var base_x : int = 0
+var sprite_y : int = 0
+
+var feed_cost = 200
 
 var amount : float = 100:
 	set(value):
@@ -12,18 +14,20 @@ var amount : float = 100:
 		set_sprite()
 
 func _ready() -> void:
-	$Sprite2D.frame = base_x
+	z_index = Helpers.get_current_tile_z_index(global_position)
+	$Sprite2D.frame_coords = Vector2(0, sprite_y)
+	pay_for_feed(feed_cost)
 
 func eat(value):
 	amount -= value
 	
 func set_sprite():
 	if amount > 50:
-		$Sprite2D.frame = base_x + 0
+		$Sprite2D.frame_coords = Vector2(0, sprite_y)
 	elif amount > 2:
-		$Sprite2D.frame = base_x + 1
+		$Sprite2D.frame_coords = Vector2(1, sprite_y)
 	else:
-		$Sprite2D.frame = base_x + 2
+		$Sprite2D.frame_coords = Vector2(2, sprite_y)
 		feed_empty()
 		
 func feed_empty():
@@ -33,4 +37,15 @@ func feed_empty():
 		queue_free()
 
 func fill():
+	#if base_x == IdRefs.FEED_TYPES.HERBIVORE:
+		
+	#elif base_x == IdRefs.FEED_TYPES.MEAT:
+		
+	#elif
+	var remaining_multiplier = ((100 - amount) * 0.01)
+	pay_for_feed(feed_cost * remaining_multiplier)
 	amount = 100
+
+func pay_for_feed(amount):
+	FinanceManager.remove(amount, IdRefs.PAYMENT_REMOVE_TYPES.FEED)
+	SignalBus.money_tooltip.emit(amount, false, global_position)

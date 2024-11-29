@@ -38,6 +38,8 @@ func build_building(building_res, start_tile, rotate, coords, data):
 	new_building.used_coordinates = coords
 	if !data:
 		new_building.id = ZooManager.generate_building_id()
+	else:
+		new_building.load_data = data
 	add_child(new_building)
 	new_building.building_selected.connect(on_building_selected)
 	new_building.building_removed.connect(on_building_removed)

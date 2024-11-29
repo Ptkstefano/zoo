@@ -13,6 +13,8 @@ var building_res : building_resource
 
 var id : int
 
+var load_data
+
 var used_coordinates = []
 var start_tile : Vector2
 
@@ -32,8 +34,15 @@ func _ready() -> void:
 	building_instance.z_index = Helpers.get_current_tile_z_index(building_instance.global_position) + building_res.z_offset
 	building_instance.is_rotated = is_building_rotated
 	building_scene = building_instance
+	if load_data:
+		building_instance.restore_data(load_data)
 	add_child(building_instance)
+	
+	SignalBus.pass_month.connect(on_pass_month)
 
 func remove_building():
 	building_removed.emit(self)
 	queue_free()
+
+func on_pass_month():
+	FinanceManager.remove(building_res.base_maintenance, IdRefs.PAYMENT_REMOVE_TYPES.BUILDING_MAINTENANCE)

@@ -20,3 +20,4 @@ detectable_pos = Vector2(-18, -21)
 sprite_pos_rotated = Vector2(18, -22)
 detectable_pos_rotated = Vector2(9, -17)
 z_offset = -3
+base_maintenance = 150.0

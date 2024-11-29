@@ -68,6 +68,7 @@ func instantiate_peep_group(data):
 		new_peep_group.needs_toilet  = data.needs_toilet
 		new_peep_group.desired_enclosures_id = data.desired_destinations_id
 		new_peep_group.peep_count = data.peep_count
+		new_peep_group.moving_towards_entrance = false
 		for animal in data.observed_animals:
 			new_peep_group.observed_animals.append(animal)
 	else:

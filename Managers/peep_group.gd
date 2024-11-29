@@ -9,10 +9,10 @@ var peep_manager : PeepManager
 
 #@export var peep_texture : Texture2D
 
-enum group_states {STOPPED, WALKING, OBSERVING, RESTING, USING_TOILET, GOING_TO_FOOD, GOING_TO_FIXTURE, GOING_TO_EXIT, GOING_TO_TOILET, GOING_TO_ENCLOSURE, WAITING_ANIMAL}
+enum group_states {STOPPED, WALKING, OBSERVING, RESTING, USING_TOILET, GOING_TO_ENTRANCE, GOING_TO_FOOD, GOING_TO_FIXTURE, GOING_TO_EXIT, GOING_TO_TOILET, GOING_TO_ENCLOSURE, WAITING_ANIMAL}
 
 ## move_states are processed into actual movement
-var move_states : Array[group_states] = [group_states.WALKING, group_states.GOING_TO_ENCLOSURE, group_states.GOING_TO_FOOD, group_states.GOING_TO_FIXTURE, group_states.GOING_TO_EXIT, group_states.GOING_TO_TOILET]
+var move_states : Array[group_states] = [group_states.WALKING, group_states.GOING_TO_ENCLOSURE, group_states.GOING_TO_FOOD, group_states.GOING_TO_FIXTURE, group_states.GOING_TO_EXIT, group_states.GOING_TO_TOILET, group_states.GOING_TO_ENTRANCE]
 
 ## busy_states can't be overriden by another state
 var busy_states : Array[group_states] = [group_states.GOING_TO_FOOD, group_states.GOING_TO_FIXTURE, group_states.GOING_TO_TOILET]
@@ -35,7 +35,7 @@ var first_position_offset := Vector2(0, -5)
 var second_position_offset := Vector2(-5, 0)
 var third_position_offset := Vector2(5, 0)
 
-var position_offsets = [Vector2(0, -7), Vector2(-7, 0), Vector2(7, 0), Vector2(0, 7), Vector2(0, 0)]
+var position_offsets = [Vector2(0, -6), Vector2(-6, 0), Vector2(6, 0), Vector2(0, 6), Vector2(0, 0)]
 
 var observed_animals : Array[IdRefs.ANIMAL_SPECIES]
 var favorite_animal : IdRefs.ANIMAL_SPECIES
@@ -47,6 +47,7 @@ var searching_food_spot : bool = false
 var searching_toilet : bool = false
 
 var moving_towards_exit : bool = false
+var moving_towards_entrance : bool = true
 
 var fixture : Fixture = null
 var fixture_available ## Dict or null
@@ -82,18 +83,18 @@ var needs_rest : float = randf_range(75, 100):
 			if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_REST_SPOT):
 				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_REST_SPOT)
 
-var needs_hunger : float = randf_range(35, 90):
+var needs_hunger : float = randf_range(35, 80):
 	set(value):
 		needs_hunger = clamp(value,0,100)
-		if value <= 35:
+		if value <= 45:
 			searching_food_spot = true
 		if value < 1:
 			if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_FOOD):
 				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_FOOD)
 			
-var needs_toilet : float = randf_range(50, 90):
+var needs_toilet : float = randf_range(50, 80):
 	set(value):
-		needs_hunger = clamp(value,0,100.0)
+		needs_toilet = clamp(value,0,100.0)
 		if value < 35:
 			searching_toilet = true
 		if value < 1:
@@ -101,9 +102,9 @@ var needs_toilet : float = randf_range(50, 90):
 				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_TOILET)
 		
 		
-var hunger_drain_rate : float = randf_range(1.5, 4)
-var rest_drain_rate : float = randf_range(1.5, 2.5)
-var toilet_drain_rate : float = randf_range(1.0, 2.0)
+var hunger_drain_rate : float = randf_range(1, 3)
+var rest_drain_rate : float = randf_range(1, 2)
+var toilet_drain_rate : float = randf_range(0.5, 1.5)
 
 var peep_count = null
 
@@ -126,7 +127,7 @@ func _ready() -> void:
 	
 	agent = $NavigationAgent2D as NavigationAgent2D
 	await get_tree().create_timer(0.5).timeout
-	agent.path_desired_distance = randi_range(5, 20)
+	agent.path_desired_distance = randi_range(5, 15)
 	
 	min_utility_score_tolerance = randf_range(0.6, 1.5)
 	
@@ -138,7 +139,7 @@ func _ready() -> void:
 	else:
 		min_product_level = 3
 	
-	spent_money += (ZooManager.entrance_price * peep_count)
+
 	
 	agent.waypoint_reached.connect(on_agent_waypoint_reached)
 	
@@ -153,7 +154,6 @@ func _ready() -> void:
 	$DecayTimer.timeout.connect(on_decay_timer_timeout)
 	
 	$AnimalWaitTimer.timeout.connect(on_animal_wait_timer_timeout)
-	$SaveTimer.timeout.connect(on_save_timer_timeout)
 	
 	#$VisibleOnScreenNotifier2D.screen_entered.connect(on_visibility_entered)
 	
@@ -199,6 +199,12 @@ func on_agent_target_reached():
 		leave_zoo()
 	elif group_state == group_states.GOING_TO_TOILET:
 		use_toilet()
+	elif group_state == group_states.GOING_TO_ENTRANCE:
+		spent_money += (ZooManager.entrance_price * peep_count)
+		FinanceManager.add(ZooManager.entrance_price * peep_count, IdRefs.PAYMENT_ADD_TYPES.ENTRANCE)
+		SignalBus.money_tooltip.emit(ZooManager.entrance_price * peep_count, true, global_position)
+		moving_towards_entrance = false
+		get_new_destination()
 	else:
 		change_state(group_states.STOPPED)
 
@@ -210,7 +216,7 @@ func change_state(state):
 		for peep in peeps:
 			peep.change_state(1)
 	elif state == group_states.OBSERVING:
-		$StateTimer.wait_time = 10
+		$StateTimer.wait_time = 20
 		$StateTimer.start()
 		for peep in peeps:
 			peep.change_state(state)
@@ -265,6 +271,11 @@ func change_state(state):
 		moving_towards_exit = true
 		for peep in peeps:
 			peep.change_state(1)
+	elif state == group_states.GOING_TO_ENTRANCE:
+		agent.target_position = ZooManager.get_entrance_point()
+		for peep in peeps:
+			peep.change_state(1)
+		
 
 func get_new_destination():
 	if moving_towards_exit:
@@ -272,6 +283,9 @@ func get_new_destination():
 		return
 	if group_desired_destinations.is_empty():
 		change_state(group_states.GOING_TO_EXIT)
+		return
+	if moving_towards_entrance:
+		change_state(group_states.GOING_TO_ENTRANCE)
 		return
 	else:
 		change_state(group_states.GOING_TO_ENCLOSURE)
@@ -388,8 +402,10 @@ func buy_food():
 	for id in shop.available_products:
 		if shop.available_products[id].product.type == IdRefs.PRODUCT_TYPES.FOOD:
 			if shop.available_products[id].product.product_level >= min_product_level:
+				## Utility score is a value that represents the desirability of a product considering price, perceived value and product level.
+				var item_utility_score = (shop.available_products[id].product.perceived_value / shop.available_products[id].current_price) + (0.15 * (shop.available_products[id].product.product_level - 1))
 				available_items[shop.available_products[id].product.id] = {
-					'utility_score': shop.available_products[id].product.perceived_value / shop.available_products[id].current_price
+					'utility_score': item_utility_score
 					}
 			
 	if available_items.size() == 0:
@@ -499,14 +515,3 @@ func calculate_perceived_zoo_rating():
 	for modifier in modifiers:
 		sum += ModifierManager.peep_modifiers[modifier].point_value
 	return clamp(zoo_rating_score + sum, 0, 5)
-
-func on_save_timer_timeout():
-	var data = {
-		"coordinates": global_position,
-		"needs_hunger": needs_hunger,
-		"needs_rest": needs_rest,
-		"needs_toilet": needs_toilet,
-		"desired_destinations": JSON.stringify(desired_enclosures_id),
-		"observed_animals": JSON.stringify(observed_animals),
-		"modifiers": JSON.stringify(modifiers),
-	}

@@ -39,8 +39,13 @@ func build_path(coordinates, atlas_y : int):
 	for coordinate in coordinates:
 		if path_layer.get_cell_atlas_coords(coordinate).y == 0:
 			continue
+		path_layer.get_cell_atlas_coords(coordinate)
 		if coordinate not in path_coordinates:
 			path_coordinates.append(coordinate)
+		else:
+			## Skip if cell already contains path of same type
+			if path_layer.get_cell_atlas_coords(coordinate).y == atlas_y:
+				continue
 		var neighbors = path_layer.get_surrounding_cells(coordinate)
 		for neighbor in neighbors:
 			if path_layer.get_cell_atlas_coords(neighbor) != Vector2i(-1,-1):
@@ -48,12 +53,13 @@ func build_path(coordinates, atlas_y : int):
 					all_neighbors.append(neighbor)
 		## Adds intersections to built paths
 		path_layer.set_cell(coordinate, 0, Vector2i(1,atlas_y))
-		FinanceManager.remove(10.0)
-		SignalBus.money_tooltip.emit(10.0, false, TileMapRef.map_to_local(coordinate))
-		if GameManager.game_running:
-			Effects.smoke2(TileMapRef.map_to_local(coordinate))
-			AudioManager.play_stream('sfx_path_placed')
-			await get_tree().create_timer(0.01).timeout
+		if atlas_y != 0 and atlas_y != -1:
+			if GameManager.game_running:
+				FinanceManager.remove(10.0, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
+				SignalBus.money_tooltip.emit(10.0, false, TileMapRef.map_to_local(coordinate))
+				Effects.smoke2(TileMapRef.map_to_local(coordinate))
+				AudioManager.play_stream('sfx_path_placed')
+				await get_tree().create_timer(0.01).timeout
 		
 		build_intersections(coordinate, atlas_y)
 	for neighbor in all_neighbors:

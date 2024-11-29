@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddm6na13ayeqo"]
+
+[ext_resource type="Script" uid="uid://bhrf43nx5y6jd" path="res://time_manager.gd" id="1_suk8l"]
+
+[node name="TimeManager" type="Node"]
+script = ExtResource("1_suk8l")
+
+[node name="MonthTimer" type="Timer" parent="."]
+wait_time = 240.0
+autostart = true

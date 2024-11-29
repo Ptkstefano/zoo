@@ -93,7 +93,7 @@ func build_enclosure_fence(cells):
 	for cell in fence_cells:
 		if cell not in previous_fence_cells:
 			previous_fence_cells.append(cell)
-			FinanceManager.remove(10.0)
+			FinanceManager.remove(10.0, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
 			SignalBus.money_tooltip.emit(10.0, false, TileMapRef.map_to_local(cell))
 
 	instantiate_fence_instances()
@@ -133,15 +133,12 @@ func instantiate_fence_instances():
 		direction_index -= 1
 
 func place_entrance(cell):
-	print(fence_cells)
-	print(cell)
 	if cell not in fence_cells:
 		if Vector2(cell.x, cell.y + 1) in fence_cells:
 			cell = Vector2(cell.x, cell.y + 1)
 		elif Vector2(cell.x - 1, cell.y) in fence_cells:
 			cell = Vector2(cell.x - 1,  cell.y)
 		else:
-			print('fail')
 			return
 		
 	## Continue only if it's not corner cell
@@ -161,7 +158,6 @@ func place_entrance(cell):
 	if is_instance_valid(entrance_node):
 		entrance_node.remove_entrance()
 		
-	print('bfgfgdf')
 	
 	entrance_node = fence_instances[str(cell.x) + ',' + str(cell.y)]
 	var entrance_cell = entrance_node.make_entrance()

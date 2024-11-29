@@ -31,6 +31,8 @@ var building_list = []
 var waterManager
 var water_list = []
 
+var pathManager
+
 var tilemap_layers = []
 
 var thread : Thread
@@ -82,6 +84,7 @@ func start_save_manager():
 	peepManager = main_node.get_node("Objects").get_node('PeepManager')
 	peepManager.update_peeps_cached_positions()
 	peepGroupList = get_tree().get_nodes_in_group('PeepGroups')
+	pathManager = main_node.get_node('PathManager') as PathManager
 	#peepGroupList = peepManager.peep_groups
 	
 
@@ -220,11 +223,22 @@ func load_game():
 		if !data:
 			return
 
-		for tilemap in tilemap_layers.keys():
-			if data["tilemapData"].has(tilemap):
-				for cell in data["tilemapData"][tilemap]:
-					var cell_data = data["tilemapData"][tilemap][cell]
-					tilemap_layers[tilemap].set_cell(Vector2i(cell_data.x, cell_data.y), cell_data.source, Vector2i(cell_data.atlas_x, cell_data.atlas_y))
+		for key in tilemap_layers.keys():
+			if key == 'PathLayer':
+				## Grabs all coordinates of given path atlas Y and builds it 
+				var possible_path_atlas_y = {0: [], 1: []}
+				for cell in data["tilemapData"][key]:
+					if int(data["tilemapData"][key][cell].atlas_y) in possible_path_atlas_y.keys():
+						possible_path_atlas_y[int(data["tilemapData"][key][cell].atlas_y)].append(Vector2i(int(data["tilemapData"][key][cell].x), int(data["tilemapData"][key][cell].y)))
+				for atlas_y in possible_path_atlas_y:
+					pathManager.build_path(possible_path_atlas_y[atlas_y], atlas_y)
+						
+			
+			else:
+				if data["tilemapData"].has(key):
+					for cell in data["tilemapData"][key]:
+						var cell_data = data["tilemapData"][key][cell]
+						tilemap_layers[key].set_cell(Vector2i(cell_data.x, cell_data.y), cell_data.source, Vector2i(cell_data.atlas_x, cell_data.atlas_y))
 		
 		
 		if data.has('enclosureData'):
@@ -264,6 +278,9 @@ func load_game():
 				elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.DECORATION:
 					var res = load(data["sceneryData"][key]['decoration_res'])
 					sceneryManager.place_decoration(position, res, null)
+				elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.ROCK:
+					var res = load(data["sceneryData"][key]['decoration_res'])
+					sceneryManager.place_rock(position, res, null)
 					
 		if data.has('fixtureData'):
 			for key in data["fixtureData"]:
@@ -286,16 +303,35 @@ func load_game():
 				var pos = Vector2(data['buildingData'][key]['start_tile']['x_pos'], data['buildingData'][key]['start_tile']['y_pos'])
 				var is_rotated = data['buildingData'][key]['is_rotated']
 				var used_coords = []
-				print(data['buildingData'][key]['building_data'])
 				for entry in data["buildingData"][key]['used_coordinates']:
 					var vector = Vector2(data["buildingData"][key]['used_coordinates'][entry]['x_pos'], data["buildingData"][key]['used_coordinates'][entry]['y_pos'])
 					used_coords.append(vector)
-				var buuilding_data = null ## TODO
-				buildingManager.build_building(building_res, pos, is_rotated, used_coords, buuilding_data)
+				var building_data = null ## TODO
+				if data['buildingData'][key].has('building_data'):
+					var products = {}
+					var sold_units = {}
+					for product in data['buildingData'][key]['building_data']['products']:
+						products[product] = {
+							'product': load(data['buildingData'][key]['building_data']['products'][product]['product_res']),
+							'current_price': data['buildingData'][key]['building_data']['products'][product]['current_price'],
+							'current_stock': data['buildingData'][key]['building_data']['products'][product]['current_stock']
+						}
+						
+					if data['buildingData'][key]['building_data'].has('sold_units'):
+						for unit in data['buildingData'][key]['building_data']['sold_units']:
+							sold_units[unit] = data['buildingData'][key]['building_data']['sold_units'][unit]
+					building_data = {
+						'products' = products,
+						'sold_units' = sold_units
+					}
+					
+				buildingManager.build_building(building_res, pos, is_rotated, used_coords, building_data)
 				
 		if data.has('peepGroupData'):
 			for key in data["peepGroupData"]:
 				var groupData = {}
+				if !data["peepGroupData"][key]:
+					continue
 				groupData['id'] = data["peepGroupData"][key]['id']
 				groupData['spawn_location'] = Vector2(data["peepGroupData"][key]['x_pos'], data["peepGroupData"][key]['y_pos'])
 				groupData['peep_count'] = data["peepGroupData"][key]['peep_count']
@@ -397,6 +433,8 @@ func get_scenery_data(scenery):
 		data['tree_res'] = scenery.tree_res.get_path()
 	elif scenery_type == IdRefs.SCENERY_TYPES.DECORATION:
 		data['decoration_res'] = scenery.decoration_res.get_path()
+	elif scenery_type == IdRefs.SCENERY_TYPES.ROCK:
+		data['decoration_res'] = scenery.rock_res.get_path()
 	return data
 
 func get_fixture_data(fixture):
@@ -425,9 +463,9 @@ func get_finance_data():
 
 func get_building_data(building):
 	var data = {}
-	data['building_type'] = building.building_type
+	data['building_type'] = building.building_res.building_type
 	data['building_id'] = building.id
-	if building.building_type == IdRefs.BUILDING_TYPES.SHOP:
+	if building.building_res.building_type == IdRefs.BUILDING_TYPES.SHOP:
 		var products = {}
 		for product in building.building_scene.available_products:
 			products[product] = {
@@ -435,8 +473,12 @@ func get_building_data(building):
 				'current_price': building.building_scene.available_products[product].current_price,
 				'current_stock': building.building_scene.available_products[product].current_stock
 			}
+		var sold_units = {}
+		for unit in building.building_scene.sold_units:
+			sold_units[unit] = building.building_scene.sold_units[unit]
 		var building_data = {
-				'products': products
+				'products': products,
+				'sold_units': sold_units
 			}
 		data['building_data'] = building_data
 
@@ -451,7 +493,6 @@ func get_building_data(building):
 		used_coordinates[i] = coordinate
 		i += 1
 	data['used_coordinates'] = used_coordinates
-	## TODO - Restore building products and stats
 
 	return data
 

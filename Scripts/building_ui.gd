@@ -51,6 +51,7 @@ func _ready() -> void:
 	%SceneryDecorationTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.SCENERY))
 	%SceneryVegetationTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.VEGETATION))
 	%SceneryFixtureTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.FIXTURE)) 
+	%SceneryRockTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.ROCK)) 
 	
 	SignalBus.money_changed.connect(on_money_changed)
 	
@@ -88,6 +89,9 @@ func update_ui():
 		if element:
 			element.scenery_selected.connect(on_scenery_selected)
 	for element in %DecorationSelectionContainer.get_children():
+		if element:
+			element.scenery_selected.connect(on_scenery_selected)
+	for element in %RockSelectionContainer.get_children():
 		if element:
 			element.scenery_selected.connect(on_scenery_selected)
 
@@ -180,6 +184,8 @@ func on_scenery_selected(scenery_res, type):
 		inputController.current_tool = inputController.TOOLS.DECORATION
 	if type == 'fixture':
 		inputController.current_tool = inputController.TOOLS.FIXTURE
+	if type == 'rock':
+		inputController.current_tool = inputController.TOOLS.ROCK
 	selected_res = scenery_res
 	
 func on_building_selected(building_res):
@@ -236,6 +242,9 @@ func on_tool_selected(tool):
 	if tool == inputController.TOOLS.DECORATION:
 		%ScenerySubpanel.show()
 		%DecorationMenu.show()
+	if tool == inputController.TOOLS.ROCK:
+		%ScenerySubpanel.show()
+		%RockMenu.show()
 	if tool == inputController.TOOLS.FIXTURE:
 		%ScenerySubpanel.show()
 		%FixtureMenu.show()

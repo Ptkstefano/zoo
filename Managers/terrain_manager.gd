@@ -31,7 +31,7 @@ func build_terrain(coords, atlas_y):
 	var neighbors = []
 	for coord in coords:
 		terrain_layer.set_cell(coord, 0, Vector2(0, atlas_y))
-		FinanceManager.remove(5.0)
+		FinanceManager.remove(5.0, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
 		for neighbor in Helpers.get_adjacent(coord):
 			if neighbor not in neighbors:
 				if neighbor not in coords:

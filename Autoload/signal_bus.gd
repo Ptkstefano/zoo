@@ -1,7 +1,7 @@
 extends Node
 
 signal tooltip
-signal money_tooltip
+signal money_tooltip 
 
 signal obstacle_changed
 signal vegetation_placed
@@ -22,3 +22,5 @@ signal money_changed
 
 
 signal ui_visibility ## Emitted by: inputController
+
+signal pass_month ## Emitted by: TimeManager

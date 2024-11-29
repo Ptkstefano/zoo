@@ -1,58 +1,112 @@
-[gd_scene load_steps=4 format=3 uid="uid://bt8m7eb0se03i"]
+[gd_scene load_steps=9 format=3 uid="uid://bt8m7eb0se03i"]
 
-[ext_resource type="Script" path="res://UI/UI selectable elements/ui_scenery_element.gd" id="1_ds6cd"]
+[ext_resource type="Script" uid="uid://bwidc2mueyoan" path="res://UI/UI selectable elements/ui_scenery_element.gd" id="1_ds6cd"]
 [ext_resource type="Theme" uid="uid://dssdalpin0m5v" path="res://UI/selectable_element_theme.tres" id="1_rwdjn"]
-[ext_resource type="Texture2D" uid="uid://c83xp6l2j8d6s" path="res://Sprites/thumbs/giraffe thumb.png" id="2_4102q"]
+[ext_resource type="FontFile" uid="uid://cpnqdh47y1283" path="res://UI/Logic_Loop.ttf" id="3_e4mkp"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rxbf6"]
+load_path = "res://.godot/imported/animal_giraffe.png-29b67de20188bbe71e6aed633f48f61f.ctex"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51n72"]
+bg_color = Color(0.6, 0.6, 0.6, 0.674)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_detail = 7
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1mhar"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vgn6e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1hra5"]
+bg_color = Color(0.6, 0.6, 0.6, 0.674)
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 7
+anti_aliasing = false
 
 [node name="SceneryElement" type="PanelContainer"]
-custom_minimum_size = Vector2(200, 148)
-offset_right = 200.0
-offset_bottom = 164.0
+offset_right = 180.0
+offset_bottom = 280.0
 size_flags_horizontal = 0
 theme = ExtResource("1_rwdjn")
 script = ExtResource("1_ds6cd")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Button" type="Button" parent="MarginContainer"]
+[node name="Button" type="Button" parent="MarginContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-visible = false
+[node name="Thumbnail" type="TextureRect" parent="MarginContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 270)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("CompressedTexture2D_rxbf6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Scenery" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Panel" type="PanelContainer" parent="MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 85)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_51n72")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/Panel"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer2/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxEmpty_1mhar")
+
+[node name="Scenery" type="Label" parent="MarginContainer2/VBoxContainer/Panel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-text = "Giraffe"
+theme_override_constants/line_spacing = -18
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "Umbrella thorn accacia"
 horizontal_alignment = 1
+autowrap_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(180, 100)
+[node name="HSeparator" type="HSeparator" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_vgn6e")
+
+[node name="Panel2" type="PanelContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1hra5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/Panel2"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Thumbnail" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer"]
-unique_name_in_owner = true
-texture_filter = 1
+[node name="HSeparator" type="HSeparator" parent="MarginContainer2/VBoxContainer/Panel2/VBoxContainer"]
 layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("2_4102q")
-expand_mode = 1
-stretch_mode = 6
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxEmpty_1mhar")
 
-[node name="SceneryCost" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="SceneryCost" type="Label" parent="MarginContainer2/VBoxContainer/Panel2/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_e4mkp")
+theme_override_font_sizes/font_size = 32
 text = "$50"
 horizontal_alignment = 1

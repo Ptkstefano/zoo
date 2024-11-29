@@ -24,6 +24,7 @@ TileMapRef="*res://Autoload/tile_map_ref.tscn"
 IdRefs="*res://Autoload/id_refs.gd"
 SignalBus="*res://Autoload/signal_bus.gd"
 Effects="*res://Autoload/effects.gd"
+TimeManager="*res://Autoload/time_manager.tscn"
 AudioManager="*res://Autoload/audio_manager.tscn"
 ZooManager="*res://Autoload/zoo_manager.gd"
 SaveManager="*res://Autoload/save_manager.tscn"
@@ -35,7 +36,6 @@ FinanceManager="*res://Autoload/FinanceManager.tscn"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/always_on_top=true
 window/stretch/aspect="expand"
 window/stretch/scale=1.2
 window/stretch/scale_mode="integer"

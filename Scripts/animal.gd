@@ -45,9 +45,9 @@ var hunger_restore_rate = 0.1
 var rest_restore_rate = 0.01
 var play_restore_rate = 0.05
 
-var hunger_drain_rate = 2
-var rest_drain_rate = 2
-var play_drain_rate = 3
+var hunger_drain_rate = 0.8
+var rest_drain_rate = 0.5
+var play_drain_rate = 0.5
 
 var preference_terrain_satisfied : bool
 var preference_water_satisfied : bool
@@ -101,6 +101,9 @@ func initialize_animal(res, coordinate, found_enclosure):
 		$NavigationAgent2D.set_navigation_layer_value(2, false)
 		$NavigationAgent2D.set_navigation_layer_value(3, true)
 		
+	if animal_res.species_id == IdRefs.ANIMAL_SPECIES.KARDOFAN_GIRAFFE:
+		$NavigationAgent2D.target_desired_distance = 30
+		
 	global_position = coordinate
 	cached_global_position = global_position
 	enclosure = found_enclosure
@@ -150,7 +153,7 @@ func navigation_finished():
 func on_state_timer_timeout():
 	## Check for what animal wants to do, according to priorities.
 	$StateTimer.start()
-	if needs_hunger < 50:
+	if needs_hunger < 30:
 		if is_instance_valid(enclosure.animal_feed):
 			change_state(ANIMAL_STATES.MOVING_TOWARDS_FOOD)
 			return

@@ -7,7 +7,7 @@ var zoo_rating : int:
 		calculate_zoo_attractiveness()
 		
 		
-var entrance_price : float = 20
+var entrance_price : float = 5
 		
 ## How much the rating value impacts attractiveness
 var rating_ratio = 0.4
@@ -115,3 +115,7 @@ func update_rating(new_rating):
 		
 	median = median / last_guest_ratings.size()
 	reputation = median
+
+func get_entrance_point():
+	var entrance = get_tree().get_nodes_in_group('EntranceSpot').pick_random().global_position
+	return entrance

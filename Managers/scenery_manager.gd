@@ -5,10 +5,12 @@ class_name SceneryManager
 @export var available_trees : Array[tree_resource]
 @export var available_decorations : Array[decoration_resource]
 @export var available_vegetations : Array[vegetation_resource]
+@export var available_rocks : Array[rock_resource]
 
 @export var tree_scene : PackedScene
 @export var vegetation_scene : PackedScene
 @export var decoration_scene : PackedScene
+@export var rock_scene : PackedScene
 
 @export var ui_scenery_element : PackedScene
 
@@ -28,6 +30,8 @@ func on_load_scenery(scenery_type, id, coordinates, res):
 		place_vegetation(coordinates, res, id)
 	elif scenery_type == IdRefs.SCENERY_TYPES.DECORATION:
 		place_decoration(coordinates, res, id)
+	elif scenery_type == IdRefs.SCENERY_TYPES.ROCK:
+		place_rock(coordinates, res, id)
 	
 func update_selection_menu():
 	for child in %TreesSelectionContainer.get_children():
@@ -53,6 +57,12 @@ func update_selection_menu():
 		element.scenery_type = 'decoration'
 		%DecorationSelectionContainer.add_child(element)
 		
+	for rock_res in available_rocks:
+		var element = ui_scenery_element.instantiate()
+		element.resource = rock_res
+		element.scenery_type = 'rock'
+		%RockSelectionContainer.add_child(element)
+		
 	$"../../UI".update_ui()
 
 func place_tree(press_start_pos, tree_res, id):
@@ -61,7 +71,7 @@ func place_tree(press_start_pos, tree_res, id):
 	tree.global_position = press_start_pos
 	if !id:
 		tree.id = ZooManager.generate_scenery_id()
-		FinanceManager.remove(tree_res.cost)
+		FinanceManager.remove(tree_res.cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
 		SignalBus.money_tooltip.emit(tree_res.cost, false, press_start_pos)
 	else:
 		tree.id = id
@@ -80,7 +90,7 @@ func place_vegetation(press_start_pos, vegetation_res, id):
 	vegetation.global_position = press_start_pos
 	if !id:
 		vegetation.id = ZooManager.generate_scenery_id()
-		FinanceManager.remove(vegetation_res.cost)
+		FinanceManager.remove(vegetation_res.cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
 		SignalBus.money_tooltip.emit(vegetation_res.cost, false, press_start_pos)
 	else:
 		vegetation.id = id
@@ -101,7 +111,7 @@ func place_decoration(press_start_pos, decoration_res, id):
 	decoration.global_position = decoration_position_local
 	if !id:
 		decoration.id = ZooManager.generate_scenery_id()
-		FinanceManager.remove(decoration_res.cost)
+		FinanceManager.remove(decoration_res.cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
 		SignalBus.money_tooltip.emit(decoration_res.cost, false, press_start_pos)
 	else:
 		decoration.id = id
@@ -110,6 +120,22 @@ func place_decoration(press_start_pos, decoration_res, id):
 	used_cells.append(decoration_position_cell)
 	add_child(decoration)
 	Effects.wobble(decoration)
+	
+func place_rock(press_start_pos, rock_res, id):
+	var rock = rock_scene.instantiate()
+	rock.rock_res = rock_res
+	rock.global_position = press_start_pos
+	if !id:
+		rock.id = ZooManager.generate_scenery_id()
+		FinanceManager.remove(rock_res.cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
+		SignalBus.money_tooltip.emit(rock_res.cost, false, press_start_pos)
+	else:
+		rock.id = id
+	add_child(rock)
+	await get_tree().create_timer(0.3).timeout
+	#$"../../RenderingController".add_object(rock)
+	#rock.object_removed.connect(on_object_removed)
+	Effects.wobble(rock)
 	
 func on_decoration_removed(cell):
 	used_cells.erase(Vector2i(cell.x, cell.y))

@@ -7,10 +7,9 @@ func _process(delta: float) -> void:
 		visible = false
 	else:
 		visible = true
-		update_info_label()
+		update_tool_label()
 
-func update_info_label():
-
+func update_tool_label():
 	if inputController.is_camera_tool_selected:
 		text = 'Moving camera freely'
 		return

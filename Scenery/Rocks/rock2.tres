@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="rock_resource" load_steps=3 format=3 uid="uid://gk6rd1nfkfuo"]
+
+[ext_resource type="Script" uid="uid://bgsyapjwrjvwf" path="res://Scenery/Rocks/rock_resource.gd" id="1_8jgof"]
+[ext_resource type="Texture2D" uid="uid://cprb85e2khgbf" path="res://Scenery/Rocks/2.png" id="2_sqraw"]
+
+[resource]
+script = ExtResource("1_8jgof")
+name = "Rock"
+cost = 10.0
+texture = ExtResource("2_sqraw")
+thumb = ExtResource("2_sqraw")
+metadata/_custom_type_script = ExtResource("1_8jgof")

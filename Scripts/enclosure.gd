@@ -293,14 +293,14 @@ func open_door():
 
 func add_animal_feed():
 	## TODO - Spawn feed in a specific cell
-	var feed_x = 0
+	var feed_y = 0
 	if enclosure_animals.is_empty():
 		return
 	else:
-		feed_x = enclosure_animals[0].animal_res.feed
+		feed_y = enclosure_animals[0].animal_res.feed
 	if !animal_feed:
 		animal_feed = animal_feed_scene.instantiate()
-		animal_feed.base_x = feed_x * 3
+		animal_feed.sprite_y = feed_y
 		var random_position = TileMapRef.map_to_local(enclosure_cells.pick_random())
 		animal_feed.global_position = random_position
 		feed_position = random_position

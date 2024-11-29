@@ -40,11 +40,11 @@ var is_camera_tool_selected : bool = false
 
 var rotate_building : bool = false
 
-enum TOOLS {NONE,PATH,ENCLOSURE,SHELTER,ANIMAL,SCENERY,TERRAIN,BUILDING,BULLDOZER,TREE,VEGETATION,FIXTURE,DECORATION,WATER,ENTRANCE}
+enum TOOLS {NONE,PATH,ENCLOSURE,SHELTER,ANIMAL,SCENERY,TERRAIN,BUILDING,BULLDOZER,TREE,VEGETATION,ROCK,FIXTURE,DECORATION,WATER,ENTRANCE}
 var current_tool = TOOLS.NONE
 var free_cam_tools = [TOOLS.NONE, TOOLS.BUILDING]
 var hide_ui_tools = [TOOLS.ENCLOSURE, TOOLS.PATH, TOOLS.TERRAIN]
-var scenery_tools = [TOOLS.TREE, TOOLS.VEGETATION, TOOLS.DECORATION, TOOLS.FIXTURE, TOOLS.WATER]
+var scenery_tools = [TOOLS.TREE, TOOLS.VEGETATION, TOOLS.DECORATION, TOOLS.FIXTURE, TOOLS.WATER, TOOLS.ROCK]
 var building_placement_tools = [TOOLS.SHELTER, TOOLS.BUILDING]
 
 
@@ -207,6 +207,9 @@ func handle_tooling_input(event):
 			if current_tool == TOOLS.DECORATION:
 				if !is_bulldozing:
 					scenery_manager.place_decoration(touch_start_global_pos, selected_res, null)
+			if current_tool == TOOLS.ROCK:
+				if !is_bulldozing:
+					scenery_manager.place_rock(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.WATER:
 				if !is_bulldozing:
 					is_placing_water = false

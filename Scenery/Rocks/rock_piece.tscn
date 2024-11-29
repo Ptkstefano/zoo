@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvlhldkt22u1u"]
+
+[ext_resource type="Texture2D" uid="uid://dor05a6xue32i" path="res://Scenery/Rocks/5.png" id="1_p40tr"]
+[ext_resource type="Script" uid="uid://cxpehtdw3j8t3" path="res://Scenery/Rocks/rock_piece.gd" id="1_vspws"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vktyh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vspws"]
+
+[node name="RockPiece" type="StaticBody2D" groups=["Enclosure"]]
+collision_mask = 0
+script = ExtResource("1_vspws")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_p40tr")
+centered = false
+
+[node name="RemovalArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RemovalArea"]
+shape = SubResource("CircleShape2D_vktyh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vspws")

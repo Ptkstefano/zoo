@@ -32,6 +32,7 @@ func _ready() -> void:
 	%DebugSpawnPeeps.button_down.connect(spawn_peep_group)
 	%DebugRemovePeeps.pressed.connect(remove_peeps)
 	%DebugHungryPeeps.pressed.connect(hungry_peeps)
+	%DebugPassMonth.pressed.connect(pass_month)
 	
 
 
@@ -56,3 +57,6 @@ func remove_peeps():
 	
 func hungry_peeps():
 	$"../Objects/PeepManager".debug_hungry_peeps()
+
+func pass_month():
+	TimeManager.on_month_pass()

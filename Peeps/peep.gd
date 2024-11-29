@@ -37,8 +37,6 @@ func _ready() -> void:
 	$FrameTimer.timeout.connect(on_frame_timer)
 	set_peep_visuals()
 	$FrameTimer.wait_time = randf_range(0.4, 0.55)
-	FinanceManager.add(ZooManager.entrance_price)
-	SignalBus.money_tooltip.emit(ZooManager.entrance_price, true, global_position)
 
 func _process(delta: float) -> void:
 	if !screenNotifier.is_on_screen():

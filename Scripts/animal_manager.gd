@@ -56,7 +56,7 @@ func spawn_animal(coordinate, animal_res, stats):
 	if stats:
 		spawned_animal.id = stats.id
 	else:
-		FinanceManager.remove(animal_res.cost)
+		FinanceManager.remove(animal_res.cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
 		SignalBus.money_tooltip.emit(animal_res.cost, false, coordinate)
 		spawned_animal.id = ZooManager.generate_animal_id()
 	

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cl4o0ja0kt0i1"]
 
-[ext_resource type="Script" path="res://Scripts/animal.gd" id="1_wogma"]
+[ext_resource type="Script" uid="uid://cq0dki5ppavwp" path="res://Scripts/animal.gd" id="1_wogma"]
 [ext_resource type="Texture2D" uid="uid://5gmndyyv30v6" path="res://Sprites/shadow.png" id="2_anpbx"]
 [ext_resource type="Texture2D" uid="uid://ch5nicona3f7r" path="res://Animals/sprites/deer.png" id="3_k44vj"]
 [ext_resource type="PackedScene" uid="uid://dkhxs71sdajj2" path="res://UI/detectable.tscn" id="4_covhg"]
@@ -43,7 +43,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="DecayTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 6.0
 autostart = true
 
 [node name="NoSwimTimer" type="Timer" parent="."]
