@@ -7,4 +7,4 @@ func _ready() -> void:
 	else:
 		SignalBus.game_started.emit()
 		
-	GameManager.game_running = true
+	GameManager.start_game()

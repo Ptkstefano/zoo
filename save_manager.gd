@@ -39,7 +39,6 @@ var thread : Thread
 
 func _ready() -> void:
 	SignalBus.save_game.connect(thread_save_game)
-	#SignalBus.game_started.connect(load_game)
 	thread = Thread.new()
 	$AutoSaveTimer.timeout.connect(on_autosave)
 
@@ -233,7 +232,7 @@ func load_game():
 				for atlas_y in possible_path_atlas_y:
 					pathManager.build_path(possible_path_atlas_y[atlas_y], atlas_y)
 						
-			
+				SignalBus.peep_navigation_changed.emit()
 			else:
 				if data["tilemapData"].has(key):
 					for cell in data["tilemapData"][key]:

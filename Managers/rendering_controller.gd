@@ -9,6 +9,7 @@ var z_renderers = {}
 ## Rendering nodes handle draw calls for textures
 
 func _ready() -> void:
+	return
 	for i in range(-z_index_range, z_index_range):
 		var node = z_index_renderer.instantiate()
 		node.z_index_value = i

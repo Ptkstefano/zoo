@@ -33,8 +33,6 @@ func on_peep_spawn_timeout():
 	if ZooManager.zoo_attractiveness == 0:
 		return
 	
-	if peep_count > ZooManager.zoo_attractiveness:
-		return
 		
 	instantiate_peep_group(null)
 	
@@ -45,6 +43,10 @@ func on_peep_spawn_timeout():
 		spawn_ratio = ZooManager.zoo_attractiveness / peep_count
 		
 	spawn_ratio = clamp(spawn_ratio, 0.1, 10)
+	
+	## DEBUG
+	if peep_count > ZooManager.zoo_attractiveness:
+		spawn_ratio *= 0.5
 		
 	%PeepSpawnTimer.wait_time = base_spawn_time / spawn_ratio
 	
@@ -61,26 +63,18 @@ func on_peep_group_left(group, rating):
 func instantiate_peep_group(data):
 	var new_peep_group = peep_group_scene.instantiate()
 	if data:
-		new_peep_group.id = data.id
-		new_peep_group.global_position = data.spawn_location
-		new_peep_group.needs_rest = data.needs_rest
-		new_peep_group.needs_hunger = data.needs_hunger
-		new_peep_group.needs_toilet  = data.needs_toilet
-		new_peep_group.desired_enclosures_id = data.desired_destinations_id
-		new_peep_group.peep_count = data.peep_count
-		new_peep_group.moving_towards_entrance = false
-		for animal in data.observed_animals:
-			new_peep_group.observed_animals.append(animal)
+		new_peep_group.load_data = data
 	else:
 		new_peep_group.global_position = spawn_location
-		new_peep_group.peep_count = randi_range(1,4)
 		new_peep_group.id = ZooManager.generate_peep_group_id()
 	new_peep_group.peep_manager = self
 	add_child(new_peep_group)
 	peep_groups.append(new_peep_group)
 	new_peep_group.peep_group_left.connect(on_peep_group_left)
-	peep_count += new_peep_group.peep_count
+	new_peep_group.peep_count_added.connect(on_peep_count)
 	
+func on_peep_count(count):
+	peep_count += count
 
 func generate_peep_destination():
 	## DEPRECATED

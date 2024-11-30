@@ -1,10 +1,10 @@
-[gd_scene load_steps=139 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=140 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" uid="uid://o2egpp0b02e2" path="res://Scripts/debug_controller.gd" id="1_nisry"]
 [ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
-[ext_resource type="Script" uid="uid://dabd0wtptg5ku" path="res://main.gd" id="1_oseej"]
+[ext_resource type="Script" path="res://main.gd" id="1_oseej"]
 [ext_resource type="Script" uid="uid://bawblafy70sf4" path="res://reputation_manager.gd" id="2_1b04k"]
-[ext_resource type="Script" uid="uid://b0adab4c0yrtg" path="res://Scripts/path_manager.gd" id="2_4bhy0"]
+[ext_resource type="Script" path="res://Scripts/path_manager.gd" id="2_4bhy0"]
 [ext_resource type="PackedScene" uid="uid://cl4o0ja0kt0i1" path="res://Animals/animal.tscn" id="2_7ivxh"]
 [ext_resource type="Script" uid="uid://cwjk7eao4e2gh" path="res://Managers/rendering_controller.gd" id="2_hhygd"]
 [ext_resource type="Script" uid="uid://b4vdwe5o8vo48" path="res://Scripts/EnclosureManager.gd" id="3_3jjmw"]
@@ -26,8 +26,8 @@
 [ext_resource type="Script" uid="uid://bjsg0rr5ai5l3" path="res://bulldozer_collider.gd" id="7_xhqw8"]
 [ext_resource type="Resource" uid="uid://dp82v0odladsa" path="res://Paths/null_path.tres" id="7_ybs1u"]
 [ext_resource type="PackedScene" uid="uid://dvjtneek7b62q" path="res://UI/UI selectable elements/ui_terrain_element.tscn" id="8_qghle"]
-[ext_resource type="Script" uid="uid://c3p6hiks7eom0" path="res://Scripts/building_ui.gd" id="10_pctuh"]
-[ext_resource type="Script" uid="uid://dy3cw312sp2us" path="res://Managers/peep_manager.gd" id="10_ubp83"]
+[ext_resource type="Script" path="res://Scripts/building_ui.gd" id="10_pctuh"]
+[ext_resource type="Script" path="res://Managers/peep_manager.gd" id="10_ubp83"]
 [ext_resource type="PackedScene" uid="uid://ca66y62ys1xkh" path="res://Peeps/peep.tscn" id="11_nv6fn"]
 [ext_resource type="Resource" uid="uid://dcrw61juxfsvs" path="res://Terrain/dirt.tres" id="12_jliyx"]
 [ext_resource type="Resource" uid="uid://dk382e4qklm34" path="res://Terrain/deciduous.tres" id="13_jic8h"]
@@ -57,7 +57,7 @@
 [ext_resource type="PackedScene" uid="uid://bgasmembo8g7r" path="res://Buildings/building.tscn" id="30_wk5yf"]
 [ext_resource type="Resource" uid="uid://b6yflquscb8la" path="res://Scenery/Trees/Palm 1.tres" id="30_yos0d"]
 [ext_resource type="Resource" uid="uid://ch0c44mjn0ono" path="res://Scenery/Vegetation/bush.tres" id="31_7jmpp"]
-[ext_resource type="Shader" uid="uid://b0e23qgminbhp" path="res://Shaders/terrain.gdshader" id="31_e0m5j"]
+[ext_resource type="Shader" path="res://Shaders/terrain.gdshader" id="31_e0m5j"]
 [ext_resource type="Resource" uid="uid://dsp7g10m8i1c5" path="res://Scenery/Trees/Palm 2.tres" id="31_m2uoq"]
 [ext_resource type="Texture2D" uid="uid://wj8tt8gnhkn5" path="res://Terrain/terrain_sheet.png" id="32_05eb2"]
 [ext_resource type="Resource" uid="uid://36wmkrb0dw5i" path="res://Scenery/Trees/Jacaranda.tres" id="32_weqx1"]
@@ -83,11 +83,11 @@
 [ext_resource type="Resource" uid="uid://dwwf1t208xn6v" path="res://Scenery/Rocks/rock5.tres" id="51_wat4s"]
 [ext_resource type="PackedScene" uid="uid://dasxyu5n8ncu0" path="res://UI/UI selectable elements/ui_shelter_element.tscn" id="52_30626"]
 [ext_resource type="Resource" uid="uid://cw0qxk8uuda34" path="res://Buildings/toilet1.tres" id="53_1nclh"]
-[ext_resource type="Shader" uid="uid://cy6xjukasrqil" path="res://Shaders/postfx.gdshader" id="53_fkgg7"]
+[ext_resource type="Shader" path="res://Shaders/postfx.gdshader" id="53_fkgg7"]
 [ext_resource type="PackedScene" uid="uid://c0yqr1xdbc6do" path="res://UI/UI selectable elements/ui_enclosure_element.tscn" id="54_il7k7"]
 [ext_resource type="PackedScene" uid="uid://b020lesiynlbr" path="res://Enclosures/enclosure_scene.tscn" id="55_54dhb"]
 [ext_resource type="PackedScene" uid="uid://dvlhldkt22u1u" path="res://Scenery/Rocks/rock_piece.tscn" id="55_ywjan"]
-[ext_resource type="Script" uid="uid://523fsfqlnuv" path="res://Managers/peep_navigation_region.gd" id="61_8dedt"]
+[ext_resource type="Script" path="res://Managers/peep_navigation_region.gd" id="61_8dedt"]
 [ext_resource type="PackedScene" uid="uid://c2x0h40jh0wj6" path="res://staff.tscn" id="69_ba76w"]
 [ext_resource type="PackedScene" uid="uid://baic6x8rh68v8" path="res://UI/UI popups/ui_animal_popup.tscn" id="73_mv3dj"]
 [ext_resource type="Theme" uid="uid://qsq4gutgth07" path="res://UI/default_theme.tres" id="74_7k2ss"]
@@ -99,7 +99,7 @@
 [ext_resource type="Script" uid="uid://t3naf2okb6cm" path="res://UI/ui_debug_shader.gd" id="87_1b22a"]
 [ext_resource type="PackedScene" uid="uid://bie8wky7dopo4" path="res://UI/UI popups/ui_mgmt_box.tscn" id="90_kjtd0"]
 [ext_resource type="Script" uid="uid://bon5xqjo8ybh6" path="res://UI_info_label.gd" id="94_3glsp"]
-[ext_resource type="Shader" uid="uid://bu1lv0m1sqnci" path="res://replace_color.gdshader" id="97_84xii"]
+[ext_resource type="Shader" path="res://replace_color.gdshader" id="97_84xii"]
 [ext_resource type="Script" uid="uid://bx7r3upcavvb4" path="res://notification_manager.gd" id="98_yvsr8"]
 [ext_resource type="Script" uid="uid://bg7ua3j074tf6" path="res://time_progress_bar.gd" id="99_jcxqu"]
 [ext_resource type="PackedScene" uid="uid://c1lavh6yvgdgb" path="res://UI/notification_label.tscn" id="99_vieuh"]
@@ -319,6 +319,9 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+
+[sub_resource type="Theme" id="Theme_jcxqu"]
+default_font_size = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfsr6"]
 bg_color = Color(0.772697, 0.923297, 0.949193, 1)
@@ -883,6 +886,10 @@ offset_bottom = 532.0
 grow_horizontal = 0
 mouse_filter = 2
 
+[node name="DebugTimer" type="Timer" parent="UI/MarginContainer/Top-Right/VBoxContainer"]
+unique_name_in_owner = true
+wait_time = 3.0
+
 [node name="DebugScreen" type="HBoxContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -1043,6 +1050,7 @@ horizontal_alignment = 2
 [node name="UIDebugShader" type="VBoxContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug/MarginContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 10
+theme = SubResource("Theme_jcxqu")
 script = ExtResource("87_1b22a")
 
 [node name="Label" type="Label" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug/MarginContainer/VBoxContainer3/UIDebugShader"]
@@ -1164,13 +1172,6 @@ custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Mgmt"
-
-[node name="DebugToggle" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/VBoxContainer/Control/DropDownMenu/MarginContainer/VBoxContainer2/DropDownMenu"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 125)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Debug"
 
 [node name="SaveGame" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/VBoxContainer/Control/DropDownMenu/MarginContainer/VBoxContainer2/DropDownMenu"]
 unique_name_in_owner = true

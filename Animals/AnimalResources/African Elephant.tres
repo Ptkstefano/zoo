@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://s40sd7uqjx7u"]
+
+[ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_k0vb8"]
+[ext_resource type="Texture2D" uid="uid://dvn6ui5ftap6a" path="res://Animals/sprites/african elephant.png" id="2_birur"]
+[ext_resource type="Texture2D" uid="uid://gykuorv0xa2s" path="res://Animals/thumbs/animal_giraffe.png" id="3_bbup8"]
+
+[resource]
+script = ExtResource("1_k0vb8")
+name = "African Elephant"
+species_id = 7
+cost = 500.0
+texture = ExtResource("2_birur")
+thumb = ExtResource("3_bbup8")
+feed = 1
+shadow_scale = 1.8
+sprite_y_offset = 2
+animation_speed_scale = 0.3
+base_speed = 15.0
+run_speed = 20.0
+can_swim = false
+minimum_shelter_level = 0
+animal_rating = 125
+terrain_preference = {}
+terrain_dislike = Array[int]([])
+needs_water = false
+minimum_habitat_size = 0
+minimum_vegetation_coverage = 0.0
+maximum_vegetation_coverage = 0.0
+minimum_herd_size = 0
+maximum_herd_density = 0.0

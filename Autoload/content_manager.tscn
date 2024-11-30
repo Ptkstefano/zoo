@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://mqvvqf6wxoe8"]
+[gd_scene load_steps=14 format=3 uid="uid://mqvvqf6wxoe8"]
 
 [ext_resource type="Script" uid="uid://da6bglapjw4jm" path="res://Autoload/content_manager.gd" id="1_0xc5w"]
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="2_3584o"]
@@ -9,11 +9,12 @@
 [ext_resource type="Resource" uid="uid://xncaf8r72rkb" path="res://Animals/AnimalResources/Red Kangaroo.tres" id="7_m8nde"]
 [ext_resource type="Resource" uid="uid://duuxwcbsqbfe" path="res://Animals/AnimalResources/Red Panda.tres" id="8_8irge"]
 [ext_resource type="Resource" uid="uid://ck55w4ejddxxs" path="res://Animals/AnimalResources/White-tail Deer.tres" id="9_3wn2c"]
+[ext_resource type="Resource" uid="uid://s40sd7uqjx7u" path="res://Animals/AnimalResources/African Elephant.tres" id="10_ii8x0"]
 [ext_resource type="Script" uid="uid://cq5yhojsat81w" path="res://Products/product_res.gd" id="10_k1pd2"]
 [ext_resource type="Resource" uid="uid://chxwmmjp17tl7" path="res://Products/ice_cream.tres" id="11_xkxqe"]
 [ext_resource type="Resource" uid="uid://4jweia6u5lfm" path="res://Products/milk_shake.tres" id="12_2cy81"]
 
 [node name="ContentManager" type="Node"]
 script = ExtResource("1_0xc5w")
-animal_files = Array[ExtResource("2_3584o")]([ExtResource("3_fp7ms"), ExtResource("4_gewqj"), ExtResource("5_mbt8i"), ExtResource("6_6f7jl"), ExtResource("7_m8nde"), ExtResource("8_8irge"), ExtResource("9_3wn2c")])
+animal_files = Array[ExtResource("2_3584o")]([ExtResource("3_fp7ms"), ExtResource("4_gewqj"), ExtResource("5_mbt8i"), ExtResource("6_6f7jl"), ExtResource("7_m8nde"), ExtResource("8_8irge"), ExtResource("9_3wn2c"), ExtResource("10_ii8x0")])
 product_resources = Array[ExtResource("10_k1pd2")]([ExtResource("11_xkxqe"), ExtResource("12_2cy81")])

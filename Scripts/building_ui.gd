@@ -17,8 +17,16 @@ var build_mode : bool = false
 func _ready() -> void:
 	SignalBus.ui_visibility.connect(ui_visibility)
 	
-	%RightMenuToggle.toggled.connect(on_right_menu_toggle)
-	%DebugToggle.pressed.connect(on_debug_toggle)
+	%RightMenuToggle.toggled.connect(on_right_menu_toggle) 
+	
+	## DEBUG menu show and hide
+	%RightMenuToggle.button_down.connect(right_menu_down)
+	%RightMenuToggle.button_up.connect(right_menu_up)
+	%DebugTimer.timeout.connect(debug_timer_timeout)
+	
+	%DebugScreen.hide()
+	
+	#%DebugToggle.pressed.connect(on_debug_toggle)
 	%SaveGame.pressed.connect(on_save_game)
 	
 	%MgmtMenu.pressed.connect(on_box_pressed.bind(IdRefs.UI_BOXES.MANAGEMENT))
@@ -289,3 +297,15 @@ func on_save_game():
 
 func on_money_changed(amount):
 	money_label.text = "$ " + str(amount)
+
+
+func right_menu_down():
+	%DebugTimer.start()
+func right_menu_up():
+	%DebugTimer.stop()
+func debug_timer_timeout():
+	if %DebugScreen.visible:
+		%DebugScreen.hide()
+	else:
+		%DebugScreen.show()
+	

@@ -70,7 +70,10 @@ var spent_money : float = 0
 
 var z_index_value
 
+var load_data
+
 signal peep_group_left
+signal peep_count_added
 
 
 
@@ -112,35 +115,14 @@ var peep_count = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for i in range(peep_count):
-		var peep = peep_scene.instantiate()
-		peeps.append(peep)
-		#peep_manager.peeps.append(peep)
-		peep.position_offset = position_offsets[i]
-		peep.global_position = global_position + position_offsets[i]
-		$Peeps.add_child(peep)
-	
-	if !favorite_animal:
-		favorite_animal = ContentManager.animals.keys().pick_random()
-	
-	speed = randi_range(16, 24)
-	
+
 	agent = $NavigationAgent2D as NavigationAgent2D
 	await get_tree().create_timer(0.5).timeout
 	agent.path_desired_distance = randi_range(5, 15)
 	
 	min_utility_score_tolerance = randf_range(0.6, 1.5)
 	
-	var randi = randi_range(0,10)
-	if randi <= 6:
-		min_product_level = 1
-	elif randi <= 9:
-		min_product_level = 2
-	else:
-		min_product_level = 3
-	
 
-	
 	agent.waypoint_reached.connect(on_agent_waypoint_reached)
 	
 	#$AnimalDetector.body_entered.connect(on_animal_detector_body_entered)
@@ -157,8 +139,48 @@ func _ready() -> void:
 	
 	#$VisibleOnScreenNotifier2D.screen_entered.connect(on_visibility_entered)
 	
-	initialize_peep_group_destinations()
+	initialize_peep_group(load_data)
 	get_new_destination()
+
+func initialize_peep_group(data):
+	if data:
+		id = data.id
+		global_position = data.spawn_location
+		needs_rest = data.needs_rest
+		needs_hunger = data.needs_hunger
+		needs_toilet  = data.needs_toilet
+		peep_count = data.peep_count
+		moving_towards_entrance = false
+		for animal in data.observed_animals:
+			observed_animals.append(int(animal))
+		for id in data.desired_destinations_id:
+			desired_enclosures_id.append(int(id))
+		for id in desired_enclosures_id:
+			group_desired_animals.append(ZooManager.zoo_enclosures[id]['especies'].species_id)
+	else:
+		peep_count = randi_range(1,4)
+	
+		favorite_animal = ContentManager.animals.keys().pick_random()
+	
+		speed = randi_range(16, 24)
+		initialize_peep_group_destinations()
+		var randi = randi_range(0,10)
+		if randi <= 6:
+			min_product_level = 1
+		elif randi <= 9:
+			min_product_level = 2
+		else:
+			min_product_level = 3
+			
+			
+	for i in range(peep_count):
+		var peep = peep_scene.instantiate()
+		peeps.append(peep)
+		#peep_manager.peeps.append(peep)
+		peep.position_offset = position_offsets[i]
+		peep.global_position = global_position + position_offsets[i]
+		$Peeps.add_child(peep)
+	peep_count_added.emit(peep_count)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
