@@ -20,7 +20,7 @@ func _ready() -> void:
 	generate_stats_tab()
 	generate_products_tab()
 	
-	#%RemoveBuildingButton.pressed.connect(on_remove_building)
+	%DeleteButton.pressed.connect(on_remove_building)
 
 		
 	
@@ -78,9 +78,11 @@ func generate_products_tab():
 		element.product_name = product.product.name
 		element.price = product.current_price
 		element.id = product.product.id
+		element.auto_restock = product.auto_restock
 		element.price_changed.connect(on_product_cost_changed)
 		element.replenish_stock.connect(on_product_stock_replenish)
 		element.remove_product.connect(on_remove_product)
+		element.auto_replenish.connect(on_auto_restock_product)
 		element.update_stock(product.current_stock, product.product.max_stock)
 		products[product.product.id] = {'element': element, 'product': product.product}
 		%ProductList.add_child(element)
@@ -103,4 +105,8 @@ func on_new_product_added(product):
 func on_remove_product(id):
 	shop_node.remove_product(id)
 	products.erase(id)
+	generate_products_tab()
+
+func on_auto_restock_product(id, value):
+	shop_node.toggle_auto_restock(id, value)
 	generate_products_tab()

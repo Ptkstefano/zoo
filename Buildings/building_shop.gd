@@ -24,6 +24,7 @@ signal update_stats
 func _ready() -> void:
 	product_types = building_res.product_types
 	$Sprites/Sprite2D.texture = building_res.texture
+	
 	if is_rotated:
 		$Sprites/Sprite2D.flip_h = true
 		$Sprites.position = building_res.sprite_pos_rotated
@@ -47,6 +48,9 @@ func buy(product_id : int, peep_count : int) -> bool:
 		available_products[product_id].current_stock -= peep_count
 		update_stats.emit()
 		FinanceManager.add(available_products[product_id].current_price, IdRefs.PAYMENT_ADD_TYPES.PRODUCT)
+		if available_products[product_id].current_stock < 1:
+			if available_products[product_id].auto_restock == true:
+				replenish_item_stock(product_id)
 		return true
 	else:
 		return false
@@ -74,7 +78,8 @@ func add_product(product : product_resource):
 	available_products[product.id] = {
 		'product': product,
 		'current_price': product.base_sell_value,
-		'current_stock': product.max_stock
+		'current_stock': product.max_stock,
+		'auto_restock': true,
 		}
 	if !sold_units.keys().has(product.id):
 		sold_units[product.id] = 0
@@ -82,13 +87,17 @@ func add_product(product : product_resource):
 func remove_product(id):
 	available_products.erase(id)
 
+func toggle_auto_restock(id, value):
+	available_products[id].auto_restock = value
+
 func restore_data(data):
 	if data.has('products'):
 		for product in data['products']:
 			available_products[data['products'][product].product.id] = {
 				'product': data['products'][product].product,
 				'current_price': data['products'][product].current_price,
-				'current_stock': data['products'][product].current_stock
+				'current_stock': data['products'][product].current_stock,
+				'auto_restock': data['products'][product].auto_restock,
 			}
 	if data.has('sold_units'):
 		for unit in data['sold_units']:

@@ -66,6 +66,8 @@ func update_selection_menu():
 	$"../../UI".update_ui()
 
 func place_tree(press_start_pos, tree_res, id):
+	if !tree_res:
+		return
 	var tree = tree_scene.instantiate()
 	tree.tree_res = tree_res
 	tree.global_position = press_start_pos

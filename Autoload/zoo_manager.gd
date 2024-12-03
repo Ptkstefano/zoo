@@ -29,6 +29,8 @@ var used_peep_group_ids = []
 var zoo_enclosures : Dictionary = {}
 var next_enclosure_id = 0
 
+var food_shops = {}
+
 var active_boosts : Dictionary = {}
 var boost_rating : int = 0
 
@@ -61,6 +63,9 @@ func update_zoo_enclosure(enclosure):
 			zoo_animals[enclosure.enclosure_species.name] = {"rating": enclosure.enclosure_species.animal_rating}
 	calculate_animal_rating()
 	
+func add_food_shop(id, data):
+	ZooManager.food_shops[id] = { 'building': data.building, 'position': TileMapRef.map_to_local(data.position) }
+	
 func remove_zoo_enclosure(enclosure):
 	zoo_enclosures.erase(enclosure.id)
 	## Remove animal?
@@ -79,7 +84,7 @@ func generate_scenery_id() -> int :
 
 func generate_building_id() -> int:
 	next_building_id += 1
-	return next_scenery_id
+	return next_building_id
 	
 func generate_peep_group_id():
 	var i = 0

@@ -311,9 +311,12 @@ func load_game():
 					var sold_units = {}
 					for product in data['buildingData'][key]['building_data']['products']:
 						products[product] = {
-							'product': load(data['buildingData'][key]['building_data']['products'][product]['product_res']),
-							'current_price': data['buildingData'][key]['building_data']['products'][product]['current_price'],
-							'current_stock': data['buildingData'][key]['building_data']['products'][product]['current_stock']
+							'product': load(
+								data['buildingData'][key]['building_data']['products'][product].get('product_res', "default_resource_path")
+							),
+							'current_price': data['buildingData'][key]['building_data']['products'][product].get('current_price', 0.0),
+							'current_stock': data['buildingData'][key]['building_data']['products'][product].get('current_stock', 0),
+							'auto_restock': data['buildingData'][key]['building_data']['products'][product].get('auto_restock', false)
 						}
 						
 					if data['buildingData'][key]['building_data'].has('sold_units'):
@@ -470,7 +473,8 @@ func get_building_data(building):
 			products[product] = {
 				'product_res': building.building_scene.available_products[product].product.get_path(),
 				'current_price': building.building_scene.available_products[product].current_price,
-				'current_stock': building.building_scene.available_products[product].current_stock
+				'current_stock': building.building_scene.available_products[product].current_stock,
+				'auto_restock': building.building_scene.available_products[product].auto_restock
 			}
 		var sold_units = {}
 		for unit in building.building_scene.sold_units:

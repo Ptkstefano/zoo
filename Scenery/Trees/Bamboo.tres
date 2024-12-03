@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="tree_resource" load_steps=2 format=3 uid="uid://c804tlyallbn2"]
+
+[ext_resource type="Script" uid="uid://cankjki47tjd5" path="res://Scenery/Trees/tree_resource.gd" id="1_22ge1"]
+
+[resource]
+script = ExtResource("1_22ge1")
+name = "Bamboo"
+cost = 10.0
+texture_y = 8
+vegetation_weight = 2.0

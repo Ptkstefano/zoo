@@ -1,4 +1,4 @@
-[gd_scene load_steps=140 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=144 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" uid="uid://o2egpp0b02e2" path="res://Scripts/debug_controller.gd" id="1_nisry"]
 [ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -32,18 +32,18 @@
 [ext_resource type="Resource" uid="uid://dcrw61juxfsvs" path="res://Terrain/dirt.tres" id="12_jliyx"]
 [ext_resource type="Resource" uid="uid://dk382e4qklm34" path="res://Terrain/deciduous.tres" id="13_jic8h"]
 [ext_resource type="Resource" uid="uid://ctusbtwghbxrl" path="res://Terrain/savanna.tres" id="14_1rewk"]
-[ext_resource type="Script" uid="uid://bjwm8a55y7i7h" path="res://Managers/scenery_manager.gd" id="14_62h3g"]
+[ext_resource type="Script" path="res://Managers/scenery_manager.gd" id="14_62h3g"]
 [ext_resource type="Script" uid="uid://bvnak0w5oxnhm" path="res://Enclosures/Fences/fence_res.gd" id="20_k6451"]
 [ext_resource type="Texture2D" uid="uid://cfp2cyqpum0g5" path="res://Buildings/entrance.png" id="21_41lik"]
 [ext_resource type="PackedScene" uid="uid://oa08vk0rrcpe" path="res://UI/UI selectable elements/ui_animal_element.tscn" id="21_a35of"]
 [ext_resource type="Resource" uid="uid://camg8o6ropjnr" path="res://Enclosures/Fences/small.tres" id="21_ad55l"]
 [ext_resource type="Resource" uid="uid://b85gocjhm05am" path="res://Enclosures/Fences/steel.tres" id="22_kya8w"]
 [ext_resource type="Script" uid="uid://cankjki47tjd5" path="res://Scenery/Trees/tree_resource.gd" id="24_g51a1"]
-[ext_resource type="Resource" uid="uid://s5hkg34ufeu3" path="res://Scenery/Trees/Pine.tres" id="25_qvxwd"]
+[ext_resource type="Resource" uid="uid://s5hkg34ufeu3" path="res://Scenery/Trees/Limber Pine.tres" id="25_qvxwd"]
 [ext_resource type="Script" uid="uid://d143y0sc6ar4w" path="res://Scenery/Decorations/decoration_resource.gd" id="26_0c60e"]
 [ext_resource type="PackedScene" uid="uid://cuiky1io0hfof" path="res://Scenery/Trees/tree_scene.tscn" id="26_vuik7"]
 [ext_resource type="PackedScene" uid="uid://bt8m7eb0se03i" path="res://UI/UI selectable elements/ui_scenery_element.tscn" id="27_5553e"]
-[ext_resource type="Script" uid="uid://db4c2pqkkun6" path="res://Managers/building_manager.gd" id="27_mg3kq"]
+[ext_resource type="Script" path="res://Managers/building_manager.gd" id="27_mg3kq"]
 [ext_resource type="Resource" uid="uid://dqn36shhu7sgb" path="res://Scenery/Decorations/deer-statue.tres" id="27_r3jxo"]
 [ext_resource type="PackedScene" uid="uid://bb5olte5gphhj" path="res://UI/UI selectable elements/ui_building_element.tscn" id="28_04i1b"]
 [ext_resource type="Script" uid="uid://b3dk3jci5ihs8" path="res://Buildings/building_res.gd" id="28_58uqa"]
@@ -63,8 +63,12 @@
 [ext_resource type="Resource" uid="uid://36wmkrb0dw5i" path="res://Scenery/Trees/Jacaranda.tres" id="32_weqx1"]
 [ext_resource type="Resource" uid="uid://d0guv3uxkjigw" path="res://Scenery/Trees/Acacia.tres" id="33_5f25m"]
 [ext_resource type="Resource" uid="uid://benyyn571ipab" path="res://Scenery/Trees/Araucaria.tres" id="34_7vtya"]
+[ext_resource type="Resource" uid="uid://c26sgldy6tdt7" path="res://Scenery/Trees/Aleppo Pine.tres" id="40_eq8ba"]
 [ext_resource type="PackedScene" uid="uid://iscokpw16nk" path="res://Managers/peep_group.tscn" id="40_rrrup"]
+[ext_resource type="Resource" uid="uid://domqu5rry32dh" path="res://Scenery/Trees/Bloodwood.tres" id="41_qqr73"]
+[ext_resource type="Resource" uid="uid://buqh6ti4i532y" path="res://Scenery/Trees/Alder Tree.tres" id="42_p82ky"]
 [ext_resource type="Script" uid="uid://bjcrbyhfvjdmd" path="res://Managers/water_manager.gd" id="43_sh5qp"]
+[ext_resource type="Resource" uid="uid://c804tlyallbn2" path="res://Scenery/Trees/Bamboo.tres" id="43_xdjgi"]
 [ext_resource type="PackedScene" uid="uid://dfb5pi2yfy3jh" path="res://Water/lake_scene.tscn" id="44_wq78x"]
 [ext_resource type="Script" uid="uid://cu2j3songpy3l" path="res://Managers/fixture_manager.gd" id="45_u6xcc"]
 [ext_resource type="Script" uid="uid://5ejtocxcdxha" path="res://Scenery/Fixtures/fixture_resource.gd" id="46_0jpxo"]
@@ -456,7 +460,7 @@ ui_animal_element = ExtResource("21_a35of")
 [node name="SceneryManager" type="Node2D" parent="Objects" node_paths=PackedStringArray("buildingManager")]
 y_sort_enabled = true
 script = ExtResource("14_62h3g")
-available_trees = Array[ExtResource("24_g51a1")]([ExtResource("25_qvxwd"), ExtResource("30_yos0d"), ExtResource("31_m2uoq"), ExtResource("32_weqx1"), ExtResource("33_5f25m"), ExtResource("34_7vtya")])
+available_trees = Array[ExtResource("24_g51a1")]([ExtResource("33_5f25m"), ExtResource("42_p82ky"), ExtResource("40_eq8ba"), ExtResource("34_7vtya"), ExtResource("43_xdjgi"), ExtResource("41_qqr73"), ExtResource("32_weqx1"), ExtResource("25_qvxwd"), ExtResource("30_yos0d"), ExtResource("31_m2uoq")])
 available_decorations = Array[ExtResource("26_0c60e")]([ExtResource("27_r3jxo")])
 available_vegetations = Array[ExtResource("28_wajut")]([ExtResource("29_d00f0"), ExtResource("30_dvure"), ExtResource("31_7jmpp")])
 available_rocks = Array[ExtResource("46_inymm")]([ExtResource("47_jcxqu"), ExtResource("48_0arob"), ExtResource("49_dij0e"), ExtResource("50_k1udn"), ExtResource("51_wat4s")])

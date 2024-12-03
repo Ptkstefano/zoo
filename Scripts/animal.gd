@@ -31,15 +31,15 @@ var cached_global_position : Vector2
 
 var needs_rest : float = 70:
 	set(value):
-		needs_rest = clamp(value,0,100)
+		needs_rest = clampf(value,0,100)
 	
 var needs_hunger : float = 70:
 	set(value):
-		needs_hunger = clamp(value,0,100)
+		needs_hunger = clampf(value,0,100)
 		
 var needs_play : float = 70:
 	set(value):
-		needs_play = clamp(value,0,100)
+		needs_play = clampf(value,0,100)
 
 var hunger_restore_rate = 0.1
 var rest_restore_rate = 0.01
@@ -110,7 +110,6 @@ func initialize_animal(res, coordinate, found_enclosure):
 
 func _physics_process(delta: float) -> void:
 	#$Label.text = str(current_state)
-	
 	if screenNotifier.is_on_screen():
 		z_index = Helpers.get_current_tile_z_index(global_position)
 		animal_sprite.frame_coords = Vector2(sprite_x + frame, sprite_y)
@@ -167,7 +166,6 @@ func on_state_timer_timeout():
 	
 func change_state(state : ANIMAL_STATES):
 	current_state = state
-	$DecayTimer.start()
 	if state == ANIMAL_STATES.WANDER:
 		$StateTimer.start()
 		agent.target_position = get_new_destination()
@@ -199,6 +197,8 @@ func change_state(state : ANIMAL_STATES):
 		search_for_rest()
 		sprite_x = 2
 	elif state == ANIMAL_STATES.IDLE:
+		if $DecayTimer.is_stopped():
+			$DecayTimer.start()
 		if randi_range(0,100) > 75:
 			change_state(ANIMAL_STATES.WANDER)
 		else:
@@ -212,7 +212,8 @@ func fill_needs(delta):
 		if needs_hunger > 90:
 			change_state(ANIMAL_STATES.IDLE)
 	elif current_state == ANIMAL_STATES.RESTING:
-		needs_rest += 2 * delta
+		sprite_x = 6
+		needs_rest += 0.5 * delta
 		if needs_rest > 90:
 			change_state(ANIMAL_STATES.IDLE)
 	elif current_state == ANIMAL_STATES.RUNNING:

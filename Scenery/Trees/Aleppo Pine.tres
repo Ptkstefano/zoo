@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="tree_resource" load_steps=2 format=3 uid="uid://c26sgldy6tdt7"]
+
+[ext_resource type="Script" uid="uid://cankjki47tjd5" path="res://Scenery/Trees/tree_resource.gd" id="1_rd5au"]
+
+[resource]
+script = ExtResource("1_rd5au")
+name = "Aleppo Pine"
+cost = 10.0
+texture_y = 6
+vegetation_weight = 2.0

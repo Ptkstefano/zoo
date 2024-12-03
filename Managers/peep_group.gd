@@ -52,7 +52,8 @@ var moving_towards_entrance : bool = true
 var fixture : Fixture = null
 var fixture_available ## Dict or null
 
-var shop : Shop = null
+#var chosen_shop : Shop = null
+var target_shop : Shop = null
 var visited_shops : Array[Shop] = []
 var peep_group_inventory : Array[product_resource]
 
@@ -86,10 +87,11 @@ var needs_rest : float = randf_range(75, 100):
 			if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_REST_SPOT):
 				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_REST_SPOT)
 
-var needs_hunger : float = randf_range(35, 80):
+var needs_hunger : float = randf_range(50, 80):
 	set(value):
 		needs_hunger = clamp(value,0,100)
-		if value <= 45:
+		if value <= 40:
+			#search_food_place()
 			searching_food_spot = true
 		if value < 1:
 			if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_FOOD):
@@ -105,7 +107,7 @@ var needs_toilet : float = randf_range(50, 80):
 				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_TOILET)
 		
 		
-var hunger_drain_rate : float = randf_range(1, 3)
+var hunger_drain_rate : float = randf_range(0.5, 2)
 var rest_drain_rate : float = randf_range(1, 2)
 var toilet_drain_rate : float = randf_range(0.5, 1.5)
 
@@ -172,7 +174,11 @@ func initialize_peep_group(data):
 		else:
 			min_product_level = 3
 			
-			
+	if !peep_count:
+		## TODO - Figure out what causes this bug in saves
+		queue_free()
+		return
+		
 	for i in range(peep_count):
 		var peep = peep_scene.instantiate()
 		peeps.append(peep)
@@ -277,6 +283,10 @@ func change_state(state):
 			else:
 				peeps[i].change_state(0)
 	elif state == group_states.GOING_TO_FOOD:
+		if !target_shop:
+			change_state(group_states.STOPPED)
+			return
+		agent.target_position = target_shop.sell_positions.pick_random()
 		for peep in peeps:
 			peep.change_state(1)
 		return
@@ -300,13 +310,21 @@ func change_state(state):
 		
 
 func get_new_destination():
-	if moving_towards_exit:
+	if searching_food_spot:
+		target_shop = search_food_place()
+		if !target_shop:
+			change_state(group_states.GOING_TO_EXIT)
+			return
+		else:
+			change_state(group_states.GOING_TO_FOOD)
+			return
+	elif moving_towards_exit:
 		change_state(group_states.GOING_TO_EXIT)
 		return
-	if group_desired_destinations.is_empty():
+	elif group_desired_destinations.is_empty():
 		change_state(group_states.GOING_TO_EXIT)
 		return
-	if moving_towards_entrance:
+	elif moving_towards_entrance:
 		change_state(group_states.GOING_TO_ENTRANCE)
 		return
 	else:
@@ -316,24 +334,6 @@ func get_new_destination():
 func move_toward_direction(direction: Vector2, delta: float):
 	global_position += direction * speed * delta
 	
-#func on_detector_body_entered(body):
-	#if group_state in busy_states:
-		#return
-	#if body is Animal:
-		#if body.animal_species not in observed_animals:
-			#observed_animals.append(body.animal_species)
-			#change_state(group_states.OBSERVING)
-			#$AnimalWaitTimer.stop()
-			#for peep in peeps:
-				#var dir = global_position.direction_to(body.global_position).angle()
-				#peep.look_direction = dir
-				#
-			#if body.animal_species in group_desired_animals:
-				#group_desired_animals.erase(body.animal_species)
-		#
-		#for destination in group_desired_destinations:
-			#if destination.especies == body.animal_res:
-				#group_desired_destinations.erase(destination)
 
 func on_detector_area_entered(area):
 	if group_state in busy_states:
@@ -368,15 +368,15 @@ func on_detector_area_entered(area):
 				direction = (agent.get_next_path_position() - global_position).normalized()
 				change_state(group_states.GOING_TO_FIXTURE)
 				searching_rest_spot = false
-	elif searching_food_spot:
-		if area.get_parent() is Shop:
-			shop = area.get_parent()
-			if shop in visited_shops:
-				return
-			if searching_food_spot:
-				if IdRefs.PRODUCT_TYPES.FOOD in shop.product_types:
-					agent.target_position = shop.sell_positions.pick_random()
-					change_state(group_states.GOING_TO_FOOD)
+	#elif searching_food_spot:
+		#if area.get_parent() is Shop:
+			#shop = area.get_parent()
+			#if shop in visited_shops:
+				#return
+			#if searching_food_spot:
+				#if IdRefs.PRODUCT_TYPES.FOOD in shop.product_types:
+					#agent.target_position = shop.sell_positions.pick_random()
+					#change_state(group_states.GOING_TO_FOOD)
 	elif searching_toilet:
 		if area.get_parent() is Toilet:
 			if searching_toilet:
@@ -411,68 +411,72 @@ func buy_food():
 	var available_items = {}
 	
 	## In case shop has ceased to exist
-	if !shop:
+	if !target_shop:
 		change_state(group_states.STOPPED)
 		return
 		
-	if shop.available_products.size() == 0:
-		shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.EMPTY_SHOP)
+	if target_shop.available_products.size() == 0:
+		target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.EMPTY_SHOP)
 		modifiers.append(ModifierManager.PEEP_MODIFIERS.EMPTY_SHOP)
 		return
 		
-	## Remove items of undesirable quality
-	for id in shop.available_products:
-		if shop.available_products[id].product.type == IdRefs.PRODUCT_TYPES.FOOD:
-			if shop.available_products[id].product.product_level >= min_product_level:
-				## Utility score is a value that represents the desirability of a product considering price, perceived value and product level.
-				var item_utility_score = (shop.available_products[id].product.perceived_value / shop.available_products[id].current_price) + (0.15 * (shop.available_products[id].product.product_level - 1))
-				available_items[shop.available_products[id].product.id] = {
+	## Select items of desirable quality
+	for id in target_shop.available_products:
+		if target_shop.available_products[id].product.type == IdRefs.PRODUCT_TYPES.FOOD:
+			if target_shop.available_products[id].product.product_level >= min_product_level:
+				## Utility score is a value that represents the desirability of a product considering price, perceived value, product level and a random factor.
+				var item_utility_score = (target_shop.available_products[id].product.perceived_value / target_shop.available_products[id].current_price) + (0.1 * (target_shop.available_products[id].product.product_level - 1)) * randf_range(0.8, 1.2)
+				available_items[target_shop.available_products[id].product.id] = {
 					'utility_score': item_utility_score
 					}
 			
-	if available_items.size() == 0:
-		shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_DESIRABLE_QUALITY)
-		modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_DESIRABLE_QUALITY)
-		return
-		
-			
 	var best_item_id = null
 	var highest_utility = 0
-	
+			
+	## No items of desirable quality
+	if available_items.size() == 0:
+		print('no desirable items')
+		target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_DESIRABLE_QUALITY)
+		modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_DESIRABLE_QUALITY)
+		
 	## Choose preferred item based on best perceived value
-	for id in available_items:
-		if available_items[id].utility_score > highest_utility:
-			if available_items[id].utility_score < min_utility_score_tolerance:
-				continue
-			highest_utility = available_items[id].utility_score
-			best_item_id = id
+	else:
+		for id in available_items:
+			if available_items[id].utility_score > highest_utility:
+				if available_items[id].utility_score < min_utility_score_tolerance:
+					continue
+				highest_utility = available_items[id].utility_score
+				best_item_id = id
 
-	## Found no items of desirable cost
-	if best_item_id == null:
-		print('no best item')
-		visited_shops.append(shop)
-		shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.TOO_EXPENSIVE)
-		modifiers.append(ModifierManager.PEEP_MODIFIERS.TOO_EXPENSIVE)
-		return
+		## Found no items of desirable cost
+		if best_item_id == null:
+			print('desirable items too expensive')
+			target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.TOO_EXPENSIVE)
+			modifiers.append(ModifierManager.PEEP_MODIFIERS.TOO_EXPENSIVE)
+
 
 	print('try buy')
 	## Found item of desirable cost and quality
-	if shop.buy(best_item_id, peep_count):
-		print('bought')
-		peep_group_inventory.append(best_item_id)
-		needs_hunger = 100
-		searching_food_spot = false
-		spent_money += shop.available_products[best_item_id].current_price * peep_count
-		if available_items[best_item_id].utility_score > 1.5:
-			shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
-			modifiers.append(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
-		for peep in peeps:
-			SignalBus.money_tooltip.emit(shop.available_products[best_item_id].current_price, true, peep.global_position)
-	else:
-		shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
-		modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
+	if target_shop and best_item_id:
+		if target_shop.buy(best_item_id, peep_count):
+			print('bought')
+			peep_group_inventory.append(best_item_id)
+			needs_hunger = 100
+			searching_food_spot = false
+			spent_money += target_shop.available_products[best_item_id].current_price * peep_count
+			if available_items[best_item_id].utility_score > 1.5:
+				target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
+				modifiers.append(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
+			for peep in peeps:
+				SignalBus.money_tooltip.emit(target_shop.available_products[best_item_id].current_price, true, peep.global_position)
+		else:
+			print('no stock')
+			target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
+			modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
 	
-
+	print('end buy')
+	visited_shops.append(target_shop)
+	target_shop = null
 	change_state(group_states.STOPPED)
 
 func use_toilet():
@@ -537,3 +541,27 @@ func calculate_perceived_zoo_rating():
 	for modifier in modifiers:
 		sum += ModifierManager.peep_modifiers[modifier].point_value
 	return clamp(zoo_rating_score + sum, 0, 5)
+
+func search_food_place():
+	print('searching food place')
+	var shorter_distance = 100000
+	var selected_shop = null
+	var too_far_count = 0
+	for food_place_id in ZooManager.food_shops:
+		if ZooManager.food_shops[food_place_id].building.building_scene in visited_shops:
+			print('in visited shops')
+			continue
+		var distance = global_position.distance_to(ZooManager.food_shops[food_place_id].position)
+		print(distance)
+		if distance < shorter_distance:
+			selected_shop = ZooManager.food_shops[food_place_id].building.building_scene
+		else:
+			too_far_count += 1
+
+	if selected_shop:
+		print('found food place')
+		return selected_shop
+	else:
+		if too_far_count > 0:
+			modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_FOOD_SHOP_IN_RANGE)
+		return null

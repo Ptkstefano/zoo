@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="animal_resource" load_steps=3 format=3 uid="uid://biqkma2bi4kik"]
+
+[ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_5tph4"]
+[ext_resource type="Texture2D" uid="uid://d1fk4i0tru2ko" path="res://Animals/sprites/black bear.png" id="2_3pxik"]
+
+[resource]
+script = ExtResource("1_5tph4")
+name = "Black Bear"
+species_id = 6
+cost = 500.0
+texture = ExtResource("2_3pxik")
+feed = 0
+shadow_scale = 1.8
+sprite_y_offset = 6
+animation_speed_scale = 0.5
+base_speed = 15.0
+run_speed = 20.0
+can_swim = false
+minimum_shelter_level = 0
+animal_rating = 125
+terrain_preference = {}
+terrain_dislike = Array[int]([])
+needs_water = false
+minimum_habitat_size = 0
+minimum_vegetation_coverage = 0.0
+maximum_vegetation_coverage = 0.0
+minimum_herd_size = 0
+maximum_herd_density = 0.0

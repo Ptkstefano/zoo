@@ -30,7 +30,7 @@ func update_building_menu():
 		
 	$"../../UI".update_ui()
 
-func build_building(building_res, start_tile, rotate, coords, data):
+func build_building(building_res : building_resource, start_tile, rotate, coords, data):
 	var new_building = building_class_scene.instantiate()
 	new_building.start_tile = start_tile
 	new_building.is_building_rotated = rotate
@@ -43,6 +43,11 @@ func build_building(building_res, start_tile, rotate, coords, data):
 	add_child(new_building)
 	new_building.building_selected.connect(on_building_selected)
 	new_building.building_removed.connect(on_building_removed)
+	print(new_building.id)
+	if building_res.product_types.has(IdRefs.PRODUCT_TYPES.FOOD):
+		ZooManager.add_food_shop(new_building.id, { 'building': new_building, 'position': TileMapRef.map_to_local(start_tile) })
+		#ZooManager.food_shops[new_building.id] = { 'building': new_building, 'position': TileMapRef.map_to_local(start_tile) }
+			
 	$"../../PathManager".build_building_path(coords)
 	coordinates_used_by_buildings.append(coords)
 	

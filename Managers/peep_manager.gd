@@ -26,7 +26,8 @@ func _ready() -> void:
 func update_peeps_cached_positions():
 	for group in peep_groups:
 		if group:
-			group.update_cached_position()
+			if is_instance_valid(group):
+				group.update_cached_position()
 
 func on_peep_spawn_timeout():
 	## Controls flow of spawns

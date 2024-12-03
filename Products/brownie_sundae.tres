@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="product_resource" load_steps=2 format=3 uid="uid://c086ou4yyva4u"]
+
+[ext_resource type="Script" uid="uid://cq5yhojsat81w" path="res://Products/product_res.gd" id="1_cetgc"]
+
+[resource]
+script = ExtResource("1_cetgc")
+id = 2
+type = 0
+name = "Brownie Sundae"
+base_sell_value = 8.0
+perceived_value = 8.0
+product_level = 3
+stock_cost = 3.5
+max_stock = 200
+maintenance = 175.0
