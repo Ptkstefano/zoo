@@ -36,6 +36,8 @@ func build_building(building_res : building_resource, start_tile, rotate, coords
 	new_building.is_building_rotated = rotate
 	new_building.building_res = building_res
 	new_building.used_coordinates = coords
+	new_building.building_res_id = building_res.id
+	SignalBus.set_debug_label_text.emit(str(building_res.id))
 	if !data:
 		new_building.id = ZooManager.generate_building_id()
 	else:
@@ -46,7 +48,8 @@ func build_building(building_res : building_resource, start_tile, rotate, coords
 	print(new_building.id)
 	if building_res.product_types.has(IdRefs.PRODUCT_TYPES.FOOD):
 		ZooManager.add_food_shop(new_building.id, { 'building': new_building, 'position': TileMapRef.map_to_local(start_tile) })
-		#ZooManager.food_shops[new_building.id] = { 'building': new_building, 'position': TileMapRef.map_to_local(start_tile) }
+	if building_res.building_type == IdRefs.BUILDING_TYPES.TOILET:
+		ZooManager.add_toilet(new_building.id, { 'building': new_building, 'position': TileMapRef.map_to_local(start_tile) })
 			
 	$"../../PathManager".build_building_path(coords)
 	coordinates_used_by_buildings.append(coords)

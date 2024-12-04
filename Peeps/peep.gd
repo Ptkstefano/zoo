@@ -22,6 +22,7 @@ var head_texture
 var move_direction : Vector2
 var look_direction
 
+var holding_item : bool = false
 
 var frame := 0
 var base_y := 0
@@ -47,10 +48,10 @@ func _process(delta: float) -> void:
 			#sprite_x = 0
 		#else:
 			if move_direction.x > 0:
-				sprite_x = 2
+				#sprite_x = 2
 				peepSprite.flip_h=true
 			else:
-				sprite_x = 2
+				#sprite_x = 2
 				peepSprite.flip_h=false
 				
 			if move_direction.y > 0:
@@ -113,9 +114,13 @@ func change_state(state):
 	if state == 0: ## Stopped
 		peep_state = PEEP_STATES.IDLE
 		sprite_x = 0
+		if holding_item:
+			sprite_x = 8
 	if state == 1: ## Walking:
 		peep_state = PEEP_STATES.MOVING
 		sprite_x = 2
+		if holding_item:
+			sprite_x = 10
 	if state == 2: ## OBSERVING:
 		peep_state = PEEP_STATES.OBSERVING
 		if randi_range(0,100) > 50:

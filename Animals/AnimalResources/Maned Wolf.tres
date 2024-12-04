@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="animal_resource" load_steps=3 format=3 uid="uid://b6kil7b7qtggp"]
+
+[ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_a584d"]
+[ext_resource type="Texture2D" uid="uid://jnejs4i8j57d" path="res://Animals/sprites/maned wolf.png" id="2_l1h4c"]
+
+[resource]
+script = ExtResource("1_a584d")
+name = "Maned Wolf"
+species_id = 10
+cost = 200.0
+texture = ExtResource("2_l1h4c")
+feed = 0
+shadow_scale = 1.0
+sprite_y_offset = 4
+animation_speed_scale = 1.0
+base_speed = 15.0
+run_speed = 25.0
+can_swim = false
+minimum_shelter_level = 0
+animal_rating = 140
+terrain_preference = {}
+terrain_dislike = Array[int]([])
+needs_water = false
+minimum_habitat_size = 50
+minimum_vegetation_coverage = 0.6
+maximum_vegetation_coverage = 1.5
+minimum_herd_size = 4
+maximum_herd_density = 0.15

@@ -32,6 +32,7 @@ func open_box(box):
 func open_shop_popup(shop_node):
 	print(shop_node)
 	opened_popup = ui_shop_popup.instantiate()
+	opened_popup.building_id = shop_node.building_res_id
 	opened_popup.shop_node = shop_node
 	add_child(opened_popup)
 

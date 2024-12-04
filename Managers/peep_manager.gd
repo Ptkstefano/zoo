@@ -14,6 +14,8 @@ var peep_groups = []
 
 var peep_count : int = 0
 
+var spawn_ratio
+
 @export var peep_texture_body : Texture2D
 @export var peep_texture_head : Texture2D
 
@@ -37,7 +39,6 @@ func on_peep_spawn_timeout():
 		
 	instantiate_peep_group(null)
 	
-	var spawn_ratio
 	if peep_count == 0: 
 		spawn_ratio = ZooManager.zoo_attractiveness
 	else:
@@ -91,3 +92,8 @@ func debug_hungry_peeps():
 	for peep_group in get_children():
 		if peep_group is PeepGroup:
 			peep_group.needs_hunger = 10.0
+			
+func debug_toilet_peeps():
+	for peep_group in get_children():
+		if peep_group is PeepGroup:
+			peep_group.needs_toilet = 10.0

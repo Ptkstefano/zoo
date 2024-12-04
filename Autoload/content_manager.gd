@@ -6,8 +6,11 @@ extends Node
 
 @export var product_resources : Array[product_resource]
 
+@export var building_resources : Array[building_resource]
+
 var animals = {}
 var products = {}
+var buildings = {}
 	
 func _ready():
 	load_all_resources()
@@ -20,3 +23,6 @@ func load_all_resources() -> void:
 	for product in product_resources:
 		products[product.id] = product
 	
+	for element in building_resources:
+		buildings[element.id] = element
+		

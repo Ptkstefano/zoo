@@ -3,6 +3,7 @@ extends Resource
 class_name building_resource
 
 @export var name : String
+@export var id : IdRefs.BUILDINGS
 @export var thumb : Texture2D
 
 @export var texture : Texture2D
@@ -10,8 +11,7 @@ class_name building_resource
 @export_category("Products")
 @export var building_type : IdRefs.BUILDING_TYPES
 @export var product_types : Array[IdRefs.PRODUCT_TYPES]
-var available_products : Array[product_resource]
-@export var possible_products : Array[product_resource]
+@export var possible_products : Array[IdRefs.PRODUCTS]
 
 @export_category("Visual")
 @export var size : Vector2i

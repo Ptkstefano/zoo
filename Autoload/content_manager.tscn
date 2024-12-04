@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://mqvvqf6wxoe8"]
+[gd_scene load_steps=21 format=3 uid="uid://mqvvqf6wxoe8"]
 
-[ext_resource type="Script" uid="uid://da6bglapjw4jm" path="res://Autoload/content_manager.gd" id="1_0xc5w"]
+[ext_resource type="Script" path="res://Autoload/content_manager.gd" id="1_0xc5w"]
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="2_3584o"]
 [ext_resource type="Resource" uid="uid://c1csiys1jf20o" path="res://Animals/AnimalResources/American Flamingo.tres" id="3_fp7ms"]
 [ext_resource type="Resource" uid="uid://c7pfv2es6r5oa" path="res://Animals/AnimalResources/Capybara.tres" id="4_gewqj"]
@@ -14,8 +14,15 @@
 [ext_resource type="Resource" uid="uid://biqkma2bi4kik" path="res://Animals/AnimalResources/Black Bear.tres" id="11_ugt0a"]
 [ext_resource type="Resource" uid="uid://chxwmmjp17tl7" path="res://Products/ice_cream.tres" id="11_xkxqe"]
 [ext_resource type="Resource" uid="uid://4jweia6u5lfm" path="res://Products/milk_shake.tres" id="12_2cy81"]
+[ext_resource type="Resource" uid="uid://b2g57brtyu7bc" path="res://Animals/AnimalResources/Red Fox.tres" id="12_4jekg"]
+[ext_resource type="Resource" uid="uid://b6kil7b7qtggp" path="res://Animals/AnimalResources/Maned Wolf.tres" id="13_pshdp"]
+[ext_resource type="Resource" uid="uid://c086ou4yyva4u" path="res://Products/brownie_sundae.tres" id="16_42240"]
+[ext_resource type="Script" path="res://Buildings/building_res.gd" id="17_ib6gx"]
+[ext_resource type="Resource" uid="uid://csjatom74kl3h" path="res://Buildings/ice_cream_shop.tres" id="18_dhs4s"]
+[ext_resource type="Resource" uid="uid://cw0qxk8uuda34" path="res://Buildings/toilet1.tres" id="19_3wtsv"]
 
 [node name="ContentManager" type="Node"]
 script = ExtResource("1_0xc5w")
-animal_files = Array[ExtResource("2_3584o")]([ExtResource("3_fp7ms"), ExtResource("4_gewqj"), ExtResource("5_mbt8i"), ExtResource("6_6f7jl"), ExtResource("7_m8nde"), ExtResource("8_8irge"), ExtResource("9_3wn2c"), ExtResource("10_ii8x0"), ExtResource("11_ugt0a")])
-product_resources = Array[ExtResource("10_k1pd2")]([ExtResource("11_xkxqe"), ExtResource("12_2cy81")])
+animal_files = Array[ExtResource("2_3584o")]([ExtResource("3_fp7ms"), ExtResource("4_gewqj"), ExtResource("5_mbt8i"), ExtResource("6_6f7jl"), ExtResource("7_m8nde"), ExtResource("8_8irge"), ExtResource("9_3wn2c"), ExtResource("10_ii8x0"), ExtResource("11_ugt0a"), ExtResource("12_4jekg"), ExtResource("13_pshdp")])
+product_resources = Array[ExtResource("10_k1pd2")]([ExtResource("11_xkxqe"), ExtResource("12_2cy81"), ExtResource("16_42240")])
+building_resources = Array[ExtResource("17_ib6gx")]([ExtResource("18_dhs4s"), ExtResource("19_3wtsv")])

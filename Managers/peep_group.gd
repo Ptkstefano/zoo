@@ -56,6 +56,9 @@ var fixture_available ## Dict or null
 var target_shop : Shop = null
 var visited_shops : Array[Shop] = []
 var peep_group_inventory : Array[product_resource]
+var holding_item = false
+
+var target_toilet : Toilet = null
 
 var modifiers = []
 
@@ -91,7 +94,6 @@ var needs_hunger : float = randf_range(50, 80):
 	set(value):
 		needs_hunger = clamp(value,0,100)
 		if value <= 40:
-			#search_food_place()
 			searching_food_spot = true
 		if value < 1:
 			if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_FOOD):
@@ -295,6 +297,10 @@ func change_state(state):
 			peep.change_state(1)
 		return
 	elif state == group_states.GOING_TO_TOILET:
+		if !target_toilet:
+			change_state(group_states.STOPPED)
+			return
+		agent.target_position = target_toilet.enter_positions.pick_random()
 		for peep in peeps:
 			peep.change_state(1)
 		return
@@ -317,6 +323,14 @@ func get_new_destination():
 			return
 		else:
 			change_state(group_states.GOING_TO_FOOD)
+			return
+	if searching_toilet:
+		target_toilet = search_toilet()
+		if !target_toilet:
+			change_state(group_states.GOING_TO_EXIT)
+			return
+		else:
+			change_state(group_states.GOING_TO_TOILET)
 			return
 	elif moving_towards_exit:
 		change_state(group_states.GOING_TO_EXIT)
@@ -377,11 +391,11 @@ func on_detector_area_entered(area):
 				#if IdRefs.PRODUCT_TYPES.FOOD in shop.product_types:
 					#agent.target_position = shop.sell_positions.pick_random()
 					#change_state(group_states.GOING_TO_FOOD)
-	elif searching_toilet:
-		if area.get_parent() is Toilet:
-			if searching_toilet:
-				agent.target_position = area.get_parent().enter_positions.pick_random()
-				change_state(group_states.GOING_TO_TOILET)
+	#elif searching_toilet:
+		#if area.get_parent() is Toilet:
+			#if searching_toilet:
+				#agent.target_position = area.get_parent().enter_positions.pick_random()
+				#change_state(group_states.GOING_TO_TOILET)
 
 
 func on_state_timer_timeout():
@@ -425,7 +439,10 @@ func buy_food():
 		if target_shop.available_products[id].product.type == IdRefs.PRODUCT_TYPES.FOOD:
 			if target_shop.available_products[id].product.product_level >= min_product_level:
 				## Utility score is a value that represents the desirability of a product considering price, perceived value, product level and a random factor.
-				var item_utility_score = (target_shop.available_products[id].product.perceived_value / target_shop.available_products[id].current_price) + (0.1 * (target_shop.available_products[id].product.product_level - 1)) * randf_range(0.8, 1.2)
+				var item_utility_score = (target_shop.available_products[id].product.perceived_value / target_shop.available_products[id].current_price) + (0.05 * (target_shop.available_products[id].product.product_level - 1)) * randf_range(0.8, 1.2)
+				if target_shop.available_products[id].product.product_level == min_product_level:
+					## Peeps prefer items of their minimum level, but will still choose better items if they deem it worth it
+					item_utility_score *= 1.20
 				available_items[target_shop.available_products[id].product.id] = {
 					'utility_score': item_utility_score
 					}
@@ -435,7 +452,6 @@ func buy_food():
 			
 	## No items of desirable quality
 	if available_items.size() == 0:
-		print('no desirable items')
 		target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_DESIRABLE_QUALITY)
 		modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_DESIRABLE_QUALITY)
 		
@@ -450,19 +466,19 @@ func buy_food():
 
 		## Found no items of desirable cost
 		if best_item_id == null:
-			print('desirable items too expensive')
 			target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.TOO_EXPENSIVE)
 			modifiers.append(ModifierManager.PEEP_MODIFIERS.TOO_EXPENSIVE)
 
 
-	print('try buy')
 	## Found item of desirable cost and quality
 	if target_shop and best_item_id:
 		if target_shop.buy(best_item_id, peep_count):
-			print('bought')
-			peep_group_inventory.append(best_item_id)
+			peep_group_inventory.append(target_shop.available_products[best_item_id].product)
 			needs_hunger = 100
 			searching_food_spot = false
+			holding_item = true
+			for peep in peeps:
+				peep.holding_item = true
 			spent_money += target_shop.available_products[best_item_id].current_price * peep_count
 			if available_items[best_item_id].utility_score > 1.5:
 				target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
@@ -470,11 +486,9 @@ func buy_food():
 			for peep in peeps:
 				SignalBus.money_tooltip.emit(target_shop.available_products[best_item_id].current_price, true, peep.global_position)
 		else:
-			print('no stock')
 			target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
 			modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
 	
-	print('end buy')
 	visited_shops.append(target_shop)
 	target_shop = null
 	change_state(group_states.STOPPED)
@@ -543,25 +557,35 @@ func calculate_perceived_zoo_rating():
 	return clamp(zoo_rating_score + sum, 0, 5)
 
 func search_food_place():
-	print('searching food place')
 	var shorter_distance = 100000
 	var selected_shop = null
 	var too_far_count = 0
 	for food_place_id in ZooManager.food_shops:
 		if ZooManager.food_shops[food_place_id].building.building_scene in visited_shops:
-			print('in visited shops')
 			continue
 		var distance = global_position.distance_to(ZooManager.food_shops[food_place_id].position)
-		print(distance)
 		if distance < shorter_distance:
 			selected_shop = ZooManager.food_shops[food_place_id].building.building_scene
 		else:
 			too_far_count += 1
 
 	if selected_shop:
-		print('found food place')
 		return selected_shop
 	else:
 		if too_far_count > 0:
 			modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_FOOD_SHOP_IN_RANGE)
+		return null
+		
+func search_toilet():
+	var selected_toilet
+	var shorter_distance = 20000
+	for toilet in ZooManager.toilets:
+		var distance = global_position.distance_to(ZooManager.toilets[toilet].position)
+		if distance < shorter_distance:
+			selected_toilet = ZooManager.toilets[toilet].building.building_scene
+			
+	if selected_toilet:
+		return selected_toilet
+	else:
+		modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_TOILET)
 		return null

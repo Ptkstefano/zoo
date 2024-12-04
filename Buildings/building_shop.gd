@@ -4,6 +4,8 @@ class_name Shop
 var product_types : Array[IdRefs.PRODUCT_TYPES]
 var available_products = {}
 
+
+var building_res_id : IdRefs.BUILDINGS
 var building_res : building_resource
 var shop_name
 var coordinates = []
@@ -22,9 +24,12 @@ signal update_stats
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	building_res = ContentManager.buildings[building_res_id]
+	
+	
 	product_types = building_res.product_types
 	$Sprites/Sprite2D.texture = building_res.texture
-	
+
 	if is_rotated:
 		$Sprites/Sprite2D.flip_h = true
 		$Sprites.position = building_res.sprite_pos_rotated
@@ -48,7 +53,7 @@ func buy(product_id : int, peep_count : int) -> bool:
 		available_products[product_id].current_stock -= peep_count
 		update_stats.emit()
 		FinanceManager.add(available_products[product_id].current_price, IdRefs.PAYMENT_ADD_TYPES.PRODUCT)
-		if available_products[product_id].current_stock < 1:
+		if available_products[product_id].current_stock < 10:
 			if available_products[product_id].auto_restock == true:
 				replenish_item_stock(product_id)
 		return true
@@ -93,8 +98,9 @@ func toggle_auto_restock(id, value):
 func restore_data(data):
 	if data.has('products'):
 		for product in data['products']:
-			available_products[data['products'][product].product.id] = {
-				'product': data['products'][product].product,
+			var product_id = int(data['products'][product].product_id)
+			available_products[product_id] = {
+				'product': ContentManager.products[product_id],
 				'current_price': data['products'][product].current_price,
 				'current_stock': data['products'][product].current_stock,
 				'auto_restock': data['products'][product].auto_restock,

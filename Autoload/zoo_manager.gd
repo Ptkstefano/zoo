@@ -30,6 +30,7 @@ var zoo_enclosures : Dictionary = {}
 var next_enclosure_id = 0
 
 var food_shops = {}
+var toilets = {}
 
 var active_boosts : Dictionary = {}
 var boost_rating : int = 0
@@ -65,6 +66,9 @@ func update_zoo_enclosure(enclosure):
 	
 func add_food_shop(id, data):
 	ZooManager.food_shops[id] = { 'building': data.building, 'position': TileMapRef.map_to_local(data.position) }
+	
+func add_toilet(id, data):
+	ZooManager.toilets[id] = { 'building': data.building, 'position': TileMapRef.map_to_local(data.position) }
 	
 func remove_zoo_enclosure(enclosure):
 	zoo_enclosures.erase(enclosure.id)
@@ -109,7 +113,7 @@ func calculate_zoo_rating():
 	calculate_zoo_attractiveness()
 
 func calculate_zoo_attractiveness():
-	zoo_attractiveness = float(zoo_rating * rating_ratio) * (reputation * 0.20)
+	zoo_attractiveness = float(zoo_rating * rating_ratio) * (reputation * 0.3)
 
 func update_rating(new_rating):
 	last_guest_ratings.append(new_rating)

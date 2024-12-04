@@ -105,7 +105,7 @@ func initialize_animal(res, coordinate, found_enclosure):
 		$NavigationAgent2D.target_desired_distance = 30
 		
 	global_position = coordinate
-	cached_global_position = global_position
+	cached_global_position = Vector2(global_position.x, global_position.y)
 	enclosure = found_enclosure
 
 func _physics_process(delta: float) -> void:
@@ -128,7 +128,7 @@ func _physics_process(delta: float) -> void:
 			speed = run_speed
 		else:
 			speed = base_speed
-
+			
 		if agent.is_navigation_finished():
 			navigation_finished()
 
@@ -310,7 +310,7 @@ func update_habitat_satifaction():
 		preference_herd_density_satisfied = false
 
 func update_cached_position():
-	cached_global_position = global_position
+	cached_global_position = Vector2(global_position.x, global_position.y)
 
 func on_frame_timer():
 	if frame == 0:

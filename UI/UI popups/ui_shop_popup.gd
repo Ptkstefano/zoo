@@ -6,6 +6,8 @@ extends CanvasLayer
 @export var product_history_element : PackedScene
 @export var available_products_popup : PackedScene
 
+@export var building_id : IdRefs.BUILDINGS
+
 var shop_node
 
 var modifier_comments = []
@@ -14,6 +16,7 @@ var products = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	%ShopName.text = ContentManager.buildings[building_id].name
 	shop_node.update_stats.connect(update_stats)
 	%CloseButton.pressed.connect(queue_free)
 	%AddProductButton.pressed.connect(open_product_menu)
@@ -89,17 +92,17 @@ func generate_products_tab():
 
 func open_product_menu():
 	var popup = available_products_popup.instantiate()
-	## TODO - Change to unlocked products
-	for product in shop_node.building_res.possible_products:
-		if product.id not in shop_node.available_products.keys():
-			popup.products.append(product)
-	#popup.products = shop_node.building_res.possible_products
+	#for id in ContentManager.buildings[building_id].possible_products:
+	for id in [0,1,2]: ## TODO - Hard-coded this bitch so it would work on mobile
+		if id not in shop_node.available_products.keys():
+			popup.product_ids.append(id)
 	popup.product_selected.connect(on_new_product_added)
 	add_child(popup)
+
 	
-func on_new_product_added(product):
-	shop_node.add_product(product)
-	products[product.id] = product
+func on_new_product_added(id):
+	shop_node.add_product(ContentManager.products[id])
+	products[id] = ContentManager.products[id]
 	generate_products_tab()
 
 func on_remove_product(id):

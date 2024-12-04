@@ -11,7 +11,7 @@ radius = 13.0384
 [sub_resource type="CircleShape2D" id="CircleShape2D_jgltf"]
 radius = 7.07107
 
-[node name="Animal" type="Node2D"]
+[node name="Animal" type="Node2D" groups=["Animals"]]
 script = ExtResource("1_wogma")
 
 [node name="Shadow" type="Sprite2D" parent="."]

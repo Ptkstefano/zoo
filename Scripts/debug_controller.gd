@@ -33,6 +33,10 @@ func _ready() -> void:
 	%DebugRemovePeeps.pressed.connect(remove_peeps)
 	%DebugHungryPeeps.pressed.connect(hungry_peeps)
 	%DebugPassMonth.pressed.connect(pass_month)
+	%DebugToiletPeeps.pressed.connect(toilet_peeps)
+	%DebugAddMoney.pressed.connect(add_money)
+	%DebugSpeedTime.button_down.connect(speed_time)
+	%DebugSpeedTime.button_up.connect(normal_time)
 	
 
 
@@ -58,5 +62,17 @@ func remove_peeps():
 func hungry_peeps():
 	$"../Objects/PeepManager".debug_hungry_peeps()
 
+func toilet_peeps():
+	$"../Objects/PeepManager".debug_toilet_peeps()
+
 func pass_month():
 	TimeManager.on_month_pass()
+
+func add_money():
+	FinanceManager.current_money += 10000
+	
+func speed_time():
+	Engine.time_scale = 8
+	
+func normal_time():
+	Engine.time_scale = 1

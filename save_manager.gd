@@ -37,6 +37,9 @@ var tilemap_layers = []
 
 var thread : Thread
 
+var main_save_path = 'user://save_game.json'
+var backup_save_path = 'user://save_game_backup.json'
+
 func _ready() -> void:
 	SignalBus.save_game.connect(thread_save_game)
 	thread = Thread.new()
@@ -71,7 +74,7 @@ func start_save_manager():
 	enclosureManager = main_node.get_node("Objects").get_node("EnclosureManager") as EnclosureManager
 	enclosure_list = enclosureManager.get_children()
 	animalManager = main_node.get_node("Objects").get_node('AnimalManager') as AnimalManager
-	animal_list = animalManager.get_children()
+	animal_list = get_tree().get_nodes_in_group('Animals')
 	sceneryManager = main_node.get_node("Objects").get_node('SceneryManager') as SceneryManager
 	scenery_list = sceneryManager.get_children()
 	fixtureManager = main_node.get_node("Objects").get_node('FixtureManager') as FixtureManager
@@ -87,12 +90,12 @@ func start_save_manager():
 	#peepGroupList = peepManager.peep_groups
 	
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.pressed:
-			if event.keycode == 4194336:
+#func _unhandled_input(event: InputEvent) -> void:
+	#if event is InputEventKey:
+		#if event.pressed:
+			#if event.keycode == 4194336:
 				## F5 
-				thread_save_game()
+				#thread_save_game()
 			#if event.keycode == 4194340:
 				### F9
 				#get_tree().reload_current_scene()
@@ -112,7 +115,7 @@ func save_game():
 	
 	if(FileAccess.get_open_error() != OK):
 		return
-	var saveFile = FileAccess.open("user://save_game.json", FileAccess.WRITE)
+	var saveFile = FileAccess.open(main_save_path, FileAccess.WRITE)
 
 	var save_data = {}
 		
@@ -127,14 +130,14 @@ func save_game():
 	var i = 1
 	
 	for enclosure in enclosure_list:
-		enclosure_data[i] = get_enclosure_data(enclosure)
+		enclosure_data[i] = get_enclosure_data(enclosure).duplicate(true)
 		i += 1
 	save_data['enclosureData'] = enclosure_data
 	
 	## Save animal data
 	i = 1
 	for animal in animal_list:
-		animal_data[i] = get_animal_data(animal)
+		animal_data[i] = get_animal_data(animal).duplicate(true)
 		i += 1
 
 	save_data['animalData'] = animal_data
@@ -143,7 +146,7 @@ func save_game():
 	i = 1
 	var scenery_data = {}
 	for scenery in scenery_list:
-		scenery_data[i] = get_scenery_data(scenery)
+		scenery_data[i] = get_scenery_data(scenery).duplicate(true)
 		i += 1
 	save_data['sceneryData'] = scenery_data
 		
@@ -151,8 +154,9 @@ func save_game():
 	i = 1
 	var peep_group_data = {}
 	for peep_group in peepGroupList:
-		peep_group_data[i] = get_peep_group_data(peep_group)
-		i += 1
+		if is_instance_valid(peep_group):
+			peep_group_data[i] = get_peep_group_data(peep_group).duplicate(true)
+			i += 1
 	save_data['peepGroupData'] = peep_group_data
 	
 	var zoo_manager_data = {}
@@ -167,7 +171,7 @@ func save_game():
 	i = 1
 	var building_data = {}
 	for building in building_list:
-		building_data[i] = get_building_data(building)
+		building_data[i] = get_building_data(building).duplicate(true)
 		i += 1
 	save_data['buildingData'] = building_data
 	
@@ -176,7 +180,7 @@ func save_game():
 	var water_data = {}
 	for water in water_list:
 		if water is Lake:
-			water_data[i] = get_water_data(water)
+			water_data[i] = get_water_data(water).duplicate(true)
 			i += 1
 	save_data['waterData'] = water_data
 	
@@ -186,12 +190,12 @@ func save_game():
 	i = 1
 	var fixture_data = {}
 	for fixture in fixture_list:
-		fixture_data[i] = get_fixture_data(fixture)
+		fixture_data[i] = get_fixture_data(fixture).duplicate(true)
 		i += 1
 	save_data['fixtureData'] = fixture_data
 	
 	## Save finance data
-	save_data['financeData'] = get_finance_data()
+	save_data['financeData'] = get_finance_data().duplicate(true)
 	
 	var json_data = JSON.stringify(save_data)
 	
@@ -200,6 +204,9 @@ func save_game():
 		return
 		
 	saveFile.store_string(json_data)
+	
+	var backupFile = FileAccess.open(backup_save_path, FileAccess.WRITE)
+	backupFile.store_string(json_data)
 	#saveFile.call_deferred('store_string', JSON.stringify(save_data))
 	
 	call_deferred('save_finished')
@@ -208,152 +215,157 @@ func save_finished():
 	thread.wait_to_finish()
 	print('Game saved')
 	
+	
 
 func load_game():
 	print('loading game')
 	start_save_manager()
-	var file = FileAccess.open("user://save_game.json", FileAccess.READ)
+	var file = FileAccess.open(main_save_path, FileAccess.READ)
 	if !file:
 		return
+		
+	var data
 	if file:
 		var json = JSON.new()
-		var data = json.parse_string(file.get_as_text())  
+		data = json.parse_string(file.get_as_text())  
 		
-		if !data:
-			return
-
-		for key in tilemap_layers.keys():
-			if key == 'PathLayer':
-				## Grabs all coordinates of given path atlas Y and builds it 
-				var possible_path_atlas_y = {0: [], 1: []}
-				for cell in data["tilemapData"][key]:
-					if int(data["tilemapData"][key][cell].atlas_y) in possible_path_atlas_y.keys():
-						possible_path_atlas_y[int(data["tilemapData"][key][cell].atlas_y)].append(Vector2i(int(data["tilemapData"][key][cell].x), int(data["tilemapData"][key][cell].y)))
-				for atlas_y in possible_path_atlas_y:
-					pathManager.build_path(possible_path_atlas_y[atlas_y], atlas_y)
-						
-				SignalBus.peep_navigation_changed.emit()
-			else:
-				if data["tilemapData"].has(key):
-					for cell in data["tilemapData"][key]:
-						var cell_data = data["tilemapData"][key][cell]
-						tilemap_layers[key].set_cell(Vector2i(cell_data.x, cell_data.y), cell_data.source, Vector2i(cell_data.atlas_x, cell_data.atlas_y))
-		
-		
-		if data.has('enclosureData'):
-			for key in data["enclosureData"]:
-				var enclosure_cells = []
-				var fence_res = load(data["enclosureData"][key]['fence_res'])
-				var enclosure_id = int(data["enclosureData"][key]['enclosure_id'])
-				for cell in data["enclosureData"][key]['enclosure_cells']:
-					enclosure_cells.append(Vector2i(data["enclosureData"][key]['enclosure_cells'][cell].x, data["enclosureData"][key]['enclosure_cells'][cell].y))
-				var entrance_cell = null
-				if data["enclosureData"][key]['enclosure_entrance']:
-					entrance_cell = Vector2i(data["enclosureData"][key]['enclosure_entrance'].x, data["enclosureData"][key]['enclosure_entrance'].y)
-				enclosureManager.build_enclosure(enclosure_id, enclosure_cells, entrance_cell, fence_res)
+		if !data: 
+			var backup_file = FileAccess.open(backup_save_path, FileAccess.READ)
+			data = json.parse_string(backup_file.get_as_text())  
 			
-		if data.has('animalData'):
-			for key in data["animalData"]:
-				var position = Vector2i(data["animalData"][key]['x_pos'], data["animalData"][key]['y_pos'])
-				var animal_res = load(data['animalData'][key]['animal_res'])
-				var stats = {
-							'id': data['animalData'][key]['id'],
-							'needs_hunger': data['animalData'][key]['needs_hunger'],
-							'needs_rest': data['animalData'][key]['needs_rest'],
-							'needs_playr': data['animalData'][key]['needs_play']
-							
-				}
-				animalManager.call_deferred('spawn_animal', position, animal_res, stats)
-				
-		if data.has('sceneryData'):
-			for key in data["sceneryData"]:
-				var position = Vector2i(data["sceneryData"][key]['x_pos'], data["sceneryData"][key]['y_pos'])
-				if data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.VEGETATION:
-					var res = load(data["sceneryData"][key]['vegetation_res'])
-					sceneryManager.place_vegetation(position, res, null)
-				elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.TREE:
-					var res = load(data["sceneryData"][key]['tree_res'])
-					sceneryManager.place_tree(position, res, null)
-				elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.DECORATION:
-					var res = load(data["sceneryData"][key]['decoration_res'])
-					sceneryManager.place_decoration(position, res, null)
-				elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.ROCK:
-					var res = load(data["sceneryData"][key]['decoration_res'])
-					sceneryManager.place_rock(position, res, null)
+	if !data:
+		print('NO SAVE FILE FOUND')
+		return
+
+	for key in tilemap_layers.keys():
+		if key == 'PathLayer':
+			## Grabs all coordinates of given path atlas Y and builds it 
+			var possible_path_atlas_y = {0: [], 1: []}
+			for cell in data["tilemapData"][key]:
+				if int(data["tilemapData"][key][cell].atlas_y) in possible_path_atlas_y.keys():
+					possible_path_atlas_y[int(data["tilemapData"][key][cell].atlas_y)].append(Vector2i(int(data["tilemapData"][key][cell].x), int(data["tilemapData"][key][cell].y)))
+			for atlas_y in possible_path_atlas_y:
+				pathManager.build_path(possible_path_atlas_y[atlas_y], atlas_y)
 					
-		if data.has('fixtureData'):
-			for key in data["fixtureData"]:
-				var position = Vector2i(data["fixtureData"][key]['x_pos'], data["fixtureData"][key]['y_pos'])
-				var fixture_res = load(data['fixtureData'][key]['fixture_res'])
-				fixtureManager.call_deferred('place_fixture', position, fixture_res)
+			SignalBus.peep_navigation_changed.emit()
+		else:
+			if data["tilemapData"].has(key):
+				for cell in data["tilemapData"][key]:
+					var cell_data = data["tilemapData"][key][cell]
+					tilemap_layers[key].set_cell(Vector2i(cell_data.x, cell_data.y), cell_data.source, Vector2i(cell_data.atlas_x, cell_data.atlas_y))
+	
+	
+	if data.has('enclosureData'):
+		for key in data["enclosureData"]:
+			var enclosure_cells = []
+			var fence_res = load(data["enclosureData"][key]['fence_res'])
+			var enclosure_id = int(data["enclosureData"][key]['enclosure_id'])
+			for cell in data["enclosureData"][key]['enclosure_cells']:
+				enclosure_cells.append(Vector2i(data["enclosureData"][key]['enclosure_cells'][cell].x, data["enclosureData"][key]['enclosure_cells'][cell].y))
+			var entrance_cell = null
+			if data["enclosureData"][key]['enclosure_entrance']:
+				entrance_cell = Vector2i(data["enclosureData"][key]['enclosure_entrance'].x, data["enclosureData"][key]['enclosure_entrance'].y)
+			enclosureManager.build_enclosure(enclosure_id, enclosure_cells, entrance_cell, fence_res)
 		
-		if data.has('waterData'):
-			for key in data["waterData"]:
-				var line_points = []
-				for point in data["waterData"][key]:
-					var vector = Vector2(data["waterData"][key][point]['x_pos'], data["waterData"][key][point]['y_pos'])
-					line_points.append(vector)
-				waterManager.call_deferred('create_water_body', line_points)
+	if data.has('animalData'):
+		for key in data["animalData"]:
+			var position = Vector2i(data["animalData"][key]['x_pos'], data["animalData"][key]['y_pos'])
+			var animal_res = load(data['animalData'][key]['animal_res'])
+			var stats = {
+						'id': data['animalData'][key]['id'],
+						'needs_hunger': data['animalData'][key]['needs_hunger'],
+						'needs_rest': data['animalData'][key]['needs_rest'],
+						'needs_play': data['animalData'][key]['needs_play']
+			}
+			animalManager.call_deferred('spawn_animal', position, animal_res, stats)
+			
+	if data.has('sceneryData'):
+		for key in data["sceneryData"]:
+			var position = Vector2i(data["sceneryData"][key]['x_pos'], data["sceneryData"][key]['y_pos'])
+			if data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.VEGETATION:
+				var res = load(data["sceneryData"][key]['vegetation_res'])
+				sceneryManager.place_vegetation(position, res, null)
+			elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.TREE:
+				var res = load(data["sceneryData"][key]['tree_res'])
+				sceneryManager.place_tree(position, res, null)
+			elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.DECORATION:
+				var res = load(data["sceneryData"][key]['decoration_res'])
+				sceneryManager.place_decoration(position, res, null)
+			elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.ROCK:
+				var res = load(data["sceneryData"][key]['decoration_res'])
+				sceneryManager.place_rock(position, res, null)
 				
-		if data.has('buildingData'):
-			for key in data['buildingData']:
-				# (building_res, pos, rotate, coords)
-				var building_res = load(data['buildingData'][key]['building_res'])
-				var pos = Vector2(data['buildingData'][key]['start_tile']['x_pos'], data['buildingData'][key]['start_tile']['y_pos'])
-				var is_rotated = data['buildingData'][key]['is_rotated']
-				var used_coords = []
-				for entry in data["buildingData"][key]['used_coordinates']:
-					var vector = Vector2(data["buildingData"][key]['used_coordinates'][entry]['x_pos'], data["buildingData"][key]['used_coordinates'][entry]['y_pos'])
-					used_coords.append(vector)
-				var building_data = null ## TODO
-				if data['buildingData'][key].has('building_data'):
-					var products = {}
-					var sold_units = {}
-					for product in data['buildingData'][key]['building_data']['products']:
-						products[product] = {
-							'product': load(
-								data['buildingData'][key]['building_data']['products'][product].get('product_res', "default_resource_path")
-							),
-							'current_price': data['buildingData'][key]['building_data']['products'][product].get('current_price', 0.0),
-							'current_stock': data['buildingData'][key]['building_data']['products'][product].get('current_stock', 0),
-							'auto_restock': data['buildingData'][key]['building_data']['products'][product].get('auto_restock', false)
-						}
-						
-					if data['buildingData'][key]['building_data'].has('sold_units'):
-						for unit in data['buildingData'][key]['building_data']['sold_units']:
-							sold_units[unit] = data['buildingData'][key]['building_data']['sold_units'][unit]
-					building_data = {
-						'products' = products,
-						'sold_units' = sold_units
+	if data.has('fixtureData'):
+		for key in data["fixtureData"]:
+			var position = Vector2i(data["fixtureData"][key]['x_pos'], data["fixtureData"][key]['y_pos'])
+			var fixture_res = load(data['fixtureData'][key]['fixture_res'])
+			fixtureManager.call_deferred('place_fixture', position, fixture_res)
+	
+	if data.has('waterData'):
+		for key in data["waterData"]:
+			var line_points = []
+			for point in data["waterData"][key]:
+				var vector = Vector2(data["waterData"][key][point]['x_pos'], data["waterData"][key][point]['y_pos'])
+				line_points.append(vector)
+			waterManager.call_deferred('create_water_body', line_points)
+			
+	if data.has('buildingData'):
+		for key in data['buildingData']:
+			# (building_res, pos, rotate, coords)
+			var building_res = load(data['buildingData'][key]['building_res'])
+			var pos = Vector2(data['buildingData'][key]['start_tile']['x_pos'], data['buildingData'][key]['start_tile']['y_pos'])
+			var is_rotated = data['buildingData'][key]['is_rotated']
+			var used_coords = []
+			for entry in data["buildingData"][key]['used_coordinates']:
+				var vector = Vector2(data["buildingData"][key]['used_coordinates'][entry]['x_pos'], data["buildingData"][key]['used_coordinates'][entry]['y_pos'])
+				used_coords.append(vector)
+			var building_data = null ## TODO
+			if data['buildingData'][key].has('building_data'):
+				var products = {}
+				var sold_units = {}
+				for product in data['buildingData'][key]['building_data']['products']:
+					products[product] = {
+						'product_id': data['buildingData'][key]['building_data']['products'][product].get('product_id', 0),
+						'current_price': data['buildingData'][key]['building_data']['products'][product].get('current_price', 0.0),
+						'current_stock': data['buildingData'][key]['building_data']['products'][product].get('current_stock', 0),
+						'auto_restock': data['buildingData'][key]['building_data']['products'][product].get('auto_restock', false)
 					}
 					
-				buildingManager.build_building(building_res, pos, is_rotated, used_coords, building_data)
+				if data['buildingData'][key]['building_data'].has('sold_units'):
+					for unit in data['buildingData'][key]['building_data']['sold_units']:
+						sold_units[unit] = data['buildingData'][key]['building_data']['sold_units'][unit]
+				building_data = {
+					'products' = products,
+					'sold_units' = sold_units
+				}
 				
-		if data.has('peepGroupData'):
-			for key in data["peepGroupData"]:
-				var groupData = {}
-				if !data["peepGroupData"][key]:
-					continue
-				groupData['id'] = data["peepGroupData"][key]['id']
-				groupData['spawn_location'] = Vector2(data["peepGroupData"][key]['x_pos'], data["peepGroupData"][key]['y_pos'])
-				groupData['peep_count'] = data["peepGroupData"][key]['peep_count']
-				groupData['observed_animals'] = data["peepGroupData"][key]['observed_animals']
-				groupData['needs_hunger'] = data["peepGroupData"][key]['needs_hunger']
-				groupData['needs_toilet'] = data["peepGroupData"][key]['needs_toilet']
-				groupData['needs_rest'] = data["peepGroupData"][key]['needs_rest']
-				groupData['desired_destinations_id'] = data["peepGroupData"][key]['desired_destinations_id']
-				peepManager.instantiate_peep_group(groupData)
-				
-		if data.has('zoo_manager_data'):
-			ZooManager.next_enclosure_id = data['zoo_manager_data']['next_enclosure_id']
-			ZooManager.next_animal_id = data['zoo_manager_data']['next_animal_id']
-			ZooManager.next_building_id = data['zoo_manager_data']['next_building_id']
-			ZooManager.next_scenery_id = data['zoo_manager_data']['next_scenery_id']
+			buildingManager.build_building(building_res, pos, is_rotated, used_coords, building_data)
 			
-		if data.has('financeData'):
-			FinanceManager.current_money = data['financeData']['current_money']
-				
-		SignalBus.peep_navigation_changed.emit()
+	if data.has('peepGroupData'):
+		for key in data["peepGroupData"]:
+			var groupData = {}
+			if !data["peepGroupData"][key]:
+				continue
+			groupData['id'] = data["peepGroupData"][key]['id']
+			groupData['spawn_location'] = Vector2(data["peepGroupData"][key]['x_pos'], data["peepGroupData"][key]['y_pos'])
+			groupData['peep_count'] = data["peepGroupData"][key]['peep_count']
+			groupData['observed_animals'] = data["peepGroupData"][key]['observed_animals']
+			groupData['needs_hunger'] = data["peepGroupData"][key]['needs_hunger']
+			groupData['needs_toilet'] = data["peepGroupData"][key]['needs_toilet']
+			groupData['needs_rest'] = data["peepGroupData"][key]['needs_rest']
+			groupData['desired_destinations_id'] = data["peepGroupData"][key]['desired_destinations_id']
+			peepManager.instantiate_peep_group(groupData)
+			
+	if data.has('zoo_manager_data'):
+		ZooManager.next_enclosure_id = data['zoo_manager_data']['next_enclosure_id']
+		ZooManager.next_animal_id = data['zoo_manager_data']['next_animal_id']
+		ZooManager.next_building_id = data['zoo_manager_data']['next_building_id']
+		ZooManager.next_scenery_id = data['zoo_manager_data']['next_scenery_id']
+		
+	if data.has('financeData'):
+		FinanceManager.current_money = data['financeData']['current_money']
+			
+	SignalBus.peep_navigation_changed.emit()
 
 func get_tilemap_data(tilemap):
 	var data = {}
@@ -402,7 +414,6 @@ func get_animal_data(animal):
 	data['needs_rest'] = animal.needs_rest
 	data['needs_hunger'] = animal.needs_hunger
 	data['needs_play'] = animal.needs_play
-
 	return data
 
 func get_peep_group_data(peep_group):
@@ -471,7 +482,7 @@ func get_building_data(building):
 		var products = {}
 		for product in building.building_scene.available_products:
 			products[product] = {
-				'product_res': building.building_scene.available_products[product].product.get_path(),
+				'product_id': building.building_scene.available_products[product].product.id,
 				'current_price': building.building_scene.available_products[product].current_price,
 				'current_stock': building.building_scene.available_products[product].current_stock,
 				'auto_restock': building.building_scene.available_products[product].auto_restock

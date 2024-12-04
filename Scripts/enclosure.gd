@@ -301,9 +301,25 @@ func add_animal_feed():
 	if !animal_feed:
 		animal_feed = animal_feed_scene.instantiate()
 		animal_feed.sprite_y = feed_y
-		var random_position = TileMapRef.map_to_local(enclosure_cells.pick_random())
-		animal_feed.global_position = random_position
-		feed_position = random_position
+		#var random_position = TileMapRef.map_to_local(enclosure_cells.pick_random())
+		#animal_feed.global_position = random_position
+		
+		var entrance_cell = $EnclosureFenceManager.entrance_node.cell
+		var dir = $EnclosureFenceManager.entrance_node.dir
+		var feed_cell 
+		## Feed is placed one tile ahead of entrance
+		if dir == 0:
+			feed_cell = Vector2(entrance_cell.x, entrance_cell.y+1)
+		elif dir == 1:
+			feed_cell = Vector2(entrance_cell.x+1, entrance_cell.y)
+		elif dir == 2:
+			feed_cell = Vector2(entrance_cell.x, entrance_cell.y-1)
+		elif dir == 3:
+			feed_cell = Vector2(entrance_cell.x-1, entrance_cell.y)
+		
+		print ('A')
+		
+		animal_feed.global_position = TileMapRef.map_to_local(feed_cell)
 		add_child(animal_feed)
 	else:
 		animal_feed.fill()

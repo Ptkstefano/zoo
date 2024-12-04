@@ -24,3 +24,5 @@ signal money_changed
 signal ui_visibility ## Emitted by: inputController
 
 signal pass_month ## Emitted by: TimeManager
+
+signal set_debug_label_text

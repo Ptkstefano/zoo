@@ -10,6 +10,7 @@ var building_type : IdRefs.BUILDING_TYPES
 var building_scene
 
 var building_res : building_resource
+var building_res_id
 
 var id : int
 
@@ -30,6 +31,7 @@ func _ready() -> void:
 	if building_res.building_type == IdRefs.BUILDING_TYPES.TOILET:
 		building_instance = toilet_scene.instantiate()
 	building_instance.building_res = building_res
+	building_instance.building_res_id = building_res_id
 	building_instance.global_position = TileMapRef.map_to_local(start_tile)
 	building_instance.z_index = Helpers.get_current_tile_z_index(building_instance.global_position) + building_res.z_offset
 	building_instance.is_rotated = is_building_rotated

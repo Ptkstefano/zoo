@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="decoration_resource" load_steps=3 format=3 uid="uid://deoir12m8n42g"]
+
+[ext_resource type="Script" uid="uid://d143y0sc6ar4w" path="res://Scenery/Decorations/decoration_resource.gd" id="1_crtxl"]
+[ext_resource type="Texture2D" uid="uid://e3gsdwxcpunh" path="res://Scenery/Decorations/totem.png" id="2_klfbc"]
+
+[resource]
+script = ExtResource("1_crtxl")
+name = "Native Totem"
+cost = 25.0
+texture = ExtResource("2_klfbc")
+texture_offset = Vector2(0, -25)

@@ -1,9 +1,10 @@
 extends PanelContainer
 
-var product_res : product_resource
+var product_id
 signal product_selected
 
 func _ready() -> void:
+	var product_res = ContentManager.products[product_id]
 	if product_res:
 		%Thumbnail.texture = product_res.thumb
 		%Name.text = product_res.name
@@ -13,4 +14,4 @@ func _ready() -> void:
 		%Button.pressed.connect(on_product_selected)
 	
 func on_product_selected():
-	product_selected.emit(product_res)
+	product_selected.emit(product_id)

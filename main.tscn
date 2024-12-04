@@ -1,7 +1,7 @@
-[gd_scene load_steps=144 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=147 format=4 uid="uid://e8kgl625in1o"]
 
-[ext_resource type="Script" uid="uid://o2egpp0b02e2" path="res://Scripts/debug_controller.gd" id="1_nisry"]
-[ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
+[ext_resource type="Script" path="res://Scripts/debug_controller.gd" id="1_nisry"]
+[ext_resource type="Script" path="res://Scripts/input_controller.gd" id="1_ojpln"]
 [ext_resource type="Script" path="res://main.gd" id="1_oseej"]
 [ext_resource type="Script" uid="uid://bawblafy70sf4" path="res://reputation_manager.gd" id="2_1b04k"]
 [ext_resource type="Script" path="res://Scripts/path_manager.gd" id="2_4bhy0"]
@@ -38,6 +38,7 @@
 [ext_resource type="PackedScene" uid="uid://oa08vk0rrcpe" path="res://UI/UI selectable elements/ui_animal_element.tscn" id="21_a35of"]
 [ext_resource type="Resource" uid="uid://camg8o6ropjnr" path="res://Enclosures/Fences/small.tres" id="21_ad55l"]
 [ext_resource type="Resource" uid="uid://b85gocjhm05am" path="res://Enclosures/Fences/steel.tres" id="22_kya8w"]
+[ext_resource type="Texture2D" uid="uid://utbwnfc2qxje" path="res://Buildings/entrance_roof.png" id="22_nankq"]
 [ext_resource type="Script" uid="uid://cankjki47tjd5" path="res://Scenery/Trees/tree_resource.gd" id="24_g51a1"]
 [ext_resource type="Resource" uid="uid://s5hkg34ufeu3" path="res://Scenery/Trees/Limber Pine.tres" id="25_qvxwd"]
 [ext_resource type="Script" uid="uid://d143y0sc6ar4w" path="res://Scenery/Decorations/decoration_resource.gd" id="26_0c60e"]
@@ -46,7 +47,7 @@
 [ext_resource type="Script" path="res://Managers/building_manager.gd" id="27_mg3kq"]
 [ext_resource type="Resource" uid="uid://dqn36shhu7sgb" path="res://Scenery/Decorations/deer-statue.tres" id="27_r3jxo"]
 [ext_resource type="PackedScene" uid="uid://bb5olte5gphhj" path="res://UI/UI selectable elements/ui_building_element.tscn" id="28_04i1b"]
-[ext_resource type="Script" uid="uid://b3dk3jci5ihs8" path="res://Buildings/building_res.gd" id="28_58uqa"]
+[ext_resource type="Script" path="res://Buildings/building_res.gd" id="28_58uqa"]
 [ext_resource type="Resource" uid="uid://xk5hxkv0keyb" path="res://Enclosures/Fences/concrete.tres" id="28_ldw2x"]
 [ext_resource type="Script" uid="uid://d3riapnnqoikx" path="res://Scenery/Vegetation/vegetation_res.gd" id="28_wajut"]
 [ext_resource type="Resource" uid="uid://bin28cl7rvgjd" path="res://Scenery/Vegetation/short_grass.tres" id="29_d00f0"]
@@ -74,10 +75,11 @@
 [ext_resource type="Script" uid="uid://5ejtocxcdxha" path="res://Scenery/Fixtures/fixture_resource.gd" id="46_0jpxo"]
 [ext_resource type="PackedScene" uid="uid://dyw57ak1ghyxw" path="res://Scenery/Fixtures/Fixture_scene.tscn" id="46_f0e0b"]
 [ext_resource type="Script" uid="uid://bgsyapjwrjvwf" path="res://Scenery/Rocks/rock_resource.gd" id="46_inymm"]
+[ext_resource type="Resource" uid="uid://deoir12m8n42g" path="res://Scenery/Decorations/native-totem.tres" id="47_cb2x4"]
 [ext_resource type="Resource" uid="uid://bsox4n3cixif" path="res://Scenery/Fixtures/wooden bench.tres" id="47_gvub1"]
 [ext_resource type="Resource" uid="uid://c20l3l7d4n8e5" path="res://Scenery/Rocks/rock1.tres" id="47_jcxqu"]
 [ext_resource type="Resource" uid="uid://gk6rd1nfkfuo" path="res://Scenery/Rocks/rock2.tres" id="48_0arob"]
-[ext_resource type="Script" uid="uid://djfaqc8j8g763" path="res://Managers/popup_manager.gd" id="48_w8cen"]
+[ext_resource type="Script" path="res://Managers/popup_manager.gd" id="48_w8cen"]
 [ext_resource type="Resource" uid="uid://dwomu3s1tuou4" path="res://Scenery/Rocks/rock3.tres" id="49_dij0e"]
 [ext_resource type="Script" uid="uid://bb51mdph56ind" path="res://Managers/shelter_manager.gd" id="49_hnjxi"]
 [ext_resource type="PackedScene" uid="uid://ddbum626vwima" path="res://UI/UI popups/ui_shop_popup.tscn" id="50_dyuu3"]
@@ -107,6 +109,7 @@
 [ext_resource type="Script" uid="uid://bx7r3upcavvb4" path="res://notification_manager.gd" id="98_yvsr8"]
 [ext_resource type="Script" uid="uid://bg7ua3j074tf6" path="res://time_progress_bar.gd" id="99_jcxqu"]
 [ext_resource type="PackedScene" uid="uid://c1lavh6yvgdgb" path="res://UI/notification_label.tscn" id="99_vieuh"]
+[ext_resource type="Script" path="res://debug.gd" id="106_tgnea"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4oys"]
 
@@ -435,7 +438,21 @@ y_sort_enabled = true
 position = Vector2(-1377, 692)
 
 [node name="Sprite2D" type="Sprite2D" parent="Objects/Entrance"]
+position = Vector2(-119, -80)
 texture = ExtResource("21_41lik")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Objects/Entrance"]
+z_index = 999
+position = Vector2(-117, -80)
+texture = ExtResource("22_nankq")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="Objects/Entrance"]
+z_index = 999
+position = Vector2(-117, -80)
+texture = ExtResource("22_nankq")
+centered = false
 
 [node name="EntranceSpot" type="Node2D" parent="Objects/Entrance" groups=["EntranceSpot"]]
 position = Vector2(26, 42)
@@ -461,7 +478,7 @@ ui_animal_element = ExtResource("21_a35of")
 y_sort_enabled = true
 script = ExtResource("14_62h3g")
 available_trees = Array[ExtResource("24_g51a1")]([ExtResource("33_5f25m"), ExtResource("42_p82ky"), ExtResource("40_eq8ba"), ExtResource("34_7vtya"), ExtResource("43_xdjgi"), ExtResource("41_qqr73"), ExtResource("32_weqx1"), ExtResource("25_qvxwd"), ExtResource("30_yos0d"), ExtResource("31_m2uoq")])
-available_decorations = Array[ExtResource("26_0c60e")]([ExtResource("27_r3jxo")])
+available_decorations = Array[ExtResource("26_0c60e")]([ExtResource("27_r3jxo"), ExtResource("47_cb2x4")])
 available_vegetations = Array[ExtResource("28_wajut")]([ExtResource("29_d00f0"), ExtResource("30_dvure"), ExtResource("31_7jmpp")])
 available_rocks = Array[ExtResource("46_inymm")]([ExtResource("47_jcxqu"), ExtResource("48_0arob"), ExtResource("49_dij0e"), ExtResource("50_k1udn"), ExtResource("51_wat4s")])
 tree_scene = ExtResource("26_vuik7")
@@ -930,17 +947,35 @@ custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "Hungry peeps"
 
+[node name="DebugToiletPeeps" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+text = "Toilet peeps"
+
 [node name="DebugRemovePeeps" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "Clear peeps"
 
+[node name="DebugAddMoney" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+text = "Add money"
+
 [node name="DebugPassMonth" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "Pass month"
+
+[node name="DebugSpeedTime" type="Button" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+text = "Fast forward"
 
 [node name="Debug" type="PanelContainer" parent="UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen"]
 layout_mode = 2
@@ -1690,6 +1725,21 @@ layout_mode = 2
 [node name="TerrainSelectionContainer" type="HBoxContainer" parent="UI/MarginContainer/Bottom/BottomMenu/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="Control" type="Control" parent="UI/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="DebugLabel" type="Label" parent="UI/MarginContainer/Control"]
+layout_mode = 0
+offset_left = -940.0
+offset_top = 96.0
+offset_right = -900.0
+offset_bottom = 144.0
+text = "B"
+script = ExtResource("106_tgnea")
 
 [node name="InfoBorder" type="CanvasLayer" parent="."]
 layer = 0

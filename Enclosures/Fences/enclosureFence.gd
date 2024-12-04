@@ -3,6 +3,9 @@ extends Node2D
 var sprite_x = 0
 var sprite_y = 0
 
+var dir : int
+var cell : Vector2
+
 var g_pos : Vector2
 
 # Called when the node enters the scene tree for the first time.
@@ -20,6 +23,8 @@ func update_fence_instance(enclosure_res):
 
 func make_entrance():
 	$Sprite2D.frame_coords = Vector2($Sprite2D.frame_coords.x + 4, $Sprite2D.frame_coords.y)
+	print(dir)
+
 	return sprite_x
 
 func remove_entrance():

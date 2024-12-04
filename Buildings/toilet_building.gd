@@ -2,6 +2,7 @@ extends Node2D
 class_name Toilet
 
 var building_res : building_resource
+var building_res_id
 #var shop_name
 var coordinates = []
 

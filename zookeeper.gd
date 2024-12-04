@@ -61,6 +61,8 @@ func feed_enclosure():
 	$StateTimer.start()
 	
 func get_enclosure_entrance_destination():
+	
+	## TODO - Get a signal if enclosure is removed to prevent crash
 	var enclosure_amount = ZooManager.zoo_enclosures.keys().size()
 	if enclosure_amount < 1:
 		change_state(zookeeper_states.STOPPED)
@@ -80,10 +82,12 @@ func get_enclosure_entrance_destination():
 			i += 1
 			continue
 		
-		if is_instance_valid(selected_enclosure.node.animal_feed):
-			if selected_enclosure.node.animal_feed.amount > 70:
-				i += 1
-				continue
+		
+		if is_instance_valid(selected_enclosure.node):
+			if is_instance_valid(selected_enclosure.node.animal_feed):
+				if selected_enclosure.node.animal_feed.amount > 70:
+					i += 1
+					continue
 		
 
 		
