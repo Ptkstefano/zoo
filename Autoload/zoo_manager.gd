@@ -67,8 +67,14 @@ func update_zoo_enclosure(enclosure):
 func add_food_shop(id, data):
 	ZooManager.food_shops[id] = { 'building': data.building, 'position': TileMapRef.map_to_local(data.position) }
 	
+func remove_food_shop(id):
+	ZooManager.food_shops.erase(id)
+	
 func add_toilet(id, data):
 	ZooManager.toilets[id] = { 'building': data.building, 'position': TileMapRef.map_to_local(data.position) }
+	
+func remove_toilet(id):
+	ZooManager.toilets.erase(id)
 	
 func remove_zoo_enclosure(enclosure):
 	zoo_enclosures.erase(enclosure.id)

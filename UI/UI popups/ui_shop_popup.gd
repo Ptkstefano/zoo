@@ -92,8 +92,8 @@ func generate_products_tab():
 
 func open_product_menu():
 	var popup = available_products_popup.instantiate()
-	#for id in ContentManager.buildings[building_id].possible_products:
-	for id in [0,1,2]: ## TODO - Hard-coded this bitch so it would work on mobile
+	for id in ContentManager.buildings[building_id].possible_products:
+	#for id in [0,1,2]: ## TODO - Hard-coded this bitch so it would work on mobile
 		if id not in shop_node.available_products.keys():
 			popup.product_ids.append(id)
 	popup.product_selected.connect(on_new_product_added)

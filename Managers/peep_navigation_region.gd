@@ -8,4 +8,3 @@ func _ready() -> void:
 
 func update_navigation_region():
 	bake_navigation_polygon()
-	print('a')

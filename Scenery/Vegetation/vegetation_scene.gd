@@ -33,5 +33,5 @@ func _ready() -> void:
 
 func on_area_entered(area):
 	if area is Bulldozer:
-		$RemovalArea/CollisionShape2D.disabled = true
+		$Area/CollisionShape2D.disabled = true
 		object_removed.emit(self)

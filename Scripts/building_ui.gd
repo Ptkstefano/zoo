@@ -17,49 +17,53 @@ var build_mode : bool = false
 func _ready() -> void:
 	SignalBus.ui_visibility.connect(ui_visibility)
 	
-	%RightMenuToggle.toggled.connect(on_right_menu_toggle) 
+	%OptionsMenuToggle.toggled.connect(on_options_menu_toggle) 
+	%BuildModeButton.toggled.connect(on_build_mode_toggle)
+
 	
-	## DEBUG menu show and hide
-	%RightMenuToggle.button_down.connect(right_menu_down)
-	%RightMenuToggle.button_up.connect(right_menu_up)
-	%DebugTimer.timeout.connect(debug_timer_timeout)
-	
-	%DebugScreen.hide()
 	
 	#%DebugToggle.pressed.connect(on_debug_toggle)
+	## Options menu buttons
 	%SaveGame.pressed.connect(on_save_game)
-	
 	%MgmtMenu.pressed.connect(on_box_pressed.bind(IdRefs.UI_BOXES.MANAGEMENT))
 	
-	%BuildPanelOpener.pressed.connect(on_open_build_panel)
+	%OptionsMenuToggle.visibility_changed.connect(on_options_menu_toggle_visibility_changed)
+
 	
+	## Construction mode buttons
 	%BulldozerTool.button_down.connect(on_bulldozer_tool.bind(true))
 	%BulldozerTool.button_up.connect(on_bulldozer_tool.bind(false))
-	
 	%CameraTool.button_down.connect(on_camera_tool.bind(true))
 	%CameraTool.button_up.connect(on_camera_tool.bind(false))
-	
 	%RotateTool.pressed.connect(on_rotate_tool_press)
-	
 	%BuildTool.pressed.connect(on_build_tool_press)
-	%PathTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.PATH))
-	%EnclosureTool.pressed.connect((open_subpanel.bind('EnclosureSubpanel')))
 	
 	%EnclosureFenceTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.ENCLOSURE))
 	%EnclosureShelterTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.SHELTER))
-	
+	%PathTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.PATH))
+	%EnclosureTool.pressed.connect((open_subpanel.bind('EnclosureSubpanel')))
 	%AnimalTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.ANIMAL))
 	%SceneryTool.pressed.connect(open_subpanel.bind('ScenerySubpanel'))
 	%TerrainTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.TERRAIN))
-	%BuildingTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.BUILDING))
+	#%BuildingTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.BUILDING))
+	%BuildingTool.pressed.connect(open_subpanel.bind('BuildingSubpanel'))
 	%WaterTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.WATER))
 	%EntranceTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.ENTRANCE))
-	
 	%SceneryTreesTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.TREE))
 	%SceneryDecorationTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.SCENERY))
 	%SceneryVegetationTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.VEGETATION))
 	%SceneryFixtureTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.FIXTURE)) 
 	%SceneryRockTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.ROCK)) 
+	%BuildingEateryTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.EATERY)) 
+	%BuildingRestaurntTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.RESTAURANT)) 
+	%BuildingServicesTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.SERVICE)) 
+	%BuildingAdministrationTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.ADMINISTRATION)) 
+	
+	## DEBUG menu show and hide
+	%DebugScreen.hide()
+	%OptionsMenuToggle.button_down.connect(right_menu_down)
+	%OptionsMenuToggle.button_up.connect(right_menu_up)
+	%DebugTimer.timeout.connect(debug_timer_timeout)
 	
 	SignalBus.money_changed.connect(on_money_changed)
 	
@@ -84,7 +88,16 @@ func update_ui():
 	for element in %PathSelectionContainer.get_children():
 		if element:
 			element.path_selected.connect(on_path_selected)
-	for element in %BuildingSelectionContainer.get_children():
+	for element in %EaterySelectionContainer.get_children():
+		if element:
+			element.building_selected.connect(on_building_selected)
+	for element in %RestaurantSelectionContainer.get_children():
+		if element:
+			element.building_selected.connect(on_building_selected)
+	for element in %ServicesSelectionContainer.get_children():
+		if element:
+			element.building_selected.connect(on_building_selected)
+	for element in %AdministrationSelectionContainer.get_children():
 		if element:
 			element.building_selected.connect(on_building_selected)
 	for element in %TreesSelectionContainer.get_children():
@@ -103,11 +116,11 @@ func update_ui():
 		if element:
 			element.scenery_selected.connect(on_scenery_selected)
 
-func on_right_menu_toggle(toggled):
+func on_options_menu_toggle(toggled):
 	if toggled:
-		%DropDownMenu.visible = true
+		%OptionsDropMenu.visible = true
 	else:
-		%DropDownMenu.visible = false
+		%OptionsDropMenu.visible = false
 
 func on_debug_toggle():
 	if %DebugScreen.visible:
@@ -118,9 +131,9 @@ func on_debug_toggle():
 func ui_visibility(value : bool):
 	var tween = get_tree().create_tween()
 	if value:
-		tween.tween_property($MarginContainer, "modulate:a", 1.0, 0.25)
+		tween.tween_property(%MainMargin, "modulate:a", 1.0, 0.25)
 	else:
-		tween.tween_property($MarginContainer, "modulate:a", 0.0, 0.25)
+		tween.tween_property(%MainMargin, "modulate:a", 0.0, 0.25)
 	
 	
 	
@@ -198,7 +211,14 @@ func on_scenery_selected(scenery_res, type):
 	
 func on_building_selected(building_res):
 	hide_side_panel()
-	inputController.current_tool = inputController.TOOLS.BUILDING
+	if building_res.building_menu == IdRefs.BUILDING_MENU.EATERY:
+		inputController.current_tool = inputController.TOOLS.EATERY
+	if building_res.building_menu == IdRefs.BUILDING_MENU.RESTAURANT:
+		inputController.current_tool = inputController.TOOLS.RESTAURANT
+	if building_res.building_menu == IdRefs.BUILDING_MENU.SERVICE:
+		inputController.current_tool = inputController.TOOLS.SERVICE
+	if building_res.building_menu == IdRefs.BUILDING_MENU.ADMINISTRATION:
+		inputController.current_tool = inputController.TOOLS.ADMINISTRATION
 	selected_res = building_res
 	
 func on_building_placed():
@@ -207,18 +227,6 @@ func on_building_placed():
 func on_building_built():
 	hide_side_panel()
 	inputController.current_tool = inputController.TOOLS.NONE
-
-func on_open_build_panel():
-	if !%ToolPanel.visible and !build_mode:
-		%ToolPanel.show()
-		%Subpanel.show()
-		build_mode = true
-	else:
-		%Subpanel.hide()
-		inputController.current_tool = inputController.TOOLS.NONE
-		build_mode = false
-		%ToolPanel.hide()
-		hide_selection_menu()
 
 func on_tool_selected(tool):
 	inputController.current_tool = inputController.TOOLS.NONE
@@ -256,6 +264,19 @@ func on_tool_selected(tool):
 	if tool == inputController.TOOLS.FIXTURE:
 		%ScenerySubpanel.show()
 		%FixtureMenu.show()
+	if tool == inputController.TOOLS.EATERY:
+		%BuildingSubpanel.show()
+		%EateryMenu.show()
+	if tool == inputController.TOOLS.RESTAURANT:
+		%BuildingSubpanel.show()
+		%RestaurantMenu.show()
+	if tool == inputController.TOOLS.SERVICE:
+		%BuildingSubpanel.show()
+		%ServicesMenu.show()
+	if tool == inputController.TOOLS.ADMINISTRATION:
+		%BuildingSubpanel.show()
+		%AdministrationMenu.show()
+		
 	if tool == inputController.TOOLS.BULLDOZER:
 		return
 	if tool == inputController.TOOLS.WATER:
@@ -309,3 +330,24 @@ func debug_timer_timeout():
 	else:
 		%DebugScreen.show()
 	
+func on_build_mode_toggle(toggle):
+	if toggle:
+		%ConstructionToolsContainer.show()
+		%InfoBorder.show()
+		%MainOptions.hide()
+		build_mode = true
+	if !toggle:
+		%ConstructionToolsContainer.hide()
+		%InfoBorder.hide()
+		%MainOptions.show()
+		hide_side_panel()
+		build_mode = false
+		selected_res = null
+		inputController.current_tool = inputController.TOOLS.NONE
+		
+	
+func on_options_menu_toggle_visibility_changed():
+	if !%OptionsMenuToggle.is_visible_in_tree():
+		%OptionsMenuToggle.button_pressed = false
+		%OptionsDropMenu.visible = false
+		

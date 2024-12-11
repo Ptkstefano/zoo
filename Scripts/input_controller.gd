@@ -40,12 +40,12 @@ var is_camera_tool_selected : bool = false
 
 var rotate_building : bool = false
 
-enum TOOLS {NONE,PATH,ENCLOSURE,SHELTER,ANIMAL,SCENERY,TERRAIN,BUILDING,BULLDOZER,TREE,VEGETATION,ROCK,FIXTURE,DECORATION,WATER,ENTRANCE}
+enum TOOLS {NONE,PATH,ENCLOSURE,SHELTER,ANIMAL,SCENERY,TERRAIN,BUILDING,BULLDOZER,TREE,VEGETATION,ROCK,FIXTURE,DECORATION,WATER,ENTRANCE,EATERY,RESTAURANT,SERVICE,ADMINISTRATION}
 var current_tool = TOOLS.NONE
 var free_cam_tools = [TOOLS.NONE, TOOLS.BUILDING]
 var hide_ui_tools = [TOOLS.ENCLOSURE, TOOLS.PATH, TOOLS.TERRAIN]
 var scenery_tools = [TOOLS.TREE, TOOLS.VEGETATION, TOOLS.DECORATION, TOOLS.FIXTURE, TOOLS.WATER, TOOLS.ROCK]
-var building_placement_tools = [TOOLS.SHELTER, TOOLS.BUILDING]
+var building_placement_tools = [TOOLS.SHELTER, TOOLS.EATERY, TOOLS.RESTAURANT, TOOLS.SERVICE, TOOLS.ADMINISTRATION]
 
 
 signal zoom_camera
@@ -247,11 +247,11 @@ func debug_keyboard_input(event):
 			else:
 				$"../UI".visible = true
 		if event.keycode == 50 and event.is_pressed():
-			if !$"../UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen".visible:
-				$"../UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen".visible = true
+			if !%DebugScreen.visible:
+				%DebugScreen.visible = true
 				$"../TileMap/GridLayer".visible = true
 			else:
-				$"../UI/MarginContainer/Top-Right/VBoxContainer/DebugScreen".visible = false
+				%DebugScreen.visible = false
 				$"../TileMap/GridLayer".visible = false
 		if event.keycode == 4194326:
 			if event.is_pressed():
@@ -339,14 +339,14 @@ func highlight_building_area():
 			for y in range(abs(selected_res.size.y)):
 				var new_coordinate = Vector2i(start_tile_pos.x - y, start_tile_pos.y - x)
 				cells.append(new_coordinate)
-	if current_tool == TOOLS.BUILDING:
+	if current_tool in building_placement_tools :
 		if $"../Objects/EnclosureManager".get_enclosure_overlap(cells):
 			$"../TileMap/HighlightLayer".clear_highlight()
 			return
-	if current_tool == TOOLS.SHELTER:
-		if !$"../Objects/EnclosureManager".get_enclosure_overlap(cells):
-			$"../TileMap/HighlightLayer".clear_highlight()
-			return
+	#if current_tool == TOOLS.SHELTER:
+		#if !$"../Objects/EnclosureManager".get_enclosure_overlap(cells):
+			#$"../TileMap/HighlightLayer".clear_highlight()
+			#return
 	$"../TileMap/HighlightLayer".apply_highlight(cells, false)
 
 func rotate_building_toggle():

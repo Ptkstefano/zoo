@@ -9,8 +9,7 @@ func _ready() -> void:
 func on_tooltip_emitted(tooltip):
 	var label = notification_scene.instantiate()
 	label.text = tooltip
-	var pos = ($"../InputController".touch_start_global_pos - $"../Camera2D".global_position) * $"../Camera2D".zoom.x;
-	#var pos = $"../InputController".touch_start_global_pos
+	var pos = $"../InputController".touch_start_global_pos + Vector2(DisplayServer.window_get_size().x * -0.5 - 25, DisplayServer.window_get_size().y * -0.5 -50)
 	label.position = pos
 	add_child(label)
 	label.show()
@@ -27,10 +26,7 @@ func on_money_tooltip_emitted(value, earned : bool, global_pos : Vector2):
 		return
 	var label = notification_scene.instantiate()
 	label.text = "$"+str(value)
-	#var pos = get_viewport().canvas_transform.affine_inverse() * global_pos
-	var pos = global_pos + Vector2(-980, -600) ## Hard coded offset
-	#var pos = (global_pos - $"../Camera2D".global_position) * $"../Camera2D".zoom.x;
-	#var pos = global_pos
+	var pos = global_pos + Vector2(DisplayServer.window_get_size().x * -0.5 - 25, DisplayServer.window_get_size().y * -0.5 -50)
 	if !earned:
 		label.add_theme_color_override("font_color", ColorRefs.money_spent_label)
 	else:

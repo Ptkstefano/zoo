@@ -1,57 +1,105 @@
-[gd_scene load_steps=4 format=3 uid="uid://loilhhqarje0"]
+[gd_scene load_steps=8 format=3 uid="uid://loilhhqarje0"]
 
 [ext_resource type="Script" path="res://UI/UI selectable elements/ui_path_element.gd" id="1_otxx3"]
 [ext_resource type="Theme" uid="uid://dssdalpin0m5v" path="res://UI/selectable_element_theme.tres" id="1_u66gy"]
-[ext_resource type="Texture2D" uid="uid://c83xp6l2j8d6s" path="res://Sprites/thumbs/giraffe thumb.png" id="2_u16wx"]
+[ext_resource type="FontFile" uid="uid://cpnqdh47y1283" path="res://UI/Logic_Loop.ttf" id="3_8jjsn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbmir"]
+bg_color = Color(0.6, 0.6, 0.6, 0.674)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_detail = 7
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mtkmb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mfyag"]
+bg_color = Color(0.6, 0.6, 0.6, 0.674)
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 7
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o5mhj"]
 
 [node name="UiPathElement" type="PanelContainer"]
-custom_minimum_size = Vector2(200, 148)
-offset_right = 200.0
-offset_bottom = 164.0
+custom_minimum_size = Vector2(370, 100)
+offset_right = 370.0
+offset_bottom = 134.0
 size_flags_horizontal = 0
 theme = ExtResource("1_u66gy")
 script = ExtResource("1_otxx3")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Button" type="Button" parent="MarginContainer"]
+[node name="Button" type="Button" parent="MarginContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="Thumbnail" type="TextureRect" parent="MarginContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 180)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="PathName" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rbmir")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/Panel"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer2/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="PathName" type="Label" parent="MarginContainer2/VBoxContainer/Panel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-text = "Giraffe"
+theme_override_constants/line_spacing = -18
+theme_override_constants/outline_size = 8
+text = "Cement path"
 horizontal_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(180, 100)
+[node name="HSeparator" type="HSeparator" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_mtkmb")
+
+[node name="Panel2" type="PanelContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mfyag")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/Panel2"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Thumbnail" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer"]
-unique_name_in_owner = true
-texture_filter = 1
+[node name="HSeparator" type="HSeparator" parent="MarginContainer2/VBoxContainer/Panel2/VBoxContainer"]
 layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("2_u16wx")
-expand_mode = 1
-stretch_mode = 6
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxEmpty_o5mhj")
 
-[node name="PathCost" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="PathCost" type="Label" parent="MarginContainer2/VBoxContainer/Panel2/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_8jjsn")
+theme_override_font_sizes/font_size = 32
 text = "$50"
 horizontal_alignment = 1

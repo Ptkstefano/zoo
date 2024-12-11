@@ -11,6 +11,7 @@ var shop_name
 var coordinates = []
 
 var sell_positions : Array[Vector2]
+var enter_positions : Array[Vector2]
 
 var peep_modifiers : Array[ModifierManager.PEEP_MODIFIERS] = []
 
@@ -26,7 +27,6 @@ signal update_stats
 func _ready() -> void:
 	building_res = ContentManager.buildings[building_res_id]
 	
-	
 	product_types = building_res.product_types
 	$Sprites/Sprite2D.texture = building_res.texture
 
@@ -35,11 +35,16 @@ func _ready() -> void:
 		$Sprites.position = building_res.sprite_pos_rotated
 		for children in $SellPositionsRotated.get_children():
 			sell_positions.append(children.global_position)
+		for children in $EnterPositionsRotated.get_children():
+			enter_positions.append(children.global_position)
+			
 	else:
 		$Sprites/Sprite2D.flip_h = false
 		$Sprites.position = building_res.sprite_pos
 		for children in $SellPositions.get_children():
 			sell_positions.append(children.global_position)
+		for children in $EnterPositions.get_children():
+			enter_positions.append(children.global_position)
 			
 	SignalBus.pass_month.connect(on_month_pass)
 

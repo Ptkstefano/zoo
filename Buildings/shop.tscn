@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://5ju27qay4qx7"]
+[gd_scene load_steps=5 format=3 uid="uid://5ju27qay4qx7"]
 
 [ext_resource type="Script" path="res://Buildings/building_shop.gd" id="1_81iwn"]
+[ext_resource type="Texture2D" uid="uid://cojnbxxqn5465" path="res://Buildings/Sprites/ItalianRestaurant.png" id="2_es24j"]
 [ext_resource type="PackedScene" uid="uid://dkhxs71sdajj2" path="res://UI/detectable.tscn" id="5_jvc67"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vnw5"]
@@ -10,16 +11,18 @@ radius = 38.0526
 script = ExtResource("1_81iwn")
 
 [node name="Sprites" type="Node2D" parent="."]
-position = Vector2(18, -22)
+position = Vector2(-3, -63.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprites"]
 texture_filter = 1
+texture = ExtResource("2_es24j")
 flip_h = true
 
 [node name="Detectable" parent="." instance=ExtResource("5_jvc67")]
 position = Vector2(-18, -21)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detectable"]
+position = Vector2(-2, -22)
 shape = SubResource("CircleShape2D_3vnw5")
 
 [node name="SellPositions" type="Node2D" parent="."]
@@ -44,3 +47,14 @@ position = Vector2(36, 4)
 
 [node name="Node2D3" type="Node2D" parent="SellPositionsRotated"]
 position = Vector2(52, -2)
+
+[node name="EnterPositions" type="Node2D" parent="."]
+position = Vector2(-49, -12)
+
+[node name="Node2D" type="Node2D" parent="EnterPositions"]
+position = Vector2(-36, -8)
+
+[node name="EnterPositionsRotated" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="EnterPositionsRotated"]
+position = Vector2(78, -21)

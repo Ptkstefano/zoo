@@ -9,13 +9,13 @@ var peep_manager : PeepManager
 
 #@export var peep_texture : Texture2D
 
-enum group_states {STOPPED, WALKING, OBSERVING, RESTING, USING_TOILET, GOING_TO_ENTRANCE, GOING_TO_FOOD, GOING_TO_FIXTURE, GOING_TO_EXIT, GOING_TO_TOILET, GOING_TO_ENCLOSURE, WAITING_ANIMAL}
+enum group_states {STOPPED, WALKING, OBSERVING, RESTING, USING_TOILET, INSIDE_RESTAURANT, GOING_TO_ENTRANCE, GOING_TO_FOOD, GOING_TO_RESTAURANT, GOING_TO_FIXTURE, GOING_TO_EXIT, GOING_TO_TOILET, GOING_TO_ENCLOSURE, WAITING_ANIMAL}
 
 ## move_states are processed into actual movement
-var move_states : Array[group_states] = [group_states.WALKING, group_states.GOING_TO_ENCLOSURE, group_states.GOING_TO_FOOD, group_states.GOING_TO_FIXTURE, group_states.GOING_TO_EXIT, group_states.GOING_TO_TOILET, group_states.GOING_TO_ENTRANCE]
+var move_states : Array[group_states] = [group_states.WALKING, group_states.GOING_TO_ENCLOSURE, group_states.GOING_TO_FOOD, group_states.GOING_TO_RESTAURANT, group_states.GOING_TO_FIXTURE, group_states.GOING_TO_EXIT, group_states.GOING_TO_TOILET, group_states.GOING_TO_ENTRANCE]
 
 ## busy_states can't be overriden by another state
-var busy_states : Array[group_states] = [group_states.GOING_TO_FOOD, group_states.GOING_TO_FIXTURE, group_states.GOING_TO_TOILET]
+var busy_states : Array[group_states] = [group_states.GOING_TO_FOOD, group_states.GOING_TO_RESTAURANT, group_states.GOING_TO_FIXTURE, group_states.GOING_TO_TOILET]
 
 var group_state : group_states = group_states.WALKING
 
@@ -57,6 +57,8 @@ var target_shop : Shop = null
 var visited_shops : Array[Shop] = []
 var peep_group_inventory : Array[product_resource]
 var holding_item = false
+
+var prefers_restaurants : bool = false
 
 var target_toilet : Toilet = null
 
@@ -163,9 +165,7 @@ func initialize_peep_group(data):
 			group_desired_animals.append(ZooManager.zoo_enclosures[id]['especies'].species_id)
 	else:
 		peep_count = randi_range(1,4)
-	
 		favorite_animal = ContentManager.animals.keys().pick_random()
-	
 		speed = randi_range(16, 24)
 		initialize_peep_group_destinations()
 		var randi = randi_range(0,10)
@@ -175,6 +175,10 @@ func initialize_peep_group(data):
 			min_product_level = 2
 		else:
 			min_product_level = 3
+			
+	## TODO - add to save
+	if randi_range(0, 10) >= 7:
+		prefers_restaurants = true
 			
 	if !peep_count:
 		## TODO - Figure out what causes this bug in saves
@@ -288,7 +292,10 @@ func change_state(state):
 		if !target_shop:
 			change_state(group_states.STOPPED)
 			return
-		agent.target_position = target_shop.sell_positions.pick_random()
+		if target_shop.building_res.is_building_entereable:
+			agent.target_position = target_shop.enter_positions.pick_random()
+		else:
+			agent.target_position = target_shop.sell_positions.pick_random()
 		for peep in peeps:
 			peep.change_state(1)
 		return
@@ -313,6 +320,8 @@ func change_state(state):
 		agent.target_position = ZooManager.get_entrance_point()
 		for peep in peeps:
 			peep.change_state(1)
+	elif state == group_states.INSIDE_RESTAURANT:
+		$RestaurantTimer.start()
 		
 
 func get_new_destination():
@@ -472,22 +481,48 @@ func buy_food():
 
 	## Found item of desirable cost and quality
 	if target_shop and best_item_id:
-		if target_shop.buy(best_item_id, peep_count):
-			peep_group_inventory.append(target_shop.available_products[best_item_id].product)
-			needs_hunger = 100
-			searching_food_spot = false
-			holding_item = true
-			for peep in peeps:
-				peep.holding_item = true
-			spent_money += target_shop.available_products[best_item_id].current_price * peep_count
-			if available_items[best_item_id].utility_score > 1.5:
-				target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
-				modifiers.append(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
-			for peep in peeps:
-				SignalBus.money_tooltip.emit(target_shop.available_products[best_item_id].current_price, true, peep.global_position)
+		## Enter restaurant and eat meal
+		if target_shop.building_res.is_building_entereable:
+			if target_shop.buy(best_item_id, peep_count):
+				change_state(group_states.INSIDE_RESTAURANT)
+				searching_food_spot = false
+				visible = false
+				await $RestaurantTimer.timeout
+				needs_hunger = 100.0
+				needs_toilet = 100.0
+				needs_rest = 100.0
+				visible = true
+				change_state(group_states.STOPPED)
+				spent_money += target_shop.available_products[best_item_id].current_price * peep_count
+				modifiers.append(ModifierManager.PEEP_MODIFIERS.ATE_AT_RESTAURANT)
+				if available_items[best_item_id].utility_score > 1.5:
+					target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
+					modifiers.append(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
+				for peep in peeps:
+					SignalBus.money_tooltip.emit(target_shop.available_products[best_item_id].current_price, true, peep.global_position)
+			else:
+				target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
+				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
+			
+		## Buy product and eat outside
 		else:
-			target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
-			modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
+			if target_shop.buy(best_item_id, peep_count):
+				peep_group_inventory.append(target_shop.available_products[best_item_id].product)
+				needs_hunger = 100
+				searching_food_spot = false
+				searching_rest_spot = true
+				holding_item = true
+				for peep in peeps:
+					peep.holding_item = true
+				spent_money += target_shop.available_products[best_item_id].current_price * peep_count
+				if available_items[best_item_id].utility_score > 1.5:
+					target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
+					modifiers.append(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
+				for peep in peeps:
+					SignalBus.money_tooltip.emit(target_shop.available_products[best_item_id].current_price, true, peep.global_position)
+			else:
+				target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
+				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
 	
 	visited_shops.append(target_shop)
 	target_shop = null

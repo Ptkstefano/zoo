@@ -27,7 +27,6 @@ func update_terrain_menu():
 	$"../UI".update_ui()
 
 func build_terrain(coords, atlas_y):
-	print('b')
 	var neighbors = []
 	for coord in coords:
 		terrain_layer.set_cell(coord, 0, Vector2(0, atlas_y))

@@ -10,7 +10,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func on_text(a):
-	print('BBBBBBBBBBBBB')
 	text = a
 	await get_tree().create_timer(5).timeout
 	text = ''

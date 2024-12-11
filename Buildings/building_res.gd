@@ -5,6 +5,7 @@ class_name building_resource
 @export var name : String
 @export var id : IdRefs.BUILDINGS
 @export var thumb : Texture2D
+@export var building_menu : IdRefs.BUILDING_MENU
 
 @export var texture : Texture2D
 
@@ -12,6 +13,8 @@ class_name building_resource
 @export var building_type : IdRefs.BUILDING_TYPES
 @export var product_types : Array[IdRefs.PRODUCT_TYPES]
 @export var possible_products : Array[IdRefs.PRODUCTS]
+
+@export var is_building_entereable : bool
 
 @export_category("Visual")
 @export var size : Vector2i

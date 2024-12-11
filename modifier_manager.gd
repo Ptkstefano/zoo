@@ -7,6 +7,7 @@ enum PEEP_MODIFIERS {
 	SEEN_ALL_DESIRED_ANIMALS,
 	GREAT_VALUE_FOOD,
 	FILLED_NEEDS,
+	ATE_AT_RESTAURANT,
 	
 	## Negative
 	MISSED_ANIMAL,
@@ -27,6 +28,7 @@ var peep_modifiers = {
 	PEEP_MODIFIERS.SEEN_ALL_DESIRED_ANIMALS: PeepModifier.new("Group saw all the animals they wanted to see", 1),
 	PEEP_MODIFIERS.GREAT_VALUE_FOOD: PeepModifier.new("Group bought food at great value", 0.5),
 	PEEP_MODIFIERS.FILLED_NEEDS: PeepModifier.new("Group had no unfulfilled needs", 0.5),
+	PEEP_MODIFIERS.ATE_AT_RESTAURANT:  PeepModifier.new("Group ate at restaurant", 0.5),
 	## Negative
 	PEEP_MODIFIERS.MISSED_ANIMAL: PeepModifier.new("Group left without seeing animal they came to see", -0.5),
 	PEEP_MODIFIERS.NO_TOILET: PeepModifier.new("Group could not find a toilet in time", -2),

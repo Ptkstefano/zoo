@@ -18,12 +18,13 @@ func create_water_body(points):
 	if points.size() < 5:
 		return
 		
-	for point in points:
-		if TileMapRef.local_to_map(point) in $"../../PathManager".path_coordinates:
-			return
-	for point in points:
-		if TileMapRef.local_to_map(point) in water_cells:
-			return
+	if GameManager.game_running:
+		for point in points:
+			if TileMapRef.local_to_map(point) in $"../../PathManager".path_coordinates:
+				return
+		for point in points:
+			if TileMapRef.local_to_map(point) in water_cells:
+				return
 		
 	## Adds points to soften hard edges
 	var smooth_points = smooth_lines(points)
@@ -38,7 +39,8 @@ func create_water_body(points):
 	#var comparison_array = shoreline_points.duplicate()
 	#comparison_array.pop_back()
 	if is_polygon_self_intersecting(smooth_points):
-		return
+		if GameManager.game_running:
+			return
 	
 	var new_lake = lake_scene.instantiate()
 	new_lake.line_points = points

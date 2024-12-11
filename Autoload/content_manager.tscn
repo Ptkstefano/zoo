@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://mqvvqf6wxoe8"]
+[gd_scene load_steps=23 format=3 uid="uid://mqvvqf6wxoe8"]
 
 [ext_resource type="Script" path="res://Autoload/content_manager.gd" id="1_0xc5w"]
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="2_3584o"]
@@ -19,10 +19,12 @@
 [ext_resource type="Resource" uid="uid://c086ou4yyva4u" path="res://Products/brownie_sundae.tres" id="16_42240"]
 [ext_resource type="Script" path="res://Buildings/building_res.gd" id="17_ib6gx"]
 [ext_resource type="Resource" uid="uid://csjatom74kl3h" path="res://Buildings/ice_cream_shop.tres" id="18_dhs4s"]
+[ext_resource type="Resource" uid="uid://bvnpr5v6trmlp" path="res://Products/pasta_bolognese.tres" id="18_hdj2o"]
 [ext_resource type="Resource" uid="uid://cw0qxk8uuda34" path="res://Buildings/toilet1.tres" id="19_3wtsv"]
+[ext_resource type="Resource" uid="uid://ccsw3cdj7hvqt" path="res://Buildings/italian_restaurant.tres" id="21_17nn5"]
 
 [node name="ContentManager" type="Node"]
 script = ExtResource("1_0xc5w")
 animal_files = Array[ExtResource("2_3584o")]([ExtResource("3_fp7ms"), ExtResource("4_gewqj"), ExtResource("5_mbt8i"), ExtResource("6_6f7jl"), ExtResource("7_m8nde"), ExtResource("8_8irge"), ExtResource("9_3wn2c"), ExtResource("10_ii8x0"), ExtResource("11_ugt0a"), ExtResource("12_4jekg"), ExtResource("13_pshdp")])
-product_resources = Array[ExtResource("10_k1pd2")]([ExtResource("11_xkxqe"), ExtResource("12_2cy81"), ExtResource("16_42240")])
-building_resources = Array[ExtResource("17_ib6gx")]([ExtResource("18_dhs4s"), ExtResource("19_3wtsv")])
+product_resources = Array[ExtResource("10_k1pd2")]([ExtResource("11_xkxqe"), ExtResource("12_2cy81"), ExtResource("16_42240"), ExtResource("18_hdj2o")])
+building_resources = Array[ExtResource("17_ib6gx")]([ExtResource("18_dhs4s"), ExtResource("19_3wtsv"), ExtResource("21_17nn5")])

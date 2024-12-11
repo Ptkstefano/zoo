@@ -6,7 +6,7 @@ class_name BuildingManager
 @export var building_class_scene : PackedScene
 @export var ui_building_element : PackedScene
 
-@onready var building_menu = %BuildingSelectionContainer
+#@onready var building_menu = %BuildingSelectionContainer
 
 var coordinates_used_by_buildings = []
 
@@ -20,13 +20,28 @@ func _process(delta: float) -> void:
 	pass
 
 func update_building_menu():
-	for child in building_menu.get_children():
+	for child in %EaterySelectionContainer.get_children():
+		child.queue_free()
+	for child in %RestaurantSelectionContainer.get_children():
+		child.queue_free()
+	for child in %ServicesSelectionContainer.get_children():
+		child.queue_free()
+	for child in %AdministrationSelectionContainer.get_children():
 		child.queue_free()
 		
 	for building_res in available_buildings:
+		print('here')
 		var element = ui_building_element.instantiate()
 		element.building_res = building_res
-		building_menu.add_child(element)
+		print(element.building_res.building_menu)
+		if element.building_res.building_menu == IdRefs.BUILDING_MENU.EATERY:
+			%EaterySelectionContainer.add_child(element)
+		if element.building_res.building_menu == IdRefs.BUILDING_MENU.RESTAURANT:
+			%RestaurantSelectionContainer.add_child(element)
+		if element.building_res.building_menu == IdRefs.BUILDING_MENU.SERVICE:
+			%ServicesSelectionContainer.add_child(element)
+		if element.building_res.building_menu == IdRefs.BUILDING_MENU.ADMINISTRATION:
+			%AdministrationSelectionContainer.add_child(element)
 		
 	$"../../UI".update_ui()
 
@@ -57,6 +72,10 @@ func build_building(building_res : building_resource, start_tile, rotate, coords
 func on_building_removed(building_node):
 	for coordinate in building_node.used_coordinates:
 		coordinates_used_by_buildings.erase(coordinate)
+	if building_node.building_res.product_types.has(IdRefs.PRODUCT_TYPES.FOOD):
+		ZooManager.remove_food_shop(building_node.id)
+	if building_node.building_res.building_type == IdRefs.BUILDING_TYPES.TOILET:
+		ZooManager.remove_toilet(building_node.id)
 	$"../../PathManager".remove_path(building_node.used_coordinates)
 
 func on_building_selected(building_node):

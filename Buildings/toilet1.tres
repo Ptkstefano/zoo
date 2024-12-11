@@ -1,17 +1,19 @@
 [gd_resource type="Resource" script_class="building_resource" load_steps=3 format=3 uid="uid://cw0qxk8uuda34"]
 
 [ext_resource type="Script" path="res://Buildings/building_res.gd" id="3_6l82a"]
-[ext_resource type="Texture2D" uid="uid://dm06psgn1qbfb" path="res://Buildings/Toilet1.png" id="4_5ol6i"]
+[ext_resource type="Texture2D" uid="uid://dm06psgn1qbfb" path="res://Buildings/Sprites/Toilet1.png" id="4_5ol6i"]
 
 [resource]
 script = ExtResource("3_6l82a")
 name = "Toilet"
 id = 1
 thumb = ExtResource("4_5ol6i")
+building_menu = 2
 texture = ExtResource("4_5ol6i")
 building_type = 1
 product_types = Array[int]([])
 possible_products = Array[int]([])
+is_building_entereable = false
 size = Vector2i(1, 2)
 sprite_pos = Vector2(8, -32)
 detectable_pos = Vector2(-18, -21)

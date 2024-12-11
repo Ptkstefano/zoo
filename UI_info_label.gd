@@ -10,6 +10,8 @@ func _process(delta: float) -> void:
 		update_tool_label()
 
 func update_tool_label():
+	if !inputController.selected_res:
+		return
 	if inputController.is_camera_tool_selected:
 		text = 'Moving camera freely'
 		return

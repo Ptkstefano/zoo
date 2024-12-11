@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm06psgn1qbfb"
-path="res://.godot/imported/Toilet1.png-d4f145a16a3b1d1084b858efe0f2550c.ctex"
+uid="uid://c2pcnodn1oi5k"
+path="res://.godot/imported/research.png-b89500b2e772059364db8e6d7faf3828.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Buildings/Toilet1.png"
-dest_files=["res://.godot/imported/Toilet1.png-d4f145a16a3b1d1084b858efe0f2550c.ctex"]
+source_file="res://Buildings/Sprites/research.png"
+dest_files=["res://.godot/imported/research.png-b89500b2e772059364db8e6d7faf3828.ctex"]
 
 [params]
 
