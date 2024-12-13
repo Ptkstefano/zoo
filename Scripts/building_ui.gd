@@ -19,8 +19,6 @@ func _ready() -> void:
 	
 	%OptionsMenuToggle.toggled.connect(on_options_menu_toggle) 
 	%BuildModeButton.toggled.connect(on_build_mode_toggle)
-
-	
 	
 	#%DebugToggle.pressed.connect(on_debug_toggle)
 	## Options menu buttons
@@ -317,7 +315,7 @@ func on_save_game():
 	SignalBus.save_game.emit()
 
 func on_money_changed(amount):
-	money_label.text = "$ " + str(amount)
+	money_label.text = "$" + str("%.2f" % amount)
 
 
 func right_menu_down():
@@ -335,11 +333,13 @@ func on_build_mode_toggle(toggle):
 		%ConstructionToolsContainer.show()
 		%InfoBorder.show()
 		%MainOptions.hide()
+		%GridLayer.show()
 		build_mode = true
 	if !toggle:
 		%ConstructionToolsContainer.hide()
 		%InfoBorder.hide()
 		%MainOptions.show()
+		%GridLayer.hide()
 		hide_side_panel()
 		build_mode = false
 		selected_res = null

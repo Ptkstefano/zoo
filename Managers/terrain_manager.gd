@@ -29,8 +29,21 @@ func update_terrain_menu():
 func build_terrain(coords, atlas_y):
 	var neighbors = []
 	for coord in coords:
-		terrain_layer.set_cell(coord, 0, Vector2(0, atlas_y))
-		FinanceManager.remove(5.0, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
+		
+		## Generates terrain variations
+		var random_x = 0
+		if randi_range(0, 10) >= 7:
+			if randi_range (0, 10) >= 7:
+				random_x = 2
+			else:
+				random_x = 1
+			
+		var previous_atlas_y = terrain_layer.get_cell_atlas_coords(coord).y
+			
+		terrain_layer.set_cell(coord, 0, Vector2(random_x, atlas_y))
+		if atlas_y != previous_atlas_y:
+			FinanceManager.remove(5.0, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
+			SignalBus.money_tooltip.emit(5.0, false, terrain_layer.map_to_local(coord))
 		for neighbor in Helpers.get_adjacent(coord):
 			if neighbor not in neighbors:
 				if neighbor not in coords:
@@ -62,17 +75,17 @@ func apply_wang(coords, atlas_y):
 			var neighbor_y = terrain_layer.get_cell_atlas_coords(neighbor).y
 			if neighbor_y != atlas_y:
 				if i == 0:
-					$"../TileMap/TerrainLayer/TerrainWang_E".set_cell(coord, 0, Vector2(4, neighbor_y))
-					$"../TileMap/TerrainLayer/TerrainWang_W".set_cell(neighbor, 0, Vector2(2, atlas_y))
+					$"../TileMap/TerrainLayer/TerrainWang_E".set_cell(coord, 0, Vector2(6, neighbor_y))
+					$"../TileMap/TerrainLayer/TerrainWang_W".set_cell(neighbor, 0, Vector2(4, atlas_y))
 				if i == 1:
-					$"../TileMap/TerrainLayer/TerrainWang_S".set_cell(coord, 0, Vector2(3, neighbor_y))
-					$"../TileMap/TerrainLayer/TerrainWang_N".set_cell(neighbor, 0, Vector2(1, atlas_y))
+					$"../TileMap/TerrainLayer/TerrainWang_S".set_cell(coord, 0, Vector2(5, neighbor_y))
+					$"../TileMap/TerrainLayer/TerrainWang_N".set_cell(neighbor, 0, Vector2(3, atlas_y))
 				if i == 2:
-					$"../TileMap/TerrainLayer/TerrainWang_W".set_cell(coord, 0, Vector2(2, neighbor_y))
-					$"../TileMap/TerrainLayer/TerrainWang_E".set_cell(neighbor, 0, Vector2(4, atlas_y))
+					$"../TileMap/TerrainLayer/TerrainWang_W".set_cell(coord, 0, Vector2(4, neighbor_y))
+					$"../TileMap/TerrainLayer/TerrainWang_E".set_cell(neighbor, 0, Vector2(6, atlas_y))
 				if i == 3:
-					$"../TileMap/TerrainLayer/TerrainWang_N".set_cell(coord, 0, Vector2(1, neighbor_y))
-					$"../TileMap/TerrainLayer/TerrainWang_S".set_cell(neighbor, 0, Vector2(3, atlas_y))
+					$"../TileMap/TerrainLayer/TerrainWang_N".set_cell(coord, 0, Vector2(3, neighbor_y))
+					$"../TileMap/TerrainLayer/TerrainWang_S".set_cell(neighbor, 0, Vector2(5, atlas_y))
 			i += 1
 	
 

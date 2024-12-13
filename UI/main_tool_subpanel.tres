@@ -1,0 +1,27 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b6646spks2n34"]
+
+[ext_resource type="Texture2D" uid="uid://bnvb82gnm1qy1" path="res://UI/art/Panel1-export.png" id="1_x8i3b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucgvp"]
+content_margin_top = 8.0
+bg_color = Color(0.905882, 0.509804, 0.156863, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.094)
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oqen4"]
+texture = ExtResource("1_x8i3b")
+texture_margin_left = 15.0
+texture_margin_top = 15.0
+texture_margin_right = 15.0
+texture_margin_bottom = 15.0
+region_rect = Rect2(12, 18, 246, 156)
+
+[resource]
+Button/constants/outline_size = 12
+Button/styles/normal = SubResource("StyleBoxFlat_ucgvp")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_oqen4")

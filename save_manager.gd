@@ -167,7 +167,7 @@ func save_game():
 	save_data['zoo_manager_data'] = zoo_manager_data
 	
 	
-	## Save building data - TODO
+	## Save building data
 	i = 1
 	var building_data = {}
 	for building in building_list:
@@ -452,8 +452,8 @@ func get_scenery_data(scenery):
 
 func get_fixture_data(fixture):
 	var data = {}
-	data['x_pos'] = fixture.cached_position.x
-	data['y_pos'] = fixture.cached_position.y
+	data['x_pos'] = fixture.placement_global_pos.x
+	data['y_pos'] = fixture.placement_global_pos.y
 	data['fixture_res'] = fixture.fixture_res.get_path()
 	return data
 

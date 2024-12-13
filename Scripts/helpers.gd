@@ -47,3 +47,25 @@ func generate_random_position_at_distance_from_origin(origin : Vector2, distance
 
 func money_text(value) -> String:
 	return "$" + str(value)
+
+func get_cell_quadrant(global_coordinate : Vector2):
+	var cell = TileMapRef.local_to_map(global_coordinate)
+	var cell_center = TileMapRef.map_to_local(cell)
+	var center_offset = cell_center - global_coordinate
+	
+	if center_offset.x < 0:
+		if center_offset.y < 0:
+			## (-,-)
+			return 0
+		else:
+			## (-,+)
+			return 3
+	else:
+		if center_offset.y > 0:
+			## (+, +)
+			return 2
+		else:
+			## (+, -)
+			return 1
+			
+		

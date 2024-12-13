@@ -61,8 +61,10 @@ func build_building(building_res : building_resource, start_tile, rotate, coords
 	new_building.building_selected.connect(on_building_selected)
 	new_building.building_removed.connect(on_building_removed)
 	print(new_building.id)
-	if building_res.product_types.has(IdRefs.PRODUCT_TYPES.FOOD):
-		ZooManager.add_food_shop(new_building.id, { 'building': new_building, 'position': TileMapRef.map_to_local(start_tile) })
+	if building_res.building_type == IdRefs.BUILDING_TYPES.EATERY:
+		ZooManager.add_eatery(new_building.id, { 'building': new_building, 'position': TileMapRef.map_to_local(start_tile) })
+	if building_res.building_type == IdRefs.BUILDING_TYPES.RESTAURANT:
+		ZooManager.add_restaurant(new_building.id, { 'building': new_building, 'position': TileMapRef.map_to_local(start_tile) })
 	if building_res.building_type == IdRefs.BUILDING_TYPES.TOILET:
 		ZooManager.add_toilet(new_building.id, { 'building': new_building, 'position': TileMapRef.map_to_local(start_tile) })
 			

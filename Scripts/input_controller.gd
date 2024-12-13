@@ -91,6 +91,11 @@ func _unhandled_input(event: InputEvent) -> void:
 				touch_current_global_pos = get_canvas_transform().affine_inverse().translated(event.position/$"../Camera2D".zoom).origin
 				touch_current_local_pos = event.position
 			
+	## DEBUG
+
+	#print(Helpers.get_cell_quadrant(touch_start_global_pos))
+			
+			
 	if current_tool in free_cam_tools or is_camera_tool_selected:
 		if !await handle_selection(event):
 			handle_camera_input(event)
@@ -202,6 +207,7 @@ func handle_tooling_input(event):
 				if !is_bulldozing:
 					scenery_manager.place_vegetation(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.FIXTURE:
+				print('a')
 				if !is_bulldozing:
 					$"../Objects/FixtureManager".place_fixture(touch_start_global_pos, selected_res)
 			if current_tool == TOOLS.DECORATION:

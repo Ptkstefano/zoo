@@ -34,9 +34,10 @@ enum FIXTURES {
 }
 
 enum BUILDING_TYPES {
-	SHOP,
+	EATERY,
 	TOILET,
 	RESTAURANT,
+	SHOP,
 }
 
 enum BUILDING_MENU {

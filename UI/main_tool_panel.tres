@@ -21,13 +21,13 @@ shadow_size = 2
 shadow_offset = Vector2(5, 5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nar5i"]
-bg_color = Color(0.87451, 0.376471, 0.14902, 1)
+bg_color = Color(0.907677, 0.508984, 0.155632, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
-shadow_color = Color(0, 0, 0, 0.194)
-shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.138)
+shadow_size = 5
 shadow_offset = Vector2(5, 5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ewdfh"]
@@ -41,14 +41,16 @@ shadow_size = 2
 shadow_offset = Vector2(5, 5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6qnu"]
-bg_color = Color(0.826, 0.826, 0.826, 0.569)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color(0.844973, 0.820695, 0.810242, 0.569)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [resource]
-Button/constants/outline_size = 4
+Button/constants/outline_size = 16
 Button/styles/focus = SubResource("StyleBoxFlat_vqw77")
 Button/styles/hover = SubResource("StyleBoxFlat_w3alr")
 Button/styles/normal = SubResource("StyleBoxFlat_nar5i")

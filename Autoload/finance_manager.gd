@@ -4,7 +4,7 @@ signal current_month_changed
 
 var current_money : float = 10000:
 	set(amount):
-		current_money = amount
+		current_money = snappedf(amount, 0.1)
 		SignalBus.money_changed.emit(current_money)
 		
 

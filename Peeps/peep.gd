@@ -79,16 +79,16 @@ func on_frame_timer():
 		
 func set_look_direction(dir):
 	## Used for sitting in correct direction
-	if dir == 'E':
+	if dir == 0:
 		peepSprite.flip_h = false
 		sprite_y = 0
-	if dir == 'S':
+	if dir == 1:
 		peepSprite.flip_h = true
 		sprite_y = 0
-	if dir == 'W':
+	if dir == 2:
 		peepSprite.flip_h = true
 		sprite_y = 1
-	if dir == 'N':
+	if dir == 3:
 		peepSprite.flip_h = false
 		sprite_y = 1
 		

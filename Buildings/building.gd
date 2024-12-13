@@ -26,7 +26,7 @@ signal building_removed
 
 func _ready() -> void:
 	var building_instance
-	if building_res.building_type == IdRefs.BUILDING_TYPES.SHOP:
+	if building_res.building_type == IdRefs.BUILDING_TYPES.EATERY or building_res.building_type == IdRefs.BUILDING_TYPES.RESTAURANT:
 		building_instance = shop_scene.instantiate()
 	if building_res.building_type == IdRefs.BUILDING_TYPES.TOILET:
 		building_instance = toilet_scene.instantiate()

@@ -9,13 +9,13 @@ var peep_manager : PeepManager
 
 #@export var peep_texture : Texture2D
 
-enum group_states {STOPPED, WALKING, OBSERVING, RESTING, USING_TOILET, INSIDE_RESTAURANT, GOING_TO_ENTRANCE, GOING_TO_FOOD, GOING_TO_RESTAURANT, GOING_TO_FIXTURE, GOING_TO_EXIT, GOING_TO_TOILET, GOING_TO_ENCLOSURE, WAITING_ANIMAL}
+enum group_states {STOPPED, WALKING, OBSERVING, RESTING, USING_TOILET, INSIDE_RESTAURANT, GOING_TO_ENTRANCE, GOING_TO_FOOD, GOING_TO_RESTAURANT, GOING_TO_BENCH, GOING_TO_EXIT, GOING_TO_TOILET, GOING_TO_ENCLOSURE, WAITING_ANIMAL}
 
 ## move_states are processed into actual movement
-var move_states : Array[group_states] = [group_states.WALKING, group_states.GOING_TO_ENCLOSURE, group_states.GOING_TO_FOOD, group_states.GOING_TO_RESTAURANT, group_states.GOING_TO_FIXTURE, group_states.GOING_TO_EXIT, group_states.GOING_TO_TOILET, group_states.GOING_TO_ENTRANCE]
+var move_states : Array[group_states] = [group_states.WALKING, group_states.GOING_TO_ENCLOSURE, group_states.GOING_TO_FOOD, group_states.GOING_TO_RESTAURANT, group_states.GOING_TO_BENCH, group_states.GOING_TO_EXIT, group_states.GOING_TO_TOILET, group_states.GOING_TO_ENTRANCE]
 
 ## busy_states can't be overriden by another state
-var busy_states : Array[group_states] = [group_states.GOING_TO_FOOD, group_states.GOING_TO_RESTAURANT, group_states.GOING_TO_FIXTURE, group_states.GOING_TO_TOILET]
+var busy_states : Array[group_states] = [group_states.GOING_TO_FOOD, group_states.GOING_TO_RESTAURANT, group_states.GOING_TO_BENCH, group_states.GOING_TO_TOILET]
 
 var group_state : group_states = group_states.WALKING
 
@@ -49,12 +49,11 @@ var searching_toilet : bool = false
 var moving_towards_exit : bool = false
 var moving_towards_entrance : bool = true
 
-var fixture : Fixture = null
-var fixture_available ## Dict or null
+var bench : FixtureBench = null
 
 #var chosen_shop : Shop = null
 var target_shop : Shop = null
-var visited_shops : Array[Shop] = []
+var visited_buildings : Array[Shop] = []
 var peep_group_inventory : Array[product_resource]
 var holding_item = false
 
@@ -224,9 +223,8 @@ func on_agent_waypoint_reached(d):
 func on_agent_target_reached():
 	if group_state == group_states.GOING_TO_ENCLOSURE:
 		change_state(group_states.WAITING_ANIMAL)
-	elif group_state == group_states.GOING_TO_FIXTURE:
-		if fixture.type == IdRefs.FIXTURES.BENCH:
-			change_state(group_states.RESTING)
+	elif group_state == group_states.GOING_TO_BENCH:
+		change_state(group_states.RESTING)
 	elif group_state == group_states.GOING_TO_FOOD:
 		buy_food()
 	elif group_state == group_states.GOING_TO_EXIT:
@@ -269,23 +267,22 @@ func change_state(state):
 		for peep in peeps:
 			peep.change_state(state)
 	elif state == group_states.RESTING:
-		needs_rest = 100
-		$StateTimer.wait_time = 20
-		$StateTimer.start()
-		#global_position = fixture.global_position
-		if !fixture_available:
+		if !bench:
 			change_state(group_states.STOPPED)
 			searching_rest_spot = true
 			return
+		needs_rest = 100
+		$StateTimer.wait_time = 20
+		$StateTimer.start()
 		for i in range(peep_count):
 			if i == 0:
 				peeps[0].change_state(3)
-				peeps[0].global_position = fixture_available['p1']
-				peeps[0].set_look_direction(fixture_available['dir'])
+				peeps[0].global_position = bench.sitting_posisitions[0]
+				peeps[0].set_look_direction(bench.direction)
 			elif i == 1:
 				peeps[1].change_state(3)
-				peeps[1].global_position = fixture_available['p2']
-				peeps[1].set_look_direction(fixture_available['dir'])
+				peeps[1].global_position = bench.sitting_posisitions[1]
+				peeps[1].set_look_direction(bench.direction)
 			else:
 				peeps[i].change_state(0)
 	elif state == group_states.GOING_TO_FOOD:
@@ -299,7 +296,7 @@ func change_state(state):
 		for peep in peeps:
 			peep.change_state(1)
 		return
-	elif state == group_states.GOING_TO_FIXTURE:
+	elif state == group_states.GOING_TO_BENCH:
 		for peep in peeps:
 			peep.change_state(1)
 		return
@@ -380,21 +377,23 @@ func on_detector_area_entered(area):
 				group_desired_destinations.erase(destination)
 		
 	elif searching_rest_spot:
-		if area.get_parent() is Fixture:
-			fixture = area.get_parent()
-			fixture_available = fixture.get_available()
-			if !fixture_available:
+		if area.get_parent().get_parent() is FixtureBench:
+			bench = area.get_parent().get_parent()
+			if !bench:
 				change_state(group_states.STOPPED)
 				return
-			if fixture.type == IdRefs.FIXTURES.BENCH:
-				agent.target_position = fixture.global_position
+			if !bench.is_available:
+				return
+			else:
+				agent.target_position = bench.global_position
+				bench.is_available = false
 				direction = (agent.get_next_path_position() - global_position).normalized()
-				change_state(group_states.GOING_TO_FIXTURE)
+				change_state(group_states.GOING_TO_BENCH)
 				searching_rest_spot = false
 	#elif searching_food_spot:
 		#if area.get_parent() is Shop:
 			#shop = area.get_parent()
-			#if shop in visited_shops:
+			#if shop in visited_buildings:
 				#return
 			#if searching_food_spot:
 				#if IdRefs.PRODUCT_TYPES.FOOD in shop.product_types:
@@ -413,8 +412,8 @@ func on_state_timer_timeout():
 	if group_state == group_states.STOPPED:
 		get_new_destination()
 	if group_state == group_states.RESTING:
-		if is_instance_valid(fixture):
-			fixture.make_available(fixture_available)
+		if is_instance_valid(bench):
+			bench.is_available = true
 			get_new_destination()
 		else:
 			get_new_destination()
@@ -524,7 +523,7 @@ func buy_food():
 				target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
 				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
 	
-	visited_shops.append(target_shop)
+	visited_buildings.append(target_shop)
 	target_shop = null
 	change_state(group_states.STOPPED)
 
@@ -593,19 +592,33 @@ func calculate_perceived_zoo_rating():
 
 func search_food_place():
 	var shorter_distance = 100000
-	var selected_shop = null
+	var selected_food_place = null
 	var too_far_count = 0
-	for food_place_id in ZooManager.food_shops:
-		if ZooManager.food_shops[food_place_id].building.building_scene in visited_shops:
-			continue
-		var distance = global_position.distance_to(ZooManager.food_shops[food_place_id].position)
-		if distance < shorter_distance:
-			selected_shop = ZooManager.food_shops[food_place_id].building.building_scene
-		else:
-			too_far_count += 1
+	## If group prefers restaurants, look up a restaurant to go to
+	if prefers_restaurants:
+		for restaurant_id in ZooManager.restaurants:
+			if ZooManager.restaurants[restaurant_id].building.building_scene in visited_buildings:
+				continue
+			var distance = global_position.distance_to(ZooManager.restaurants[restaurant_id].position)
+			if distance < shorter_distance:
+				selected_food_place = ZooManager.restaurants[restaurant_id].building.building_scene
+			else:
+				too_far_count += 1
+				
+	## If a group does not prefers restaurants, look for eatery
+	## If a group prefers restaurants but hasn't found one, look for eatery
+	if !selected_food_place:
+		for eatery_id in ZooManager.eateries:
+			if ZooManager.eateries[eatery_id].building.building_scene in visited_buildings:
+				continue
+			var distance = global_position.distance_to(ZooManager.eateries[eatery_id].position)
+			if distance < shorter_distance:
+				selected_food_place = ZooManager.eateries[eatery_id].building.building_scene
+			else:
+				too_far_count += 1
 
-	if selected_shop:
-		return selected_shop
+	if selected_food_place:
+		return selected_food_place
 	else:
 		if too_far_count > 0:
 			modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_FOOD_SHOP_IN_RANGE)

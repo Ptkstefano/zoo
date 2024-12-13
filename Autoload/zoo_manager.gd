@@ -29,7 +29,8 @@ var used_peep_group_ids = []
 var zoo_enclosures : Dictionary = {}
 var next_enclosure_id = 0
 
-var food_shops = {}
+var eateries = {}
+var restaurants = {}
 var toilets = {}
 
 var active_boosts : Dictionary = {}
@@ -64,11 +65,17 @@ func update_zoo_enclosure(enclosure):
 			zoo_animals[enclosure.enclosure_species.name] = {"rating": enclosure.enclosure_species.animal_rating}
 	calculate_animal_rating()
 	
-func add_food_shop(id, data):
-	ZooManager.food_shops[id] = { 'building': data.building, 'position': TileMapRef.map_to_local(data.position) }
+func add_eatery(id, data):
+	ZooManager.eateries[id] = { 'building': data.building, 'position': TileMapRef.map_to_local(data.position) }
 	
-func remove_food_shop(id):
-	ZooManager.food_shops.erase(id)
+func remove_eatery(id):
+	ZooManager.eateries.erase(id)
+	
+func add_restaurant(id, data):
+	ZooManager.restaurants[id] = { 'building': data.building, 'position': TileMapRef.map_to_local(data.position) }
+	
+func remove_restaurant(id):
+	ZooManager.restaurants.erase(id)
 	
 func add_toilet(id, data):
 	ZooManager.toilets[id] = { 'building': data.building, 'position': TileMapRef.map_to_local(data.position) }
