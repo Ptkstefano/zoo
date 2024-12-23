@@ -5,7 +5,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_1cvid"]
 radius = 3.0
 
-[node name="Scenery" type="StaticBody2D"]
+[node name="Scenery" type="StaticBody2D" groups=["Scenery"]]
 collision_layer = 257
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

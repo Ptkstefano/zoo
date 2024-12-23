@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://c7pfv2es6r5oa"]
 
-[ext_resource type="Script" path="res://Animals/animal_res.gd" id="1_ob3tf"]
+[ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_ob3tf"]
 [ext_resource type="Texture2D" uid="uid://c6wmdilxav70a" path="res://Animals/sprites/capy.png" id="2_uytuh"]
 [ext_resource type="Texture2D" uid="uid://e1eo4sf7cs8g" path="res://Animals/thumbs/animal_capybara.png" id="3_18ebj"]
 
@@ -20,14 +20,15 @@ run_speed = 30.0
 can_swim = true
 minimum_shelter_level = 0
 animal_rating = 100
-terrain_preference = {
+terrain_preference = Dictionary[int, float]({
 0: 25.0,
 2: 25.0
-}
+})
 terrain_dislike = Array[int]([3, 4])
 needs_water = true
-minimum_habitat_size = 40
+minimum_habitat_size = 50
+minimum_cells_per_animal = 10
 minimum_vegetation_coverage = 0.3
-maximum_vegetation_coverage = 1.0
+maximum_vegetation_coverage = 3.0
 minimum_herd_size = 5
-maximum_herd_density = 0.2
+favorite_tree = 3

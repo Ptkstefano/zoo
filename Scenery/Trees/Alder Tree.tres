@@ -6,5 +6,6 @@
 script = ExtResource("1_ha28h")
 name = "Alder Tree"
 cost = 10.0
+id = 1
 texture_y = 9
-vegetation_weight = 2.0
+vegetation_weight = 10.0

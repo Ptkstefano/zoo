@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://ck55w4ejddxxs"]
 
-[ext_resource type="Script" path="res://Animals/animal_res.gd" id="1_hthtb"]
+[ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_hthtb"]
 [ext_resource type="Texture2D" uid="uid://ch5nicona3f7r" path="res://Animals/sprites/deer.png" id="2_qse5u"]
 [ext_resource type="Texture2D" uid="uid://dsv6levbc3rv3" path="res://Animals/thumbs/animal_whitetail_deer.png" id="3_3lfbr"]
 
@@ -20,11 +20,12 @@ run_speed = 25.0
 can_swim = false
 minimum_shelter_level = 0
 animal_rating = 60
-terrain_preference = {}
+terrain_preference = Dictionary[int, float]({})
 terrain_dislike = Array[int]([])
 needs_water = false
-minimum_habitat_size = 50
-minimum_vegetation_coverage = 0.6
-maximum_vegetation_coverage = 1.5
+minimum_habitat_size = 80
+minimum_cells_per_animal = 20
+minimum_vegetation_coverage = 0.45
+maximum_vegetation_coverage = 3.0
 minimum_herd_size = 4
-maximum_herd_density = 0.15
+favorite_tree = 7

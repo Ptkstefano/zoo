@@ -14,6 +14,9 @@ class_name building_resource
 @export var product_types : Array[IdRefs.PRODUCT_TYPES]
 @export var possible_products : Array[IdRefs.PRODUCTS]
 
+@export var debug_array : Array[int]
+@export var debug_str : String
+
 @export var is_building_entereable : bool
 
 @export_category("Visual")

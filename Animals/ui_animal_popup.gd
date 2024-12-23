@@ -34,7 +34,7 @@ func update_preferences():
 		%preference_terrain.add_theme_color_override("font_color", Color('#76ad6f'))
 	else:
 		%preference_terrain.add_theme_color_override("font_color", Color('#fe0005'))
-		%preference_terrain.text = "Something is wrong with the terrain"
+		%preference_terrain.text = "Something is wrong with the terrain, I need  more " + str(animal_scene.lacking_terrain_types[0])
 
 	if animal_scene.preference_water_satisfied:
 		%preference_water.text = "I like the lake!"
@@ -57,9 +57,12 @@ func update_preferences():
 		%preference_vegetation_coverage.text = "I love the vegetation around here"
 		%preference_vegetation_coverage.add_theme_color_override("font_color", Color('#76ad6f'))
 	else:
-		%preference_vegetation_coverage.add_theme_color_override("font_color", Color('#fe0005'))
-		%preference_vegetation_coverage.text = "Something is wrong with the vegetation"
-		
+		if animal_scene.too_little_vegetation:
+			%preference_vegetation_coverage.add_theme_color_override("font_color", Color('#fe0005'))
+			%preference_vegetation_coverage.text = "My habitat's vegetation is too bare"
+		elif animal_scene.too_much_vegetation:
+			%preference_vegetation_coverage.add_theme_color_override("font_color", Color('#fe0005'))
+			%preference_vegetation_coverage.text = "My habitat has too much vegetation"
 		
 	if animal_scene.preference_herd_size_satisfied:
 		%preference_herd_size.text = "I have enough friends"

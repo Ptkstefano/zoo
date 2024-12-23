@@ -1,8 +1,8 @@
-[gd_scene load_steps=152 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=170 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" path="res://Scripts/debug_controller.gd" id="1_nisry"]
-[ext_resource type="Script" path="res://Scripts/input_controller.gd" id="1_ojpln"]
-[ext_resource type="Script" path="res://main.gd" id="1_oseej"]
+[ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
+[ext_resource type="Script" uid="uid://dabd0wtptg5ku" path="res://main.gd" id="1_oseej"]
 [ext_resource type="Script" uid="uid://bawblafy70sf4" path="res://reputation_manager.gd" id="2_1b04k"]
 [ext_resource type="Script" path="res://Scripts/path_manager.gd" id="2_4bhy0"]
 [ext_resource type="PackedScene" uid="uid://cl4o0ja0kt0i1" path="res://Animals/animal.tscn" id="2_7ivxh"]
@@ -26,8 +26,8 @@
 [ext_resource type="Script" uid="uid://bjsg0rr5ai5l3" path="res://bulldozer_collider.gd" id="7_xhqw8"]
 [ext_resource type="Resource" uid="uid://dp82v0odladsa" path="res://Paths/null_path.tres" id="7_ybs1u"]
 [ext_resource type="PackedScene" uid="uid://dvjtneek7b62q" path="res://UI/UI selectable elements/ui_terrain_element.tscn" id="8_qghle"]
-[ext_resource type="Script" path="res://Scripts/building_ui.gd" id="10_pctuh"]
-[ext_resource type="Script" path="res://Managers/peep_manager.gd" id="10_ubp83"]
+[ext_resource type="Script" uid="uid://c3p6hiks7eom0" path="res://Scripts/building_ui.gd" id="10_pctuh"]
+[ext_resource type="Script" uid="uid://dy3cw312sp2us" path="res://Managers/peep_manager.gd" id="10_ubp83"]
 [ext_resource type="PackedScene" uid="uid://ca66y62ys1xkh" path="res://Peeps/peep.tscn" id="11_nv6fn"]
 [ext_resource type="Resource" uid="uid://dcrw61juxfsvs" path="res://Terrain/dirt.tres" id="12_jliyx"]
 [ext_resource type="Resource" uid="uid://dk382e4qklm34" path="res://Terrain/deciduous.tres" id="13_jic8h"]
@@ -44,21 +44,21 @@
 [ext_resource type="Script" uid="uid://d143y0sc6ar4w" path="res://Scenery/Decorations/decoration_resource.gd" id="26_0c60e"]
 [ext_resource type="PackedScene" uid="uid://cuiky1io0hfof" path="res://Scenery/Trees/tree_scene.tscn" id="26_vuik7"]
 [ext_resource type="PackedScene" uid="uid://bt8m7eb0se03i" path="res://UI/UI selectable elements/ui_scenery_element.tscn" id="27_5553e"]
-[ext_resource type="Script" path="res://Managers/building_manager.gd" id="27_mg3kq"]
+[ext_resource type="Script" uid="uid://db4c2pqkkun6" path="res://Managers/building_manager.gd" id="27_mg3kq"]
 [ext_resource type="Resource" uid="uid://dqn36shhu7sgb" path="res://Scenery/Decorations/deer-statue.tres" id="27_r3jxo"]
 [ext_resource type="PackedScene" uid="uid://bb5olte5gphhj" path="res://UI/UI selectable elements/ui_building_element.tscn" id="28_04i1b"]
-[ext_resource type="Script" path="res://Buildings/building_res.gd" id="28_58uqa"]
+[ext_resource type="Script" uid="uid://b3dk3jci5ihs8" path="res://Buildings/building_res.gd" id="28_58uqa"]
 [ext_resource type="Resource" uid="uid://xk5hxkv0keyb" path="res://Enclosures/Fences/concrete.tres" id="28_ldw2x"]
 [ext_resource type="Script" uid="uid://d3riapnnqoikx" path="res://Scenery/Vegetation/vegetation_res.gd" id="28_wajut"]
 [ext_resource type="Resource" uid="uid://bin28cl7rvgjd" path="res://Scenery/Vegetation/short_grass.tres" id="29_d00f0"]
 [ext_resource type="PackedScene" uid="uid://32hy2cqq5ww0" path="res://Scenery/Vegetation/vegetation_scene.tscn" id="29_kyg12"]
-[ext_resource type="Resource" uid="uid://csjatom74kl3h" path="res://Buildings/ice_cream_shop.tres" id="29_nh40u"]
+[ext_resource type="Resource" uid="uid://csjatom74kl3h" path="res://Buildings/BuildingResources/ice_cream_shop.tres" id="29_nh40u"]
 [ext_resource type="PackedScene" uid="uid://dyjax0fx7tuvi" path="res://Scenery/Decorations/decoration_piece.tscn" id="29_xj5w8"]
 [ext_resource type="Resource" uid="uid://bpx7vdfrvha4a" path="res://Scenery/Vegetation/tall_grass.tres" id="30_dvure"]
 [ext_resource type="PackedScene" uid="uid://bgasmembo8g7r" path="res://Buildings/building.tscn" id="30_wk5yf"]
 [ext_resource type="Resource" uid="uid://b6yflquscb8la" path="res://Scenery/Trees/Palm 1.tres" id="30_yos0d"]
 [ext_resource type="Resource" uid="uid://ch0c44mjn0ono" path="res://Scenery/Vegetation/bush.tres" id="31_7jmpp"]
-[ext_resource type="Shader" path="res://Shaders/terrain.gdshader" id="31_e0m5j"]
+[ext_resource type="Shader" uid="uid://b0e23qgminbhp" path="res://Shaders/terrain.gdshader" id="31_e0m5j"]
 [ext_resource type="Resource" uid="uid://dsp7g10m8i1c5" path="res://Scenery/Trees/Palm 2.tres" id="31_m2uoq"]
 [ext_resource type="Texture2D" uid="uid://wj8tt8gnhkn5" path="res://Terrain/terrain_sheet.png" id="32_05eb2"]
 [ext_resource type="Resource" uid="uid://36wmkrb0dw5i" path="res://Scenery/Trees/Jacaranda.tres" id="32_weqx1"]
@@ -71,14 +71,14 @@
 [ext_resource type="Script" path="res://Managers/water_manager.gd" id="43_sh5qp"]
 [ext_resource type="Resource" uid="uid://c804tlyallbn2" path="res://Scenery/Trees/Bamboo.tres" id="43_xdjgi"]
 [ext_resource type="PackedScene" uid="uid://dfb5pi2yfy3jh" path="res://Water/lake_scene.tscn" id="44_wq78x"]
-[ext_resource type="Script" path="res://Managers/fixture_manager.gd" id="45_u6xcc"]
+[ext_resource type="Script" uid="uid://cu2j3songpy3l" path="res://Managers/fixture_manager.gd" id="45_u6xcc"]
 [ext_resource type="Script" path="res://Scenery/Fixtures/fixture_resource.gd" id="46_0jpxo"]
 [ext_resource type="Script" uid="uid://bgsyapjwrjvwf" path="res://Scenery/Rocks/rock_resource.gd" id="46_inymm"]
 [ext_resource type="Resource" uid="uid://deoir12m8n42g" path="res://Scenery/Decorations/native-totem.tres" id="47_cb2x4"]
 [ext_resource type="Resource" uid="uid://bsox4n3cixif" path="res://Scenery/Fixtures/wooden bench.tres" id="47_gvub1"]
 [ext_resource type="Resource" uid="uid://c20l3l7d4n8e5" path="res://Scenery/Rocks/rock1.tres" id="47_jcxqu"]
 [ext_resource type="Resource" uid="uid://gk6rd1nfkfuo" path="res://Scenery/Rocks/rock2.tres" id="48_0arob"]
-[ext_resource type="Script" path="res://Managers/popup_manager.gd" id="48_w8cen"]
+[ext_resource type="Script" uid="uid://djfaqc8j8g763" path="res://Managers/popup_manager.gd" id="48_w8cen"]
 [ext_resource type="Resource" uid="uid://dwomu3s1tuou4" path="res://Scenery/Rocks/rock3.tres" id="49_dij0e"]
 [ext_resource type="Script" uid="uid://bb51mdph56ind" path="res://Managers/shelter_manager.gd" id="49_hnjxi"]
 [ext_resource type="PackedScene" uid="uid://ddbum626vwima" path="res://UI/UI popups/ui_shop_popup.tscn" id="50_dyuu3"]
@@ -87,32 +87,38 @@
 [ext_resource type="Resource" uid="uid://cuk4yesxl2kqy" path="res://Enclosures/Shelters/small_wooden_shelter.tres" id="51_row6q"]
 [ext_resource type="Resource" uid="uid://dwwf1t208xn6v" path="res://Scenery/Rocks/rock5.tres" id="51_wat4s"]
 [ext_resource type="PackedScene" uid="uid://dasxyu5n8ncu0" path="res://UI/UI selectable elements/ui_shelter_element.tscn" id="52_30626"]
-[ext_resource type="Resource" uid="uid://cw0qxk8uuda34" path="res://Buildings/toilet1.tres" id="53_1nclh"]
-[ext_resource type="Shader" path="res://Shaders/postfx.gdshader" id="53_fkgg7"]
+[ext_resource type="Resource" uid="uid://cw0qxk8uuda34" path="res://Buildings/BuildingResources/toilet1.tres" id="53_1nclh"]
+[ext_resource type="Shader" uid="uid://cy6xjukasrqil" path="res://Shaders/postfx.gdshader" id="53_fkgg7"]
 [ext_resource type="PackedScene" uid="uid://c0yqr1xdbc6do" path="res://UI/UI selectable elements/ui_enclosure_element.tscn" id="54_il7k7"]
 [ext_resource type="PackedScene" uid="uid://b020lesiynlbr" path="res://Enclosures/enclosure_scene.tscn" id="55_54dhb"]
 [ext_resource type="PackedScene" uid="uid://dvlhldkt22u1u" path="res://Scenery/Rocks/rock_piece.tscn" id="55_ywjan"]
 [ext_resource type="Script" path="res://Managers/peep_navigation_region.gd" id="61_8dedt"]
 [ext_resource type="PackedScene" uid="uid://c2x0h40jh0wj6" path="res://staff.tscn" id="69_ba76w"]
-[ext_resource type="Resource" uid="uid://ccsw3cdj7hvqt" path="res://Buildings/italian_restaurant.tres" id="70_8rtrj"]
+[ext_resource type="Resource" uid="uid://ccsw3cdj7hvqt" path="res://Buildings/BuildingResources/italian_restaurant.tres" id="70_8rtrj"]
 [ext_resource type="PackedScene" uid="uid://baic6x8rh68v8" path="res://UI/UI popups/ui_animal_popup.tscn" id="73_mv3dj"]
 [ext_resource type="Theme" uid="uid://qsq4gutgth07" path="res://UI/default_theme.tres" id="74_7k2ss"]
 [ext_resource type="Script" uid="uid://bngrxugl7sj74" path="res://UI/ui_show.gd" id="74_d5mka"]
 [ext_resource type="PackedScene" uid="uid://dcmmhhcwneqel" path="res://Scenery/Fixtures/bench_scene.tscn" id="78_uy80e"]
 [ext_resource type="Texture2D" uid="uid://bgsedt3bhj4my" path="res://Enclosures/Fences/fence_exp1.png" id="82_auu6y"]
 [ext_resource type="PackedScene" uid="uid://fhgu3i03484t" path="res://UI/UI popups/ui_peep_group_popup.tscn" id="83_4rd2l"]
-[ext_resource type="Texture2D" uid="uid://boc2fhvy7oxq2" path="res://UI/Icons/brickwall.png" id="85_2nbob"]
 [ext_resource type="Theme" uid="uid://dnjl2onbgc2xp" path="res://UI/main_tool_panel.tres" id="86_vgvmu"]
 [ext_resource type="Script" uid="uid://t3naf2okb6cm" path="res://UI/ui_debug_shader.gd" id="87_1b22a"]
+[ext_resource type="Texture2D" uid="uid://bm088drsntwdy" path="res://Sprites/highlight_tiles.png" id="89_mnw77"]
 [ext_resource type="PackedScene" uid="uid://bie8wky7dopo4" path="res://UI/UI popups/ui_mgmt_box.tscn" id="90_kjtd0"]
 [ext_resource type="Script" path="res://UI_info_label.gd" id="94_3glsp"]
-[ext_resource type="Shader" path="res://replace_color.gdshader" id="97_84xii"]
+[ext_resource type="Shader" uid="uid://bu1lv0m1sqnci" path="res://replace_color.gdshader" id="97_84xii"]
 [ext_resource type="Script" path="res://notification_manager.gd" id="98_yvsr8"]
 [ext_resource type="Script" uid="uid://bg7ua3j074tf6" path="res://time_progress_bar.gd" id="99_jcxqu"]
 [ext_resource type="PackedScene" uid="uid://c1lavh6yvgdgb" path="res://UI/notification_label.tscn" id="99_vieuh"]
-[ext_resource type="Texture2D" uid="uid://bnvb82gnm1qy1" path="res://UI/art/Panel1-export.png" id="103_wq3jm"]
+[ext_resource type="Texture2D" uid="uid://b5ehp47ajkovo" path="res://UI/art/buttons.png" id="101_cpm2s"]
+[ext_resource type="Theme" uid="uid://ctgx6ui8lfp8i" path="res://UI/dark_button.tres" id="101_f3y11"]
+[ext_resource type="Texture2D" uid="uid://5jn11yg0ds68" path="res://UI/Icons/icon-construction3.png" id="102_f3y11"]
+[ext_resource type="Texture2D" uid="uid://dtc7ihyg3w5bq" path="res://UI/art/panel_dark.png" id="104_f3y11"]
 [ext_resource type="Theme" uid="uid://b6646spks2n34" path="res://UI/main_tool_subpanel.tres" id="105_6idwh"]
 [ext_resource type="Theme" uid="uid://d1jyuc74dstto" path="res://UI/wooden_panel.tres" id="106_frq2a"]
+[ext_resource type="Texture2D" uid="uid://clu6pr714pcy6" path="res://UI/Icons/icons2.png" id="107_u81y6"]
+[ext_resource type="Texture2D" uid="uid://co7bid28cxdhk" path="res://UI/Icons/icons4.png" id="108_rt5wr"]
+[ext_resource type="Theme" uid="uid://bged1njjfndbj" path="res://UI/bottom_panel.tres" id="108_smeu8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4oys"]
 
@@ -262,17 +268,23 @@ tile_layout = 5
 tile_size = Vector2i(64, 32)
 sources/0 = SubResource("TileSetAtlasSource_y7hke")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mi6kd"]
-texture = ExtResource("3_s04uj")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vjgyh"]
+texture = ExtResource("89_mnw77")
 texture_region_size = Vector2i(64, 32)
-use_texture_padding = false
 0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_gp0kq"]
 tile_shape = 1
 tile_layout = 5
 tile_size = Vector2i(64, 32)
-sources/0 = SubResource("TileSetAtlasSource_mi6kd")
+sources/1 = SubResource("TileSetAtlasSource_vjgyh")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_628s1"]
 texture = ExtResource("3_s04uj")
@@ -336,58 +348,141 @@ expand_margin_top = 3.0
 expand_margin_right = 3.0
 expand_margin_bottom = 3.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfsr6"]
-bg_color = Color(0.772697, 0.923297, 0.949193, 1)
+[sub_resource type="Theme" id="Theme_jcxqu"]
+default_font_size = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h6ule"]
-bg_color = Color(0.434763, 0.167469, 0.176031, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u81y6"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4kedo"]
-bg_color = Color(2.21401e-06, 0.994918, 0.422684, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cpm2s"]
+texture = ExtResource("101_cpm2s")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(402, 408, 152, 152)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lw6jx"]
-bg_color = Color(0.745479, 0.49032, 0.166407, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d5iia"]
+texture = ExtResource("101_cpm2s")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(402, 408, 152, 152)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_asu84"]
+texture = ExtResource("101_cpm2s")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(402, 408, 152, 152)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u81y6"]
+texture = ExtResource("101_cpm2s")
+region_rect = Rect2(20, 404, 152, 160)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qwt6e"]
+texture = ExtResource("101_cpm2s")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(402, 792, 152, 152)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_off2o"]
+texture = ExtResource("101_cpm2s")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(402, 792, 152, 152)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tttfs"]
+texture = ExtResource("101_cpm2s")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(402, 792, 152, 152)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rt5wr"]
+texture = ExtResource("101_cpm2s")
+region_rect = Rect2(20, 788, 152, 160)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1iygd"]
+texture = ExtResource("101_cpm2s")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(402, 216, 152, 152)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g5xqc"]
+texture = ExtResource("101_cpm2s")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(402, 216, 152, 152)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s4o1y"]
+texture = ExtResource("101_cpm2s")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(402, 216, 152, 152)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mnw77"]
+texture = ExtResource("101_cpm2s")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+region_rect = Rect2(20, 212, 152, 160)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7mmqq"]
+texture = ExtResource("101_cpm2s")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(402, 600, 152, 152)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3exxq"]
+texture = ExtResource("101_cpm2s")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(402, 600, 152, 152)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5aa3q"]
+texture = ExtResource("101_cpm2s")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(402, 600, 152, 152)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vjgyh"]
+texture = ExtResource("101_cpm2s")
+region_rect = Rect2(20, 596, 152, 160)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xw6u2"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_py85x"]
-content_margin_top = 15.0
-bg_color = Color(0.905882, 0.509804, 0.156863, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-corner_detail = 3
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fd1y8"]
-texture = ExtResource("103_wq3jm")
-texture_margin_left = 15.0
-texture_margin_top = 15.0
-texture_margin_right = 15.0
-texture_margin_bottom = 15.0
+texture = ExtResource("104_f3y11")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
 axis_stretch_horizontal = 1
-region_rect = Rect2(12, 18, 246, 156)
+region_rect = Rect2(20, 20, 152, 160)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvp6u"]
-content_margin_left = 8.0
-content_margin_right = 8.0
-bg_color = Color(0.729266, 0.548056, 0.379718, 1)
-border_color = Color(0.891, 0.891, 0.891, 0.122)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-corner_detail = 2
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cpm2s"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0dfji"]
-
-[sub_resource type="Theme" id="Theme_jcxqu"]
-default_font_size = 16
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ogm70"]
 shader = ExtResource("97_84xii")
@@ -419,7 +514,7 @@ script = ExtResource("1_nisry")
 script = ExtResource("2_hhygd")
 z_index_renderer = ExtResource("3_rhpto")
 
-[node name="InputController" type="Node2D" parent="." node_paths=PackedStringArray("scenery_manager", "animal_manager")]
+[node name="InputController" type="Node2D" parent="." node_paths=PackedStringArray("scenery_manager", "animal_manager") groups=["Camera"]]
 y_sort_enabled = true
 script = ExtResource("1_ojpln")
 scenery_manager = NodePath("../Objects/SceneryManager")
@@ -574,7 +669,7 @@ position = Vector2(-1343, 690)
 navigation_polygon = SubResource("NavigationPolygon_mw1lm")
 script = ExtResource("61_8dedt")
 
-[node name="TileMap" type="Node2D" parent="."]
+[node name="TileMap" type="Node2D" parent="." groups=["TilemapManager"]]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_xst71")
 
@@ -640,7 +735,6 @@ navigation_enabled = false
 metadata/_edit_lock_ = true
 
 [node name="HighlightLayer" type="TileMapLayer" parent="TileMap"]
-modulate = Color(0.738918, 0.313527, 0.258224, 0.282353)
 tile_set = SubResource("TileSet_gp0kq")
 script = ExtResource("6_5hq40")
 metadata/_edit_lock_ = true
@@ -656,11 +750,17 @@ texture_filter = 1
 material = ExtResource("4_21t5t")
 tile_map_data = PackedByteArray("AAADAC4AAgAAAAEAAAAEAC4AAgAAAAEAAAAFAC4AAgAAAAEAAAAGAC4AAgAAAAEAAAAHAC4AAgAAAAEAAAAIAC4AAgAAAAEAAAAJAC4AAgAAAAEAAAAKAC4AAgAAAAEAAAALAC4AAgAAAAEAAAAMAC4AAgAAAAEAAAANAC4AAgAAAAEAAAAOAC4AAgAAAAEAAAAPAC4AAgAAAAEAAAAQAC4AAgAAAAEAAAARAC4AAgAAAAEAAAASAC4AAgAAAAEAAAATAC4AAgAAAAEAAAAUAC4AAgAAAAEAAAAVAC4AAgAAAAEAAAAWAC4AAgAAAAEAAAAXAC4AAgAAAAEAAAAYAC4AAgAAAAEAAAAZAC4AAgAAAAEAAAAaAC4AAgAAAAEAAAAbAC4AAgAAAAEAAAAcAC4AAgAAAAEAAAAdAC4AAgAAAAEAAAAeAC4AAgAAAAEAAAAfAC4AAgAAAAEAAAAgAC4AAgAAAAEAAAAhAC4AAgAAAAEAAAAiAC4AAgAAAAEAAAAjAC4AAgAAAAEAAAAkAC4AAgAAAAEAAAAlAC4AAgAAAAEAAAAmAC4AAgAAAAEAAAAnAC4AAgAAAAEAAAAoAC4AAgAAAAEAAAApAC4AAgAAAAEAAAAqAC4AAgAAAAEAAAArAC4AAgAAAAEAAAAsAC4AAgAAAAEAAAAtAC0AAgABAAEAAAAtACwAAgABAAEAAAAtACsAAgABAAEAAAAtACoAAgABAAEAAAAtACkAAgABAAEAAAAtACgAAgABAAEAAAAtACcAAgABAAEAAAAtACYAAgABAAEAAAAtACUAAgABAAEAAAAtACQAAgABAAEAAAAtACMAAgABAAEAAAAtACIAAgABAAEAAAAtACEAAgABAAEAAAAtACAAAgABAAEAAAAtAB8AAgABAAEAAAAtAB4AAgABAAEAAAAtAB0AAgABAAEAAAAtABwAAgABAAEAAAAtABsAAgABAAEAAAAtABoAAgABAAEAAAAtABkAAgABAAEAAAAtABgAAgABAAEAAAAtABcAAgABAAEAAAAtABYAAgABAAEAAAAtABUAAgABAAEAAAAtABQAAgABAAEAAAAtABMAAgABAAEAAAAtABIAAgABAAEAAAAtABEAAgABAAEAAAAtABAAAgABAAEAAAAtAA8AAgABAAEAAAAtAA4AAgABAAEAAAAtAA0AAgABAAEAAAAtAAwAAgABAAEAAAAtAAsAAgABAAEAAAAtAAoAAgABAAEAAAAtAAkAAgABAAEAAAAtAAgAAgABAAEAAAAtAAcAAgABAAEAAAAtAAYAAgABAAEAAAAtAAUAAgABAAEAAAAtAAQAAgABAAEAAAAtAAMAAgABAAEAAAAtAAIAAgABAAEAAAAtAAEAAgABAAEAAAAtAAAAAgABAAEAAAAtAP//AgABAAEAAAAtAP7/AgABAAEAAAAtAP3/AgABAAEAAAAtAPz/AgABAAEAAAAtAPv/AgABAAEAAAAtAPr/AgABAAEAAAAtAPn/AgABAAEAAAAtAPj/AgABAAEAAAAtAPf/AgABAAEAAAAtAPb/AgABAAEAAAAtAPX/AgABAAEAAAAtAPT/AgABAAEAAAAtAPP/AgABAAEAAAAtAPL/AgABAAEAAAAtAPH/AgABAAEAAAAtAPD/AgABAAEAAAAtAO//AgABAAEAAAAtAO7/AgABAAEAAAAtAO3/AgABAAEAAAAtAOz/AgABAAEAAAAtAOv/AgABAAEAAAAtAOr/AgABAAEAAAAtAOn/AgABAAEAAAAtAOj/AgABAAEAAAAtAOf/AgABAAEAAAAtAOb/AgABAAEAAAAtAOX/AgABAAEAAAAtAOT/AgABAAEAAAAtAOP/AgABAAEAAAAtAOL/AgABAAEAAAAtAOH/AgABAAEAAAAtAOD/AgABAAEAAAAtAN//AgABAAEAAAAtAN7/AgABAAEAAAAtAN3/AgABAAEAAAAtANz/AgABAAEAAAAtANv/AgABAAEAAAAtANr/AgABAAEAAAAtANn/AgABAAEAAAAtANj/AgABAAEAAAAtANf/AgABAAEAAAAtANb/AgABAAEAAAAtANX/AgABAAEAAAAtANT/AgABAAEAAAAsANP/AgACAAEAAAArANP/AgACAAEAAAAqANP/AgACAAEAAAApANP/AgACAAEAAAAoANP/AgACAAEAAAAnANP/AgACAAEAAAAmANP/AgACAAEAAAAlANP/AgACAAEAAAAkANP/AgACAAEAAAAjANP/AgACAAEAAAAiANP/AgACAAEAAAAhANP/AgACAAEAAAAgANP/AgACAAEAAAAfANP/AgACAAEAAAAeANP/AgACAAEAAAAdANP/AgACAAEAAAAcANP/AgACAAEAAAAbANP/AgACAAEAAAAaANP/AgACAAEAAAAZANP/AgACAAEAAAAYANP/AgACAAEAAAAXANP/AgACAAEAAAAWANP/AgACAAEAAAAVANP/AgACAAEAAAAUANP/AgACAAEAAAATANP/AgACAAEAAAASANP/AgACAAEAAAARANP/AgACAAEAAAAQANP/AgACAAEAAAAPANP/AgACAAEAAAAOANP/AgACAAEAAAANANP/AgACAAEAAAAMANP/AgACAAEAAAALANP/AgACAAEAAAAKANP/AgACAAEAAAAJANP/AgACAAEAAAAIANP/AgACAAEAAAAHANP/AgACAAEAAAAGANP/AgACAAEAAAAFANP/AgACAAEAAAAEANP/AgACAAEAAAADANP/AgACAAEAAAACANP/AgACAAEAAAABANP/AgACAAEAAAAAANP/AgACAAEAAAD//9P/AgACAAEAAAD+/9P/AgACAAEAAAD9/9P/AgACAAEAAAD8/9P/AgACAAEAAAD7/9P/AgACAAEAAAD6/9P/AgACAAEAAAD5/9P/AgACAAEAAAD4/9P/AgACAAEAAAD3/9P/AgACAAEAAAD2/9P/AgACAAEAAAD1/9P/AgACAAEAAAD0/9P/AgACAAEAAADz/9P/AgACAAEAAADy/9P/AgACAAEAAADx/9P/AgACAAEAAADw/9P/AgACAAEAAADv/9P/AgACAAEAAADu/9P/AgACAAEAAADt/9P/AgACAAEAAADs/9P/AgACAAEAAADr/9P/AgACAAEAAADq/9P/AgACAAEAAADp/9P/AgACAAEAAADo/9P/AgACAAEAAADn/9P/AgACAAEAAADm/9P/AgACAAEAAADl/9P/AgACAAEAAADk/9P/AgACAAEAAADj/9P/AgACAAEAAADi/9P/AgACAAEAAADh/9P/AgACAAEAAADg/9P/AgACAAEAAADf/9P/AgACAAEAAADe/9P/AgACAAEAAADd/9P/AgACAAEAAADc/9P/AgACAAEAAADb/9P/AgACAAEAAADa/9P/AgACAAEAAADZ/9P/AgACAAEAAADY/9P/AgACAAEAAADX/9P/AgACAAEAAADW/9P/AgACAAEAAADV/9P/AgACAAEAAADU/9P/AgACAAEAAADT/9P/AgACAAEAAADS/9T/AgADAAEAAADS/9X/AgADAAEAAADS/9b/AgADAAEAAADS/9f/AgADAAEAAADS/9j/AgADAAEAAADS/9n/AgADAAEAAADS/9r/AgADAAEAAADS/9v/AgADAAEAAADS/9z/AgADAAEAAADS/93/AgADAAEAAADS/97/AgADAAEAAADS/9//AgADAAEAAADS/+D/AgADAAEAAADS/+H/AgADAAEAAADS/+L/AgADAAEAAADS/+P/AgADAAEAAADS/+T/AgADAAEAAADS/+X/AgADAAEAAADS/+b/AgADAAEAAADS/+f/AgADAAEAAADS/+j/AgADAAEAAADS/+n/AgADAAEAAADS/+r/AgADAAEAAADS/+v/AgADAAEAAADS/+z/AgADAAEAAADS/+3/AgADAAEAAADS/+7/AgADAAEAAADS/+//AgADAAEAAADS//D/AgADAAEAAADS//H/AgADAAEAAADS//L/AgADAAEAAADS//P/AgADAAEAAADS//T/AgADAAEAAADS//X/AgADAAEAAADS//b/AgADAAEAAADS//f/AgADAAEAAADS//j/AgADAAEAAADS//n/AgADAAEAAADS//r/AgADAAEAAADS//v/AgADAAEAAADS//z/AgADAAEAAADS//3/AgADAAEAAADS//7/AgADAAEAAADS////AgADAAEAAADS/wAAAgADAAEAAADS/wEAAgADAAEAAADS/wIAAgADAAEAAADS/wMAAgADAAEAAADS/wQAAgADAAEAAADS/wUAAgADAAEAAADS/wYAAgADAAEAAADS/wcAAgADAAEAAADS/wgAAgADAAEAAADS/wkAAgADAAEAAADS/woAAgADAAEAAADS/wsAAgADAAEAAADS/wwAAgADAAEAAADS/w0AAgADAAEAAADS/w4AAgADAAEAAADS/w8AAgADAAEAAADS/xAAAgADAAEAAADS/xEAAgADAAEAAADS/xIAAgADAAEAAADS/xMAAgADAAEAAADS/xQAAgADAAEAAADS/xUAAgADAAEAAADS/xYAAgADAAEAAADS/xcAAgADAAEAAADS/xgAAgADAAEAAADS/xkAAgADAAEAAADS/xoAAgADAAEAAADS/xsAAgADAAEAAADS/xwAAgADAAEAAADS/x0AAgADAAEAAADS/x4AAgADAAEAAADS/x8AAgADAAEAAADS/yAAAgADAAEAAADS/yEAAgADAAEAAADS/yIAAgADAAEAAADS/yMAAgADAAEAAADS/yQAAgADAAEAAADS/yUAAgADAAEAAADS/yYAAgADAAEAAADS/ycAAgADAAEAAADS/ygAAgADAAEAAADS/ykAAgADAAEAAADS/yoAAgADAAEAAADS/ysAAgADAAEAAADS/ywAAgADAAEAAADS/y0AAgADAAEAAADT/y4AAgAAAAEAAADU/y4AAgAAAAEAAADV/y4AAgAAAAEAAADW/y4AAgAAAAEAAADX/y4AAgAAAAEAAADY/y4AAgAAAAEAAADZ/y4AAgAAAAEAAADa/y4AAgAAAAEAAADb/y4AAgAAAAEAAADc/y4AAgAAAAEAAADd/y4AAgAAAAEAAADe/y4AAgAAAAEAAADf/y4AAgAAAAEAAADg/y4AAgAAAAEAAADh/y4AAgAAAAEAAADi/y4AAgAAAAEAAADj/y4AAgAAAAEAAADk/y4AAgAAAAEAAADl/y4AAgAAAAEAAADm/y4AAgAAAAEAAADn/y4AAgAAAAEAAADo/y4AAgAAAAEAAADp/y4AAgAAAAEAAADq/y4AAgAAAAEAAADr/y4AAgAAAAEAAADs/y4AAgAAAAEAAADt/y4AAgAAAAEAAADu/y4AAgAAAAEAAADv/y4AAgAAAAEAAADw/y4AAgAAAAEAAADx/y4AAgAAAAEAAADy/y4AAgAAAAEAAADz/y4AAgAAAAEAAAD0/y4AAgAAAAEAAAD1/y4AAgAAAAEAAAD2/y4AAgAAAAEAAAD3/y4AAgAAAAEAAAD4/y4AAgAAAAEAAAD5/y4AAgAAAAEAAAD6/y4AAgAAAAEAAAD7/y4AAgAAAAEAAAD8/y4AAgAAAAEAAAD9/y4AAgAAAAEAAAADAC0AAgABAAEAAAD9/y0AAgADAAEAAAA=")
 tile_set = SubResource("TileSet_78wrr")
+metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("inputController") groups=["Camera"]]
 position = Vector2(-990, 636)
+limit_left = -3500
+limit_top = -1750
+limit_right = 3500
+limit_bottom = 1750
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
+editor_draw_limits = true
 script = ExtResource("7_pw5dd")
 inputController = NodePath("../InputController")
 min_zoom = Vector2(0.75, 0.75)
@@ -677,6 +777,7 @@ ui_peep_group_popup = ExtResource("83_4rd2l")
 [node name="InfoBorder" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 layer = 3
+visible = false
 
 [node name="InfoBorderPanel" type="Panel" parent="InfoBorder"]
 anchors_preset = 15
@@ -699,889 +800,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="MainMargin" type="MarginContainer" parent="UI/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-mouse_filter = 2
 theme = ExtResource("74_7k2ss")
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 30
 metadata/_edit_lock_ = true
-
-[node name="MainConstruction" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin"]
-layout_mode = 2
-
-[node name="BuildModeSidePanel" type="Control" parent="UI/VBoxContainer/MainMargin/MainConstruction"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="SidePanel" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -480.0
-offset_right = 260.0
-grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="ConstructionSidePanel" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="CameraButtonPanel" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/ConstructionSidePanel"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_cfsr6")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/ConstructionSidePanel/CameraButtonPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="CameraTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/ConstructionSidePanel/CameraButtonPanel/MarginContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Move
- Camera"
-
-[node name="BulldozerButtonPanel2" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/ConstructionSidePanel"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_h6ule")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/ConstructionSidePanel/BulldozerButtonPanel2"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="BulldozerTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/ConstructionSidePanel/BulldozerButtonPanel2/MarginContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Bulldoze"
-
-[node name="BuildingSidePanel" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="CameraButtonPanel" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/BuildingSidePanel"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_4kedo")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/BuildingSidePanel/CameraButtonPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="BuildTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/BuildingSidePanel/CameraButtonPanel/MarginContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Build"
-
-[node name="RotateButtonPanel" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/BuildingSidePanel"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_lw6jx")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/BuildingSidePanel/RotateButtonPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="RotateTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/BuildingSidePanel/RotateButtonPanel/MarginContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Rotate"
-
-[node name="BuildModeButtonContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_xw6u2")
-
-[node name="BuildModeButton" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeButtonContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 125)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_py85x")
-toggle_mode = true
-action_mode = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeButtonContainer/BuildModeButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeButtonContainer/BuildModeButton/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("85_2nbob")
-expand_mode = 5
-
-[node name="ConstructionToolsContainer" type="Control" parent="UI/VBoxContainer/MainMargin/MainConstruction"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="Top-Left" type="Control" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer"]
-layout_mode = 2
-anchors_preset = 0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-mouse_filter = 2
-
-[node name="ConstructionMain" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left"]
-layout_mode = 1
-offset_right = 129.0
-offset_bottom = 184.0
-
-[node name="ToolPanel" type="Control" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain"]
-layout_mode = 2
-
-[node name="ToolPanel" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel"]
-unique_name_in_owner = true
-layout_mode = 2
-offset_left = 4.0
-offset_right = 1104.0
-offset_bottom = 255.0
-script = ExtResource("74_d5mka")
-
-[node name="PanelContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_fd1y8")
-
-[node name="MainPanel" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-theme = ExtResource("86_vgvmu")
-theme_override_styles/panel = SubResource("StyleBoxFlat_rvp6u")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel"]
-layout_mode = 2
-size_flags_vertical = 0
-mouse_filter = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_constants/separation = 5
-
-[node name="ToolContainer" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 8
-
-[node name="PathTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Path"
-
-[node name="EnclosureTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Enclosure"
-
-[node name="AnimalTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Animal"
-
-[node name="BuildingTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Buildings"
-
-[node name="SceneryTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Scenery"
-
-[node name="TerrainTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-text = "Terrain"
-
-[node name="WaterTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-text = "Water"
-
-[node name="ToolContainer2" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 5
-
-[node name="Subpanel" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("105_6idwh")
-
-[node name="ScenerySubpanel" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/ScenerySubpanel"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 5
-
-[node name="ToolContainer" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 5
-
-[node name="SceneryTreesTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Trees"
-
-[node name="SceneryVegetationTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Vegetation"
-
-[node name="SceneryFixtureTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Fixtures"
-
-[node name="SceneryDecorationTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Decorations"
-
-[node name="SceneryRockTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Rocks"
-
-[node name="EnclosureSubpanel" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_vertical = 0
-mouse_filter = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/EnclosureSubpanel"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 5
-
-[node name="ToolContainer" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/EnclosureSubpanel/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 5
-
-[node name="EnclosureFenceTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/EnclosureSubpanel/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Fences"
-
-[node name="EnclosureShelterTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/EnclosureSubpanel/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Shelter"
-
-[node name="EnclosureToyTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/EnclosureSubpanel/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Toys"
-
-[node name="BuildingSubpanel" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 0
-mouse_filter = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/BuildingSubpanel"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 5
-
-[node name="ToolContainer" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/BuildingSubpanel/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 5
-
-[node name="BuildingEateryTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/BuildingSubpanel/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Eateries"
-
-[node name="BuildingRestaurntTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/BuildingSubpanel/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Restaurants"
-
-[node name="BuildingServicesTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/BuildingSubpanel/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Services"
-
-[node name="BuildingAdministrationTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/BuildingSubpanel/HBoxContainer/ToolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(125, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Administration"
-
-[node name="ElementInfoPanel" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(1100, 255)
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ElementInfoPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ElementInfoPanel/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Giraffe"
-
-[node name="Label2" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ElementInfoPanel/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Giraffe"
-
-[node name="Label3" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ElementInfoPanel/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Giraffe"
-
-[node name="Top-Right" type="Control" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[node name="SelectionMenu" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -364.0
-offset_bottom = 750.0
-grow_horizontal = 0
-size_flags_vertical = 10
-mouse_filter = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/PanelContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="AnimalContinentFilter" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Africa" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
-layout_mode = 2
-text = "Africa"
-
-[node name="Africa6" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
-layout_mode = 2
-text = "Asia"
-
-[node name="Africa2" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
-layout_mode = 2
-text = "S. America"
-
-[node name="Africa3" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
-layout_mode = 2
-text = "N. America"
-
-[node name="Africa5" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
-layout_mode = 2
-text = "Europe"
-
-[node name="Africa4" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
-layout_mode = 2
-text = "Oceania"
-
-[node name="SelectionPanel" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(380, 800)
-layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_0dfji")
-
-[node name="PathMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme = ExtResource("106_frq2a")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/PathMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/PathMenu/MarginContainer"]
-layout_mode = 2
-
-[node name="PathSelectionContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/PathMenu/MarginContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="UiPathElement" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/PathMenu/MarginContainer/ScrollContainer/PathSelectionContainer" instance=ExtResource("7_tmdpf")]
-custom_minimum_size = Vector2(370, 148)
-layout_mode = 2
-
-[node name="EnclosureMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme = ExtResource("106_frq2a")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EnclosureMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(160, 0)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="EnclosureSelectionContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer/HBoxContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="UiEnclosureElement" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer/HBoxContainer/ScrollContainer/EnclosureSelectionContainer" instance=ExtResource("54_il7k7")]
-custom_minimum_size = Vector2(280, 148)
-layout_mode = 2
-
-[node name="UiEnclosureElement2" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer/HBoxContainer/ScrollContainer/EnclosureSelectionContainer" instance=ExtResource("54_il7k7")]
-custom_minimum_size = Vector2(280, 148)
-layout_mode = 2
-
-[node name="EntranceTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-modulate = Color(0.404932, 1, 0.136147, 1)
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Place entrance"
-
-[node name="ShelterMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme = ExtResource("106_frq2a")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/ShelterMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/ShelterMenu/MarginContainer"]
-custom_minimum_size = Vector2(360, 0)
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="ShelterSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/ShelterMenu/MarginContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-columns = 2
-
-[node name="AnimalMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme = ExtResource("106_frq2a")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/AnimalMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/AnimalMenu/MarginContainer"]
-custom_minimum_size = Vector2(380, 0)
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="AnimalSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/AnimalMenu/MarginContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-columns = 2
-
-[node name="AnimalElement" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/AnimalMenu/MarginContainer/ScrollContainer/AnimalSelectionContainer" instance=ExtResource("21_a35of")]
-layout_mode = 2
-
-[node name="EateryMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme = ExtResource("106_frq2a")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EateryMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EateryMenu/MarginContainer"]
-custom_minimum_size = Vector2(360, 0)
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="EaterySelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EateryMenu/MarginContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-columns = 2
-
-[node name="RestaurantMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme = ExtResource("106_frq2a")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/RestaurantMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/RestaurantMenu/MarginContainer"]
-custom_minimum_size = Vector2(360, 0)
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="RestaurantSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/RestaurantMenu/MarginContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-columns = 2
-
-[node name="ServicesMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme = ExtResource("106_frq2a")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/ServicesMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/ServicesMenu/MarginContainer"]
-custom_minimum_size = Vector2(360, 0)
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="ServicesSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/ServicesMenu/MarginContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-columns = 2
-
-[node name="AdministrationMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme = ExtResource("106_frq2a")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/AdministrationMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/AdministrationMenu/MarginContainer"]
-custom_minimum_size = Vector2(360, 0)
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="AdministrationSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/AdministrationMenu/MarginContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-columns = 2
-
-[node name="TreesMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme = ExtResource("106_frq2a")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TreesMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TreesMenu/MarginContainer"]
-custom_minimum_size = Vector2(360, 0)
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="TreesSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TreesMenu/MarginContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-columns = 2
-
-[node name="VegetationMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme = ExtResource("106_frq2a")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/VegetationMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/VegetationMenu/MarginContainer"]
-custom_minimum_size = Vector2(360, 0)
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="VegetationSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/VegetationMenu/MarginContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-columns = 2
-
-[node name="FixtureMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme = ExtResource("106_frq2a")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/FixtureMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/FixtureMenu/MarginContainer"]
-layout_mode = 2
-
-[node name="FixtureSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/FixtureMenu/MarginContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-columns = 2
-
-[node name="DecorationMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme = ExtResource("106_frq2a")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/DecorationMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/DecorationMenu/MarginContainer"]
-custom_minimum_size = Vector2(360, 0)
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="DecorationSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/DecorationMenu/MarginContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-columns = 2
-
-[node name="RockMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme = ExtResource("106_frq2a")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/RockMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/RockMenu/MarginContainer"]
-custom_minimum_size = Vector2(360, 0)
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="RockSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/RockMenu/MarginContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-columns = 2
-
-[node name="TerrainMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
-unique_name_in_owner = true
-clip_contents = true
-layout_mode = 2
-theme = ExtResource("106_frq2a")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 2
-
-[node name="TerrainSelectionContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="UiTerrainElement" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer/TerrainSelectionContainer" instance=ExtResource("8_qghle")]
-layout_mode = 2
-size_flags_horizontal = 1
-
-[node name="UiTerrainElement2" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer/TerrainSelectionContainer" instance=ExtResource("8_qghle")]
-layout_mode = 2
-
-[node name="UiTerrainElement3" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer/TerrainSelectionContainer" instance=ExtResource("8_qghle")]
-layout_mode = 2
-
-[node name="UiTerrainElement4" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer/TerrainSelectionContainer" instance=ExtResource("8_qghle")]
-layout_mode = 2
-
-[node name="UiTerrainElement5" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer/TerrainSelectionContainer" instance=ExtResource("8_qghle")]
-layout_mode = 2
-
-[node name="UiTerrainElement6" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer/TerrainSelectionContainer" instance=ExtResource("8_qghle")]
-layout_mode = 2
 
 [node name="MainOptions" type="Control" parent="UI/VBoxContainer/MainMargin"]
 unique_name_in_owner = true
@@ -1864,6 +1094,7 @@ size_flags_horizontal = 10
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
+theme = ExtResource("101_f3y11")
 toggle_mode = true
 text = "|||"
 
@@ -1922,19 +1153,972 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Save"
 
+[node name="MainConstruction" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="BuildModeSidePanel" type="Control" parent="UI/VBoxContainer/MainMargin/MainConstruction"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="SidePanel" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -393.0
+offset_right = 219.0
+offset_bottom = -13.0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="ConstructionSidePanel" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="CameraButtonPanel" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/ConstructionSidePanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_u81y6")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/ConstructionSidePanel/CameraButtonPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CameraTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/ConstructionSidePanel/CameraButtonPanel/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxTexture_cpm2s")
+theme_override_styles/hover = SubResource("StyleBoxTexture_d5iia")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_asu84")
+theme_override_styles/normal = SubResource("StyleBoxTexture_u81y6")
+text = "Move
+ Camera"
+
+[node name="BulldozerButtonPanel2" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/ConstructionSidePanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_u81y6")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/ConstructionSidePanel/BulldozerButtonPanel2"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BulldozerTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/ConstructionSidePanel/BulldozerButtonPanel2/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxTexture_qwt6e")
+theme_override_styles/hover = SubResource("StyleBoxTexture_off2o")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_tttfs")
+theme_override_styles/normal = SubResource("StyleBoxTexture_rt5wr")
+text = "Bulldoze"
+
+[node name="BuildingSidePanel" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="CameraButtonPanel" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/BuildingSidePanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_u81y6")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/BuildingSidePanel/CameraButtonPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BuildTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/BuildingSidePanel/CameraButtonPanel/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxTexture_1iygd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_g5xqc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_s4o1y")
+theme_override_styles/normal = SubResource("StyleBoxTexture_mnw77")
+text = "Build"
+
+[node name="RotateButtonPanel" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/BuildingSidePanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_u81y6")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/BuildingSidePanel/RotateButtonPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="RotateTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/BuildingSidePanel/RotateButtonPanel/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/focus = SubResource("StyleBoxTexture_7mmqq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3exxq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_5aa3q")
+theme_override_styles/normal = SubResource("StyleBoxTexture_vjgyh")
+text = "Rotate"
+
+[node name="BuildModeButtonContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xw6u2")
+
+[node name="BuildModeButton" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeButtonContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("101_f3y11")
+toggle_mode = true
+action_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeButtonContainer/BuildModeButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeButtonContainer/BuildModeButton/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("102_f3y11")
+expand_mode = 5
+
+[node name="ConstructionToolsContainer" type="Control" parent="UI/VBoxContainer/MainMargin/MainConstruction"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Top-Left" type="Control" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+anchors_preset = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="ConstructionMain" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left"]
+layout_mode = 1
+offset_right = 129.0
+offset_bottom = 184.0
+
+[node name="ToolPanel" type="Control" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain"]
+layout_mode = 2
+
+[node name="ToolPanel" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 4.0
+offset_right = 1015.0
+offset_bottom = 282.0
+script = ExtResource("74_d5mka")
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_fd1y8")
+
+[node name="MainPanel" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("86_vgvmu")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_cpm2s")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="ToolContainer" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("101_f3y11")
+theme_override_constants/separation = 16
+
+[node name="PathTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Path"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/PathTool"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/PathTool/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("107_u81y6")
+expand_mode = 5
+
+[node name="EnclosureTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 26
+text = "Enclosure"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/EnclosureTool"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/EnclosureTool/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("108_rt5wr")
+expand_mode = 5
+
+[node name="AnimalTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Animals"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/AnimalTool"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/AnimalTool/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("107_u81y6")
+expand_mode = 5
+
+[node name="BuildingTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buildings"
+
+[node name="SceneryTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Scenery"
+
+[node name="TerrainTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+text = "Terrain"
+
+[node name="WaterTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+text = "Water"
+
+[node name="ToolContainer2" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="Subpanel" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("105_6idwh")
+
+[node name="ScenerySubpanel" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("101_f3y11")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/ScenerySubpanel"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="ToolContainer" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="SceneryTreesTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Trees"
+
+[node name="SceneryVegetationTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Vegetation"
+
+[node name="SceneryFixtureTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fixtures"
+
+[node name="SceneryDecorationTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Decorations"
+
+[node name="SceneryRockTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/ScenerySubpanel/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rocks"
+
+[node name="EnclosureSubpanel" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme = ExtResource("101_f3y11")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/EnclosureSubpanel"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="ToolContainer" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/EnclosureSubpanel/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="EnclosureFenceTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/EnclosureSubpanel/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fences"
+
+[node name="EnclosureShelterTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/EnclosureSubpanel/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Shelter"
+
+[node name="EnclosureToyTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/EnclosureSubpanel/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Toys"
+
+[node name="BuildingSubpanel" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme = ExtResource("101_f3y11")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/BuildingSubpanel"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="ToolContainer" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/BuildingSubpanel/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="BuildingEateryTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/BuildingSubpanel/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Eateries"
+
+[node name="BuildingRestaurntTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/BuildingSubpanel/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Restaurants"
+
+[node name="BuildingServicesTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/BuildingSubpanel/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Services"
+
+[node name="BuildingAdministrationTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/Subpanel/BuildingSubpanel/HBoxContainer/ToolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Administration"
+
+[node name="ElementInfoPanel" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(1100, 255)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ElementInfoPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ElementInfoPanel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Giraffe"
+
+[node name="Label2" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ElementInfoPanel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Giraffe"
+
+[node name="Label3" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ElementInfoPanel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Giraffe"
+
+[node name="Top-Right" type="Control" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="SelectionMenu" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -364.0
+offset_bottom = 750.0
+grow_horizontal = 0
+size_flags_vertical = 10
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/PanelContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="AnimalContinentFilter" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Africa" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
+layout_mode = 2
+text = "Africa"
+
+[node name="Africa6" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
+layout_mode = 2
+text = "Asia"
+
+[node name="Africa2" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
+layout_mode = 2
+text = "S. America"
+
+[node name="Africa3" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
+layout_mode = 2
+text = "N. America"
+
+[node name="Africa5" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
+layout_mode = 2
+text = "Europe"
+
+[node name="Africa4" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/PanelContainer/MarginContainer/AnimalContinentFilter"]
+layout_mode = 2
+text = "Oceania"
+
+[node name="SelectionPanel" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(380, 800)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0dfji")
+
+[node name="PathMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("106_frq2a")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/PathMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/PathMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="PathSelectionContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/PathMenu/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="UiPathElement" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/PathMenu/MarginContainer/ScrollContainer/PathSelectionContainer" instance=ExtResource("7_tmdpf")]
+custom_minimum_size = Vector2(370, 148)
+layout_mode = 2
+
+[node name="EnclosureMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("106_frq2a")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EnclosureMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EntranceTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.404932, 1, 0.136147, 1)
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+text = "Place entrance"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EnclosureSelectionContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer/HBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="UiEnclosureElement" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer/HBoxContainer/ScrollContainer/EnclosureSelectionContainer" instance=ExtResource("54_il7k7")]
+custom_minimum_size = Vector2(280, 148)
+layout_mode = 2
+
+[node name="UiEnclosureElement2" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer/HBoxContainer/ScrollContainer/EnclosureSelectionContainer" instance=ExtResource("54_il7k7")]
+custom_minimum_size = Vector2(280, 148)
+layout_mode = 2
+
+[node name="ShelterMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("106_frq2a")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/ShelterMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/ShelterMenu/MarginContainer"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="ShelterSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/ShelterMenu/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="AnimalMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("106_frq2a")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/AnimalMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/AnimalMenu/MarginContainer"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="AnimalSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/AnimalMenu/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="AnimalElement" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/AnimalMenu/MarginContainer/ScrollContainer/AnimalSelectionContainer" instance=ExtResource("21_a35of")]
+layout_mode = 2
+
+[node name="EateryMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("106_frq2a")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EateryMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EateryMenu/MarginContainer"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="EaterySelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EateryMenu/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="RestaurantMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("106_frq2a")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/RestaurantMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/RestaurantMenu/MarginContainer"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="RestaurantSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/RestaurantMenu/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="ServicesMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("106_frq2a")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/ServicesMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/ServicesMenu/MarginContainer"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="ServicesSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/ServicesMenu/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="AdministrationMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("106_frq2a")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/AdministrationMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/AdministrationMenu/MarginContainer"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="AdministrationSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/AdministrationMenu/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="TreesMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("106_frq2a")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TreesMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TreesMenu/MarginContainer"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="TreesSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TreesMenu/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="VegetationMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("106_frq2a")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/VegetationMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/VegetationMenu/MarginContainer"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VegetationSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/VegetationMenu/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="FixtureMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("106_frq2a")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/FixtureMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/FixtureMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="FixtureSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/FixtureMenu/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="DecorationMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("106_frq2a")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/DecorationMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/DecorationMenu/MarginContainer"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="DecorationSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/DecorationMenu/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="RockMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("106_frq2a")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/RockMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/RockMenu/MarginContainer"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="RockSelectionContainer" type="GridContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/RockMenu/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="TerrainMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
+unique_name_in_owner = true
+visible = false
+clip_contents = true
+layout_mode = 2
+theme = ExtResource("106_frq2a")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="TerrainSelectionContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="UiTerrainElement" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer/TerrainSelectionContainer" instance=ExtResource("8_qghle")]
+layout_mode = 2
+size_flags_horizontal = 1
+
+[node name="UiTerrainElement2" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer/TerrainSelectionContainer" instance=ExtResource("8_qghle")]
+layout_mode = 2
+
+[node name="UiTerrainElement3" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer/TerrainSelectionContainer" instance=ExtResource("8_qghle")]
+layout_mode = 2
+
+[node name="UiTerrainElement4" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer/TerrainSelectionContainer" instance=ExtResource("8_qghle")]
+layout_mode = 2
+
+[node name="UiTerrainElement5" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer/TerrainSelectionContainer" instance=ExtResource("8_qghle")]
+layout_mode = 2
+
+[node name="UiTerrainElement6" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TerrainMenu/MarginContainer/ScrollContainer/TerrainSelectionContainer" instance=ExtResource("8_qghle")]
+layout_mode = 2
+
 [node name="BottomMargin" type="MarginContainer" parent="UI/VBoxContainer"]
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="UI/VBoxContainer/BottomMargin"]
 layout_mode = 2
-theme = ExtResource("106_frq2a")
+theme = ExtResource("108_smeu8")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/BottomMargin/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = -2
 theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = -2
+theme_override_constants/margin_bottom = -10
 
 [node name="BottomMenu" type="HBoxContainer" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer"]
 layout_mode = 2
@@ -2039,7 +2223,8 @@ metadata/_edit_lock_ = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="PostFX" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_if1ac")
 anchors_preset = 15
 anchor_right = 1.0

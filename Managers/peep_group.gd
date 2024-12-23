@@ -161,7 +161,8 @@ func initialize_peep_group(data):
 		for id in data.desired_destinations_id:
 			desired_enclosures_id.append(int(id))
 		for id in desired_enclosures_id:
-			group_desired_animals.append(ZooManager.zoo_enclosures[id]['especies'].species_id)
+			if ZooManager.zoo_enclosures.keys().has(id):
+				group_desired_animals.append(ZooManager.zoo_enclosures[id]['especies'].species_id)
 	else:
 		peep_count = randi_range(1,4)
 		favorite_animal = ContentManager.animals.keys().pick_random()
@@ -440,6 +441,7 @@ func buy_food():
 	if target_shop.available_products.size() == 0:
 		target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.EMPTY_SHOP)
 		modifiers.append(ModifierManager.PEEP_MODIFIERS.EMPTY_SHOP)
+		visited_buildings.append(target_shop)
 		return
 		
 	## Select items of desirable quality

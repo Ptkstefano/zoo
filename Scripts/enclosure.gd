@@ -9,6 +9,7 @@ var id : int
 var enclosure_cells : Array[Vector2i] = []
 
 var enclosure_animals = []
+var enclosure_tree_ids = []
 
 var enclosure_species : animal_resource
 
@@ -23,7 +24,7 @@ var water_availability : bool
 var terrain_coverage : Dictionary
 var available_shelters : Array[Shelter]
 var herd_size : int
-var herd_density : float
+var cells_per_animal : float
 
 var enclosure_central_point : Vector2
 
@@ -55,16 +56,25 @@ func generate_animal_destination():
 func calculate_enclosure_stats():
 	terrain_coverage = TileMapRef.get_terrain_coverage(enclosure_cells)
 	water_availability = TileMapRef.get_water_availability(enclosure_cells)
-	await get_tree().create_timer(0.1).timeout
 	var enclosure_vegetation = $VegetationDetectionArea.get_overlapping_areas()
+	await get_tree().create_timer(0.1).timeout
+	enclosure_tree_ids.clear()
 	var vegetation_weight_sum = 0
 	for area in enclosure_vegetation:
-		vegetation_weight_sum += area.get_parent().vegetation_weight
+		var main_node = area.get_parent()
+		vegetation_weight_sum += main_node.vegetation_weight
+		if main_node is SceneryTree:
+			if main_node.tree_res.id not in enclosure_tree_ids:
+				enclosure_tree_ids.append(main_node.tree_res.id)
 		
 	vegetation_coverage = vegetation_weight_sum / enclosure_cells.size()
 	herd_size = enclosure_animals.size()
-	herd_density =  float(enclosure_animals.size()) / float(enclosure_cells.size())
+	cells_per_animal = float(enclosure_cells.size()) / float(enclosure_animals.size())
 	enclosure_stats_updated.emit()
+	
+func get_enclosure_trees():
+	return enclosure_tree_ids
+	
 	
 func add_shelter(shelter):
 	available_shelters.append(shelter)

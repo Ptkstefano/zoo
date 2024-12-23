@@ -1,63 +1,66 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://5rinnmfg30fq"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://5rinnmfg30fq"]
 
-[ext_resource type="FontFile" uid="uid://32dcop5n8krs" path="res://UI/RobotoCondensed-Medium.ttf" id="1_628j0"]
+[ext_resource type="FontFile" uid="uid://g2ai6i3wnb5e" path="res://UI/Simple_Script.ttf" id="1_yrdlq"]
+[ext_resource type="Texture2D" uid="uid://dtc7ihyg3w5bq" path="res://UI/art/panel_dark.png" id="2_yrdlq"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nc2ly"]
-content_margin_top = 30.0
-content_margin_bottom = 30.0
-border_width_top = 5
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_color = Color(0, 0, 0, 0.144)
-shadow_size = 8
-shadow_offset = Vector2(7.13, 6.425)
-anti_aliasing_size = 0.01
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yrdlq"]
+content_margin_top = 16.0
+content_margin_bottom = 16.0
+texture = ExtResource("2_yrdlq")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 2.0
+region_rect = Rect2(20, 20, 152, 160)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqlih"]
-content_margin_top = 30.0
-content_margin_bottom = 30.0
-border_width_top = 5
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_color = Color(0, 0, 0, 0.144)
-shadow_size = 8
-shadow_offset = Vector2(7.13, 6.425)
-anti_aliasing_size = 0.01
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oxger"]
+content_margin_top = 16.0
+content_margin_bottom = 16.0
+texture = ExtResource("2_yrdlq")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 4.0
+region_rect = Rect2(210, 20, 152, 160)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkece"]
-content_margin_top = 30.0
-content_margin_bottom = 30.0
-border_width_top = 5
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_color = Color(0, 0, 0, 0.144)
-shadow_size = 8
-shadow_offset = Vector2(7.13, 6.425)
-anti_aliasing_size = 0.01
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_midbw"]
+content_margin_top = 20.0
+content_margin_bottom = 16.0
+texture = ExtResource("2_yrdlq")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(402, 24, 152, 152)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0cgs1"]
-content_margin_top = 30.0
-content_margin_bottom = 30.0
-border_width_top = 5
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_color = Color(0, 0, 0, 0.144)
-shadow_size = 8
-shadow_offset = Vector2(7.13, 6.425)
-anti_aliasing_size = 0.01
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o01di"]
+content_margin_top = 16.0
+content_margin_bottom = 16.0
+texture = ExtResource("2_yrdlq")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 4.0
+region_rect = Rect2(20, 20, 152, 160)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dk44q"]
+content_margin_top = 20.0
+content_margin_bottom = 16.0
+texture = ExtResource("2_yrdlq")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(402, 24, 152, 152)
 
 [resource]
 Button/font_sizes/font_size = 32
-Button/fonts/font = ExtResource("1_628j0")
-Button/styles/focus = SubResource("StyleBoxFlat_nc2ly")
-Button/styles/hover = SubResource("StyleBoxFlat_rqlih")
-Button/styles/normal = SubResource("StyleBoxFlat_vkece")
-Button/styles/pressed = SubResource("StyleBoxFlat_0cgs1")
+Button/fonts/font = ExtResource("1_yrdlq")
+Button/styles/focus = SubResource("StyleBoxTexture_yrdlq")
+Button/styles/hover = SubResource("StyleBoxTexture_oxger")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_midbw")
+Button/styles/normal = SubResource("StyleBoxTexture_o01di")
+Button/styles/pressed = SubResource("StyleBoxTexture_dk44q")

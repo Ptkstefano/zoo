@@ -90,11 +90,11 @@ func remove_fixture_from_path(cell):
 	
 
 func replace_fixture(cell):
-	print('WHY AM I USING THIS')
+	return
 	if cell not in used_cells:
 		return
 	
 	remove_fixture_from_path(cell)
-	## TODO - correct fixture type
+
 	place_fixture(TileMapRef.map_to_local(cell), available_fixtures[0])
 	

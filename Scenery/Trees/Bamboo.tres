@@ -6,5 +6,6 @@
 script = ExtResource("1_22ge1")
 name = "Bamboo"
 cost = 10.0
+id = 4
 texture_y = 8
-vegetation_weight = 2.0
+vegetation_weight = 5.0

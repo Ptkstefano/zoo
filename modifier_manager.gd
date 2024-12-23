@@ -39,6 +39,39 @@ var peep_modifiers = {
 	PEEP_MODIFIERS.EMPTY_SHOP: PeepModifier.new("Group found shop with no items available", -0.25),
 	PEEP_MODIFIERS.NO_DESIRABLE_QUALITY: PeepModifier.new("Group found no item of suitable quality level", -0.25),
 	PEEP_MODIFIERS.NO_FOOD_SHOP_IN_RANGE: PeepModifier.new("Group found no food shop in reasonable distance", -0.25),
-	
-	
+}
+
+
+enum ANIMAL_MODIFIERS {
+	## Positive
+	OK_HABITAT,
+	GOOD_HABITAT,
+	IDEAL_HABITAT,
+	HAS_FAVORITE_TREE,
+	HAS_SHELTER,
+	## Negative
+	BAD_HABITAT,
+	TOO_CROWDED,
+	HERD_TOO_SMALL,
+	HERD_TOO_BIG,
+	NO_WATER,
+	NO_FAVORITE_TREE,
+	HUNGRY,
+}
+
+var animal_modifiers = {
+	## Positive
+	ANIMAL_MODIFIERS.OK_HABITAT: AnimalModifier.new("My habitat is ok", 1),
+	ANIMAL_MODIFIERS.GOOD_HABITAT: AnimalModifier.new("My habitat is decent", 1.5),
+	ANIMAL_MODIFIERS.IDEAL_HABITAT: AnimalModifier.new("I love my habitat", 2),
+	ANIMAL_MODIFIERS.HAS_FAVORITE_TREE: AnimalModifier.new("I have my favorite tree!", 0.5),
+	ANIMAL_MODIFIERS.HAS_SHELTER: AnimalModifier.new("I have shelter", 1),
+	## Negative
+	ANIMAL_MODIFIERS.BAD_HABITAT: AnimalModifier.new("Group found no food shop in reasonable distance", -2),
+	ANIMAL_MODIFIERS.TOO_CROWDED: AnimalModifier.new("Group found no food shop in reasonable distance", -1),
+	ANIMAL_MODIFIERS.HERD_TOO_SMALL: AnimalModifier.new("Group found no food shop in reasonable distance", -1),
+	ANIMAL_MODIFIERS.HERD_TOO_BIG: AnimalModifier.new("Group found no food shop in reasonable distance", -1),
+	ANIMAL_MODIFIERS.NO_WATER: AnimalModifier.new("Group found no food shop in reasonable distance", -1),
+	ANIMAL_MODIFIERS.NO_FAVORITE_TREE: AnimalModifier.new("Group found no food shop in reasonable distance", -1),
+	ANIMAL_MODIFIERS.HUNGRY: AnimalModifier.new("Group found no food shop in reasonable distance", -5),
 }

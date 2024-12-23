@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_c2iwc"]
 radius = 8.0
 
-[node name="Tree" type="Node2D" groups=["Enclosure"]]
+[node name="Tree" type="Node2D" groups=["Enclosure", "Scenery"]]
 y_sort_enabled = true
 script = ExtResource("1_1udct")
 tree_sheet = ExtResource("2_tkqex")
@@ -20,9 +20,8 @@ hframes = 5
 
 [node name="Area" type="Area2D" parent="."]
 visible = false
-collision_layer = 0
+collision_layer = 4096
 collision_mask = 4352
-monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
 shape = SubResource("CircleShape2D_c2iwc")

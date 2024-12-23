@@ -30,10 +30,8 @@ func update_building_menu():
 		child.queue_free()
 		
 	for building_res in available_buildings:
-		print('here')
 		var element = ui_building_element.instantiate()
 		element.building_res = building_res
-		print(element.building_res.building_menu)
 		if element.building_res.building_menu == IdRefs.BUILDING_MENU.EATERY:
 			%EaterySelectionContainer.add_child(element)
 		if element.building_res.building_menu == IdRefs.BUILDING_MENU.RESTAURANT:
@@ -46,6 +44,8 @@ func update_building_menu():
 	$"../../UI".update_ui()
 
 func build_building(building_res : building_resource, start_tile, rotate, coords, data):
+	if !building_res:
+		return
 	var new_building = building_class_scene.instantiate()
 	new_building.start_tile = start_tile
 	new_building.is_building_rotated = rotate
@@ -60,7 +60,6 @@ func build_building(building_res : building_resource, start_tile, rotate, coords
 	add_child(new_building)
 	new_building.building_selected.connect(on_building_selected)
 	new_building.building_removed.connect(on_building_removed)
-	print(new_building.id)
 	if building_res.building_type == IdRefs.BUILDING_TYPES.EATERY:
 		ZooManager.add_eatery(new_building.id, { 'building': new_building, 'position': TileMapRef.map_to_local(start_tile) })
 	if building_res.building_type == IdRefs.BUILDING_TYPES.RESTAURANT:
@@ -74,8 +73,10 @@ func build_building(building_res : building_resource, start_tile, rotate, coords
 func on_building_removed(building_node):
 	for coordinate in building_node.used_coordinates:
 		coordinates_used_by_buildings.erase(coordinate)
-	if building_node.building_res.product_types.has(IdRefs.PRODUCT_TYPES.FOOD):
-		ZooManager.remove_food_shop(building_node.id)
+	if building_node.building_res.building_type == IdRefs.BUILDING_TYPES.RESTAURANT:
+		ZooManager.remove_restaurant(building_node.id)
+	if building_node.building_res.building_type == IdRefs.BUILDING_TYPES.EATERY:
+		ZooManager.remove_eatery(building_node.id)
 	if building_node.building_res.building_type == IdRefs.BUILDING_TYPES.TOILET:
 		ZooManager.remove_toilet(building_node.id)
 	$"../../PathManager".remove_path(building_node.used_coordinates)

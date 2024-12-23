@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://5ju27qay4qx7" path="res://Buildings/shop.tscn" id="2_dwna5"]
 [ext_resource type="PackedScene" uid="uid://byxq15jhy21ri" path="res://Buildings/toilet_building.tscn" id="3_fxmsw"]
 
-[node name="Building" type="Node"]
+[node name="Building" type="Node" groups=["Buildings"]]
 script = ExtResource("1_ndj6f")
 shop_scene = ExtResource("2_dwna5")
 toilet_scene = ExtResource("3_fxmsw")

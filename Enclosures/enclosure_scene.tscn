@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://b020lesiynlbr"]
 
-[ext_resource type="Script" path="res://Scripts/enclosure.gd" id="1_nv64f"]
+[ext_resource type="Script" uid="uid://cpomq5l52hk2p" path="res://Scripts/enclosure.gd" id="1_nv64f"]
 [ext_resource type="Texture2D" uid="uid://bxvy3xim6yfi4" path="res://Enclosures/9way-tile.png" id="2_iqemd"]
 [ext_resource type="Script" path="res://Managers/fence_manager.gd" id="3_guvt6"]
 [ext_resource type="PackedScene" uid="uid://c7x3g6837s0x8" path="res://Enclosures/Fences/fence_scene.tscn" id="4_nke03"]
@@ -119,7 +119,7 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_jqj8t")
 
-[node name="EnclosureScene" type="Node2D"]
+[node name="EnclosureScene" type="Node2D" groups=["Enclosures"]]
 script = ExtResource("1_nv64f")
 
 [node name="EnclosureTiles" type="TileMapLayer" parent="." groups=["Enclosure"]]
@@ -166,7 +166,6 @@ collision_enabled = false
 [node name="FenceInstances" type="Node2D" parent="EnclosureFenceManager"]
 
 [node name="VegetationDetectionArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 4096
 

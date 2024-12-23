@@ -9,9 +9,9 @@ func _ready():
 	$Contrast.value_changed.connect(change)
 	
 func change(a):
-	$"../../../../../../../../../CanvasLayer/ColorRect".material.set("shader_param/saturation_r", $R.value)
-	$"../../../../../../../../../CanvasLayer/ColorRect".material.set("shader_param/saturation_g", $G.value)
-	$"../../../../../../../../../CanvasLayer/ColorRect".material.set("shader_param/saturation_b", $B.value)
-	$"../../../../../../../../../CanvasLayer/ColorRect".material.set("shader_param/color_quantization", $Quant.value)
-	$"../../../../../../../../../CanvasLayer/ColorRect".material.set("shader_param/brightness", $Bright.value)
-	$"../../../../../../../../../CanvasLayer/ColorRect".material.set("shader_param/contrast", $Contrast.value)
+	%PostFX.material.set("shader_param/saturation_r", $R.value)
+	%PostFX.material.set("shader_param/saturation_g", $G.value)
+	%PostFX.material.set("shader_param/saturation_b", $B.value)
+	%PostFX.material.set("shader_param/color_quantization", $Quant.value)
+	%PostFX.material.set("shader_param/brightness", $Bright.value)
+	%PostFX.material.set("shader_param/contrast", $Contrast.value)

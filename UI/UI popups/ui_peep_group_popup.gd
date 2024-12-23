@@ -5,6 +5,18 @@ var peep_group_node : PeepGroup
 func _ready():
 	update_popup_data()
 	%CloseButton.pressed.connect(queue_free)
+	
+	var zooManagerShopsLabel = Label.new()
+	zooManagerShopsLabel.text = 'Zoo manager restaurant keys: ' + str(ZooManager.restaurants.keys())
+	%DebugList.add_child(zooManagerShopsLabel)
+	
+	var zooManagerEateryLabel = Label.new()
+	zooManagerEateryLabel.text = 'Zoo manager eatery keys: ' + str(ZooManager.eateries.keys())
+	%DebugList.add_child(zooManagerEateryLabel)
+	
+	var peepGroupShopLabel = Label.new()
+	peepGroupShopLabel.text = 'Target shop: ' + str(peep_group_node.target_shop)
+	%DebugList.add_child(peepGroupShopLabel)
 
 
 func update_popup_data():
@@ -29,6 +41,9 @@ func update_popup_data():
 	%favorite_animal.text = str(ContentManager.animals[peep_group_node.favorite_animal].name)
 	
 	%money_spent.text = str(peep_group_node.spent_money)
+	
+	
+
 	
 	
 	

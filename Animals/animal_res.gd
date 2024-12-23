@@ -27,17 +27,15 @@ class_name animal_resource
 
 
 @export_group("Animal preferences")
-## Expresses minimum needed percentage of terrain types
-# 0-grass
-# 1-sand
-# 2-dirt
-# 3-deciduous
-# 4-savanna
-@export var terrain_preference : Dictionary
-@export var terrain_dislike : Array[int]
+ ## Expresses a minimum percentage of a given terrain type
+@export var terrain_preference : Dictionary[IdRefs.TERRAIN_TYPES, float]
+@export var terrain_dislike : Array[IdRefs.TERRAIN_TYPES]
 @export var needs_water : bool
 @export var minimum_habitat_size: int
+## Expresses a minimum number of cells each given animal wants when compared to the herd size
+@export var minimum_cells_per_animal : int
+## For reference, 1.0 is a value of medium vegetation coverage.
 @export var minimum_vegetation_coverage : float
 @export var maximum_vegetation_coverage : float
 @export var minimum_herd_size : int
-@export var maximum_herd_density : float
+@export var favorite_tree : IdRefs.TREE_SPECIES

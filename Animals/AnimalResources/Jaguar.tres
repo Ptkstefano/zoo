@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="animal_resource" load_steps=3 format=3 uid="uid://i3fj56d1ocsa"]
 
-[ext_resource type="Script" path="res://Animals/animal_res.gd" id="1_mcgls"]
+[ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_mcgls"]
 [ext_resource type="Texture2D" uid="uid://cyprs7655mxs4" path="res://Animals/sprites/jaguar.png" id="2_nla5u"]
 
 [resource]
@@ -18,11 +18,12 @@ run_speed = 30.0
 can_swim = false
 minimum_shelter_level = 0
 animal_rating = 200
-terrain_preference = {}
+terrain_preference = Dictionary[int, float]({})
 terrain_dislike = Array[int]([])
 needs_water = false
-minimum_habitat_size = 50
-minimum_vegetation_coverage = 0.6
-maximum_vegetation_coverage = 1.5
-minimum_herd_size = 4
-maximum_herd_density = 0.15
+minimum_habitat_size = 75
+minimum_cells_per_animal = 50
+minimum_vegetation_coverage = 0.8
+maximum_vegetation_coverage = 5.0
+minimum_herd_size = 1
+favorite_tree = 1

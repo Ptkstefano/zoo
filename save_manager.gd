@@ -9,29 +9,29 @@ var TerrainWangS
 var TerrainWangW
 var TerrainWangN
 
-var enclosureManager
+#var enclosureManager
 var enclosure_list = []
 
-var animalManager
+#var animalManager
 var animal_list = []
 var animal_data = {}
 
-var sceneryManager
+#var sceneryManager
 var scenery_list = []
 
-var fixtureManager
+#var fixtureManager
 var fixture_list = []
 
-var peepManager
+#var peepManager
 var peepGroupList = []
 
-var buildingManager
+#var buildingManager
 var building_list = []
 
-var waterManager
+#var waterManager
 var water_list = []
 
-var pathManager
+#var pathManager
 
 var tilemap_layers = []
 
@@ -50,8 +50,9 @@ func on_autosave():
 	thread_save_game()
 
 func start_save_manager():
-	var main_node = get_tree().root.get_node("Main")
-	var tilemaps = main_node.get_node("TileMap")
+	#var main_node = get_tree().root.get_node("Main")
+	#var tilemaps = main_node.get_node("TileMap")
+	var tilemaps = get_tree().get_first_node_in_group('TilemapManager')
 	WaterCoverageLayer = tilemaps.get_node("WaterCoverageLayer")
 	TerrainLayer = tilemaps.get_node("TerrainLayer")
 	PathLayer =  tilemaps.get_node("PathLayer")
@@ -71,22 +72,27 @@ func start_save_manager():
 		'TerrainWangN': TerrainWangN
 	}
 	
-	enclosureManager = main_node.get_node("Objects").get_node("EnclosureManager") as EnclosureManager
-	enclosure_list = enclosureManager.get_children()
-	animalManager = main_node.get_node("Objects").get_node('AnimalManager') as AnimalManager
+	#enclosureManager = main_node.get_node("Objects").get_node("EnclosureManager") as EnclosureManager
+	#enclosure_list = enclosureManager.get_children()
+	enclosure_list = get_tree().get_nodes_in_group('Enclosures')
+	#animalManager = main_node.get_node("Objects").get_node('AnimalManager') as AnimalManager
 	animal_list = get_tree().get_nodes_in_group('Animals')
-	sceneryManager = main_node.get_node("Objects").get_node('SceneryManager') as SceneryManager
-	scenery_list = sceneryManager.get_children()
-	fixtureManager = main_node.get_node("Objects").get_node('FixtureManager') as FixtureManager
-	fixture_list = fixtureManager.get_children()
-	waterManager = main_node.get_node("Objects").get_node('WaterManager') as WaterManager
-	water_list = waterManager.get_children()
-	buildingManager = main_node.get_node("Objects").get_node('BuildingManager') as BuildingManager
-	building_list = buildingManager.get_children()
-	peepManager = main_node.get_node("Objects").get_node('PeepManager')
-	peepManager.update_peeps_cached_positions()
+	#sceneryManager = main_node.get_node("Objects").get_node('SceneryManager') as SceneryManager
+	#scenery_list = sceneryManager.get_children()
+	scenery_list = get_tree().get_nodes_in_group('Scenery')
+	#fixtureManager = main_node.get_node("Objects").get_node('FixtureManager') as FixtureManager
+	#fixture_list = fixtureManager.get_children()
+	fixture_list = get_tree().get_nodes_in_group('Fixtures')
+	#waterManager = main_node.get_node("Objects").get_node('WaterManager') as WaterManager
+	#water_list = waterManager.get_children()
+	water_list = get_tree().get_nodes_in_group('WaterBodies')
+	#buildingManager = main_node.get_node("Objects").get_node('BuildingManager') as BuildingManager
+	#building_list = buildingManager.get_children()
+	building_list = get_tree().get_nodes_in_group('Buildings')
+	#peepManager = main_node.get_node("Objects").get_node('PeepManager')
+	SignalBus.update_peeps_cached_positions.emit()
 	peepGroupList = get_tree().get_nodes_in_group('PeepGroups')
-	pathManager = main_node.get_node('PathManager') as PathManager
+	#pathManager = main_node.get_node('PathManager') as PathManager
 	#peepGroupList = peepManager.peep_groups
 	
 
@@ -220,6 +226,19 @@ func save_finished():
 func load_game():
 	print('loading game')
 	start_save_manager()
+	
+	var main_node = get_tree().root.get_node("Main")
+	var animalManager = main_node.get_node("Objects").get_node('AnimalManager') as AnimalManager
+	var sceneryManager = main_node.get_node("Objects").get_node('SceneryManager') as SceneryManager
+	var enclosureManager = main_node.get_node("Objects").get_node("EnclosureManager") as EnclosureManager
+	var fixtureManager = main_node.get_node("Objects").get_node('FixtureManager') as FixtureManager
+	var waterManager = main_node.get_node("Objects").get_node('WaterManager') as WaterManager
+	var buildingManager = main_node.get_node("Objects").get_node('BuildingManager') as BuildingManager
+	var peepManager = main_node.get_node("Objects").get_node('PeepManager')
+	var pathManager = main_node.get_node('PathManager') as PathManager
+	
+	
+	
 	var file = FileAccess.open(main_save_path, FileAccess.READ)
 	if !file:
 		return
@@ -478,7 +497,7 @@ func get_building_data(building):
 	var data = {}
 	data['building_type'] = building.building_res.building_type
 	data['building_id'] = building.id
-	if building.building_res.building_type == IdRefs.BUILDING_TYPES.SHOP:
+	if building.building_res.building_type in [IdRefs.BUILDING_TYPES.SHOP, IdRefs.BUILDING_TYPES.RESTAURANT, IdRefs.BUILDING_TYPES.EATERY]:
 		var products = {}
 		for product in building.building_scene.available_products:
 			products[product] = {

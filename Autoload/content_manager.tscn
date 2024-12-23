@@ -17,11 +17,11 @@
 [ext_resource type="Resource" uid="uid://b2g57brtyu7bc" path="res://Animals/AnimalResources/Red Fox.tres" id="12_4jekg"]
 [ext_resource type="Resource" uid="uid://b6kil7b7qtggp" path="res://Animals/AnimalResources/Maned Wolf.tres" id="13_pshdp"]
 [ext_resource type="Resource" uid="uid://c086ou4yyva4u" path="res://Products/brownie_sundae.tres" id="16_42240"]
-[ext_resource type="Script" path="res://Buildings/building_res.gd" id="17_ib6gx"]
-[ext_resource type="Resource" uid="uid://csjatom74kl3h" path="res://Buildings/ice_cream_shop.tres" id="18_dhs4s"]
+[ext_resource type="Script" uid="uid://b3dk3jci5ihs8" path="res://Buildings/building_res.gd" id="17_ib6gx"]
+[ext_resource type="Resource" uid="uid://csjatom74kl3h" path="res://Buildings/BuildingResources/ice_cream_shop.tres" id="18_dhs4s"]
 [ext_resource type="Resource" uid="uid://bvnpr5v6trmlp" path="res://Products/pasta_bolognese.tres" id="18_hdj2o"]
-[ext_resource type="Resource" uid="uid://cw0qxk8uuda34" path="res://Buildings/toilet1.tres" id="19_3wtsv"]
-[ext_resource type="Resource" uid="uid://ccsw3cdj7hvqt" path="res://Buildings/italian_restaurant.tres" id="21_17nn5"]
+[ext_resource type="Resource" uid="uid://cw0qxk8uuda34" path="res://Buildings/BuildingResources/toilet1.tres" id="19_3wtsv"]
+[ext_resource type="Resource" uid="uid://ccsw3cdj7hvqt" path="res://Buildings/BuildingResources/italian_restaurant.tres" id="21_17nn5"]
 
 [node name="ContentManager" type="Node"]
 script = ExtResource("1_0xc5w")

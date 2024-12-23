@@ -68,6 +68,8 @@ func _ready() -> void:
 	inputController.building_placed.connect(on_building_placed)
 	inputController.building_built.connect(on_building_built)
 	
+	get_tree().get_root().size_changed.connect(resize_ui)
+	resize_ui()
 	hide_selection_menu()
 
 func update_ui():
@@ -344,6 +346,7 @@ func on_build_mode_toggle(toggle):
 		build_mode = false
 		selected_res = null
 		inputController.current_tool = inputController.TOOLS.NONE
+		SignalBus.clear_highlight.emit()
 		
 	
 func on_options_menu_toggle_visibility_changed():
@@ -351,3 +354,13 @@ func on_options_menu_toggle_visibility_changed():
 		%OptionsMenuToggle.button_pressed = false
 		%OptionsDropMenu.visible = false
 		
+
+
+func resize_ui():
+	if DisplayServer.window_get_size().y < 1080:
+		%"Top-Left".scale = Vector2(0.75, 0.75)
+		%"Top-Left".scale = Vector2(0.75, 0.75)
+		
+	else:
+		%"Top-Left".scale = Vector2(1, 1)
+		%"Top-Left".scale = Vector2(1, 1)

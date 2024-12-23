@@ -6,5 +6,6 @@
 script = ExtResource("1_kwvu2")
 name = "Desert Bloodwood"
 cost = 10.0
+id = 5
 texture_y = 7
-vegetation_weight = 2.0
+vegetation_weight = 10.0

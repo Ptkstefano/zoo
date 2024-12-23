@@ -1,14 +1,14 @@
 [gd_resource type="Theme" load_steps=3 format=3 uid="uid://d1jyuc74dstto"]
 
-[ext_resource type="Texture2D" uid="uid://bnvb82gnm1qy1" path="res://UI/art/Panel1-export.png" id="1_spoa8"]
+[ext_resource type="Texture2D" uid="uid://dtc7ihyg3w5bq" path="res://UI/art/panel_dark.png" id="1_gnqd2"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2vltl"]
-texture = ExtResource("1_spoa8")
-texture_margin_left = 15.0
-texture_margin_top = 15.0
-texture_margin_right = 15.0
-texture_margin_bottom = 15.0
-region_rect = Rect2(12, 18, 246, 156)
+texture = ExtResource("1_gnqd2")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+region_rect = Rect2(20, 20, 152, 160)
 
 [resource]
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_2vltl")

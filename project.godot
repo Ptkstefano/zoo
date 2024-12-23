@@ -13,33 +13,33 @@ config_version=5
 config/name="Zoo"
 run/main_scene="res://MainMenu/main_menu.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/show_image=false
 
 [autoload]
 
+IdRefs="*res://Autoload/id_refs.gd"
 ContentManager="*res://Autoload/content_manager.tscn"
 Helpers="*res://Scripts/helpers.gd"
 GameManager="*res://Managers/game_manager.gd"
 ColorRefs="*res://Autoload/color_refs.tscn"
 TileMapRef="*res://Autoload/tile_map_ref.tscn"
-IdRefs="*res://Autoload/id_refs.gd"
 SignalBus="*res://Autoload/signal_bus.gd"
 Effects="*res://Autoload/effects.gd"
 TimeManager="*res://Autoload/time_manager.tscn"
 AudioManager="*res://Autoload/audio_manager.tscn"
 ZooManager="*res://Autoload/zoo_manager.gd"
-SaveManager="*res://Autoload/save_manager.tscn"
 ModifierManager="*res://modifier_manager.gd"
 DataManager="*res://Autoload/data_manager.gd"
 FinanceManager="*res://Autoload/FinanceManager.tscn"
+MusicManager="*res://Autoload/music_manager.tscn"
+SaveManager="*res://Autoload/save_manager.tscn"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/aspect="expand"
-window/stretch/scale=1.2
-window/stretch/scale_mode="integer"
-window/handheld/orientation=6
+window/vsync/vsync_mode=0
 
 [dotnet]
 
@@ -49,6 +49,12 @@ project/assembly_name="Zoo"
 
 Enclosure=""
 Navigation=""
+Scenery=""
+Enclosures=""
+WaterBodies=""
+Buildings=""
+Animals=""
+Fixtures=""
 
 [input_devices]
 
@@ -75,14 +81,18 @@ pointing/emulate_touch_from_mouse=true
 2d/run_on_separate_thread=true
 common/physics_ticks_per_second=30
 2d/solver/solver_iterations=8
+common/enable_object_picking=false
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
-textures/default_filters/anisotropic_filtering_level=1
+2d/shadow_atlas/size=256
+2d/batching/item_buffer_size=8192
+2d/batching/uniform_set_cache_size=16384
+textures/default_filters/anisotropic_filtering_level=0
 environment/ssao/quality=0
 environment/ssil/quality=0
+anti_aliasing/screen_space_roughness_limiter/enabled=false
 environment/glow/upscale_mode=0
-2d/batching/uniform_set_cache_size=16384

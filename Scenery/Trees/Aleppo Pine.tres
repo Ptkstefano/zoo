@@ -6,5 +6,6 @@
 script = ExtResource("1_rd5au")
 name = "Aleppo Pine"
 cost = 10.0
+id = 2
 texture_y = 6
-vegetation_weight = 2.0
+vegetation_weight = 5.0

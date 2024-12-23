@@ -17,3 +17,4 @@ func _process(delta: float) -> void:
 func start_game():
 	game_running = true
 	SignalBus.peep_navigation_changed.emit()
+	MusicManager.start()

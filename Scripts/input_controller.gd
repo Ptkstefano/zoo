@@ -104,7 +104,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	debug_keyboard_input(event)
 	
 func handle_camera_input(event):
-
+	
 	## Prevents screen to shoot around after zooming
 	if fingers_touching.size() == 0:
 		zoom_started = false
@@ -207,7 +207,6 @@ func handle_tooling_input(event):
 				if !is_bulldozing:
 					scenery_manager.place_vegetation(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.FIXTURE:
-				print('a')
 				if !is_bulldozing:
 					$"../Objects/FixtureManager".place_fixture(touch_start_global_pos, selected_res)
 			if current_tool == TOOLS.DECORATION:
@@ -327,7 +326,10 @@ func highlight_area():
 			else:
 				new_coordinate.y = start_tile_pos.y + y
 			cells.append(new_coordinate)
-	$"../TileMap/HighlightLayer".apply_highlight(cells, is_bulldozing)
+	if is_bulldozing:
+		$"../TileMap/HighlightLayer".apply_highlight(cells, IdRefs.HIGHLIGHT_TYPES.RED)
+	else:
+		$"../TileMap/HighlightLayer".apply_highlight(cells, IdRefs.HIGHLIGHT_TYPES.YELLOW)
 
 func highlight_building_area():
 	var tile_map_layer = $"../TileMap/TerrainLayer" as TileMapLayer
@@ -353,7 +355,10 @@ func highlight_building_area():
 		#if !$"../Objects/EnclosureManager".get_enclosure_overlap(cells):
 			#$"../TileMap/HighlightLayer".clear_highlight()
 			#return
-	$"../TileMap/HighlightLayer".apply_highlight(cells, false)
+	if !rotate_building:
+		$"../TileMap/HighlightLayer".apply_highlight(cells, IdRefs.HIGHLIGHT_TYPES.BUILDING_S)
+	else:
+		$"../TileMap/HighlightLayer".apply_highlight(cells, IdRefs.HIGHLIGHT_TYPES.BUILDING_E)
 
 func rotate_building_toggle():
 	if rotate_building:

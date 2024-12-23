@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dfb5pi2yfy3jh"]
 
-[ext_resource type="Script" path="res://Water/lake_scene.gd" id="1_x45p8"]
+[ext_resource type="Script" uid="uid://b6f6s7w06bkgo" path="res://Water/lake_scene.gd" id="1_x45p8"]
 [ext_resource type="Material" uid="uid://dnrl255m8dbu6" path="res://Water/water_movement.tres" id="2_mq15h"]
 [ext_resource type="Texture2D" uid="uid://kw67tgg6ws3i" path="res://Water/water2.png" id="3_kav0r"]
 
@@ -9,7 +9,7 @@ vertices = PackedVector2Array(-210.648, -224.578, 300.57, -73.5391, 215.672, 135
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 4, 3, 6)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-76, 104, 222, 146, 314, -80, -214, -236, -434, 18, -319, 277, -68, 153)])
 
-[node name="LakeScene" type="Node2D"]
+[node name="LakeScene" type="Node2D" groups=["WaterBodies"]]
 z_index = -300
 texture_filter = 1
 script = ExtResource("1_x45p8")

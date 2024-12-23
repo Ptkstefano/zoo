@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="building_resource" load_steps=3 format=3 uid="uid://ccsw3cdj7hvqt"]
 
-[ext_resource type="Script" path="res://Buildings/building_res.gd" id="1_5aypc"]
+[ext_resource type="Script" uid="uid://b3dk3jci5ihs8" path="res://Buildings/building_res.gd" id="1_5aypc"]
 [ext_resource type="Texture2D" uid="uid://cojnbxxqn5465" path="res://Buildings/Sprites/ItalianRestaurant.png" id="2_aac0r"]
 
 [resource]
@@ -13,6 +13,8 @@ texture = ExtResource("2_aac0r")
 building_type = 2
 product_types = Array[int]([0])
 possible_products = Array[int]([3])
+debug_array = Array[int]([6, 7])
+debug_str = "debugstr"
 is_building_entereable = true
 size = Vector2i(3, 3)
 sprite_pos = Vector2(-3, -63.5)

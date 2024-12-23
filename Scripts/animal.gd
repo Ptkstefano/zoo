@@ -49,12 +49,24 @@ var hunger_drain_rate = 0.8
 var rest_drain_rate = 0.5
 var play_drain_rate = 0.5
 
+var animal_happiness : float = 2.5:
+	set(value):
+		animal_happiness = clampf(value, 0, 5)
+		
+var habitat_happiness : float = 0:
+	set(value):
+		habitat_happiness = clampf(value, 0, 5)
+		
 var preference_terrain_satisfied : bool
+var lacking_terrain_types = []
 var preference_water_satisfied : bool
 var preference_habitat_size_satisfied : bool
 var preference_vegetation_coverage_satisfied : bool
+var too_much_vegetation : bool = false
+var too_little_vegetation : bool = false
 var preference_herd_size_satisfied : bool
 var preference_herd_density_satisfied : bool
+var favorite_tree_density_satisfied : bool
 
 var sprite_x : int = 0
 var sprite_y : int = 0
@@ -136,11 +148,14 @@ func _physics_process(delta: float) -> void:
 		update_frame_direction()
 		
 func get_new_destination():
+	if !is_instance_valid(enclosure):
+		remove_animal()
+		return
 	return TileMapRef.map_to_local(enclosure.enclosure_cells.pick_random())
 
 func navigation_finished():
 	if current_state == ANIMAL_STATES.RUNNING:
-		agent.target_position=get_new_destination()
+		agent.target_position = get_new_destination()
 	if current_state == ANIMAL_STATES.MOVING_TOWARDS_FOOD:
 		change_state(ANIMAL_STATES.EATING)
 	if current_state == ANIMAL_STATES.WANDER:
@@ -275,39 +290,66 @@ func on_decay_timer_timeout():
 
 
 func update_habitat_satifaction():
+	var habitat_happiness_value = 0
+	lacking_terrain_types.clear()
 	preference_terrain_satisfied = true
 	for key in animal_res.terrain_preference:
 		if key in enclosure.terrain_coverage.keys():
 			if enclosure.terrain_coverage[key] < animal_res.terrain_preference[key]:
 				preference_terrain_satisfied = false
+				habitat_happiness_value -= 0.25
+				lacking_terrain_types.append(int(key))
 		else:
 			preference_terrain_satisfied = false ## Missing required terrain
+			habitat_happiness_value -= 0.25
 			
 	if animal_res.needs_water:
 		if enclosure.water_availability:
 			preference_water_satisfied = true
+			habitat_happiness_value += 1
 		else:
 			preference_water_satisfied = false
 			
 	if enclosure.enclosure_cells.size() > animal_res.minimum_habitat_size:
 		preference_habitat_size_satisfied = true
+		habitat_happiness_value += 1
 	else:
 		preference_habitat_size_satisfied = false
 
 	if enclosure.vegetation_coverage > animal_res.minimum_vegetation_coverage and enclosure.vegetation_coverage < animal_res.maximum_vegetation_coverage:
 		preference_vegetation_coverage_satisfied = true
+		too_little_vegetation = false
+		too_much_vegetation = false
+		habitat_happiness_value += 1
 	else:
 		preference_vegetation_coverage_satisfied = false
+		if enclosure.vegetation_coverage < animal_res.minimum_vegetation_coverage:
+			too_little_vegetation = true
+			too_much_vegetation = false
+		else:
+			too_much_vegetation = true
+			too_little_vegetation = false
 
 	if enclosure.herd_size >= animal_res.minimum_herd_size:
 		preference_herd_size_satisfied = true
+		habitat_happiness_value += 1
 	else:
 		preference_herd_size_satisfied = false
 
-	if enclosure.herd_density <= animal_res.maximum_herd_density:
+	if enclosure.cells_per_animal >= animal_res.minimum_cells_per_animal:
 		preference_herd_density_satisfied = true
+		habitat_happiness_value += 1
 	else:
 		preference_herd_density_satisfied = false
+		
+	if enclosure.get_enclosure_trees().has(animal_res.favorite_tree):
+		favorite_tree_density_satisfied = true
+		habitat_happiness_value += 1
+	else:
+		favorite_tree_density_satisfied = false
+		
+	habitat_happiness = habitat_happiness_value
+		
 
 func update_cached_position():
 	cached_global_position = Vector2(global_position.x, global_position.y)

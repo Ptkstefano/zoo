@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dasxyu5n8ncu0"]
 
-[ext_resource type="Script" path="res://UI/UI selectable elements/ui_shelter_element.gd" id="1_jb8dv"]
+[ext_resource type="Script" uid="uid://x45o3h2fnpdo" path="res://UI/UI selectable elements/ui_shelter_element.gd" id="1_jb8dv"]
 [ext_resource type="Texture2D" uid="uid://c83xp6l2j8d6s" path="res://Sprites/thumbs/giraffe thumb.png" id="2_18v04"]
 
 [node name="ShelterElement" type="Control"]

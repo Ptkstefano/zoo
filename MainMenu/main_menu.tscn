@@ -1,16 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://clyvum5qvd0b5"]
+[gd_scene load_steps=6 format=3 uid="uid://clyvum5qvd0b5"]
 
-[ext_resource type="Texture2D" uid="uid://dmm7b8bnrmocb" path="res://MainMenu/logo1.png" id="1_d8c6i"]
 [ext_resource type="Script" uid="uid://ua6s4x1ng2yn" path="res://MainMenu/UI_main_menu.gd" id="1_jxm28"]
 [ext_resource type="Theme" uid="uid://5rinnmfg30fq" path="res://MainMenu/MainMenu.tres" id="2_24wdr"]
-
-[sub_resource type="Gradient" id="Gradient_67qld"]
-colors = PackedColorArray(0.280572, 0.572009, 0.128074, 1, 0.422413, 0.652011, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_85ljs"]
-gradient = SubResource("Gradient_67qld")
-fill_from = Vector2(0.504274, 1)
-fill_to = Vector2(0.495726, 0)
+[ext_resource type="Texture2D" uid="uid://wbreeo6p2dua" path="res://MainMenu/bg.png" id="2_ajn5b"]
+[ext_resource type="Texture2D" uid="uid://50ca4atgs0nu" path="res://MainMenu/logo2.png" id="3_po2gx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8bbv5"]
 
@@ -24,13 +17,16 @@ grow_vertical = 2
 script = ExtResource("1_jxm28")
 
 [node name="ColorRect" type="TextureRect" parent="."]
+modulate = Color(0.184482, 0.45456, 0.742341, 1)
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_85ljs")
+texture = ExtResource("2_ajn5b")
+expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -78,7 +74,7 @@ size_flags_stretch_ratio = 1.5
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Control2/MarginContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("1_d8c6i")
+texture = ExtResource("3_po2gx")
 expand_mode = 3
 stretch_mode = 4
 
@@ -91,11 +87,11 @@ size_flags_stretch_ratio = 1.5
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.6
+theme = ExtResource("2_24wdr")
 
 [node name="ContinueButton" type="Button" parent="MarginContainer/HBoxContainer/Control2/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("2_24wdr")
 text = "Continue saved game"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/Control2/MarginContainer/VBoxContainer/VBoxContainer"]
@@ -106,7 +102,6 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_8bbv5")
 [node name="StartButton" type="Button" parent="MarginContainer/HBoxContainer/Control2/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("2_24wdr")
 text = "Start new game"
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/Control2/MarginContainer/VBoxContainer/VBoxContainer"]
@@ -117,7 +112,6 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_8bbv5")
 [node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/Control2/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("2_24wdr")
 text = "Quit"
 
 [node name="Control3" type="Control" parent="MarginContainer/HBoxContainer"]

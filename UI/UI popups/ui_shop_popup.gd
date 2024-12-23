@@ -22,6 +22,7 @@ func _ready() -> void:
 	%AddProductButton.pressed.connect(open_product_menu)
 	generate_stats_tab()
 	generate_products_tab()
+	generate_debug_tab()
 	
 	%DeleteButton.pressed.connect(on_remove_building)
 
@@ -42,6 +43,7 @@ func on_remove_building():
 func update_stats():
 	generate_stats_tab()
 	generate_products_tab()
+	
 
 func generate_stats_tab():
 	## Sell stats list
@@ -89,6 +91,49 @@ func generate_products_tab():
 		element.update_stock(product.current_stock, product.product.max_stock)
 		products[product.product.id] = {'element': element, 'product': product.product}
 		%ProductList.add_child(element)
+
+func generate_debug_tab():
+	var product_id_label = Label.new()
+	var product_ids = []
+	for id in shop_node.available_products:
+		product_ids.append(id)
+	
+	product_id_label.text = 'available product ids: ' + str(product_ids)
+	%DebugContainer.add_child(product_id_label)
+	
+	var building_res_label = Label.new()
+	building_res_label.text = str(shop_node.building_res)
+	%DebugContainer.add_child(building_res_label)
+	
+	var building_res_products_label = Label.new()
+	building_res_products_label.text = 'res possible products: ' + str(shop_node.building_res.possible_products)
+	%DebugContainer.add_child(building_res_products_label)
+	
+	var building_res_type_label = Label.new()
+	building_res_type_label.text = 'res type: ' + str(shop_node.building_res.building_type)
+	%DebugContainer.add_child(building_res_type_label)
+	
+	var building_res_product_types_label = Label.new()
+	building_res_product_types_label.text = 'res product types: ' + str(shop_node.building_res.product_types)
+	%DebugContainer.add_child(building_res_product_types_label)
+	
+	var cmanager_products_label = Label.new()
+	cmanager_products_label.text = 'content manager product keys: ' + str(ContentManager.products.keys())
+	%DebugContainer.add_child(cmanager_products_label)
+	
+	var debugarray_label = Label.new()
+	debugarray_label.text = 'DEBUG ARRAY: ' + str(shop_node.building_res.debug_array)
+	%DebugContainer.add_child(debugarray_label)
+	
+	var debugstr_label = Label.new()
+	debugstr_label.text = 'DEBUG STR: ' + str(shop_node.building_res.debug_str)
+	%DebugContainer.add_child(debugstr_label)
+	
+	for key in ContentManager.products.keys():
+		var product_label = Label.new()
+		product_label.text = str(ContentManager.products[key].name)
+		%DebugContainer.add_child(product_label)
+	
 
 func open_product_menu():
 	var popup = available_products_popup.instantiate()

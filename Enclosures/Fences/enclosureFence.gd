@@ -23,8 +23,6 @@ func update_fence_instance(enclosure_res):
 
 func make_entrance():
 	$Sprite2D.frame_coords = Vector2($Sprite2D.frame_coords.x + 4, $Sprite2D.frame_coords.y)
-	print(dir)
-
 	return sprite_x
 
 func remove_entrance():
