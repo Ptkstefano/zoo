@@ -1,10 +1,10 @@
-[gd_scene load_steps=170 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=173 format=4 uid="uid://e8kgl625in1o"]
 
-[ext_resource type="Script" path="res://Scripts/debug_controller.gd" id="1_nisry"]
+[ext_resource type="Script" uid="uid://o2egpp0b02e2" path="res://Scripts/debug_controller.gd" id="1_nisry"]
 [ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
 [ext_resource type="Script" uid="uid://dabd0wtptg5ku" path="res://main.gd" id="1_oseej"]
 [ext_resource type="Script" uid="uid://bawblafy70sf4" path="res://reputation_manager.gd" id="2_1b04k"]
-[ext_resource type="Script" path="res://Scripts/path_manager.gd" id="2_4bhy0"]
+[ext_resource type="Script" uid="uid://b0adab4c0yrtg" path="res://Scripts/path_manager.gd" id="2_4bhy0"]
 [ext_resource type="PackedScene" uid="uid://cl4o0ja0kt0i1" path="res://Animals/animal.tscn" id="2_7ivxh"]
 [ext_resource type="Script" uid="uid://cwjk7eao4e2gh" path="res://Managers/rendering_controller.gd" id="2_hhygd"]
 [ext_resource type="Script" uid="uid://b4vdwe5o8vo48" path="res://Scripts/EnclosureManager.gd" id="3_3jjmw"]
@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bw474aur5qc4s" path="res://Sprites/tile3.png" id="3_s04uj"]
 [ext_resource type="Script" uid="uid://cv4mt4ewctgbq" path="res://Paths/path_res.gd" id="4_5g54g"]
 [ext_resource type="Material" uid="uid://clxcpld1cjl4q" path="res://Shaders/outline_material.tres" id="4_21t5t"]
-[ext_resource type="Script" path="res://Managers/terrain_manager.gd" id="4_cuia8"]
+[ext_resource type="Script" uid="uid://7rpde4eeydfl" path="res://Managers/terrain_manager.gd" id="4_cuia8"]
 [ext_resource type="Texture2D" uid="uid://dvafqwrvm1q8p" path="res://Paths/path_sheet.png" id="4_f4nul"]
 [ext_resource type="Texture2D" uid="uid://d1m6d2njxkwo5" path="res://Sprites/tile2.png" id="4_lkfjk"]
 [ext_resource type="Script" uid="uid://cux3eoiyrlc0g" path="res://Scripts/animal_manager.gd" id="4_xl85y"]
@@ -32,7 +32,7 @@
 [ext_resource type="Resource" uid="uid://dcrw61juxfsvs" path="res://Terrain/dirt.tres" id="12_jliyx"]
 [ext_resource type="Resource" uid="uid://dk382e4qklm34" path="res://Terrain/deciduous.tres" id="13_jic8h"]
 [ext_resource type="Resource" uid="uid://ctusbtwghbxrl" path="res://Terrain/savanna.tres" id="14_1rewk"]
-[ext_resource type="Script" path="res://Managers/scenery_manager.gd" id="14_62h3g"]
+[ext_resource type="Script" uid="uid://bjwm8a55y7i7h" path="res://Managers/scenery_manager.gd" id="14_62h3g"]
 [ext_resource type="Script" uid="uid://bvnak0w5oxnhm" path="res://Enclosures/Fences/fence_res.gd" id="20_k6451"]
 [ext_resource type="Texture2D" uid="uid://cfp2cyqpum0g5" path="res://Buildings/Sprites/entrance.png" id="21_41lik"]
 [ext_resource type="PackedScene" uid="uid://oa08vk0rrcpe" path="res://UI/UI selectable elements/ui_animal_element.tscn" id="21_a35of"]
@@ -68,11 +68,11 @@
 [ext_resource type="PackedScene" uid="uid://iscokpw16nk" path="res://Managers/peep_group.tscn" id="40_rrrup"]
 [ext_resource type="Resource" uid="uid://domqu5rry32dh" path="res://Scenery/Trees/Bloodwood.tres" id="41_qqr73"]
 [ext_resource type="Resource" uid="uid://buqh6ti4i532y" path="res://Scenery/Trees/Alder Tree.tres" id="42_p82ky"]
-[ext_resource type="Script" path="res://Managers/water_manager.gd" id="43_sh5qp"]
+[ext_resource type="Script" uid="uid://bjcrbyhfvjdmd" path="res://Managers/water_manager.gd" id="43_sh5qp"]
 [ext_resource type="Resource" uid="uid://c804tlyallbn2" path="res://Scenery/Trees/Bamboo.tres" id="43_xdjgi"]
 [ext_resource type="PackedScene" uid="uid://dfb5pi2yfy3jh" path="res://Water/lake_scene.tscn" id="44_wq78x"]
 [ext_resource type="Script" uid="uid://cu2j3songpy3l" path="res://Managers/fixture_manager.gd" id="45_u6xcc"]
-[ext_resource type="Script" path="res://Scenery/Fixtures/fixture_resource.gd" id="46_0jpxo"]
+[ext_resource type="Script" uid="uid://5ejtocxcdxha" path="res://Scenery/Fixtures/fixture_resource.gd" id="46_0jpxo"]
 [ext_resource type="Script" uid="uid://bgsyapjwrjvwf" path="res://Scenery/Rocks/rock_resource.gd" id="46_inymm"]
 [ext_resource type="Resource" uid="uid://deoir12m8n42g" path="res://Scenery/Decorations/native-totem.tres" id="47_cb2x4"]
 [ext_resource type="Resource" uid="uid://bsox4n3cixif" path="res://Scenery/Fixtures/wooden bench.tres" id="47_gvub1"]
@@ -92,33 +92,36 @@
 [ext_resource type="PackedScene" uid="uid://c0yqr1xdbc6do" path="res://UI/UI selectable elements/ui_enclosure_element.tscn" id="54_il7k7"]
 [ext_resource type="PackedScene" uid="uid://b020lesiynlbr" path="res://Enclosures/enclosure_scene.tscn" id="55_54dhb"]
 [ext_resource type="PackedScene" uid="uid://dvlhldkt22u1u" path="res://Scenery/Rocks/rock_piece.tscn" id="55_ywjan"]
-[ext_resource type="Script" path="res://Managers/peep_navigation_region.gd" id="61_8dedt"]
+[ext_resource type="Script" uid="uid://523fsfqlnuv" path="res://Managers/peep_navigation_region.gd" id="61_8dedt"]
 [ext_resource type="PackedScene" uid="uid://c2x0h40jh0wj6" path="res://staff.tscn" id="69_ba76w"]
 [ext_resource type="Resource" uid="uid://ccsw3cdj7hvqt" path="res://Buildings/BuildingResources/italian_restaurant.tres" id="70_8rtrj"]
 [ext_resource type="PackedScene" uid="uid://baic6x8rh68v8" path="res://UI/UI popups/ui_animal_popup.tscn" id="73_mv3dj"]
 [ext_resource type="Theme" uid="uid://qsq4gutgth07" path="res://UI/default_theme.tres" id="74_7k2ss"]
 [ext_resource type="Script" uid="uid://bngrxugl7sj74" path="res://UI/ui_show.gd" id="74_d5mka"]
+[ext_resource type="Resource" uid="uid://bxqdyityaxu4g" path="res://Scenery/Fixtures/steel lamp.tres" id="78_d5iia"]
 [ext_resource type="PackedScene" uid="uid://dcmmhhcwneqel" path="res://Scenery/Fixtures/bench_scene.tscn" id="78_uy80e"]
+[ext_resource type="PackedScene" uid="uid://dwvani4eft5jg" path="res://Scenery/Fixtures/fixture_side_scene.tscn" id="80_asu84"]
 [ext_resource type="Texture2D" uid="uid://bgsedt3bhj4my" path="res://Enclosures/Fences/fence_exp1.png" id="82_auu6y"]
 [ext_resource type="PackedScene" uid="uid://fhgu3i03484t" path="res://UI/UI popups/ui_peep_group_popup.tscn" id="83_4rd2l"]
 [ext_resource type="Theme" uid="uid://dnjl2onbgc2xp" path="res://UI/main_tool_panel.tres" id="86_vgvmu"]
 [ext_resource type="Script" uid="uid://t3naf2okb6cm" path="res://UI/ui_debug_shader.gd" id="87_1b22a"]
 [ext_resource type="Texture2D" uid="uid://bm088drsntwdy" path="res://Sprites/highlight_tiles.png" id="89_mnw77"]
 [ext_resource type="PackedScene" uid="uid://bie8wky7dopo4" path="res://UI/UI popups/ui_mgmt_box.tscn" id="90_kjtd0"]
-[ext_resource type="Script" path="res://UI_info_label.gd" id="94_3glsp"]
+[ext_resource type="Script" uid="uid://bon5xqjo8ybh6" path="res://UI_info_label.gd" id="94_3glsp"]
 [ext_resource type="Shader" uid="uid://bu1lv0m1sqnci" path="res://replace_color.gdshader" id="97_84xii"]
-[ext_resource type="Script" path="res://notification_manager.gd" id="98_yvsr8"]
+[ext_resource type="Script" uid="uid://bx7r3upcavvb4" path="res://notification_manager.gd" id="98_yvsr8"]
 [ext_resource type="Script" uid="uid://bg7ua3j074tf6" path="res://time_progress_bar.gd" id="99_jcxqu"]
 [ext_resource type="PackedScene" uid="uid://c1lavh6yvgdgb" path="res://UI/notification_label.tscn" id="99_vieuh"]
 [ext_resource type="Texture2D" uid="uid://b5ehp47ajkovo" path="res://UI/art/buttons.png" id="101_cpm2s"]
 [ext_resource type="Theme" uid="uid://ctgx6ui8lfp8i" path="res://UI/dark_button.tres" id="101_f3y11"]
 [ext_resource type="Texture2D" uid="uid://5jn11yg0ds68" path="res://UI/Icons/icon-construction3.png" id="102_f3y11"]
 [ext_resource type="Texture2D" uid="uid://dtc7ihyg3w5bq" path="res://UI/art/panel_dark.png" id="104_f3y11"]
+[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/popup_theme.tres" id="104_vjgyh"]
 [ext_resource type="Theme" uid="uid://b6646spks2n34" path="res://UI/main_tool_subpanel.tres" id="105_6idwh"]
 [ext_resource type="Theme" uid="uid://d1jyuc74dstto" path="res://UI/wooden_panel.tres" id="106_frq2a"]
 [ext_resource type="Texture2D" uid="uid://clu6pr714pcy6" path="res://UI/Icons/icons2.png" id="107_u81y6"]
-[ext_resource type="Texture2D" uid="uid://co7bid28cxdhk" path="res://UI/Icons/icons4.png" id="108_rt5wr"]
 [ext_resource type="Theme" uid="uid://bged1njjfndbj" path="res://UI/bottom_panel.tres" id="108_smeu8"]
+[ext_resource type="Texture2D" uid="uid://b5bma8wo0rn86" path="res://UI/Icons/icons3.png" id="111_vjgyh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4oys"]
 
@@ -650,8 +653,9 @@ default_color = Color(0.941113, 0.273186, 0.266812, 1)
 [node name="FixtureManager" type="Node2D" parent="Objects" node_paths=PackedStringArray("pathLayer")]
 y_sort_enabled = true
 script = ExtResource("45_u6xcc")
-available_fixtures = Array[ExtResource("46_0jpxo")]([ExtResource("47_gvub1")])
+available_fixtures = Array[ExtResource("46_0jpxo")]([ExtResource("47_gvub1"), ExtResource("78_d5iia")])
 bench_scene = ExtResource("78_uy80e")
+side_fixture = ExtResource("80_asu84")
 ui_scenery_element = ExtResource("27_5553e")
 pathLayer = NodePath("../../TileMap/PathLayer")
 
@@ -1105,12 +1109,16 @@ size_flags_vertical = 0
 
 [node name="OptionsDropMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right/VBoxContainer/VBoxContainer/Control"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-offset_top = 4.0
-offset_right = 145.0
-offset_bottom = 536.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.5
+offset_right = 80.5
+offset_bottom = 556.0
+grow_horizontal = 2
+theme = ExtResource("104_vjgyh")
 script = ExtResource("74_d5mka")
 is_vertical = true
 
@@ -1156,6 +1164,7 @@ text = "Save"
 [node name="MainConstruction" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin"]
 layout_mode = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="BuildModeSidePanel" type="Control" parent="UI/VBoxContainer/MainMargin/MainConstruction"]
 layout_mode = 2
@@ -1181,7 +1190,6 @@ theme_override_constants/margin_bottom = 25
 
 [node name="ConstructionSidePanel" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 25
 
@@ -1385,7 +1393,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(140, 140)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Path"
+text = "Paths"
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/PathTool"]
 visible = false
@@ -1410,7 +1418,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(140, 140)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 24
 text = "Enclosure"
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/EnclosureTool"]
@@ -1428,7 +1436,7 @@ theme_override_constants/margin_bottom = 15
 
 [node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/EnclosureTool/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("108_rt5wr")
+texture = ExtResource("111_vjgyh")
 expand_mode = 5
 
 [node name="AnimalTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]

@@ -56,7 +56,13 @@ func build_building(building_res : building_resource, start_tile, rotate, coords
 	if !data:
 		new_building.id = ZooManager.generate_building_id()
 	else:
-		new_building.load_data = data
+		new_building.id = data.id
+		print('aaaa')
+		print(data)
+		if data.has('product_data'):
+			print('bbbb')
+			print(data.product_data)
+			new_building.product_load_data = data.product_data
 	add_child(new_building)
 	new_building.building_selected.connect(on_building_selected)
 	new_building.building_removed.connect(on_building_removed)
@@ -68,7 +74,8 @@ func build_building(building_res : building_resource, start_tile, rotate, coords
 		ZooManager.add_toilet(new_building.id, { 'building': new_building, 'position': TileMapRef.map_to_local(start_tile) })
 			
 	$"../../PathManager".build_building_path(coords)
-	coordinates_used_by_buildings.append(coords)
+	for coord in coords:
+		coordinates_used_by_buildings.append(coord)
 	
 func on_building_removed(building_node):
 	for coordinate in building_node.used_coordinates:
@@ -80,6 +87,7 @@ func on_building_removed(building_node):
 	if building_node.building_res.building_type == IdRefs.BUILDING_TYPES.TOILET:
 		ZooManager.remove_toilet(building_node.id)
 	$"../../PathManager".remove_path(building_node.used_coordinates)
+	building_node.queue_free()
 
 func on_building_selected(building_node):
 	$"../../PopupManager".open_building_popup(building_node)

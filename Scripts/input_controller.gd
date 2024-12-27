@@ -328,6 +328,15 @@ func highlight_area():
 			cells.append(new_coordinate)
 	if is_bulldozing:
 		$"../TileMap/HighlightLayer".apply_highlight(cells, IdRefs.HIGHLIGHT_TYPES.RED)
+	elif current_tool == TOOLS.ENCLOSURE:
+		if $"../Objects/EnclosureManager".get_existing_enclosures_in_area(cells).size() == 0:
+			$"../TileMap/HighlightLayer".apply_highlight(cells, IdRefs.HIGHLIGHT_TYPES.YELLOW)
+		elif $"../Objects/EnclosureManager".get_existing_enclosures_in_area(cells).size() == 1:
+			var new_and_existing_cells = $"../Objects/EnclosureManager".get_existing_enclosures_in_area(cells).front().enclosure_cells + cells
+			$"../TileMap/HighlightLayer".apply_highlight(new_and_existing_cells, IdRefs.HIGHLIGHT_TYPES.BLUE)
+		elif $"../Objects/EnclosureManager".get_existing_enclosures_in_area(cells).size() > 1:
+			$"../TileMap/HighlightLayer".apply_highlight(cells, IdRefs.HIGHLIGHT_TYPES.RED)
+
 	else:
 		$"../TileMap/HighlightLayer".apply_highlight(cells, IdRefs.HIGHLIGHT_TYPES.YELLOW)
 
@@ -347,7 +356,7 @@ func highlight_building_area():
 			for y in range(abs(selected_res.size.y)):
 				var new_coordinate = Vector2i(start_tile_pos.x - y, start_tile_pos.y - x)
 				cells.append(new_coordinate)
-	if current_tool in building_placement_tools :
+	if current_tool in building_placement_tools:
 		if $"../Objects/EnclosureManager".get_enclosure_overlap(cells):
 			$"../TileMap/HighlightLayer".clear_highlight()
 			return
@@ -355,6 +364,7 @@ func highlight_building_area():
 		#if !$"../Objects/EnclosureManager".get_enclosure_overlap(cells):
 			#$"../TileMap/HighlightLayer".clear_highlight()
 			#return
+
 	if !rotate_building:
 		$"../TileMap/HighlightLayer".apply_highlight(cells, IdRefs.HIGHLIGHT_TYPES.BUILDING_S)
 	else:

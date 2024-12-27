@@ -29,6 +29,11 @@ func on_debug_update():
 	animal_scene.update_habitat_satifaction()
 	
 func update_preferences():
+	if fmod(animal_scene.habitat_happiness, 1.0) == 0.5:
+		%overall_happiness_value.text = str(animal_scene.habitat_happiness) + ' / 5'
+	else:
+		%overall_happiness_value.text = str(int(animal_scene.habitat_happiness)) + ' / 5'
+	
 	if animal_scene.preference_terrain_satisfied:
 		%preference_terrain.text = "I'm satisfied with the terrain"
 		%preference_terrain.add_theme_color_override("font_color", Color('#76ad6f'))
@@ -77,3 +82,10 @@ func update_preferences():
 	else:
 		%preference_herd_density.add_theme_color_override("font_color", Color('#fe0005'))
 		%preference_herd_density.text = "There is not enough space for all of us"
+
+	if animal_scene.favorite_tree_satisfied:
+		%preference_herd_density.text = "I love my favorite tree"
+		%preference_herd_density.add_theme_color_override("font_color", Color('#76ad6f'))
+	else:
+		%preference_herd_density.add_theme_color_override("font_color", Color('#fe0005'))
+		%preference_herd_density.text = "I miss my favorite tree " + str(animal_scene.animal_res.favorite_tree)

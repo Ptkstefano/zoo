@@ -285,6 +285,10 @@ func load_game():
 			if data["enclosureData"][key]['enclosure_entrance']:
 				entrance_cell = Vector2i(data["enclosureData"][key]['enclosure_entrance'].x, data["enclosureData"][key]['enclosure_entrance'].y)
 			enclosureManager.build_enclosure(enclosure_id, enclosure_cells, entrance_cell, fence_res)
+			if data["enclosureData"][key].has('feed_data'):
+				print('has feed data')
+				enclosureManager.restore_enclosure_feed(enclosure_id, data["enclosureData"][key]['feed_data'])
+				
 		
 	if data.has('animalData'):
 		for key in data["animalData"]:
@@ -338,22 +342,23 @@ func load_game():
 			for entry in data["buildingData"][key]['used_coordinates']:
 				var vector = Vector2(data["buildingData"][key]['used_coordinates'][entry]['x_pos'], data["buildingData"][key]['used_coordinates'][entry]['y_pos'])
 				used_coords.append(vector)
-			var building_data = null ## TODO
-			if data['buildingData'][key].has('building_data'):
+			var building_data = { 'id':  data['buildingData'][key]['building_id']}
+			var product_data
+			if data['buildingData'][key].has('product_data'):
 				var products = {}
 				var sold_units = {}
-				for product in data['buildingData'][key]['building_data']['products']:
+				for product in data['buildingData'][key]['product_data']['products']:
 					products[product] = {
-						'product_id': data['buildingData'][key]['building_data']['products'][product].get('product_id', 0),
-						'current_price': data['buildingData'][key]['building_data']['products'][product].get('current_price', 0.0),
-						'current_stock': data['buildingData'][key]['building_data']['products'][product].get('current_stock', 0),
-						'auto_restock': data['buildingData'][key]['building_data']['products'][product].get('auto_restock', false)
+						'product_id': data['buildingData'][key]['product_data']['products'][product].get('product_id', 0),
+						'current_price': data['buildingData'][key]['product_data']['products'][product].get('current_price', 0.0),
+						'current_stock': data['buildingData'][key]['product_data']['products'][product].get('current_stock', 0),
+						'auto_restock': data['buildingData'][key]['product_data']['products'][product].get('auto_restock', false)
 					}
 					
-				if data['buildingData'][key]['building_data'].has('sold_units'):
-					for unit in data['buildingData'][key]['building_data']['sold_units']:
-						sold_units[unit] = data['buildingData'][key]['building_data']['sold_units'][unit]
-				building_data = {
+				if data['buildingData'][key]['product_data'].has('sold_units'):
+					for unit in data['buildingData'][key]['product_data']['sold_units']:
+						sold_units[unit] = data['buildingData'][key]['product_data']['sold_units'][unit]
+				building_data['product_data'] = {
 					'products' = products,
 					'sold_units' = sold_units
 				}
@@ -376,10 +381,10 @@ func load_game():
 			peepManager.instantiate_peep_group(groupData)
 			
 	if data.has('zoo_manager_data'):
-		ZooManager.next_enclosure_id = data['zoo_manager_data']['next_enclosure_id']
-		ZooManager.next_animal_id = data['zoo_manager_data']['next_animal_id']
-		ZooManager.next_building_id = data['zoo_manager_data']['next_building_id']
-		ZooManager.next_scenery_id = data['zoo_manager_data']['next_scenery_id']
+		ZooManager.next_enclosure_id = int(data['zoo_manager_data']['next_enclosure_id'])
+		ZooManager.next_animal_id = int(data['zoo_manager_data']['next_animal_id'])
+		ZooManager.next_building_id = int(data['zoo_manager_data']['next_building_id'])
+		ZooManager.next_scenery_id = int(data['zoo_manager_data']['next_scenery_id'])
 		
 	if data.has('financeData'):
 		FinanceManager.current_money = data['financeData']['current_money']
@@ -419,6 +424,16 @@ func get_enclosure_data(enclosure):
 		data['enclosure_entrance'] = {'x': enclosure.entrance_door_cell.x, 'y': enclosure.entrance_door_cell.y}
 	else:
 		data['enclosure_entrance'] = null
+		
+	data['feed_data'] = null
+	if is_instance_valid(enclosure.animal_feed):
+		var feed_data = {}
+		feed_data['sprite_y'] = enclosure.animal_feed.sprite_y
+		feed_data['amount'] = enclosure.animal_feed.amount
+		feed_data['x'] = enclosure.animal_feed.pos_x
+		feed_data['y'] = enclosure.animal_feed.pos_y
+		data['feed_data'] = feed_data
+		
 	data['fence_res'] = enclosure.fence_res.get_path()
 	return data
 	
@@ -509,11 +524,11 @@ func get_building_data(building):
 		var sold_units = {}
 		for unit in building.building_scene.sold_units:
 			sold_units[unit] = building.building_scene.sold_units[unit]
-		var building_data = {
+		var product_data = {
 				'products': products,
 				'sold_units': sold_units
 			}
-		data['building_data'] = building_data
+		data['product_data'] = product_data
 
 	data['building_res'] = building.building_res.get_path()
 	data['is_rotated'] = building.is_building_rotated

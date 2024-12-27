@@ -7,7 +7,7 @@ var zoo_rating : int:
 		calculate_zoo_attractiveness()
 		
 		
-var entrance_price : float = 5
+var entrance_price : float = 10
 		
 ## How much the rating value impacts attractiveness
 var rating_ratio = 0.4

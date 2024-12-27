@@ -14,7 +14,7 @@ var building_res_id
 
 var id : int
 
-var load_data
+var product_load_data
 
 var used_coordinates = []
 var start_tile : Vector2
@@ -36,8 +36,8 @@ func _ready() -> void:
 	building_instance.z_index = Helpers.get_current_tile_z_index(building_instance.global_position) + building_res.z_offset
 	building_instance.is_rotated = is_building_rotated
 	building_scene = building_instance
-	if load_data:
-		building_instance.restore_data(load_data)
+	if product_load_data:
+		building_instance.restore_data(product_load_data)
 	add_child(building_instance)
 	
 	SignalBus.pass_month.connect(on_pass_month)

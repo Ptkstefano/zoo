@@ -6,6 +6,9 @@ var food_available : bool = true
 
 var sprite_y : int = 0
 
+var pos_x
+var pos_y
+
 var feed_cost = 200
 
 var amount : float = 100:
@@ -16,6 +19,8 @@ var amount : float = 100:
 func _ready() -> void:
 	z_index = Helpers.get_current_tile_z_index(global_position)
 	$Sprite2D.frame_coords = Vector2(0, sprite_y)
+	pos_x = global_position.x
+	pos_y = global_position.y
 	pay_for_feed(feed_cost)
 
 func eat(value):

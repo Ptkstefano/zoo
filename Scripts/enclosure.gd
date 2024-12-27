@@ -9,7 +9,7 @@ var id : int
 var enclosure_cells : Array[Vector2i] = []
 
 var enclosure_animals = []
-var enclosure_tree_ids = []
+var enclosure_tree_species_ids = []
 
 var enclosure_species : animal_resource
 
@@ -58,23 +58,19 @@ func calculate_enclosure_stats():
 	water_availability = TileMapRef.get_water_availability(enclosure_cells)
 	var enclosure_vegetation = $VegetationDetectionArea.get_overlapping_areas()
 	await get_tree().create_timer(0.1).timeout
-	enclosure_tree_ids.clear()
+	enclosure_tree_species_ids.clear()
 	var vegetation_weight_sum = 0
 	for area in enclosure_vegetation:
 		var main_node = area.get_parent()
 		vegetation_weight_sum += main_node.vegetation_weight
 		if main_node is SceneryTree:
-			if main_node.tree_res.id not in enclosure_tree_ids:
-				enclosure_tree_ids.append(main_node.tree_res.id)
+			if main_node.tree_res.id not in enclosure_tree_species_ids:
+				enclosure_tree_species_ids.append(main_node.tree_res.id)
 		
 	vegetation_coverage = vegetation_weight_sum / enclosure_cells.size()
 	herd_size = enclosure_animals.size()
 	cells_per_animal = float(enclosure_cells.size()) / float(enclosure_animals.size())
 	enclosure_stats_updated.emit()
-	
-func get_enclosure_trees():
-	return enclosure_tree_ids
-	
 	
 func add_shelter(shelter):
 	available_shelters.append(shelter)
@@ -327,12 +323,20 @@ func add_animal_feed():
 		elif dir == 3:
 			feed_cell = Vector2(entrance_cell.x-1, entrance_cell.y)
 		
-		print ('A')
-		
 		animal_feed.global_position = TileMapRef.map_to_local(feed_cell)
 		add_child(animal_feed)
 	else:
 		animal_feed.fill()
+
+func restore_animal_feed(data):
+	if !data:
+		return
+	animal_feed = animal_feed_scene.instantiate()
+	animal_feed.sprite_y = data.sprite_y
+	animal_feed.amount = data.amount
+	animal_feed.global_position.x = data.x
+	animal_feed.global_position.y = data.y
+	add_child(animal_feed)
 
 func set_enclosure_tilemap_cells():
 	for cell in enclosure_tilemap.get_used_cells():

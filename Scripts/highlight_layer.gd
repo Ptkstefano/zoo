@@ -16,6 +16,8 @@ func apply_highlight(list_of_coordinates, type : IdRefs.HIGHLIGHT_TYPES):
 			set_cell(tile_coordinate, 1, Vector2(0,0))
 		elif type == IdRefs.HIGHLIGHT_TYPES.RED:
 			set_cell(tile_coordinate, 1, Vector2(1,0))
+		elif type == IdRefs.HIGHLIGHT_TYPES.BLUE:
+			set_cell(tile_coordinate, 1, Vector2(2,0))
 		elif type == IdRefs.HIGHLIGHT_TYPES.BUILDING_E:
 			set_cell(tile_coordinate, 1, Vector2(4,0))
 		elif type == IdRefs.HIGHLIGHT_TYPES.BUILDING_S:

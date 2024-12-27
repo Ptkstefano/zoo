@@ -66,7 +66,7 @@ var too_much_vegetation : bool = false
 var too_little_vegetation : bool = false
 var preference_herd_size_satisfied : bool
 var preference_herd_density_satisfied : bool
-var favorite_tree_density_satisfied : bool
+var favorite_tree_satisfied : bool
 
 var sprite_x : int = 0
 var sprite_y : int = 0
@@ -306,9 +306,9 @@ func update_habitat_satifaction():
 	if animal_res.needs_water:
 		if enclosure.water_availability:
 			preference_water_satisfied = true
-			habitat_happiness_value += 1
 		else:
 			preference_water_satisfied = false
+			habitat_happiness_value -= 0.5
 			
 	if enclosure.enclosure_cells.size() > animal_res.minimum_habitat_size:
 		preference_habitat_size_satisfied = true
@@ -342,11 +342,11 @@ func update_habitat_satifaction():
 	else:
 		preference_herd_density_satisfied = false
 		
-	if enclosure.get_enclosure_trees().has(animal_res.favorite_tree):
-		favorite_tree_density_satisfied = true
+	if enclosure.enclosure_tree_species_ids.has(animal_res.favorite_tree):
+		favorite_tree_satisfied = true
 		habitat_happiness_value += 1
 	else:
-		favorite_tree_density_satisfied = false
+		favorite_tree_satisfied = false
 		
 	habitat_happiness = habitat_happiness_value
 		

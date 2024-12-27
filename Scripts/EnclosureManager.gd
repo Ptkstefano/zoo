@@ -31,45 +31,41 @@ func update_terrain_menu():
 	selected_fence = available_enclosures[0]
 	
 	
-func build_enclosure(id, coordinates, entrance_cell, fence_res):
+func build_enclosure(id, cells, entrance_cell, fence_res):
 	##Check if there is already enclosure
 	if fence_res:
 		selected_fence = fence_res
-	var current_enclosure = null
-	for coordinate in coordinates:
-		if enclosure_layer.get_cell_atlas_coords(coordinate) != Vector2i(-1,-1):
-			var found_enclosure = get_enclosure_by_cell(coordinate)
-			if found_enclosure:
-				if !current_enclosure:
-					#print('Found enclosure')
-					current_enclosure = found_enclosure
-				elif current_enclosure != found_enclosure:
-					#print('Not allowed to merge two enclosures')
-					return
+
+	var enclosures_in_area = get_existing_enclosures_in_area(cells)
+	print(enclosures_in_area)
 
 	##Create new enclosure
-	if !current_enclosure:
-		#print('create')
-		current_enclosure = enclosure_scene.instantiate()
-		add_child(current_enclosure)
+	if enclosures_in_area.size() == 0:
+		var new_enclosure = enclosure_scene.instantiate()
+		add_child(new_enclosure)
 		if id == null:
-			current_enclosure.set_id(ZooManager.generate_enclosure_id())
+			new_enclosure.set_id(ZooManager.generate_enclosure_id())
 		else:
-			current_enclosure.set_id(id)
-		current_enclosure.fence_res = selected_fence
-		current_enclosure.create_sibling_enclosure.connect(build_enclosure)
-		current_enclosure.add_cells(coordinates, selected_fence)
+			new_enclosure.set_id(id)
+		new_enclosure.fence_res = selected_fence
+		new_enclosure.create_sibling_enclosure.connect(build_enclosure)
+		new_enclosure.add_cells(cells, selected_fence)
+		## Load data
+		if entrance_cell:
+			new_enclosure.place_entrance(entrance_cell)
+		for coordinate in new_enclosure.enclosure_cells:
+			enclosure_layer.set_cell(coordinate, 0, Vector2i(0,0))
 
 	##Expand existing enclosure
-	else:
+	elif enclosures_in_area.size() == 1:
+		var current_enclosure = enclosures_in_area.front()
 		current_enclosure.fence_res = selected_fence
-		current_enclosure.add_cells(coordinates, selected_fence)
-		
-	for coordinate in current_enclosure.enclosure_cells:
-		enclosure_layer.set_cell(coordinate, 0, Vector2i(0,0))
-		
-	if entrance_cell:
-		current_enclosure.place_entrance(entrance_cell)
+		current_enclosure.add_cells(cells, selected_fence)
+		for coordinate in current_enclosure.enclosure_cells:
+			enclosure_layer.set_cell(coordinate, 0, Vector2i(0,0))
+			
+	else:
+		return
 
 func return_enclosures():
 	return get_children()
@@ -87,8 +83,6 @@ func get_enclosure_by_cell(cell : Vector2i):
 	for child in get_children():
 		if child.enclosure_cells.has(cell):
 			return child
-				
-	return null
 	
 func check_for_vegetation_update(vegetation_position):
 	var vegetation_cell = TileMapRef.local_to_map(vegetation_position)
@@ -98,10 +92,10 @@ func check_for_vegetation_update(vegetation_position):
 	
 	
 func remove_enclosure_cells(coordinates):
-	## TODO - Find corresponding enclosure REMOVE FROM GAMEMANAGER
 	var working_enclosures = []
 	for coordinate in coordinates:
 		enclosure_layer.set_cell(coordinate, -1, Vector2i(-1,-1))
+		
 		for enclosure in get_children():
 			if enclosure.enclosure_cells.has(coordinate):
 				working_enclosures.append(enclosure)
@@ -128,3 +122,19 @@ func get_enclosure_overlap(cells):
 		if cell in enclosure_cells:
 			return true
 	return false
+
+func restore_enclosure_feed(enclosure_id, feed_data):
+	for child in get_children():
+		if child.id == enclosure_id:
+			child.restore_animal_feed(feed_data)
+
+func get_existing_enclosures_in_area(cells):
+	var found_enclosures = []
+	for cell in cells:
+		if enclosure_layer.get_cell_atlas_coords(cell) != Vector2i(-1,-1):
+			var found_enclosure = get_enclosure_by_cell(cell)
+			if found_enclosure not in found_enclosures:
+				if found_enclosure:
+					found_enclosures.append(found_enclosure)
+				
+	return found_enclosures

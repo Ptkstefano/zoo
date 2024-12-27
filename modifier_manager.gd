@@ -8,6 +8,7 @@ enum PEEP_MODIFIERS {
 	GREAT_VALUE_FOOD,
 	FILLED_NEEDS,
 	ATE_AT_RESTAURANT,
+	ONLY_SAW_HAPPY_ANIMALS,
 	
 	## Negative
 	MISSED_ANIMAL,
@@ -18,27 +19,30 @@ enum PEEP_MODIFIERS {
 	NO_SHOP_STOCK,
 	EMPTY_SHOP,
 	NO_DESIRABLE_QUALITY,
-	NO_FOOD_SHOP_IN_RANGE
+	NO_FOOD_SHOP_IN_RANGE,
+	SAW_UNHAPPY_ANIMAL
 }
 
 var peep_modifiers = {
 	## Positive
-	PEEP_MODIFIERS.SEEN_FAVORITE_ANIMAL: PeepModifier.new("Group found their favorite animal in the zoo", 1),
-	PEEP_MODIFIERS.EXCEEDED_ANIMAL_RATING_EXPECTATIONS: PeepModifier.new("Group saw more great animals than they were expecting", 1),
-	PEEP_MODIFIERS.SEEN_ALL_DESIRED_ANIMALS: PeepModifier.new("Group saw all the animals they wanted to see", 1),
-	PEEP_MODIFIERS.GREAT_VALUE_FOOD: PeepModifier.new("Group bought food at great value", 0.5),
-	PEEP_MODIFIERS.FILLED_NEEDS: PeepModifier.new("Group had no unfulfilled needs", 0.5),
-	PEEP_MODIFIERS.ATE_AT_RESTAURANT:  PeepModifier.new("Group ate at restaurant", 0.5),
+	PEEP_MODIFIERS.SEEN_FAVORITE_ANIMAL: PeepModifier.new("We found our favorite animal!", 1),
+	PEEP_MODIFIERS.EXCEEDED_ANIMAL_RATING_EXPECTATIONS: PeepModifier.new("We saw lots of great animals!", 1),
+	PEEP_MODIFIERS.SEEN_ALL_DESIRED_ANIMALS: PeepModifier.new("We saw all animals we wanted to see!", 1),
+	PEEP_MODIFIERS.GREAT_VALUE_FOOD: PeepModifier.new("The food we bought was of great value!", 0.5),
+	PEEP_MODIFIERS.FILLED_NEEDS: PeepModifier.new("We were confortable in our visit", 0.5),
+	PEEP_MODIFIERS.ATE_AT_RESTAURANT:  PeepModifier.new("We ate at a good restaurant", 0.5),
+	PEEP_MODIFIERS.ONLY_SAW_HAPPY_ANIMALS:  PeepModifier.new("All the animals were happy with their habitats!", 0.5),
 	## Negative
-	PEEP_MODIFIERS.MISSED_ANIMAL: PeepModifier.new("Group left without seeing animal they came to see", -0.5),
-	PEEP_MODIFIERS.NO_TOILET: PeepModifier.new("Group could not find a toilet in time", -2),
-	PEEP_MODIFIERS.NO_FOOD: PeepModifier.new("Group could not find food in time", -1),
-	PEEP_MODIFIERS.NO_REST_SPOT: PeepModifier.new("Group could not find a rest spot in time", -1),
-	PEEP_MODIFIERS.TOO_EXPENSIVE: PeepModifier.new("Group found no adequately priced items in shop", -0.25),
-	PEEP_MODIFIERS.NO_SHOP_STOCK: PeepModifier.new("Group wanted to buy out of stock item", -0.5),
-	PEEP_MODIFIERS.EMPTY_SHOP: PeepModifier.new("Group found shop with no items available", -0.25),
-	PEEP_MODIFIERS.NO_DESIRABLE_QUALITY: PeepModifier.new("Group found no item of suitable quality level", -0.25),
-	PEEP_MODIFIERS.NO_FOOD_SHOP_IN_RANGE: PeepModifier.new("Group found no food shop in reasonable distance", -0.25),
+	PEEP_MODIFIERS.MISSED_ANIMAL: PeepModifier.new("We did not see an animal we came to see", -0.5),
+	PEEP_MODIFIERS.NO_TOILET: PeepModifier.new("We could not find a toilet", -2),
+	PEEP_MODIFIERS.NO_FOOD: PeepModifier.new("We could not find food", -1),
+	PEEP_MODIFIERS.NO_REST_SPOT: PeepModifier.new("We got tired and found no benches", -1),
+	PEEP_MODIFIERS.TOO_EXPENSIVE: PeepModifier.new("A preduct was too expensive for us", -0.25),
+	PEEP_MODIFIERS.NO_SHOP_STOCK: PeepModifier.new("We wanted to buy an item, but it was out of stock", -0.5),
+	PEEP_MODIFIERS.EMPTY_SHOP: PeepModifier.new("We went to an empty shop", -0.25),
+	PEEP_MODIFIERS.NO_DESIRABLE_QUALITY: PeepModifier.new("We found no products we wanted to buy", -0.25),
+	PEEP_MODIFIERS.NO_FOOD_SHOP_IN_RANGE: PeepModifier.new("All eateries were too far away from us", -0.25),
+	PEEP_MODIFIERS.SAW_UNHAPPY_ANIMAL: PeepModifier.new("We saw an unhappy animal", -1.5),
 }
 
 

@@ -17,6 +17,8 @@ func _ready():
 	var peepGroupShopLabel = Label.new()
 	peepGroupShopLabel.text = 'Target shop: ' + str(peep_group_node.target_shop)
 	%DebugList.add_child(peepGroupShopLabel)
+	
+	%PeepGroupId.text = 'Peep group ' + str(peep_group_node.id)
 
 
 func update_popup_data():

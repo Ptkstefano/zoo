@@ -1,13 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddbum626vwima"]
+[gd_scene load_steps=8 format=3 uid="uid://ddbum626vwima"]
 
 [ext_resource type="Script" uid="uid://dnxto2yafwg73" path="res://UI/UI popups/ui_shop_popup.gd" id="1_w81ri"]
 [ext_resource type="PackedScene" uid="uid://dkyq54bpawtoq" path="res://UI/UI popups/elements/ui_product_element.tscn" id="2_ts5ku"]
 [ext_resource type="PackedScene" uid="uid://c6fgf62ytu0xe" path="res://UI/UI popups/elements/shop_modifier_element.tscn" id="3_ul87g"]
 [ext_resource type="PackedScene" uid="uid://we0wd88u1111" path="res://UI/UI popups/elements/product_history_element.tscn" id="4_vhx3g"]
 [ext_resource type="PackedScene" uid="uid://8uotlvt85h4j" path="res://UI/UI popups/ui_available_products_popup.tscn" id="5_toidr"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvjfy"]
-bg_color = Color(0.27, 0.27, 0.27, 0.901)
+[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/popup_theme.tres" id="6_klxwb"]
+[ext_resource type="Theme" uid="uid://di7iy2m47x8rx" path="res://UI/popup_inner_content.tres" id="7_ssr7q"]
 
 [node name="UI_ShopPopup" type="CanvasLayer"]
 layer = 3
@@ -17,23 +16,23 @@ shop_modifier_element = ExtResource("3_ul87g")
 product_history_element = ExtResource("4_vhx3g")
 available_products_popup = ExtResource("5_toidr")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="PopupMarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("6_klxwb")
 theme_override_constants/margin_left = 250
 theme_override_constants/margin_top = 150
 theme_override_constants/margin_right = 250
 theme_override_constants/margin_bottom = 200
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="PopupMarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_rvjfy")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PopupMarginContainer/PanelContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
@@ -41,13 +40,13 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ShopName" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ShopName" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -55,52 +54,51 @@ theme_override_font_sizes/font_size = 48
 text = "namehere"
 horizontal_alignment = 1
 
-[node name="TabContainer" type="TabContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 40
-current_tab = 2
+current_tab = 1
 
-[node name="Products" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+[node name="Products" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products"]
+[node name="HSeparator" type="HSeparator" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products"]
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ProductList" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products/ScrollContainer"]
+[node name="ProductList" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products"]
+[node name="HSeparator2" type="HSeparator" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="AddProductButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products"]
+[node name="AddProductButton" type="Button" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 115)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Add product"
 
-[node name="Stats" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
-visible = false
+[node name="Stats" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -109,75 +107,76 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Stats" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Stats" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Stats"]
+[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Stats"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Sell history"
 horizontal_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Stats"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Stats"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ProductHistoryList" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Stats/ScrollContainer"]
+[node name="ProductHistoryList" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Stats/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ProductHistoryElement" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Stats/ScrollContainer/ProductHistoryList" instance=ExtResource("4_vhx3g")]
+[node name="ProductHistoryElement" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Stats/ScrollContainer/ProductHistoryList" instance=ExtResource("4_vhx3g")]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Stats"]
+[node name="HSeparator" type="HSeparator" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Stats"]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Modifiers" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Modifiers" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Modifiers"]
+[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Modifiers"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Latest comments"
 horizontal_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Modifiers"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Modifiers"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ShopModifierList" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Modifiers/ScrollContainer"]
+[node name="ShopModifierList" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Modifiers/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ShopModifierElement" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Modifiers/ScrollContainer/ShopModifierList" instance=ExtResource("3_ul87g")]
+[node name="ShopModifierElement" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Modifiers/ScrollContainer/ShopModifierList" instance=ExtResource("3_ul87g")]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Modifiers"]
+[node name="HSeparator" type="HSeparator" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/ScrollContainer/MarginContainer/VBoxContainer/Modifiers"]
 layout_mode = 2
 
-[node name="Debug" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+[node name="Debug" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -186,30 +185,31 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("7_ssr7q")
+
+[node name="Stats" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Stats" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer/MarginContainer/VBoxContainer/Stats"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer/MarginContainer/VBoxContainer/Stats"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="DebugContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer/MarginContainer/VBoxContainer/Stats/ScrollContainer"]
+[node name="DebugContainer" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer/MarginContainer/VBoxContainer/Stats/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="DeleteButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="DeleteButton" type="Button" parent="PopupMarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
@@ -218,7 +218,7 @@ size_flags_vertical = 0
 size_flags_stretch_ratio = 0.1
 text = "D"
 
-[node name="CloseButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="CloseButton" type="Button" parent="PopupMarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2

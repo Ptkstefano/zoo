@@ -39,6 +39,7 @@ var position_offsets = [Vector2(0, -6), Vector2(-6, 0), Vector2(6, 0), Vector2(0
 
 var observed_animals : Array[IdRefs.ANIMAL_SPECIES]
 var favorite_animal : IdRefs.ANIMAL_SPECIES
+var observed_animals_happiness_sum : float = 0
 
 var searching_rest_spot : bool = false
 #var moving_towards_fixture : bool = false
@@ -141,6 +142,7 @@ func _ready() -> void:
 	$DecayTimer.timeout.connect(on_decay_timer_timeout)
 	
 	$AnimalWaitTimer.timeout.connect(on_animal_wait_timer_timeout)
+	
 	
 	#$VisibleOnScreenNotifier2D.screen_entered.connect(on_visibility_entered)
 	
@@ -361,10 +363,13 @@ func on_detector_area_entered(area):
 		return
 		
 	if area.get_parent() is Animal:
-		var animal = area.get_parent()
+		var animal = area.get_parent() as Animal
 		if animal.animal_species not in observed_animals:
 			observed_animals.append(animal.animal_species)
 			change_state(group_states.OBSERVING)
+			observed_animals_happiness_sum += animal.habitat_happiness
+			if animal.habitat_happiness <= 2:
+				modifiers.append(ModifierManager.PEEP_MODIFIERS.SAW_UNHAPPY_ANIMAL)
 			$AnimalWaitTimer.stop()
 			for peep in peeps:
 				var dir = global_position.direction_to(animal.global_position).angle()
@@ -488,19 +493,21 @@ func buy_food():
 				change_state(group_states.INSIDE_RESTAURANT)
 				searching_food_spot = false
 				visible = false
+				## Doing this to see if bug where target_shop ceases existing is fixed
+				var amount = target_shop.available_products[best_item_id].current_price * peep_count
 				await $RestaurantTimer.timeout
 				needs_hunger = 100.0
 				needs_toilet = 100.0
 				needs_rest = 100.0
 				visible = true
 				change_state(group_states.STOPPED)
-				spent_money += target_shop.available_products[best_item_id].current_price * peep_count
+				spent_money += amount
 				modifiers.append(ModifierManager.PEEP_MODIFIERS.ATE_AT_RESTAURANT)
 				if available_items[best_item_id].utility_score > 1.5:
 					target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
 					modifiers.append(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
 				for peep in peeps:
-					SignalBus.money_tooltip.emit(target_shop.available_products[best_item_id].current_price, true, peep.global_position)
+					SignalBus.money_tooltip.emit(amount, true, peep.global_position)
 			else:
 				target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
 				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
@@ -580,6 +587,9 @@ func leave_zoo():
 		modifiers.append(ModifierManager.PEEP_MODIFIERS.SEEN_FAVORITE_ANIMAL)
 	if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_TOILET) and !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_FOOD) and !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_REST_SPOT):
 		modifiers.append(ModifierManager.PEEP_MODIFIERS.FILLED_NEEDS)
+	if observed_animals_happiness_sum / observed_animals.size() > 4.8:
+		modifiers.append(ModifierManager.PEEP_MODIFIERS.ONLY_SAW_HAPPY_ANIMALS)
+		
 	var rating = calculate_perceived_zoo_rating()
 	peep_group_left.emit(self, rating)
 
