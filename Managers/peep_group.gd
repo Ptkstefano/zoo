@@ -169,7 +169,6 @@ func initialize_peep_group(data):
 		peep_count = randi_range(1,4)
 		favorite_animal = ContentManager.animals.keys().pick_random()
 		speed = randi_range(16, 24)
-		initialize_peep_group_destinations()
 		var randi = randi_range(0,10)
 		if randi <= 6:
 			min_product_level = 1
@@ -178,6 +177,9 @@ func initialize_peep_group(data):
 		else:
 			min_product_level = 3
 			
+
+	initialize_peep_group_destinations()
+	
 	## TODO - add to save
 	if randi_range(0, 10) >= 7:
 		prefers_restaurants = true
@@ -551,30 +553,30 @@ func initialize_peep_group_destinations():
 	var keys = ZooManager.zoo_enclosures.keys()
 	if keys.size() == 0:
 		return
+		
+	var destination_ids = []
+	
+	if load_data:
+		for id in load_data.desired_destinations_id:
+			destination_ids.append(int(id))
 	
 	if desired_enclosures_id.is_empty():
 		## Generate random resired destinations
 		for i in range(5):
 			if keys.size() == 0:
 				return
-			var enclosure_key = keys.pick_random()
-			keys.erase(enclosure_key)
-			
-			if ZooManager.zoo_enclosures[enclosure_key]['especies'] == null:
+			var random_id = keys.pick_random()
+			keys.erase(random_id)
+			if ZooManager.zoo_enclosures[random_id]['especies'] == null:
 				continue
+			destination_ids.append(random_id)
 
 			## Used for save data
-			desired_enclosures_id.append(enclosure_key)
-			
-			group_desired_destinations.append(ZooManager.zoo_enclosures[enclosure_key])
-			group_desired_animals.append(ZooManager.zoo_enclosures[enclosure_key]['especies'].species_id)
-			
-			
-	else:
-		## Restore previously generated desired destinations
-		for id in desired_enclosures_id:
-			if id in ZooManager.zoo_enclosures.keys():
-				group_desired_destinations.append(ZooManager.zoo_enclosures[id])
+	for id in destination_ids:
+		desired_enclosures_id.append(id)
+		group_desired_destinations.append(ZooManager.zoo_enclosures[id])
+		group_desired_animals.append(ZooManager.zoo_enclosures[id]['especies'].species_id)
+
 			
 	## TODO - Sort group_desired_destinations
 	
@@ -638,7 +640,7 @@ func search_food_place():
 		
 func search_toilet():
 	var selected_toilet
-	var shorter_distance = 20000
+	var shorter_distance = 100000
 	for toilet in ZooManager.toilets:
 		var distance = global_position.distance_to(ZooManager.toilets[toilet].position)
 		if distance < shorter_distance:

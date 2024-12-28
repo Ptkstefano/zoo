@@ -8,7 +8,6 @@ func _ready() -> void:
 
 func apply_highlight(list_of_coordinates, type : IdRefs.HIGHLIGHT_TYPES):
 	clear_highlight()
-	print(list_of_coordinates)
 	for tile_coordinate in list_of_coordinates:
 		if tile_coordinate not in highlighted:
 			highlighted.append(tile_coordinate)

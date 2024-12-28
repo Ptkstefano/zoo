@@ -1,4 +1,4 @@
-[gd_scene load_steps=173 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=174 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" uid="uid://o2egpp0b02e2" path="res://Scripts/debug_controller.gd" id="1_nisry"]
 [ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -100,6 +100,7 @@
 [ext_resource type="Script" uid="uid://bngrxugl7sj74" path="res://UI/ui_show.gd" id="74_d5mka"]
 [ext_resource type="Resource" uid="uid://bxqdyityaxu4g" path="res://Scenery/Fixtures/steel lamp.tres" id="78_d5iia"]
 [ext_resource type="PackedScene" uid="uid://dcmmhhcwneqel" path="res://Scenery/Fixtures/bench_scene.tscn" id="78_uy80e"]
+[ext_resource type="Resource" uid="uid://d03yeo0qd6n66" path="res://Scenery/Fixtures/wooden_flower_pot.tres" id="79_qwt6e"]
 [ext_resource type="PackedScene" uid="uid://dwvani4eft5jg" path="res://Scenery/Fixtures/fixture_side_scene.tscn" id="80_asu84"]
 [ext_resource type="Texture2D" uid="uid://bgsedt3bhj4my" path="res://Enclosures/Fences/fence_exp1.png" id="82_auu6y"]
 [ext_resource type="PackedScene" uid="uid://fhgu3i03484t" path="res://UI/UI popups/ui_peep_group_popup.tscn" id="83_4rd2l"]
@@ -653,7 +654,7 @@ default_color = Color(0.941113, 0.273186, 0.266812, 1)
 [node name="FixtureManager" type="Node2D" parent="Objects" node_paths=PackedStringArray("pathLayer")]
 y_sort_enabled = true
 script = ExtResource("45_u6xcc")
-available_fixtures = Array[ExtResource("46_0jpxo")]([ExtResource("47_gvub1"), ExtResource("78_d5iia")])
+available_fixtures = Array[ExtResource("46_0jpxo")]([ExtResource("47_gvub1"), ExtResource("78_d5iia"), ExtResource("79_qwt6e")])
 bench_scene = ExtResource("78_uy80e")
 side_fixture = ExtResource("80_asu84")
 ui_scenery_element = ExtResource("27_5553e")

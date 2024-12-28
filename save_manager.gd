@@ -152,6 +152,7 @@ func save_game():
 	i = 1
 	var scenery_data = {}
 	for scenery in scenery_list:
+		print(scenery.type)
 		scenery_data[i] = get_scenery_data(scenery).duplicate(true)
 		i += 1
 	save_data['sceneryData'] = scenery_data
@@ -286,7 +287,6 @@ func load_game():
 				entrance_cell = Vector2i(data["enclosureData"][key]['enclosure_entrance'].x, data["enclosureData"][key]['enclosure_entrance'].y)
 			enclosureManager.build_enclosure(enclosure_id, enclosure_cells, entrance_cell, fence_res)
 			if data["enclosureData"][key].has('feed_data'):
-				print('has feed data')
 				enclosureManager.restore_enclosure_feed(enclosure_id, data["enclosureData"][key]['feed_data'])
 				
 		
@@ -475,6 +475,7 @@ func get_scenery_data(scenery):
 	data['x_pos'] = scenery.cached_position.x
 	data['y_pos'] = scenery.cached_position.y
 	if scenery_type == IdRefs.SCENERY_TYPES.VEGETATION:
+		#print('type vegetation')
 		data['vegetation_res'] = scenery.vegetation_res.get_path()
 	elif scenery_type == IdRefs.SCENERY_TYPES.TREE:
 		data['tree_res'] = scenery.tree_res.get_path()

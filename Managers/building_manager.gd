@@ -57,11 +57,7 @@ func build_building(building_res : building_resource, start_tile, rotate, coords
 		new_building.id = ZooManager.generate_building_id()
 	else:
 		new_building.id = data.id
-		print('aaaa')
-		print(data)
 		if data.has('product_data'):
-			print('bbbb')
-			print(data.product_data)
 			new_building.product_load_data = data.product_data
 	add_child(new_building)
 	new_building.building_selected.connect(on_building_selected)

@@ -36,5 +36,4 @@ func on_remove_product():
 	remove_product.emit(id)
 
 func on_replenish_toggled(value):
-	print('TOGGLED')
 	auto_replenish.emit(id, value)

@@ -37,7 +37,6 @@ func build_enclosure(id, cells, entrance_cell, fence_res):
 		selected_fence = fence_res
 
 	var enclosures_in_area = get_existing_enclosures_in_area(cells)
-	print(enclosures_in_area)
 
 	##Create new enclosure
 	if enclosures_in_area.size() == 0:
