@@ -49,10 +49,9 @@ horizontal_alignment = 1
 [node name="TabContainer" type="TabContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 0
 
 [node name="Reviews" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 10
 metadata/_tab_index = 0
@@ -80,6 +79,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Finance" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 10
 metadata/_tab_index = 1

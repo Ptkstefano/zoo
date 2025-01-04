@@ -343,24 +343,28 @@ func load_game():
 				var vector = Vector2(data["buildingData"][key]['used_coordinates'][entry]['x_pos'], data["buildingData"][key]['used_coordinates'][entry]['y_pos'])
 				used_coords.append(vector)
 			var building_data = { 'id':  data['buildingData'][key]['building_id']}
-			var product_data
-			if data['buildingData'][key].has('product_data'):
+
+			if data['buildingData'][key].has('shop_data'):
 				var products = {}
 				var sold_units = {}
-				for product in data['buildingData'][key]['product_data']['products']:
+				for product in data['buildingData'][key]['shop_data']['product_data']['products']:
 					products[product] = {
-						'product_id': data['buildingData'][key]['product_data']['products'][product].get('product_id', 0),
-						'current_price': data['buildingData'][key]['product_data']['products'][product].get('current_price', 0.0),
-						'current_stock': data['buildingData'][key]['product_data']['products'][product].get('current_stock', 0),
-						'auto_restock': data['buildingData'][key]['product_data']['products'][product].get('auto_restock', false)
+						'product_id': data['buildingData'][key]['shop_data']['product_data']['products'][product].get('product_id', 0),
+						'current_price': data['buildingData'][key]['shop_data']['product_data']['products'][product].get('current_price', 0.0),
+						'current_stock': data['buildingData'][key]['shop_data']['product_data']['products'][product].get('current_stock', 0),
+						'auto_restock': data['buildingData'][key]['shop_data']['product_data']['products'][product].get('auto_restock', false)
 					}
+				
+				var shop_stats = data['buildingData'][key]['shop_data']['shop_stats']
+				
+				## Id's have to be converted back into int
+				for id in shop_stats['shop_product_stats'].keys():
+					shop_stats['shop_product_stats'][int(id)] = shop_stats['shop_product_stats'][id]
+					shop_stats['shop_product_stats'].erase(id)
 					
-				if data['buildingData'][key]['product_data'].has('sold_units'):
-					for unit in data['buildingData'][key]['product_data']['sold_units']:
-						sold_units[unit] = data['buildingData'][key]['product_data']['sold_units'][unit]
-				building_data['product_data'] = {
+				building_data['shop_data'] = {
 					'products' = products,
-					'sold_units' = sold_units
+					'shop_stats' = shop_stats
 				}
 				
 			buildingManager.build_building(building_res, pos, is_rotated, used_coords, building_data)
@@ -378,6 +382,7 @@ func load_game():
 			groupData['needs_toilet'] = data["peepGroupData"][key]['needs_toilet']
 			groupData['needs_rest'] = data["peepGroupData"][key]['needs_rest']
 			groupData['desired_destinations_id'] = data["peepGroupData"][key]['desired_destinations_id']
+			groupData['min_product_level'] = data["peepGroupData"][key].get('min_product_level', 1)
 			peepManager.instantiate_peep_group(groupData)
 			
 	if data.has('zoo_manager_data'):
@@ -462,6 +467,7 @@ func get_peep_group_data(peep_group):
 		data['needs_toilet'] = peep_group.needs_toilet
 		data['observed_animals'] = peep_group.observed_animals
 		data['desired_destinations_id'] = peep_group.desired_enclosures_id
+		data['min_product_level'] = peep_group.min_product_level
 		#data['visited_shops'] = peep_group.
 		## TODO - Peep visited shops
 		## TODO - Peep inventory
@@ -514,6 +520,7 @@ func get_building_data(building):
 	data['building_type'] = building.building_res.building_type
 	data['building_id'] = building.id
 	if building.building_res.building_type in [IdRefs.BUILDING_TYPES.SHOP, IdRefs.BUILDING_TYPES.RESTAURANT, IdRefs.BUILDING_TYPES.EATERY]:
+		var shop_data = {}
 		var products = {}
 		for product in building.building_scene.available_products:
 			products[product] = {
@@ -522,14 +529,17 @@ func get_building_data(building):
 				'current_stock': building.building_scene.available_products[product].current_stock,
 				'auto_restock': building.building_scene.available_products[product].auto_restock
 			}
-		var sold_units = {}
-		for unit in building.building_scene.sold_units:
-			sold_units[unit] = building.building_scene.sold_units[unit]
 		var product_data = {
 				'products': products,
-				'sold_units': sold_units
 			}
-		data['product_data'] = product_data
+		shop_data['product_data'] = product_data
+		shop_data['shop_stats'] = {
+			'shop_product_stats' = building.building_scene.shop_product_data,
+			'shop_earning_stats' = building.building_scene.shop_earning_data,
+			'shop_expenditure_stats' = building.building_scene.shop_expenditure_data
+			}
+			
+		data['shop_data'] = shop_data
 
 	data['building_res'] = building.building_res.get_path()
 	data['is_rotated'] = building.is_building_rotated

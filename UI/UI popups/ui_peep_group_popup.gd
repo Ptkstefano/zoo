@@ -2,6 +2,8 @@ extends Control
 
 var peep_group_node : PeepGroup
 
+@export var level_star : PackedScene
+
 func _ready():
 	update_popup_data()
 	%CloseButton.pressed.connect(queue_free)
@@ -26,7 +28,13 @@ func update_popup_data():
 		queue_free()
 		return
 	%peep_n.text = str(peep_group_node.peep_count)
-	%minimum_product_level.text = str(peep_group_node.min_product_level)
+	
+	for child in %min_product_level.get_children():
+		child.queue_free()
+	for level in peep_group_node.min_product_level:
+		var star_texture = level_star.instantiate()
+		%min_product_level.add_child(star_texture)
+	
 	if peep_group_node.min_utility_score_tolerance > 1.25:
 		%product_cost_tolerance.text = "Low"
 	elif peep_group_node.min_utility_score_tolerance < 0.90:
@@ -38,6 +46,7 @@ func update_popup_data():
 	%ToiletProgressBar.value = peep_group_node.needs_toilet
 	%RestProgressBar.value = peep_group_node.needs_rest
 	
+
 	%n_species_seen.text = str(peep_group_node.observed_animals.size())
 	%n_animals_yet_to_see.text = str(peep_group_node.group_desired_destinations.size())
 	%favorite_animal.text = str(ContentManager.animals[peep_group_node.favorite_animal].name)

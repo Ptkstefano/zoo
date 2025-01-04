@@ -126,7 +126,7 @@ func calculate_zoo_rating():
 	calculate_zoo_attractiveness()
 
 func calculate_zoo_attractiveness():
-	zoo_attractiveness = float(zoo_rating * rating_ratio) * (reputation * 0.3)
+	zoo_attractiveness = float(zoo_rating * rating_ratio) * (clampf(reputation, 0.25, 5) * 0.3)
 
 func update_rating(new_rating):
 	last_guest_ratings.append(new_rating)

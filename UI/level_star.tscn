@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://kn44cenbnuda"]
+
+[ext_resource type="Texture2D" uid="uid://b787nqd6tt5ow" path="res://UI/Icons/star2x.png" id="1_trpm8"]
+
+[node name="LevelStar" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_trpm8")
+stretch_mode = 5

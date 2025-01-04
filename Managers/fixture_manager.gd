@@ -39,9 +39,9 @@ func place_fixture(press_pos, fixture_res : fixture_resource):
 	var cell = pathLayer.local_to_map(press_pos)
 	var cell_central_pos = pathLayer.map_to_local(cell)
 	var direction = Helpers.get_cell_quadrant(press_pos)
-	for fixture in used_cells.keys():
-		if used_cells[fixture].cell == cell:
-			if used_cells[fixture].direction == direction:
+	if str(cell) in used_cells.keys():
+		for element in used_cells[str(cell)]:
+			if element['direction'] == direction:
 				return
 	if pathLayer.get_cell_source_id(cell) == -1:
 		return
@@ -60,16 +60,24 @@ func place_fixture(press_pos, fixture_res : fixture_resource):
 	fixture_scene.remove_fixture.connect(on_remove_fixture)
 	fixture_scene.cell = cell
 	add_child(fixture_scene)
-	used_cells[fixture_scene] = {'cell': cell, 'direction': direction}
+	if str(cell) in used_cells.keys():
+		used_cells[str(cell)].append({'scene': fixture_scene, 'direction': direction})
+	else:
+		used_cells[str(cell)] = [{'scene': fixture_scene, 'direction': direction}]
 	
 func on_remove_fixture(scene):
-	used_cells.erase(scene)
+	if str(scene.cell) not in used_cells.keys():
+		return
+	for element in used_cells[str(scene.cell)]:
+		if element['scene'] == scene:
+			used_cells[str(scene.cell)].erase(element)
+	
 	scene.queue_free()
 	
 func remove_fixture_from_path(cell):
-	for child in get_children():
-		child.cell == cell
-		on_remove_fixture(child)
+	if str(cell) in used_cells.keys():
+		for element in used_cells[str(cell)]:
+			on_remove_fixture(element['scene'])
 
 func replace_fixture(cell):
 	return

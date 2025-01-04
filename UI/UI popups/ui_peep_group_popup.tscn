@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://fhgu3i03484t"]
+[gd_scene load_steps=6 format=3 uid="uid://fhgu3i03484t"]
 
 [ext_resource type="Theme" uid="uid://qsq4gutgth07" path="res://UI/default_theme.tres" id="1_kg8vx"]
 [ext_resource type="Script" uid="uid://d2lmkkf82ctt6" path="res://UI/UI popups/ui_peep_group_popup.gd" id="2_ubkfr"]
 [ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/popup_theme.tres" id="3_wvilj"]
 [ext_resource type="Theme" uid="uid://di7iy2m47x8rx" path="res://UI/popup_inner_content.tres" id="4_udmg1"]
+[ext_resource type="PackedScene" uid="uid://kn44cenbnuda" path="res://UI/level_star.tscn" id="5_xg63y"]
 
 [node name="PeepgroupPopup" type="Control"]
 layout_mode = 3
@@ -16,6 +17,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("1_kg8vx")
 script = ExtResource("2_ubkfr")
+level_star = ExtResource("5_xg63y")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -60,10 +62,9 @@ theme_override_constants/margin_bottom = 20
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
-current_tab = 3
+current_tab = 0
 
 [node name="Group Info" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("4_udmg1")
 theme_override_constants/margin_left = 10
@@ -99,12 +100,11 @@ layout_mode = 2
 layout_mode = 2
 text = "Minimum product level:"
 
-[node name="minimum_product_level" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Group Info/Info/VBoxContainer/HBoxContainer2"]
+[node name="min_product_level" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Group Info/Info/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
-text = "##"
-horizontal_alignment = 2
+alignment = 2
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Group Info/Info/VBoxContainer"]
 layout_mode = 2
@@ -338,6 +338,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Thoughts" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("4_udmg1")
 theme_override_constants/margin_left = 10

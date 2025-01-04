@@ -1,16 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkyq54bpawtoq"]
+[gd_scene load_steps=9 format=3 uid="uid://dkyq54bpawtoq"]
 
-[ext_resource type="Theme" uid="uid://cc6y5iypxpi24" path="res://UI/product_element_theme.tres" id="1_piuaw"]
-[ext_resource type="Script" path="res://UI/UI popups/elements/ui_product_element.gd" id="1_vpxgb"]
+[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/popup_theme.tres" id="1_4y68s"]
+[ext_resource type="Script" uid="uid://yuksdpapqa7b" path="res://UI/UI popups/elements/ui_product_element.gd" id="1_vpxgb"]
+[ext_resource type="PackedScene" uid="uid://kn44cenbnuda" path="res://UI/level_star.tscn" id="3_fkehs"]
 [ext_resource type="FontFile" uid="uid://cpnqdh47y1283" path="res://UI/Logic_Loop.ttf" id="3_sefss"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dyuu"]
+bg_color = Color(0.464616, 0.442849, 0.686033, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fkehs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1mjrf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f6yke"]
 
 [node name="ProductElement" type="PanelContainer"]
-theme = ExtResource("1_piuaw")
+offset_right = 975.0
+offset_bottom = 231.0
+theme = ExtResource("1_4y68s")
 script = ExtResource("1_vpxgb")
+level_star = ExtResource("3_fkehs")
 
 [node name="Element" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -19,34 +32,76 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Element"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Element"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Element/VBoxContainer"]
+[node name="Panel" type="Panel" parent="Element/HBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5dyuu")
+
+[node name="Thumbnail" type="TextureRect" parent="Element/HBoxContainer/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="Element/HBoxContainer"]
+custom_minimum_size = Vector2(47.42, 0)
 layout_mode = 2
 
-[node name="ProductName" type="Label" parent="Element/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Element/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Element/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="ProductName" type="Label" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
 text = "Ice Cream"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Element/VBoxContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_fkehs")
+
+[node name="LevelStars" type="HBoxContainer" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Minus" type="Button" parent="Element/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Minus" type="Button" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 75)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "-"
 
-[node name="VSeparator2" type="VSeparator" parent="Element/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="VSeparator2" type="VSeparator" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_1mjrf")
 
-[node name="Price" type="Label" parent="Element/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Price" type="Label" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -55,68 +110,70 @@ theme_override_font_sizes/font_size = 32
 text = "2.00
 "
 
-[node name="VSeparator" type="VSeparator" parent="Element/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_f6yke")
 
-[node name="Plus" type="Button" parent="Element/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Plus" type="Button" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 75)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "+"
 
-[node name="VSeparator3" type="VSeparator" parent="Element/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="VSeparator3" type="VSeparator" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_f6yke")
 
-[node name="Remove" type="Button" parent="Element/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Remove" type="Button" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 75)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "R"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Element/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Element/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Element/VBoxContainer/HBoxContainer2"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ProductName" type="Label" parent="Element/VBoxContainer/HBoxContainer2/HBoxContainer2"]
+[node name="ProductName" type="Label" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer2"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Stock: "
 
-[node name="Stock" type="Label" parent="Element/VBoxContainer/HBoxContainer2/HBoxContainer2"]
+[node name="Stock" type="Label" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
 text = "50 / 50"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Element/VBoxContainer/HBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 
-[node name="ReplenishButton" type="Button" parent="Element/VBoxContainer/HBoxContainer2/HBoxContainer"]
+[node name="ReplenishButton" type="Button" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 75)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Replenish"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Element/VBoxContainer/HBoxContainer2/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="AutoReplenishCheckbox" type="CheckButton" parent="Element/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer"]
+[node name="AutoReplenishCheckbox" type="CheckButton" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 button_pressed = true
 
-[node name="Label" type="Label" parent="Element/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "Auto"

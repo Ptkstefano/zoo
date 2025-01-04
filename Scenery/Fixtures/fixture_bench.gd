@@ -6,7 +6,7 @@ var fixture_res : fixture_resource
 var placement_global_pos : Vector2
 
 var direction : int
-var cell
+var cell : Vector2i
 
 var sitting_posisitions = []
 

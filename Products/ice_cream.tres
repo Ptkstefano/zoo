@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="product_resource" load_steps=2 format=3 uid="uid://chxwmmjp17tl7"]
+[gd_resource type="Resource" script_class="product_resource" load_steps=3 format=3 uid="uid://chxwmmjp17tl7"]
 
 [ext_resource type="Script" uid="uid://cq5yhojsat81w" path="res://Products/product_res.gd" id="1_0h3kp"]
+[ext_resource type="Texture2D" uid="uid://beim63lui1k5w" path="res://UI/Icons/ice_cream_cone.png" id="2_6sy1x"]
 
 [resource]
 script = ExtResource("1_0h3kp")
 id = 0
 type = 0
 name = "Ice cream"
+thumb = ExtResource("2_6sy1x")
 base_sell_value = 2.5
 perceived_value = 2.5
 product_level = 1

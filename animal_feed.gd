@@ -37,6 +37,8 @@ func set_sprite():
 		
 func feed_empty():
 	food_available = false
+	if !get_tree():
+		return
 	await get_tree().create_timer(15).timeout
 	if amount < 10:
 		queue_free()

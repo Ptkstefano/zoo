@@ -87,6 +87,7 @@ Button/styles/normal = SubResource("StyleBoxTexture_qsrn0")
 Button/styles/pressed = SubResource("StyleBoxTexture_rc7u6")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_yynsw")
 TabContainer/constants/outline_size = 14
+TabContainer/font_sizes/font_size = 32
 TabContainer/fonts/font = ExtResource("2_fjmuk")
 TabContainer/styles/panel = SubResource("StyleBoxTexture_qkd5o")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_qkd5o")

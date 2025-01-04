@@ -17,7 +17,7 @@ var move_states : Array[group_states] = [group_states.WALKING, group_states.GOIN
 ## busy_states can't be overriden by another state
 var busy_states : Array[group_states] = [group_states.GOING_TO_FOOD, group_states.GOING_TO_RESTAURANT, group_states.GOING_TO_BENCH, group_states.GOING_TO_TOILET]
 
-var group_state : group_states = group_states.WALKING
+var group_state : group_states = group_states.STOPPED
 
 var peeps : Array[Peep] = []
 
@@ -147,7 +147,7 @@ func _ready() -> void:
 	#$VisibleOnScreenNotifier2D.screen_entered.connect(on_visibility_entered)
 	
 	initialize_peep_group(load_data)
-	get_new_destination()
+	change_state(group_states.STOPPED)
 
 func initialize_peep_group(data):
 	if data:
@@ -157,6 +157,7 @@ func initialize_peep_group(data):
 		needs_hunger = data.needs_hunger
 		needs_toilet  = data.needs_toilet
 		peep_count = data.peep_count
+		min_product_level = data.min_product_level
 		moving_towards_entrance = false
 		for animal in data.observed_animals:
 			observed_animals.append(int(animal))
@@ -177,7 +178,6 @@ func initialize_peep_group(data):
 		else:
 			min_product_level = 3
 			
-
 	initialize_peep_group_destinations()
 	
 	## TODO - add to save
@@ -460,12 +460,20 @@ func buy_food():
 				if target_shop.available_products[id].product.product_level == min_product_level:
 					## Peeps prefer items of their minimum level, but will still choose better items if they deem it worth it
 					item_utility_score *= 1.20
+				else:
+					## However, items of different product level than desired get a reduced desirability the greater the difference
+					var level_diff = abs(min_product_level - target_shop.available_products[id].product.product_level) * 0.2
+					item_utility_score *= (1 - level_diff)
+					
 				available_items[target_shop.available_products[id].product.id] = {
 					'utility_score': item_utility_score
 					}
+					
+				
 			
 	var best_item_id = null
 	var highest_utility = 0
+	print(available_items)
 			
 	## No items of desirable quality
 	if available_items.size() == 0:
@@ -480,6 +488,7 @@ func buy_food():
 					continue
 				highest_utility = available_items[id].utility_score
 				best_item_id = id
+		print(best_item_id)
 
 		## Found no items of desirable cost
 		if best_item_id == null:
@@ -488,7 +497,7 @@ func buy_food():
 
 
 	## Found item of desirable cost and quality
-	if target_shop and best_item_id:
+	if target_shop and best_item_id != null:
 		## Enter restaurant and eat meal
 		if target_shop.building_res.is_building_entereable:
 			if target_shop.buy(best_item_id, peep_count):
@@ -561,23 +570,22 @@ func initialize_peep_group_destinations():
 			destination_ids.append(int(id))
 	
 	if desired_enclosures_id.is_empty():
-		## Generate random resired destinations
+		## Generate random desired destinations
 		for i in range(5):
 			if keys.size() == 0:
-				return
+				break
 			var random_id = keys.pick_random()
 			keys.erase(random_id)
 			if ZooManager.zoo_enclosures[random_id]['especies'] == null:
 				continue
 			destination_ids.append(random_id)
 
-			## Used for save data
+	## Used for save data
 	for id in destination_ids:
 		desired_enclosures_id.append(id)
 		group_desired_destinations.append(ZooManager.zoo_enclosures[id])
 		group_desired_animals.append(ZooManager.zoo_enclosures[id]['especies'].species_id)
 
-			
 	## TODO - Sort group_desired_destinations
 	
 func leave_zoo():

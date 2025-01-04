@@ -4,6 +4,10 @@ var product_name
 var price
 var id
 var auto_restock
+var product_level : int
+var thumbnail_texture : Texture2D
+
+@export var level_star : PackedScene
 
 signal price_changed
 signal replenish_stock
@@ -20,6 +24,11 @@ func _ready() -> void:
 	%Remove.pressed.connect(on_remove_product)
 	%AutoReplenishCheckbox.button_pressed = auto_restock
 	%AutoReplenishCheckbox.toggled.connect(on_replenish_toggled)
+	%Thumbnail.texture = thumbnail_texture
+	
+	for level in product_level:
+		var star_texture = level_star.instantiate()
+		%LevelStars.add_child(star_texture)
 	
 func on_value_change(value):
 	price = clampf(price + value, 0, 50)
@@ -27,7 +36,7 @@ func on_value_change(value):
 	%Price.text = "$" + str(price).pad_decimals(2)
 
 func update_stock(current_stock, maximum):
-	%Stock.text = str(current_stock) + ' / ' + str(maximum)
+	%Stock.text = str(int(current_stock)) + ' / ' + str(maximum)
 	
 func on_replenish_stock():
 	replenish_stock.emit(id)

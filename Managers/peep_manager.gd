@@ -37,7 +37,6 @@ func on_peep_spawn_timeout():
 	if ZooManager.zoo_attractiveness == 0:
 		return
 	
-		
 	instantiate_peep_group(null)
 	
 	if peep_count == 0: 

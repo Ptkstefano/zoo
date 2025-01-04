@@ -17,7 +17,7 @@ var products = {}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	%ShopName.text = ContentManager.buildings[building_id].name
-	shop_node.update_stats.connect(update_stats)
+	shop_node.stats_updated.connect(update_stats)
 	%CloseButton.pressed.connect(queue_free)
 	%AddProductButton.pressed.connect(open_product_menu)
 	generate_stats_tab()
@@ -47,14 +47,20 @@ func update_stats():
 
 func generate_stats_tab():
 	## Sell stats list
-	for child in %ProductHistoryList.get_children():
-		child.queue_free()
+
 		
-	for product in shop_node.sold_units:
-		var element = product_history_element.instantiate()
-		element.product_name = str(product)
-		element.sells = shop_node.sold_units[product]
-		%ProductHistoryList.add_child(element)
+	%MonthAgoIncome.text = Helpers.money_text(shop_node.shop_earning_data['previous_month'])
+	%MonthAgoExpenditure.text = Helpers.money_text(shop_node.shop_expenditure_data['previous_month'])
+	%MonthAgoTotal.text = Helpers.money_text(shop_node.shop_earning_data['previous_month'] - shop_node.shop_expenditure_data['previous_month'])
+	
+	%MonthCurrentIncome.text = Helpers.money_text(shop_node.shop_earning_data['current_month'])
+	%MonthCurrentExpenditure.text = Helpers.money_text(shop_node.shop_expenditure_data['current_month'])
+	%MonthCurrentTotal.text = Helpers.money_text(shop_node.shop_earning_data['current_month'] - shop_node.shop_expenditure_data['current_month'])
+	
+	%LifetimeIncome.text = Helpers.money_text(shop_node.shop_earning_data['lifetime'])
+	%LifetimeExpenditure.text = Helpers.money_text(shop_node.shop_expenditure_data['lifetime'])
+	%LifetimeTotal.text = Helpers.money_text(shop_node.shop_earning_data['lifetime'] - shop_node.shop_expenditure_data['lifetime'])
+	
 	
 	## Modifier list
 	for child in %ShopModifierList.get_children():
@@ -68,8 +74,8 @@ func generate_stats_tab():
 		if !id:
 			return
 		var description = ModifierManager.peep_modifiers[id].description
-		var element = shop_modifier_element.instantiate()
-		element.description = description
+		var element = Label.new()
+		element.text = description
 		%ShopModifierList.add_child(element)
 		
 		
@@ -84,6 +90,8 @@ func generate_products_tab():
 		element.price = product.current_price
 		element.id = product.product.id
 		element.auto_restock = product.auto_restock
+		element.product_level = product.product.product_level
+		element.thumbnail_texture = product.product.thumb
 		element.price_changed.connect(on_product_cost_changed)
 		element.replenish_stock.connect(on_product_stock_replenish)
 		element.remove_product.connect(on_remove_product)

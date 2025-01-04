@@ -1,5 +1,7 @@
 extends PanelContainer
 
+@export var level_star : PackedScene
+
 var product_id
 signal product_selected
 
@@ -11,6 +13,7 @@ func _ready() -> void:
 		%StockCost.text = "Stock cost: " + Helpers.money_text(product_res.stock_cost)
 		%BaseSellPrice.text = "Sell price: " + Helpers.money_text(product_res.base_sell_value)
 		%Maintenance.text = "Maintenance: " + Helpers.money_text(product_res.maintenance)
+		%Thumbnail.texture = product_res.thumb
 		%Button.pressed.connect(on_product_selected)
 	
 func on_product_selected():

@@ -37,7 +37,7 @@ var peep_modifiers = {
 	PEEP_MODIFIERS.NO_TOILET: PeepModifier.new("We could not find a toilet", -2),
 	PEEP_MODIFIERS.NO_FOOD: PeepModifier.new("We could not find food", -1),
 	PEEP_MODIFIERS.NO_REST_SPOT: PeepModifier.new("We got tired and found no benches", -1),
-	PEEP_MODIFIERS.TOO_EXPENSIVE: PeepModifier.new("A preduct was too expensive for us", -0.25),
+	PEEP_MODIFIERS.TOO_EXPENSIVE: PeepModifier.new("The product we wanted was too expensive", -0.25),
 	PEEP_MODIFIERS.NO_SHOP_STOCK: PeepModifier.new("We wanted to buy an item, but it was out of stock", -0.5),
 	PEEP_MODIFIERS.EMPTY_SHOP: PeepModifier.new("We went to an empty shop", -0.25),
 	PEEP_MODIFIERS.NO_DESIRABLE_QUALITY: PeepModifier.new("We found no products we wanted to buy", -0.25),
