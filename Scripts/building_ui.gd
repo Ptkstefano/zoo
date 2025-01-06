@@ -29,33 +29,42 @@ func _ready() -> void:
 
 	
 	## Construction mode buttons
-	%BulldozerTool.button_down.connect(on_bulldozer_tool.bind(true))
-	%BulldozerTool.button_up.connect(on_bulldozer_tool.bind(false))
+	#%BulldozerTool.button_down.connect(on_bulldozer_tool.bind(true))
+	#%BulldozerTool.button_up.connect(on_bulldozer_tool.bind(false))
 	%CameraTool.button_down.connect(on_camera_tool.bind(true))
 	%CameraTool.button_up.connect(on_camera_tool.bind(false))
 	%RotateTool.pressed.connect(on_rotate_tool_press)
 	%BuildTool.pressed.connect(on_build_tool_press)
 	
-	%EnclosureFenceTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.ENCLOSURE))
-	%EnclosureShelterTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.SHELTER))
-	%PathTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.PATH))
+	%EnclosureFenceTool.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.ENCLOSURE))
+	%EnclosureShelterTool.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.SHELTER))
+	%PathTool.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.PATH))
 	%EnclosureTool.pressed.connect((open_subpanel.bind('EnclosureSubpanel')))
-	%AnimalTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.ANIMAL))
+	%AnimalTool.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.ANIMAL))
 	%SceneryTool.pressed.connect(open_subpanel.bind('ScenerySubpanel'))
-	%TerrainTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.TERRAIN))
-	#%BuildingTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.BUILDING))
+	%TerrainTool.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.TERRAIN))
+	#%BuildingTool.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.BUILDING))
 	%BuildingTool.pressed.connect(open_subpanel.bind('BuildingSubpanel'))
-	%WaterTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.WATER))
-	%EntranceTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.ENTRANCE))
-	%SceneryTreesTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.TREE))
-	%SceneryDecorationTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.SCENERY))
-	%SceneryVegetationTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.VEGETATION))
-	%SceneryFixtureTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.FIXTURE)) 
-	%SceneryRockTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.ROCK)) 
-	%BuildingEateryTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.EATERY)) 
-	%BuildingRestaurntTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.RESTAURANT)) 
-	%BuildingServicesTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.SERVICE)) 
-	%BuildingAdministrationTool.pressed.connect(on_tool_selected.bind(inputController.TOOLS.ADMINISTRATION)) 
+	%WaterTool.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.WATER))
+	%EntranceTool.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.ENTRANCE))
+	%SceneryTreesTool.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.TREE))
+	%SceneryDecorationTool.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.DECORATION))
+	%SceneryVegetationTool.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.VEGETATION))
+	%SceneryFixtureTool.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.FIXTURE)) 
+	%SceneryRockTool.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.ROCK)) 
+	%BuildingEateryTool.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.EATERY)) 
+	%BuildingRestaurntTool.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.RESTAURANT)) 
+	%BuildingServicesTool.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.SERVICE)) 
+	%BuildingAdministrationTool.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.ADMINISTRATION)) 
+	
+	%BulldozerPath.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.BULLDOZER_PATH)) 
+	%BulldozerEnclosure.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.BULLDOZER_ENCLOSURE)) 
+	%BulldozerTrees.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.BULLDOZER_SCENERY)) 
+	%BulldozerVegetation.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.BULLDOZER_SCENERY)) 
+	%BulldozerFixture.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.BULLDOZER_SCENERY)) 
+	%BulldozerDecoration.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.BULLDOZER_SCENERY)) 
+	%BulldozerRock.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.BULLDOZER_SCENERY)) 
+	%ToolDeselect.pressed.connect(on_tool_deselect)
 	
 	## DEBUG menu show and hide
 	%DebugScreen.hide()
@@ -115,6 +124,9 @@ func update_ui():
 	for element in %RockSelectionContainer.get_children():
 		if element:
 			element.scenery_selected.connect(on_scenery_selected)
+	for element in %LakeSelectionContainer.get_children():
+		if element:
+			element.lake_selected.connect(on_lake_selected)
 
 func on_options_menu_toggle(toggled):
 	if toggled:
@@ -160,43 +172,57 @@ func hide_selection_menu():
 	%SelectionMenu.visible = false
 
 func hide_side_panel():
-	%ConstructionSidePanel.visible = false
+	%SidePanel.visible = false
 	%BuildingSidePanel.visible = false
 
 func show_selection_menu():
 	%SelectionMenu.visible = true
 
 func on_animal_selected(animal_res):
+	open_tool_info_panel('PlacingAnimalInfoContainer')
+	%SidePanel.show()
+	%InfoBorder.apply_color(ColorRefs.construction_yellow)
 	inputController.current_tool = inputController.TOOLS.ANIMAL
 	selected_res = animal_res
 
 func on_terrain_selected(terrain_res):
 	hide_side_panel()
-	%ConstructionSidePanel.show()
+	open_tool_info_panel('PlacingTerrainInfoContainer')
+	%SidePanel.show()
+	%InfoBorder.apply_color(ColorRefs.construction_yellow)
 	inputController.current_tool = inputController.TOOLS.TERRAIN
 	selected_res = terrain_res
 	
 func on_enclosure_selected(enclosure_res):
 	hide_side_panel()
-	%ConstructionSidePanel.show()
+	open_tool_info_panel('BuildingEnclosureInfoContainer')
+	%SidePanel.show()
+	%InfoBorder.apply_color(ColorRefs.construction_yellow)
 	inputController.current_tool = inputController.TOOLS.ENCLOSURE
 	selected_res = enclosure_res
 	
 func on_shelter_selected(shelter_res):
 	hide_side_panel()
+	open_tool_info_panel('PlacingShelterInfoContainer')
+	%SidePanel.show()
+	%InfoBorder.apply_color(ColorRefs.construction_yellow)
 	%BuildingSidePanel.show()
 	inputController.current_tool = inputController.TOOLS.SHELTER
 	selected_res = shelter_res
 	
 func on_path_selected(path_res):
 	hide_side_panel()
-	%ConstructionSidePanel.show()
+	open_tool_info_panel('BuildingPathInfoContainer')
+	%SidePanel.show()
+	%InfoBorder.apply_color(ColorRefs.construction_yellow)
 	inputController.current_tool = inputController.TOOLS.PATH
 	selected_res = path_res
 	
 func on_scenery_selected(scenery_res, type):
 	hide_side_panel()
-	%ConstructionSidePanel.show()
+	open_tool_info_panel('PlacingSceneryInfoContainer')
+	%SidePanel.show()
+	%InfoBorder.apply_color(ColorRefs.construction_yellow)
 	if type == 'tree':
 		inputController.current_tool = inputController.TOOLS.TREE
 	if type == 'vegetation':
@@ -211,6 +237,9 @@ func on_scenery_selected(scenery_res, type):
 	
 func on_building_selected(building_res):
 	hide_side_panel()
+	%SidePanel.show()
+	%InfoBorder.apply_color(ColorRefs.construction_yellow)
+	open_tool_info_panel('PlacingBuildingInfoContainer')
 	if building_res.building_menu == IdRefs.BUILDING_MENU.EATERY:
 		inputController.current_tool = inputController.TOOLS.EATERY
 	if building_res.building_menu == IdRefs.BUILDING_MENU.RESTAURANT:
@@ -221,15 +250,25 @@ func on_building_selected(building_res):
 		inputController.current_tool = inputController.TOOLS.ADMINISTRATION
 	selected_res = building_res
 	
+func on_lake_selected(lake_res):
+	hide_side_panel()
+	open_tool_info_panel('PlacingLakeInfoContainer')
+	%SidePanel.show()
+	%InfoBorder.apply_color(ColorRefs.construction_yellow)
+	inputController.current_tool = inputController.TOOLS.WATER
+	selected_res = lake_res
+	
 func on_building_placed():
+	%SidePanel.show()
+	%InfoBorder.apply_color(ColorRefs.construction_yellow)
 	%BuildingSidePanel.show()
 	
 func on_building_built():
 	hide_side_panel()
 	inputController.current_tool = inputController.TOOLS.NONE
 
-func on_tool_selected(tool):
-	inputController.current_tool = inputController.TOOLS.NONE
+func on_tool_menu_selected(tool):
+	on_tool_deselect()
 	show_selection_menu()
 	close_selection_submenu()
 
@@ -276,22 +315,35 @@ func on_tool_selected(tool):
 	if tool == inputController.TOOLS.ADMINISTRATION:
 		%BuildingSubpanel.show()
 		%AdministrationMenu.show()
-		
-	if tool == inputController.TOOLS.BULLDOZER:
-		return
 	if tool == inputController.TOOLS.WATER:
-		%ConstructionSidePanel.show()
+		%LakeMenu.show()
+		
+		
+	if tool in inputController.bulldozer_tools:
+		%SidePanel.show()
+		inputController.current_tool = tool
+		%InfoBorder.apply_color(ColorRefs.bulldozer_red)
+		if tool == inputController.TOOLS.BULLDOZER_PATH:
+			open_tool_info_panel('BulldozingPathContainer')
+		if tool == inputController.TOOLS.BULLDOZER_ENCLOSURE:
+			open_tool_info_panel('BulldozingEnclosureContainer')
+		if tool == inputController.TOOLS.BULLDOZER_SCENERY:
+			open_tool_info_panel('BulldozingSceneryContainer')
+		
+	if tool == inputController.TOOLS.WATER:
+		%SidePanel.show()
 		inputController.current_tool = inputController.TOOLS.WATER
 	if tool == inputController.TOOLS.ENTRANCE:
 		%EnclosureSubpanel.show()
 		%EnclosureMenu.show()
 		inputController.current_tool = inputController.TOOLS.ENTRANCE
-
-func on_bulldozer_tool(value : bool):
-	inputController.is_bulldozing = value
 	
 func on_camera_tool(value : bool):
 	inputController.is_camera_tool_selected = value
+	if value:
+		%InfoBorder.apply_color(ColorRefs.neutral_white)
+	else:
+		%InfoBorder.apply_color(ColorRefs.construction_yellow)
 	
 func on_rotate_tool_press():
 	inputController.rotate_building_toggle()
@@ -301,14 +353,19 @@ func on_build_tool_press():
 		inputController.build_building()
 	if selected_res is shelter_resource:
 		inputController.build_shelter()
+	if selected_res is decoration_resource:
+		inputController.build_decoration()
 	
 func open_subpanel(subpanel_name):
+	close_selection_submenu()
 	%ScenerySubpanel.show()
 	for children in %Subpanel.get_children():
 		if children.name != subpanel_name:
 			children.hide()
 		else:
 			children.show()
+			if subpanel_name == 'EnclosureSubpanel':
+				%EnclosureSubpanel.show()
 	
 func on_box_pressed(box):
 	SignalBus.open_box.emit(box)
@@ -345,7 +402,7 @@ func on_build_mode_toggle(toggle):
 		hide_side_panel()
 		build_mode = false
 		selected_res = null
-		inputController.current_tool = inputController.TOOLS.NONE
+		on_tool_deselect()
 		SignalBus.clear_highlight.emit()
 		
 	
@@ -358,9 +415,34 @@ func on_options_menu_toggle_visibility_changed():
 
 func resize_ui():
 	if DisplayServer.window_get_size().y < 1080:
-		%"Top-Left".scale = Vector2(0.75, 0.75)
-		%"Top-Left".scale = Vector2(0.75, 0.75)
+		%ConstructionMain.scale = Vector2(0.60, 0.60)
+		#%"Top-Right".scale = Vector2(0.75, 0.75)
+		%SelectionMenu.scale = Vector2(0.75, 0.75)
+		
+		%"Top-Right-Options".scale = Vector2(0.75, 0.75)
+		%BuildModeButton.scale = Vector2(0.75, 0.75)
+		%ConstructionButtonSeparator.add_theme_constant_override("separation", 150)
 		
 	else:
-		%"Top-Left".scale = Vector2(1, 1)
-		%"Top-Left".scale = Vector2(1, 1)
+		%ConstructionMain.scale = Vector2(1, 1)
+		#%"Top-Right".scale = Vector2(1, 1)
+		%SelectionMenu.scale = Vector2(1, 1)
+		%"Top-Right-Options".scale = Vector2(1, 1)
+		%BuildModeButton.scale = Vector2(1, 1)
+		%ConstructionButtonSeparator.add_theme_constant_override("separation", 125)
+
+func open_tool_info_panel(panel_name):
+	%ToolPanel.hide()
+	%ToolInfoPanel.show()
+	%ToolInfoContainer.find_child(panel_name).show()
+	
+func on_tool_deselect():
+	%InfoBorder.apply_color(ColorRefs.neutral_white)
+	inputController.current_tool = InputController.TOOLS.NONE
+	%ToolInfoPanel.hide()
+	%ToolPanel.show()
+	%SidePanel.hide()
+	%BuildingSidePanel.hide()
+	for child in %ToolInfoContainer.get_children():
+		if child is PanelContainer:
+			child.hide()

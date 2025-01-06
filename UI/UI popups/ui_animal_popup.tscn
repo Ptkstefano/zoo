@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://baic6x8rh68v8"]
+[gd_scene load_steps=6 format=3 uid="uid://baic6x8rh68v8"]
 
 [ext_resource type="Theme" uid="uid://qsq4gutgth07" path="res://UI/default_theme.tres" id="1_va6s2"]
 [ext_resource type="Script" uid="uid://csflrajvtg4uu" path="res://Animals/ui_animal_popup.gd" id="2_02j40"]
 [ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/popup_theme.tres" id="3_hpf0s"]
 [ext_resource type="FontFile" uid="uid://g2ai6i3wnb5e" path="res://UI/Simple_Script.ttf" id="4_prha6"]
+[ext_resource type="Script" uid="uid://oq7aounld7th" path="res://UI/UI popups/responsive_margin_container.gd" id="4_ryvdn"]
 
 [node name="AnimalPopup" type="Control"]
 layout_mode = 3
@@ -29,6 +30,7 @@ theme_override_constants/margin_left = 250
 theme_override_constants/margin_top = 150
 theme_override_constants/margin_right = 250
 theme_override_constants/margin_bottom = 200
+script = ExtResource("4_ryvdn")
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 layout_mode = 2

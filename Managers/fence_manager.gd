@@ -154,7 +154,6 @@ func place_entrance(cell):
 	for i in is_neighbor.size():
 		if is_neighbor[i - 1]:
 			if is_neighbor[i]:
-				#print('edge cell')
 				return
 				
 	if is_instance_valid(entrance_node):

@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="product_resource" load_steps=2 format=3 uid="uid://bvnpr5v6trmlp"]
+[gd_resource type="Resource" script_class="product_resource" load_steps=3 format=3 uid="uid://bvnpr5v6trmlp"]
 
 [ext_resource type="Script" uid="uid://cq5yhojsat81w" path="res://Products/product_res.gd" id="1_472t5"]
+[ext_resource type="Texture2D" uid="uid://vju5dhhcfhgv" path="res://Products/Icons/products4.png" id="2_3qpj6"]
 
 [resource]
 script = ExtResource("1_472t5")
 id = 3
 type = 0
 name = "Pasta Bolognese"
-base_sell_value = 20.0
-perceived_value = 20.0
+thumb = ExtResource("2_3qpj6")
+base_sell_value = 14.0
+perceived_value = 14.0
 product_level = 2
 stock_cost = 4.0
 max_stock = 150

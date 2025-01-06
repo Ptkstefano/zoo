@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://fhgu3i03484t"]
+[gd_scene load_steps=7 format=3 uid="uid://fhgu3i03484t"]
 
 [ext_resource type="Theme" uid="uid://qsq4gutgth07" path="res://UI/default_theme.tres" id="1_kg8vx"]
 [ext_resource type="Script" uid="uid://d2lmkkf82ctt6" path="res://UI/UI popups/ui_peep_group_popup.gd" id="2_ubkfr"]
 [ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/popup_theme.tres" id="3_wvilj"]
 [ext_resource type="Theme" uid="uid://di7iy2m47x8rx" path="res://UI/popup_inner_content.tres" id="4_udmg1"]
 [ext_resource type="PackedScene" uid="uid://kn44cenbnuda" path="res://UI/level_star.tscn" id="5_xg63y"]
+[ext_resource type="Script" uid="uid://oq7aounld7th" path="res://UI/UI popups/responsive_margin_container.gd" id="5_xycao"]
 
 [node name="PeepgroupPopup" type="Control"]
 layout_mode = 3
@@ -31,6 +32,7 @@ theme_override_constants/margin_left = 300
 theme_override_constants/margin_top = 150
 theme_override_constants/margin_right = 300
 theme_override_constants/margin_bottom = 150
+script = ExtResource("5_xycao")
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 layout_mode = 2

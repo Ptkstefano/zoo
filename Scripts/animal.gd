@@ -162,6 +162,8 @@ func navigation_finished():
 		agent.target_position=get_new_destination()
 	if current_state == ANIMAL_STATES.MOVING_TOWARDS_REST:
 		change_state(ANIMAL_STATES.RESTING)
+	if current_state == ANIMAL_STATES.SWIMMING:
+		agent.target_position=get_new_destination()
 
 
 func on_state_timer_timeout():
@@ -188,7 +190,7 @@ func change_state(state : ANIMAL_STATES):
 	elif state == ANIMAL_STATES.SWIMMING:
 		on_swim_start()
 		sprite_x = 8
-		agent.target_position=get_new_destination()
+		#agent.target_position=get_new_destination()
 		$StateTimer.stop()
 	elif state == ANIMAL_STATES.MOVING_TOWARDS_FOOD:
 		speed = base_speed

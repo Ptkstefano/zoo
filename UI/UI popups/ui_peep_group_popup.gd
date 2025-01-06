@@ -4,9 +4,11 @@ var peep_group_node : PeepGroup
 
 @export var level_star : PackedScene
 
+signal popup_closed
+
 func _ready():
 	update_popup_data()
-	%CloseButton.pressed.connect(queue_free)
+	%CloseButton.pressed.connect(on_popup_closed)
 	
 	var zooManagerShopsLabel = Label.new()
 	zooManagerShopsLabel.text = 'Zoo manager restaurant keys: ' + str(ZooManager.restaurants.keys())
@@ -22,6 +24,9 @@ func _ready():
 	
 	%PeepGroupId.text = 'Peep group ' + str(peep_group_node.id)
 
+
+func on_popup_closed():
+	popup_closed.emit()
 
 func update_popup_data():
 	if !is_instance_valid(peep_group_node):

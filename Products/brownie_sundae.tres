@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="product_resource" load_steps=2 format=3 uid="uid://c086ou4yyva4u"]
+[gd_resource type="Resource" script_class="product_resource" load_steps=3 format=3 uid="uid://c086ou4yyva4u"]
 
 [ext_resource type="Script" uid="uid://cq5yhojsat81w" path="res://Products/product_res.gd" id="1_cetgc"]
+[ext_resource type="Texture2D" uid="uid://pcy22ip2gi4u" path="res://Products/Icons/products3.png" id="2_e5soh"]
 
 [resource]
 script = ExtResource("1_cetgc")
 id = 2
 type = 0
 name = "Brownie Sundae"
+thumb = ExtResource("2_e5soh")
 base_sell_value = 8.0
 perceived_value = 8.0
 product_level = 3

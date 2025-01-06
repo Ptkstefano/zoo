@@ -14,11 +14,13 @@ var modifier_comments = []
 
 var products = {}
 
+signal popup_closed
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	%ShopName.text = ContentManager.buildings[building_id].name
 	shop_node.stats_updated.connect(update_stats)
-	%CloseButton.pressed.connect(queue_free)
+	%CloseButton.pressed.connect(on_popup_closed)
 	%AddProductButton.pressed.connect(open_product_menu)
 	generate_stats_tab()
 	generate_products_tab()
@@ -26,7 +28,9 @@ func _ready() -> void:
 	
 	%DeleteButton.pressed.connect(on_remove_building)
 
-		
+	
+func on_popup_closed():
+	popup_closed.emit()
 	
 func on_product_cost_changed(id, new_cost):
 	shop_node.update_product_price(id, new_cost)
@@ -90,12 +94,15 @@ func generate_products_tab():
 		element.price = product.current_price
 		element.id = product.product.id
 		element.auto_restock = product.auto_restock
+		element.maintenance = product.product.maintenance
+		element.stock_cost = product.product.stock_cost
 		element.product_level = product.product.product_level
 		element.thumbnail_texture = product.product.thumb
 		element.price_changed.connect(on_product_cost_changed)
 		element.replenish_stock.connect(on_product_stock_replenish)
 		element.remove_product.connect(on_remove_product)
 		element.auto_replenish.connect(on_auto_restock_product)
+		element.product_data = shop_node.shop_product_data[id]
 		element.update_stock(product.current_stock, product.product.max_stock)
 		products[product.product.id] = {'element': element, 'product': product.product}
 		%ProductList.add_child(element)

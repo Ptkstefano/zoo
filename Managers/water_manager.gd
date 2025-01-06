@@ -1,18 +1,27 @@
 extends Node2D
 class_name WaterManager
 
+@export var available_lakes : Array[lake_resource]
+
 @export var lake_scene : PackedScene
+
+@export var ui_lake_element : PackedScene
 
 var water_cells : Array[Vector2i]
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _ready():
+	update_selection_menu()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func update_selection_menu():
+	for child in %FixtureSelectionContainer.get_children():
+		child.queue_free()
+		
+	for lake_res in available_lakes:
+		var element = ui_lake_element.instantiate()
+		element.lake_res = lake_res
+		%LakeSelectionContainer.add_child(element)
+		
+	$"../../UI".update_ui()
 
 func create_water_body(points):
 	if points.size() < 5:

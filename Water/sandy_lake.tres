@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="lake_resource" load_steps=3 format=3 uid="uid://7cu1nb45t0yc"]
+
+[ext_resource type="Script" uid="uid://dayhocwhht84x" path="res://Water/lake_res.gd" id="1_owv5q"]
+[ext_resource type="Texture2D" uid="uid://kw67tgg6ws3i" path="res://Water/water2.png" id="2_r8flc"]
+
+[resource]
+script = ExtResource("1_owv5q")
+name = "Sandy lake"
+texture = ExtResource("2_r8flc")
+metadata/_custom_type_script = ExtResource("1_owv5q")

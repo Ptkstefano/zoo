@@ -152,7 +152,6 @@ func save_game():
 	i = 1
 	var scenery_data = {}
 	for scenery in scenery_list:
-		print(scenery.type)
 		scenery_data[i] = get_scenery_data(scenery).duplicate(true)
 		i += 1
 	save_data['sceneryData'] = scenery_data
@@ -313,7 +312,8 @@ func load_game():
 				sceneryManager.place_tree(position, res, null)
 			elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.DECORATION:
 				var res = load(data["sceneryData"][key]['decoration_res'])
-				sceneryManager.place_decoration(position, res, null)
+				## TODO - Add is rotated to save data
+				sceneryManager.place_decoration(position, res, false, null)
 			elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.ROCK:
 				var res = load(data["sceneryData"][key]['decoration_res'])
 				sceneryManager.place_rock(position, res, null)

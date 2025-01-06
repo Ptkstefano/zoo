@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=13 format=3 uid="uid://dsr4e062fwx2f"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://dsr4e062fwx2f"]
 
 [ext_resource type="Texture2D" uid="uid://b5ehp47ajkovo" path="res://UI/art/buttons.png" id="1_n7gns"]
 [ext_resource type="FontFile" uid="uid://cpnqdh47y1283" path="res://UI/Logic_Loop.ttf" id="2_fjmuk"]
@@ -79,6 +79,15 @@ bg_color = Color(0.196078, 0.180392, 0.32549, 1)
 border_width_top = 2
 border_color = Color(0.843137, 0.843137, 0.843137, 1)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5r8km"]
+content_margin_right = 32.0
+texture = ExtResource("1_n7gns")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+region_rect = Rect2(210, 404, 152, 160)
+
 [resource]
 default_font = ExtResource("2_fjmuk")
 Button/styles/focus = SubResource("StyleBoxTexture_fjmuk")
@@ -93,3 +102,4 @@ TabContainer/styles/panel = SubResource("StyleBoxTexture_qkd5o")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_qkd5o")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_fjmuk")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_yynsw")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_5r8km")

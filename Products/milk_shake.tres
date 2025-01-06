@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="product_resource" load_steps=2 format=3 uid="uid://4jweia6u5lfm"]
+[gd_resource type="Resource" script_class="product_resource" load_steps=3 format=3 uid="uid://4jweia6u5lfm"]
 
 [ext_resource type="Script" uid="uid://cq5yhojsat81w" path="res://Products/product_res.gd" id="1_mkg0g"]
+[ext_resource type="Texture2D" uid="uid://b1cq3v55gxuro" path="res://Products/Icons/products2.png" id="2_hb8jf"]
 
 [resource]
 script = ExtResource("1_mkg0g")
 id = 1
 type = 0
 name = "Milk shake"
+thumb = ExtResource("2_hb8jf")
 base_sell_value = 5.0
 perceived_value = 5.0
 product_level = 2

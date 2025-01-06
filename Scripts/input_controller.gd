@@ -35,17 +35,18 @@ var selected_res : Resource
 var start_tile_pos : Vector2i
 var end_tile_pos : Vector2i
 
-var is_bulldozing : bool = false
 var is_camera_tool_selected : bool = false
 
 var rotate_building : bool = false
 
-enum TOOLS {NONE,PATH,ENCLOSURE,SHELTER,ANIMAL,SCENERY,TERRAIN,BUILDING,BULLDOZER,TREE,VEGETATION,ROCK,FIXTURE,DECORATION,WATER,ENTRANCE,EATERY,RESTAURANT,SERVICE,ADMINISTRATION}
+enum TOOLS {NONE,PATH,ENCLOSURE,SHELTER,ANIMAL,SCENERY,TERRAIN,BUILDING,TREE,VEGETATION,ROCK,FIXTURE,DECORATION,WATER,ENTRANCE,EATERY,RESTAURANT,SERVICE,ADMINISTRATION,BULLDOZER_ENCLOSURE,BULLDOZER_PATH,BULLDOZER_SCENERY,BULLDOZER_WATER}
+
 var current_tool = TOOLS.NONE
 var free_cam_tools = [TOOLS.NONE, TOOLS.BUILDING]
+var bulldozer_tools = [TOOLS.BULLDOZER_ENCLOSURE, TOOLS.BULLDOZER_PATH, TOOLS.BULLDOZER_SCENERY, TOOLS.BULLDOZER_WATER]
 var hide_ui_tools = [TOOLS.ENCLOSURE, TOOLS.PATH, TOOLS.TERRAIN]
-var scenery_tools = [TOOLS.TREE, TOOLS.VEGETATION, TOOLS.DECORATION, TOOLS.FIXTURE, TOOLS.WATER, TOOLS.ROCK]
-var building_placement_tools = [TOOLS.SHELTER, TOOLS.EATERY, TOOLS.RESTAURANT, TOOLS.SERVICE, TOOLS.ADMINISTRATION]
+var scenery_tools = [TOOLS.TREE, TOOLS.VEGETATION, TOOLS.FIXTURE, TOOLS.WATER, TOOLS.ROCK]
+var building_placement_tools = [TOOLS.SHELTER, TOOLS.EATERY, TOOLS.RESTAURANT, TOOLS.SERVICE, TOOLS.ADMINISTRATION, TOOLS.DECORATION]
 
 
 signal zoom_camera
@@ -91,16 +92,14 @@ func _unhandled_input(event: InputEvent) -> void:
 				touch_current_global_pos = get_canvas_transform().affine_inverse().translated(event.position/$"../Camera2D".zoom).origin
 				touch_current_local_pos = event.position
 			
-	## DEBUG
-
-	#print(Helpers.get_cell_quadrant(touch_start_global_pos))
-			
-			
 	if current_tool in free_cam_tools or is_camera_tool_selected:
 		if !await handle_selection(event):
 			handle_camera_input(event)
-	if current_tool != TOOLS.NONE and !is_camera_tool_selected:
+	if current_tool in bulldozer_tools and !is_camera_tool_selected:
+		handle_bulldozing_input(event)
+	if current_tool != TOOLS.NONE and !is_camera_tool_selected and current_tool not in bulldozer_tools:
 		handle_tooling_input(event)
+
 	debug_keyboard_input(event)
 	
 func handle_camera_input(event):
@@ -152,20 +151,12 @@ func handle_tooling_input(event):
 				highlight_area()
 			if current_tool == TOOLS.TERRAIN:
 				highlight_area()
-			if current_tool in scenery_tools:
-				if is_bulldozing:
-					if current_tool == TOOLS.WATER:
-						is_placing_water = false
-						bulldoze_water()
-					else:
-						bulldoze()
 					
 			if current_tool == TOOLS.WATER:
 				if is_placing_water:
 					if touch_current_global_pos.distance_to(water_points[water_points.size()-1]) > 20:
 						water_points.append(touch_current_global_pos)
 						$"../Objects/WaterManager".draw_placeholder(water_points)
-					#print(touch_current_global_pos.distance_to(water_points[water_points.size()-1]))
 
 	if event is InputEventScreenTouch:
 		if event.is_pressed():
@@ -183,49 +174,69 @@ func handle_tooling_input(event):
 				$"../TileMap/HighlightLayer".clear_highlight()
 			is_pressing = false
 			if current_tool == TOOLS.PATH:
-				if is_bulldozing:
-					$"../PathManager".remove_path(cells)
-					return
 				if $"../Objects/EnclosureManager".get_enclosure_overlap(cells):
 					return
-				$"../PathManager".build_path(cells, selected_res.atlas_y)
+				$"../PathManager".build_path(cells.duplicate(), selected_res.atlas_y)
+				cells.clear()
 			if current_tool == TOOLS.ENCLOSURE:
-				if is_bulldozing:
-					$"../Objects/EnclosureManager".remove_enclosure_cells(cells)
-					return
 				if $"../PathManager".get_path_overlap(cells):
 					return
-				$"../Objects/EnclosureManager".build_enclosure(null, cells, null, selected_res)
+				$"../Objects/EnclosureManager".build_enclosure(null, cells.duplicate(), null, selected_res)
+				cells.clear()
 			if current_tool == TOOLS.TERRAIN:
-				$"../TerrainManager".build_terrain(cells, selected_res.atlas.y)
+				$"../TerrainManager".build_terrain(cells.duplicate(), selected_res.atlas.y)
+				cells.clear()
 			if current_tool == TOOLS.ANIMAL:
 				animal_manager.spawn_animal(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.TREE:
-				if !is_bulldozing:
-					scenery_manager.place_tree(touch_start_global_pos, selected_res, null)
+				scenery_manager.place_tree(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.VEGETATION:
-				if !is_bulldozing:
-					scenery_manager.place_vegetation(touch_start_global_pos, selected_res, null)
+				scenery_manager.place_vegetation(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.FIXTURE:
-				if !is_bulldozing:
-					$"../Objects/FixtureManager".place_fixture(touch_start_global_pos, selected_res)
-			if current_tool == TOOLS.DECORATION:
-				if !is_bulldozing:
-					scenery_manager.place_decoration(touch_start_global_pos, selected_res, null)
+				$"../Objects/FixtureManager".place_fixture(touch_start_global_pos, selected_res)
 			if current_tool == TOOLS.ROCK:
-				if !is_bulldozing:
-					scenery_manager.place_rock(touch_start_global_pos, selected_res, null)
+				scenery_manager.place_rock(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.WATER:
-				if !is_bulldozing:
-					is_placing_water = false
-					$"../Objects/WaterManager".create_water_body(water_points)
-					$"../Objects/WaterManager".clear_placeholder()
-					water_points = []
-				else:
-					$"../Objects/WaterManager".clear_placeholder()
-					water_points = []
+				is_placing_water = false
+				$"../Objects/WaterManager".create_water_body(water_points)
+				$"../Objects/WaterManager".clear_placeholder()
+				water_points = []
+				#else:
+					#$"../Objects/WaterManager".clear_placeholder()
+					#water_points = []
 			if current_tool == TOOLS.ENTRANCE:
 				$"../Objects/EnclosureManager".place_entrance(touch_start_global_pos)
+				
+
+func handle_bulldozing_input(event):
+	if event is InputEventScreenDrag:
+		if is_pressing:
+			if current_tool in hide_ui_tools:
+				SignalBus.ui_visibility.emit(false)
+			if !Helpers.is_valid_cell(touch_start_global_pos) or !Helpers.is_valid_cell(touch_current_global_pos):
+				return
+			if current_tool == TOOLS.BULLDOZER_PATH:
+				highlight_area()
+			if current_tool == TOOLS.BULLDOZER_ENCLOSURE:
+				highlight_area()
+			if current_tool == TOOLS.BULLDOZER_SCENERY:
+				$BulldozerCollider.global_position = touch_current_global_pos
+				await get_tree().create_timer(0.25).timeout
+				$BulldozerCollider.global_position = Vector2(9999,9999)
+			
+			
+	if event is InputEventScreenTouch:
+		if event.is_pressed():
+			is_pressing = true
+		if event.is_released():
+			SignalBus.ui_visibility.emit(true)
+			$"../TileMap/HighlightLayer".clear_highlight()
+			if current_tool == TOOLS.BULLDOZER_PATH:
+				$"../PathManager".remove_path(cells.duplicate())
+				cells.clear()
+			if current_tool == TOOLS.BULLDOZER_ENCLOSURE:
+				$"../Objects/EnclosureManager".remove_enclosure_cells(cells.duplicate())
+				cells.clear()
 
 
 func handle_selection(event):
@@ -237,7 +248,6 @@ func handle_selection(event):
 				$DetectableCollider.set_deferred('global_position',Vector2(9999,9999))
 				#var overlapping_areas = $DetectableCollider.call_deferred('get_overlapping_areas')
 				#if overlapping_areas.size() > 0:
-					#print(overlapping_areas[0])
 					#return true
 		#else:
 			## Done to ensure double clicking on a building doesn't fail
@@ -258,11 +268,6 @@ func debug_keyboard_input(event):
 			else:
 				%DebugScreen.visible = false
 				$"../TileMap/GridLayer".visible = false
-		if event.keycode == 4194326:
-			if event.is_pressed():
-				is_bulldozing = true
-			elif event.is_released():
-				is_bulldozing = false
 				
 		if event.keycode == 4194325:
 			if event.is_pressed():
@@ -304,7 +309,7 @@ func highlight_path():
 			else:
 				var new_coordinate = Vector2i(start_tile_pos.x, start_tile_pos.y - y)
 				cells.append(new_coordinate)
-	$"../TileMap/HighlightLayer".apply_highlight(cells, is_bulldozing)
+	$"../TileMap/HighlightLayer".apply_highlight(cells, current_tool in bulldozer_tools)
 	
 func highlight_area():
 	var tile_map_layer = $"../TileMap/TerrainLayer" as TileMapLayer
@@ -326,7 +331,7 @@ func highlight_area():
 			else:
 				new_coordinate.y = start_tile_pos.y + y
 			cells.append(new_coordinate)
-	if is_bulldozing:
+	if current_tool in bulldozer_tools:
 		$"../TileMap/HighlightLayer".apply_highlight(cells, IdRefs.HIGHLIGHT_TYPES.RED)
 	elif current_tool == TOOLS.ENCLOSURE:
 		if $"../Objects/EnclosureManager".get_existing_enclosures_in_area(cells).size() == 0:
@@ -388,10 +393,10 @@ func build_shelter():
 	building_built.emit()
 	$"../Objects/ShelterManager".build_shelter(selected_res, start_tile_pos, rotate_building, cells)
 	
-func bulldoze():
-	$BulldozerCollider.global_position = touch_current_global_pos
-	await get_tree().create_timer(0.25).timeout
-	$BulldozerCollider.global_position = Vector2(9999,9999)
+func build_decoration():
+	$"../TileMap/HighlightLayer".clear_highlight()
+	building_built.emit()
+	scenery_manager.place_decoration(touch_start_global_pos, selected_res, rotate_building, null)
 
 func bulldoze_water():
 	$BulldozerWaterCollider.global_position = touch_current_global_pos

@@ -15,6 +15,8 @@ func _ready() -> void:
 		%Maintenance.text = "Maintenance: " + Helpers.money_text(product_res.maintenance)
 		%Thumbnail.texture = product_res.thumb
 		%Button.pressed.connect(on_product_selected)
+		for level in product_res.product_level:
+			%LevelStars.add_child(level_star.instantiate())
 	
 func on_product_selected():
 	product_selected.emit(product_id)

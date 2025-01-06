@@ -2,8 +2,10 @@ extends Control
 
 var animal_scene : Animal
 
+signal popup_closed
+
 func _ready():
-	%CloseButton.pressed.connect(on_close)
+	%CloseButton.pressed.connect(on_popup_closed)
 	%SellAnimal.pressed.connect(on_sell_animal)
 	
 	%AnimalName.text = animal_scene.animal_res.name
@@ -18,9 +20,9 @@ func _process(delta: float) -> void:
 	
 	update_preferences()
 
-func on_close():
-	queue_free()
-
+func on_popup_closed():
+	popup_closed.emit()
+	
 func on_sell_animal():
 	animal_scene.remove_animal()
 	queue_free()
@@ -39,7 +41,7 @@ func update_preferences():
 		%preference_terrain.add_theme_color_override("font_color", Color('#76ad6f'))
 	else:
 		%preference_terrain.add_theme_color_override("font_color", Color('#fe0005'))
-		%preference_terrain.text = "Something is wrong with the terrain, I need  more " + str(animal_scene.lacking_terrain_types[0])
+		#%preference_terrain.text = "Something is wrong with the terrain, I need  more " + str(animal_scene.lacking_terrain_types[0])
 
 	if animal_scene.preference_water_satisfied:
 		%preference_water.text = "I like the lake!"

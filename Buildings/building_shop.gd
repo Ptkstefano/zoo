@@ -61,6 +61,8 @@ func buy(product_id : int, peep_count : int) -> bool:
 		update_earn_stats(available_products[product_id].current_price * peep_count)
 		update_product_stats(available_products[product_id], peep_count)
 		
+		FinanceManager.add(available_products[product_id].current_price * peep_count, IdRefs.PAYMENT_ADD_TYPES.PRODUCT)
+		
 		stats_updated.emit()
 		
 		if available_products[product_id].current_stock < 10:
@@ -94,7 +96,7 @@ func add_product(product : product_resource):
 	available_products[product.id] = {
 		'product': product,
 		'current_price': product.base_sell_value,
-		'current_stock': product.max_stock,
+		'current_stock': 0,
 		'auto_restock': true,
 		}
 	if product.id not in shop_product_data.keys():
@@ -103,18 +105,18 @@ func add_product(product : product_resource):
 		 'current_month': {'value': 0, 'sell_count': 0, 'stock_expenditure': 0, 'maintenance_expenditure': 0},
 		 'lifetime': {'value': 0, 'sell_count': 0, 'stock_expenditure': 0, 'maintenance_expenditure': 0}
 		}
-
+	replenish_item_stock(product.id)
+		
 func remove_product(id):
 	available_products.erase(id)
+	shop_product_data.erase(id)
 
 func toggle_auto_restock(id, value):
 	available_products[id].auto_restock = value
 
 func restore_data(data):
-	print(data)
 	if data.has('products'):
 		for product in data['products']:
-			print(product)
 			var product_id = int( data['products'][product]['product_id'])
 			available_products[product_id] = {
 				'product': ContentManager.products[product_id],
@@ -127,14 +129,17 @@ func restore_data(data):
 		shop_earning_data = data['shop_stats'].get('shop_earning_stats', {'previous_month': 0, 'current_month': 0, 'lifetime': 0})
 		shop_expenditure_data = data['shop_stats'].get('shop_expenditure_stats', {'previous_month': 0, 'current_month': 0, 'lifetime': 0})
 	
-	
 
 func on_month_pass():
 	var product_maintenance = 0
+	## Apply maintenance costs
 	for key in available_products:
 		product_maintenance += available_products[key].product.maintenance
 		update_maintenance_stats(available_products[key])
 		
+	FinanceManager.remove(product_maintenance, IdRefs.PAYMENT_REMOVE_TYPES.PRODUCT_MAINTENANCE)
+		
+	## Update data dict
 	for key in shop_product_data.keys():
 		shop_product_data[key]['previous_month'] = shop_product_data[key]['current_month']
 		shop_product_data[key]['current_month'] = {'value': 0, 'sell_count': 0, 'stock_expenditure': 0, 'maintenance_expenditure': 0}
@@ -144,13 +149,12 @@ func on_month_pass():
 	shop_expenditure_data['previous_month'] = shop_earning_data['current_month']
 	shop_expenditure_data['current_month'] = 0
 		
-	FinanceManager.remove(product_maintenance, IdRefs.PAYMENT_REMOVE_TYPES.PRODUCT_MAINTENANCE)
+
 	
 	
 func update_earn_stats(value):
 	shop_earning_data['current_month'] += value
 	shop_earning_data['lifetime'] += value
-	FinanceManager.add(value, IdRefs.PAYMENT_ADD_TYPES.PRODUCT)
 		
 func update_product_stats(product, count):
 	shop_product_data[product.product.id]['current_month']['value'] += product.current_price * count

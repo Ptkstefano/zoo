@@ -19,42 +19,24 @@ func update_tool_label():
 		text = 'Placing ' + inputController.selected_res.name
 		return
 	elif inputController.current_tool == inputController.TOOLS.PATH:
-		if inputController.is_bulldozing:
-			text = 'Removing path'
-			return
 		text = 'Building path'
 		return
 	elif inputController.current_tool == inputController.TOOLS.ENCLOSURE:
-		if inputController.is_bulldozing:
-			text = 'Removing enclosure'
-			return
 		text = 'Building enclosure'
 		return
 	elif inputController.current_tool == inputController.TOOLS.TREE:
-		if inputController.is_bulldozing:
-			text = 'Removing scenery'
-			return
 		text = 'Placing single tree'
 		return
 	elif inputController.current_tool == inputController.TOOLS.VEGETATION:
-		if inputController.is_bulldozing:
-			text = 'Removing scenery'
-			return
 		text = 'Placing vegetation'
 		return
 	elif inputController.current_tool == inputController.TOOLS.DECORATION:
-		if inputController.is_bulldozing:
-			text = 'Removing scenery'
-			return
 		text = 'Placing decoration'
 		return
 	elif inputController.current_tool == inputController.TOOLS.TERRAIN:
 		text = 'Adding terrain'
 		return
 	elif inputController.current_tool == inputController.TOOLS.WATER:
-		if inputController.is_bulldozing:
-			text = 'Removing lake'
-			return
 		text = 'Placing lake'
 		return
 	elif inputController.current_tool == inputController.TOOLS.BUILDING:

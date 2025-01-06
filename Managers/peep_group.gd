@@ -473,7 +473,6 @@ func buy_food():
 			
 	var best_item_id = null
 	var highest_utility = 0
-	print(available_items)
 			
 	## No items of desirable quality
 	if available_items.size() == 0:
@@ -488,7 +487,6 @@ func buy_food():
 					continue
 				highest_utility = available_items[id].utility_score
 				best_item_id = id
-		print(best_item_id)
 
 		## Found no items of desirable cost
 		if best_item_id == null:

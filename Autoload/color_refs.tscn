@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bnvesg7wrwadp"]
 
-[ext_resource type="Script" path="res://Autoload/color_refs.gd" id="1_dnho3"]
+[ext_resource type="Script" uid="uid://dyf0reg6jx68f" path="res://Autoload/color_refs.gd" id="1_dnho3"]
 
 [node name="ColorRefs" type="Node"]
 script = ExtResource("1_dnho3")

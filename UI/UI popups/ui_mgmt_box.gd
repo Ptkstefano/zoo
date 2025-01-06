@@ -4,12 +4,17 @@ var review_count = {}
 
 @export var review_element : PackedScene
 
+signal popup_closed
+
 func _ready():
-	%CloseButton.pressed.connect(queue_free)
+	%CloseButton.pressed.connect(on_popup_closed)
 	generate_reviews_tab()
 	DataManager.reviews_changed.connect(generate_reviews_tab)
 	FinanceManager.current_month_changed.connect(generate_finances_tab)
 	generate_finances_tab()
+
+func on_popup_closed():
+	popup_closed.emit()
 
 func generate_reviews_tab():
 	review_count.clear()

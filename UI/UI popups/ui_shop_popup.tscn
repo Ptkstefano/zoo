@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddbum626vwima"]
+[gd_scene load_steps=10 format=3 uid="uid://ddbum626vwima"]
 
 [ext_resource type="Script" uid="uid://dnxto2yafwg73" path="res://UI/UI popups/ui_shop_popup.gd" id="1_w81ri"]
 [ext_resource type="PackedScene" uid="uid://dkyq54bpawtoq" path="res://UI/UI popups/elements/ui_product_element.tscn" id="2_ts5ku"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://we0wd88u1111" path="res://UI/UI popups/elements/product_history_element.tscn" id="4_vhx3g"]
 [ext_resource type="PackedScene" uid="uid://8uotlvt85h4j" path="res://UI/UI popups/ui_available_products_popup.tscn" id="5_toidr"]
 [ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/popup_theme.tres" id="6_klxwb"]
+[ext_resource type="Script" uid="uid://oq7aounld7th" path="res://UI/UI popups/responsive_margin_container.gd" id="7_2j380"]
 [ext_resource type="Theme" uid="uid://dnfx05qfn4rdn" path="res://UI/popup_inner_content_alternate.tres" id="7_s3t32"]
 [ext_resource type="Theme" uid="uid://di7iy2m47x8rx" path="res://UI/popup_inner_content.tres" id="7_ssr7q"]
 
@@ -29,6 +30,7 @@ theme_override_constants/margin_left = 250
 theme_override_constants/margin_top = 150
 theme_override_constants/margin_right = 250
 theme_override_constants/margin_bottom = 200
+script = ExtResource("7_2j380")
 
 [node name="PanelContainer" type="PanelContainer" parent="PopupMarginContainer"]
 layout_mode = 2
@@ -58,10 +60,9 @@ horizontal_alignment = 1
 [node name="TabContainer" type="TabContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 0
 
 [node name="Products" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -91,6 +92,7 @@ theme_override_font_sizes/font_size = 24
 text = "Add product"
 
 [node name="Stats" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 

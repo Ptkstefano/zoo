@@ -23,13 +23,13 @@ func _ready() -> void:
 	update_selection_menu()
 
 
-func on_load_scenery(scenery_type, id, coordinates, res):
+func on_load_scenery(scenery_type, id, coordinates, rotate_building, res):
 	if scenery_type == IdRefs.SCENERY_TYPES.TREE:
 		place_tree(coordinates, res, id)
 	elif scenery_type == IdRefs.SCENERY_TYPES.VEGETATION:
 		place_vegetation(coordinates, res, id)
 	elif scenery_type == IdRefs.SCENERY_TYPES.DECORATION:
-		place_decoration(coordinates, res, id)
+		place_decoration(coordinates, res, rotate_building, id)
 	elif scenery_type == IdRefs.SCENERY_TYPES.ROCK:
 		place_rock(coordinates, res, id)
 	
@@ -103,7 +103,7 @@ func place_vegetation(press_start_pos, vegetation_res, id):
 	Effects.wobble(vegetation)
 	SignalBus.vegetation_placed.emit(vegetation.global_position)
 	
-func place_decoration(press_start_pos, decoration_res, id):
+func place_decoration(press_start_pos, decoration_res, rotate_building, id):
 	var decoration_position_cell = TileMapRef.local_to_map(press_start_pos)
 	var decoration_position_local = TileMapRef.map_to_local(decoration_position_cell)
 	if decoration_position_cell in used_cells:
@@ -118,6 +118,7 @@ func place_decoration(press_start_pos, decoration_res, id):
 	else:
 		decoration.id = id
 	decoration.cell = decoration_position_cell
+	decoration.rotate_building = rotate_building
 	decoration.removed.connect(on_decoration_removed)
 	used_cells.append(decoration_position_cell)
 	add_child(decoration)
