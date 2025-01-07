@@ -42,6 +42,7 @@ func on_product_stock_replenish(id):
 	
 func on_remove_building():
 	shop_node.remove_building()
+	popup_closed.emit()
 	queue_free()
 
 func update_stats():

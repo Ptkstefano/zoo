@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://dghecrq5m52py"]
+
+[ext_resource type="Script" uid="uid://dsodj1vh00qo7" path="res://UI/UI popups/ui_building_popup.gd" id="1_c1ws3"]
+[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/popup_theme.tres" id="6_2r6w7"]
+[ext_resource type="Script" uid="uid://oq7aounld7th" path="res://UI/UI popups/responsive_margin_container.gd" id="7_01783"]
+
+[node name="UI_BuildingPopup" type="CanvasLayer"]
+layer = 3
+script = ExtResource("1_c1ws3")
+
+[node name="PopupMarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("6_2r6w7")
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 250
+theme_override_constants/margin_bottom = 200
+script = ExtResource("7_01783")
+
+[node name="PanelContainer" type="PanelContainer" parent="PopupMarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PopupMarginContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BuildingName" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "namehere"
+horizontal_alignment = 1
+
+[node name="TabContainer" type="TabContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="DeleteButton" type="Button" parent="PopupMarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.1
+text = "D"
+
+[node name="CloseButton" type="Button" parent="PopupMarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.1
+text = "X"

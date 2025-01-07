@@ -7,9 +7,10 @@ signal building_selected
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if building_res:
-		$PanelContainer/Button.pressed.connect(on_building_selected)
+		%Button.pressed.connect(on_building_selected)
 		%BuildingName.text = building_res.name
 		%Thumbnail.texture = building_res.thumb
+		%BuildingCost.text = Helpers.money_text(building_res.building_cost)
 	
 func on_building_selected():
 	building_selected.emit(building_res)

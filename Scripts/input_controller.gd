@@ -41,7 +41,10 @@ var rotate_building : bool = false
 
 enum TOOLS {NONE,PATH,ENCLOSURE,SHELTER,ANIMAL,SCENERY,TERRAIN,BUILDING,TREE,VEGETATION,ROCK,FIXTURE,DECORATION,WATER,ENTRANCE,EATERY,RESTAURANT,SERVICE,ADMINISTRATION,BULLDOZER_ENCLOSURE,BULLDOZER_PATH,BULLDOZER_SCENERY,BULLDOZER_WATER}
 
-var current_tool = TOOLS.NONE
+var current_tool = TOOLS.NONE:
+	set(tool):
+		apply_tool(tool)
+		current_tool = tool
 var free_cam_tools = [TOOLS.NONE, TOOLS.BUILDING]
 var bulldozer_tools = [TOOLS.BULLDOZER_ENCLOSURE, TOOLS.BULLDOZER_PATH, TOOLS.BULLDOZER_SCENERY, TOOLS.BULLDOZER_WATER]
 var hide_ui_tools = [TOOLS.ENCLOSURE, TOOLS.PATH, TOOLS.TERRAIN]
@@ -97,6 +100,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			handle_camera_input(event)
 	if current_tool in bulldozer_tools and !is_camera_tool_selected:
 		handle_bulldozing_input(event)
+	else:
+		$BulldozerCollider.global_position = Vector2(9999,9999)
 	if current_tool != TOOLS.NONE and !is_camera_tool_selected and current_tool not in bulldozer_tools:
 		handle_tooling_input(event)
 
@@ -219,10 +224,8 @@ func handle_bulldozing_input(event):
 				highlight_area()
 			if current_tool == TOOLS.BULLDOZER_ENCLOSURE:
 				highlight_area()
-			if current_tool == TOOLS.BULLDOZER_SCENERY:
+			if current_tool == TOOLS.BULLDOZER_SCENERY or current_tool == TOOLS.BULLDOZER_WATER:
 				$BulldozerCollider.global_position = touch_current_global_pos
-				await get_tree().create_timer(0.25).timeout
-				$BulldozerCollider.global_position = Vector2(9999,9999)
 			
 			
 	if event is InputEventScreenTouch:
@@ -231,6 +234,12 @@ func handle_bulldozing_input(event):
 		if event.is_released():
 			SignalBus.ui_visibility.emit(true)
 			$"../TileMap/HighlightLayer".clear_highlight()
+			if current_tool == TOOLS.BULLDOZER_SCENERY:
+				await get_tree().create_timer(1).timeout
+				$BulldozerCollider.global_position = Vector2(9999,9999)
+			if current_tool == TOOLS.BULLDOZER_WATER:
+				await get_tree().create_timer(1).timeout
+				$BulldozerCollider.global_position = Vector2(9999,9999)
 			if current_tool == TOOLS.BULLDOZER_PATH:
 				$"../PathManager".remove_path(cells.duplicate())
 				cells.clear()
@@ -351,16 +360,7 @@ func highlight_building_area():
 		#return
 	start_tile_pos = tile_map_layer.local_to_map(touch_start_global_pos)
 	cells.clear()
-	if !rotate_building:
-		for x in range(abs(selected_res.size.x)):
-			for y in range(abs(selected_res.size.y)):
-				var new_coordinate = Vector2i(start_tile_pos.x - x, start_tile_pos.y - y)
-				cells.append(new_coordinate)
-	if rotate_building:
-		for x in range(abs(selected_res.size.x)):
-			for y in range(abs(selected_res.size.y)):
-				var new_coordinate = Vector2i(start_tile_pos.x - y, start_tile_pos.y - x)
-				cells.append(new_coordinate)
+	cells = Helpers.get_building_cells(selected_res.size, start_tile_pos, rotate_building).duplicate()
 	if current_tool in building_placement_tools:
 		if $"../Objects/EnclosureManager".get_enclosure_overlap(cells):
 			$"../TileMap/HighlightLayer".clear_highlight()
@@ -386,11 +386,13 @@ func rotate_building_toggle():
 func build_building():
 	$"../TileMap/HighlightLayer".clear_highlight()
 	building_built.emit()
-	$"../Objects/BuildingManager".build_building(selected_res, start_tile_pos, rotate_building, cells, null)
+	$"../Objects/BuildingManager".build_building(selected_res, start_tile_pos, rotate_building, null)
 
 func build_shelter():
 	$"../TileMap/HighlightLayer".clear_highlight()
 	building_built.emit()
+	
+	## - TODO - Remove cells just like in build building()
 	$"../Objects/ShelterManager".build_shelter(selected_res, start_tile_pos, rotate_building, cells)
 	
 func build_decoration():
@@ -400,5 +402,17 @@ func build_decoration():
 
 func bulldoze_water():
 	$BulldozerWaterCollider.global_position = touch_current_global_pos
-	await get_tree().create_timer(0.25).timeout
+	await get_tree().create_timer(1).timeout
 	$BulldozerWaterCollider.global_position = Vector2(9999,9999)
+
+func apply_tool(tool):
+	if tool in bulldozer_tools:
+		for collision_layer in [6, 9, 13, 12]:
+			$BulldozerCollider.set_collision_layer_value(collision_layer, false)
+		if tool == TOOLS.BULLDOZER_SCENERY:
+			$BulldozerCollider.set_collision_layer_value(6, true) ## Fixture
+			$BulldozerCollider.set_collision_layer_value(9, true) ## Scenery
+			$BulldozerCollider.set_collision_layer_value(13, true) ## Vegetation
+		elif tool == TOOLS.BULLDOZER_WATER:
+			$BulldozerCollider.set_collision_layer_value(12, true) ## Water
+			

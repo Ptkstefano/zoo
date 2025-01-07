@@ -34,7 +34,7 @@ func update_animal_menu():
 	$"../../UI".update_ui()
 
 
-func spawn_animal(coordinate, animal_res, stats):
+func spawn_animal(coordinate, animal_res : animal_resource, stats):
 	## Find what enclosure the player wants to add an animal to
 	var cell = TileMapRef.local_to_map(coordinate)
 	var found_enclosure = enclosure_manager.get_enclosure_by_cell(cell)
@@ -56,6 +56,9 @@ func spawn_animal(coordinate, animal_res, stats):
 	if stats:
 		spawned_animal.id = stats.id
 	else:
+		if !FinanceManager.is_amount_available(animal_res.cost):
+			SignalBus.tooltip.emit('Not enough money')
+			return
 		FinanceManager.remove(animal_res.cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
 		SignalBus.money_tooltip.emit(animal_res.cost, false, coordinate)
 		spawned_animal.id = ZooManager.generate_animal_id()

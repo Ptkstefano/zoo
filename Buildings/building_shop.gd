@@ -49,6 +49,7 @@ func _ready() -> void:
 			enter_positions.append(children.global_position)
 			
 	SignalBus.pass_month.connect(on_month_pass)
+	Effects.wobble(self)
 
 func remove_building():
 	get_parent().remove_building()

@@ -23,7 +23,7 @@ func add(amount, type):
 	current_month_stats['income'][type] += amount
 	current_month_changed.emit()
 	
-func remove(amount, type):
+func remove(amount, type : IdRefs.PAYMENT_REMOVE_TYPES):
 	if !GameManager.game_running:
 		return
 	current_money -= amount
@@ -31,6 +31,12 @@ func remove(amount, type):
 		current_month_stats['expenditures'][type] = 0
 	current_month_stats['expenditures'][type] += amount
 	current_month_changed.emit()
+
+func is_amount_available(amount) -> bool:
+	if current_money >= amount:
+		return true
+	else:
+		return false
 	
 
 func on_pass_month():

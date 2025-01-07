@@ -1,6 +1,7 @@
 extends Node
 
 @export var ui_shop_popup : PackedScene
+@export var ui_building_popup : PackedScene
 @export var ui_animal_popup : PackedScene
 @export var ui_mgmt_popup : PackedScene
 @export var ui_peep_group_popup : PackedScene
@@ -23,6 +24,8 @@ func open_popup(detector_pos, element):
 		open_peepgroup_popup(element)
 	if opened_popup != null:
 		SignalBus.ui_visibility.emit(false)
+	if element is Toilet:
+		open_building_popup(element)
 
 func close_popup():
 	if opened_popup != null:
@@ -60,5 +63,11 @@ func open_mgmt_box():
 func open_peepgroup_popup(peepgroup_node):
 	opened_popup = ui_peep_group_popup.instantiate()
 	opened_popup.peep_group_node = peepgroup_node
+	opened_popup.popup_closed.connect(close_popup)
+	add_child(opened_popup)
+
+func open_building_popup(building_node):
+	opened_popup = ui_building_popup.instantiate()
+	opened_popup.building_node = building_node
 	opened_popup.popup_closed.connect(close_popup)
 	add_child(opened_popup)

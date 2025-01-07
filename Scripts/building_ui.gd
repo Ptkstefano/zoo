@@ -64,6 +64,8 @@ func _ready() -> void:
 	%BulldozerFixture.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.BULLDOZER_SCENERY)) 
 	%BulldozerDecoration.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.BULLDOZER_SCENERY)) 
 	%BulldozerRock.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.BULLDOZER_SCENERY)) 
+	%BulldozerLake.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.BULLDOZER_WATER)) 
+	
 	%ToolDeselect.pressed.connect(on_tool_deselect)
 	
 	## DEBUG menu show and hide
@@ -77,6 +79,7 @@ func _ready() -> void:
 	inputController.building_placed.connect(on_building_placed)
 	inputController.building_built.connect(on_building_built)
 	
+	reset_ui()
 	get_tree().get_root().size_changed.connect(resize_ui)
 	resize_ui()
 	hide_selection_menu()
@@ -324,15 +327,14 @@ func on_tool_menu_selected(tool):
 		inputController.current_tool = tool
 		%InfoBorder.apply_color(ColorRefs.bulldozer_red)
 		if tool == inputController.TOOLS.BULLDOZER_PATH:
-			open_tool_info_panel('BulldozingPathContainer')
+			open_tool_info_panel('BulldozingPathInfoContainer')
 		if tool == inputController.TOOLS.BULLDOZER_ENCLOSURE:
-			open_tool_info_panel('BulldozingEnclosureContainer')
+			open_tool_info_panel('BulldozingEnclosureInfoContainer')
 		if tool == inputController.TOOLS.BULLDOZER_SCENERY:
-			open_tool_info_panel('BulldozingSceneryContainer')
+			open_tool_info_panel('BulldozingSceneryInfoContainer')
+		if tool == inputController.TOOLS.BULLDOZER_WATER:
+			open_tool_info_panel('BulldozingLakeInfoContainer')
 		
-	if tool == inputController.TOOLS.WATER:
-		%SidePanel.show()
-		inputController.current_tool = inputController.TOOLS.WATER
 	if tool == inputController.TOOLS.ENTRANCE:
 		%EnclosureSubpanel.show()
 		%EnclosureMenu.show()
@@ -343,7 +345,10 @@ func on_camera_tool(value : bool):
 	if value:
 		%InfoBorder.apply_color(ColorRefs.neutral_white)
 	else:
-		%InfoBorder.apply_color(ColorRefs.construction_yellow)
+		if inputController.current_tool in inputController.bulldozer_tools:
+			%InfoBorder.apply_color(ColorRefs.bulldozer_red)
+		else:
+			%InfoBorder.apply_color(ColorRefs.construction_yellow)
 	
 func on_rotate_tool_press():
 	inputController.rotate_building_toggle()
@@ -435,6 +440,8 @@ func open_tool_info_panel(panel_name):
 	%ToolPanel.hide()
 	%ToolInfoPanel.show()
 	%ToolInfoContainer.find_child(panel_name).show()
+	## For some reason, showing the panel containter before the content bugs the panel size
+	%ToolInfoPanelContainer.show()
 	
 func on_tool_deselect():
 	%InfoBorder.apply_color(ColorRefs.neutral_white)
@@ -446,3 +453,12 @@ func on_tool_deselect():
 	for child in %ToolInfoContainer.get_children():
 		if child is PanelContainer:
 			child.hide()
+	%ToolInfoPanelContainer.hide()
+
+func reset_ui():
+	hide_side_panel()
+	on_tool_deselect()
+	%ConstructionToolsContainer.hide()
+	%MainOptions.show()
+	%OptionsDropMenu.hide()
+	%InfoBorder.hide()

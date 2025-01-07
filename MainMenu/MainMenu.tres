@@ -57,6 +57,7 @@ texture_margin_bottom = 8.0
 region_rect = Rect2(402, 24, 152, 152)
 
 [resource]
+Button/constants/outline_size = 16
 Button/font_sizes/font_size = 32
 Button/fonts/font = ExtResource("1_yrdlq")
 Button/styles/focus = SubResource("StyleBoxTexture_yrdlq")

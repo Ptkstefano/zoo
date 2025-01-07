@@ -29,4 +29,5 @@ class_name building_resource
 @export var detectable_pos_rotated : Vector2
 @export var z_offset : int ## Used so that buildings bigger than one tile can use a z_index from a cell other than origin
 
+@export var building_cost : float
 @export var base_maintenance : float

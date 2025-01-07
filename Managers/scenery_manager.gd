@@ -86,11 +86,14 @@ func place_tree(press_start_pos, tree_res, id):
 		enclosure.call_deferred('update_navigation_region')
 	SignalBus.vegetation_placed.emit(tree.global_position)
 	
-func place_vegetation(press_start_pos, vegetation_res, id):
+func place_vegetation(press_start_pos, vegetation_res : vegetation_resource, id):
 	var vegetation = vegetation_scene.instantiate()
 	vegetation.vegetation_res = vegetation_res
 	vegetation.global_position = press_start_pos
 	if !id:
+		if !FinanceManager.is_amount_available(vegetation_res.cost):
+			SignalBus.tooltip.emit('Not enough money')
+			return
 		vegetation.id = ZooManager.generate_scenery_id()
 		FinanceManager.remove(vegetation_res.cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
 		SignalBus.money_tooltip.emit(vegetation_res.cost, false, press_start_pos)
@@ -112,6 +115,9 @@ func place_decoration(press_start_pos, decoration_res, rotate_building, id):
 	decoration.decoration_res = decoration_res
 	decoration.global_position = decoration_position_local
 	if !id:
+		if !FinanceManager.is_amount_available(decoration_res.cost):
+			SignalBus.tooltip.emit('Not enough money')
+			return
 		decoration.id = ZooManager.generate_scenery_id()
 		FinanceManager.remove(decoration_res.cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
 		SignalBus.money_tooltip.emit(decoration_res.cost, false, press_start_pos)
@@ -129,6 +135,9 @@ func place_rock(press_start_pos, rock_res, id):
 	rock.rock_res = rock_res
 	rock.global_position = press_start_pos
 	if !id:
+		if !FinanceManager.is_amount_available(rock_res.cost):
+			SignalBus.tooltip.emit('Not enough money')
+			return
 		rock.id = ZooManager.generate_scenery_id()
 		FinanceManager.remove(rock_res.cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
 		SignalBus.money_tooltip.emit(rock_res.cost, false, press_start_pos)

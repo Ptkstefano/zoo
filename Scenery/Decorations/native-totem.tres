@@ -9,3 +9,4 @@ name = "Native Totem"
 cost = 25.0
 texture = ExtResource("2_klfbc")
 texture_offset = Vector2(0, -25)
+size = Vector2i(1, 1)

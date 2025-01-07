@@ -1,52 +1,114 @@
-[gd_scene load_steps=3 format=3 uid="uid://bb5olte5gphhj"]
+[gd_scene load_steps=8 format=3 uid="uid://bb5olte5gphhj"]
 
+[ext_resource type="Theme" uid="uid://dssdalpin0m5v" path="res://UI/selectable_element_theme.tres" id="1_3uo0w"]
 [ext_resource type="Script" uid="uid://dxwnk7of0t2yb" path="res://UI/UI selectable elements/ui_building_element.gd" id="1_to8ed"]
-[ext_resource type="Texture2D" uid="uid://c83xp6l2j8d6s" path="res://Sprites/thumbs/giraffe thumb.png" id="2_jq7wb"]
+[ext_resource type="FontFile" uid="uid://cpnqdh47y1283" path="res://UI/Logic_Loop.ttf" id="4_kjbg7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13wpq"]
+bg_color = Color(0.6, 0.6, 0.6, 0.674)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_detail = 7
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6bvhc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4qqs"]
+bg_color = Color(0.6, 0.6, 0.6, 0.674)
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 7
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7plg2"]
 
 [node name="BuildingElement" type="Control"]
 custom_minimum_size = Vector2(200, 148)
 layout_mode = 3
 anchors_preset = 0
 size_flags_horizontal = 0
+theme = ExtResource("1_3uo0w")
 script = ExtResource("1_to8ed")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 0
-
-[node name="Button" type="Button" parent="PanelContainer"]
-layout_mode = 2
-action_mode = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Button"]
-layout_mode = 2
+[node name="UiBuildingElement" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(350, 100)
+layout_mode = 0
 offset_right = 200.0
-offset_bottom = 148.0
+offset_bottom = 164.0
+size_flags_horizontal = 0
+theme = ExtResource("1_3uo0w")
+
+[node name="MarginContainer2" type="MarginContainer" parent="UiBuildingElement"]
+layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Button/MarginContainer"]
+[node name="Button" type="Button" parent="UiBuildingElement/MarginContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
+action_mode = 0
 
-[node name="BuildingName" type="Label" parent="PanelContainer/Button/MarginContainer/VBoxContainer"]
+[node name="Thumbnail" type="TextureRect" parent="UiBuildingElement/MarginContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 180)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UiBuildingElement/MarginContainer2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="UiBuildingElement/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_13wpq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UiBuildingElement/MarginContainer2/VBoxContainer/Panel"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HSeparator" type="HSeparator" parent="UiBuildingElement/MarginContainer2/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BuildingName" type="Label" parent="UiBuildingElement/MarginContainer2/VBoxContainer/Panel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 0
-text = "Giraffe"
+size_flags_vertical = 6
+theme_override_constants/line_spacing = -18
+theme_override_constants/outline_size = 8
+text = "Cement path"
 horizontal_alignment = 1
 
-[node name="Thumbnail" type="TextureRect" parent="PanelContainer/Button/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-texture_filter = 1
-custom_minimum_size = Vector2(0, 110)
+[node name="HSeparator" type="HSeparator" parent="UiBuildingElement/MarginContainer2/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_jq7wb")
-expand_mode = 5
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_6bvhc")
+
+[node name="Panel2" type="PanelContainer" parent="UiBuildingElement/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m4qqs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UiBuildingElement/MarginContainer2/VBoxContainer/Panel2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HSeparator" type="HSeparator" parent="UiBuildingElement/MarginContainer2/VBoxContainer/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxEmpty_7plg2")
+
+[node name="BuildingCost" type="Label" parent="UiBuildingElement/MarginContainer2/VBoxContainer/Panel2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_kjbg7")
+theme_override_font_sizes/font_size = 32
+text = "$50"
+horizontal_alignment = 1

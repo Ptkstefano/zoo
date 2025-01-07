@@ -43,17 +43,22 @@ func update_building_menu():
 		
 	$"../../UI".update_ui()
 
-func build_building(building_res : building_resource, start_tile, rotate, coords, data):
+func build_building(building_res : building_resource, start_tile, rotate, data):
 	if !building_res:
 		return
 	var new_building = building_class_scene.instantiate()
 	new_building.start_tile = start_tile
 	new_building.is_building_rotated = rotate
 	new_building.building_res = building_res
-	new_building.used_coordinates = coords
+	var used_cells = Helpers.get_building_cells(building_res.size, start_tile, rotate)
+	new_building.used_coordinates = used_cells
 	new_building.building_res_id = building_res.id
 	SignalBus.set_debug_label_text.emit(str(building_res.id))
 	if !data:
+		if !FinanceManager.is_amount_available(building_res.building_cost):
+			SignalBus.tooltip.emit('Not enough money')
+			return
+		FinanceManager.remove(building_res.building_cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
 		new_building.id = ZooManager.generate_building_id()
 	else:
 		new_building.id = data.id
@@ -69,8 +74,8 @@ func build_building(building_res : building_resource, start_tile, rotate, coords
 	if building_res.building_type == IdRefs.BUILDING_TYPES.TOILET:
 		ZooManager.add_toilet(new_building.id, { 'building': new_building, 'position': TileMapRef.map_to_local(start_tile) })
 			
-	$"../../PathManager".build_building_path(coords)
-	for coord in coords:
+	$"../../PathManager".build_building_path(used_cells)
+	for coord in used_cells:
 		coordinates_used_by_buildings.append(coord)
 	
 func on_building_removed(building_node):

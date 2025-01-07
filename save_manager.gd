@@ -338,10 +338,6 @@ func load_game():
 			var building_res = load(data['buildingData'][key]['building_res'])
 			var pos = Vector2(data['buildingData'][key]['start_tile']['x_pos'], data['buildingData'][key]['start_tile']['y_pos'])
 			var is_rotated = data['buildingData'][key]['is_rotated']
-			var used_coords = []
-			for entry in data["buildingData"][key]['used_coordinates']:
-				var vector = Vector2(data["buildingData"][key]['used_coordinates'][entry]['x_pos'], data["buildingData"][key]['used_coordinates'][entry]['y_pos'])
-				used_coords.append(vector)
 			var building_data = { 'id':  data['buildingData'][key]['building_id']}
 
 			if data['buildingData'][key].has('shop_data'):
@@ -367,7 +363,7 @@ func load_game():
 					'shop_stats' = shop_stats
 				}
 				
-			buildingManager.build_building(building_res, pos, is_rotated, used_coords, building_data)
+			buildingManager.build_building(building_res, pos, is_rotated, building_data)
 			
 	if data.has('peepGroupData'):
 		for key in data["peepGroupData"]:
@@ -545,13 +541,6 @@ func get_building_data(building):
 	data['is_rotated'] = building.is_building_rotated
 	var start_tile = { 'x_pos': building.start_tile.x, 'y_pos': building.start_tile.y }
 	data['start_tile'] = start_tile
-	var used_coordinates = {}
-	var i = 0
-	for coordinate in building.used_coordinates:
-		coordinate = { 'x_pos': coordinate.x, 'y_pos': coordinate.y }
-		used_coordinates[i] = coordinate
-		i += 1
-	data['used_coordinates'] = used_coordinates
 
 	return data
 

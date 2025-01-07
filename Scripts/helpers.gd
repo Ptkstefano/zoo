@@ -69,3 +69,16 @@ func get_cell_quadrant(global_coordinate : Vector2):
 			return 1
 			
 		
+func get_building_cells(building_size, start_tile, rotate_building):
+	var cells : Array[Vector2i] = []
+	if !rotate_building:
+		for x in range(abs(building_size.x)):
+			for y in range(abs(building_size.y)):
+				var new_coordinate = Vector2i(start_tile.x - x, start_tile.y - y)
+				cells.append(new_coordinate)
+	if rotate_building:
+		for x in range(abs(building_size.x)):
+			for y in range(abs(building_size.y)):
+				var new_coordinate = Vector2i(start_tile.x - y, start_tile.y - x)
+				cells.append(new_coordinate)
+	return cells
