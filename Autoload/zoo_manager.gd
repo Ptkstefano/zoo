@@ -42,6 +42,8 @@ var reputation : float = 5:
 		reputation = clamp(value, 0, 5)
 		calculate_zoo_attractiveness()
 		
+signal zoo_reputation_updated
+		
 var last_guest_ratings = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
 
 #var zoo_value : int
@@ -51,9 +53,7 @@ var current_marketing_value : int
 
 
 func _ready() -> void:
-	
-	pass # Replace with function body.
-
+	zoo_reputation_updated.emit(reputation)
 
 func add_zoo_enclosure(enclosure : Enclosure):
 	zoo_enclosures[enclosure.id] = {"node": enclosure, "location": enclosure.enclosure_central_point, "especies": enclosure.enclosure_species, "entrance_cell": null}
@@ -127,6 +127,7 @@ func calculate_zoo_rating():
 
 func calculate_zoo_attractiveness():
 	zoo_attractiveness = float(zoo_rating * rating_ratio) * (clampf(reputation, 0.25, 5) * 0.3)
+	zoo_reputation_updated.emit(reputation)
 
 func update_rating(new_rating):
 	last_guest_ratings.append(new_rating)

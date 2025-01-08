@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddbum626vwima"]
+[gd_scene load_steps=11 format=3 uid="uid://ddbum626vwima"]
 
 [ext_resource type="Script" uid="uid://dnxto2yafwg73" path="res://UI/UI popups/ui_shop_popup.gd" id="1_w81ri"]
 [ext_resource type="PackedScene" uid="uid://dkyq54bpawtoq" path="res://UI/UI popups/elements/ui_product_element.tscn" id="2_ts5ku"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://oq7aounld7th" path="res://UI/UI popups/responsive_margin_container.gd" id="7_2j380"]
 [ext_resource type="Theme" uid="uid://dnfx05qfn4rdn" path="res://UI/popup_inner_content_alternate.tres" id="7_s3t32"]
 [ext_resource type="Theme" uid="uid://di7iy2m47x8rx" path="res://UI/popup_inner_content.tres" id="7_ssr7q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2j380"]
 
 [node name="UI_ShopPopup" type="CanvasLayer"]
 layer = 3
@@ -26,10 +28,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("6_klxwb")
-theme_override_constants/margin_left = 250
-theme_override_constants/margin_top = 150
-theme_override_constants/margin_right = 250
-theme_override_constants/margin_bottom = 200
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 100
 script = ExtResource("7_2j380")
 
 [node name="PanelContainer" type="PanelContainer" parent="PopupMarginContainer"]
@@ -68,7 +70,8 @@ metadata/_tab_index = 0
 
 [node name="HSeparator" type="HSeparator" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products"]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxEmpty_2j380")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products"]
 layout_mode = 2
@@ -79,6 +82,9 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="ProductElement" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products/ScrollContainer/ProductList" instance=ExtResource("2_ts5ku")]
+layout_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Products"]
 layout_mode = 2
@@ -362,51 +368,56 @@ layout_mode = 2
 text = "$1000"
 horizontal_alignment = 1
 
-[node name="Modifiers" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats"]
+[node name="Thoughts" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Modifiers" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Thoughts"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.8
 theme = ExtResource("7_s3t32")
 
-[node name="MarginContainer" type="MarginContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/Modifiers"]
+[node name="MarginContainer" type="MarginContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Thoughts/Modifiers"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/Modifiers/MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Thoughts/Modifiers/MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/Modifiers/MarginContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Thoughts/Modifiers/MarginContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/Modifiers/MarginContainer/PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Thoughts/Modifiers/MarginContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Peep thoughts"
 horizontal_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/Modifiers/MarginContainer/PanelContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Thoughts/Modifiers/MarginContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/Modifiers/MarginContainer/PanelContainer/VBoxContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Thoughts/Modifiers/MarginContainer/PanelContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
 
-[node name="ShopModifierList" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/Modifiers/MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+[node name="ShopModifierList" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Thoughts/Modifiers/MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Stats/Modifiers/MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ShopModifierList"]
+[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Thoughts/Modifiers/MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ShopModifierList"]
 layout_mode = 2
 text = "asd"
 
 [node name="Debug" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 2
+metadata/_tab_index = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug"]
 layout_mode = 2

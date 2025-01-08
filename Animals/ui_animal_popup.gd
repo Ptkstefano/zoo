@@ -40,8 +40,13 @@ func update_preferences():
 		%preference_terrain.text = "I'm satisfied with the terrain"
 		%preference_terrain.add_theme_color_override("font_color", Color('#76ad6f'))
 	else:
-		%preference_terrain.add_theme_color_override("font_color", Color('#fe0005'))
-		#%preference_terrain.text = "Something is wrong with the terrain, I need  more " + str(animal_scene.lacking_terrain_types[0])
+		if animal_scene.is_there_disliked_terrain:
+			%preference_terrain.add_theme_color_override("font_color", Color('#fe0005'))
+			%preference_terrain.text = "I dislike the terrain type " + str(animal_scene.disliked_terrains_in_habitat[0])
+		else:
+			%preference_terrain.add_theme_color_override("font_color", Color('#fe0005'))
+			%preference_terrain.text = "Something is wrong with the terrain, I need  more " + str(animal_scene.lacking_terrain_types[0])
+
 
 	if animal_scene.preference_water_satisfied:
 		%preference_water.text = "I like the lake!"

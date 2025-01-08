@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="product_resource" load_steps=3 format=3 uid="uid://cjjihkgq4h4n1"]
+
+[ext_resource type="Script" uid="uid://cq5yhojsat81w" path="res://Products/product_res.gd" id="1_juhfy"]
+[ext_resource type="Texture2D" uid="uid://dnv3i78rinoik" path="res://Products/Icons/products5.png" id="2_juhfy"]
+
+[resource]
+script = ExtResource("1_juhfy")
+id = 4
+type = 0
+name = "Pesto Pasta"
+thumb = ExtResource("2_juhfy")
+base_sell_value = 20.0
+perceived_value = 20.0
+product_level = 2
+stock_cost = 6.0
+max_stock = 150
+maintenance = 200.0

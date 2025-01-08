@@ -12,7 +12,7 @@ signal auto_replenish
 
 func _ready():
 	%Title.text = product_name
-	%Thumbnail.texture = thumbnail
+	#%Thumbnail.texture = thumbnail
 
 	%Close.pressed.connect(queue_free)
 	%Remove.pressed.connect(on_remove_product_pressed)

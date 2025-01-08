@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="product_resource" load_steps=3 format=3 uid="uid://ckyyswqj3cgfy"]
+
+[ext_resource type="Script" uid="uid://cq5yhojsat81w" path="res://Products/product_res.gd" id="1_6r6ff"]
+[ext_resource type="Texture2D" uid="uid://c8jedy6bhv6ib" path="res://Products/Icons/products6.png" id="2_bratu"]
+
+[resource]
+script = ExtResource("1_6r6ff")
+id = 5
+type = 0
+name = "Squid Ink and Shrimp Pasta"
+thumb = ExtResource("2_bratu")
+base_sell_value = 32.0
+perceived_value = 32.0
+product_level = 3
+stock_cost = 14.0
+max_stock = 100
+maintenance = 350.0

@@ -7,7 +7,7 @@ func _ready():
 	
 func resize_ui():
 	if DisplayServer.window_get_size().y < 1080:
-		add_theme_constant_override("margin_bottom", 100)
+		add_theme_constant_override("margin_bottom", 50)
 		add_theme_constant_override("margin_top", 50)
 		add_theme_constant_override("margin_left", 50)
 		add_theme_constant_override("margin_right", 50)

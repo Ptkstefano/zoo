@@ -2,6 +2,9 @@ extends Node2D
 
 class_name Animal
 
+@export var happy_smile_texture : Texture
+@export var bad_smile_texture : Texture
+
 var animal_res : animal_resource
 
 var base_speed : float
@@ -67,10 +70,15 @@ var too_little_vegetation : bool = false
 var preference_herd_size_satisfied : bool
 var preference_herd_density_satisfied : bool
 var favorite_tree_satisfied : bool
+var is_there_disliked_terrain : bool = false
+var disliked_terrains_in_habitat = []
 
 var sprite_x : int = 0
 var sprite_y : int = 0
 var frame : int = 0
+
+var sprite_x_size : int
+var sprite_y_size : int
 
 var direction : Vector2
 
@@ -119,6 +127,9 @@ func initialize_animal(res, coordinate, found_enclosure):
 	global_position = coordinate
 	cached_global_position = Vector2(global_position.x, global_position.y)
 	enclosure = found_enclosure
+	
+	sprite_x_size = animal_res.texture.get_width() / $Sprite2D.hframes
+	sprite_y_size = animal_res.texture.get_height() / 2
 
 func _physics_process(delta: float) -> void:
 	#$Label.text = str(current_state)
@@ -292,9 +303,11 @@ func on_decay_timer_timeout():
 
 
 func update_habitat_satifaction():
+	var previous_happiness = habitat_happiness
 	var habitat_happiness_value = 0
 	lacking_terrain_types.clear()
 	preference_terrain_satisfied = true
+	is_there_disliked_terrain = false
 	for key in animal_res.terrain_preference:
 		if key in enclosure.terrain_coverage.keys():
 			if enclosure.terrain_coverage[key] < animal_res.terrain_preference[key]:
@@ -302,6 +315,14 @@ func update_habitat_satifaction():
 				habitat_happiness_value -= 0.25
 				lacking_terrain_types.append(int(key))
 		else:
+			preference_terrain_satisfied = false ## Missing required terrain
+			habitat_happiness_value -= 0.25
+			
+	disliked_terrains_in_habitat.clear()
+	for key in animal_res.terrain_dislike:
+		if key in enclosure.terrain_coverage.keys():
+			disliked_terrains_in_habitat.append(key)
+			is_there_disliked_terrain = true
 			preference_terrain_satisfied = false ## Missing required terrain
 			habitat_happiness_value -= 0.25
 			
@@ -351,6 +372,11 @@ func update_habitat_satifaction():
 		favorite_tree_satisfied = false
 		
 	habitat_happiness = habitat_happiness_value
+	
+	if habitat_happiness_value > previous_happiness:
+		spawn_smile(true)
+	elif habitat_happiness_value < previous_happiness:
+		spawn_smile(false)
 		
 
 func update_cached_position():
@@ -372,3 +398,28 @@ func update_frame_direction():
 		sprite_y = 1
 	elif direction.y < 0:
 		sprite_y = 0
+
+func spawn_smile(value):
+	if value:
+		$HappinessSmile.texture = happy_smile_texture
+	else:
+		$HappinessSmile.texture = bad_smile_texture
+	
+	$HappinessSmile.show()
+	$HappinessSmile.modulate = Color.WHITE
+	
+	var y_offset = sprite_y_size * 0.8
+	#var x_offset = sprite_x_size * 0.1
+	
+	if animal_sprite.flip_h:
+		$HappinessSmile.position = Vector2(0, -10 - y_offset)
+	else:
+		$HappinessSmile.position = Vector2(0, -10 - y_offset)
+	
+	await get_tree().create_timer(0.5).timeout
+	
+	var tween = create_tween()
+	tween.tween_property($HappinessSmile, "position", Vector2($HappinessSmile.position.x, $HappinessSmile.position.y - 10), 1).set_trans(Tween.TRANS_CUBIC)
+	tween.chain().tween_property($HappinessSmile, "modulate", Color('#ffffff00'), 0.5)
+	await tween.finished
+	$HappinessSmile.hide()

@@ -432,8 +432,8 @@ func on_decay_timer_timeout():
 	needs_toilet -= toilet_drain_rate
 
 func on_animal_wait_timer_timeout():
-	group_desired_destinations.erase(group_desired_destinations.front())
-	
+	if group_desired_destinations.size() > 0:
+		group_desired_destinations.erase(group_desired_destinations.front())
 	change_state(group_states.STOPPED)
 
 func buy_food():
@@ -469,8 +469,7 @@ func buy_food():
 					'utility_score': item_utility_score
 					}
 					
-				
-			
+
 	var best_item_id = null
 	var highest_utility = 0
 			

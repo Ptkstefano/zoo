@@ -20,9 +20,13 @@ run_speed = 10.0
 can_swim = true
 minimum_shelter_level = 0
 animal_rating = 50
-terrain_preference = Dictionary[int, float]({})
-terrain_dislike = Array[int]([])
-needs_water = false
+terrain_preference = Dictionary[int, float]({
+0: 25.0,
+1: 25.0,
+2: 10.0
+})
+terrain_dislike = Array[int]([3])
+needs_water = true
 minimum_habitat_size = 60
 minimum_cells_per_animal = 10
 minimum_vegetation_coverage = 0.35

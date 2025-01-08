@@ -44,6 +44,7 @@ func on_value_change(value):
 	%Price.text = "$" + str(price).pad_decimals(2)
 
 func update_stock(current_stock, maximum):
+	return
 	%Stock.text = str(int(current_stock)) + ' / ' + str(maximum)
 	
 func on_replenish_stock():

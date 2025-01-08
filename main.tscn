@@ -1,4 +1,4 @@
-[gd_scene load_steps=179 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=186 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" uid="uid://o2egpp0b02e2" path="res://Scripts/debug_controller.gd" id="1_nisry"]
 [ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -130,6 +130,10 @@
 [ext_resource type="Texture2D" uid="uid://b5bma8wo0rn86" path="res://UI/Icons/icons3.png" id="111_vjgyh"]
 [ext_resource type="Theme" uid="uid://dnsbtrrtp1vwi" path="res://Red_button.tres" id="117_1iygd"]
 [ext_resource type="Theme" uid="uid://die2jiitjcnwu" path="res://Green_button.tres" id="117_g5xqc"]
+[ext_resource type="Script" uid="uid://c4x8c8c70ukhk" path="res://UI_BottomMargin.gd" id="125_2n44k"]
+[ext_resource type="PackedScene" uid="uid://kn44cenbnuda" path="res://UI/level_star.tscn" id="126_5aa3q"]
+[ext_resource type="Script" uid="uid://drlg1txhrnaow" path="res://ui_reputation_stars.gd" id="126_shlp4"]
+[ext_resource type="PackedScene" uid="uid://dxnovttkgv786" path="res://UI/level_star_half.tscn" id="128_2n44k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4oys"]
 radius = 12.0
@@ -472,6 +476,12 @@ region_rect = Rect2(402, 408, 152, 152)
 texture = ExtResource("101_cpm2s")
 region_rect = Rect2(20, 404, 152, 160)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_86lig"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2n44k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ldnlw"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ogm70"]
 shader = ExtResource("97_84xii")
 shader_parameter/r = 0.0
@@ -503,14 +513,13 @@ script = ExtResource("2_hhygd")
 z_index_renderer = ExtResource("3_rhpto")
 
 [node name="InputController" type="Node2D" parent="." node_paths=PackedStringArray("scenery_manager", "animal_manager") groups=["Camera"]]
-visible = false
 y_sort_enabled = true
 script = ExtResource("1_ojpln")
 scenery_manager = NodePath("../Objects/SceneryManager")
 animal_manager = NodePath("../Objects/AnimalManager")
 
 [node name="BulldozerCollider" type="Area2D" parent="InputController"]
-position = Vector2(5044, -991)
+position = Vector2(3235, -142)
 collision_layer = 4384
 collision_mask = 0
 script = ExtResource("7_xhqw8")
@@ -2416,6 +2425,7 @@ text = "Move
 
 [node name="BottomMargin" type="MarginContainer" parent="UI/VBoxContainer"]
 layout_mode = 2
+script = ExtResource("125_2n44k")
 
 [node name="PanelContainer" type="PanelContainer" parent="UI/VBoxContainer/BottomMargin"]
 layout_mode = 2
@@ -2432,10 +2442,83 @@ theme_override_constants/margin_bottom = -10
 layout_mode = 2
 mouse_filter = 2
 
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu"]
+layout_mode = 2
+
+[node name="ScoreButton" type="Button" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_86lig")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_86lig")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2n44k")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_86lig")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ldnlw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 28
+text = "Zoo score:"
+
+[node name="UI_ReputationStars" type="HBoxContainer" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+script = ExtResource("126_shlp4")
+level_star = ExtResource("126_5aa3q")
+level_star_half = ExtResource("128_2n44k")
+
+[node name="LevelStar" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/MarginContainer/HBoxContainer/UI_ReputationStars" instance=ExtResource("126_5aa3q")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="LevelStar2" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/MarginContainer/HBoxContainer/UI_ReputationStars" instance=ExtResource("126_5aa3q")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="LevelStar3" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/MarginContainer/HBoxContainer/UI_ReputationStars" instance=ExtResource("126_5aa3q")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="LevelStar4" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/MarginContainer/HBoxContainer/UI_ReputationStars" instance=ExtResource("126_5aa3q")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="LevelStar5" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/MarginContainer/HBoxContainer/UI_ReputationStars" instance=ExtResource("126_5aa3q")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
 [node name="MarginContainer2" type="MarginContainer" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu"]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 8
+theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
@@ -2478,7 +2561,8 @@ theme_override_constants/margin_bottom = 5
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 28
 text = "$ 1000,00"
 horizontal_alignment = 2
 

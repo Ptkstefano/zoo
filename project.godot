@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Zoo"
+config/name="Retro Zoo CEO"
 run/main_scene="res://MainMenu/main_menu.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/show_image=false
@@ -75,6 +75,11 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_12="water"
 2d_physics/layer_13="Vegetation"
 2d_physics/layer_16="water_detection"
+
+[navigation]
+
+avoidance/thread_model/avoidance_use_high_priority_threads=false
+pathfinding/max_threads=-1
 
 [physics]
 

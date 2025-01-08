@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxnovttkgv786"]
+
+[ext_resource type="Texture2D" uid="uid://dprrgv2xdx1qh" path="res://UI/Icons/star-half2x.png" id="1_rpg6i"]
+
+[node name="LevelStarHalf" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_rpg6i")
+stretch_mode = 5

@@ -1,10 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkyq54bpawtoq"]
+[gd_scene load_steps=15 format=3 uid="uid://dkyq54bpawtoq"]
 
 [ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/popup_theme.tres" id="1_4y68s"]
 [ext_resource type="Script" uid="uid://yuksdpapqa7b" path="res://UI/UI popups/elements/ui_product_element.gd" id="1_vpxgb"]
 [ext_resource type="PackedScene" uid="uid://kn44cenbnuda" path="res://UI/level_star.tscn" id="3_fkehs"]
 [ext_resource type="FontFile" uid="uid://cpnqdh47y1283" path="res://UI/Logic_Loop.ttf" id="3_sefss"]
 [ext_resource type="PackedScene" uid="uid://c8bajfgxnpfow" path="res://UI/UI popups/ui_product_popup.tscn" id="4_ft5ms"]
+[ext_resource type="Texture2D" uid="uid://ccnb5ruwtu418" path="res://Products/Icons/products1.png" id="5_5dyuu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ft5ms"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5dyuu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k1tdi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ijnfv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mug7e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dyuu"]
 bg_color = Color(0.464616, 0.442849, 0.686033, 1)
@@ -13,15 +24,14 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fkehs"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1mjrf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f6yke"]
 
 [node name="ProductElement" type="PanelContainer"]
-offset_right = 975.0
-offset_bottom = 231.0
+offset_right = 815.0
+offset_bottom = 144.0
+size_flags_horizontal = 3
 theme = ExtResource("1_4y68s")
 script = ExtResource("1_vpxgb")
 level_star = ExtResource("3_fkehs")
@@ -30,9 +40,15 @@ product_popup = ExtResource("4_ft5ms")
 [node name="ProductButton" type="Button" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ft5ms")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5dyuu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_k1tdi")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ijnfv")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mug7e")
 
 [node name="Element" type="MarginContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 4
 mouse_filter = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 10
@@ -41,17 +57,21 @@ theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Element"]
 layout_mode = 2
+size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="Panel" type="Panel" parent="Element/HBoxContainer"]
-custom_minimum_size = Vector2(150, 150)
+[node name="VBoxContainer2" type="VBoxContainer" parent="Element/HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Element/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5dyuu")
 
-[node name="Thumbnail" type="TextureRect" parent="Element/HBoxContainer/Panel"]
+[node name="Thumbnail" type="TextureRect" parent="Element/HBoxContainer/VBoxContainer2/Panel"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -59,102 +79,85 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("5_5dyuu")
 stretch_mode = 5
 
-[node name="TextureRect" type="TextureRect" parent="Element/HBoxContainer"]
-custom_minimum_size = Vector2(47.42, 0)
+[node name="VBoxContainer3" type="VBoxContainer" parent="Element/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="Element/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="ProductName" type="Label" parent="Element/HBoxContainer/VBoxContainer3/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Ice Cream"
+
+[node name="LevelStars" type="HBoxContainer" parent="Element/HBoxContainer/VBoxContainer3/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Element/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Element/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 2
-
-[node name="ProductName" type="Label" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 24
-text = "Ice Cream"
-
-[node name="VSeparator" type="VSeparator" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
-layout_mode = 2
-theme_override_constants/separation = 20
-theme_override_styles/separator = SubResource("StyleBoxEmpty_fkehs")
-
-[node name="LevelStars" type="HBoxContainer" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-
 [node name="HBoxContainer" type="HBoxContainer" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
 
 [node name="Minus" type="Button" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 75)
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
 text = "-"
 
 [node name="VSeparator2" type="VSeparator" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_1mjrf")
 
 [node name="Price" type="Label" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("3_sefss")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 28
 text = "2.00
 "
-vertical_alignment = 1
 
 [node name="VSeparator" type="VSeparator" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_f6yke")
 
 [node name="Plus" type="Button" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 75)
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
 text = "+"
 
 [node name="VSeparator3" type="VSeparator" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_f6yke")
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Element/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="ProductName" type="Label" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Stock: "
-
-[node name="Stock" type="Label" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 24
-text = "50 / 50"

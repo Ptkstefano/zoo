@@ -150,6 +150,7 @@ func place_rock(press_start_pos, rock_res, id):
 	Effects.wobble(rock)
 	
 func on_decoration_removed(cell):
+
 	used_cells.erase(Vector2i(cell.x, cell.y))
 	
 	
@@ -157,5 +158,11 @@ func remove(press_start_pos):
 	pass
 
 func on_object_removed(object):
-	#$"../../RenderingController".remove_object(object)
+	var cell = TileMapRef.local_to_map(object.global_position)
+	if object is SceneryTree:
+		var enclosure = TileMapRef.get_enclosure_by_cell(cell)
+		print(cell)
+		print(TileMapRef.get_enclosure_by_cell(cell))
+		if enclosure:
+			enclosure.call_deferred('update_navigation_region')
 	object.queue_free()

@@ -12,8 +12,6 @@ var build_mode : bool = false
 
 @export var inputController : InputController
 
-@onready var money_label = %MoneyLabel
-
 func _ready() -> void:
 	SignalBus.ui_visibility.connect(ui_visibility)
 	
@@ -73,8 +71,6 @@ func _ready() -> void:
 	%OptionsMenuToggle.button_down.connect(right_menu_down)
 	%OptionsMenuToggle.button_up.connect(right_menu_up)
 	%DebugTimer.timeout.connect(debug_timer_timeout)
-	
-	SignalBus.money_changed.connect(on_money_changed)
 	
 	inputController.building_placed.connect(on_building_placed)
 	inputController.building_built.connect(on_building_built)
@@ -377,10 +373,6 @@ func on_box_pressed(box):
 
 func on_save_game():
 	SignalBus.save_game.emit()
-
-func on_money_changed(amount):
-	money_label.text = "$" + str("%.2f" % amount)
-
 
 func right_menu_down():
 	%DebugTimer.start()
