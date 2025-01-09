@@ -321,8 +321,9 @@ func load_game():
 	if data.has('fixtureData'):
 		for key in data["fixtureData"]:
 			var position = Vector2i(data["fixtureData"][key]['x_pos'], data["fixtureData"][key]['y_pos'])
+			var direction = int(data["fixtureData"][key].get('direction', 0))
 			var fixture_res = load(data['fixtureData'][key]['fixture_res'])
-			fixtureManager.call_deferred('place_fixture', position, fixture_res)
+			fixtureManager.call_deferred('place_fixture', position, fixture_res, true, direction)
 	
 	if data.has('waterData'):
 		for key in data["waterData"]:
@@ -491,6 +492,7 @@ func get_fixture_data(fixture):
 	var data = {}
 	data['x_pos'] = fixture.placement_global_pos.x
 	data['y_pos'] = fixture.placement_global_pos.y
+	data['direction'] = fixture.direction
 	data['fixture_res'] = fixture.fixture_res.get_path()
 	return data
 

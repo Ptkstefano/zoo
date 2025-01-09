@@ -15,7 +15,7 @@ offset = Vector2(0, -15)
 
 [node name="RemovalArea" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 256
+collision_mask = 524288
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RemovalArea"]

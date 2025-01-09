@@ -400,6 +400,8 @@ func update_frame_direction():
 		sprite_y = 0
 
 func spawn_smile(value):
+	if !GameManager.game_running:
+		return
 	if value:
 		$HappinessSmile.texture = happy_smile_texture
 	else:

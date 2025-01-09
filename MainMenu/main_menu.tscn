@@ -15,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jxm28")
 
-[node name="ColorRect" type="TextureRect" parent="."]
+[node name="MainBG" type="TextureRect" parent="."]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -26,7 +26,8 @@ grow_vertical = 2
 texture = ExtResource("2_po2gx")
 expand_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MainContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,17 +39,17 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="VBoxContainer" parent="MainContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer"]
+[node name="Control" type="Control" parent="MainContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer/Control"]
+[node name="TextureRect2" type="TextureRect" parent="MainContainer/HBoxContainer/MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,7 +60,7 @@ texture = ExtResource("3_po2gx")
 stretch_mode = 5
 script = ExtResource("4_po2gx")
 
-[node name="VBoxContainer3" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="VBoxContainer3" type="HBoxContainer" parent="MainContainer/HBoxContainer"]
 custom_minimum_size = Vector2(1.49, 0)
 layout_mode = 2
 size_flags_vertical = 3
@@ -67,11 +68,11 @@ size_flags_stretch_ratio = 0.6
 theme = ExtResource("2_24wdr")
 theme_override_constants/separation = 15
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer3"]
+[node name="Control" type="Control" parent="MainContainer/HBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ContinueButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer3/Control"]
+[node name="ContinueButton" type="Button" parent="MainContainer/HBoxContainer/VBoxContainer3/Control"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
@@ -85,11 +86,11 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Continue game"
 
-[node name="Control2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer3"]
+[node name="Control2" type="Control" parent="MainContainer/HBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="StartButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer3/Control2"]
+[node name="StartButton" type="Button" parent="MainContainer/HBoxContainer/VBoxContainer3/Control2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
@@ -103,11 +104,11 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "New game"
 
-[node name="Control3" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer3"]
+[node name="Control3" type="Control" parent="MainContainer/HBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer3/Control3"]
+[node name="QuitButton" type="Button" parent="MainContainer/HBoxContainer/VBoxContainer3/Control3"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 1

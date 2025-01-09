@@ -45,7 +45,8 @@ func update_preferences():
 			%preference_terrain.text = "I dislike the terrain type " + str(animal_scene.disliked_terrains_in_habitat[0])
 		else:
 			%preference_terrain.add_theme_color_override("font_color", Color('#fe0005'))
-			%preference_terrain.text = "Something is wrong with the terrain, I need  more " + str(animal_scene.lacking_terrain_types[0])
+			if !animal_scene.lacking_terrain_types.is_empty():
+				%preference_terrain.text = "Something is wrong with the terrain, I need  more " + str(animal_scene.lacking_terrain_types[0])
 
 
 	if animal_scene.preference_water_satisfied:

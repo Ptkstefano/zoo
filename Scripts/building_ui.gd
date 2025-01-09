@@ -64,6 +64,15 @@ func _ready() -> void:
 	%BulldozerRock.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.BULLDOZER_SCENERY)) 
 	%BulldozerLake.pressed.connect(on_tool_menu_selected.bind(inputController.TOOLS.BULLDOZER_WATER)) 
 	
+	%VegetationBrushCheckBox.toggled.connect(on_vegetation_brush_toggle)
+	%FixtureFreeCheckBox.toggled.connect(on_free_fixture_placement_toggle)
+	
+	%BulldozerTreeCheckBox.toggled.connect(on_scenery_bulldozer_filter_toggle)
+	%BulldozerVegetationCheckBox.toggled.connect(on_scenery_bulldozer_filter_toggle)
+	%BulldozerFixtureCheckBox.toggled.connect(on_scenery_bulldozer_filter_toggle)
+	%BulldozerDecorationCheckBox.toggled.connect(on_scenery_bulldozer_filter_toggle)
+	%BulldozerRockCheckBox.toggled.connect(on_scenery_bulldozer_filter_toggle)
+	
 	%ToolDeselect.pressed.connect(on_tool_deselect)
 	
 	## DEBUG menu show and hide
@@ -219,19 +228,23 @@ func on_path_selected(path_res):
 	
 func on_scenery_selected(scenery_res, type):
 	hide_side_panel()
-	open_tool_info_panel('PlacingSceneryInfoContainer')
 	%SidePanel.show()
 	%InfoBorder.apply_color(ColorRefs.construction_yellow)
 	if type == 'tree':
 		inputController.current_tool = inputController.TOOLS.TREE
+		open_tool_info_panel('PlacingSceneryInfoContainer')
 	if type == 'vegetation':
 		inputController.current_tool = inputController.TOOLS.VEGETATION
+		open_tool_info_panel('PlacingVegetationInfoContainer')
 	if type == 'decoration':
 		inputController.current_tool = inputController.TOOLS.DECORATION
+		open_tool_info_panel('PlacingSceneryInfoContainer')
 	if type == 'fixture':
 		inputController.current_tool = inputController.TOOLS.FIXTURE
+		open_tool_info_panel('PlacingFixtureInfoContainer')
 	if type == 'rock':
 		inputController.current_tool = inputController.TOOLS.ROCK
+		open_tool_info_panel('PlacingSceneryInfoContainer')
 	selected_res = scenery_res
 	
 func on_building_selected(building_res):
@@ -323,10 +336,13 @@ func on_tool_menu_selected(tool):
 		inputController.current_tool = tool
 		%InfoBorder.apply_color(ColorRefs.bulldozer_red)
 		if tool == inputController.TOOLS.BULLDOZER_PATH:
+			on_scenery_bulldozer_filter_toggle(false)
 			open_tool_info_panel('BulldozingPathInfoContainer')
 		if tool == inputController.TOOLS.BULLDOZER_ENCLOSURE:
+			on_scenery_bulldozer_filter_toggle(false)
 			open_tool_info_panel('BulldozingEnclosureInfoContainer')
 		if tool == inputController.TOOLS.BULLDOZER_SCENERY:
+			on_scenery_bulldozer_filter_toggle(false)
 			open_tool_info_panel('BulldozingSceneryInfoContainer')
 		if tool == inputController.TOOLS.BULLDOZER_WATER:
 			open_tool_info_panel('BulldozingLakeInfoContainer')
@@ -454,3 +470,19 @@ func reset_ui():
 	%MainOptions.show()
 	%OptionsDropMenu.hide()
 	%InfoBorder.hide()
+
+func on_vegetation_brush_toggle(value):
+	inputController.vegetation_brush = value
+
+func on_free_fixture_placement_toggle(value):
+	inputController.free_placing_fixture = value
+
+func on_scenery_bulldozer_filter_toggle(value):
+	var bulldozer_filters = {
+		17: %BulldozerTreeCheckBox.button_pressed,
+		18: %BulldozerVegetationCheckBox.button_pressed,
+		19: %BulldozerFixtureCheckBox.button_pressed,
+		20: %BulldozerDecorationCheckBox.button_pressed,
+		21: %BulldozerRockCheckBox.button_pressed,
+	}
+	inputController.set_bulldozer_filters(bulldozer_filters)

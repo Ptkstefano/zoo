@@ -26,7 +26,7 @@ frame = 1
 [node name="FixtureArea" type="Area2D" parent="3"]
 position = Vector2(13, -7)
 collision_layer = 32
-collision_mask = 32
+collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="3/FixtureArea"]
 shape = SubResource("CircleShape2D_fef55")
@@ -42,7 +42,7 @@ vframes = 4
 [node name="FixtureArea" type="Area2D" parent="2"]
 position = Vector2(-9, -9)
 collision_layer = 32
-collision_mask = 32
+collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2/FixtureArea"]
 shape = SubResource("CircleShape2D_cplnp")
@@ -61,7 +61,7 @@ frame = 2
 [node name="FixtureArea" type="Area2D" parent="1"]
 position = Vector2(-11, 2)
 collision_layer = 32
-collision_mask = 32
+collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="1/FixtureArea"]
 shape = SubResource("CircleShape2D_vqmsy")
@@ -79,7 +79,7 @@ frame = 3
 [node name="FixtureArea" type="Area2D" parent="0"]
 position = Vector2(12, 2)
 collision_layer = 32
-collision_mask = 32
+collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="0/FixtureArea"]
 shape = SubResource("CircleShape2D_d5t88")

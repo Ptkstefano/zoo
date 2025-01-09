@@ -20,6 +20,11 @@ func get_water_availability(cells):
 	var water_manager = main_node.get_node("Objects").get_node('WaterManager')
 	return water_manager.get_water_availability(cells)
 
+func get_path_atlas(cell):
+	var main_node = get_tree().root.get_node("Main")
+	var path_layer = main_node.get_node("TileMap").get_node('PathLayer') as TileMapLayer
+	return path_layer.get_cell_atlas_coords(cell)
+
 func update_enclosures(cells):
 	var main_node = get_tree().root.get_node("Main")
 	var enclosure_manager = main_node.get_node("Objects").get_node("EnclosureManager")

@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="animal_resource" load_steps=3 format=3 uid="uid://s40sd7uqjx7u"]
+[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://s40sd7uqjx7u"]
 
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_k0vb8"]
 [ext_resource type="Texture2D" uid="uid://dvn6ui5ftap6a" path="res://Animals/sprites/african elephant.png" id="2_birur"]
+[ext_resource type="Texture2D" uid="uid://7pk5bxdc2qrm" path="res://Animals/thumbs/animal_thumbs5.png" id="3_47nyl"]
 
 [resource]
 script = ExtResource("1_k0vb8")
@@ -9,6 +10,7 @@ name = "African Elephant"
 species_id = 7
 cost = 500.0
 texture = ExtResource("2_birur")
+thumb = ExtResource("3_47nyl")
 feed = 1
 shadow_scale = 1.8
 sprite_y_offset = 2

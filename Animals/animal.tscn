@@ -19,6 +19,7 @@ happy_smile_texture = ExtResource("2_m7ux4")
 bad_smile_texture = ExtResource("3_nwl7n")
 
 [node name="HappinessSmile" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-10, -33)
 texture = ExtResource("2_m7ux4")
 

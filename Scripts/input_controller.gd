@@ -12,6 +12,8 @@ var press_start_lpos : Vector2
 var press_current_lpos : Vector2
 var previous_current_lpos : Vector2
 
+var previous_snapshot_pos : Vector2
+
 
 var touch_start_global_pos : Vector2
 var touch_current_global_pos : Vector2
@@ -34,6 +36,9 @@ var selected_res : Resource
 
 var start_tile_pos : Vector2i
 var end_tile_pos : Vector2i
+
+var vegetation_brush : bool = false
+var free_placing_fixture : bool = false
 
 var is_camera_tool_selected : bool = false
 
@@ -156,6 +161,14 @@ func handle_tooling_input(event):
 				highlight_area()
 			if current_tool == TOOLS.TERRAIN:
 				highlight_area()
+			if current_tool == TOOLS.VEGETATION:
+				if vegetation_brush:
+					if touch_current_global_pos.distance_to(previous_snapshot_pos) > 100:
+						previous_snapshot_pos = touch_current_global_pos
+						for i in 3:
+							## TODO - Allow player to customize min distance and offset
+							var random_offset = Vector2(randf_range(-50,50), randf_range(-50,50))
+							scenery_manager.place_vegetation(touch_current_global_pos + random_offset, selected_res, null)
 					
 			if current_tool == TOOLS.WATER:
 				if is_placing_water:
@@ -196,9 +209,12 @@ func handle_tooling_input(event):
 			if current_tool == TOOLS.TREE:
 				scenery_manager.place_tree(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.VEGETATION:
+				if vegetation_brush:
+					previous_snapshot_pos = touch_start_global_pos
+					return
 				scenery_manager.place_vegetation(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.FIXTURE:
-				$"../Objects/FixtureManager".place_fixture(touch_start_global_pos, selected_res)
+				$"../Objects/FixtureManager".place_fixture(touch_start_global_pos, selected_res, free_placing_fixture, null)
 			if current_tool == TOOLS.ROCK:
 				scenery_manager.place_rock(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.WATER:
@@ -407,12 +423,11 @@ func bulldoze_water():
 
 func apply_tool(tool):
 	if tool in bulldozer_tools:
-		for collision_layer in [6, 9, 13, 12]:
+		for collision_layer in [12, 17, 18, 19, 20, 21]:
 			$BulldozerCollider.set_collision_layer_value(collision_layer, false)
-		if tool == TOOLS.BULLDOZER_SCENERY:
-			$BulldozerCollider.set_collision_layer_value(6, true) ## Fixture
-			$BulldozerCollider.set_collision_layer_value(9, true) ## Scenery
-			$BulldozerCollider.set_collision_layer_value(13, true) ## Vegetation
-		elif tool == TOOLS.BULLDOZER_WATER:
+		if tool == TOOLS.BULLDOZER_WATER:
 			$BulldozerCollider.set_collision_layer_value(12, true) ## Water
 			
+func set_bulldozer_filters(filters):
+	for key in filters:
+		$BulldozerCollider.set_collision_layer_value(key, filters[key])

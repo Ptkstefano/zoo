@@ -13,7 +13,7 @@ script = ExtResource("1_x884a")
 [node name="FixtureArea" type="Area2D" parent="3"]
 position = Vector2(13, -8)
 collision_layer = 32
-collision_mask = 32
+collision_mask = 262144
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="3/FixtureArea"]
 shape = SubResource("CircleShape2D_5j2vf")
@@ -36,7 +36,7 @@ position = Vector2(17, -5)
 [node name="FixtureArea" type="Area2D" parent="2"]
 position = Vector2(-9, -9)
 collision_layer = 32
-collision_mask = 32
+collision_mask = 262144
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2/FixtureArea"]
 shape = SubResource("CircleShape2D_5j2vf")
@@ -75,7 +75,7 @@ frame = 2
 [node name="FixtureArea" type="Area2D" parent="1"]
 position = Vector2(-11, 2)
 collision_layer = 32
-collision_mask = 32
+collision_mask = 262144
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="1/FixtureArea"]
 shape = SubResource("CircleShape2D_5j2vf")
@@ -100,7 +100,7 @@ frame = 3
 [node name="FixtureArea" type="Area2D" parent="0"]
 position = Vector2(12, 2)
 collision_layer = 32
-collision_mask = 32
+collision_mask = 262144
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="0/FixtureArea"]
 shape = SubResource("CircleShape2D_5j2vf")

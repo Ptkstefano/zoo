@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="animal_resource" load_steps=3 format=3 uid="uid://xncaf8r72rkb"]
+[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://xncaf8r72rkb"]
 
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_kntb2"]
 [ext_resource type="Texture2D" uid="uid://3ld6nf83htbo" path="res://Animals/sprites/red kangaroo.png" id="2_pbl2i"]
+[ext_resource type="Texture2D" uid="uid://cjxnimpgmelpt" path="res://Animals/thumbs/animal_thumbs2.png" id="3_5xyec"]
 
 [resource]
 script = ExtResource("1_kntb2")
@@ -9,6 +10,7 @@ name = "Red Kangaroo"
 species_id = 4
 cost = 250.0
 texture = ExtResource("2_pbl2i")
+thumb = ExtResource("3_5xyec")
 feed = 1
 shadow_scale = 1.0
 sprite_y_offset = 2

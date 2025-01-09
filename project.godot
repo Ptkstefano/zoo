@@ -69,12 +69,16 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_5="Observable"
 2d_physics/layer_6="Fixture"
 2d_physics/layer_7="GuestBuilding"
-2d_physics/layer_9="Scenery"
 2d_physics/layer_10="click_detection"
 2d_physics/layer_11="Scenery"
 2d_physics/layer_12="water"
-2d_physics/layer_13="Vegetation"
+2d_physics/layer_13="EnclosureVegetation"
 2d_physics/layer_16="water_detection"
+2d_physics/layer_17="BulldozerTree"
+2d_physics/layer_18="BulldozerVegetation"
+2d_physics/layer_19="BulldozerFixture"
+2d_physics/layer_20="BulldozerDecoration"
+2d_physics/layer_21="BulldozerRock"
 
 [navigation]
 

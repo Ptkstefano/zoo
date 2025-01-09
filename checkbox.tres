@@ -1,0 +1,26 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://n5hp2ks3tu04"]
+
+[ext_resource type="Texture2D" uid="uid://3inotbq27dhk" path="res://UI/Icons/checkbox3.png" id="1_88cew"]
+[ext_resource type="Texture2D" uid="uid://bwxt2yy4km0qm" path="res://UI/Icons/checkbox1.png" id="2_3fiy3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8iga3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ee4r8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_88cew"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3fiy3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4q035"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e6fwm"]
+
+[resource]
+CheckButton/icons/checked = ExtResource("1_88cew")
+CheckButton/icons/unchecked = ExtResource("2_3fiy3")
+CheckButton/styles/disabled = SubResource("StyleBoxEmpty_8iga3")
+CheckButton/styles/focus = SubResource("StyleBoxEmpty_ee4r8")
+CheckButton/styles/hover = SubResource("StyleBoxEmpty_88cew")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_3fiy3")
+CheckButton/styles/normal = SubResource("StyleBoxEmpty_4q035")
+CheckButton/styles/pressed = SubResource("StyleBoxEmpty_e6fwm")
