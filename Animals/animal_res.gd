@@ -8,6 +8,7 @@ class_name animal_resource
 @export var species_id : IdRefs.ANIMAL_SPECIES
 @export var cost : float
 @export var texture : Texture2D
+@export var cub_texture : Texture2D
 @export var thumb : Texture2D
 @export var feed : IdRefs.FEED_TYPES
 
@@ -25,6 +26,8 @@ class_name animal_resource
 
 @export var animal_rating : int
 
+@export var months_of_pregnancy : int = 5
+
 
 @export_group("Animal preferences")
  ## Expresses a minimum percentage of a given terrain type
@@ -39,3 +42,9 @@ class_name animal_resource
 @export var maximum_vegetation_coverage : float
 @export var minimum_herd_size : int
 @export var favorite_tree : IdRefs.TREE_SPECIES
+
+@export_group("Visual settings")
+
+@export var possible_sprite_variations : int = 1
+@export var separate_gender_sprites : bool = false
+@export var can_be_albino : bool = false

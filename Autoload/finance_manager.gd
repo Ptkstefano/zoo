@@ -14,7 +14,7 @@ var current_month_stats
 
 func _ready() -> void:
 	current_month_stats = {month = TimeManager.current_month, income = {}, expenditures = {}}
-	SignalBus.pass_month.connect(on_pass_month)
+	TimeManager.on_pass_month.connect(on_pass_month)
 
 func add(amount, type):
 	current_money += amount

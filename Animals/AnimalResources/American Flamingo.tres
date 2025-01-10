@@ -33,3 +33,5 @@ minimum_vegetation_coverage = 0.35
 maximum_vegetation_coverage = 1.5
 minimum_herd_size = 5
 favorite_tree = 8
+possible_sprite_variations = 1
+separate_gender_sprites = false

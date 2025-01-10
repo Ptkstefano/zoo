@@ -40,7 +40,7 @@ func _ready() -> void:
 		building_instance.restore_data(product_load_data)
 	add_child(building_instance)
 	
-	SignalBus.pass_month.connect(on_pass_month)
+	TimeManager.on_pass_month.connect(on_pass_month)
 
 func remove_building():
 	building_removed.emit(self)

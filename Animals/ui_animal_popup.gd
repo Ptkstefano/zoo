@@ -2,11 +2,19 @@ extends Control
 
 var animal_scene : Animal
 
+@export var male_icon : Texture
+@export var female_icon : Texture
+
 signal popup_closed
 
 func _ready():
 	%CloseButton.pressed.connect(on_popup_closed)
 	%SellAnimal.pressed.connect(on_sell_animal)
+	
+	if animal_scene.animal_gender == IdRefs.ANIMAL_GENDERS.MALE:
+		%GenderIcon.texture = male_icon
+	else:
+		%GenderIcon.texture = female_icon
 	
 	%AnimalName.text = animal_scene.animal_res.name
 	

@@ -2,8 +2,9 @@ extends Node2D
 
 class_name Animal
 
-@export var happy_smile_texture : Texture
-@export var bad_smile_texture : Texture
+@export var happy_smile : Texture
+@export var bad_smile : Texture
+@export var heart : Texture
 
 var animal_res : animal_resource
 
@@ -14,14 +15,18 @@ var speed
 
 var id : int
 
-enum ANIMAL_STATES {IDLE, WANDER, SWIMMING, MOVING_TOWARDS_REST, MOVING_TOWARDS_FOOD, EATING, RUNNING, RESTING}
+enum ANIMAL_STATES {IDLE, WANDER, SWIMMING, MOVING_TOWARDS_REST, MOVING_TOWARDS_FOOD, MOVING_TOWARDS_MATE, EATING, RUNNING, RESTING, WAITING, MATING}
 var current_state = ANIMAL_STATES.IDLE
 
-var move_states = [ANIMAL_STATES.WANDER, ANIMAL_STATES.SWIMMING, ANIMAL_STATES.MOVING_TOWARDS_FOOD, ANIMAL_STATES.MOVING_TOWARDS_REST, ANIMAL_STATES.RUNNING]
+var move_states = [ANIMAL_STATES.WANDER, ANIMAL_STATES.SWIMMING, ANIMAL_STATES.MOVING_TOWARDS_FOOD, ANIMAL_STATES.MOVING_TOWARDS_REST, ANIMAL_STATES.MOVING_TOWARDS_MATE, ANIMAL_STATES.RUNNING]
 var fill_states = [ANIMAL_STATES.RUNNING, ANIMAL_STATES.EATING, ANIMAL_STATES.RESTING]
 
-var animal_name
+var animal_name : String
 var animal_species : IdRefs.ANIMAL_SPECIES
+
+var animal_gender : IdRefs.ANIMAL_GENDERS = 0
+var is_animal_pregnant : bool = false
+var months_pregnant : int = 0
 
 var enclosure : Enclosure
 
@@ -77,8 +82,17 @@ var sprite_x : int = 0
 var sprite_y : int = 0
 var frame : int = 0
 
+var animal_color_variation : int = 1
+
+var base_sprite_y : int = 0
+
+var is_infant : bool = false
+var is_looking_for_mate : bool = false
+
 var sprite_x_size : int
 var sprite_y_size : int
+
+var found_mate : Animal
 
 var direction : Vector2
 
@@ -96,11 +110,14 @@ func _ready() -> void:
 	$FrameTimer.timeout.connect(on_frame_timer)
 	
 	$NoSwimTimer.timeout.connect(on_no_swim_timer_timeout)
+	
+	TimeManager.on_pass_month.connect(on_month_pass)
+	
 	change_state(ANIMAL_STATES.IDLE)
 	enclosure.enclosure_stats_updated.connect(update_habitat_satifaction)
 	
 
-func initialize_animal(res, coordinate, found_enclosure):
+func initialize_animal(res, coordinate, found_enclosure, saved_data):
 	
 	animal_res = res
 	
@@ -111,9 +128,30 @@ func initialize_animal(res, coordinate, found_enclosure):
 	
 	$NavigationAgent2D.waypoint_reached.connect(on_agent_waypoint_reached)
 	
-	## Ensures sprite starts at origin
-	$Sprite2D.offset = Vector2(0, (($Sprite2D.texture.get_height() * -0.25) + animal_res.sprite_y_offset))
+	$Sprite2D.vframes = 2 * animal_res.possible_sprite_variations
 	
+	if animal_res.can_be_albino:
+		$Sprite2D.vframes += 2
+		
+	## Ensures sprite starts at origin
+	$Sprite2D.offset = Vector2(0, ((($Sprite2D.texture.get_height() / animal_res.possible_sprite_variations) * -0.25) + animal_res.sprite_y_offset))
+	
+	if saved_data:
+		animal_gender = saved_data['animal_gender']
+		needs_rest = saved_data['needs_rest']
+		needs_hunger = saved_data['needs_hunger']
+		needs_play = saved_data['needs_play']
+		is_animal_pregnant = saved_data['is_animal_pregnant']
+		months_pregnant = saved_data['months_pregnant']
+		is_looking_for_mate = saved_data['is_looking_for_mate']
+		is_infant = saved_data['is_infant']
+		animal_color_variation = saved_data['animal_color_variation']
+		
+	else:
+		animal_color_variation = (randi_range(1, animal_res.possible_sprite_variations))
+		animal_gender = [IdRefs.ANIMAL_GENDERS.MALE, IdRefs.ANIMAL_GENDERS.FEMALE].pick_random()
+	
+	base_sprite_y =  (animal_color_variation - 1) * 2
 	animal_name = animal_res.name
 	animal_species = animal_res.species_id
 	
@@ -175,11 +213,20 @@ func navigation_finished():
 		change_state(ANIMAL_STATES.RESTING)
 	if current_state == ANIMAL_STATES.SWIMMING:
 		agent.target_position=get_new_destination()
-
+	if current_state == ANIMAL_STATES.MOVING_TOWARDS_MATE:
+		found_mate.change_state(ANIMAL_STATES.MATING)
+		change_state(ANIMAL_STATES.MATING)
+		is_looking_for_mate = false
+		found_mate = null
+		
 
 func on_state_timer_timeout():
 	## Check for what animal wants to do, according to priorities.
 	$StateTimer.start()
+	if current_state == ANIMAL_STATES.MATING:
+		change_state(ANIMAL_STATES.IDLE)
+		if animal_gender == IdRefs.ANIMAL_GENDERS.FEMALE:
+			is_animal_pregnant = true
 	if needs_hunger < 30:
 		if is_instance_valid(enclosure.animal_feed):
 			change_state(ANIMAL_STATES.MOVING_TOWARDS_FOOD)
@@ -188,6 +235,8 @@ func on_state_timer_timeout():
 		change_state(ANIMAL_STATES.MOVING_TOWARDS_REST)
 	elif needs_play < 75:
 		change_state(ANIMAL_STATES.RUNNING)
+	elif is_looking_for_mate:
+		look_for_mate()
 	else:
 		change_state(ANIMAL_STATES.IDLE)
 	
@@ -220,10 +269,23 @@ func change_state(state : ANIMAL_STATES):
 		$StateTimer.stop()
 		agent.target_position = get_new_destination()
 		sprite_x = 2
+	elif state == ANIMAL_STATES.MOVING_TOWARDS_MATE:
+		$StateTimer.stop()
+		$DecayTimer.stop()
+		sprite_x = 2
 	elif state == ANIMAL_STATES.MOVING_TOWARDS_REST:
 		speed = base_speed
 		search_for_rest()
 		sprite_x = 2
+	elif state == ANIMAL_STATES.MATING:
+		spawn_smile(heart)
+		print('mating')
+		$StateTimer.start()
+		sprite_x = 0
+	elif state == ANIMAL_STATES.WAITING:
+		$StateTimer.stop()
+		$DecayTimer.stop()
+		sprite_x = 0
 	elif state == ANIMAL_STATES.IDLE:
 		if $DecayTimer.is_stopped():
 			$DecayTimer.start()
@@ -374,9 +436,9 @@ func update_habitat_satifaction():
 	habitat_happiness = habitat_happiness_value
 	
 	if habitat_happiness_value > previous_happiness:
-		spawn_smile(true)
+		spawn_smile(happy_smile)
 	elif habitat_happiness_value < previous_happiness:
-		spawn_smile(false)
+		spawn_smile(bad_smile)
 		
 
 func update_cached_position():
@@ -395,18 +457,15 @@ func update_frame_direction():
 		animal_sprite.flip_h=false
 		
 	if direction.y > 0:
-		sprite_y = 1
+		sprite_y = base_sprite_y + 1
 	elif direction.y < 0:
-		sprite_y = 0
+		sprite_y = base_sprite_y
 
-func spawn_smile(value):
+func spawn_smile(texture):
 	if !GameManager.game_running:
 		return
-	if value:
-		$HappinessSmile.texture = happy_smile_texture
-	else:
-		$HappinessSmile.texture = bad_smile_texture
-	
+
+	$HappinessSmile.texture = texture
 	$HappinessSmile.show()
 	$HappinessSmile.modulate = Color.WHITE
 	
@@ -425,3 +484,33 @@ func spawn_smile(value):
 	tween.chain().tween_property($HappinessSmile, "modulate", Color('#ffffff00'), 0.5)
 	await tween.finished
 	$HappinessSmile.hide()
+
+func check_if_wants_to_mate():
+	if habitat_happiness == 5:
+		if randi_range(0, 100) > 90:
+			is_looking_for_mate = true
+			print('wants to mate')
+
+func on_month_pass():
+	if is_animal_pregnant:
+		months_pregnant += 1
+	else:
+		check_if_wants_to_mate()
+		
+	if months_pregnant >= animal_res.months_of_pregnancy:
+		## TODO - Spawn new animal
+		return
+	
+	
+func look_for_mate():
+	found_mate = enclosure.find_mate_for_animal(self)
+	if found_mate:
+		agent.target_position = found_mate.global_position
+		found_mate.wait_for_mate(self)
+		change_state(ANIMAL_STATES.MOVING_TOWARDS_MATE)
+	else:
+		return false
+	
+func wait_for_mate(animal):
+	found_mate = animal
+	change_state(ANIMAL_STATES.WAITING)

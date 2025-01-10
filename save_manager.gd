@@ -72,43 +72,23 @@ func start_save_manager():
 		'TerrainWangN': TerrainWangN
 	}
 	
-	#enclosureManager = main_node.get_node("Objects").get_node("EnclosureManager") as EnclosureManager
-	#enclosure_list = enclosureManager.get_children()
 	enclosure_list = get_tree().get_nodes_in_group('Enclosures')
-	#animalManager = main_node.get_node("Objects").get_node('AnimalManager') as AnimalManager
+
 	animal_list = get_tree().get_nodes_in_group('Animals')
-	#sceneryManager = main_node.get_node("Objects").get_node('SceneryManager') as SceneryManager
-	#scenery_list = sceneryManager.get_children()
+
 	scenery_list = get_tree().get_nodes_in_group('Scenery')
-	#fixtureManager = main_node.get_node("Objects").get_node('FixtureManager') as FixtureManager
-	#fixture_list = fixtureManager.get_children()
+
 	fixture_list = get_tree().get_nodes_in_group('Fixtures')
-	#waterManager = main_node.get_node("Objects").get_node('WaterManager') as WaterManager
-	#water_list = waterManager.get_children()
+
 	water_list = get_tree().get_nodes_in_group('WaterBodies')
-	#buildingManager = main_node.get_node("Objects").get_node('BuildingManager') as BuildingManager
-	#building_list = buildingManager.get_children()
+
 	building_list = get_tree().get_nodes_in_group('Buildings')
-	#peepManager = main_node.get_node("Objects").get_node('PeepManager')
+
 	SignalBus.update_peeps_cached_positions.emit()
 	peepGroupList = get_tree().get_nodes_in_group('PeepGroups')
-	#pathManager = main_node.get_node('PathManager') as PathManager
-	#peepGroupList = peepManager.peep_groups
-	
 
-#func _unhandled_input(event: InputEvent) -> void:
-	#if event is InputEventKey:
-		#if event.pressed:
-			#if event.keycode == 4194336:
-				## F5 
-				#thread_save_game()
-			#if event.keycode == 4194340:
-				### F9
-				#get_tree().reload_current_scene()
-				#load_game()
 
 func thread_save_game():
-	## Avoids saving the game while it is loading
 	if !GameManager.game_running:
 		return
 	start_save_manager()
@@ -293,13 +273,8 @@ func load_game():
 		for key in data["animalData"]:
 			var position = Vector2i(data["animalData"][key]['x_pos'], data["animalData"][key]['y_pos'])
 			var animal_res = load(data['animalData'][key]['animal_res'])
-			var stats = {
-						'id': data['animalData'][key]['id'],
-						'needs_hunger': data['animalData'][key]['needs_hunger'],
-						'needs_rest': data['animalData'][key]['needs_rest'],
-						'needs_play': data['animalData'][key]['needs_play']
-			}
-			animalManager.call_deferred('spawn_animal', position, animal_res, stats)
+			var animal_data = data['animalData'][key]
+			animalManager.call_deferred('spawn_animal', position, animal_res, animal_data)
 			
 	if data.has('sceneryData'):
 		for key in data["sceneryData"]:
@@ -390,6 +365,8 @@ func load_game():
 		
 	if data.has('financeData'):
 		FinanceManager.current_money = data['financeData']['current_money']
+		FinanceManager.monthly_stats = data['financeData'].get('monthly_stats', {})
+		FinanceManager.current_month_stats = data['financeData'].get('current_month_stats', {month = TimeManager.current_month, income = {}, expenditures = {}})
 			
 	SignalBus.peep_navigation_changed.emit()
 
@@ -450,6 +427,12 @@ func get_animal_data(animal):
 	data['needs_rest'] = animal.needs_rest
 	data['needs_hunger'] = animal.needs_hunger
 	data['needs_play'] = animal.needs_play
+	data['animal_gender'] = animal.animal_gender
+	data['is_animal_pregnant'] = animal.is_animal_pregnant
+	data['months_pregnant'] = animal.months_pregnant
+	data['is_looking_for_mate'] = animal.is_looking_for_mate
+	data['is_infant'] = animal.is_infant
+	data['animal_color_variation'] = animal.animal_color_variation
 	return data
 
 func get_peep_group_data(peep_group):
@@ -508,7 +491,9 @@ func get_water_data(water):
 
 func get_finance_data():
 	var data = {
-		'current_money' = FinanceManager.current_money
+		'current_money' = FinanceManager.current_money,
+		'monthly_stats' = FinanceManager.monthly_stats,
+		'current_month_stats' = FinanceManager.current_month_stats
 	}
 	return data
 

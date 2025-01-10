@@ -662,7 +662,7 @@ ui_shelter_element = ExtResource("52_30626")
 [node name="StaffManager" type="Node2D" parent="Objects"]
 
 [node name="Staff" parent="Objects/StaffManager" instance=ExtResource("69_ba76w")]
-position = Vector2(-1343, 690)
+position = Vector2(-1268, 657)
 
 [node name="PeepNavigationRegion" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_mw1lm")

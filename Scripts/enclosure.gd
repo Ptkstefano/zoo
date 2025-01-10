@@ -344,3 +344,11 @@ func set_enclosure_tilemap_cells():
 	for coordinate in enclosure_cells:
 		enclosure_tilemap.set_cell(coordinate, 1, Vector2i(1, 1))
 		
+func find_mate_for_animal(animal):
+	for candidate in enclosure_animals:
+		if candidate.animal_gender != animal.animal_gender and candidate.is_looking_for_mate:
+			#animal.found_mate(candidate)
+			#candidate.found_mate(animal)
+			return candidate
+	
+	return null
