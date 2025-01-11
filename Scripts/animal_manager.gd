@@ -34,7 +34,7 @@ func update_animal_menu():
 	$"../../UI".update_ui()
 
 
-func spawn_animal(coordinate, animal_res : animal_resource, saved_data):
+func spawn_animal(coordinate, animal_res : animal_resource, saved_data, is_spawned_infant : bool, selected_spawn_gender):
 	## Find what enclosure the player wants to add an animal to
 	var cell = TileMapRef.local_to_map(coordinate)
 	var found_enclosure = enclosure_manager.get_enclosure_by_cell(cell)
@@ -55,21 +55,26 @@ func spawn_animal(coordinate, animal_res : animal_resource, saved_data):
 	if saved_data:
 		spawned_animal.id = saved_data.id
 	else:
-		if !FinanceManager.is_amount_available(animal_res.cost):
-			SignalBus.tooltip.emit('Not enough money')
-			return
-		FinanceManager.remove(animal_res.cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
-		SignalBus.money_tooltip.emit(animal_res.cost, false, coordinate)
-		spawned_animal.id = ZooManager.generate_animal_id()
+		if !is_spawned_infant:
+			if !FinanceManager.is_amount_available(animal_res.cost):
+				SignalBus.tooltip.emit('Not enough money')
+				return
+			FinanceManager.remove(animal_res.cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
+			SignalBus.money_tooltip.emit(animal_res.cost, false, coordinate)
+			spawned_animal.id = ZooManager.generate_animal_id()
 	
-	spawned_animal.initialize_animal(animal_res, coordinate, found_enclosure, saved_data)
+	spawned_animal.initialize_animal(animal_res, coordinate, found_enclosure, saved_data, is_spawned_infant, selected_spawn_gender)
 	spawned_animal.animal_removed.connect(despawn_animal)
+	spawned_animal.spawn_cub.connect(spawn_cub)
 	
 	add_child(spawned_animal)
 	Effects.wobble(spawned_animal)
 	found_enclosure.add_animal(spawned_animal)
 	animal_count += 1
 
+func spawn_cub(parent : Animal):
+	spawn_animal(parent.global_position + Vector2(0, 10), parent.animal_res, null, true, null)
+	return
 
 func despawn_animal(animal):
 	animal_count -= 1

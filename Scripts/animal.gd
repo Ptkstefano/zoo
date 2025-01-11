@@ -88,6 +88,8 @@ var base_sprite_y : int = 0
 
 var is_infant : bool = false
 var is_looking_for_mate : bool = false
+var months_of_life : int
+var months_in_zoo : int = 0
 
 var sprite_x_size : int
 var sprite_y_size : int
@@ -99,6 +101,7 @@ var direction : Vector2
 @onready var screenNotifier = $VisibleOnScreenNotifier2D
 @onready var animal_sprite = $Sprite2D
 
+signal spawn_cub
 signal animal_removed
 
 func _ready() -> void:
@@ -116,12 +119,19 @@ func _ready() -> void:
 	change_state(ANIMAL_STATES.IDLE)
 	enclosure.enclosure_stats_updated.connect(update_habitat_satifaction)
 	
+	SignalBus.update_animals_cached_positions.connect(update_cached_position)
+	
 
-func initialize_animal(res, coordinate, found_enclosure, saved_data):
+func initialize_animal(res, coordinate, found_enclosure, saved_data, is_spawned_infant, spawn_gender):
 	
 	animal_res = res
+	is_infant = is_spawned_infant
 	
-	$Sprite2D.texture = animal_res.texture
+	if !is_infant:
+		$Sprite2D.texture = animal_res.texture
+	else:
+		$Sprite2D.texture = animal_res.cub_texture
+		
 	$Shadow.scale = Vector2(animal_res.shadow_scale, animal_res.shadow_scale)
 	base_speed = animal_res.base_speed
 	run_speed = animal_res.run_speed
@@ -132,10 +142,12 @@ func initialize_animal(res, coordinate, found_enclosure, saved_data):
 	
 	if animal_res.can_be_albino:
 		$Sprite2D.vframes += 2
+
+	if animal_res.separate_gender_sprites:
+		$Sprite2D.vframes *= 2
 		
-	## Ensures sprite starts at origin
-	$Sprite2D.offset = Vector2(0, ((($Sprite2D.texture.get_height() / animal_res.possible_sprite_variations) * -0.25) + animal_res.sprite_y_offset))
-	
+	$Sprite2D.offset = Vector2(0, ((int(($Sprite2D.texture.get_height() / ($Sprite2D.vframes))) * -0.5) + animal_res.sprite_y_offset))
+
 	if saved_data:
 		animal_gender = saved_data['animal_gender']
 		needs_rest = saved_data['needs_rest']
@@ -146,18 +158,40 @@ func initialize_animal(res, coordinate, found_enclosure, saved_data):
 		is_looking_for_mate = saved_data['is_looking_for_mate']
 		is_infant = saved_data['is_infant']
 		animal_color_variation = saved_data['animal_color_variation']
+		months_of_life = saved_data.get('months_of_life', 20)
+		months_in_zoo = saved_data.get('months_in_zoo', 0)
 		
 	else:
 		animal_color_variation = (randi_range(1, animal_res.possible_sprite_variations))
-		animal_gender = [IdRefs.ANIMAL_GENDERS.MALE, IdRefs.ANIMAL_GENDERS.FEMALE].pick_random()
+		if is_spawned_infant:
+			animal_gender = [IdRefs.ANIMAL_GENDERS.MALE, IdRefs.ANIMAL_GENDERS.FEMALE].pick_random()
+			if animal_res.can_be_albino:
+				if randi_range(0, 100) > 95:
+					## Spawn random albino animal
+					animal_color_variation = animal_res.possible_sprite_variations + 1
+		else:
+			print(spawn_gender)
+			animal_gender = spawn_gender
+		months_of_life = animal_res.months_to_adulthood + int((randf_range(0.05, 0.3) * animal_res.months_of_expected_lifetime))
 	
-	base_sprite_y =  (animal_color_variation - 1) * 2
+	if animal_res.separate_gender_sprites:
+		if animal_gender == IdRefs.ANIMAL_GENDERS.MALE:
+			base_sprite_y =  ((animal_color_variation - 1) * 4)
+		else:
+			base_sprite_y =  ((animal_color_variation - 1) * 4) + 2
+	else:
+		base_sprite_y =  (animal_color_variation - 1) * 2
 	animal_name = animal_res.name
 	animal_species = animal_res.species_id
+	
+	$Sprite2D.frame_coords = Vector2i(0, base_sprite_y)
 	
 	if animal_res.can_swim:
 		$NavigationAgent2D.set_navigation_layer_value(2, false)
 		$NavigationAgent2D.set_navigation_layer_value(3, true)
+	else:
+		$NavigationAgent2D.set_navigation_layer_value(2, true)
+		$NavigationAgent2D.set_navigation_layer_value(3, false)
 		
 	if animal_res.species_id == IdRefs.ANIMAL_SPECIES.KARDOFAN_GIRAFFE:
 		$NavigationAgent2D.target_desired_distance = 30
@@ -174,6 +208,7 @@ func _physics_process(delta: float) -> void:
 	if screenNotifier.is_on_screen():
 		z_index = Helpers.get_current_tile_z_index(global_position)
 		animal_sprite.frame_coords = Vector2(sprite_x + frame, sprite_y)
+		
 		
 	if current_state in fill_states:
 		fill_needs(delta)
@@ -278,8 +313,7 @@ func change_state(state : ANIMAL_STATES):
 		search_for_rest()
 		sprite_x = 2
 	elif state == ANIMAL_STATES.MATING:
-		spawn_smile(heart)
-		print('mating')
+		mate()
 		$StateTimer.start()
 		sprite_x = 0
 	elif state == ANIMAL_STATES.WAITING:
@@ -442,7 +476,7 @@ func update_habitat_satifaction():
 		
 
 func update_cached_position():
-	cached_global_position = Vector2(global_position.x, global_position.y)
+	cached_global_position = global_position
 
 func on_frame_timer():
 	if frame == 0:
@@ -487,19 +521,27 @@ func spawn_smile(texture):
 
 func check_if_wants_to_mate():
 	if habitat_happiness == 5:
-		if randi_range(0, 100) > 90:
+		if randi_range(0, 100) > (100 - animal_res.percentage_of_will_to_mate):
 			is_looking_for_mate = true
-			print('wants to mate')
+	else:
+		is_looking_for_mate = false
 
 func on_month_pass():
+	months_of_life += 1
+	months_in_zoo += 1
+	
+	if is_infant:
+		if months_of_life >= animal_res.months_to_adulthood:
+			grow_up()
+	
 	if is_animal_pregnant:
 		months_pregnant += 1
 	else:
 		check_if_wants_to_mate()
 		
 	if months_pregnant >= animal_res.months_of_pregnancy:
-		## TODO - Spawn new animal
-		return
+		give_birth()
+
 	
 	
 func look_for_mate():
@@ -514,3 +556,19 @@ func look_for_mate():
 func wait_for_mate(animal):
 	found_mate = animal
 	change_state(ANIMAL_STATES.WAITING)
+
+func give_birth():
+	spawn_smile(heart)
+	spawn_cub.emit(self)
+	months_pregnant = 0
+	is_animal_pregnant = false
+	return
+
+func grow_up():
+	Effects.wobble(self)
+	is_infant = false
+	$Sprite2D.texture = animal_res.texture
+
+func mate():
+	spawn_smile(heart)
+	is_looking_for_mate = false

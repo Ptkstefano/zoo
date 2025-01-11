@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvn6ui5ftap6a"
-path="res://.godot/imported/african elephant.png-67f537ff50994bf576244a5edee63e70.ctex"
+uid="uid://ei36ih8llxbb"
+path="res://.godot/imported/gender4.png-db54f24d9ea3177837feb3bcc71a2e0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animals/sprites/african elephant.png"
-dest_files=["res://.godot/imported/african elephant.png-67f537ff50994bf576244a5edee63e70.ctex"]
+source_file="res://UI/Icons/gender4.png"
+dest_files=["res://.godot/imported/gender4.png-db54f24d9ea3177837feb3bcc71a2e0c.ctex"]
 
 [params]
 
@@ -25,7 +25,7 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
-process/fix_alpha_border=false
+process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false

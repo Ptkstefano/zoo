@@ -74,6 +74,7 @@ func start_save_manager():
 	
 	enclosure_list = get_tree().get_nodes_in_group('Enclosures')
 
+	SignalBus.update_animals_cached_positions.emit()
 	animal_list = get_tree().get_nodes_in_group('Animals')
 
 	scenery_list = get_tree().get_nodes_in_group('Scenery')
@@ -86,6 +87,8 @@ func start_save_manager():
 
 	SignalBus.update_peeps_cached_positions.emit()
 	peepGroupList = get_tree().get_nodes_in_group('PeepGroups')
+	
+	
 
 
 func thread_save_game():
@@ -274,7 +277,7 @@ func load_game():
 			var position = Vector2i(data["animalData"][key]['x_pos'], data["animalData"][key]['y_pos'])
 			var animal_res = load(data['animalData'][key]['animal_res'])
 			var animal_data = data['animalData'][key]
-			animalManager.call_deferred('spawn_animal', position, animal_res, animal_data)
+			animalManager.call_deferred('spawn_animal', position, animal_res, animal_data, false, null)
 			
 	if data.has('sceneryData'):
 		for key in data["sceneryData"]:

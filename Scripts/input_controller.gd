@@ -14,7 +14,6 @@ var previous_current_lpos : Vector2
 
 var previous_snapshot_pos : Vector2
 
-
 var touch_start_global_pos : Vector2
 var touch_current_global_pos : Vector2
 var touch_previous_global_pos : Vector2
@@ -39,6 +38,7 @@ var end_tile_pos : Vector2i
 
 var vegetation_brush : bool = false
 var free_placing_fixture : bool = false
+var selected_animal_gender : int = 1
 
 var is_camera_tool_selected : bool = false
 
@@ -205,7 +205,7 @@ func handle_tooling_input(event):
 				$"../TerrainManager".build_terrain(cells.duplicate(), selected_res.atlas.y)
 				cells.clear()
 			if current_tool == TOOLS.ANIMAL:
-				animal_manager.spawn_animal(touch_start_global_pos, selected_res, null)
+				animal_manager.spawn_animal(touch_start_global_pos, selected_res, null, false, selected_animal_gender)
 			if current_tool == TOOLS.TREE:
 				scenery_manager.place_tree(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.VEGETATION:

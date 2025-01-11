@@ -1,4 +1,4 @@
-[gd_scene load_steps=188 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=191 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" uid="uid://o2egpp0b02e2" path="res://Scripts/debug_controller.gd" id="1_nisry"]
 [ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -131,6 +131,9 @@
 [ext_resource type="Theme" uid="uid://dnsbtrrtp1vwi" path="res://Red_button.tres" id="117_1iygd"]
 [ext_resource type="Theme" uid="uid://die2jiitjcnwu" path="res://Green_button.tres" id="117_g5xqc"]
 [ext_resource type="Theme" uid="uid://n5hp2ks3tu04" path="res://checkbox.tres" id="121_86lig"]
+[ext_resource type="Theme" uid="uid://dpbxcu82btgu" path="res://light_blue_button.tres" id="121_oosfy"]
+[ext_resource type="Texture2D" uid="uid://ei36ih8llxbb" path="res://UI/Icons/gender4.png" id="122_nf4f2"]
+[ext_resource type="Texture2D" uid="uid://d1yua2ag5dbcx" path="res://UI/Icons/gender3.png" id="123_xkvoa"]
 [ext_resource type="Script" uid="uid://c4x8c8c70ukhk" path="res://UI_BottomMargin.gd" id="125_2n44k"]
 [ext_resource type="PackedScene" uid="uid://kn44cenbnuda" path="res://UI/level_star.tscn" id="126_5aa3q"]
 [ext_resource type="Script" uid="uid://drlg1txhrnaow" path="res://ui_reputation_stars.gd" id="126_shlp4"]
@@ -1663,7 +1666,6 @@ horizontal_alignment = 1
 
 [node name="PlacingAnimalInfoContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1iygd")
@@ -1677,8 +1679,34 @@ layout_mode = 2
 text = "Placing animal"
 horizontal_alignment = 1
 
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingAnimalInfoContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MaleGenderButton" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingAnimalInfoContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("121_oosfy")
+toggle_mode = true
+icon = ExtResource("122_nf4f2")
+icon_alignment = 1
+expand_icon = true
+
+[node name="FemaleGenderButton" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingAnimalInfoContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("117_1iygd")
+toggle_mode = true
+icon = ExtResource("123_xkvoa")
+icon_alignment = 1
+expand_icon = true
+
 [node name="BulldozingSceneryInfoContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1iygd")

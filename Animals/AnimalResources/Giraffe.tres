@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://c8vfd72bmgjcf"]
+[gd_resource type="Resource" script_class="animal_resource" load_steps=5 format=3 uid="uid://c8vfd72bmgjcf"]
 
+[ext_resource type="Texture2D" uid="uid://dsp3s35lxenl7" path="res://Animals/sprites/kardoffan_giraffe_cub.png" id="1_q8i27"]
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_udr7q"]
 [ext_resource type="Texture2D" uid="uid://cia24m1atmqtq" path="res://Animals/sprites/giraffe2.png" id="2_t6epv"]
 [ext_resource type="Texture2D" uid="uid://gykuorv0xa2s" path="res://Animals/thumbs/animal_giraffe.png" id="3_bp2hk"]
@@ -10,6 +11,7 @@ name = "Kardofan Giraffe"
 species_id = 2
 cost = 200.0
 texture = ExtResource("2_t6epv")
+cub_texture = ExtResource("1_q8i27")
 thumb = ExtResource("3_bp2hk")
 feed = 5
 shadow_scale = 1.8
@@ -20,6 +22,10 @@ run_speed = 20.0
 can_swim = false
 minimum_shelter_level = 0
 animal_rating = 75
+months_of_pregnancy = 15
+percentage_of_will_to_mate = 10
+months_to_adulthood = 30
+months_of_expected_lifetime = 300
 terrain_preference = Dictionary[int, float]({})
 terrain_dislike = Array[int]([])
 needs_water = false
@@ -29,3 +35,6 @@ minimum_vegetation_coverage = 0.4
 maximum_vegetation_coverage = 2.5
 minimum_herd_size = 2
 favorite_tree = 0
+possible_sprite_variations = 1
+separate_gender_sprites = false
+can_be_albino = false

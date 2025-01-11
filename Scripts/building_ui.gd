@@ -73,6 +73,9 @@ func _ready() -> void:
 	%BulldozerDecorationCheckBox.toggled.connect(on_scenery_bulldozer_filter_toggle)
 	%BulldozerRockCheckBox.toggled.connect(on_scenery_bulldozer_filter_toggle)
 	
+	%MaleGenderButton.toggled.connect(on_animal_gender_toggle.bind(IdRefs.ANIMAL_GENDERS.MALE))
+	%FemaleGenderButton.toggled.connect(on_animal_gender_toggle.bind(IdRefs.ANIMAL_GENDERS.FEMALE))
+	
 	%ToolDeselect.pressed.connect(on_tool_deselect)
 	
 	## DEBUG menu show and hide
@@ -188,6 +191,10 @@ func show_selection_menu():
 
 func on_animal_selected(animal_res):
 	open_tool_info_panel('PlacingAnimalInfoContainer')
+	if inputController.selected_animal_gender == IdRefs.ANIMAL_GENDERS.MALE:
+		%MaleGenderButton.button_pressed = true
+	else:
+		%FemaleGenderButton.button_pressed = true
 	%SidePanel.show()
 	%InfoBorder.apply_color(ColorRefs.construction_yellow)
 	inputController.current_tool = inputController.TOOLS.ANIMAL
@@ -486,3 +493,13 @@ func on_scenery_bulldozer_filter_toggle(value):
 		21: %BulldozerRockCheckBox.button_pressed,
 	}
 	inputController.set_bulldozer_filters(bulldozer_filters)
+
+func on_animal_gender_toggle(value, gender):
+	if gender == IdRefs.ANIMAL_GENDERS.MALE:
+		%MaleGenderButton.set_pressed_no_signal(true)
+		%FemaleGenderButton.set_pressed_no_signal(false)
+		inputController.selected_animal_gender = gender
+	else:
+		%MaleGenderButton.set_pressed_no_signal(false)
+		%FemaleGenderButton.set_pressed_no_signal(true)
+		inputController.selected_animal_gender = gender

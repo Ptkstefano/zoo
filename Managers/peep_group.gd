@@ -153,6 +153,7 @@ func initialize_peep_group(data):
 	if data:
 		id = data.id
 		global_position = data.spawn_location
+		$Peeps.global_position = data.spawn_location
 		needs_rest = data.needs_rest
 		needs_hunger = data.needs_hunger
 		needs_toilet  = data.needs_toilet
@@ -194,7 +195,8 @@ func initialize_peep_group(data):
 		peeps.append(peep)
 		#peep_manager.peeps.append(peep)
 		peep.position_offset = position_offsets[i]
-		peep.global_position = global_position + position_offsets[i]
+		peep.position = position_offsets[i]
+		peep.z_index = Helpers.get_current_tile_z_index(global_position)
 		$Peeps.add_child(peep)
 	peep_count_added.emit(peep_count)
 

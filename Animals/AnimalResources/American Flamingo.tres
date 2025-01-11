@@ -10,6 +10,7 @@ name = "American Flamingo"
 species_id = 1
 cost = 75.0
 texture = ExtResource("2_exngk")
+cub_texture = ExtResource("2_exngk")
 thumb = ExtResource("3_0iyl0")
 feed = 4
 shadow_scale = 1.0
@@ -20,6 +21,10 @@ run_speed = 10.0
 can_swim = true
 minimum_shelter_level = 0
 animal_rating = 50
+months_of_pregnancy = 5
+percentage_of_will_to_mate = 20
+months_to_adulthood = 12
+months_of_expected_lifetime = 120
 terrain_preference = Dictionary[int, float]({
 0: 25.0,
 1: 25.0,
@@ -35,3 +40,4 @@ minimum_herd_size = 5
 favorite_tree = 8
 possible_sprite_variations = 1
 separate_gender_sprites = false
+can_be_albino = false

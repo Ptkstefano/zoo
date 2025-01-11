@@ -1,0 +1,67 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dpbxcu82btgu"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b6858"]
+load_path = "res://.godot/imported/buttons.png-5b482ddfe5b222241a1b9ad9fc229cc7.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b6858"]
+texture = SubResource("CompressedTexture2D_b6858")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+expand_margin_top = 8.0
+region_rect = Rect2(402, 975, 152, 160)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_61vrr"]
+texture = SubResource("CompressedTexture2D_b6858")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+expand_margin_top = 8.0
+region_rect = Rect2(402, 975, 152, 160)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p6nhn"]
+texture = SubResource("CompressedTexture2D_b6858")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+expand_margin_top = 8.0
+region_rect = Rect2(402, 975, 152, 160)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gedxj"]
+texture = SubResource("CompressedTexture2D_b6858")
+texture_margin_left = 8.0
+texture_margin_top = 16.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 8.0
+region_rect = Rect2(20, 971, 152, 168)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qw8ot"]
+texture = SubResource("CompressedTexture2D_b6858")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+expand_margin_top = 8.0
+region_rect = Rect2(402, 975, 152, 160)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fn1eo"]
+texture = SubResource("CompressedTexture2D_b6858")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+expand_margin_top = 8.0
+region_rect = Rect2(402, 975, 152, 160)
+
+[resource]
+Button/constants/outline_size = 8
+Button/styles/focus = SubResource("StyleBoxTexture_b6858")
+Button/styles/hover = SubResource("StyleBoxTexture_61vrr")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_p6nhn")
+Button/styles/normal = SubResource("StyleBoxTexture_gedxj")
+Button/styles/pressed = SubResource("StyleBoxTexture_qw8ot")
+Button/styles/pressed_mirrored = SubResource("StyleBoxTexture_fn1eo")

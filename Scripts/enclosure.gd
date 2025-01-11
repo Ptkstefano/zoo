@@ -42,6 +42,7 @@ signal enclosure_stats_updated
 func _ready() -> void:
 	enclosure_fence_manager.enclosure_tilemap = enclosure_tilemap
 	SignalBus.obstacle_changed.connect(update_navigation_region)
+	SignalBus.update_enclosure_land_areas.connect(update_navigation_region)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

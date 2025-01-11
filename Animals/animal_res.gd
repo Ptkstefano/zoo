@@ -28,6 +28,11 @@ class_name animal_resource
 
 @export var months_of_pregnancy : int = 5
 
+@export var percentage_of_will_to_mate : int = 20
+
+@export var months_to_adulthood : int = 12
+@export var months_of_expected_lifetime : int = 120
+
 
 @export_group("Animal preferences")
  ## Expresses a minimum percentage of a given terrain type

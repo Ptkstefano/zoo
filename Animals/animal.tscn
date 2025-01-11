@@ -5,9 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://5gmndyyv30v6" path="res://Sprites/shadow.png" id="2_anpbx"]
 [ext_resource type="Texture2D" uid="uid://dmhx2sfai1dmw" path="res://Animals/smiles_good.png" id="2_m7ux4"]
 [ext_resource type="Texture2D" uid="uid://bw3wqsjlnmthy" path="res://UI/Icons/smiles1.png" id="3_4mao0"]
-[ext_resource type="Texture2D" uid="uid://dvn6ui5ftap6a" path="res://Animals/sprites/african elephant.png" id="3_srs01"]
 [ext_resource type="PackedScene" uid="uid://dkhxs71sdajj2" path="res://UI/detectable.tscn" id="4_covhg"]
 [ext_resource type="Texture2D" uid="uid://5hx1fxhw5q6t" path="res://UI/Icons/smiles3.png" id="4_ofykj"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oi8l7"]
+load_path = "res://.godot/imported/african elephant.png-67f537ff50994bf576244a5edee63e70.ctex"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rusey"]
 radius = 13.0384
@@ -36,11 +38,10 @@ hframes = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("3_srs01")
-offset = Vector2(0, -14)
+texture = SubResource("CompressedTexture2D_oi8l7")
+offset = Vector2(0, -16.5)
 hframes = 10
 vframes = 2
-frame = 10
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 15.0
@@ -66,6 +67,7 @@ wait_time = 0.5
 autostart = true
 
 [node name="ClickDetector" parent="." instance=ExtResource("4_covhg")]
+visible = false
 position = Vector2(0, -8)
 monitorable = false
 
@@ -73,6 +75,7 @@ monitorable = false
 shape = SubResource("CircleShape2D_rusey")
 
 [node name="SwimRaycast" type="RayCast2D" parent="."]
+visible = false
 position = Vector2(0, -5)
 target_position = Vector2(0, 5)
 collision_mask = 2048
@@ -81,6 +84,7 @@ hit_from_inside = true
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 0
 

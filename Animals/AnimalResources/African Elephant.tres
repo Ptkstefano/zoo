@@ -1,15 +1,17 @@
-[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://s40sd7uqjx7u"]
+[gd_resource type="Resource" script_class="animal_resource" load_steps=5 format=3 uid="uid://s40sd7uqjx7u"]
 
+[ext_resource type="Texture2D" uid="uid://qy8a4lcolel6" path="res://Animals/sprites/african_elephant_cub.png" id="1_712nq"]
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_k0vb8"]
-[ext_resource type="Texture2D" uid="uid://dvn6ui5ftap6a" path="res://Animals/sprites/african elephant.png" id="2_birur"]
 [ext_resource type="Texture2D" uid="uid://7pk5bxdc2qrm" path="res://Animals/thumbs/animal_thumbs5.png" id="3_47nyl"]
+[ext_resource type="Texture2D" uid="uid://xg4avqe2w30o" path="res://Animals/sprites/african_elephant.png" id="3_lngwh"]
 
 [resource]
 script = ExtResource("1_k0vb8")
 name = "African Elephant"
 species_id = 7
 cost = 500.0
-texture = ExtResource("2_birur")
+texture = ExtResource("3_lngwh")
+cub_texture = ExtResource("1_712nq")
 thumb = ExtResource("3_47nyl")
 feed = 1
 shadow_scale = 1.8
@@ -20,6 +22,10 @@ run_speed = 20.0
 can_swim = false
 minimum_shelter_level = 0
 animal_rating = 125
+months_of_pregnancy = 22
+percentage_of_will_to_mate = 5
+months_to_adulthood = 60
+months_of_expected_lifetime = 840
 terrain_preference = Dictionary[int, float]({
 2: 5.0,
 4: 75.0
@@ -32,3 +38,6 @@ minimum_vegetation_coverage = 0.25
 maximum_vegetation_coverage = 2.0
 minimum_herd_size = 2
 favorite_tree = 0
+possible_sprite_variations = 1
+separate_gender_sprites = false
+can_be_albino = false
