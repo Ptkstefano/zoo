@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cam5gsugh4dt5"
-path="res://.godot/imported/gender.png-f19575da8594d3c2f0d45ecad403923b.ctex"
+uid="uid://v76dtvsm05u7"
+path="res://.godot/imported/maned_wolf_cub.png-d6aef21f8642e8c2278cb376835fe9da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animals/sprites/gender.png"
-dest_files=["res://.godot/imported/gender.png-f19575da8594d3c2f0d45ecad403923b.ctex"]
+source_file="res://Animals/sprites/maned_wolf_cub.png"
+dest_files=["res://.godot/imported/maned_wolf_cub.png-d6aef21f8642e8c2278cb376835fe9da.ctex"]
 
 [params]
 

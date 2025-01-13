@@ -1,16 +1,17 @@
-[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://ck55w4ejddxxs"]
+[gd_resource type="Resource" script_class="animal_resource" load_steps=5 format=3 uid="uid://ck55w4ejddxxs"]
 
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_hthtb"]
-[ext_resource type="Texture2D" uid="uid://ch5nicona3f7r" path="res://Animals/sprites/deer.png" id="2_qse5u"]
+[ext_resource type="Texture2D" uid="uid://d33l2m041kkgx" path="res://Animals/sprites/white_tail_deer_cub.png" id="1_snkw7"]
 [ext_resource type="Texture2D" uid="uid://dsv6levbc3rv3" path="res://Animals/thumbs/animal_whitetail_deer.png" id="3_3lfbr"]
+[ext_resource type="Texture2D" uid="uid://c0vgwtkyia3um" path="res://Animals/sprites/white_tail_deer.png" id="3_l0tfm"]
 
 [resource]
 script = ExtResource("1_hthtb")
 name = "Whitetail Deer "
 species_id = 3
 cost = 175.0
-texture = ExtResource("2_qse5u")
-cub_texture = ExtResource("2_qse5u")
+texture = ExtResource("3_l0tfm")
+cub_texture = ExtResource("1_snkw7")
 thumb = ExtResource("3_3lfbr")
 feed = 1
 shadow_scale = 1.0
@@ -21,8 +22,8 @@ run_speed = 25.0
 can_swim = false
 minimum_shelter_level = 0
 animal_rating = 60
-months_of_pregnancy = 5
-percentage_of_will_to_mate = 20
+months_of_pregnancy = 7
+percentage_of_will_to_mate = 10
 months_to_adulthood = 12
 months_of_expected_lifetime = 120
 terrain_preference = Dictionary[int, float]({})

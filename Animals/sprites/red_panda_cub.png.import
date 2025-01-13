@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cslagt3hhis60"
-path="res://.godot/imported/flamingo.png-e83c5c857a4445ddc57dff6ec5912833.ctex"
+uid="uid://dh8celqnmlfal"
+path="res://.godot/imported/red_panda_cub.png-13b7025b2cb0ca767150194261d5d16f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animals/sprites/flamingo.png"
-dest_files=["res://.godot/imported/flamingo.png-e83c5c857a4445ddc57dff6ec5912833.ctex"]
+source_file="res://Animals/sprites/red_panda_cub.png"
+dest_files=["res://.godot/imported/red_panda_cub.png-13b7025b2cb0ca767150194261d5d16f.ctex"]
 
 [params]
 

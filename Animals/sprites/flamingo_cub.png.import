@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ch5nicona3f7r"
-path="res://.godot/imported/deer.png-defcc8daa34341e47990ceac54ba45d5.ctex"
+uid="uid://brjpcfy7dr1i3"
+path="res://.godot/imported/flamingo_cub.png-cfefcbc030516dde932a4a5858d11853.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animals/sprites/deer.png"
-dest_files=["res://.godot/imported/deer.png-defcc8daa34341e47990ceac54ba45d5.ctex"]
+source_file="res://Animals/sprites/flamingo_cub.png"
+dest_files=["res://.godot/imported/flamingo_cub.png-cfefcbc030516dde932a4a5858d11853.ctex"]
 
 [params]
 

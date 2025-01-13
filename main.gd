@@ -17,5 +17,3 @@ func _ready() -> void:
 	AudioServer.set_bus_volume_db(0, 0)
 	SignalBus.update_enclosure_land_areas.emit()
 	%LoadScreen.hide()
-
-	

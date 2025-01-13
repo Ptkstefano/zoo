@@ -1,16 +1,17 @@
-[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://xncaf8r72rkb"]
+[gd_resource type="Resource" script_class="animal_resource" load_steps=5 format=3 uid="uid://xncaf8r72rkb"]
 
+[ext_resource type="Texture2D" uid="uid://cih1e3v64yv0m" path="res://Animals/sprites/red_kangaroo_cub.png" id="1_jgaf2"]
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_kntb2"]
-[ext_resource type="Texture2D" uid="uid://3ld6nf83htbo" path="res://Animals/sprites/red kangaroo.png" id="2_pbl2i"]
 [ext_resource type="Texture2D" uid="uid://cjxnimpgmelpt" path="res://Animals/thumbs/animal_thumbs2.png" id="3_5xyec"]
+[ext_resource type="Texture2D" uid="uid://pvv5d6jilre3" path="res://Animals/sprites/red_kangaroo.png" id="3_yi0ix"]
 
 [resource]
 script = ExtResource("1_kntb2")
 name = "Red Kangaroo"
 species_id = 4
 cost = 250.0
-texture = ExtResource("2_pbl2i")
-cub_texture = ExtResource("2_pbl2i")
+texture = ExtResource("3_yi0ix")
+cub_texture = ExtResource("1_jgaf2")
 thumb = ExtResource("3_5xyec")
 feed = 1
 shadow_scale = 1.0
@@ -21,10 +22,10 @@ run_speed = 25.0
 can_swim = false
 minimum_shelter_level = 0
 animal_rating = 60
-months_of_pregnancy = 5
+months_of_pregnancy = 1
 percentage_of_will_to_mate = 20
 months_to_adulthood = 12
-months_of_expected_lifetime = 120
+months_of_expected_lifetime = 240
 terrain_preference = Dictionary[int, float]({})
 terrain_dislike = Array[int]([])
 needs_water = false

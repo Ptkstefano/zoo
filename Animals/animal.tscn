@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://5hx1fxhw5q6t" path="res://UI/Icons/smiles3.png" id="4_ofykj"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oi8l7"]
-load_path = "res://.godot/imported/african elephant.png-67f537ff50994bf576244a5edee63e70.ctex"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rusey"]
 radius = 13.0384

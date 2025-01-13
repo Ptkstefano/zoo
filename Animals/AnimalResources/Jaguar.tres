@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://i3fj56d1ocsa"]
+[gd_resource type="Resource" script_class="animal_resource" load_steps=5 format=3 uid="uid://i3fj56d1ocsa"]
 
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_mcgls"]
+[ext_resource type="Texture2D" uid="uid://dus5oxjp16j7h" path="res://Animals/sprites/jaguar_cub.png" id="1_yr15l"]
 [ext_resource type="Texture2D" uid="uid://cyprs7655mxs4" path="res://Animals/sprites/jaguar.png" id="2_nla5u"]
 [ext_resource type="Texture2D" uid="uid://cco558tfxtxpg" path="res://Animals/thumbs/animal_thumbs1.png" id="3_7o63h"]
 
@@ -10,7 +11,7 @@ name = "Jaguar"
 species_id = 9
 cost = 350.0
 texture = ExtResource("2_nla5u")
-cub_texture = ExtResource("2_nla5u")
+cub_texture = ExtResource("1_yr15l")
 thumb = ExtResource("3_7o63h")
 feed = 0
 shadow_scale = 1.0
@@ -21,10 +22,10 @@ run_speed = 30.0
 can_swim = false
 minimum_shelter_level = 0
 animal_rating = 200
-months_of_pregnancy = 5
-percentage_of_will_to_mate = 20
-months_to_adulthood = 12
-months_of_expected_lifetime = 120
+months_of_pregnancy = 3
+percentage_of_will_to_mate = 5
+months_to_adulthood = 16
+months_of_expected_lifetime = 160
 terrain_preference = Dictionary[int, float]({})
 terrain_dislike = Array[int]([])
 needs_water = false
