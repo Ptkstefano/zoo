@@ -35,3 +35,9 @@ func get_enclosure_by_cell(cell):
 	var main_node = get_tree().root.get_node("Main")
 	var enclosure_manager = main_node.get_node("Objects").get_node("EnclosureManager")
 	return enclosure_manager.get_enclosure_by_cell(cell)
+
+func get_path_layer_cells():
+	var main_node = get_tree().root.get_node("Main")
+	var path_layer = main_node.get_node("TileMap").get_node('PathLayer') as TileMapLayer
+	var path_cells = path_layer.get_used_cells()
+	return path_cells

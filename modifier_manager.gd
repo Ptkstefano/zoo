@@ -20,7 +20,8 @@ enum PEEP_MODIFIERS {
 	EMPTY_SHOP,
 	NO_DESIRABLE_QUALITY,
 	NO_FOOD_SHOP_IN_RANGE,
-	SAW_UNHAPPY_ANIMAL
+	SAW_UNHAPPY_ANIMAL,
+	SEEN_FEW_ANIMALS
 }
 
 var peep_modifiers = {
@@ -41,8 +42,9 @@ var peep_modifiers = {
 	PEEP_MODIFIERS.NO_SHOP_STOCK: PeepModifier.new("We wanted to buy an item, but it was out of stock", -0.5),
 	PEEP_MODIFIERS.EMPTY_SHOP: PeepModifier.new("We went to an empty shop", -0.25),
 	PEEP_MODIFIERS.NO_DESIRABLE_QUALITY: PeepModifier.new("We found no products we wanted to buy", -0.25),
-	PEEP_MODIFIERS.NO_FOOD_SHOP_IN_RANGE: PeepModifier.new("All eateries were too far away from us", -0.25),
+	PEEP_MODIFIERS.NO_FOOD_SHOP_IN_RANGE: PeepModifier.new("All eateries were too f/ar away from us", -0.25),
 	PEEP_MODIFIERS.SAW_UNHAPPY_ANIMAL: PeepModifier.new("We saw an unhappy animal", -1.5),
+	PEEP_MODIFIERS.SEEN_FEW_ANIMALS: PeepModifier.new("We came here to see more animals than we did", -1.5),
 }
 
 

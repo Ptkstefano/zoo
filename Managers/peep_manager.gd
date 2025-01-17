@@ -12,12 +12,17 @@ var base_spawn_time : float = 7.0
 
 var peep_groups = []
 
-var peep_count : int = 0
+var peep_count : int = 0:
+	set(value):
+		peep_count = value
+		ZooManager.peep_count = value
 
 var spawn_ratio
 
 @export var peep_texture_body : Texture2D
 @export var peep_texture_head : Texture2D
+
+signal peep_count_updated
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

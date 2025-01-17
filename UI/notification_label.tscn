@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1lavh6yvgdgb"]
 
-[ext_resource type="FontFile" uid="uid://cpnqdh47y1283" path="res://UI/Logic_Loop.ttf" id="1_sycbw"]
+[ext_resource type="FontFile" uid="uid://dh3lo7lghhs8x" path="res://UI/Thin sans.ttf" id="1_2miyh"]
 
 [node name="NotificationLabel" type="Label"]
 anchors_preset = 8
@@ -16,7 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("1_sycbw")
+theme_override_fonts/font = ExtResource("1_2miyh")
 theme_override_font_sizes/font_size = 24
 text = "$50"
 horizontal_alignment = 2

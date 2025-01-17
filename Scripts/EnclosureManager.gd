@@ -16,6 +16,7 @@ var selected_fence
 func _ready() -> void:
 	update_terrain_menu()
 	SignalBus.vegetation_placed.connect(check_for_vegetation_update)
+	SignalBus.path_layer_updated.connect(update_enclosures_sight_lines)
 
 func update_terrain_menu():
 	for child in enclosure_menu.get_children():
@@ -137,3 +138,20 @@ func get_existing_enclosures_in_area(cells):
 					found_enclosures.append(found_enclosure)
 				
 	return found_enclosures
+
+func update_enclosures_sight_lines(new_path_cells):
+	var adjacent_cells_to_new_paths = []
+	for cell in new_path_cells:
+		var adjacent_cells = Helpers.get_adjacent(cell)
+		for adjacent_cell in adjacent_cells:
+			if adjacent_cell not in new_path_cells:
+				if adjacent_cell not in adjacent_cells_to_new_paths:
+					adjacent_cells_to_new_paths.append(adjacent_cell)
+				
+	var iterated_enclosures = []
+	for cell in adjacent_cells_to_new_paths:
+		var found_enclosure = get_enclosure_by_cell(cell)
+		if found_enclosure:
+			if found_enclosure not in iterated_enclosures:
+				found_enclosure.generate_sight_cells()
+				iterated_enclosures.append(found_enclosure)

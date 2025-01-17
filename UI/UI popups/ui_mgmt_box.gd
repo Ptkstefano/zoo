@@ -4,6 +4,11 @@ var review_count = {}
 
 @export var review_element : PackedScene
 
+@export var level_star : Texture
+@export var level_star_half : Texture
+
+var star_instances
+
 signal popup_closed
 
 func _ready():
@@ -12,6 +17,10 @@ func _ready():
 	DataManager.reviews_changed.connect(generate_reviews_tab)
 	FinanceManager.current_month_changed.connect(generate_finances_tab)
 	generate_finances_tab()
+	star_instances = %UI_ReputationStars.get_children()
+	ZooManager.zoo_reputation_updated.connect(on_reputation_update)
+	on_reputation_update(ZooManager.reputation)
+	
 
 func on_popup_closed():
 	popup_closed.emit()
@@ -79,3 +88,19 @@ func generate_finance_month_element(element, financial_data):
 		
 	element.find_child('TotalValue').text = str(total)
 		
+func on_reputation_update(reputation):
+	var rounded = round(reputation * 2) * 0.5
+	
+	var full_stars = int(floor(rounded))
+	var has_half_star = (rounded - full_stars) > 0
+
+	for i in range(5):
+		star_instances[i].custom_minimum_size = Vector2(76, 72)
+		if i + 1 <= full_stars:
+			star_instances[i].texture = level_star
+		else:
+			if i == full_stars and has_half_star:
+				star_instances[i].texture = level_star_half
+			else:
+				star_instances[i].texture = null
+				star_instances[i].custom_minimum_size = Vector2.ZERO

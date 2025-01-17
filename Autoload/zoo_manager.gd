@@ -36,6 +36,11 @@ var toilets = {}
 var active_boosts : Dictionary = {}
 var boost_rating : int = 0
 
+var peep_count : int:
+	set(value):
+		peep_count = value
+		peep_count_updated.emit(value)
+
 ## Represents level of satisfaction from guests
 var reputation : float = 5:
 	set(value):
@@ -43,6 +48,7 @@ var reputation : float = 5:
 		calculate_zoo_attractiveness()
 		
 signal zoo_reputation_updated
+signal peep_count_updated
 		
 var last_guest_ratings = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
 

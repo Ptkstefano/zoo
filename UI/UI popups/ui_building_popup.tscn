@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dghecrq5m52py"]
 
 [ext_resource type="Script" uid="uid://dsodj1vh00qo7" path="res://UI/UI popups/ui_building_popup.gd" id="1_c1ws3"]
-[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/popup_theme.tres" id="6_2r6w7"]
+[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/Themes/popup_theme.tres" id="6_2r6w7"]
 [ext_resource type="Script" uid="uid://oq7aounld7th" path="res://UI/UI popups/responsive_margin_container.gd" id="7_01783"]
 
 [node name="UI_BuildingPopup" type="CanvasLayer"]

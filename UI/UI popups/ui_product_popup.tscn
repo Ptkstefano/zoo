@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8bajfgxnpfow"]
 
-[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/popup_theme.tres" id="1_uk1bg"]
+[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/Themes/popup_theme.tres" id="1_uk1bg"]
 [ext_resource type="Script" uid="uid://c8v8tldmywnwb" path="res://UI/UI popups/ui_product_popup.gd" id="1_uwcxv"]
 [ext_resource type="Script" uid="uid://oq7aounld7th" path="res://UI/UI popups/responsive_margin_container.gd" id="3_kcujk"]
 
@@ -61,7 +61,6 @@ text = "Remove product"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 75)
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
 text = "Replenish"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -137,7 +136,6 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
 text = "Product stats"
 horizontal_alignment = 1
 

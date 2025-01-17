@@ -23,12 +23,16 @@ var current_zoom_value = 1
 func _ready() -> void:
 	inputController.zoom_camera.connect(on_camera_zoom)
 	inputController.move_camera.connect(on_camera_move)
+	inputController.move_camera_in_direction.connect(on_directional_camera_move)
 	
 
 func on_camera_move(mouse_delta):
 	var direction = Vector2(-mouse_delta.x * sensitivity, -mouse_delta.y * sensitivity)
 	translate(direction)
 		
+func on_directional_camera_move(move_direction : Vector2):
+	var multiplier = 30 
+	translate(move_direction * multiplier / zoom)
 
 func _process(delta):
 	pass

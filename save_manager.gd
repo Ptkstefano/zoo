@@ -153,6 +153,10 @@ func save_game():
 	zoo_manager_data['next_animal_id'] = ZooManager.next_animal_id
 	zoo_manager_data['next_building_id'] = ZooManager.next_building_id
 	zoo_manager_data['next_scenery_id'] = ZooManager.next_scenery_id
+	zoo_manager_data['reputation'] = ZooManager.reputation
+	
+	
+	
 	save_data['zoo_manager_data'] = zoo_manager_data
 	
 	
@@ -185,6 +189,9 @@ func save_game():
 	
 	## Save finance data
 	save_data['financeData'] = get_finance_data().duplicate(true)
+	
+	## Save time data
+	save_data['timeData'] = get_time_data().duplicate(true)
 	
 	var json_data = JSON.stringify(save_data)
 	
@@ -365,11 +372,17 @@ func load_game():
 		ZooManager.next_animal_id = int(data['zoo_manager_data']['next_animal_id'])
 		ZooManager.next_building_id = int(data['zoo_manager_data']['next_building_id'])
 		ZooManager.next_scenery_id = int(data['zoo_manager_data']['next_scenery_id'])
+		ZooManager.reputation = data['zoo_manager_data'].get('reputation', 3.0)
 		
 	if data.has('financeData'):
 		FinanceManager.current_money = data['financeData']['current_money']
 		FinanceManager.monthly_stats = data['financeData'].get('monthly_stats', {})
 		FinanceManager.current_month_stats = data['financeData'].get('current_month_stats', {month = TimeManager.current_month, income = {}, expenditures = {}})
+		
+	if data.has('timeData'):
+		TimeManager.current_month = data['timeData']['current_month']
+		TimeManager.current_year = data['timeData']['current_year']
+		TimeManager.set_timer_time_left(data['timeData'].get('timer_time_left', TimeManager.default_month_time))
 			
 	SignalBus.peep_navigation_changed.emit()
 
@@ -436,6 +449,8 @@ func get_animal_data(animal):
 	data['is_looking_for_mate'] = animal.is_looking_for_mate
 	data['is_infant'] = animal.is_infant
 	data['animal_color_variation'] = animal.animal_color_variation
+	data['months_of_life'] = animal.months_of_life
+	data['months_in_zoo'] = animal.months_in_zoo
 	return data
 
 func get_peep_group_data(peep_group):
@@ -559,3 +574,10 @@ func save_new_scenery(scenery):
 	saveFile.close()
 	print('saved scenery')
 	
+func get_time_data():
+	var data = {
+		"current_month": TimeManager.current_month,
+		'current_year': TimeManager.current_year,
+		'timer_time_left': TimeManager.get_timer_time_left()
+	}
+	return data

@@ -13,6 +13,7 @@ signal open_box ## Emitted by UI
 signal peep_navigation_changed
 signal path_erased
 signal path_changed
+signal path_layer_updated
 
 signal clear_highlight ## Received by highlightLayer
 

@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0yqr1xdbc6do"]
+[gd_scene load_steps=7 format=3 uid="uid://c0yqr1xdbc6do"]
 
-[ext_resource type="Theme" uid="uid://dssdalpin0m5v" path="res://UI/selectable_element_theme.tres" id="1_gvunc"]
+[ext_resource type="Theme" uid="uid://bkvwyw3psh18j" path="res://UI/Themes/selectable_element_theme.tres" id="1_g8qip"]
 [ext_resource type="Script" uid="uid://bu6ek01jf5ra3" path="res://UI/UI selectable elements/ui_enclosure_element.gd" id="1_x64s8"]
-[ext_resource type="FontFile" uid="uid://cpnqdh47y1283" path="res://UI/Logic_Loop.ttf" id="3_nc8oa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13wpq"]
 bg_color = Color(0.6, 0.6, 0.6, 0.674)
@@ -27,7 +26,7 @@ custom_minimum_size = Vector2(350, 100)
 offset_right = 200.0
 offset_bottom = 164.0
 size_flags_horizontal = 0
-theme = ExtResource("1_gvunc")
+theme = ExtResource("1_g8qip")
 script = ExtResource("1_x64s8")
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
@@ -100,7 +99,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("3_nc8oa")
 theme_override_font_sizes/font_size = 32
 text = "$50"
 horizontal_alignment = 1

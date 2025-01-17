@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bt8m7eb0se03i"]
+[gd_scene load_steps=8 format=3 uid="uid://bt8m7eb0se03i"]
 
 [ext_resource type="Script" uid="uid://bwidc2mueyoan" path="res://UI/UI selectable elements/ui_scenery_element.gd" id="1_ds6cd"]
-[ext_resource type="Theme" uid="uid://dssdalpin0m5v" path="res://UI/selectable_element_theme.tres" id="1_rwdjn"]
-[ext_resource type="FontFile" uid="uid://cpnqdh47y1283" path="res://UI/Logic_Loop.ttf" id="3_e4mkp"]
+[ext_resource type="Theme" uid="uid://bkvwyw3psh18j" path="res://UI/Themes/selectable_element_theme.tres" id="1_rwdjn"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rxbf6"]
 load_path = "res://.godot/imported/animal_giraffe.png-29b67de20188bbe71e6aed633f48f61f.ctex"
@@ -75,14 +74,12 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_1mhar")
 [node name="Scenery" type="Label" parent="MarginContainer2/VBoxContainer/Panel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 6
-theme_override_constants/line_spacing = -18
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 24
-text = "Umbrella thorn accacia"
+text = "Umbrella Thorn Acacia"
 horizontal_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 3
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
@@ -109,7 +106,5 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("3_e4mkp")
-theme_override_font_sizes/font_size = 32
 text = "$50"
 horizontal_alignment = 1

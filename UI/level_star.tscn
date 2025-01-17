@@ -3,7 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://b787nqd6tt5ow" path="res://UI/Icons/star2x.png" id="1_trpm8"]
 
 [node name="LevelStar" type="TextureRect"]
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(38, 36)
+offset_right = 38.0
+offset_bottom = 36.0
+mouse_filter = 2
 texture = ExtResource("1_trpm8")
 stretch_mode = 5

@@ -1,7 +1,0 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://qsq4gutgth07"]
-
-[ext_resource type="FontFile" uid="uid://cpnqdh47y1283" path="res://UI/Logic_Loop.ttf" id="1_wdjya"]
-
-[resource]
-default_font = ExtResource("1_wdjya")
-default_font_size = 32

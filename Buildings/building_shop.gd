@@ -132,14 +132,6 @@ func restore_data(data):
 	
 
 func on_month_pass():
-	var product_maintenance = 0
-	## Apply maintenance costs
-	for key in available_products:
-		product_maintenance += available_products[key].product.maintenance
-		update_maintenance_stats(available_products[key])
-		
-	FinanceManager.remove(product_maintenance, IdRefs.PAYMENT_REMOVE_TYPES.PRODUCT_MAINTENANCE)
-		
 	## Update data dict
 	for key in shop_product_data.keys():
 		shop_product_data[key]['previous_month'] = shop_product_data[key]['current_month']
@@ -149,9 +141,16 @@ func on_month_pass():
 	shop_earning_data['current_month'] = 0
 	shop_expenditure_data['previous_month'] = shop_earning_data['current_month']
 	shop_expenditure_data['current_month'] = 0
-		
-
 	
+	var product_maintenance = 0
+	## Apply maintenance costs
+	for key in available_products:
+		product_maintenance += available_products[key].product.maintenance
+		update_maintenance_stats(available_products[key])
+		
+	FinanceManager.remove(product_maintenance, IdRefs.PAYMENT_REMOVE_TYPES.PRODUCT_MAINTENANCE)
+		
+		
 	
 func update_earn_stats(value):
 	shop_earning_data['current_month'] += value

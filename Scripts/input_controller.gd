@@ -59,6 +59,7 @@ var building_placement_tools = [TOOLS.SHELTER, TOOLS.EATERY, TOOLS.RESTAURANT, T
 
 signal zoom_camera
 signal move_camera
+signal move_camera_in_direction
 
 signal building_placed
 signal building_built
@@ -71,14 +72,21 @@ var zoom_started : bool = false
 var cells : Array[Vector2i] = []
 var dir
 
+var screen_size : Vector2
+var y_camera_threshhold
+var x_camera_threshhold
+
 signal ui_visibility
 
 func _ready() -> void:
-	pass
+	screen_size = DisplayServer.window_get_size()
+	y_camera_threshhold = screen_size.y * 0.1
+	x_camera_threshhold = screen_size.x * 0.1
 
-
-func _process(delta: float) -> void:
-	pass
+func _physics_process(delta: float) -> void:
+	if is_pressing:
+		if current_tool in [TOOLS.PATH, TOOLS.ENCLOSURE, TOOLS.TERRAIN]:
+			border_camera_movement()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
@@ -300,11 +308,11 @@ func debug_keyboard_input(event):
 			elif event.is_released():
 				is_camera_tool_selected = false
 				
-		#if event.keycode == KEY_APOSTROPHE:
-			#if event.is_pressed():
-				#Engine.time_scale = 8
-			#elif event.is_released():
-				#Engine.time_scale = 1
+		if event.keycode == KEY_APOSTROPHE:
+			if event.is_pressed():
+				Engine.time_scale = 8
+			elif event.is_released():
+				Engine.time_scale = 1
 
 func highlight_path():
 	var tile_map_layer = $"../TileMap/TerrainLayer" as TileMapLayer
@@ -431,3 +439,16 @@ func apply_tool(tool):
 func set_bulldozer_filters(filters):
 	for key in filters:
 		$BulldozerCollider.set_collision_layer_value(key, filters[key])
+
+func border_camera_movement():
+	var camera_direction = Vector2(0,0)
+	if touch_current_local_pos.x < x_camera_threshhold:
+		camera_direction.x = -1
+	elif touch_current_local_pos.x > screen_size.x - x_camera_threshhold:
+		camera_direction.x = 1
+	if touch_current_local_pos.y < y_camera_threshhold:
+		camera_direction.y = -1
+	elif touch_current_local_pos.y > screen_size.y - y_camera_threshhold:
+		camera_direction.y = 1
+		
+	move_camera_in_direction.emit(camera_direction)

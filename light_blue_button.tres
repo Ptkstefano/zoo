@@ -33,7 +33,7 @@ region_rect = Rect2(402, 975, 152, 160)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gedxj"]
 texture = SubResource("CompressedTexture2D_b6858")
 texture_margin_left = 8.0
-texture_margin_top = 16.0
+texture_margin_top = 8.0
 texture_margin_right = 8.0
 texture_margin_bottom = 16.0
 expand_margin_top = 8.0
@@ -58,7 +58,7 @@ expand_margin_top = 8.0
 region_rect = Rect2(402, 975, 152, 160)
 
 [resource]
-Button/constants/outline_size = 8
+Button/constants/outline_size = 16
 Button/styles/focus = SubResource("StyleBoxTexture_b6858")
 Button/styles/hover = SubResource("StyleBoxTexture_61vrr")
 Button/styles/hover_pressed = SubResource("StyleBoxTexture_p6nhn")

@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bb5olte5gphhj"]
+[gd_scene load_steps=7 format=3 uid="uid://bb5olte5gphhj"]
 
-[ext_resource type="Theme" uid="uid://dssdalpin0m5v" path="res://UI/selectable_element_theme.tres" id="1_3uo0w"]
+[ext_resource type="Theme" uid="uid://bkvwyw3psh18j" path="res://UI/Themes/selectable_element_theme.tres" id="1_3uo0w"]
 [ext_resource type="Script" uid="uid://dxwnk7of0t2yb" path="res://UI/UI selectable elements/ui_building_element.gd" id="1_to8ed"]
-[ext_resource type="FontFile" uid="uid://cpnqdh47y1283" path="res://UI/Logic_Loop.ttf" id="4_kjbg7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13wpq"]
 bg_color = Color(0.6, 0.6, 0.6, 0.674)
@@ -108,7 +107,5 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("4_kjbg7")
-theme_override_font_sizes/font_size = 32
 text = "$50"
 horizontal_alignment = 1

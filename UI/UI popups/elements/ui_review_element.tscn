@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://l3ox8v7yeprd"]
+[gd_scene load_steps=3 format=3 uid="uid://l3ox8v7yeprd"]
 
-[ext_resource type="Script" path="res://UI/UI popups/elements/ui_review_element.gd" id="1_ainqy"]
+[ext_resource type="Script" uid="uid://dnkafux6jvmds" path="res://UI/UI popups/elements/ui_review_element.gd" id="1_ainqy"]
+[ext_resource type="Texture2D" uid="uid://b2tvkl7nw6goi" path="res://UI/Icons/peeps_icon.png" id="2_qq2vv"]
 
-[node name="ReviewElement" type="HBoxContainer"]
-visible = false
+[node name="ReviewElement" type="PanelContainer"]
+offset_right = 350.0
+offset_bottom = 46.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 script = ExtResource("1_ainqy")
@@ -16,12 +18,25 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Description" type="Label" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("2_qq2vv")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Description" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "\"Group could not find etc\" :"
 
-[node name="Count" type="Label" parent="MarginContainer"]
+[node name="Count" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 text = "1"

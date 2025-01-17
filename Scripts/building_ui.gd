@@ -190,6 +190,7 @@ func show_selection_menu():
 	%SelectionMenu.visible = true
 
 func on_animal_selected(animal_res):
+	selected_res = animal_res
 	open_tool_info_panel('PlacingAnimalInfoContainer')
 	if inputController.selected_animal_gender == IdRefs.ANIMAL_GENDERS.MALE:
 		%MaleGenderButton.button_pressed = true
@@ -198,7 +199,7 @@ func on_animal_selected(animal_res):
 	%SidePanel.show()
 	%InfoBorder.apply_color(ColorRefs.construction_yellow)
 	inputController.current_tool = inputController.TOOLS.ANIMAL
-	selected_res = animal_res
+	update_animal_info_label()
 
 func on_terrain_selected(terrain_res):
 	hide_side_panel()
@@ -503,3 +504,11 @@ func on_animal_gender_toggle(value, gender):
 		%MaleGenderButton.set_pressed_no_signal(false)
 		%FemaleGenderButton.set_pressed_no_signal(true)
 		inputController.selected_animal_gender = gender
+	update_animal_info_label()
+
+func update_animal_info_label():
+	if inputController.selected_animal_gender == IdRefs.ANIMAL_GENDERS.MALE:
+		%InfoLabelAnimal.text = "Placing male " + selected_res.name
+	else:
+		%InfoLabelAnimal.text = "Placing female " + selected_res.name.to_lower()
+	

@@ -68,6 +68,7 @@ func build_path(coordinates, atlas_y : int):
 		
 	if GameManager.game_running: ## Ensures baking isn't flooded with requests at the start
 		SignalBus.peep_navigation_changed.emit()
+		SignalBus.path_layer_updated.emit(coordinates)
 	
 func remove_path(coordinates):
 	var all_neighbors = []
@@ -91,6 +92,7 @@ func remove_path(coordinates):
 		## Adds instersections to neighbors of built paths
 		build_intersections(neighbor, null)
 	SignalBus.peep_navigation_changed.emit()
+	SignalBus.path_layer_updated.emit(coordinates)
 
 func build_intersections(coordinate, atlas_y):
 	var path_y = null

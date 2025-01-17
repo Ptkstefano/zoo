@@ -1,12 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://baic6x8rh68v8"]
+[gd_scene load_steps=7 format=3 uid="uid://baic6x8rh68v8"]
 
-[ext_resource type="Theme" uid="uid://qsq4gutgth07" path="res://UI/default_theme.tres" id="1_va6s2"]
 [ext_resource type="Script" uid="uid://csflrajvtg4uu" path="res://Animals/ui_animal_popup.gd" id="2_02j40"]
-[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/popup_theme.tres" id="3_hpf0s"]
+[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/Themes/popup_theme.tres" id="3_hpf0s"]
 [ext_resource type="Texture2D" uid="uid://pc30rlsi2umk" path="res://UI/Icons/gender1.png" id="4_2h2tw"]
-[ext_resource type="FontFile" uid="uid://g2ai6i3wnb5e" path="res://UI/Simple_Script.ttf" id="4_prha6"]
 [ext_resource type="Script" uid="uid://oq7aounld7th" path="res://UI/UI popups/responsive_margin_container.gd" id="4_ryvdn"]
-[ext_resource type="Theme" uid="uid://di7iy2m47x8rx" path="res://UI/popup_inner_content.tres" id="5_tarbw"]
+[ext_resource type="Theme" uid="uid://di7iy2m47x8rx" path="res://UI/Themes/popup_inner_content.tres" id="5_tarbw"]
 [ext_resource type="Texture2D" uid="uid://bxp117rrpsexg" path="res://UI/Icons/gender2.png" id="6_tarbw"]
 
 [node name="AnimalPopup" type="Control"]
@@ -18,7 +16,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("1_va6s2")
 script = ExtResource("2_02j40")
 male_icon = ExtResource("6_tarbw")
 female_icon = ExtResource("4_2h2tw")
@@ -31,10 +28,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_hpf0s")
-theme_override_constants/margin_left = 250
+theme_override_constants/margin_left = 200
 theme_override_constants/margin_top = 150
-theme_override_constants/margin_right = 250
-theme_override_constants/margin_bottom = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 150
 script = ExtResource("4_ryvdn")
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
@@ -64,9 +61,10 @@ theme_override_constants/separation = 25
 [node name="TabContainer" type="TabContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 3
 
 [node name="Info" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme = ExtResource("5_tarbw")
@@ -92,14 +90,6 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Info/VBoxContainer2"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Info/VBoxContainer2/HBoxContainer"]
-layout_mode = 2
-text = "Age:"
-
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Info/VBoxContainer2/HBoxContainer"]
-layout_mode = 2
-text = " 4 years and 6 months"
-
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Info/VBoxContainer2"]
 layout_mode = 2
 
@@ -107,7 +97,8 @@ layout_mode = 2
 layout_mode = 2
 text = "Feed type:"
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Info/VBoxContainer2/HBoxContainer2"]
+[node name="FeedLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Info/VBoxContainer2/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 text = " Vegetarian"
 
@@ -118,9 +109,30 @@ layout_mode = 2
 layout_mode = 2
 text = "Time in zoo:"
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Info/VBoxContainer2/HBoxContainer3"]
+[node name="ZooTimeLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Info/VBoxContainer2/HBoxContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "3 years and 6 months"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Info/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Info/VBoxContainer2/HBoxContainer4"]
+layout_mode = 2
+text = "Age: "
+
+[node name="AgeLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Info/VBoxContainer2/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3 years and 6 months"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Info/VBoxContainer2"]
+layout_mode = 2
+
+[node name="MateStatus" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Info/VBoxContainer2/HBoxContainer5"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Animal wants to mate"
 
 [node name="Needs" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 visible = false
@@ -198,8 +210,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Sell animal"
 
-[node name="Preferences" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
-visible = false
+[node name="Habitat" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -208,73 +219,71 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 35
 metadata/_tab_index = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Preferences"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Habitat"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Preferences/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Habitat/VBoxContainer"]
 layout_mode = 2
 
-[node name="overall_happiness" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Preferences/VBoxContainer/HBoxContainer"]
+[node name="overall_happiness" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Habitat/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Overall happiness: "
+text = "Habitat happiness:"
 
-[node name="overall_happiness_value" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Preferences/VBoxContainer/HBoxContainer"]
+[node name="overall_happiness_value" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Habitat/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_prha6")
+theme_override_font_sizes/font_size = 56
 text = "3 / 5"
 horizontal_alignment = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Preferences/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Habitat/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Preference" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Preferences/VBoxContainer/ScrollContainer"]
+[node name="Preference" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Habitat/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="preference_terrain" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Preferences/VBoxContainer/ScrollContainer/Preference"]
+[node name="preference_terrain" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Habitat/VBoxContainer/ScrollContainer/Preference"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.463584, 0.679404, 0.436323, 1)
 text = "Satisfied with enclosure size"
 
-[node name="preference_water" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Preferences/VBoxContainer/ScrollContainer/Preference"]
+[node name="preference_water" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Habitat/VBoxContainer/ScrollContainer/Preference"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.463584, 0.679404, 0.436323, 1)
 text = "Satisfied with enclosure size"
 
-[node name="preference_habitat_size" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Preferences/VBoxContainer/ScrollContainer/Preference"]
+[node name="preference_habitat_size" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Habitat/VBoxContainer/ScrollContainer/Preference"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.996915, 0, 0.0196472, 1)
 text = "Satisfied with enclosure size"
 
-[node name="preference_vegetation_coverage" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Preferences/VBoxContainer/ScrollContainer/Preference"]
+[node name="preference_vegetation_coverage" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Habitat/VBoxContainer/ScrollContainer/Preference"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.463584, 0.679404, 0.436323, 1)
 text = "Satisfied with enclosure size"
 
-[node name="preference_herd_size" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Preferences/VBoxContainer/ScrollContainer/Preference"]
+[node name="preference_herd_size" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Habitat/VBoxContainer/ScrollContainer/Preference"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.463584, 0.679404, 0.436323, 1)
 text = "Satisfied with enclosure size"
 
-[node name="preference_herd_density" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Preferences/VBoxContainer/ScrollContainer/Preference"]
+[node name="preference_herd_density" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Habitat/VBoxContainer/ScrollContainer/Preference"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.463584, 0.679404, 0.436323, 1)
 text = "Satisfied with enclosure size"
 
-[node name="preference_favorite_tree" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Preferences/VBoxContainer/ScrollContainer/Preference"]
+[node name="preference_favorite_tree" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Habitat/VBoxContainer/ScrollContainer/Preference"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.463584, 0.679404, 0.436323, 1)

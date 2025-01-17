@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=8 format=3 uid="uid://5rinnmfg30fq"]
 
-[ext_resource type="FontFile" uid="uid://g2ai6i3wnb5e" path="res://UI/Simple_Script.ttf" id="1_yrdlq"]
+[ext_resource type="FontFile" uid="uid://dh3lo7lghhs8x" path="res://UI/Thin sans.ttf" id="1_yrdlq"]
 [ext_resource type="Texture2D" uid="uid://dtc7ihyg3w5bq" path="res://UI/art/panel_dark.png" id="2_yrdlq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yrdlq"]
@@ -58,7 +58,7 @@ region_rect = Rect2(402, 24, 152, 152)
 
 [resource]
 Button/constants/outline_size = 16
-Button/font_sizes/font_size = 32
+Button/font_sizes/font_size = 48
 Button/fonts/font = ExtResource("1_yrdlq")
 Button/styles/focus = SubResource("StyleBoxTexture_yrdlq")
 Button/styles/hover = SubResource("StyleBoxTexture_oxger")

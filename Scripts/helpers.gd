@@ -82,3 +82,21 @@ func get_building_cells(building_size, start_tile, rotate_building):
 				var new_coordinate = Vector2i(start_tile.x - y, start_tile.y - x)
 				cells.append(new_coordinate)
 	return cells
+
+func format_months_to_years_and_months(months: int) -> String:
+	var years = months / 12
+	var remaining_months = months % 12
+	var result = ""
+
+	if years > 0:
+		result += str(years) + " year" 
+		if years > 1:
+			result += "s"
+	if years > 0 and remaining_months > 0:
+		result += " and "
+	if remaining_months > 0:
+		result += str(remaining_months) + " month"
+		if remaining_months > 1:
+			result += "s"
+
+	return result

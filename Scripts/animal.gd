@@ -165,6 +165,7 @@ func initialize_animal(res, coordinate, found_enclosure, saved_data, is_spawned_
 		animal_color_variation = (randi_range(1, animal_res.possible_sprite_variations))
 		if is_spawned_infant:
 			animal_gender = [IdRefs.ANIMAL_GENDERS.MALE, IdRefs.ANIMAL_GENDERS.FEMALE].pick_random()
+			months_of_life = 0
 			if animal_res.can_be_albino:
 				if randi_range(0, 100) > 95:
 					## Spawn random albino animal
@@ -172,7 +173,7 @@ func initialize_animal(res, coordinate, found_enclosure, saved_data, is_spawned_
 		else:
 			print(spawn_gender)
 			animal_gender = spawn_gender
-		months_of_life = animal_res.months_to_adulthood + int((randf_range(0.05, 0.3) * animal_res.months_of_expected_lifetime))
+			months_of_life = animal_res.months_to_adulthood + int((randf_range(0.05, 0.3) * animal_res.months_of_expected_lifetime))
 	
 	if animal_res.separate_gender_sprites:
 		if animal_gender == IdRefs.ANIMAL_GENDERS.MALE:
@@ -192,6 +193,7 @@ func initialize_animal(res, coordinate, found_enclosure, saved_data, is_spawned_
 	else:
 		$NavigationAgent2D.set_navigation_layer_value(2, true)
 		$NavigationAgent2D.set_navigation_layer_value(3, false)
+		$SwimRaycast.enabled = false
 		
 	if animal_res.species_id == IdRefs.ANIMAL_SPECIES.KARDOFAN_GIRAFFE:
 		$NavigationAgent2D.target_desired_distance = 30

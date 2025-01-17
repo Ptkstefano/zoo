@@ -20,6 +20,23 @@ func _ready():
 	
 	%DebugUpdatePreferences.pressed.connect(on_debug_update)
 	
+	%FeedLabel.text = str(animal_scene.animal_res.feed)
+	print(animal_scene.months_in_zoo)
+	if animal_scene.months_in_zoo > 0:
+		%ZooTimeLabel.text = Helpers.format_months_to_years_and_months(animal_scene.months_in_zoo)
+	else:
+		%ZooTimeLabel.text = "Just arrived"
+	%AgeLabel.text = Helpers.format_months_to_years_and_months(animal_scene.months_of_life)
+	if animal_scene.is_infant:
+		%MateStatus.text = "Animal is infant"
+	else:
+		if animal_scene.look_for_mate():
+			%MateStatus.text = "Animal is looking for mate"
+		elif animal_scene.is_animal_pregnant:
+			%MateStatus.text = "Pregnant"
+		else:
+			%MateStatus.text = ""
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	%HungerProgressBar.value = animal_scene.needs_hunger

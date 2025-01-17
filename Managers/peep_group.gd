@@ -250,7 +250,7 @@ func on_agent_target_reached():
 func change_state(state):
 	group_state = state
 	if state == group_states.GOING_TO_ENCLOSURE:
-		agent.target_position = group_desired_destinations.front().location
+		agent.target_position = group_desired_destinations.front()['view_position']
 		direction = (agent.get_next_path_position() - global_position).normalized()
 		for peep in peeps:
 			peep.change_state(1)
@@ -264,7 +264,7 @@ func change_state(state):
 		for peep in peeps:
 			peep.change_state(0)
 	elif state == group_states.WALKING:
-		agent.target_position = group_desired_destinations.front().location
+		agent.target_position = group_desired_destinations.front()['view_position']
 		direction = (agent.get_next_path_position() - global_position).normalized()
 		for peep in peeps:
 			peep.change_state(state)
@@ -383,7 +383,7 @@ func on_detector_area_entered(area):
 				group_desired_animals.erase(animal.animal_species)
 		
 		for destination in group_desired_destinations:
-			if destination.especies == animal.animal_res:
+			if destination['species'] == animal.animal_res.species_id:
 				group_desired_destinations.erase(destination)
 		
 	elif searching_rest_spot:
@@ -400,21 +400,6 @@ func on_detector_area_entered(area):
 				direction = (agent.get_next_path_position() - global_position).normalized()
 				change_state(group_states.GOING_TO_BENCH)
 				searching_rest_spot = false
-	#elif searching_food_spot:
-		#if area.get_parent() is Shop:
-			#shop = area.get_parent()
-			#if shop in visited_buildings:
-				#return
-			#if searching_food_spot:
-				#if IdRefs.PRODUCT_TYPES.FOOD in shop.product_types:
-					#agent.target_position = shop.sell_positions.pick_random()
-					#change_state(group_states.GOING_TO_FOOD)
-	#elif searching_toilet:
-		#if area.get_parent() is Toilet:
-			#if searching_toilet:
-				#agent.target_position = area.get_parent().enter_positions.pick_random()
-				#change_state(group_states.GOING_TO_TOILET)
-
 
 func on_state_timer_timeout():
 	if group_state == group_states.OBSERVING:
@@ -581,15 +566,16 @@ func initialize_peep_group_destinations():
 
 	## Used for save data
 	for id in destination_ids:
-		desired_enclosures_id.append(id)
-		group_desired_destinations.append(ZooManager.zoo_enclosures[id])
-		group_desired_animals.append(ZooManager.zoo_enclosures[id]['especies'].species_id)
+		var destination = {"enclosure_id": id, "species": ZooManager.zoo_enclosures[id]['especies'].species_id, "view_position": ZooManager.zoo_enclosures[id].node.enclosure_view_positions.pick_random()}
+		group_desired_destinations.append(destination)
 
 	## TODO - Sort group_desired_destinations
 	
 func leave_zoo():
-	if group_desired_destinations.size() == 0 and observed_animals.size() > 2:
+	if group_desired_destinations.size() == 0 and observed_animals.size() > 3:
 		modifiers.append(ModifierManager.PEEP_MODIFIERS.SEEN_ALL_DESIRED_ANIMALS)
+	if observed_animals.size() < 3:
+		modifiers.append(ModifierManager.PEEP_MODIFIERS.SEEN_FEW_ANIMALS)
 	if group_desired_animals.size() > 0:
 		modifiers.append(ModifierManager.PEEP_MODIFIERS.MISSED_ANIMAL)
 	if favorite_animal in observed_animals:

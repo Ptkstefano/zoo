@@ -7,6 +7,8 @@ class_name Enclosure
 var id : int
 
 var enclosure_cells : Array[Vector2i] = []
+var enclosure_adjacent_path_cells = []
+var enclosure_view_positions = []
 
 var enclosure_animals = []
 var enclosure_tree_species_ids = []
@@ -44,10 +46,6 @@ func _ready() -> void:
 	SignalBus.obstacle_changed.connect(update_navigation_region)
 	SignalBus.update_enclosure_land_areas.connect(update_navigation_region)
 	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func generate_animal_destination():
 	var random_cell = enclosure_cells.pick_random()
@@ -89,6 +87,7 @@ func add_cells(coordinates, fence_res):
 	update_central_point()
 	call_deferred('update_navigation_region')
 	call_deferred("calculate_enclosure_stats")
+	generate_sight_cells()
 	update_enclosure_area()
 
 			
@@ -111,6 +110,7 @@ func remove_cells(coordinates):
 	update_central_point()
 	update_navigation_region()
 	call_deferred("calculate_enclosure_stats")
+	generate_sight_cells()
 	update_enclosure_area()
 	
 func place_entrance(cell):
@@ -353,3 +353,32 @@ func find_mate_for_animal(animal):
 			return candidate
 	
 	return null
+
+func generate_sight_cells():
+	var path_layer_cells = TileMapRef.get_path_layer_cells().duplicate()
+	for cell in enclosure_fence_manager.fence_cells.duplicate():
+		var neighbor_cells = Helpers.get_adjacent(cell)
+		for neighbor_cell in neighbor_cells:
+			if neighbor_cell in path_layer_cells:
+				enclosure_adjacent_path_cells.append(neighbor_cell)
+				
+	var sight_cell_count = min(5, enclosure_adjacent_path_cells.size())
+	var random_sight_cells = []
+	if enclosure_adjacent_path_cells.size() < 5:
+		random_sight_cells = enclosure_adjacent_path_cells.duplicate()
+	else:
+		while random_sight_cells.size() < sight_cell_count:
+			var random_cell = enclosure_adjacent_path_cells.pick_random()
+			if random_cell not in random_sight_cells:
+				random_sight_cells.append(random_cell)
+
+
+	enclosure_view_positions.clear()
+	for cell in random_sight_cells:
+		enclosure_view_positions.append(TileMapRef.map_to_local(cell))
+	
+
+
+		
+		
+		
