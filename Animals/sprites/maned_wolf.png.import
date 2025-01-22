@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blml54rusn5rd"
-path="res://.godot/imported/red panda.png-96469d83f451c2330e7724d865eea721.ctex"
+uid="uid://drcriatwfuids"
+path="res://.godot/imported/maned_wolf.png-6e85b3a14c56bb9472eb8179d9b0d79c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animals/sprites/red panda.png"
-dest_files=["res://.godot/imported/red panda.png-96469d83f451c2330e7724d865eea721.ctex"]
+source_file="res://Animals/sprites/maned_wolf.png"
+dest_files=["res://.godot/imported/maned_wolf.png-6e85b3a14c56bb9472eb8179d9b0d79c.ctex"]
 
 [params]
 

@@ -70,7 +70,7 @@ func generate_stats_tab():
 	## Modifier list
 	for child in %ShopModifierList.get_children():
 		child.queue_free()
-	var modifiers = shop_node.peep_modifiers as Array
+	var modifiers = shop_node.peep_thoughts as Array
 	for i in 5:
 		var index = modifiers.size() - i - 1
 		if index < 0:
@@ -78,7 +78,7 @@ func generate_stats_tab():
 		var id = modifiers[modifiers.size() - i - 1]
 		if !id:
 			return
-		var description = ModifierManager.peep_modifiers[id].description
+		var description = ThoughtManager.peep_thoughts[id].description
 		var element = Label.new()
 		element.text = description
 		%ShopModifierList.add_child(element)

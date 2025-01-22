@@ -161,8 +161,6 @@ func on_object_removed(object):
 	var cell = TileMapRef.local_to_map(object.global_position)
 	if object is SceneryTree:
 		var enclosure = TileMapRef.get_enclosure_by_cell(cell)
-		print(cell)
-		print(TileMapRef.get_enclosure_by_cell(cell))
 		if enclosure:
 			enclosure.call_deferred('update_navigation_region')
 	object.queue_free()

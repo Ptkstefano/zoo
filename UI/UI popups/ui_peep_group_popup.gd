@@ -87,7 +87,7 @@ func update_popup_data():
 		
 	for modifier in peep_group_node.modifiers:
 		var label = Label.new()
-		label.text = str(ModifierManager.peep_modifiers[modifier].description)
+		label.text = str(ThoughtManager.peep_thoughts[modifier].description)
 		%ThoughtList.add_child(label)
 		
 

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="fence_resource" load_steps=2 format=3 uid="uid://xk5hxkv0keyb"]
+
+[ext_resource type="Script" uid="uid://bvnak0w5oxnhm" path="res://Enclosures/Fences/fence_res.gd" id="1_a26li"]
+
+[resource]
+script = ExtResource("1_a26li")
+name = "Concrete"
+segment_cost = 30.0
+atlas_y = 9
+fence_level = 2

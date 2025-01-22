@@ -37,5 +37,4 @@ func get_timer_time_left():
 	return month_timer.time_left
 
 func set_timer_time_left(time):
-	print('STARTING TIMER')
 	month_timer.start(time)

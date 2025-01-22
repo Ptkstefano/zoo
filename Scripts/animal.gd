@@ -5,6 +5,7 @@ class_name Animal
 @export var happy_smile : Texture
 @export var bad_smile : Texture
 @export var heart : Texture
+@export var dead_icon : Texture
 
 var animal_res : animal_resource
 
@@ -15,7 +16,7 @@ var speed
 
 var id : int
 
-enum ANIMAL_STATES {IDLE, WANDER, SWIMMING, MOVING_TOWARDS_REST, MOVING_TOWARDS_FOOD, MOVING_TOWARDS_MATE, EATING, RUNNING, RESTING, WAITING, MATING}
+enum ANIMAL_STATES {IDLE, WANDER, SWIMMING, MOVING_TOWARDS_REST, MOVING_TOWARDS_FOOD, MOVING_TOWARDS_MATE, EATING, RUNNING, RESTING, WAITING, MATING, DEAD}
 var current_state = ANIMAL_STATES.IDLE
 
 var move_states = [ANIMAL_STATES.WANDER, ANIMAL_STATES.SWIMMING, ANIMAL_STATES.MOVING_TOWARDS_FOOD, ANIMAL_STATES.MOVING_TOWARDS_REST, ANIMAL_STATES.MOVING_TOWARDS_MATE, ANIMAL_STATES.RUNNING]
@@ -90,6 +91,7 @@ var is_infant : bool = false
 var is_looking_for_mate : bool = false
 var months_of_life : int
 var months_in_zoo : int = 0
+var is_dead : bool = false
 
 var sprite_x_size : int
 var sprite_y_size : int
@@ -125,7 +127,34 @@ func _ready() -> void:
 func initialize_animal(res, coordinate, found_enclosure, saved_data, is_spawned_infant, spawn_gender):
 	
 	animal_res = res
-	is_infant = is_spawned_infant
+	
+	if saved_data:
+		animal_gender = saved_data['animal_gender']
+		needs_rest = saved_data['needs_rest']
+		needs_hunger = saved_data['needs_hunger']
+		needs_play = saved_data['needs_play']
+		is_animal_pregnant = saved_data['is_animal_pregnant']
+		months_pregnant = saved_data['months_pregnant']
+		is_looking_for_mate = saved_data['is_looking_for_mate']
+		is_infant = saved_data['is_infant']
+		animal_color_variation = saved_data['animal_color_variation']
+		months_of_life = saved_data.get('months_of_life', 20)
+		months_in_zoo = saved_data.get('months_in_zoo', 0)
+		is_dead = saved_data.get('is_dead', false)
+		
+	else:
+		animal_color_variation = (randi_range(1, animal_res.possible_sprite_variations))
+		if is_spawned_infant:
+			is_infant = true
+			animal_gender = [IdRefs.ANIMAL_GENDERS.MALE, IdRefs.ANIMAL_GENDERS.FEMALE].pick_random()
+			months_of_life = 0
+			if animal_res.can_be_albino:
+				if randi_range(0, 100) > 95:
+					## Spawn random albino animal
+					animal_color_variation = animal_res.possible_sprite_variations + 1
+		else:
+			animal_gender = spawn_gender
+			months_of_life = animal_res.months_to_adulthood + int((randf_range(0.05, 0.3) * animal_res.months_of_expected_lifetime))
 	
 	if !is_infant:
 		$Sprite2D.texture = animal_res.texture
@@ -147,33 +176,6 @@ func initialize_animal(res, coordinate, found_enclosure, saved_data, is_spawned_
 		$Sprite2D.vframes *= 2
 		
 	$Sprite2D.offset = Vector2(0, ((int(($Sprite2D.texture.get_height() / ($Sprite2D.vframes))) * -0.5) + animal_res.sprite_y_offset))
-
-	if saved_data:
-		animal_gender = saved_data['animal_gender']
-		needs_rest = saved_data['needs_rest']
-		needs_hunger = saved_data['needs_hunger']
-		needs_play = saved_data['needs_play']
-		is_animal_pregnant = saved_data['is_animal_pregnant']
-		months_pregnant = saved_data['months_pregnant']
-		is_looking_for_mate = saved_data['is_looking_for_mate']
-		is_infant = saved_data['is_infant']
-		animal_color_variation = saved_data['animal_color_variation']
-		months_of_life = saved_data.get('months_of_life', 20)
-		months_in_zoo = saved_data.get('months_in_zoo', 0)
-		
-	else:
-		animal_color_variation = (randi_range(1, animal_res.possible_sprite_variations))
-		if is_spawned_infant:
-			animal_gender = [IdRefs.ANIMAL_GENDERS.MALE, IdRefs.ANIMAL_GENDERS.FEMALE].pick_random()
-			months_of_life = 0
-			if animal_res.can_be_albino:
-				if randi_range(0, 100) > 95:
-					## Spawn random albino animal
-					animal_color_variation = animal_res.possible_sprite_variations + 1
-		else:
-			print(spawn_gender)
-			animal_gender = spawn_gender
-			months_of_life = animal_res.months_to_adulthood + int((randf_range(0.05, 0.3) * animal_res.months_of_expected_lifetime))
 	
 	if animal_res.separate_gender_sprites:
 		if animal_gender == IdRefs.ANIMAL_GENDERS.MALE:
@@ -207,6 +209,9 @@ func initialize_animal(res, coordinate, found_enclosure, saved_data, is_spawned_
 
 func _physics_process(delta: float) -> void:
 	#$Label.text = str(current_state)
+	if is_dead:
+		return
+	
 	if screenNotifier.is_on_screen():
 		z_index = Helpers.get_current_tile_z_index(global_position)
 		animal_sprite.frame_coords = Vector2(sprite_x + frame, sprite_y)
@@ -216,12 +221,13 @@ func _physics_process(delta: float) -> void:
 		fill_needs(delta)
 
 	if current_state in move_states:
-		if $SwimRaycast.is_colliding():
-			if !is_swimming:
-				change_state(ANIMAL_STATES.SWIMMING)
-		else:
-			if is_swimming:
-				on_swim_stop()
+		if animal_res.can_swim:
+			if $SwimRaycast.is_colliding():
+				if !is_swimming:
+					change_state(ANIMAL_STATES.SWIMMING)
+			else:
+				if is_swimming:
+					on_swim_stop()
 		if current_state == ANIMAL_STATES.RUNNING:
 			speed = run_speed
 		else:
@@ -431,7 +437,7 @@ func update_habitat_satifaction():
 			preference_water_satisfied = false
 			habitat_happiness_value -= 0.5
 			
-	if enclosure.enclosure_cells.size() > animal_res.minimum_habitat_size:
+	if enclosure.enclosure_cells.size() > animal_res.minimum_habitat_size + (enclosure.enclosure_animals.size() * animal_res.minimum_cells_per_animal):
 		preference_habitat_size_satisfied = true
 		habitat_happiness_value += 1
 	else:
@@ -532,6 +538,10 @@ func on_month_pass():
 	months_of_life += 1
 	months_in_zoo += 1
 	
+	if months_of_life > animal_res.months_of_expected_lifetime:
+		if randi_range(0,100) > 70:
+			die()
+	
 	if is_infant:
 		if months_of_life >= animal_res.months_to_adulthood:
 			grow_up()
@@ -574,3 +584,30 @@ func grow_up():
 func mate():
 	spawn_smile(heart)
 	is_looking_for_mate = false
+
+func die():
+	## As of now, infants can't die
+	if is_infant:
+		return
+	if current_state == ANIMAL_STATES.SWIMMING:
+		return
+	current_state == ANIMAL_STATES.DEAD
+	animal_sprite.frame_coords = Vector2(10, sprite_y)
+	is_dead = true
+	enclosure.add_dead_animal(self)
+	$StateTimer.stop()
+	$DecayTimer.stop()
+	$FrameTimer.stop()
+	
+	$HappinessSmile.texture = dead_icon
+	$HappinessSmile.show()
+	$HappinessSmile.modulate = Color.WHITE
+	
+	$HappinessSmile.position = Vector2(0, -sprite_y_size * 0.5)
+	
+	
+func debug_toggle_pathfinding_draw():
+	if !agent.get_debug_enabled():
+		agent.set_debug_enabled(true)
+	else:
+		agent.set_debug_enabled(false)

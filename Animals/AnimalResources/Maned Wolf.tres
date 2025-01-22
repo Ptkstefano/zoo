@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://v76dtvsm05u7" path="res://Animals/sprites/maned_wolf_cub.png" id="1_6ppi1"]
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_a584d"]
-[ext_resource type="Texture2D" uid="uid://jnejs4i8j57d" path="res://Animals/sprites/maned wolf.png" id="2_l1h4c"]
+[ext_resource type="Texture2D" uid="uid://drcriatwfuids" path="res://Animals/sprites/maned_wolf.png" id="3_6ppi1"]
 [ext_resource type="Texture2D" uid="uid://dxml6e0axs77v" path="res://Animals/thumbs/animal_thumbs8.png" id="3_vnsf4"]
 
 [resource]
@@ -10,7 +10,7 @@ script = ExtResource("1_a584d")
 name = "Maned Wolf"
 species_id = 10
 cost = 200.0
-texture = ExtResource("2_l1h4c")
+texture = ExtResource("3_6ppi1")
 cub_texture = ExtResource("1_6ppi1")
 thumb = ExtResource("3_vnsf4")
 feed = 0
@@ -20,7 +20,6 @@ animation_speed_scale = 1.0
 base_speed = 15.0
 run_speed = 25.0
 can_swim = false
-minimum_shelter_level = 0
 animal_rating = 140
 months_of_pregnancy = 2
 percentage_of_will_to_mate = 10
@@ -33,8 +32,10 @@ minimum_habitat_size = 75
 minimum_cells_per_animal = 20
 minimum_vegetation_coverage = 0.5
 maximum_vegetation_coverage = 1.5
-minimum_herd_size = 4
+minimum_herd_size = 2
 favorite_tree = 6
+minimum_shelter_level = 0
+minimum_fence_level = 3
 possible_sprite_variations = 1
 separate_gender_sprites = false
 can_be_albino = false

@@ -11,6 +11,8 @@ var pos_y
 
 var feed_cost = 200
 
+signal running_out
+
 var amount : float = 100:
 	set(value):
 		amount = clamp(value, 0, 100)
@@ -25,6 +27,9 @@ func _ready() -> void:
 
 func eat(value):
 	amount -= value
+	## TODO - Customizable threshold
+	if amount < 50:
+		running_out.emit()
 	
 func set_sprite():
 	if amount > 50:

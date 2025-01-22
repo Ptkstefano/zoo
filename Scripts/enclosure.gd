@@ -12,6 +12,7 @@ var enclosure_view_positions = []
 
 var enclosure_animals = []
 var enclosure_tree_species_ids = []
+var dead_animals = []
 
 var enclosure_species : animal_resource
 
@@ -75,8 +76,8 @@ func add_shelter(shelter):
 	available_shelters.append(shelter)
 
 func add_cells(coordinates, fence_res):
-	if fence_res:
-		fence_res = fence_res
+	#if fence_res:
+		#fence_res = fence_res
 	for coordinate in coordinates:
 		if !enclosure_cells.has(coordinate):
 			enclosure_cells.append(coordinate)
@@ -184,6 +185,7 @@ func add_animal(animal):
 	if enclosure_species == null:
 		enclosure_species = animal.animal_res
 		ZooManager.update_zoo_enclosure(self)
+		add_to_work_queue()
 		#id = ZooManager.generate_enclosure_id()
 	enclosure_animals.append(animal)
 	animal.animal_removed.connect(remove_animal)
@@ -198,6 +200,10 @@ func remove_animal(animal):
 	call_deferred("calculate_enclosure_stats")
 	if enclosure_animals.size() == 0:
 		enclosure_species = null
+	if animal in dead_animals:
+		dead_animals.erase(animal)
+		
+	ZooManager.update_zoo_enclosure(self)
 		
 
 func redistribute_animals():
@@ -298,6 +304,11 @@ func get_neighbors(cell: Vector2i) -> Array:
 func open_door():
 	$EnclosureFenceManager.open_door()
 
+func add_to_work_queue():
+	ZooManager.enclosures_needing_work[id] = self
+	return
+	
+
 func add_animal_feed():
 	## TODO - Spawn feed in a specific cell
 	var feed_y = 0
@@ -308,6 +319,7 @@ func add_animal_feed():
 	if !animal_feed:
 		animal_feed = animal_feed_scene.instantiate()
 		animal_feed.sprite_y = feed_y
+		animal_feed.running_out.connect(add_to_work_queue)
 		#var random_position = TileMapRef.map_to_local(enclosure_cells.pick_random())
 		#animal_feed.global_position = random_position
 		
@@ -333,6 +345,7 @@ func restore_animal_feed(data):
 	if !data:
 		return
 	animal_feed = animal_feed_scene.instantiate()
+	animal_feed.running_out.connect(add_to_work_queue)
 	animal_feed.sprite_y = data.sprite_y
 	animal_feed.amount = data.amount
 	animal_feed.global_position.x = data.x
@@ -360,7 +373,8 @@ func generate_sight_cells():
 		var neighbor_cells = Helpers.get_adjacent(cell)
 		for neighbor_cell in neighbor_cells:
 			if neighbor_cell in path_layer_cells:
-				enclosure_adjacent_path_cells.append(neighbor_cell)
+				if neighbor_cell not in enclosure_adjacent_path_cells:
+					enclosure_adjacent_path_cells.append(neighbor_cell)
 				
 	var sight_cell_count = min(5, enclosure_adjacent_path_cells.size())
 	var random_sight_cells = []
@@ -372,13 +386,11 @@ func generate_sight_cells():
 			if random_cell not in random_sight_cells:
 				random_sight_cells.append(random_cell)
 
-
 	enclosure_view_positions.clear()
 	for cell in random_sight_cells:
 		enclosure_view_positions.append(TileMapRef.map_to_local(cell))
 	
-
-
-		
-		
-		
+func add_dead_animal(animal):
+	dead_animals.append(animal)
+	enclosure_animals.erase(animal)
+	add_to_work_queue()

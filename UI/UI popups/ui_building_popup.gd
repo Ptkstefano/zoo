@@ -10,12 +10,10 @@ func _ready() -> void:
 	%DeleteButton.pressed.connect(on_remove_building)
 	
 func on_popup_closed():
-	print('b')
 	popup_closed.emit()
 
 	
 func on_remove_building():
-	print('a')
 	building_node.remove_building()
 	popup_closed.emit()
 	queue_free()

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_5tph4"]
 [ext_resource type="Texture2D" uid="uid://behwr7u7npntk" path="res://Animals/sprites/black_bear_cub.png" id="1_t438b"]
-[ext_resource type="Texture2D" uid="uid://d1fk4i0tru2ko" path="res://Animals/sprites/black bear.png" id="2_3pxik"]
+[ext_resource type="Texture2D" uid="uid://dpmcrd6mc50c0" path="res://Animals/sprites/black_bear.png" id="3_t438b"]
 [ext_resource type="Texture2D" uid="uid://cce6rehbgbrbd" path="res://Animals/thumbs/animal_thumbs6.png" id="3_wtabk"]
 
 [resource]
@@ -10,7 +10,7 @@ script = ExtResource("1_5tph4")
 name = "Black Bear"
 species_id = 6
 cost = 500.0
-texture = ExtResource("2_3pxik")
+texture = ExtResource("3_t438b")
 cub_texture = ExtResource("1_t438b")
 thumb = ExtResource("3_wtabk")
 feed = 0
@@ -20,7 +20,6 @@ animation_speed_scale = 0.5
 base_speed = 15.0
 run_speed = 20.0
 can_swim = false
-minimum_shelter_level = 0
 animal_rating = 125
 months_of_pregnancy = 8
 percentage_of_will_to_mate = 5
@@ -30,11 +29,13 @@ terrain_preference = Dictionary[int, float]({})
 terrain_dislike = Array[int]([])
 needs_water = false
 minimum_habitat_size = 120
-minimum_cells_per_animal = 50
+minimum_cells_per_animal = 35
 minimum_vegetation_coverage = 0.7
 maximum_vegetation_coverage = 3.0
 minimum_herd_size = 1
 favorite_tree = 1
+minimum_shelter_level = 0
+minimum_fence_level = 3
 possible_sprite_variations = 1
 separate_gender_sprites = false
 can_be_albino = false

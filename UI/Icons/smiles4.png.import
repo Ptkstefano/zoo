@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1fpad62k8fe0"
-path="res://.godot/imported/capy2.png-27c6ce77aebc41e46bbaa6b66ba45270.ctex"
+uid="uid://cf7bdh7un5y65"
+path="res://.godot/imported/smiles4.png-0a77685ea2e5522f674e0fcbf58a1b5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animals/sprites/capy2.png"
-dest_files=["res://.godot/imported/capy2.png-27c6ce77aebc41e46bbaa6b66ba45270.ctex"]
+source_file="res://UI/Icons/smiles4.png"
+dest_files=["res://.godot/imported/smiles4.png-0a77685ea2e5522f674e0fcbf58a1b5d.ctex"]
 
 [params]
 

@@ -47,10 +47,14 @@ func spawn_animal(coordinate, animal_res : animal_resource, saved_data, is_spawn
 		
 	if found_enclosure.enclosure_species != null:
 		if found_enclosure.enclosure_species != animal_res:
+			SignalBus.tooltip.emit('Not allowed to mix different species')
 			return
+			
+	if found_enclosure.fence_res.fence_level < animal_res.minimum_fence_level:
+		SignalBus.tooltip.emit('Enclosure not safe enough for this animal')
+		return
 		
 	var spawned_animal = animal_scene.instantiate()
-
 	
 	if saved_data:
 		spawned_animal.id = saved_data.id

@@ -19,6 +19,8 @@ var peep_count : int = 0:
 
 var spawn_ratio
 
+var attractiveness_multiplier = 10
+
 @export var peep_texture_body : Texture2D
 @export var peep_texture_head : Texture2D
 
@@ -38,6 +40,10 @@ func update_peeps_cached_positions():
 				group.update_cached_position()
 
 func on_peep_spawn_timeout():
+	if !ZooManager.zoo_entrance_open:
+		%PeepSpawnTimer.wait_time = 2
+		return
+		
 	## Controls flow of spawns
 	if ZooManager.zoo_attractiveness == 0:
 		return
@@ -51,8 +57,8 @@ func on_peep_spawn_timeout():
 		
 	spawn_ratio = clamp(spawn_ratio, 0.1, 10)
 	
-	## DEBUG
-	if peep_count > ZooManager.zoo_attractiveness:
+	if peep_count > (ZooManager.zoo_attractiveness):
+		## Halves spawn of peeps
 		spawn_ratio *= 0.5
 		
 	%PeepSpawnTimer.wait_time = base_spawn_time / spawn_ratio
@@ -60,9 +66,12 @@ func on_peep_spawn_timeout():
 	
 func on_peep_group_left(group, rating):
 	## TODO - update zoo status
-	ZooManager.update_rating(rating)
+	if rating >= 0:
+		ZooManager.update_rating(rating)
+		ZooManager.store_recent_peep_group_modifiers(group.modifiers)
+		ZooManager.store_peep_group_review({'rating': rating, 'thoughts': group.modifiers})
+		
 	ZooManager.remove_peep_group_id(group.id)
-	DataManager.add_peep_group_modifiers(group.modifiers)
 	peep_count -= group.peep_count
 	peep_groups.erase(group)
 	group.queue_free()

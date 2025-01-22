@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7l8mbuyemopq"
-path="res://.godot/imported/red fox.png-ecfd9f25e8cc7e262cf51b271c52d6fa.ctex"
+uid="uid://dcf7t04hbyvc6"
+path="res://.godot/imported/kardoffan_giraffe.png-dc6849487152093048459bfd81b50b5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animals/sprites/red fox.png"
-dest_files=["res://.godot/imported/red fox.png-ecfd9f25e8cc7e262cf51b271c52d6fa.ctex"]
+source_file="res://Animals/sprites/kardoffan_giraffe.png"
+dest_files=["res://.godot/imported/kardoffan_giraffe.png-dc6849487152093048459bfd81b50b5d.ctex"]
 
 [params]
 

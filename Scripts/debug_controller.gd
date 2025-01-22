@@ -72,7 +72,7 @@ func add_money():
 	FinanceManager.current_money += 10000
 	
 func speed_time():
-	Engine.time_scale = 16
+	Engine.time_scale = 8
 	
 func normal_time():
 	Engine.time_scale = 1

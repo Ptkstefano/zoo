@@ -100,3 +100,15 @@ func format_months_to_years_and_months(months: int) -> String:
 			result += "s"
 
 	return result
+
+
+func get_utility_score(perceived_value, current_price, product_level, level_difference):
+	var item_utility_score = (perceived_value / current_price) + (0.05 * (product_level - 1)) * randf_range(0.8, 1.2)
+	if level_difference == 0:
+		## Peeps prefer items of their minimum level, but will still choose better items if they deem it worth it
+		item_utility_score *= 1.20
+	else:
+		## However, items of different product level than desired get a reduced desirability the greater the difference
+		var level_diff = abs(level_difference) * 0.2
+		item_utility_score *= (1 - level_diff)
+	return item_utility_score

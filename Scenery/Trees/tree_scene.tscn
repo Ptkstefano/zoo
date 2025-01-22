@@ -16,7 +16,7 @@ z_as_relative = false
 texture_filter = 1
 texture = ExtResource("2_tkqex")
 centered = false
-hframes = 5
+hframes = 10
 
 [node name="Area" type="Area2D" parent="."]
 visible = false

@@ -4,8 +4,8 @@ extends Node
 @export var skin_colors : Array[Color]
 @export var hair_colors : Array[Color]
 
-@export var money_earned_label : Color
-@export var money_spent_label : Color
+@export var positive_green : Color
+@export var negative_red : Color
 
 var construction_yellow = Color('#fac500')
 var bulldozer_red = Color('#ac3232')

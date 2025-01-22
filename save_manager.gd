@@ -154,9 +154,11 @@ func save_game():
 	zoo_manager_data['next_building_id'] = ZooManager.next_building_id
 	zoo_manager_data['next_scenery_id'] = ZooManager.next_scenery_id
 	zoo_manager_data['reputation'] = ZooManager.reputation
+	zoo_manager_data['review_list'] = ZooManager.review_list
+	zoo_manager_data['entrance_price'] = ZooManager.entrance_price
+	zoo_manager_data['zoo_entrance_open'] = ZooManager.zoo_entrance_open
 	
-	
-	
+
 	save_data['zoo_manager_data'] = zoo_manager_data
 	
 	
@@ -363,7 +365,7 @@ func load_game():
 			groupData['needs_hunger'] = data["peepGroupData"][key]['needs_hunger']
 			groupData['needs_toilet'] = data["peepGroupData"][key]['needs_toilet']
 			groupData['needs_rest'] = data["peepGroupData"][key]['needs_rest']
-			groupData['desired_destinations_id'] = data["peepGroupData"][key]['desired_destinations_id']
+			groupData['desired_enclosure_ids'] = data["peepGroupData"][key].get('desired_enclosure_ids', [])
 			groupData['min_product_level'] = data["peepGroupData"][key].get('min_product_level', 1)
 			peepManager.instantiate_peep_group(groupData)
 			
@@ -373,6 +375,9 @@ func load_game():
 		ZooManager.next_building_id = int(data['zoo_manager_data']['next_building_id'])
 		ZooManager.next_scenery_id = int(data['zoo_manager_data']['next_scenery_id'])
 		ZooManager.reputation = data['zoo_manager_data'].get('reputation', 3.0)
+		ZooManager.review_list = data['zoo_manager_data'].get('review_list', [])
+		ZooManager.entrance_price = data['zoo_manager_data'].get('entrance_price', 10.0)
+		ZooManager.zoo_entrance_open = data['zoo_manager_data'].get('zoo_entrance_open', true)
 		
 	if data.has('financeData'):
 		FinanceManager.current_money = data['financeData']['current_money']
@@ -464,7 +469,7 @@ func get_peep_group_data(peep_group):
 		data['needs_hunger'] = peep_group.needs_hunger
 		data['needs_toilet'] = peep_group.needs_toilet
 		data['observed_animals'] = peep_group.observed_animals
-		data['desired_destinations_id'] = peep_group.desired_enclosures_id
+		data['desired_enclosure_ids'] = peep_group.desired_enclosure_ids
 		data['min_product_level'] = peep_group.min_product_level
 		#data['visited_shops'] = peep_group.
 		## TODO - Peep visited shops

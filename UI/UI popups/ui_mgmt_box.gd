@@ -14,12 +14,18 @@ signal popup_closed
 func _ready():
 	%CloseButton.pressed.connect(on_popup_closed)
 	generate_reviews_tab()
-	DataManager.reviews_changed.connect(generate_reviews_tab)
+	ZooManager.reviews_changed.connect(generate_reviews_tab)
 	FinanceManager.current_month_changed.connect(generate_finances_tab)
 	generate_finances_tab()
 	star_instances = %UI_ReputationStars.get_children()
 	ZooManager.zoo_reputation_updated.connect(on_reputation_update)
 	on_reputation_update(ZooManager.reputation)
+	
+	%ZooOpenCheckbox.set_pressed_no_signal(ZooManager.zoo_entrance_open)
+	%ZooOpenCheckbox.toggled.connect(ZooManager.set_zoo_entrance_open)
+	%Minus.pressed.connect(entrance_price_change.bind(-1))
+	%Plus.pressed.connect(entrance_price_change.bind(1))
+	%Price.text = Helpers.money_text(ZooManager.entrance_price)
 	
 
 func on_popup_closed():
@@ -29,16 +35,10 @@ func generate_reviews_tab():
 	review_count.clear()
 	for child in %ReviewContainer.get_children():
 		child.queue_free()
-	for modifier in DataManager.modifier_list:
-		if modifier in review_count.keys():
-			review_count[modifier] += 1
-		else:
-			review_count[modifier] = 1
 
-	for element in review_count.keys():
+	for review in ZooManager.review_list:
 		var review_instance = review_element.instantiate()
-		review_instance.description = ModifierManager.peep_modifiers[element].description
-		review_instance.count = review_count[element]
+		review_instance.review = review
 		review_instance.visible = true
 		%ReviewContainer.add_child(review_instance)
 
@@ -104,3 +104,8 @@ func on_reputation_update(reputation):
 			else:
 				star_instances[i].texture = null
 				star_instances[i].custom_minimum_size = Vector2.ZERO
+
+func entrance_price_change(amount):
+	ZooManager.update_entrance_price(ZooManager.entrance_price + amount)
+	%Price.text = Helpers.money_text(ZooManager.entrance_price)
+	return

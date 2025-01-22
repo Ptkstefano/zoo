@@ -13,7 +13,7 @@ var coordinates = []
 var sell_positions : Array[Vector2]
 var enter_positions : Array[Vector2]
 
-var peep_modifiers : Array[ModifierManager.PEEP_MODIFIERS] = []
+var peep_thoughts : Array[ThoughtManager.PEEP_THOUGHTS] = []
 
 var is_rotated : bool
 
@@ -73,11 +73,11 @@ func buy(product_id : int, peep_count : int) -> bool:
 	else:
 		return false
 
-func add_peep_modifier(modifier : ModifierManager.PEEP_MODIFIERS):
-	if peep_modifiers.size() > 100:
-		peep_modifiers.remove_at(0)
+func add_peep_modifier(modifier : ThoughtManager.PEEP_THOUGHTS):
+	if peep_thoughts.size() > 100:
+		peep_thoughts.remove_at(0)
 		
-	peep_modifiers.append(modifier)
+	peep_thoughts.append(modifier)
 	stats_updated.emit()
 
 func update_product_price(id, new_value):

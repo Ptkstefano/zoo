@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_l53un"]
 [ext_resource type="Texture2D" uid="uid://b5xo2ney0u7y4" path="res://Animals/sprites/red_fox_cub.png" id="1_loq4w"]
-[ext_resource type="Texture2D" uid="uid://c7l8mbuyemopq" path="res://Animals/sprites/red fox.png" id="2_0iee6"]
+[ext_resource type="Texture2D" uid="uid://cchhf1lbjqu7o" path="res://Animals/sprites/red_fox.png" id="3_loq4w"]
 [ext_resource type="Texture2D" uid="uid://b3ofx7s83hnq3" path="res://Animals/thumbs/animal_thumbs7.png" id="3_ny82v"]
 
 [resource]
@@ -10,7 +10,7 @@ script = ExtResource("1_l53un")
 name = "Red Fox"
 species_id = 8
 cost = 200.0
-texture = ExtResource("2_0iee6")
+texture = ExtResource("3_loq4w")
 cub_texture = ExtResource("1_loq4w")
 thumb = ExtResource("3_ny82v")
 feed = 0
@@ -20,7 +20,6 @@ animation_speed_scale = 1.0
 base_speed = 15.0
 run_speed = 25.0
 can_swim = false
-minimum_shelter_level = 0
 animal_rating = 140
 months_of_pregnancy = 2
 percentage_of_will_to_mate = 10
@@ -35,6 +34,8 @@ minimum_vegetation_coverage = 0.3
 maximum_vegetation_coverage = 1.5
 minimum_herd_size = 2
 favorite_tree = 7
+minimum_shelter_level = 0
+minimum_fence_level = 2
 possible_sprite_variations = 1
 separate_gender_sprites = false
 can_be_albino = false

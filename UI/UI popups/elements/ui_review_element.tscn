@@ -1,14 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://l3ox8v7yeprd"]
+[gd_scene load_steps=6 format=3 uid="uid://l3ox8v7yeprd"]
 
 [ext_resource type="Script" uid="uid://dnkafux6jvmds" path="res://UI/UI popups/elements/ui_review_element.gd" id="1_ainqy"]
 [ext_resource type="Texture2D" uid="uid://b2tvkl7nw6goi" path="res://UI/Icons/peeps_icon.png" id="2_qq2vv"]
+[ext_resource type="Texture2D" uid="uid://b787nqd6tt5ow" path="res://UI/Icons/star2x.png" id="2_wvuud"]
+[ext_resource type="Texture2D" uid="uid://dprrgv2xdx1qh" path="res://UI/Icons/star-half2x.png" id="3_1d45h"]
+[ext_resource type="PackedScene" uid="uid://kn44cenbnuda" path="res://UI/level_star.tscn" id="3_8sj18"]
 
 [node name="ReviewElement" type="PanelContainer"]
-offset_right = 350.0
-offset_bottom = 46.0
+offset_right = 1419.0
+offset_bottom = 244.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 script = ExtResource("1_ainqy")
+level_star = ExtResource("2_wvuud")
+level_star_half = ExtResource("3_1d45h")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -25,18 +30,47 @@ layout_mode = 2
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 texture = ExtResource("2_qq2vv")
+stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Description" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ThoughtList" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 26
-text = "\"Group could not find etc\" :"
 
-[node name="Count" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="UI_ReputationStars" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
-text = "1"
+size_flags_vertical = 4
+mouse_filter = 2
+alignment = 1
+
+[node name="LevelStar" parent="MarginContainer/HBoxContainer/MarginContainer/HBoxContainer/MarginContainer/UI_ReputationStars" instance=ExtResource("3_8sj18")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="LevelStar2" parent="MarginContainer/HBoxContainer/MarginContainer/HBoxContainer/MarginContainer/UI_ReputationStars" instance=ExtResource("3_8sj18")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="LevelStar3" parent="MarginContainer/HBoxContainer/MarginContainer/HBoxContainer/MarginContainer/UI_ReputationStars" instance=ExtResource("3_8sj18")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="LevelStar4" parent="MarginContainer/HBoxContainer/MarginContainer/HBoxContainer/MarginContainer/UI_ReputationStars" instance=ExtResource("3_8sj18")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="LevelStar5" parent="MarginContainer/HBoxContainer/MarginContainer/HBoxContainer/MarginContainer/UI_ReputationStars" instance=ExtResource("3_8sj18")]
+layout_mode = 2
+size_flags_vertical = 4

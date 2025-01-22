@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgsedt3bhj4my"
-path="res://.godot/imported/fence_exp1.png-24e95befbc21d120571362cfbfc189c7.ctex"
+uid="uid://dqi1jx7bc3e05"
+path="res://.godot/imported/red_panda.png-1ee57f6cd65077dc62e10b269f82e6c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enclosures/Fences/fence_exp1.png"
-dest_files=["res://.godot/imported/fence_exp1.png-24e95befbc21d120571362cfbfc189c7.ctex"]
+source_file="res://Animals/sprites/red_panda.png"
+dest_files=["res://.godot/imported/red_panda.png-1ee57f6cd65077dc62e10b269f82e6c5.ctex"]
 
 [params]
 

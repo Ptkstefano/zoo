@@ -18,10 +18,10 @@ func _ready():
 	
 	%AnimalName.text = animal_scene.animal_res.name
 	
-	%DebugUpdatePreferences.pressed.connect(on_debug_update)
+	%DebugPathfinding.pressed.connect(animal_scene.debug_toggle_pathfinding_draw)
+	%DebugDie.pressed.connect(animal_scene.die)
 	
 	%FeedLabel.text = str(animal_scene.animal_res.feed)
-	print(animal_scene.months_in_zoo)
 	if animal_scene.months_in_zoo > 0:
 		%ZooTimeLabel.text = Helpers.format_months_to_years_and_months(animal_scene.months_in_zoo)
 	else:

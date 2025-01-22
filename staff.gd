@@ -38,7 +38,6 @@ func _process(delta: float) -> void:
 			
 		update_sprite_direction()
 		
-	
 	peepSprite.frame_coords = Vector2(sprite_x + frame, sprite_y)
 	
 func move_toward_direction(direction: Vector2, delta: float):
@@ -63,9 +62,9 @@ func on_destination_update(destination):
 	is_moving = true
 	agent.target_position = destination
 
-func on_leap_towards(final_pos, entering_enclosure):
+func on_leap_towards(final_pos, is_entering_enclosure):
 	## Used so that zookeepers can bridge the gap between paths and enclosure
-	if entering_enclosure:
+	if is_entering_enclosure:
 		var tween = get_tree().create_tween()
 		sprite_x = 2
 		direction = global_position.direction_to(final_pos)

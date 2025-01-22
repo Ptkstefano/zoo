@@ -18,7 +18,7 @@ var current_zoom_value = 1
 @onready var new_zoom = zoom
 @onready var sensitivity = basis_sensitivity
 
-@export var zoom_sensitivity = 0.15
+@export var zoom_sensitivity = 0.125
 
 func _ready() -> void:
 	inputController.zoom_camera.connect(on_camera_zoom)

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="fence_resource" load_steps=2 format=3 uid="uid://du5ia6244wkd1"]
+
+[ext_resource type="Script" uid="uid://bvnak0w5oxnhm" path="res://Enclosures/Fences/fence_res.gd" id="1_ag0b0"]
+
+[resource]
+script = ExtResource("1_ag0b0")
+name = "Corral"
+segment_cost = 15.0
+atlas_y = 3
+fence_level = 1

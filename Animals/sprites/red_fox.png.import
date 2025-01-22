@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cia24m1atmqtq"
-path="res://.godot/imported/giraffe2.png-88f993a30201f6daa0e89a2527943994.ctex"
+uid="uid://cchhf1lbjqu7o"
+path="res://.godot/imported/red_fox.png-a8c301e214b3a008cabc84faac05d271.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animals/sprites/giraffe2.png"
-dest_files=["res://.godot/imported/giraffe2.png-88f993a30201f6daa0e89a2527943994.ctex"]
+source_file="res://Animals/sprites/red_fox.png"
+dest_files=["res://.godot/imported/red_fox.png-a8c301e214b3a008cabc84faac05d271.ctex"]
 
 [params]
 

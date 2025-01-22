@@ -22,7 +22,6 @@ class_name animal_resource
 @export var run_speed : float
 
 @export var can_swim : bool
-@export var minimum_shelter_level : int
 
 @export var animal_rating : int
 
@@ -47,6 +46,9 @@ class_name animal_resource
 @export var maximum_vegetation_coverage : float
 @export var minimum_herd_size : int
 @export var favorite_tree : IdRefs.TREE_SPECIES
+
+@export var minimum_shelter_level : int
+@export var minimum_fence_level : int
 
 @export_group("Visual settings")
 

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="fence_resource" load_steps=2 format=3 uid="uid://b85gocjhm05am"]
+
+[ext_resource type="Script" uid="uid://bvnak0w5oxnhm" path="res://Enclosures/Fences/fence_res.gd" id="1_yfve2"]
+
+[resource]
+script = ExtResource("1_yfve2")
+name = "Steel"
+segment_cost = 20.0
+atlas_y = 6
+fence_level = 3

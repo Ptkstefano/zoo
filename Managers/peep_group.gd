@@ -27,9 +27,12 @@ var agent : NavigationAgent2D
 
 var direction : Vector2
 
+## Holds all data for desired destinations
 var group_desired_destinations = []
 var group_desired_animals : Array[IdRefs.ANIMAL_SPECIES] = []
-var desired_enclosures_id = []
+
+## Holds just the ids for desired enclosures
+var desired_enclosure_ids = []
 
 var first_position_offset := Vector2(0, -5)
 var second_position_offset := Vector2(-5, 0)
@@ -57,6 +60,7 @@ var target_shop : Shop = null
 var visited_buildings : Array[Shop] = []
 var peep_group_inventory : Array[product_resource]
 var holding_item = false
+var has_entered_zoo : bool = false
 
 var prefers_restaurants : bool = false
 
@@ -89,8 +93,8 @@ var needs_rest : float = randf_range(75, 100):
 		if value < 35:
 			searching_rest_spot = true
 		if value < 1:
-			if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_REST_SPOT):
-				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_REST_SPOT)
+			if !modifiers.has(ThoughtManager.PEEP_THOUGHTS.NO_REST_SPOT):
+				modifiers.append(ThoughtManager.PEEP_THOUGHTS.NO_REST_SPOT)
 
 var needs_hunger : float = randf_range(50, 80):
 	set(value):
@@ -98,8 +102,8 @@ var needs_hunger : float = randf_range(50, 80):
 		if value <= 40:
 			searching_food_spot = true
 		if value < 1:
-			if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_FOOD):
-				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_FOOD)
+			if !modifiers.has(ThoughtManager.PEEP_THOUGHTS.NO_FOOD):
+				modifiers.append(ThoughtManager.PEEP_THOUGHTS.NO_FOOD)
 			
 var needs_toilet : float = randf_range(50, 80):
 	set(value):
@@ -107,8 +111,8 @@ var needs_toilet : float = randf_range(50, 80):
 		if value < 35:
 			searching_toilet = true
 		if value < 1:
-			if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_TOILET):
-				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_TOILET)
+			if !modifiers.has(ThoughtManager.PEEP_THOUGHTS.NO_TOILET):
+				modifiers.append(ThoughtManager.PEEP_THOUGHTS.NO_TOILET)
 		
 		
 var hunger_drain_rate : float = randf_range(0.5, 2)
@@ -162,11 +166,11 @@ func initialize_peep_group(data):
 		moving_towards_entrance = false
 		for animal in data.observed_animals:
 			observed_animals.append(int(animal))
-		for id in data.desired_destinations_id:
-			desired_enclosures_id.append(int(id))
-		for id in desired_enclosures_id:
-			if ZooManager.zoo_enclosures.keys().has(id):
-				group_desired_animals.append(ZooManager.zoo_enclosures[id]['especies'].species_id)
+		#for id in data.desired_destinations_id:
+			#desired_enclosures_id.append(int(id))
+		#for id in desired_enclosures_id:
+			#if ZooManager.zoo_enclosures.keys().has(id):
+				#group_desired_animals.append(ZooManager.zoo_enclosures[id]['especies'].species_id)
 	else:
 		peep_count = randi_range(1,4)
 		favorite_animal = ContentManager.animals.keys().pick_random()
@@ -239,11 +243,18 @@ func on_agent_target_reached():
 	elif group_state == group_states.GOING_TO_TOILET:
 		use_toilet()
 	elif group_state == group_states.GOING_TO_ENTRANCE:
-		spent_money += (ZooManager.entrance_price * peep_count)
-		FinanceManager.add(ZooManager.entrance_price * peep_count, IdRefs.PAYMENT_ADD_TYPES.ENTRANCE)
-		SignalBus.money_tooltip.emit(ZooManager.entrance_price * peep_count, true, global_position)
-		moving_towards_entrance = false
-		get_new_destination()
+		var entrance_utility_score = Helpers.get_utility_score(ZooManager.entrance_perceived_value, ZooManager.entrance_price, 3, 0)
+		if entrance_utility_score > min_utility_score_tolerance:
+			spent_money += (ZooManager.entrance_price * peep_count)
+			FinanceManager.add(ZooManager.entrance_price * peep_count, IdRefs.PAYMENT_ADD_TYPES.ENTRANCE)
+			SignalBus.money_tooltip.emit(ZooManager.entrance_price * peep_count, true, global_position)
+			moving_towards_entrance = false
+			has_entered_zoo = true
+			get_new_destination()
+		else:
+			moving_towards_entrance = false
+			moving_towards_exit = true
+			change_state(group_states.STOPPED)
 	else:
 		change_state(group_states.STOPPED)
 
@@ -368,12 +379,14 @@ func on_detector_area_entered(area):
 		
 	if area.get_parent() is Animal:
 		var animal = area.get_parent() as Animal
+		if animal.is_dead:
+			modifiers.append(ThoughtManager.PEEP_THOUGHTS.SAW_DEAD_ANIMAL)
 		if animal.animal_species not in observed_animals:
 			observed_animals.append(animal.animal_species)
 			change_state(group_states.OBSERVING)
 			observed_animals_happiness_sum += animal.habitat_happiness
 			if animal.habitat_happiness <= 2:
-				modifiers.append(ModifierManager.PEEP_MODIFIERS.SAW_UNHAPPY_ANIMAL)
+				modifiers.append(ThoughtManager.PEEP_THOUGHTS.SAW_UNHAPPY_ANIMAL)
 			$AnimalWaitTimer.stop()
 			for peep in peeps:
 				var dir = global_position.direction_to(animal.global_position).angle()
@@ -385,6 +398,7 @@ func on_detector_area_entered(area):
 		for destination in group_desired_destinations:
 			if destination['species'] == animal.animal_res.species_id:
 				group_desired_destinations.erase(destination)
+				desired_enclosure_ids.erase(destination['enclosure_id'])
 		
 	elif searching_rest_spot:
 		if area.get_parent().get_parent() is FixtureBench:
@@ -433,8 +447,8 @@ func buy_food():
 		return
 		
 	if target_shop.available_products.size() == 0:
-		target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.EMPTY_SHOP)
-		modifiers.append(ModifierManager.PEEP_MODIFIERS.EMPTY_SHOP)
+		target_shop.add_peep_modifier(ThoughtManager.PEEP_THOUGHTS.EMPTY_SHOP)
+		modifiers.append(ThoughtManager.PEEP_THOUGHTS.EMPTY_SHOP)
 		visited_buildings.append(target_shop)
 		return
 		
@@ -442,15 +456,12 @@ func buy_food():
 	for id in target_shop.available_products:
 		if target_shop.available_products[id].product.type == IdRefs.PRODUCT_TYPES.FOOD:
 			if target_shop.available_products[id].product.product_level >= min_product_level:
-				## Utility score is a value that represents the desirability of a product considering price, perceived value, product level and a random factor.
-				var item_utility_score = (target_shop.available_products[id].product.perceived_value / target_shop.available_products[id].current_price) + (0.05 * (target_shop.available_products[id].product.product_level - 1)) * randf_range(0.8, 1.2)
-				if target_shop.available_products[id].product.product_level == min_product_level:
-					## Peeps prefer items of their minimum level, but will still choose better items if they deem it worth it
-					item_utility_score *= 1.20
-				else:
-					## However, items of different product level than desired get a reduced desirability the greater the difference
-					var level_diff = abs(min_product_level - target_shop.available_products[id].product.product_level) * 0.2
-					item_utility_score *= (1 - level_diff)
+				var level_delta = min_product_level - target_shop.available_products[id].product.product_level
+				var item_utility_score = Helpers.get_utility_score(target_shop.available_products[id].product.perceived_value,
+				 target_shop.available_products[id].current_price,
+				target_shop.available_products[id].product.product_level,
+				level_delta
+				)
 					
 				available_items[target_shop.available_products[id].product.id] = {
 					'utility_score': item_utility_score
@@ -462,8 +473,8 @@ func buy_food():
 			
 	## No items of desirable quality
 	if available_items.size() == 0:
-		target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_DESIRABLE_QUALITY)
-		modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_DESIRABLE_QUALITY)
+		target_shop.add_peep_modifier(ThoughtManager.PEEP_THOUGHTS.NO_DESIRABLE_QUALITY)
+		modifiers.append(ThoughtManager.PEEP_THOUGHTS.NO_DESIRABLE_QUALITY)
 		
 	## Choose preferred item based on best perceived value
 	else:
@@ -476,8 +487,8 @@ func buy_food():
 
 		## Found no items of desirable cost
 		if best_item_id == null:
-			target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.TOO_EXPENSIVE)
-			modifiers.append(ModifierManager.PEEP_MODIFIERS.TOO_EXPENSIVE)
+			target_shop.add_peep_modifier(ThoughtManager.PEEP_THOUGHTS.TOO_EXPENSIVE)
+			modifiers.append(ThoughtManager.PEEP_THOUGHTS.TOO_EXPENSIVE)
 
 
 	## Found item of desirable cost and quality
@@ -497,15 +508,15 @@ func buy_food():
 				visible = true
 				change_state(group_states.STOPPED)
 				spent_money += amount
-				modifiers.append(ModifierManager.PEEP_MODIFIERS.ATE_AT_RESTAURANT)
+				modifiers.append(ThoughtManager.PEEP_THOUGHTS.ATE_AT_RESTAURANT)
 				if available_items[best_item_id].utility_score > 1.5:
-					target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
-					modifiers.append(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
+					target_shop.add_peep_modifier(ThoughtManager.PEEP_THOUGHTS.GREAT_VALUE_FOOD)
+					modifiers.append(ThoughtManager.PEEP_THOUGHTS.GREAT_VALUE_FOOD)
 				for peep in peeps:
 					SignalBus.money_tooltip.emit(amount, true, peep.global_position)
 			else:
-				target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
-				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
+				target_shop.add_peep_modifier(ThoughtManager.PEEP_THOUGHTS.NO_SHOP_STOCK)
+				modifiers.append(ThoughtManager.PEEP_THOUGHTS.NO_SHOP_STOCK)
 			
 		## Buy product and eat outside
 		else:
@@ -519,13 +530,13 @@ func buy_food():
 					peep.holding_item = true
 				spent_money += target_shop.available_products[best_item_id].current_price * peep_count
 				if available_items[best_item_id].utility_score > 1.5:
-					target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
-					modifiers.append(ModifierManager.PEEP_MODIFIERS.GREAT_VALUE_FOOD)
+					target_shop.add_peep_modifier(ThoughtManager.PEEP_THOUGHTS.GREAT_VALUE_FOOD)
+					modifiers.append(ThoughtManager.PEEP_THOUGHTS.GREAT_VALUE_FOOD)
 				for peep in peeps:
 					SignalBus.money_tooltip.emit(target_shop.available_products[best_item_id].current_price, true, peep.global_position)
 			else:
-				target_shop.add_peep_modifier(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
-				modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_SHOP_STOCK)
+				target_shop.add_peep_modifier(ThoughtManager.PEEP_THOUGHTS.NO_SHOP_STOCK)
+				modifiers.append(ThoughtManager.PEEP_THOUGHTS.NO_SHOP_STOCK)
 	
 	visited_buildings.append(target_shop)
 	target_shop = null
@@ -543,49 +554,53 @@ func use_toilet():
 	get_new_destination()
 
 func initialize_peep_group_destinations():
-	var keys = ZooManager.zoo_enclosures.keys()
-	if keys.size() == 0:
-		return
-		
-	var destination_ids = []
 	
 	if load_data:
-		for id in load_data.desired_destinations_id:
-			destination_ids.append(int(id))
+		desired_enclosure_ids = load_data.desired_enclosure_ids
 	
-	if desired_enclosures_id.is_empty():
-		## Generate random desired destinations
+	else:
+		var enclosure_keys = ZooManager.zoo_enclosures.keys()
+		if enclosure_keys.size() == 0:
+			return
+			## Generate random desired enclosures
 		for i in range(5):
-			if keys.size() == 0:
+			if enclosure_keys.size() == 0:
 				break
-			var random_id = keys.pick_random()
-			keys.erase(random_id)
-			if ZooManager.zoo_enclosures[random_id]['especies'] == null:
+			var random_id = enclosure_keys.pick_random()
+			enclosure_keys.erase(random_id)
+			if ZooManager.zoo_enclosures[random_id]['species'] == null:
 				continue
-			destination_ids.append(random_id)
+			desired_enclosure_ids.append(random_id)
+				
 
-	## Used for save data
-	for id in destination_ids:
-		var destination = {"enclosure_id": id, "species": ZooManager.zoo_enclosures[id]['especies'].species_id, "view_position": ZooManager.zoo_enclosures[id].node.enclosure_view_positions.pick_random()}
+	## Initialize destinations
+	for id in desired_enclosure_ids:
+		if !ZooManager.zoo_enclosures[int(id)]['species']:
+			continue
+		var destination = {"enclosure_id": int(id), "species": ZooManager.zoo_enclosures[int(id)]['species'].species_id, "view_position": ZooManager.zoo_enclosures[int(id)].node.enclosure_view_positions.pick_random()}
 		group_desired_destinations.append(destination)
+		group_desired_animals.append(destination['species'])
 
 	## TODO - Sort group_desired_destinations
 	
 func leave_zoo():
-	if group_desired_destinations.size() == 0 and observed_animals.size() > 3:
-		modifiers.append(ModifierManager.PEEP_MODIFIERS.SEEN_ALL_DESIRED_ANIMALS)
-	if observed_animals.size() < 3:
-		modifiers.append(ModifierManager.PEEP_MODIFIERS.SEEN_FEW_ANIMALS)
-	if group_desired_animals.size() > 0:
-		modifiers.append(ModifierManager.PEEP_MODIFIERS.MISSED_ANIMAL)
-	if favorite_animal in observed_animals:
-		modifiers.append(ModifierManager.PEEP_MODIFIERS.SEEN_FAVORITE_ANIMAL)
-	if !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_TOILET) and !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_FOOD) and !modifiers.has(ModifierManager.PEEP_MODIFIERS.NO_REST_SPOT):
-		modifiers.append(ModifierManager.PEEP_MODIFIERS.FILLED_NEEDS)
-	if observed_animals_happiness_sum / observed_animals.size() > 4.8:
-		modifiers.append(ModifierManager.PEEP_MODIFIERS.ONLY_SAW_HAPPY_ANIMALS)
-		
-	var rating = calculate_perceived_zoo_rating()
+	var rating
+	if has_entered_zoo:
+		if group_desired_destinations.size() == 0 and observed_animals.size() > 3:
+			modifiers.append(ThoughtManager.PEEP_THOUGHTS.SEEN_ALL_DESIRED_ANIMALS)
+		if observed_animals.size() < 3:
+			modifiers.append(ThoughtManager.PEEP_THOUGHTS.SEEN_FEW_ANIMALS)
+		if group_desired_animals.size() > 0:
+			modifiers.append(ThoughtManager.PEEP_THOUGHTS.MISSED_ANIMAL)
+		if favorite_animal in observed_animals:
+			modifiers.append(ThoughtManager.PEEP_THOUGHTS.SEEN_FAVORITE_ANIMAL)
+		if !modifiers.has(ThoughtManager.PEEP_THOUGHTS.NO_TOILET) and !modifiers.has(ThoughtManager.PEEP_THOUGHTS.NO_FOOD) and !modifiers.has(ThoughtManager.PEEP_THOUGHTS.NO_REST_SPOT):
+			modifiers.append(ThoughtManager.PEEP_THOUGHTS.FILLED_NEEDS)
+		if observed_animals_happiness_sum / observed_animals.size() > 4.8:
+			modifiers.append(ThoughtManager.PEEP_THOUGHTS.ONLY_SAW_HAPPY_ANIMALS)
+		rating = calculate_perceived_zoo_rating()
+	else:
+		rating = -1
 	peep_group_left.emit(self, rating)
 
 func update_cached_position():
@@ -594,7 +609,7 @@ func update_cached_position():
 func calculate_perceived_zoo_rating():
 	var sum = 0
 	for modifier in modifiers:
-		sum += ModifierManager.peep_modifiers[modifier].point_value
+		sum += ThoughtManager.peep_thoughts[modifier].point_value
 	return clamp(zoo_rating_score + sum, 0, 5)
 
 func search_food_place():
@@ -628,7 +643,7 @@ func search_food_place():
 		return selected_food_place
 	else:
 		if too_far_count > 0:
-			modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_FOOD_SHOP_IN_RANGE)
+			modifiers.append(ThoughtManager.PEEP_THOUGHTS.NO_FOOD_SHOP_IN_RANGE)
 		return null
 		
 func search_toilet():
@@ -642,5 +657,5 @@ func search_toilet():
 	if selected_toilet:
 		return selected_toilet
 	else:
-		modifiers.append(ModifierManager.PEEP_MODIFIERS.NO_TOILET)
+		modifiers.append(ThoughtManager.PEEP_THOUGHTS.NO_TOILET)
 		return null

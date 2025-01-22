@@ -10,7 +10,6 @@ func _ready():
 	star_instances = get_children()
 	
 func on_reputation_update(reputation):
-	print('REPUTATION UPDATE')
 	var rounded = round(reputation * 2) * 0.5
 	
 	var full_stars = int(floor(rounded))

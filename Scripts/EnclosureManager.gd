@@ -59,7 +59,7 @@ func build_enclosure(id, cells, entrance_cell, fence_res):
 	##Expand existing enclosure
 	elif enclosures_in_area.size() == 1:
 		var current_enclosure = enclosures_in_area.front()
-		current_enclosure.fence_res = selected_fence
+		#current_enclosure.fence_res = selected_fence
 		current_enclosure.add_cells(cells, selected_fence)
 		for coordinate in current_enclosure.enclosure_cells:
 			enclosure_layer.set_cell(coordinate, 0, Vector2i(0,0))

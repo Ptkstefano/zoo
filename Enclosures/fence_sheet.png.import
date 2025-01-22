@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3ld6nf83htbo"
-path="res://.godot/imported/red kangaroo.png-115678db6bb5d36f3caf514c4590aa00.ctex"
+uid="uid://cupyxc714k5o8"
+path="res://.godot/imported/fence_sheet.png-0cad49f3e584e6a3d788c5f967b1283c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animals/sprites/red kangaroo.png"
-dest_files=["res://.godot/imported/red kangaroo.png-115678db6bb5d36f3caf514c4590aa00.ctex"]
+source_file="res://Enclosures/fence_sheet.png"
+dest_files=["res://.godot/imported/fence_sheet.png-0cad49f3e584e6a3d788c5f967b1283c.ctex"]
 
 [params]
 

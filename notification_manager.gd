@@ -28,9 +28,9 @@ func on_money_tooltip_emitted(value, earned : bool, global_pos : Vector2):
 	label.text = "$"+str(value)
 	var pos = global_pos + Vector2(DisplayServer.window_get_size().x * -0.5 - 25, DisplayServer.window_get_size().y * -0.5 -50)
 	if !earned:
-		label.add_theme_color_override("font_color", ColorRefs.money_spent_label)
+		label.add_theme_color_override("font_color", ColorRefs.negative_red)
 	else:
-		label.add_theme_color_override("font_color", ColorRefs.money_earned_label)
+		label.add_theme_color_override("font_color", ColorRefs.positive_green)
 	label.global_position = pos
 	add_child(label)
 	label.show()
