@@ -75,6 +75,7 @@ func _ready() -> void:
 	
 	%MaleGenderButton.toggled.connect(on_animal_gender_toggle.bind(IdRefs.ANIMAL_GENDERS.MALE))
 	%FemaleGenderButton.toggled.connect(on_animal_gender_toggle.bind(IdRefs.ANIMAL_GENDERS.FEMALE))
+	%AnimalInfoButton.pressed.connect(on_animal_info_pressed)
 	
 	%ToolDeselect.pressed.connect(on_tool_deselect)
 	
@@ -512,3 +513,5 @@ func update_animal_info_label():
 	else:
 		%InfoLabelAnimal.text = "Placing female " + selected_res.name.to_lower()
 	
+func on_animal_info_pressed():
+	SignalBus.open_popup_with_data.emit('AnimalInfo', {'resource': selected_res})

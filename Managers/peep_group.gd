@@ -147,6 +147,7 @@ func _ready() -> void:
 	
 	$AnimalWaitTimer.timeout.connect(on_animal_wait_timer_timeout)
 	
+	SignalBus.path_erased.connect(on_path_erased)
 	
 	#$VisibleOnScreenNotifier2D.screen_entered.connect(on_visibility_entered)
 	
@@ -659,3 +660,11 @@ func search_toilet():
 	else:
 		modifiers.append(ThoughtManager.PEEP_THOUGHTS.NO_TOILET)
 		return null
+
+func on_path_erased(cell):
+	if cell == TileMapRef.local_to_map(global_position):
+		reset_state()
+		
+func reset_state():
+	change_state(group_states.STOPPED)
+	global_position = Vector2(-1300, 675)

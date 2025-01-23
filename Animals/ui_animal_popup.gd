@@ -11,6 +11,8 @@ func _ready():
 	%CloseButton.pressed.connect(on_popup_closed)
 	%SellAnimal.pressed.connect(on_sell_animal)
 	
+	%AnimalInfoButton.pressed.connect(on_animal_info_pressed)
+	
 	if animal_scene.animal_gender == IdRefs.ANIMAL_GENDERS.MALE:
 		%GenderIcon.texture = male_icon
 	else:
@@ -122,3 +124,6 @@ func update_preferences():
 	else:
 		%preference_herd_density.add_theme_color_override("font_color", Color('#fe0005'))
 		%preference_herd_density.text = "I miss my favorite tree " + str(animal_scene.animal_res.favorite_tree)
+
+func on_animal_info_pressed():
+	SignalBus.open_popup_with_data.emit('AnimalInfo', {'resource': animal_scene.animal_res})

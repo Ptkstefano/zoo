@@ -6,11 +6,14 @@ enum zookeeper_states {STOPPED, WALKING, RESTING, GOING_TO_ENCLOSURE, LEAVING_EN
 var current_state = zookeeper_states.STOPPED
 
 var destination_enclosure : Enclosure
+var unreacheable_enclosures = []
 
 var is_inside_enclosure : bool = false
 
 signal destination_updated
 signal leap_towards
+signal stopped
+signal reset_staff
 
 
 func _ready() -> void:
@@ -35,6 +38,7 @@ func change_state(state):
 	if state == zookeeper_states.LEAVING_ENCLOSURE:
 		get_enclosure_exit_destination()
 	if state == zookeeper_states.STOPPED:
+		stopped.emit()
 		$StateTimer.start()
 	if state == zookeeper_states.FEEDING:
 		feed_enclosure()
@@ -68,31 +72,29 @@ func feed_enclosure():
 	change_state(zookeeper_states.STOPPED)
 	
 func get_enclosure_entrance_destination():
-	
-	## TODO - Get a signal if enclosure is removed to prevent crash
-	var enclosure_amount = ZooManager.enclosures_needing_work.keys().size()
+	var enclosure_amount = ZooManager.enclosures_needing_work.size()
 	if enclosure_amount < 1:
 		change_state(zookeeper_states.STOPPED)
 		return
-		
-	var i = 0
-	while true:
-		
-		if i > enclosure_amount * 2:
-			change_state(zookeeper_states.STOPPED)
-			break
+
+	## TODO - Sort this
+	for enclosure in ZooManager.enclosures_needing_work:
+		if enclosure not in unreacheable_enclosures:
+			destination_enclosure = enclosure
+			destination_enclosure.enclosure_removed.connect(on_destination_enclosure_removed)
+			destination_enclosure.enclosure_area_changed.connect(on_destination_enclosure_changed)
 			
-		## TODO - Sort this
-		destination_enclosure = ZooManager.enclosures_needing_work[ZooManager.enclosures_needing_work.keys().front()]
-	
-		if !destination_enclosure.entrance_cell:
-			ZooManager.enclosures_needing_work.erase(destination_enclosure.id)
-			continue
-		
-		var destination = TileMapRef.map_to_local(destination_enclosure.entrance_cell)
-		destination_updated.emit(destination)
-		change_state(zookeeper_states.GOING_TO_ENCLOSURE)
+	if !destination_enclosure:
+		change_state(zookeeper_states.STOPPED)
 		return
+		
+	if !destination_enclosure.entrance_cell:
+		ZooManager.enclosures_needing_work.erase(destination_enclosure.id)
+	
+	var destination = TileMapRef.map_to_local(destination_enclosure.entrance_cell)
+	destination_updated.emit(destination)
+	change_state(zookeeper_states.GOING_TO_ENCLOSURE)
+	return
 
 
 func get_enclosure_exit_destination():
@@ -113,18 +115,26 @@ func enter_enclosure():
 	check_for_enclosure_work()
 
 func leave_enclosure():
-	ZooManager.enclosures_needing_work.erase(destination_enclosure.id)
+	ZooManager.enclosures_needing_work.erase(destination_enclosure)
 	leap_towards.emit(TileMapRef.map_to_local(destination_enclosure.entrance_cell), false)
 	destination_enclosure.open_door()
 	await get_tree().create_timer(2).timeout
 	is_inside_enclosure = false
 	destination_enclosure = null
 	change_state(zookeeper_states.STOPPED)
+	unreacheable_enclosures.clear()
 
 func target_unreacheable():
+	SignalBus.notification.emit('Zookeeper could not find path to enclosure')
+	unreacheable_enclosures.append(destination_enclosure)
+	destination_enclosure = null
 	change_state(zookeeper_states.STOPPED)
 
 func check_for_enclosure_work():
+	if !is_instance_valid(destination_enclosure):
+		print('INVALID INSTANCE')
+		reset_staff.emit()
+		return
 	if destination_enclosure.animal_feed:
 		if destination_enclosure.animal_feed.amount < 100:
 			change_state(zookeeper_states.FEEDING)
@@ -143,3 +153,17 @@ func remove_dead_animal():
 		return
 	destination_enclosure.dead_animals.front().remove_animal()
 	change_state(zookeeper_states.STOPPED)
+
+func on_destination_enclosure_removed():
+	reset_staff.emit()
+
+func on_destination_enclosure_changed():
+	if is_inside_enclosure:
+		reset_staff.emit()
+
+func reset_state():
+	
+	destination_enclosure = null
+	is_inside_enclosure = false
+	change_state(zookeeper_states.STOPPED)
+	

@@ -37,7 +37,7 @@ var used_peep_group_ids = []
 var zoo_enclosures : Dictionary = {}
 var next_enclosure_id = 0
 
-var enclosures_needing_work = {}
+var enclosures_needing_work = []
 
 var eateries = {}
 var restaurants = {}
@@ -119,6 +119,7 @@ func remove_toilet(id):
 	ZooManager.toilets.erase(id)
 	
 func remove_zoo_enclosure(enclosure):
+	enclosures_needing_work.erase(enclosure)
 	zoo_enclosures.erase(enclosure.id)
 	## Remove animal?
 

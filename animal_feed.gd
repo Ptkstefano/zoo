@@ -9,7 +9,17 @@ var sprite_y : int = 0
 var pos_x
 var pos_y
 
-var feed_cost = 200
+## TODO - Figure out a better place to store these values
+var cost_of_feed_types = [
+	350,
+	200,
+	350,
+	250,
+	400,
+	300
+]
+
+var feed_cost : int
 
 signal running_out
 
@@ -23,6 +33,7 @@ func _ready() -> void:
 	$Sprite2D.frame_coords = Vector2(0, sprite_y)
 	pos_x = global_position.x
 	pos_y = global_position.y
+	feed_cost = cost_of_feed_types[sprite_y]
 	pay_for_feed(feed_cost)
 
 func eat(value):

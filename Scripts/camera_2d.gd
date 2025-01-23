@@ -45,6 +45,6 @@ func on_camera_zoom(direction: int):
 	var new_zoom = Vector2(possible_zoom_values[current_zoom_index], possible_zoom_values[current_zoom_index])
 	new_zoom = new_zoom.clamp(min_zoom, max_zoom)
 	var tween = get_tree().create_tween()
-	await tween.tween_property(self, "zoom", new_zoom, 0.1)
+	await tween.tween_property(self, "zoom", new_zoom, 0.25).set_trans(Tween.TRANS_SINE)
 	sensitivity = basis_sensitivity - (zoom.x * 0.20)
 	

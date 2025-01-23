@@ -30,6 +30,7 @@ func _process(delta: float) -> void:
 
 func on_removal(bulldozer):
 	lake_removed.emit(cells)
+	SignalBus.obstacle_changed.emit()
 	queue_free()
 
 func shrink_polygon(vertices, shrink_factor: float):

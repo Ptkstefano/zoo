@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvufj2juppxif"
-path="res://.godot/imported/giraffe.png-a4789e037d71815eb6c4e99926ccbef7.ctex"
+uid="uid://xbhjh8lx4squ"
+path="res://.godot/imported/animal_feed.png-d8b9bf87b9eb2fcfb40ba33b6ca97725.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/animals/giraffe.png"
-dest_files=["res://.godot/imported/giraffe.png-a4789e037d71815eb6c4e99926ccbef7.ctex"]
+source_file="res://Feed/animal_feed.png"
+dest_files=["res://.godot/imported/animal_feed.png-d8b9bf87b9eb2fcfb40ba33b6ca97725.ctex"]
 
 [params]
 

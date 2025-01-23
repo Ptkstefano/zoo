@@ -20,9 +20,18 @@ func _ready():
 	$FrameTimer.timeout.connect(on_frame_timer)
 	staff_class = $Zookeeper
 	staff_class.destination_updated.connect(on_destination_update)
+	staff_class.stopped.connect(on_staff_stopped)
+	staff_class.reset_staff.connect(reset_staff)
+	SignalBus.path_erased.connect(on_path_erased)
 	if staff_class is ZooKeeper:
 		staff_class.leap_towards.connect(on_leap_towards)
 	
+
+func reset_staff():
+	global_position = Vector2(-1300, 675)
+	$NavigationAgent2D.set_navigation_layer_value(1, true)
+	$NavigationAgent2D.set_navigation_layer_value(2, false)
+	staff_class.reset_state()
 
 func _process(delta: float) -> void:
 	z_index = Helpers.get_current_tile_z_index(global_position) + 1
@@ -30,6 +39,7 @@ func _process(delta: float) -> void:
 	if is_moving:
 		if !agent.is_target_reachable():
 			staff_class.target_unreacheable()
+			
 			
 		move_toward_direction(direction, delta)
 		
@@ -57,6 +67,10 @@ func on_agent_target_reached():
 	is_moving = false
 	sprite_x = 0
 	staff_class.destination_reached()
+
+func on_staff_stopped():
+	is_moving = false
+	sprite_x = 0
 
 func on_destination_update(destination):
 	is_moving = true
@@ -97,3 +111,7 @@ func update_sprite_direction():
 		sprite_y = 1
 	elif direction.y < 0:
 		sprite_y = 0
+
+func on_path_erased(cell):
+	if cell == TileMapRef.local_to_map(global_position):
+		reset_staff()

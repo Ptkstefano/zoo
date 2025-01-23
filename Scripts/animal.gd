@@ -484,7 +484,7 @@ func update_habitat_satifaction():
 		
 
 func update_cached_position():
-	cached_global_position = global_position
+	cached_global_position = Vector2(global_position.x, global_position.y)
 
 func on_frame_timer():
 	if frame == 0:

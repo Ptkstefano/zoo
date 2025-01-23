@@ -207,6 +207,8 @@ func handle_tooling_input(event):
 			if current_tool == TOOLS.ENCLOSURE:
 				if $"../PathManager".get_path_overlap(cells):
 					return
+				if cells.is_empty():
+					return
 				$"../Objects/EnclosureManager".build_enclosure(null, cells.duplicate(), null, selected_res)
 				cells.clear()
 			if current_tool == TOOLS.TERRAIN:
@@ -386,13 +388,16 @@ func highlight_building_area():
 	cells.clear()
 	cells = Helpers.get_building_cells(selected_res.size, start_tile_pos, rotate_building).duplicate()
 	if current_tool in building_placement_tools:
-		if $"../Objects/EnclosureManager".get_enclosure_overlap(cells):
-			$"../TileMap/HighlightLayer".clear_highlight()
-			return
-	#if current_tool == TOOLS.SHELTER:
-		#if !$"../Objects/EnclosureManager".get_enclosure_overlap(cells):
-			#$"../TileMap/HighlightLayer".clear_highlight()
-			#return
+		if current_tool == TOOLS.SHELTER:
+			for cell in cells:
+				if !$"../Objects/EnclosureManager".get_enclosure_overlap([cell]):
+					$"../TileMap/HighlightLayer".clear_highlight()
+					return
+		else:
+			if $"../Objects/EnclosureManager".get_enclosure_overlap(cells):
+				$"../TileMap/HighlightLayer".clear_highlight()
+				return
+
 
 	if !rotate_building:
 		$"../TileMap/HighlightLayer".apply_highlight(cells, IdRefs.HIGHLIGHT_TYPES.BUILDING_S)

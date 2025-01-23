@@ -35,6 +35,7 @@ func build_shelter(shelter_res, starting_coord, rotate, coords):
 	#new_shelter.is_shelter_rotated = rotate
 	new_shelter.shelter_res = shelter_res
 	new_shelter.used_coordinates = coords
+	new_shelter.shelter_removed.connect(on_shelter_removed)
 	add_child(new_shelter)
 	coordinates_used_by_shelters.append(coords)
 	var enclosure = TileMapRef.get_enclosure_by_cell(starting_coord)
@@ -45,7 +46,9 @@ func build_shelter(shelter_res, starting_coord, rotate, coords):
 func on_shelter_removed(shelter_node):
 	for coordinate in shelter_node.used_coordinates:
 		coordinates_used_by_shelters.erase(coordinate)
-	$"../../PathManager".remove_path(shelter_node.used_coordinates)
+		
+	shelter_node.enclosure.remove_shelter(shelter_node)
+	shelter_node.queue_free()
 
 func on_shelter_selected(shelter_node):
 	$"../../PopupManager".open_shelter_popup(shelter_node)

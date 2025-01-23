@@ -18,7 +18,7 @@ var enclosure_species : animal_resource
 
 var fence_res : fence_resource
 
-var animal_feed_scene : PackedScene = preload("res://AnimalFeed/animal_feed.tscn")
+var animal_feed_scene : PackedScene = preload("res://Feed/animal_feed.tscn")
 var animal_feed : AnimalFeed = null
 var feed_position : Vector2
 
@@ -40,6 +40,8 @@ var entrance_door_cell : Vector2i
 
 signal create_sibling_enclosure
 signal enclosure_stats_updated
+signal enclosure_removed
+signal enclosure_area_changed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -75,6 +77,9 @@ func calculate_enclosure_stats():
 func add_shelter(shelter):
 	available_shelters.append(shelter)
 
+func remove_shelter(shelter):
+	available_shelters.erase(shelter)
+	
 func add_cells(coordinates, fence_res):
 	#if fence_res:
 		#fence_res = fence_res
@@ -112,6 +117,7 @@ func remove_cells(coordinates):
 	update_navigation_region()
 	call_deferred("calculate_enclosure_stats")
 	generate_sight_cells()
+	enclosure_area_changed.emit()
 	update_enclosure_area()
 	
 func place_entrance(cell):
@@ -123,6 +129,10 @@ func place_entrance(cell):
 	#feed_position = TileMapRef.map_to_local(Vector2(entrance_door_cell.x, entrance_door_cell.y + 1))
 	ZooManager.update_zoo_enclosure(self)
 	
+	
+func update_fence(new_res):
+	fence_res = new_res
+	build_fence()
 	
 func detect_continuity():
 	## Figures out if current enclosure was broken into multiple enclosures and instantiates newly created enclosures as siblings
@@ -216,6 +226,7 @@ func remove_enclosure():
 		animal.remove_animal()
 		
 	ZooManager.remove_zoo_enclosure(self)
+	enclosure_removed.emit()
 	queue_free()
 
 func update_central_point():
@@ -238,12 +249,14 @@ func update_central_point():
 	
 func update_navigation_region():
 	if GameManager.game_running:
-		$LandRegion.call_deferred('bake_navigation_polygon')
 		$WaterRegion.call_deferred('bake_navigation_polygon')
+		$LandRegion.call_deferred('bake_navigation_polygon')
 	
 func update_enclosure_area():
 	var coordinates = []
 	#var ordered_cells = order_edge_cells($EnclosureManager.enclosure_cells)
+	if $EnclosureFenceManager.fence_cells.is_empty():
+		return
 	var ordered_cells = order_edge_cells($EnclosureFenceManager.fence_cells)
 	for cell in ordered_cells:
 		var localpos = TileMapRef.map_to_local(cell)
@@ -258,7 +271,7 @@ func order_edge_cells(edge_cells: Array) -> Array:
 	var visited_cells = {}
 
 	# Choose a starting cell
-	
+
 	var current_cell = edge_cells[0]
 	ordered_cells.append(current_cell)
 	visited_cells[current_cell] = true
@@ -305,7 +318,7 @@ func open_door():
 	$EnclosureFenceManager.open_door()
 
 func add_to_work_queue():
-	ZooManager.enclosures_needing_work[id] = self
+	ZooManager.enclosures_needing_work.append(self)
 	return
 	
 

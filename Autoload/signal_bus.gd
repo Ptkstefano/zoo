@@ -2,6 +2,7 @@ extends Node
 
 signal tooltip
 signal money_tooltip 
+signal notification
 
 signal obstacle_changed
 signal vegetation_placed
@@ -9,6 +10,8 @@ signal update_enclosure_land_areas
 
 signal open_popup
 signal open_box ## Emitted by UI
+signal open_confirmation_popup
+signal open_popup_with_data
 
 signal peep_navigation_changed
 signal path_erased

@@ -479,6 +479,8 @@ func get_peep_group_data(peep_group):
 
 func get_scenery_data(scenery):
 	var data = {}
+	if !is_instance_valid(scenery):
+		return
 	var scenery_type = scenery.type
 	data['scenery_type'] = scenery_type
 	data['x_pos'] = scenery.cached_position.x

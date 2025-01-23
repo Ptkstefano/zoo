@@ -1,4 +1,4 @@
-[gd_scene load_steps=199 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=201 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" uid="uid://o2egpp0b02e2" path="res://Scripts/debug_controller.gd" id="1_nisry"]
 [ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -126,6 +126,8 @@
 [ext_resource type="Theme" uid="uid://b6646spks2n34" path="res://UI/Themes/main_tool_subpanel.tres" id="105_6idwh"]
 [ext_resource type="Texture2D" uid="uid://clu6pr714pcy6" path="res://UI/Icons/icons2.png" id="107_u81y6"]
 [ext_resource type="Theme" uid="uid://bged1njjfndbj" path="res://UI/Themes/bottom_panel.tres" id="108_smeu8"]
+[ext_resource type="PackedScene" uid="uid://b4j6v4cc3p1w" path="res://UI/UI popups/ui_animal_info_popup.tscn" id="109_pw0td"]
+[ext_resource type="PackedScene" uid="uid://cxbu5fqbnlcu1" path="res://UI/UI popups/ui_confirmation_popup.tscn" id="109_t5kpo"]
 [ext_resource type="Texture2D" uid="uid://b5bma8wo0rn86" path="res://UI/Icons/icons3.png" id="111_vjgyh"]
 [ext_resource type="Theme" uid="uid://dnsbtrrtp1vwi" path="res://Red_button.tres" id="117_1iygd"]
 [ext_resource type="Theme" uid="uid://die2jiitjcnwu" path="res://Green_button.tres" id="117_g5xqc"]
@@ -934,6 +936,8 @@ ui_building_popup = ExtResource("104_3exxq")
 ui_animal_popup = ExtResource("73_mv3dj")
 ui_mgmt_popup = ExtResource("90_kjtd0")
 ui_peep_group_popup = ExtResource("83_4rd2l")
+ui_animal_info_popup = ExtResource("109_pw0td")
+ui_confirmation_popup = ExtResource("109_t5kpo")
 
 [node name="InfoBorder" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -1862,6 +1866,12 @@ toggle_mode = true
 icon = ExtResource("123_xkvoa")
 icon_alignment = 1
 expand_icon = true
+
+[node name="AnimalInfoButton" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingAnimalInfoContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Animal info"
 
 [node name="BulldozingSceneryInfoContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer"]
 unique_name_in_owner = true

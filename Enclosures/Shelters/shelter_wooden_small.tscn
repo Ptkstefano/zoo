@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1crdigrxqao5"]
+[gd_scene load_steps=8 format=3 uid="uid://d1crdigrxqao5"]
 
-[ext_resource type="Script" path="res://Enclosures/Shelters/building_shelter.gd" id="1_5dxfw"]
+[ext_resource type="Script" uid="uid://ir7ncjdcjern" path="res://Enclosures/Shelters/building_shelter.gd" id="1_5dxfw"]
 [ext_resource type="Texture2D" uid="uid://cdqpyjp0rkq0n" path="res://Enclosures/Shelters/wooden-shelter1.png" id="1_kw0a5"]
 [ext_resource type="Texture2D" uid="uid://spni6kvjwmxc" path="res://Enclosures/Shelters/wooden-shelter2.png" id="2_a2mfp"]
 [ext_resource type="Texture2D" uid="uid://or2ypx6sfjqo" path="res://Enclosures/Shelters/wooden-shelter-pillar.png" id="4_ckvkd"]
 [ext_resource type="Texture2D" uid="uid://6gf5e1s8mm8q" path="res://Enclosures/Shelters/wooden-shelter4.png" id="4_k1b82"]
+[ext_resource type="PackedScene" uid="uid://dkhxs71sdajj2" path="res://UI/detectable.tscn" id="6_mkl2e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8paum"]
+radius = 38.0526
 
 [node name="shelter-wooden-small" type="Node2D"]
 y_sort_enabled = true
@@ -33,6 +37,7 @@ centered = false
 offset = Vector2(0, -10.5)
 
 [node name="Wooden-shelter-pillar2" type="Sprite2D" parent="Pillars"]
+z_index = -1
 texture_filter = 1
 position = Vector2(-60, -33)
 texture = ExtResource("4_ckvkd")
@@ -40,7 +45,7 @@ centered = false
 offset = Vector2(0, -10.5)
 
 [node name="Wooden-shelter-pillar3" type="Sprite2D" parent="Pillars"]
-z_index = 2
+z_index = -1
 texture_filter = 1
 position = Vector2(52, -32)
 texture = ExtResource("4_ckvkd")
@@ -65,7 +70,12 @@ position = Vector2(7, -32)
 position = Vector2(23, -18)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 6
 texture_filter = 1
 position = Vector2(0, -30)
 texture = ExtResource("4_k1b82")
+
+[node name="Detectable" parent="." instance=ExtResource("6_mkl2e")]
+position = Vector2(15, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detectable"]
+shape = SubResource("CircleShape2D_8paum")

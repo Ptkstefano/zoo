@@ -61,10 +61,9 @@ theme_override_constants/separation = 25
 [node name="TabContainer" type="TabContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 4
+current_tab = 0
 
 [node name="Info" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
-visible = false
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme = ExtResource("5_tarbw")
@@ -133,6 +132,13 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "Animal wants to mate"
+
+[node name="AnimalInfoButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Info/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 10
+text = "Animal info"
 
 [node name="Needs" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 visible = false
@@ -291,6 +297,7 @@ theme_override_colors/font_color = Color(0.463584, 0.679404, 0.436323, 1)
 text = "Satisfied with enclosure size"
 
 [node name="Debug" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 20

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cvmurmcktg0lh"]
 
 [ext_resource type="Script" uid="uid://mrm4g02anki" path="res://animal_feed.gd" id="1_cnokl"]
-[ext_resource type="Texture2D" uid="uid://xbhjh8lx4squ" path="res://AnimalFeed/animal_feed.png" id="2_vprf6"]
+[ext_resource type="Texture2D" uid="uid://xbhjh8lx4squ" path="res://Feed/animal_feed.png" id="2_vprf6"]
 
 [node name="AnimalFeed" type="Node2D"]
 y_sort_enabled = true
