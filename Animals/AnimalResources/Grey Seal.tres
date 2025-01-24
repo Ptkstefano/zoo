@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="animal_resource" load_steps=3 format=3 uid="uid://b0qrm0kwb5nqu"]
+
+[ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="2_notk4"]
+[ext_resource type="Texture2D" uid="uid://w0n4fbgk53s2" path="res://Animals/sprites/grey_seal.png" id="2_oudqo"]
+
+[resource]
+script = ExtResource("2_notk4")
+name = "Grey Seal"
+species_id = 15
+cost = 200.0
+texture = ExtResource("2_oudqo")
+feed = 0
+shadow_scale = 1.5
+sprite_y_offset = 2
+animation_speed_scale = 0.3
+base_speed = 5.0
+run_speed = 6.0
+can_swim = true
+animal_rating = 125
+months_of_pregnancy = 22
+percentage_of_will_to_mate = 5
+months_to_adulthood = 60
+months_of_expected_lifetime = 840
+terrain_preference = Dictionary[int, float]({
+2: 5.0,
+4: 75.0
+})
+terrain_dislike = Array[int]([])
+needs_water = true
+minimum_habitat_size = 20
+minimum_cells_per_animal = 5
+minimum_vegetation_coverage = 0.25
+maximum_vegetation_coverage = 2.0
+minimum_herd_size = 5
+favorite_tree = 8
+minimum_shelter_level = 0
+minimum_fence_level = 1
+possible_sprite_variations = 1
+separate_gender_sprites = false
+can_be_albino = false

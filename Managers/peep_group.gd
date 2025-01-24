@@ -147,6 +147,8 @@ func _ready() -> void:
 	
 	$AnimalWaitTimer.timeout.connect(on_animal_wait_timer_timeout)
 	
+	$StuckTimer.timeout.connect(check_if_group_stuck)
+	
 	SignalBus.path_erased.connect(on_path_erased)
 	
 	#$VisibleOnScreenNotifier2D.screen_entered.connect(on_visibility_entered)
@@ -216,6 +218,7 @@ func _process(delta: float) -> void:
 	if group_state in move_states:
 		move_toward_direction(direction, delta)
 		z_index_value = Helpers.get_current_tile_z_index(global_position)
+		
 		for peep in peeps:
 			peep.z_index = z_index_value
 			peep.global_position = global_position + peep.position_offset
@@ -223,7 +226,7 @@ func _process(delta: float) -> void:
 			
 		if agent.is_navigation_finished():
 			on_agent_target_reached()
-
+			
 func on_visibility_entered():
 		for peep in peeps:
 			peep.visible = true
@@ -664,6 +667,16 @@ func search_toilet():
 func on_path_erased(cell):
 	if cell == TileMapRef.local_to_map(global_position):
 		reset_state()
+		
+## I can trigger this function arbitrarily on both working agents and out of bounds agents
+func check_if_group_stuck():
+	## I'm correctly getting the RID from my NavigationRegion2D node
+	var tilemap_rid = TileMapRef.get_navigation_rid()
+	if tilemap_rid:
+		## This always returns Vector2(0,0)
+		var distance_to_tilemap = NavigationServer2D.map_get_closest_point(tilemap_rid, global_position)
+		if distance_to_tilemap is Vector2 and distance_to_tilemap > Vector2.ZERO:
+			reset_state()
 		
 func reset_state():
 	change_state(group_states.STOPPED)

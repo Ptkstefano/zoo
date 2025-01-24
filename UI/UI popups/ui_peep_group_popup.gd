@@ -22,6 +22,8 @@ func _ready():
 	peepGroupShopLabel.text = 'Target shop: ' + str(peep_group_node.target_shop)
 	%DebugList.add_child(peepGroupShopLabel)
 	
+	%ResetStuckDebug.pressed.connect(peep_group_node.check_if_group_stuck)
+	
 	%PeepGroupId.text = 'Peep group ' + str(peep_group_node.id)
 	
 	for child in %min_product_level.get_children():

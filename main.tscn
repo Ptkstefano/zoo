@@ -828,6 +828,7 @@ ui_shelter_element = ExtResource("52_30626")
 position = Vector2(-1268, 657)
 
 [node name="PeepNavigationRegion" type="NavigationRegion2D" parent="."]
+unique_name_in_owner = true
 navigation_polygon = SubResource("NavigationPolygon_mw1lm")
 script = ExtResource("61_8dedt")
 

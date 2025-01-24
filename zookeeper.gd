@@ -162,7 +162,6 @@ func on_destination_enclosure_changed():
 		reset_staff.emit()
 
 func reset_state():
-	
 	destination_enclosure = null
 	is_inside_enclosure = false
 	change_state(zookeeper_states.STOPPED)

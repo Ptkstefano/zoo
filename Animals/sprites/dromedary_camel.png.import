@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ybdr1a0foq0c"
-path="res://.godot/imported/icons3.png-2bae6778539f873c1c76c21164c1097b.ctex"
+uid="uid://dpdy3nvq5d7nj"
+path="res://.godot/imported/dromedary_camel.png-5ced9747c36afdce18681aeab05b3835.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animals/AnimalResources/icons3.png"
-dest_files=["res://.godot/imported/icons3.png-2bae6778539f873c1c76c21164c1097b.ctex"]
+source_file="res://Animals/sprites/dromedary_camel.png"
+dest_files=["res://.godot/imported/dromedary_camel.png-5ced9747c36afdce18681aeab05b3835.ctex"]
 
 [params]
 

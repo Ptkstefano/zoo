@@ -8,3 +8,4 @@ func _ready() -> void:
 
 func update_navigation_region():
 	bake_navigation_polygon()
+	TileMapRef.set_navigation_rid(get_rid())

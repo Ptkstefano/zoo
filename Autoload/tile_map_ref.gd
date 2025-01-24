@@ -1,5 +1,6 @@
 extends TileMapLayer
 
+var navigation_rid
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -41,3 +42,9 @@ func get_path_layer_cells():
 	var path_layer = main_node.get_node("TileMap").get_node('PathLayer') as TileMapLayer
 	var path_cells = path_layer.get_used_cells()
 	return path_cells
+
+func set_navigation_rid(rid):
+	navigation_rid = rid
+
+func get_navigation_rid():
+	return navigation_rid

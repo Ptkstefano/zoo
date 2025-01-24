@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxx4isu7qnmxy"
-path="res://.godot/imported/highlight_tiles.png-a8be546d9679927e0550e2e9606efa92.ctex"
+uid="uid://sjgfw5lubqtl"
+path="res://.godot/imported/dromedary_camel_cub.png-9307ba125df193b4910fcbea8784558f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animals/AnimalResources/highlight_tiles.png"
-dest_files=["res://.godot/imported/highlight_tiles.png-a8be546d9679927e0550e2e9606efa92.ctex"]
+source_file="res://Animals/sprites/dromedary_camel_cub.png"
+dest_files=["res://.godot/imported/dromedary_camel_cub.png-9307ba125df193b4910fcbea8784558f.ctex"]
 
 [params]
 
