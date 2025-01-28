@@ -58,8 +58,8 @@ func build_path(coordinates, atlas_y : int):
 				FinanceManager.remove(10.0, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
 				SignalBus.money_tooltip.emit(10.0, false, TileMapRef.map_to_local(coordinate))
 				Effects.smoke2(TileMapRef.map_to_local(coordinate))
-				AudioManager.play_stream('sfx_path_placed')
-				await get_tree().create_timer(0.01).timeout
+				AudioManager.play_path_placed()
+				await get_tree().create_timer(0.05).timeout
 		
 		build_intersections(coordinate, atlas_y)
 	for neighbor in all_neighbors:
@@ -78,7 +78,7 @@ func remove_path(coordinates):
 			continue
 		path_layer.set_cell(coordinate, 0, Vector2(-1,-1))
 		Effects.smoke(TileMapRef.map_to_local(coordinate))
-		await get_tree().create_timer(0.01).timeout
+		await get_tree().create_timer(0.025).timeout
 		if coordinate in path_coordinates:
 			SignalBus.path_erased.emit(coordinate)
 			path_coordinates.erase(coordinate)

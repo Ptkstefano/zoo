@@ -14,3 +14,4 @@ func start():
 	
 func on_audio_finished():
 	await get_tree().create_timer(60).timeout
+	start()

@@ -270,12 +270,14 @@ func change_state(state):
 		for peep in peeps:
 			peep.change_state(1)
 	elif state == group_states.OBSERVING:
+		$Detector/CollisionShape2D.shape.radius = 150
 		$StateTimer.wait_time = 20
 		$StateTimer.start()
 		for peep in peeps:
 			peep.change_state(state)
 	elif state == group_states.WAITING_ANIMAL:
 		$AnimalWaitTimer.start()
+		$Detector/CollisionShape2D.shape.radius = 250
 		for peep in peeps:
 			peep.change_state(0)
 	elif state == group_states.WALKING:
@@ -437,6 +439,7 @@ func on_decay_timer_timeout():
 	needs_toilet -= toilet_drain_rate
 
 func on_animal_wait_timer_timeout():
+	$Detector/CollisionShape2D.shape.radius = 150
 	if group_desired_destinations.size() > 0:
 		group_desired_destinations.erase(group_desired_destinations.front())
 	change_state(group_states.STOPPED)

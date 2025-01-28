@@ -361,8 +361,7 @@ func on_agent_waypoint_reached(d):
 	direction = (agent.get_next_path_position() - global_position).normalized()
 
 func remove_animal():
-	animal_removed.emit(self)
-	queue_free()
+	animal_removed.emit(self) ## Get's sent to enclosure and animal manager
 
 func on_swim_start():
 	is_swimming = true

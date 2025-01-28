@@ -82,3 +82,4 @@ func spawn_cub(parent : Animal):
 
 func despawn_animal(animal):
 	animal_count -= 1
+	animal.queue_free()

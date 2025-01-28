@@ -71,6 +71,7 @@ func place_tree(press_start_pos, tree_res, id):
 	var tree = tree_scene.instantiate()
 	tree.tree_res = tree_res
 	tree.global_position = press_start_pos
+	AudioManager.play_tree_placed()
 	if !id:
 		tree.id = ZooManager.generate_scenery_id()
 		FinanceManager.remove(tree_res.cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
@@ -88,8 +89,10 @@ func place_tree(press_start_pos, tree_res, id):
 	
 func place_vegetation(press_start_pos, vegetation_res : vegetation_resource, id):
 	var vegetation = vegetation_scene.instantiate()
+	
 	vegetation.vegetation_res = vegetation_res
 	vegetation.global_position = press_start_pos
+	AudioManager.play_vegetation_placed()
 	if !id:
 		if !FinanceManager.is_amount_available(vegetation_res.cost):
 			SignalBus.tooltip.emit('Not enough money')

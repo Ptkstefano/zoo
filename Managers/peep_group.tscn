@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dkhxs71sdajj2" path="res://UI/detectable.tscn" id="4_uvtqo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cnf5d"]
-radius = 153.326
+radius = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d7x74"]
 radius = 13.0384
@@ -49,7 +49,7 @@ wait_time = 10.0
 autostart = true
 
 [node name="AnimalWaitTimer" type="Timer" parent="."]
-wait_time = 20.0
+wait_time = 40.0
 one_shot = true
 
 [node name="ItemHoldTimer" type="Timer" parent="."]

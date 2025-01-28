@@ -43,7 +43,8 @@ func change_state(state):
 	if state == zookeeper_states.FEEDING:
 		feed_enclosure()
 	if state == zookeeper_states.MOVING_TOWARDS_DEAD_ANIMAL:
-		destination_updated.emit(destination_enclosure.dead_animals.front().global_position)
+		if is_instance_valid(destination_enclosure.dead_animals.front()):
+			destination_updated.emit(destination_enclosure.dead_animals.front().global_position)
 	
 		
 func get_new_task():
@@ -132,7 +133,6 @@ func target_unreacheable():
 
 func check_for_enclosure_work():
 	if !is_instance_valid(destination_enclosure):
-		print('INVALID INSTANCE')
 		reset_staff.emit()
 		return
 	if destination_enclosure.animal_feed:
