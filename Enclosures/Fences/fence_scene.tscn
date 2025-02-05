@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7x3g6837s0x8"]
+[gd_scene load_steps=5 format=3 uid="uid://c7x3g6837s0x8"]
 
 [ext_resource type="Script" uid="uid://jgshfkkg77rc" path="res://Enclosures/Fences/enclosureFence.gd" id="1_fnwc4"]
+[ext_resource type="PackedScene" uid="uid://dkhxs71sdajj2" path="res://UI/detectable.tscn" id="3_6j1v6"]
 [ext_resource type="Texture2D" uid="uid://48gmb1u25t2f" path="res://Enclosures/Fences/fence_sheet.png" id="3_p5py8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_023yx"]
+radius = 13.0384
 
 [node name="Fence" type="Node2D"]
 script = ExtResource("1_fnwc4")
@@ -13,3 +17,12 @@ texture = ExtResource("3_p5py8")
 hframes = 4
 vframes = 12
 frame = 47
+
+[node name="ClickDetector" parent="." instance=ExtResource("3_6j1v6")]
+visible = false
+position = Vector2(0, -8)
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickDetector"]
+shape = SubResource("CircleShape2D_023yx")

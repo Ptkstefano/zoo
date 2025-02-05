@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="animal_resource" load_steps=3 format=3 uid="uid://ludbawk1bcoe"]
+
+[ext_resource type="Texture2D" uid="uid://v6oksek6ba8l" path="res://Animals/sprites/alaskan_moose.png" id="1_offvu"]
+[ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="2_ebj7x"]
+
+[resource]
+script = ExtResource("2_ebj7x")
+name = "Alaskan Moose"
+species_id = 23
+cost = 650.0
+texture = ExtResource("1_offvu")
+cub_texture = ExtResource("1_offvu")
+feed = 1
+shadow_scale = 1.8
+sprite_y_offset = 2
+animation_speed_scale = 0.5
+base_speed = 15.0
+run_speed = 20.0
+can_swim = false
+animal_rating = 110
+months_of_pregnancy = 7
+percentage_of_will_to_mate = 5
+months_to_adulthood = 60
+months_of_expected_lifetime = 240
+terrain_preference = Dictionary[int, float]({
+2: 70.0,
+3: 20.0
+})
+terrain_dislike = Array[int]([1, 4])
+needs_water = true
+minimum_habitat_size = 100
+minimum_cells_per_animal = 30
+minimum_vegetation_coverage = 0.35
+maximum_vegetation_coverage = 2.0
+minimum_herd_size = 2
+favorite_tree = 7
+minimum_shelter_level = 0
+minimum_fence_level = 3
+possible_sprite_variations = 1
+separate_gender_sprites = false
+can_be_albino = false

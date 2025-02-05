@@ -26,5 +26,4 @@ max_polyphony = 10
 
 [node name="ConstructionPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamWAV_11u2p")
-max_polyphony = 10
-bus = &"SFX"
+max_polyphony = 50

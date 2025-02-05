@@ -18,7 +18,7 @@ func _ready():
 	else:
 		%GenderIcon.texture = female_icon
 	
-	%AnimalName.text = animal_scene.animal_res.name
+	%AnimalName.text = str(animal_scene.animal_res.name) + ' #' + str(animal_scene.id)
 	
 	%DebugPathfinding.pressed.connect(animal_scene.debug_toggle_pathfinding_draw)
 	%DebugDie.pressed.connect(animal_scene.die)

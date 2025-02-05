@@ -370,6 +370,7 @@ func search_for_feed():
 	if is_instance_valid(enclosure.animal_feed):
 		agent.target_position = enclosure.animal_feed.global_position
 	else:
+		enclosure.add_to_work_queue()
 		change_state(ANIMAL_STATES.IDLE)
 		
 func search_for_rest():

@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://b020lesiynlbr"]
 
-[ext_resource type="Script" uid="uid://cpomq5l52hk2p" path="res://Scripts/enclosure.gd" id="1_nv64f"]
+[ext_resource type="Script" path="res://Scripts/enclosure.gd" id="1_nv64f"]
 [ext_resource type="Texture2D" uid="uid://bxvy3xim6yfi4" path="res://Enclosures/9way-tile.png" id="2_iqemd"]
 [ext_resource type="Script" uid="uid://bgys6gjhxm41e" path="res://Managers/fence_manager.gd" id="3_guvt6"]
 [ext_resource type="PackedScene" uid="uid://c7x3g6837s0x8" path="res://Enclosures/Fences/fence_scene.tscn" id="4_nke03"]

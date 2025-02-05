@@ -23,7 +23,11 @@ signal clear_highlight ## Received by highlightLayer
 signal update_peeps_cached_positions ## Emitted by: save_manager, received by peepManager
 signal update_animals_cached_positions
 
+signal move_camera_to ## Received by the camera. Needs global position as argument
+
 signal enclosure_removed  ## Emitted by: enclosure_scene
+
+signal hire_staff ## Emitted by mgmt UI to staffManager
 
 signal save_game
 signal game_started

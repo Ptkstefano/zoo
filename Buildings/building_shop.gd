@@ -64,6 +64,9 @@ func buy(product_id : int, peep_count : int) -> bool:
 		
 		FinanceManager.add(available_products[product_id].current_price * peep_count, IdRefs.PAYMENT_ADD_TYPES.PRODUCT)
 		
+		if $VisibleOnScreenNotifier2D.is_on_screen():
+			SoundscapeManager.play_cash_register()
+		
 		stats_updated.emit()
 		
 		if available_products[product_id].current_stock < 10:

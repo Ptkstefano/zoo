@@ -5,9 +5,6 @@ class_name InputController
 var is_pressing : bool = false
 var is_pressing_middle = false
 
-var press_start_gpos : Vector2
-var press_current_gpos : Vector2
-
 var press_start_lpos : Vector2
 var press_current_lpos : Vector2
 var previous_current_lpos : Vector2
@@ -93,6 +90,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.is_pressed():
 			is_pressing = true
 			touch_start_global_pos = get_canvas_transform().affine_inverse().translated(event.position/$"../Camera2D".zoom).origin ## This code translates the position of the touch to global
+			touch_current_global_pos = get_canvas_transform().affine_inverse().translated(event.position/$"../Camera2D".zoom).origin
 			touch_start_local_pos = event.position
 			touch_current_local_pos = touch_start_local_pos
 			touch_previous_local_pos = touch_start_local_pos
@@ -278,9 +276,10 @@ func handle_selection(event):
 	if event is InputEventScreenTouch:
 		if event.is_released():
 			if current_tool == TOOLS.NONE:
-				$DetectableCollider.set_deferred('global_position', touch_start_global_pos)
-				await get_tree().create_timer(0.1).timeout
-				$DetectableCollider.set_deferred('global_position',Vector2(9999,9999))
+				if !is_screen_drag():
+					$DetectableCollider.set_deferred('global_position', touch_start_global_pos)
+					await get_tree().create_timer(0.1).timeout
+					$DetectableCollider.set_deferred('global_position',Vector2(9999,9999))
 				#var overlapping_areas = $DetectableCollider.call_deferred('get_overlapping_areas')
 				#if overlapping_areas.size() > 0:
 					#return true
@@ -457,3 +456,10 @@ func border_camera_movement():
 		camera_direction.y = 1
 		
 	move_camera_in_direction.emit(camera_direction)
+
+func is_screen_drag():
+	## Defines how far the player can drag the screen and still detect clickable elements
+	if touch_start_global_pos.distance_to(touch_current_global_pos) > 10:
+		return true
+	else:
+		return false

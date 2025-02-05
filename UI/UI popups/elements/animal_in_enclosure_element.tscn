@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx40coqo4ygks"]
+
+[ext_resource type="Texture2D" uid="uid://pc30rlsi2umk" path="res://UI/Icons/gender1.png" id="1_s54qn"]
+[ext_resource type="Script" path="res://UI/UI popups/elements/animal_in_enclosure_element.gd" id="1_xyiyn"]
+[ext_resource type="Texture2D" uid="uid://c7elyqd6wdtkr" path="res://UI/Icons/mag-glass.png" id="2_xyiyn"]
+[ext_resource type="Texture2D" uid="uid://bxp117rrpsexg" path="res://UI/Icons/gender2.png" id="3_lqmgb"]
+
+[node name="AnimalInEnclosureElement" type="PanelContainer"]
+script = ExtResource("1_xyiyn")
+gender_icon_textures = Array[Texture]([ExtResource("1_s54qn"), ExtResource("3_lqmgb")])
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="AnimalNameLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Elephant 1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Age: "
+
+[node name="AgeLabel" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "12"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/separation = 25
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="GenderTexture" type="TextureRect" parent="HBoxContainer/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_s54qn")
+
+[node name="ReleaseAnimalButton" type="Button" parent="HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Release animal"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer/ReleaseAnimalButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GoToAnimalButton" type="Button" parent="HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/HBoxContainer/GoToAnimalButton"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -45.0
+offset_right = 45.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xyiyn")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/HBoxContainer/GoToAnimalButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

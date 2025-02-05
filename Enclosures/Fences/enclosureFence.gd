@@ -1,5 +1,9 @@
 extends Node2D
 
+class_name EnclosureFence
+
+var enclosure_scene
+
 var sprite_x = 0
 var sprite_y = 0
 
@@ -22,10 +26,12 @@ func update_fence_instance(enclosure_res):
 
 
 func make_entrance():
+	$ClickDetector.monitoring = true
 	$Sprite2D.frame_coords = Vector2($Sprite2D.frame_coords.x, $Sprite2D.frame_coords.y + 1)
 	return sprite_x
 
 func remove_entrance():
+	$ClickDetector.monitoring = false
 	$Sprite2D.frame_coords = Vector2($Sprite2D.frame_coords.x, $Sprite2D.frame_coords.y - 1)
 
 func open_door():

@@ -166,6 +166,7 @@ func place_entrance(cell):
 	
 	entrance_node = fence_instances[str(cell.x) + ',' + str(cell.y)]
 	var entrance_cell = entrance_node.make_entrance()
+	entrance_node.enclosure_scene = get_parent()
 	if entrance_cell == 0:
 		return Vector2(cell.x, cell.y - 1)
 	if entrance_cell == 1:

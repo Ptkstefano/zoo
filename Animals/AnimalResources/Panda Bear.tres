@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="animal_resource" load_steps=3 format=3 uid="uid://c00v5iehbxapf"]
+[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://c00v5iehbxapf"]
 
+[ext_resource type="Texture2D" uid="uid://cx8ymeirxfgpd" path="res://Animals/sprites/panda_bear_cub.png" id="1_5dec7"]
 [ext_resource type="Texture2D" uid="uid://c4o5j8pddpq0b" path="res://Animals/sprites/panda_bear.png" id="1_73pkq"]
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="2_cdiay"]
 
@@ -9,7 +10,7 @@ name = "Panda Bear"
 species_id = 17
 cost = 850.0
 texture = ExtResource("1_73pkq")
-cub_texture = ExtResource("1_73pkq")
+cub_texture = ExtResource("1_5dec7")
 feed = 3
 shadow_scale = 1.8
 sprite_y_offset = 6

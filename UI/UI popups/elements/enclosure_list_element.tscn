@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpubyrl6mw1pq"]
+
+[ext_resource type="Script" path="res://UI/UI popups/elements/enclosure_list_element.gd" id="1_exkbl"]
+[ext_resource type="Texture2D" uid="uid://c7elyqd6wdtkr" path="res://UI/Icons/mag-glass.png" id="1_oidns"]
+
+[node name="EnclosureListElement" type="PanelContainer"]
+offset_right = 798.0
+offset_bottom = 110.0
+script = ExtResource("1_exkbl")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EnclosureIDLabel" type="Label" parent="MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Enclosure #"
+
+[node name="AnimalSpeciesLabel" type="Label" parent="MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Animal Species:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AnimalCountLabel" type="Label" parent="MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Number of animals:"
+
+[node name="AwaitingVisitLabel" type="Label" parent="MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="GoToEnclosureButton" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/GoToEnclosureButton"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -45.0
+offset_right = 45.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_oidns")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/GoToEnclosureButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

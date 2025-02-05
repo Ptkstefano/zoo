@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://cqqot0eu3qu67"]
+
+[ext_resource type="Texture2D" uid="uid://08ty1m3m0ue4" path="res://Animals/sprites/cassowary_cub.png" id="1_12wcf"]
+[ext_resource type="Texture2D" uid="uid://bkwbasbhtk5n2" path="res://Animals/sprites/cassowary.png" id="1_gehfp"]
+[ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="2_71avn"]
+
+[resource]
+script = ExtResource("2_71avn")
+name = "Cassowary"
+species_id = 16
+cost = 100.0
+texture = ExtResource("1_gehfp")
+cub_texture = ExtResource("1_12wcf")
+feed = 0
+shadow_scale = 1.0
+sprite_y_offset = 0
+animation_speed_scale = 1.2
+base_speed = 15.0
+run_speed = 18.0
+can_swim = false
+animal_rating = 100
+months_of_pregnancy = 1
+percentage_of_will_to_mate = 6
+months_to_adulthood = 36
+months_of_expected_lifetime = 600
+terrain_preference = Dictionary[int, float]({
+0: 25.0,
+1: 25.0,
+2: 10.0
+})
+terrain_dislike = Array[int]([3])
+needs_water = true
+minimum_habitat_size = 80
+minimum_cells_per_animal = 10
+minimum_vegetation_coverage = 0.35
+maximum_vegetation_coverage = 1.5
+minimum_herd_size = 3
+favorite_tree = 8
+minimum_shelter_level = 0
+minimum_fence_level = 3
+possible_sprite_variations = 1
+separate_gender_sprites = false
+can_be_albino = false

@@ -91,10 +91,6 @@ func instantiate_peep_group(data):
 	
 func on_peep_count(count):
 	peep_count += count
-
-func generate_peep_destination():
-	## DEPRECATED
-	return path_manager.generate_peep_destination()
 	
 func debug_clear_peeps():
 	for peep_group in get_children():

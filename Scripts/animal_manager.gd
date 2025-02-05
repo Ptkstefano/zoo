@@ -38,6 +38,10 @@ func spawn_animal(coordinate, animal_res : animal_resource, saved_data, is_spawn
 	## Find what enclosure the player wants to add an animal to
 	var cell = TileMapRef.local_to_map(coordinate)
 	var found_enclosure = enclosure_manager.get_enclosure_by_cell(cell)
+	if !animal_res:
+		print('Problem loading animal')
+		print(saved_data)
+	
 	if !found_enclosure:
 		SignalBus.tooltip.emit('Animal requires enclosure')
 		return
@@ -59,6 +63,7 @@ func spawn_animal(coordinate, animal_res : animal_resource, saved_data, is_spawn
 	if saved_data:
 		spawned_animal.id = saved_data.id
 	else:
+		## This means animal was bought
 		if !is_spawned_infant:
 			if !FinanceManager.is_amount_available(animal_res.cost):
 				SignalBus.tooltip.emit('Not enough money')

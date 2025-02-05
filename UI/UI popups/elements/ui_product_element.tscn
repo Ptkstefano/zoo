@@ -121,7 +121,7 @@ mouse_filter = 2
 
 [node name="Minus" type="Button" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(75, 75)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 24
@@ -148,7 +148,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_f6yke")
 
 [node name="Plus" type="Button" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(75, 75)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

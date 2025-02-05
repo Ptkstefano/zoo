@@ -9,8 +9,6 @@ enum PEEP_THOUGHTS {
 	FILLED_NEEDS,
 	ATE_AT_RESTAURANT,
 	ONLY_SAW_HAPPY_ANIMALS,
-	
-	## Negative
 	MISSED_ANIMAL,
 	NO_TOILET,
 	NO_FOOD,
@@ -22,7 +20,8 @@ enum PEEP_THOUGHTS {
 	NO_FOOD_SHOP_IN_RANGE,
 	SAW_UNHAPPY_ANIMAL,
 	SEEN_FEW_ANIMALS,
-	SAW_DEAD_ANIMAL
+	SAW_DEAD_ANIMAL,
+	GREAT_VALUE_ENTRANCE,
 }
 
 var peep_thoughts = {
@@ -33,7 +32,8 @@ var peep_thoughts = {
 	PEEP_THOUGHTS.GREAT_VALUE_FOOD: PeepThought.new("The food we bought was of great value!", 0.5, true),
 	PEEP_THOUGHTS.FILLED_NEEDS: PeepThought.new("We were confortable in our visit", 0.5, true),
 	PEEP_THOUGHTS.ATE_AT_RESTAURANT:  PeepThought.new("We ate at a good restaurant", 0.5, true),
-	PEEP_THOUGHTS.ONLY_SAW_HAPPY_ANIMALS:  PeepThought.new("All the animals were happy with their habitats!", 0.5, true),
+	PEEP_THOUGHTS.ONLY_SAW_HAPPY_ANIMALS:  PeepThought.new("All the animals seemed happy!", 0.5, true),
+	PEEP_THOUGHTS.GREAT_VALUE_ENTRANCE: PeepThought.new("The entrance price was really good!", 0.5, true),
 	## Negative
 	PEEP_THOUGHTS.MISSED_ANIMAL: PeepThought.new("We did not see an animal we came to see", -0.5, false),
 	PEEP_THOUGHTS.NO_TOILET: PeepThought.new("We could not find a toilet", -2, false),
@@ -45,7 +45,7 @@ var peep_thoughts = {
 	PEEP_THOUGHTS.NO_DESIRABLE_QUALITY: PeepThought.new("We found no products we wanted to buy", -0.25, false),
 	PEEP_THOUGHTS.NO_FOOD_SHOP_IN_RANGE: PeepThought.new("All eateries were too f/ar away from us", -0.25, false),
 	PEEP_THOUGHTS.SAW_UNHAPPY_ANIMAL: PeepThought.new("We saw an unhappy animal", -1.5, false),
-	PEEP_THOUGHTS.SEEN_FEW_ANIMALS: PeepThought.new("We came here to see more animals than we did", -1.5, false),
+	PEEP_THOUGHTS.SEEN_FEW_ANIMALS: PeepThought.new("We saw too few animals for a zoo trip", -1.5, false),
 	PEEP_THOUGHTS.SAW_DEAD_ANIMAL: PeepThought.new("We saw a dead animal", -1, false)
 }
 

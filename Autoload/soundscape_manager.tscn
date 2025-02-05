@@ -1,0 +1,87 @@
+[gd_scene load_steps=15 format=3 uid="uid://ci36cpikwpucj"]
+
+[ext_resource type="Script" path="res://soundscape_manager.gd" id="1_edib3"]
+[ext_resource type="AudioStream" uid="uid://c5h7yg2j03504" path="res://Sfx/ambiance_normalized/Crowd_null.ogg" id="2_ifl8v"]
+[ext_resource type="AudioStream" uid="uid://bjspvmbe3ixu4" path="res://Sfx/ambiance_normalized/Crowd_minimal.ogg" id="3_m66gm"]
+[ext_resource type="AudioStream" uid="uid://gwvvdx381bx3" path="res://Sfx/ambiance_normalized/Crowd_low.ogg" id="4_1um24"]
+[ext_resource type="AudioStream" uid="uid://jc5l8e247yia" path="res://Sfx/ambiance_normalized/Crowd_medium.ogg" id="5_wgnsu"]
+[ext_resource type="AudioStream" uid="uid://b5p3tgtgkwo2c" path="res://Sfx/ambiance_normalized/Crowd_busy.ogg" id="6_chcet"]
+[ext_resource type="AudioStream" uid="uid://cm7gt2crix75u" path="res://Sfx/ambiance_normalized/CloseUp_grassy.ogg" id="7_mktw6"]
+[ext_resource type="AudioStream" uid="uid://b5yagdc40w3om" path="res://Sfx/ambiance_normalized/CloseUp_lake.ogg" id="8_bfncw"]
+[ext_resource type="AudioStream" uid="uid://blhy3fx2hbcbg" path="res://Sfx/cash_register.ogg" id="8_yn6rc"]
+[ext_resource type="AudioStream" uid="uid://kfww4sqrh4h2" path="res://Sfx/ambiance_normalized/CloseUp_woods.ogg" id="9_cwhvw"]
+[ext_resource type="AudioStream" uid="uid://dyavl3sc5bb2k" path="res://Sfx/ambiance_normalized/CloseUp_regular.ogg" id="10_62g51"]
+[ext_resource type="AudioStream" uid="uid://4dt1jsq77tgi" path="res://Sfx/ambiance_normalized/ambiance_general.ogg" id="10_d4po3"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_rm7hr"]
+clip_count = 5
+clip_0/name = &"Crowd Null"
+clip_0/stream = ExtResource("2_ifl8v")
+clip_0/auto_advance = 0
+clip_1/name = &"Crowd Minimal"
+clip_1/stream = ExtResource("3_m66gm")
+clip_1/auto_advance = 0
+clip_2/name = &"Crowd Low"
+clip_2/stream = ExtResource("4_1um24")
+clip_2/auto_advance = 0
+clip_3/name = &"Crowd Medium"
+clip_3/stream = ExtResource("5_wgnsu")
+clip_3/auto_advance = 0
+clip_4/name = &"Crowd Busy"
+clip_4/stream = ExtResource("6_chcet")
+clip_4/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 2,
+"fade_mode": 2,
+"from_time": 1,
+"to_time": 2
+}
+}
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_jhse8"]
+clip_count = 4
+clip_0/name = &"Close Up Grassy"
+clip_0/stream = ExtResource("7_mktw6")
+clip_0/auto_advance = 0
+clip_1/name = &"Close Up Lake"
+clip_1/stream = ExtResource("8_bfncw")
+clip_1/auto_advance = 0
+clip_2/name = &"Close Up Woods"
+clip_2/stream = ExtResource("9_cwhvw")
+clip_2/auto_advance = 0
+clip_3/name = &"Close Up Regular"
+clip_3/stream = ExtResource("10_62g51")
+clip_3/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 2,
+"fade_mode": 2,
+"from_time": 1,
+"hold_previous": true,
+"to_time": 0
+}
+}
+
+[node name="SoundscapeManager" type="Node"]
+script = ExtResource("1_edib3")
+
+[node name="CrowdPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamInteractive_rm7hr")
+
+[node name="VegetationPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamInteractive_jhse8")
+bus = &"CloseUp_Ambiance"
+
+[node name="GeneralAmbiancePlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("10_d4po3")
+volume_db = -16.0
+
+[node name="CashRegister" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_yn6rc")
+volume_db = 8.0
+max_polyphony = 10
+bus = &"CloseUp"

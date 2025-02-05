@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cuiky1io0hfof"]
 
-[ext_resource type="Script" uid="uid://didng4v735gvg" path="res://Scenery/Trees/tree_scene.gd" id="1_1udct"]
+[ext_resource type="Script" path="res://Scenery/Trees/tree_scene.gd" id="1_1udct"]
 [ext_resource type="Texture2D" uid="uid://bd8col15c5qwk" path="res://Scenery/Trees/trees-sheet.png" id="2_tkqex"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c2iwc"]
@@ -25,3 +25,5 @@ collision_mask = 65536
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
 shape = SubResource("CircleShape2D_c2iwc")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

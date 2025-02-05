@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cl4o0ja0kt0i1"]
 
-[ext_resource type="Script" uid="uid://cq0dki5ppavwp" path="res://Scripts/animal.gd" id="1_wogma"]
+[ext_resource type="Script" path="res://Scripts/animal.gd" id="1_wogma"]
 [ext_resource type="Texture2D" uid="uid://d3x8tfwdklc14" path="res://UI/Icons/smiles2.png" id="2_7guyn"]
 [ext_resource type="Texture2D" uid="uid://5gmndyyv30v6" path="res://Sprites/shadow.png" id="2_anpbx"]
 [ext_resource type="Texture2D" uid="uid://dmhx2sfai1dmw" path="res://Animals/smiles_good.png" id="2_m7ux4"]

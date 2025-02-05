@@ -10,7 +10,7 @@ var enclosure_cells : Array[Vector2i] = []
 var enclosure_adjacent_path_cells = []
 var enclosure_view_positions = []
 
-var enclosure_animals = []
+var enclosure_animals : Array[Animal] = []
 var enclosure_tree_species_ids = []
 var dead_animals = []
 
@@ -33,6 +33,8 @@ var enclosure_central_point : Vector2
 
 var entrance_cell : Vector2i
 var entrance_door_cell : Vector2i
+
+var has_zookeeper_assigned : bool = false
 
 @onready var enclosure_tilemap = $EnclosureTiles
 @onready var enclosure_fence_manager : EnclosureFenceManager = $EnclosureFenceManager
@@ -318,9 +320,9 @@ func open_door():
 	$EnclosureFenceManager.open_door()
 
 func add_to_work_queue():
-	ZooManager.enclosures_needing_work.append(self)
-	return
-	
+	if self not in ZooManager.enclosures_needing_work:
+		ZooManager.enclosures_needing_work.append(self)
+
 
 func add_animal_feed():
 	## TODO - Spawn feed in a specific cell

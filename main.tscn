@@ -1,7 +1,7 @@
-[gd_scene load_steps=201 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=206 format=4 uid="uid://e8kgl625in1o"]
 
-[ext_resource type="Script" uid="uid://o2egpp0b02e2" path="res://Scripts/debug_controller.gd" id="1_nisry"]
-[ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
+[ext_resource type="Script" path="res://Scripts/debug_controller.gd" id="1_nisry"]
+[ext_resource type="Script" path="res://Scripts/input_controller.gd" id="1_ojpln"]
 [ext_resource type="Script" uid="uid://dabd0wtptg5ku" path="res://main.gd" id="1_oseej"]
 [ext_resource type="Script" uid="uid://bawblafy70sf4" path="res://reputation_manager.gd" id="2_1b04k"]
 [ext_resource type="Script" uid="uid://b0adab4c0yrtg" path="res://Scripts/path_manager.gd" id="2_4bhy0"]
@@ -21,7 +21,7 @@
 [ext_resource type="Script" uid="uid://saxl0xjps650" path="res://Scripts/highlight_layer.gd" id="6_5hq40"]
 [ext_resource type="Resource" uid="uid://b8jk8nfoxbpbo" path="res://Terrain/grass.tres" id="6_twhii"]
 [ext_resource type="Resource" uid="uid://cv3jbpbpoab6s" path="res://Terrain/sand.tres" id="7_i5ul7"]
-[ext_resource type="Script" uid="uid://c3k8yrw5ov665" path="res://Scripts/camera_2d.gd" id="7_pw5dd"]
+[ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="7_pw5dd"]
 [ext_resource type="PackedScene" uid="uid://loilhhqarje0" path="res://UI/UI selectable elements/ui_path_element.tscn" id="7_tmdpf"]
 [ext_resource type="Script" uid="uid://bjsg0rr5ai5l3" path="res://bulldozer_collider.gd" id="7_xhqw8"]
 [ext_resource type="Resource" uid="uid://dp82v0odladsa" path="res://Paths/null_path.tres" id="7_ybs1u"]
@@ -60,7 +60,7 @@
 [ext_resource type="PackedScene" uid="uid://bgasmembo8g7r" path="res://Buildings/building.tscn" id="30_wk5yf"]
 [ext_resource type="Resource" uid="uid://b6yflquscb8la" path="res://Scenery/Trees/Palm 1.tres" id="30_yos0d"]
 [ext_resource type="Resource" uid="uid://ch0c44mjn0ono" path="res://Scenery/Vegetation/bush.tres" id="31_7jmpp"]
-[ext_resource type="Shader" uid="uid://b0e23qgminbhp" path="res://Shaders/terrain.gdshader" id="31_e0m5j"]
+[ext_resource type="Shader" path="res://Shaders/terrain.gdshader" id="31_e0m5j"]
 [ext_resource type="Resource" uid="uid://dsp7g10m8i1c5" path="res://Scenery/Trees/Palm 2.tres" id="31_m2uoq"]
 [ext_resource type="Texture2D" uid="uid://wj8tt8gnhkn5" path="res://Terrain/terrain_sheet.png" id="32_05eb2"]
 [ext_resource type="Resource" uid="uid://36wmkrb0dw5i" path="res://Scenery/Trees/Jacaranda.tres" id="32_weqx1"]
@@ -90,12 +90,12 @@
 [ext_resource type="Resource" uid="uid://dwwf1t208xn6v" path="res://Scenery/Rocks/rock5.tres" id="51_wat4s"]
 [ext_resource type="PackedScene" uid="uid://dasxyu5n8ncu0" path="res://UI/UI selectable elements/ui_shelter_element.tscn" id="52_30626"]
 [ext_resource type="Resource" uid="uid://cw0qxk8uuda34" path="res://Buildings/BuildingResources/toilet1.tres" id="53_1nclh"]
-[ext_resource type="Shader" uid="uid://cy6xjukasrqil" path="res://Shaders/postfx.gdshader" id="53_fkgg7"]
+[ext_resource type="Shader" path="res://Shaders/postfx.gdshader" id="53_fkgg7"]
 [ext_resource type="PackedScene" uid="uid://c0yqr1xdbc6do" path="res://UI/UI selectable elements/ui_enclosure_element.tscn" id="54_il7k7"]
 [ext_resource type="PackedScene" uid="uid://b020lesiynlbr" path="res://Enclosures/enclosure_scene.tscn" id="55_54dhb"]
 [ext_resource type="PackedScene" uid="uid://dvlhldkt22u1u" path="res://Scenery/Rocks/rock_piece.tscn" id="55_ywjan"]
 [ext_resource type="Script" uid="uid://523fsfqlnuv" path="res://Managers/peep_navigation_region.gd" id="61_8dedt"]
-[ext_resource type="PackedScene" uid="uid://c2x0h40jh0wj6" path="res://staff.tscn" id="69_ba76w"]
+[ext_resource type="PackedScene" uid="uid://c2x0h40jh0wj6" path="res://Staff/staff.tscn" id="69_ba76w"]
 [ext_resource type="Resource" uid="uid://ccsw3cdj7hvqt" path="res://Buildings/BuildingResources/italian_restaurant.tres" id="70_8rtrj"]
 [ext_resource type="PackedScene" uid="uid://baic6x8rh68v8" path="res://UI/UI popups/ui_animal_popup.tscn" id="73_mv3dj"]
 [ext_resource type="Theme" uid="uid://qsq4gutgth07" path="res://UI/Themes/default_theme.tres" id="74_7k2ss"]
@@ -112,7 +112,11 @@
 [ext_resource type="Script" uid="uid://t3naf2okb6cm" path="res://UI/ui_debug_shader.gd" id="87_1b22a"]
 [ext_resource type="Texture2D" uid="uid://bm088drsntwdy" path="res://Sprites/highlight_tiles.png" id="89_mnw77"]
 [ext_resource type="PackedScene" uid="uid://bie8wky7dopo4" path="res://UI/UI popups/ui_mgmt_box.tscn" id="90_kjtd0"]
-[ext_resource type="Shader" uid="uid://bu1lv0m1sqnci" path="res://replace_color.gdshader" id="97_84xii"]
+[ext_resource type="Script" path="res://Staff/staff_manager.gd" id="91_qrq7t"]
+[ext_resource type="PackedScene" uid="uid://b7qlfxl72twhw" path="res://Staff/zookeeper.tscn" id="93_ox7mk"]
+[ext_resource type="Texture2D" uid="uid://b7f8nv73rdsl8" path="res://Staff/sprites/zookeeper.png" id="94_ttfan"]
+[ext_resource type="Texture2D" uid="uid://jvgmda4s0kqx" path="res://Staff/sprites/zookeeper_unique.png" id="95_hugdr"]
+[ext_resource type="Shader" path="res://replace_color.gdshader" id="97_84xii"]
 [ext_resource type="Script" uid="uid://bx7r3upcavvb4" path="res://notification_manager.gd" id="98_yvsr8"]
 [ext_resource type="PackedScene" uid="uid://c1lavh6yvgdgb" path="res://UI/notification_label.tscn" id="99_vieuh"]
 [ext_resource type="Texture2D" uid="uid://b5ehp47ajkovo" path="res://UI/art/buttons.png" id="101_cpm2s"]
@@ -126,6 +130,7 @@
 [ext_resource type="Theme" uid="uid://b6646spks2n34" path="res://UI/Themes/main_tool_subpanel.tres" id="105_6idwh"]
 [ext_resource type="Texture2D" uid="uid://clu6pr714pcy6" path="res://UI/Icons/icons2.png" id="107_u81y6"]
 [ext_resource type="Theme" uid="uid://bged1njjfndbj" path="res://UI/Themes/bottom_panel.tres" id="108_smeu8"]
+[ext_resource type="PackedScene" uid="uid://cmymygq532ra5" path="res://UI/UI popups/ui_enclosure_popup.tscn" id="109_37eu1"]
 [ext_resource type="PackedScene" uid="uid://b4j6v4cc3p1w" path="res://UI/UI popups/ui_animal_info_popup.tscn" id="109_pw0td"]
 [ext_resource type="PackedScene" uid="uid://cxbu5fqbnlcu1" path="res://UI/UI popups/ui_confirmation_popup.tscn" id="109_t5kpo"]
 [ext_resource type="Texture2D" uid="uid://b5bma8wo0rn86" path="res://UI/Icons/icons3.png" id="111_vjgyh"]
@@ -823,9 +828,11 @@ available_shelters = Array[ExtResource("50_m3er2")]([ExtResource("51_row6q")])
 ui_shelter_element = ExtResource("52_30626")
 
 [node name="StaffManager" type="Node2D" parent="Objects"]
-
-[node name="Staff" parent="Objects/StaffManager" instance=ExtResource("69_ba76w")]
-position = Vector2(-1268, 657)
+script = ExtResource("91_qrq7t")
+staff_scene = ExtResource("69_ba76w")
+keeper_behavior = ExtResource("93_ox7mk")
+keeper_sprite = ExtResource("94_ttfan")
+keeper_unique_sprite = ExtResource("95_hugdr")
 
 [node name="PeepNavigationRegion" type="NavigationRegion2D" parent="."]
 unique_name_in_owner = true
@@ -937,6 +944,7 @@ ui_building_popup = ExtResource("104_3exxq")
 ui_animal_popup = ExtResource("73_mv3dj")
 ui_mgmt_popup = ExtResource("90_kjtd0")
 ui_peep_group_popup = ExtResource("83_4rd2l")
+ui_enclosure_popup = ExtResource("109_37eu1")
 ui_animal_info_popup = ExtResource("109_pw0td")
 ui_confirmation_popup = ExtResource("109_t5kpo")
 
@@ -1179,6 +1187,15 @@ text = "ASD"
 horizontal_alignment = 2
 
 [node name="Debug_reputation" type="Label" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug/MarginContainer/VBoxContainer3/VBoxContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "ASD"
+horizontal_alignment = 2
+
+[node name="Debug_peep_weight" type="Label" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug/MarginContainer/VBoxContainer3/VBoxContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
@@ -2279,7 +2296,6 @@ columns = 2
 
 [node name="AnimalMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme = SubResource("Theme_nf4f2")
 
@@ -2639,6 +2655,7 @@ theme = null
 
 [node name="LakeMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel"]
 unique_name_in_owner = true
+visible = false
 clip_contents = true
 layout_mode = 2
 theme = SubResource("Theme_nf4f2")

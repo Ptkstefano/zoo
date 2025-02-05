@@ -134,6 +134,7 @@ func _ready() -> void:
 	
 
 	agent.waypoint_reached.connect(on_agent_waypoint_reached)
+	#agent.navigation_finished.connect(on_agent_target_reached)
 	
 	#$AnimalDetector.body_entered.connect(on_animal_detector_body_entered)
 	#$FixtureDetector.area_entered.connect(on_fixture_detector_area_entered)
@@ -150,8 +151,10 @@ func _ready() -> void:
 	$StuckTimer.timeout.connect(check_if_group_stuck)
 	
 	SignalBus.path_erased.connect(on_path_erased)
+
 	
-	#$VisibleOnScreenNotifier2D.screen_entered.connect(on_visibility_entered)
+	$VisibleOnScreenNotifier2D.screen_entered.connect(on_visibility_entered)
+	$VisibleOnScreenNotifier2D.screen_exited.connect(on_visibility_exited)
 	
 	initialize_peep_group(load_data)
 	change_state(group_states.STOPPED)
@@ -208,13 +211,7 @@ func initialize_peep_group(data):
 	peep_count_added.emit(peep_count)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	#if !screenNotifier.is_on_screen():
-		#for peep in peeps:
-			#peep.visible = false
-		#return
-		
-	#$Label.text = str(group_state)
+func _physics_process(delta: float) -> void:
 	if group_state in move_states:
 		move_toward_direction(direction, delta)
 		z_index_value = Helpers.get_current_tile_z_index(global_position)
@@ -228,8 +225,9 @@ func _process(delta: float) -> void:
 			on_agent_target_reached()
 			
 func on_visibility_entered():
-		for peep in peeps:
-			peep.visible = true
+	SoundscapeManager.peeps_in_screen += 1
+func on_visibility_exited():
+	SoundscapeManager.peeps_in_screen -= 1
 
 func on_agent_waypoint_reached(d):
 	await get_tree().create_timer(0.05).timeout
@@ -247,8 +245,10 @@ func on_agent_target_reached():
 	elif group_state == group_states.GOING_TO_TOILET:
 		use_toilet()
 	elif group_state == group_states.GOING_TO_ENTRANCE:
-		var entrance_utility_score = Helpers.get_utility_score(ZooManager.entrance_perceived_value, ZooManager.entrance_price, 3, 0)
+		var entrance_utility_score = Helpers.get_utility_score(ZooManager.entrance_perceived_value, ZooManager.entrance_price, 2, 0)
 		if entrance_utility_score > min_utility_score_tolerance:
+			if entrance_utility_score > 1.75:
+				modifiers.append(ThoughtManager.PEEP_THOUGHTS.GREAT_VALUE_ENTRANCE)
 			spent_money += (ZooManager.entrance_price * peep_count)
 			FinanceManager.add(ZooManager.entrance_price * peep_count, IdRefs.PAYMENT_ADD_TYPES.ENTRANCE)
 			SignalBus.money_tooltip.emit(ZooManager.entrance_price * peep_count, true, global_position)
@@ -298,6 +298,7 @@ func change_state(state):
 		needs_rest = 100
 		$StateTimer.wait_time = 20
 		$StateTimer.start()
+		z_index_value = bench.z_index
 		for i in range(peep_count):
 			if i == 0:
 				peeps[0].change_state(3)
@@ -386,7 +387,8 @@ func on_detector_area_entered(area):
 	if area.get_parent() is Animal:
 		var animal = area.get_parent() as Animal
 		if animal.is_dead:
-			modifiers.append(ThoughtManager.PEEP_THOUGHTS.SAW_DEAD_ANIMAL)
+			if ThoughtManager.PEEP_THOUGHTS.SAW_DEAD_ANIMAL not in modifiers:
+				modifiers.append(ThoughtManager.PEEP_THOUGHTS.SAW_DEAD_ANIMAL)
 		if animal.animal_species not in observed_animals:
 			observed_animals.append(animal.animal_species)
 			change_state(group_states.OBSERVING)

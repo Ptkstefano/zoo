@@ -9,6 +9,7 @@ extends Node2D
 @onready var z_index_label = %Debug_z
 @onready var draw_label = %Debug_draw
 @onready var reputation_label = %Debug_reputation
+@onready var peep_weight_label = %Debug_peep_weight
 
 
 var base_peep_spawn_timer
@@ -52,6 +53,7 @@ func _process(delta: float) -> void:
 		z_index_label.text = ("Tile Z: "+str(Helpers.get_current_tile_z_index(get_global_mouse_position())))
 		draw_label.text = ("Draw calls: "+str(Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)))
 		reputation_label.text = ("Reputation: "+str(ZooManager.reputation))
+		peep_weight_label.text = ("Peep weight: "+str(SoundscapeManager.peep_weight))
 
 func spawn_peep_group():
 	$"../Objects/PeepManager".instantiate_peep_group(null)

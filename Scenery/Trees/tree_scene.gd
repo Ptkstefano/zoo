@@ -32,9 +32,18 @@ func _ready() -> void:
 	vegetation_weight = tree_res.vegetation_weight
 	Effects.wobble(self)
 	cached_position = global_position
+	
+	$VisibleOnScreenNotifier2D.screen_entered.connect(on_visibility_entered)
+	$VisibleOnScreenNotifier2D.screen_exited.connect(on_visibility_exited)
+	
 
 func on_area_entered(area):
 	if area is Bulldozer:
 		#$RemovalArea/CollisionShape2D.disabled = true
 		object_removed.emit(self)
 		#queue_free()
+
+func on_visibility_entered():
+	SoundscapeManager.trees_in_screen += 1
+func on_visibility_exited():
+	SoundscapeManager.trees_in_screen -= 1

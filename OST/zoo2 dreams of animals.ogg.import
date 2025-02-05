@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://n05p6getruss"
+path="res://.godot/imported/zoo2 dreams of animals.ogg-3131ccb4140867fdd171b6638bc810b0.oggvorbisstr"
+
+[deps]
+
+source_file="res://OST/zoo2 dreams of animals.ogg"
+dest_files=["res://.godot/imported/zoo2 dreams of animals.ogg-3131ccb4140867fdd171b6638bc810b0.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -5,6 +5,7 @@ extends Node
 @export var ui_animal_popup : PackedScene
 @export var ui_mgmt_popup : PackedScene
 @export var ui_peep_group_popup : PackedScene
+@export var ui_enclosure_popup : PackedScene
 
 @export var ui_animal_info_popup : PackedScene
 
@@ -43,6 +44,8 @@ func open_popup(detector_pos, element):
 		open_building_popup(element)
 	if element is Shelter:
 		open_building_popup(element)
+	if element is EnclosureFence or element is Enclosure:
+		open_enclosure_popup(element)
 
 func open_confirmation_popup(callback, popup_text, data):
 	var confirmation_popup = ui_confirmation_popup.instantiate()
@@ -99,5 +102,14 @@ func open_building_popup(building_node):
 func open_animal_info_popup(data):
 	opened_popup = ui_animal_info_popup.instantiate()
 	opened_popup.animal_res = data['resource']
+	opened_popup.popup_closed.connect(close_popup)
+	add_child(opened_popup)
+
+func open_enclosure_popup(element):
+	opened_popup = ui_enclosure_popup.instantiate()
+	if element is EnclosureFence:
+		opened_popup.enclosure = element.enclosure_scene
+	if element is Enclosure:
+		opened_popup.enclosure = element
 	opened_popup.popup_closed.connect(close_popup)
 	add_child(opened_popup)

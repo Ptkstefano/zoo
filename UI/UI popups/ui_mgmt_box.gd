@@ -4,8 +4,15 @@ var review_count = {}
 
 @export var review_element : PackedScene
 
+@export var enclosure_element : PackedScene
+
+@export var staff_element : PackedScene
+
 @export var level_star : Texture
 @export var level_star_half : Texture
+
+@export var zookeeper_unique_icon : Texture
+@export var zookeeper_icon : Texture
 
 var star_instances
 
@@ -17,6 +24,7 @@ func _ready():
 	ZooManager.reviews_changed.connect(generate_reviews_tab)
 	FinanceManager.current_month_changed.connect(generate_finances_tab)
 	generate_finances_tab()
+	generate_staff_tab()
 	star_instances = %UI_ReputationStars.get_children()
 	ZooManager.zoo_reputation_updated.connect(on_reputation_update)
 	on_reputation_update(ZooManager.reputation)
@@ -26,6 +34,15 @@ func _ready():
 	%Minus.pressed.connect(entrance_price_change.bind(-1))
 	%Plus.pressed.connect(entrance_price_change.bind(1))
 	%Price.text = Helpers.money_text(ZooManager.entrance_price)
+	
+	%HireZookeeperButton.pressed.connect(on_hire_zookeeper)
+	
+	for enclosure_entry in ZooManager.zoo_enclosures.keys():
+		if !ZooManager.zoo_enclosures[enclosure_entry]['species']:
+			continue
+		var element = enclosure_element.instantiate()
+		element.enclosure_scene = ZooManager.zoo_enclosures[enclosure_entry]['node']
+		%EnclosureListContainer.add_child(element)
 	
 
 func on_popup_closed():
@@ -109,3 +126,18 @@ func entrance_price_change(amount):
 	ZooManager.update_entrance_price(ZooManager.entrance_price + amount)
 	%Price.text = Helpers.money_text(ZooManager.entrance_price)
 	return
+
+func generate_staff_tab():
+	for staff in ZooManager.staff_list[IdRefs.STAFF_TYPES.ZOOKEEPER_UNIQUE]:
+		var staff_entry = staff_element.instantiate()
+		staff_entry.staff_scene = staff['scene']
+		staff_entry.set_icon(zookeeper_unique_icon)
+		%ZookeeperContainer.add_child(staff_entry)
+	for staff in ZooManager.staff_list[IdRefs.STAFF_TYPES.ZOOKEEPER]:
+		var staff_entry = staff_element.instantiate()
+		staff_entry.staff_scene = staff['scene']
+		staff_entry.set_icon(zookeeper_icon)
+		%ZookeeperContainer.add_child(staff_entry)
+		
+func on_hire_zookeeper():
+	SignalBus.hire_staff.emit(IdRefs.STAFF_TYPES.ZOOKEEPER)

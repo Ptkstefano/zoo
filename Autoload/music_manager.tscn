@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://p68l5n8wgpyj"]
 
-[ext_resource type="Script" uid="uid://bt8lvajav3di6" path="res://Autoload/music_manager.gd" id="1_mjtb4"]
+[ext_resource type="Script" path="res://Autoload/music_manager.gd" id="1_mjtb4"]
 [ext_resource type="AudioStream" uid="uid://p1tvh5k1s8k7" path="res://OST/FormatFactorybubbles_full.ogg" id="2_2tsyk"]
-[ext_resource type="AudioStream" uid="uid://c1p4yunh1uwu3" path="res://OST/Dreams_of_animals.ogg" id="3_n8ixo"]
+[ext_resource type="AudioStream" uid="uid://n05p6getruss" path="res://OST/zoo2 dreams of animals.ogg" id="3_8gp5i"]
 
 [node name="MusicManager" type="Node"]
 script = ExtResource("1_mjtb4")
-music_items = Array[AudioStream]([ExtResource("2_2tsyk"), ExtResource("3_n8ixo")])
+music_items = Array[AudioStream]([ExtResource("2_2tsyk"), ExtResource("3_8gp5i")])
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Music"

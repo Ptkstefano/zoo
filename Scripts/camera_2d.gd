@@ -13,6 +13,7 @@ var last_mouse_position = Vector2()
 
 var possible_zoom_values = [ 1, 2, 3, 4, 5, 6]
 var current_zoom_index = 1
+		
 var current_zoom_value = 1
 
 @onready var new_zoom = zoom
@@ -24,6 +25,7 @@ func _ready() -> void:
 	inputController.zoom_camera.connect(on_camera_zoom)
 	inputController.move_camera.connect(on_camera_move)
 	inputController.move_camera_in_direction.connect(on_directional_camera_move)
+	SignalBus.move_camera_to.connect(on_move_camera_to)
 	
 
 func on_camera_move(mouse_delta):
@@ -34,17 +36,25 @@ func on_directional_camera_move(move_direction : Vector2):
 	var multiplier = 30 
 	translate(move_direction * multiplier / zoom)
 
-func _process(delta):
-	pass
-
 func on_camera_zoom(direction: int):
 	current_zoom_value += direction * 0.05
 	current_zoom_value = clamp(current_zoom_value, 0, possible_zoom_values.size() - 1)
 	current_zoom_index = roundi(current_zoom_value)
 	current_zoom_index = clamp(current_zoom_index, 0, possible_zoom_values.size() - 1)
+	apply_zoom()
+	
+func apply_zoom():
 	var new_zoom = Vector2(possible_zoom_values[current_zoom_index], possible_zoom_values[current_zoom_index])
 	new_zoom = new_zoom.clamp(min_zoom, max_zoom)
 	var tween = get_tree().create_tween()
 	await tween.tween_property(self, "zoom", new_zoom, 0.25).set_trans(Tween.TRANS_SINE)
 	sensitivity = basis_sensitivity - (zoom.x * 0.20)
+	SoundscapeManager.camera_zoom = new_zoom.x
 	
+func on_move_camera_to(global_pos):
+	var tween = get_tree().create_tween()
+	await tween.tween_property(self, "global_position", global_pos, 0.5).set_trans(Tween.TRANS_SINE)
+	
+	current_zoom_value = 4
+	current_zoom_index = 4
+	apply_zoom()

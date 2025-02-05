@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7qlfxl72twhw"]
+
+[ext_resource type="Script" path="res://Staff/zookeeper.gd" id="1_csiwn"]
+
+[node name="Zookeeper" type="Node"]
+script = ExtResource("1_csiwn")
+
+[node name="StateTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true

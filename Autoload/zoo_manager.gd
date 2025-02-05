@@ -7,7 +7,6 @@ var zoo_rating : int:
 		calculate_zoo_attractiveness()
 		calculate_entrance_perceived_value()
 		
-		
 var entrance_price : float = 10
 var zoo_entrance_open : bool = false
 var entrance_perceived_value : float = 10.0
@@ -16,7 +15,10 @@ var entrance_perceived_value : float = 10.0
 ## This value defines the difficulty of the game: higher values spawn more peeps
 var rating_ratio = 0.75
 
+var staff_list : Dictionary = {}
+
 ## Represents current maximum number of guests in zoo
+## Factors in zoo_rating and current reputation
 var zoo_attractiveness : int:
 	set(value):
 		zoo_attractiveness = value
@@ -31,6 +33,8 @@ var next_animal_id = 0
 var next_scenery_id = 0
 
 var next_building_id = 0
+
+var next_staff_id = 0
 
 var used_peep_group_ids = []
 		
@@ -79,6 +83,11 @@ var current_marketing_value : int
 
 func _ready() -> void:
 	zoo_reputation_updated.emit(reputation)
+	
+	var i = 0
+	for staff_type in IdRefs.STAFF_TYPES:
+		staff_list[i] = []
+		i += 1
 
 func add_zoo_enclosure(enclosure : Enclosure):
 	zoo_enclosures[enclosure.id] = {"node": enclosure, "location": enclosure.enclosure_central_point, "species": enclosure.enclosure_species, "entrance_cell": null}
@@ -205,4 +214,12 @@ func update_entrance_price(value):
 
 func calculate_entrance_perceived_value():
 	## Value in money that is considered ideal pricing for the entrance
-	entrance_perceived_value = (zoo_attractiveness + zoo_rating) * 0.03
+	entrance_perceived_value = ((zoo_attractiveness * 1.2) + (zoo_rating)) * 0.01
+	entrance_perceived_value = clampf(entrance_perceived_value, 5.0, 100.0)
+
+func generate_staff_id():
+	next_staff_id += 1
+	return next_staff_id
+
+func add_staff(staff_type, staff):
+	staff_list[staff_type].append({'id': staff.id, 'scene': staff})
