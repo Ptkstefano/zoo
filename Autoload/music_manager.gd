@@ -8,7 +8,7 @@ func _ready() -> void:
 func start():
 	if $MusicPlayer.playing:
 		return
-	#await get_tree().create_timer(randi_range(60, 120)).timeout
+	await get_tree().create_timer(randi_range(60, 120)).timeout
 	var random_audio = music_items.pick_random()
 	$MusicPlayer.stream = random_audio
 	$MusicPlayer.play()

@@ -109,7 +109,7 @@ func place_vegetation(press_start_pos, vegetation_res : vegetation_resource, id)
 	Effects.wobble(vegetation)
 	SignalBus.vegetation_placed.emit(vegetation.global_position)
 	
-func place_decoration(press_start_pos, decoration_res, rotate_building, id):
+func place_decoration(press_start_pos, decoration_res, direction, id):
 	var decoration_position_cell = TileMapRef.local_to_map(press_start_pos)
 	var decoration_position_local = TileMapRef.map_to_local(decoration_position_cell)
 	if decoration_position_cell in used_cells:
@@ -127,7 +127,7 @@ func place_decoration(press_start_pos, decoration_res, rotate_building, id):
 	else:
 		decoration.id = id
 	decoration.cell = decoration_position_cell
-	decoration.rotate_building = rotate_building
+	decoration.direction = direction
 	decoration.removed.connect(on_decoration_removed)
 	used_cells.append(decoration_position_cell)
 	add_child(decoration)

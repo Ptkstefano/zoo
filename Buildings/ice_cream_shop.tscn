@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbybw05w52fdu"]
+
+[ext_resource type="Script" path="res://Buildings/building.gd" id="1_5byps"]
+[ext_resource type="Texture2D" uid="uid://cwvec4talel2p" path="res://Buildings/Sprites/IceCreamShop.png" id="2_tg1el"]
+[ext_resource type="PackedScene" uid="uid://dkhxs71sdajj2" path="res://UI/detectable.tscn" id="3_khyh2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3vnw5"]
+radius = 38.0526
+
+[node name="IceCreamShop" type="Node2D" groups=["Buildings"]]
+z_index = -3
+script = ExtResource("1_5byps")
+
+[node name="0" type="Node2D" parent="."]
+visible = false
+z_index = -3
+position = Vector2(-4, 2)
+
+[node name="Sprites" type="Node2D" parent="0"]
+position = Vector2(19, -25)
+
+[node name="Sprite2D" type="Sprite2D" parent="0/Sprites"]
+texture_filter = 1
+texture = ExtResource("2_tg1el")
+flip_h = true
+
+[node name="Detectable" parent="0" instance=ExtResource("3_khyh2")]
+position = Vector2(-18, -21)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="0/Detectable"]
+position = Vector2(-2, -22)
+shape = SubResource("CircleShape2D_3vnw5")
+
+[node name="SellPositions" type="Node2D" parent="0"]
+
+[node name="Node2D" type="Node2D" parent="0/SellPositions"]
+position = Vector2(19, 12)
+
+[node name="Node2D2" type="Node2D" parent="0/SellPositions"]
+position = Vector2(36, 4)
+
+[node name="Node2D3" type="Node2D" parent="0/SellPositions"]
+position = Vector2(52, -2)
+
+[node name="EnterPositions" type="Node2D" parent="0"]
+
+[node name="Node2D" type="Node2D" parent="0/EnterPositions"]
+position = Vector2(78, -21)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="0"]
+
+[node name="1" type="Node2D" parent="."]
+z_index = -3
+position = Vector2(8, -1.125)
+
+[node name="Sprites" type="Node2D" parent="1"]
+position = Vector2(-3, -63.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="1/Sprites"]
+texture_filter = 1
+position = Vector2(-20, 41.5)
+texture = ExtResource("2_tg1el")
+
+[node name="Detectable" parent="1" instance=ExtResource("3_khyh2")]
+position = Vector2(-18, -21)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="1/Detectable"]
+position = Vector2(-2, -22)
+shape = SubResource("CircleShape2D_3vnw5")
+
+[node name="SellPositions" type="Node2D" parent="1"]
+
+[node name="Node2D" type="Node2D" parent="1/SellPositions"]
+position = Vector2(-50, 6)
+
+[node name="Node2D2" type="Node2D" parent="1/SellPositions"]
+position = Vector2(-66, -2)
+
+[node name="Node2D3" type="Node2D" parent="1/SellPositions"]
+position = Vector2(-34, 14)
+
+[node name="EnterPositions" type="Node2D" parent="1"]
+position = Vector2(-49, -12)
+
+[node name="Node2D" type="Node2D" parent="1/EnterPositions"]
+position = Vector2(-36, -8)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="1"]

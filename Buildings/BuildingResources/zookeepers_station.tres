@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="building_resource" load_steps=4 format=3 uid="uid://qj0xyns38rnr"]
+
+[ext_resource type="Script" path="res://Buildings/building_res.gd" id="1_gjo0j"]
+[ext_resource type="PackedScene" uid="uid://dwc4orlvef7x7" path="res://Buildings/zookeeper_station_1.tscn" id="1_iv5bq"]
+[ext_resource type="Texture2D" uid="uid://du5t84xpecea3" path="res://Buildings/Sprites/Keeper Hut.png" id="2_ik8h3"]
+
+[resource]
+script = ExtResource("1_gjo0j")
+name = "Zookeeper's Station"
+id = 3
+thumb = ExtResource("2_ik8h3")
+building_menu = 3
+building_scene = ExtResource("1_iv5bq")
+size = Vector2i(2, 2)
+building_cost = 2500.0
+base_maintenance = 250.0
+possible_directions = Array[int]([0, 1])
+is_building_entereable = true
+is_shop = false
+building_type = 4
+product_types = Array[int]([])
+possible_products = Array[int]([])
+debug_array = Array[int]([])
+debug_str = ""

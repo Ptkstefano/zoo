@@ -39,7 +39,7 @@ var selected_animal_gender : int = 1
 
 var is_camera_tool_selected : bool = false
 
-var rotate_building : bool = false
+var building_direction : IdRefs.DIRECTIONS = IdRefs.DIRECTIONS.E
 
 enum TOOLS {NONE,PATH,ENCLOSURE,SHELTER,ANIMAL,SCENERY,TERRAIN,BUILDING,TREE,VEGETATION,ROCK,FIXTURE,DECORATION,WATER,ENTRANCE,EATERY,RESTAURANT,SERVICE,ADMINISTRATION,BULLDOZER_ENCLOSURE,BULLDOZER_PATH,BULLDOZER_SCENERY,BULLDOZER_WATER}
 
@@ -385,7 +385,7 @@ func highlight_building_area():
 		#return
 	start_tile_pos = tile_map_layer.local_to_map(touch_start_global_pos)
 	cells.clear()
-	cells = Helpers.get_building_cells(selected_res.size, start_tile_pos, rotate_building).duplicate()
+	cells = Helpers.get_building_cells(selected_res.size, start_tile_pos, building_direction).duplicate()
 	if current_tool in building_placement_tools:
 		if current_tool == TOOLS.SHELTER:
 			for cell in cells:
@@ -398,35 +398,35 @@ func highlight_building_area():
 				return
 
 
-	if !rotate_building:
-		$"../TileMap/HighlightLayer".apply_highlight(cells, IdRefs.HIGHLIGHT_TYPES.BUILDING_S)
-	else:
+	if building_direction == IdRefs.DIRECTIONS.E:
 		$"../TileMap/HighlightLayer".apply_highlight(cells, IdRefs.HIGHLIGHT_TYPES.BUILDING_E)
+	elif building_direction == IdRefs.DIRECTIONS.S:
+		$"../TileMap/HighlightLayer".apply_highlight(cells, IdRefs.HIGHLIGHT_TYPES.BUILDING_S)
+		
 
 func rotate_building_toggle():
-	if rotate_building:
-		rotate_building = false
-	else:
-		rotate_building = true
+	building_direction = selected_res.possible_directions.find(building_direction) + 1
+	if building_direction >= selected_res.possible_directions.size():
+		building_direction = selected_res.possible_directions[0]
 	highlight_building_area()
 
 # called from UI node
 func build_building():
 	$"../TileMap/HighlightLayer".clear_highlight()
 	building_built.emit()
-	$"../Objects/BuildingManager".build_building(selected_res, start_tile_pos, rotate_building, null)
+	$"../Objects/BuildingManager".build_building(selected_res, start_tile_pos, building_direction, null)
 
 func build_shelter():
 	$"../TileMap/HighlightLayer".clear_highlight()
 	building_built.emit()
 	
 	## - TODO - Remove cells just like in build building()
-	$"../Objects/ShelterManager".build_shelter(selected_res, start_tile_pos, rotate_building, cells)
+	$"../Objects/ShelterManager".build_shelter(selected_res, start_tile_pos, building_direction, cells)
 	
 func build_decoration():
 	$"../TileMap/HighlightLayer".clear_highlight()
 	building_built.emit()
-	scenery_manager.place_decoration(touch_start_global_pos, selected_res, rotate_building, null)
+	scenery_manager.place_decoration(touch_start_global_pos, selected_res, building_direction, null)
 
 func bulldoze_water():
 	$BulldozerWaterCollider.global_position = touch_current_global_pos

@@ -1,34 +1,64 @@
 [gd_scene load_steps=5 format=3 uid="uid://byxq15jhy21ri"]
 
 [ext_resource type="Texture2D" uid="uid://dm06psgn1qbfb" path="res://Buildings/Sprites/Toilet1.png" id="1_b5p7a"]
-[ext_resource type="Script" uid="uid://0owpwdwc6pby" path="res://Buildings/toilet_building.gd" id="1_e8333"]
+[ext_resource type="Script" path="res://Buildings/building.gd" id="1_jb5s8"]
 [ext_resource type="PackedScene" uid="uid://dkhxs71sdajj2" path="res://UI/detectable.tscn" id="2_kwixx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_crwau"]
 radius = 38.0526
 
-[node name="ToiletBuilding" type="Node2D"]
-script = ExtResource("1_e8333")
+[node name="ToiletBuilding" type="Node2D" groups=["Buildings"]]
+z_index = -3
+script = ExtResource("1_jb5s8")
 
-[node name="Sprites" type="Node2D" parent="."]
+[node name="0" type="Node2D" parent="."]
+visible = false
+z_index = -3
+position = Vector2(-18, -1)
+
+[node name="Sprites" type="Node2D" parent="0"]
 position = Vector2(8, -32)
 
-[node name="Sprite2D" type="Sprite2D" parent="Sprites"]
+[node name="Sprite2D" type="Sprite2D" parent="0/Sprites"]
+texture_filter = 1
+texture = ExtResource("1_b5p7a")
+flip_h = true
+
+[node name="Detectable" parent="0" instance=ExtResource("2_kwixx")]
+position = Vector2(15, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="0/Detectable"]
+shape = SubResource("CircleShape2D_crwau")
+
+[node name="EnterPositions" type="Node2D" parent="0"]
+position = Vector2(23, 6)
+
+[node name="Node2D" type="Node2D" parent="0/EnterPositions"]
+position = Vector2(17, 4)
+
+[node name="SellPositions" type="Node2D" parent="0"]
+position = Vector2(23, 6)
+
+[node name="1" type="Node2D" parent="."]
+z_index = -3
+
+[node name="Sprites" type="Node2D" parent="1"]
+position = Vector2(8, -32)
+
+[node name="Sprite2D" type="Sprite2D" parent="1/Sprites"]
 texture_filter = 1
 texture = ExtResource("1_b5p7a")
 
-[node name="Detectable" parent="." instance=ExtResource("2_kwixx")]
+[node name="Detectable" parent="1" instance=ExtResource("2_kwixx")]
 position = Vector2(15, -20)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Detectable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="1/Detectable"]
 shape = SubResource("CircleShape2D_crwau")
 
-[node name="EnterPositions" type="Node2D" parent="."]
+[node name="EnterPositions" type="Node2D" parent="1"]
 
-[node name="Node2D" type="Node2D" parent="EnterPositions"]
-position = Vector2(-16, 6)
+[node name="Node2D" type="Node2D" parent="1/EnterPositions"]
+position = Vector2(-23, 12)
 
-[node name="EnterPositionsRotated" type="Node2D" parent="."]
-
-[node name="Node2D" type="Node2D" parent="EnterPositionsRotated"]
-position = Vector2(17, 4)
+[node name="SellPositions" type="Node2D" parent="1"]
+position = Vector2(23, 6)

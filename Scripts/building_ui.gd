@@ -270,6 +270,7 @@ func on_building_selected(building_res):
 	if building_res.building_menu == IdRefs.BUILDING_MENU.ADMINISTRATION:
 		inputController.current_tool = inputController.TOOLS.ADMINISTRATION
 	selected_res = building_res
+	inputController.building_direction = selected_res.possible_directions[0]
 	
 func on_lake_selected(lake_res):
 	hide_side_panel()

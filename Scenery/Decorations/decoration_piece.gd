@@ -13,7 +13,7 @@ signal removed
 var id : int
 
 var cached_position : Vector2
-var rotate_building : bool
+var direction : IdRefs.DIRECTIONS = IdRefs.DIRECTIONS.S
 
 var cell : Vector2
 
@@ -23,7 +23,7 @@ func _ready() -> void:
 	$Sprite2D.offset = decoration_res.texture_offset
 	z_index = Helpers.get_current_tile_z_index(global_position)
 	cached_position = global_position
-	if rotate_building:
+	if direction == IdRefs.DIRECTIONS.E:
 		$Sprite2D.flip_h = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

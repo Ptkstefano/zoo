@@ -197,7 +197,8 @@ func add_animal(animal):
 	if enclosure_species == null:
 		enclosure_species = animal.animal_res
 		ZooManager.update_zoo_enclosure(self)
-		add_to_work_queue()
+		if GameManager.game_running:
+			add_to_work_queue()
 		#id = ZooManager.generate_enclosure_id()
 	enclosure_animals.append(animal)
 	animal.animal_removed.connect(remove_animal)

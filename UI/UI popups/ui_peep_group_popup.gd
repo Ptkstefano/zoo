@@ -19,7 +19,7 @@ func _ready():
 	%DebugList.add_child(zooManagerEateryLabel)
 	
 	var peepGroupShopLabel = Label.new()
-	peepGroupShopLabel.text = 'Target shop: ' + str(peep_group_node.target_shop)
+	peepGroupShopLabel.text = 'Target shop: ' + str(peep_group_node.target_building)
 	%DebugList.add_child(peepGroupShopLabel)
 	
 	%ResetStuckDebug.pressed.connect(peep_group_node.check_if_group_stuck)

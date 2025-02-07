@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="building_resource" load_steps=3 format=3 uid="uid://csjatom74kl3h"]
+[gd_resource type="Resource" script_class="building_resource" load_steps=4 format=3 uid="uid://csjatom74kl3h"]
 
-[ext_resource type="Script" uid="uid://b3dk3jci5ihs8" path="res://Buildings/building_res.gd" id="1_7ywjo"]
+[ext_resource type="Script" path="res://Buildings/building_res.gd" id="1_7ywjo"]
+[ext_resource type="PackedScene" uid="uid://cbybw05w52fdu" path="res://Buildings/ice_cream_shop.tscn" id="1_l45hq"]
 [ext_resource type="Texture2D" uid="uid://cwvec4talel2p" path="res://Buildings/Sprites/IceCreamShop.png" id="2_ka74h"]
 
 [resource]
@@ -9,18 +10,15 @@ name = "Ice Cream Shop"
 id = 0
 thumb = ExtResource("2_ka74h")
 building_menu = 0
-texture = ExtResource("2_ka74h")
+building_scene = ExtResource("1_l45hq")
+size = Vector2i(1, 2)
+building_cost = 1000.0
+base_maintenance = 100.0
+possible_directions = Array[int]([0, 1])
+is_building_entereable = false
+is_shop = true
 building_type = 0
 product_types = Array[int]([0])
 possible_products = Array[int]([0, 1, 2])
 debug_array = Array[int]([1, 2, 3, 4, 5])
 debug_str = "debug"
-is_building_entereable = false
-size = Vector2i(2, 1)
-sprite_pos = Vector2(-19, -22)
-detectable_pos = Vector2(-18, -21)
-sprite_pos_rotated = Vector2(18, -22)
-detectable_pos_rotated = Vector2(9, -17)
-z_offset = -3
-building_cost = 1000.0
-base_maintenance = 100.0

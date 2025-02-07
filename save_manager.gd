@@ -299,8 +299,8 @@ func load_game():
 				sceneryManager.place_tree(position, res, null)
 			elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.DECORATION:
 				var res = load(data["sceneryData"][key]['decoration_res'])
-				## TODO - Add is rotated to save data
-				sceneryManager.place_decoration(position, res, false, null)
+				var direction = data["sceneryData"][key].get('direction', 1)
+				sceneryManager.place_decoration(position, res, direction, null)
 			elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.ROCK:
 				var res = load(data["sceneryData"][key]['decoration_res'])
 				sceneryManager.place_rock(position, res, null)
@@ -325,7 +325,7 @@ func load_game():
 			# (building_res, pos, rotate, coords)
 			var building_res = load(data['buildingData'][key]['building_res'])
 			var pos = Vector2(data['buildingData'][key]['start_tile']['x_pos'], data['buildingData'][key]['start_tile']['y_pos'])
-			var is_rotated = data['buildingData'][key]['is_rotated']
+			var direction = data['buildingData'][key].get('direction', 0)
 			var building_data = { 'id':  data['buildingData'][key]['building_id']}
 
 			if data['buildingData'][key].has('shop_data'):
@@ -351,7 +351,7 @@ func load_game():
 					'shop_stats' = shop_stats
 				}
 				
-			buildingManager.build_building(building_res, pos, is_rotated, building_data)
+			buildingManager.build_building(building_res, pos, direction, building_data)
 			
 	if data.has('peepGroupData'):
 		for key in data["peepGroupData"]:
@@ -457,6 +457,7 @@ func get_animal_data(animal):
 	data['months_of_life'] = animal.months_of_life
 	data['months_in_zoo'] = animal.months_in_zoo
 	return data
+	
 
 func get_peep_group_data(peep_group):
 	if is_instance_valid(peep_group):
@@ -492,6 +493,7 @@ func get_scenery_data(scenery):
 		data['tree_res'] = scenery.tree_res.get_path()
 	elif scenery_type == IdRefs.SCENERY_TYPES.DECORATION:
 		data['decoration_res'] = scenery.decoration_res.get_path()
+		data['direction'] = scenery.direction
 	elif scenery_type == IdRefs.SCENERY_TYPES.ROCK:
 		data['decoration_res'] = scenery.rock_res.get_path()
 	return data
@@ -527,30 +529,30 @@ func get_building_data(building):
 	var data = {}
 	data['building_type'] = building.building_res.building_type
 	data['building_id'] = building.id
-	if building.building_res.building_type in [IdRefs.BUILDING_TYPES.SHOP, IdRefs.BUILDING_TYPES.RESTAURANT, IdRefs.BUILDING_TYPES.EATERY]:
+	if building.is_shop:
 		var shop_data = {}
 		var products = {}
-		for product in building.building_scene.available_products:
+		for product in building.available_products:
 			products[product] = {
-				'product_id': building.building_scene.available_products[product].product.id,
-				'current_price': building.building_scene.available_products[product].current_price,
-				'current_stock': building.building_scene.available_products[product].current_stock,
-				'auto_restock': building.building_scene.available_products[product].auto_restock
+				'product_id': building.available_products[product].product.id,
+				'current_price': building.available_products[product].current_price,
+				'current_stock': building.available_products[product].current_stock,
+				'auto_restock': building.available_products[product].auto_restock
 			}
 		var product_data = {
 				'products': products,
 			}
 		shop_data['product_data'] = product_data
 		shop_data['shop_stats'] = {
-			'shop_product_stats' = building.building_scene.shop_product_data,
-			'shop_earning_stats' = building.building_scene.shop_earning_data,
-			'shop_expenditure_stats' = building.building_scene.shop_expenditure_data
+			'shop_product_stats' = building.shop_product_data,
+			'shop_earning_stats' = building.shop_earning_data,
+			'shop_expenditure_stats' = building.shop_expenditure_data
 			}
 			
 		data['shop_data'] = shop_data
 
 	data['building_res'] = building.building_res.get_path()
-	data['is_rotated'] = building.is_building_rotated
+	data['direction'] = building.direction
 	var start_tile = { 'x_pos': building.start_tile.x, 'y_pos': building.start_tile.y }
 	data['start_tile'] = start_tile
 

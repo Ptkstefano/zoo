@@ -28,13 +28,13 @@ var zoo_animals : Dictionary = {}
 
 var animal_rating : int
 		
-var next_animal_id = 0
+var next_animal_id : int = 0
 
-var next_scenery_id = 0
+var next_scenery_id : int = 0
 
-var next_building_id = 0
+var next_building_id : int = 0
 
-var next_staff_id = 0
+var next_staff_id : int = 0
 
 var used_peep_group_ids = []
 		
@@ -46,6 +46,7 @@ var enclosures_needing_work = []
 var eateries = {}
 var restaurants = {}
 var toilets = {}
+var zookeeper_stations = {}
 
 var active_boosts : Dictionary = {}
 var boost_rating : int = 0
@@ -110,22 +111,29 @@ func update_zoo_enclosure(enclosure):
 	calculate_animal_rating()
 	
 func add_eatery(id, data):
-	ZooManager.eateries[id] = { 'building': data.building, 'position': TileMapRef.map_to_local(data.position) }
+	ZooManager.eateries[id] = { 'scene': data.scene, 'position': TileMapRef.map_to_local(data.position) }
 	
 func remove_eatery(id):
 	ZooManager.eateries.erase(id)
 	
 func add_restaurant(id, data):
-	ZooManager.restaurants[id] = { 'building': data.building, 'position': TileMapRef.map_to_local(data.position) }
+	ZooManager.restaurants[id] = { 'scene': data.scene, 'position': TileMapRef.map_to_local(data.position) }
 	
 func remove_restaurant(id):
 	ZooManager.restaurants.erase(id)
 	
 func add_toilet(id, data):
-	ZooManager.toilets[id] = { 'building': data.building, 'position': TileMapRef.map_to_local(data.position) }
+	ZooManager.toilets[id] = { 'scene': data.scene, 'position': TileMapRef.map_to_local(data.position) }
 	
 func remove_toilet(id):
 	ZooManager.toilets.erase(id)
+	
+func add_zookeeper_station(id, data):
+	ZooManager.zookeeper_stations[id] = { 'scene': data.scene, 'position': TileMapRef.map_to_local(data.position) }
+	
+func remove_zookeeper_station(id):
+	ZooManager.zookeeper_stations.erase(id)
+	
 	
 func remove_zoo_enclosure(enclosure):
 	enclosures_needing_work.erase(enclosure)
@@ -146,7 +154,7 @@ func generate_scenery_id() -> int :
 
 func generate_building_id() -> int:
 	next_building_id += 1
-	return next_building_id
+	return int(next_building_id)
 	
 func generate_peep_group_id():
 	var i = 0

@@ -7,7 +7,19 @@ class_name building_resource
 @export var thumb : Texture2D
 @export var building_menu : IdRefs.BUILDING_MENU
 
-@export var texture : Texture2D
+@export var building_scene : PackedScene
+
+@export var size : Vector2i
+
+@export var building_cost : float
+@export var base_maintenance : float
+
+@export var possible_directions : Array[IdRefs.DIRECTIONS] = [IdRefs.DIRECTIONS.E, IdRefs.DIRECTIONS.S]
+
+@export var is_building_entereable : bool
+
+## is_shop means building can hold products to sell
+@export var is_shop : bool
 
 @export_category("Products")
 @export var building_type : IdRefs.BUILDING_TYPES
@@ -16,18 +28,3 @@ class_name building_resource
 
 @export var debug_array : Array[int]
 @export var debug_str : String
-
-@export var is_building_entereable : bool
-
-@export_category("Visual")
-@export var size : Vector2i
-
-@export var sprite_pos : Vector2
-@export var detectable_pos : Vector2
-
-@export var sprite_pos_rotated : Vector2
-@export var detectable_pos_rotated : Vector2
-@export var z_offset : int ## Used so that buildings bigger than one tile can use a z_index from a cell other than origin
-
-@export var building_cost : float
-@export var base_maintenance : float

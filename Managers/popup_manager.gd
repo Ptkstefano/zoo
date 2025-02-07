@@ -34,18 +34,19 @@ func open_popup(detector_pos, element):
 		opened_popup = null
 	if element is Animal:
 		open_animal_popup(element, detector_pos)
-	if element is Shop:
-		open_shop_popup(element)
 	if element is PeepGroup:
 		open_peepgroup_popup(element)
 	if opened_popup != null:
 		SignalBus.ui_visibility.emit(false)
-	if element is Toilet:
-		open_building_popup(element)
 	if element is Shelter:
 		open_building_popup(element)
 	if element is EnclosureFence or element is Enclosure:
 		open_enclosure_popup(element)
+	if element is Building:
+		if element.is_shop:
+			open_shop_popup(element)
+		else:
+			open_building_popup(element)
 
 func open_confirmation_popup(callback, popup_text, data):
 	var confirmation_popup = ui_confirmation_popup.instantiate()

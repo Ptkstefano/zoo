@@ -9,3 +9,5 @@ name = "Deer Statue"
 cost = 25.0
 texture = ExtResource("2_m3i3b")
 texture_offset = Vector2(0, -15)
+size = Vector2i(1, 1)
+directions = Array[int]([0, 1])

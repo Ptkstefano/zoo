@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://mqvvqf6wxoe8"]
+[gd_scene load_steps=31 format=3 uid="uid://mqvvqf6wxoe8"]
 
 [ext_resource type="Script" uid="uid://da6bglapjw4jm" path="res://Autoload/content_manager.gd" id="1_0xc5w"]
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="2_3584o"]
@@ -21,7 +21,7 @@
 [ext_resource type="Resource" uid="uid://c00v5iehbxapf" path="res://Animals/AnimalResources/Panda Bear.tres" id="16_4jlli"]
 [ext_resource type="Resource" uid="uid://c086ou4yyva4u" path="res://Products/brownie_sundae.tres" id="16_42240"]
 [ext_resource type="Resource" uid="uid://cqqot0eu3qu67" path="res://Animals/AnimalResources/Cassowary.tres" id="17_42kvv"]
-[ext_resource type="Script" uid="uid://b3dk3jci5ihs8" path="res://Buildings/building_res.gd" id="17_ib6gx"]
+[ext_resource type="Script" path="res://Buildings/building_res.gd" id="17_ib6gx"]
 [ext_resource type="Resource" uid="uid://csjatom74kl3h" path="res://Buildings/BuildingResources/ice_cream_shop.tres" id="18_dhs4s"]
 [ext_resource type="Resource" uid="uid://bvnpr5v6trmlp" path="res://Products/pasta_bolognese.tres" id="18_hdj2o"]
 [ext_resource type="Resource" uid="uid://ludbawk1bcoe" path="res://Animals/AnimalResources/Alaskan Moose.tres" id="18_q0dih"]
@@ -29,9 +29,10 @@
 [ext_resource type="Resource" uid="uid://cjjihkgq4h4n1" path="res://Products/pasta_pesto.tres" id="19_l3gxn"]
 [ext_resource type="Resource" uid="uid://ckyyswqj3cgfy" path="res://Products/pasta_shrimp_squid_ink.tres" id="20_ccdbg"]
 [ext_resource type="Resource" uid="uid://ccsw3cdj7hvqt" path="res://Buildings/BuildingResources/italian_restaurant.tres" id="21_17nn5"]
+[ext_resource type="Resource" uid="uid://qj0xyns38rnr" path="res://Buildings/BuildingResources/zookeepers_station.tres" id="30_4atb1"]
 
 [node name="ContentManager" type="Node"]
 script = ExtResource("1_0xc5w")
 animal_files = Array[ExtResource("2_3584o")]([ExtResource("3_fp7ms"), ExtResource("4_gewqj"), ExtResource("5_mbt8i"), ExtResource("6_6f7jl"), ExtResource("7_m8nde"), ExtResource("8_8irge"), ExtResource("9_3wn2c"), ExtResource("10_ii8x0"), ExtResource("11_ugt0a"), ExtResource("12_4jekg"), ExtResource("13_pshdp"), ExtResource("14_ccdbg"), ExtResource("15_nitx6"), ExtResource("16_4jlli"), ExtResource("17_42kvv"), ExtResource("18_q0dih")])
 product_resources = Array[ExtResource("10_k1pd2")]([ExtResource("11_xkxqe"), ExtResource("12_2cy81"), ExtResource("16_42240"), ExtResource("18_hdj2o"), ExtResource("19_l3gxn"), ExtResource("20_ccdbg")])
-building_resources = Array[ExtResource("17_ib6gx")]([ExtResource("18_dhs4s"), ExtResource("19_3wtsv"), ExtResource("21_17nn5")])
+building_resources = Array[ExtResource("17_ib6gx")]([ExtResource("18_dhs4s"), ExtResource("19_3wtsv"), ExtResource("21_17nn5"), ExtResource("30_4atb1")])
