@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://c2x0h40jh0wj6"]
 
-[ext_resource type="Script" path="res://Staff/staff.gd" id="1_mje0d"]
+[ext_resource type="Script" uid="uid://c1ix8nsss5nhn" path="res://Staff/staff.gd" id="1_mje0d"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7k8cv"]
 
-[node name="Staff" type="Node2D"]
+[node name="Staff" type="Node2D" groups=["Staff"]]
 script = ExtResource("1_mje0d")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

@@ -52,6 +52,7 @@ func change_state(state):
 		get_enclosure_exit_destination()
 	if state == zookeeper_states.STOPPED:
 		print('stopped')
+		destination_building = null
 		stopped.emit()
 		$StateTimer.start()
 	#if state == zookeeper_states.FEEDING:
@@ -62,9 +63,11 @@ func change_state(state):
 	if state == zookeeper_states.RESTING:
 		print('resting')
 		staff_scene.visible = false
+		destination_building.peep_entered()
 		await get_tree().create_timer(60).timeout
 		staff_scene.visible = true
 		needs_rest = 100.0
+		destination_building.peep_exited()
 		change_state(zookeeper_states.STOPPED)
 	if state == zookeeper_states.MOVING_TOWARDS_DEAD_ANIMAL:
 		if is_instance_valid(destination_enclosure.dead_animals.front()):
@@ -82,7 +85,7 @@ func get_new_task():
 func find_rest_spot():
 	print('Finding rest spot')
 	var closest_rest_spot_distance : float = 99999
-	var destination_building
+	destination_building
 	for rest_spot in ZooManager.zookeeper_stations:
 		var current_spot_distance = staff_scene.global_position.distance_to(ZooManager.zookeeper_stations[rest_spot]['position'])
 		if current_spot_distance < closest_rest_spot_distance:

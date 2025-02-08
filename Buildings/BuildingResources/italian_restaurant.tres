@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="building_resource" load_steps=4 format=3 uid="uid://ccsw3cdj7hvqt"]
 
-[ext_resource type="Script" path="res://Buildings/building_res.gd" id="1_5aypc"]
+[ext_resource type="Script" uid="uid://b3dk3jci5ihs8" path="res://Buildings/building_res.gd" id="1_5aypc"]
 [ext_resource type="PackedScene" uid="uid://cliuji0di742a" path="res://Buildings/italian_restaurant.tscn" id="1_tj8cd"]
 [ext_resource type="Texture2D" uid="uid://cojnbxxqn5465" path="res://Buildings/Sprites/ItalianRestaurant.png" id="2_aac0r"]
 

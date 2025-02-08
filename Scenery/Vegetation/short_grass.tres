@@ -1,14 +1,10 @@
-[gd_resource type="Resource" script_class="vegetation_resource" load_steps=3 format=3 uid="uid://bin28cl7rvgjd"]
+[gd_resource type="Resource" script_class="vegetation_resource" load_steps=2 format=3 uid="uid://bin28cl7rvgjd"]
 
 [ext_resource type="Script" uid="uid://d3riapnnqoikx" path="res://Scenery/Vegetation/vegetation_res.gd" id="1_f8ked"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_px4sa"]
-load_path = "res://.godot/imported/vegetation1.png-386034bd32eca66cb70cc157782c7f92.ctex"
-
 [resource]
 script = ExtResource("1_f8ked")
-name = "Short grass"
+name = "Short Grass"
 cost = 1.0
-texture = SubResource("CompressedTexture2D_px4sa")
-texture_offset = Vector2(0, 0)
+atlas_x = 0
 vegetation_weight = 0.1

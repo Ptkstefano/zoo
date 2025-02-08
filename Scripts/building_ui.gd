@@ -480,6 +480,7 @@ func reset_ui():
 	%MainOptions.show()
 	%OptionsDropMenu.hide()
 	%InfoBorder.hide()
+	%"Top-Right".show()
 
 func on_vegetation_brush_toggle(value):
 	inputController.vegetation_brush = value

@@ -23,15 +23,17 @@ func _ready() -> void:
 	update_selection_menu()
 
 
-func on_load_scenery(scenery_type, id, coordinates, rotate_building, res):
+func on_load_scenery(scenery_type, res, data):
+	if !res:
+		return
 	if scenery_type == IdRefs.SCENERY_TYPES.TREE:
-		place_tree(coordinates, res, id)
+		place_tree(data.position, res, data.id)
 	elif scenery_type == IdRefs.SCENERY_TYPES.VEGETATION:
-		place_vegetation(coordinates, res, id)
+		place_vegetation(data.position, res, data.id, data.random_y)
 	elif scenery_type == IdRefs.SCENERY_TYPES.DECORATION:
-		place_decoration(coordinates, res, rotate_building, id)
+		place_decoration(data.position, res, data.direction, data.id)
 	elif scenery_type == IdRefs.SCENERY_TYPES.ROCK:
-		place_rock(coordinates, res, id)
+		place_rock(data.position, res, data.id)
 	
 func update_selection_menu():
 	for child in %TreesSelectionContainer.get_children():
@@ -87,11 +89,15 @@ func place_tree(press_start_pos, tree_res, id):
 		enclosure.call_deferred('update_navigation_region')
 	SignalBus.vegetation_placed.emit(tree.global_position)
 	
-func place_vegetation(press_start_pos, vegetation_res : vegetation_resource, id):
+func place_vegetation(press_start_pos, vegetation_res : vegetation_resource, id, random_y):
 	var vegetation = vegetation_scene.instantiate()
 	
 	vegetation.vegetation_res = vegetation_res
 	vegetation.global_position = press_start_pos
+	if random_y:
+		vegetation.random_y = random_y
+	else:
+		vegetation.random_y = randi_range(0,2)
 	AudioManager.play_vegetation_placed()
 	if !id:
 		if !FinanceManager.is_amount_available(vegetation_res.cost):

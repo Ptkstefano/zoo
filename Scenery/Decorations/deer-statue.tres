@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="decoration_resource" load_steps=3 format=3 uid="uid://dqn36shhu7sgb"]
 
-[ext_resource type="Script" path="res://Scenery/Decorations/decoration_resource.gd" id="1_imivf"]
+[ext_resource type="Script" uid="uid://d143y0sc6ar4w" path="res://Scenery/Decorations/decoration_resource.gd" id="1_imivf"]
 [ext_resource type="Texture2D" uid="uid://c7hrmtfrvc8jj" path="res://Scenery/Decorations/deer-statue.png" id="2_m3i3b"]
 
 [resource]
@@ -10,4 +10,4 @@ cost = 25.0
 texture = ExtResource("2_m3i3b")
 texture_offset = Vector2(0, -15)
 size = Vector2i(1, 1)
-directions = Array[int]([0, 1])
+possible_directions = Array[int]([0, 1])

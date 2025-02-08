@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cbybw05w52fdu"]
 
-[ext_resource type="Script" path="res://Buildings/building.gd" id="1_5byps"]
+[ext_resource type="Script" uid="uid://cev33fjgjl2uf" path="res://Buildings/building.gd" id="1_5byps"]
 [ext_resource type="Texture2D" uid="uid://cwvec4talel2p" path="res://Buildings/Sprites/IceCreamShop.png" id="2_tg1el"]
 [ext_resource type="PackedScene" uid="uid://dkhxs71sdajj2" path="res://UI/detectable.tscn" id="3_khyh2"]
 

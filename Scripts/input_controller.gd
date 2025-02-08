@@ -174,7 +174,7 @@ func handle_tooling_input(event):
 						for i in 3:
 							## TODO - Allow player to customize min distance and offset
 							var random_offset = Vector2(randf_range(-50,50), randf_range(-50,50))
-							scenery_manager.place_vegetation(touch_current_global_pos + random_offset, selected_res, null)
+							scenery_manager.place_vegetation(touch_current_global_pos + random_offset, selected_res, null, null)
 					
 			if current_tool == TOOLS.WATER:
 				if is_placing_water:
@@ -220,7 +220,7 @@ func handle_tooling_input(event):
 				if vegetation_brush:
 					previous_snapshot_pos = touch_start_global_pos
 					return
-				scenery_manager.place_vegetation(touch_start_global_pos, selected_res, null)
+				scenery_manager.place_vegetation(touch_start_global_pos, selected_res, null, null)
 			if current_tool == TOOLS.FIXTURE:
 				$"../Objects/FixtureManager".place_fixture(touch_start_global_pos, selected_res, free_placing_fixture, null)
 			if current_tool == TOOLS.ROCK:

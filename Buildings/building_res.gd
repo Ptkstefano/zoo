@@ -17,6 +17,7 @@ class_name building_resource
 @export var possible_directions : Array[IdRefs.DIRECTIONS] = [IdRefs.DIRECTIONS.E, IdRefs.DIRECTIONS.S]
 
 @export var is_building_entereable : bool
+@export var has_occupied_sprite : bool = false
 
 ## is_shop means building can hold products to sell
 @export var is_shop : bool

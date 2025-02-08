@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="vegetation_resource" load_steps=2 format=3 uid="uid://bola5mrcl185v"]
+
+[ext_resource type="Script" uid="uid://d3riapnnqoikx" path="res://Scenery/Vegetation/vegetation_res.gd" id="1_4gv14"]
+
+[resource]
+script = ExtResource("1_4gv14")
+name = "Savanna Grass"
+cost = 1.0
+atlas_x = 4
+vegetation_weight = 0.1

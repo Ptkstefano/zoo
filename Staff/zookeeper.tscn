@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b7qlfxl72twhw"]
 
-[ext_resource type="Script" path="res://Staff/zookeeper.gd" id="1_csiwn"]
+[ext_resource type="Script" uid="uid://bi2008r3wn2v5" path="res://Staff/zookeeper.gd" id="1_csiwn"]
 
 [node name="Zookeeper" type="Node"]
 script = ExtResource("1_csiwn")

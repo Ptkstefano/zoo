@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="vegetation_resource" load_steps=2 format=3 uid="uid://det1dqeagbh2a"]
+
+[ext_resource type="Script" uid="uid://d3riapnnqoikx" path="res://Scenery/Vegetation/vegetation_res.gd" id="1_j26nj"]
+
+[resource]
+script = ExtResource("1_j26nj")
+name = "Lemon Grass"
+cost = 1.0
+atlas_x = 7
+vegetation_weight = 0.3

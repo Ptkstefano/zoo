@@ -71,7 +71,7 @@ func play_dynamic_close_up_soundscape():
 	else:
 		crowd_clip_index = 4
 	
-	if tree_weight < 50:
+	if tree_weight < 15:
 		if peep_weight < 50:
 			vegetation_clip_index = 0
 		else:

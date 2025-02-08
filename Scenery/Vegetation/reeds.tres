@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="vegetation_resource" load_steps=2 format=3 uid="uid://bcld4w1mfdp4n"]
+
+[ext_resource type="Script" uid="uid://d3riapnnqoikx" path="res://Scenery/Vegetation/vegetation_res.gd" id="1_41v21"]
+
+[resource]
+script = ExtResource("1_41v21")
+name = "Reeds"
+cost = 1.0
+atlas_x = 3
+vegetation_weight = 0.3

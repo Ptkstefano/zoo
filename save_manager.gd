@@ -9,29 +9,16 @@ var TerrainWangS
 var TerrainWangW
 var TerrainWangN
 
-#var enclosureManager
 var enclosure_list = []
-
-#var animalManager
 var animal_list = []
 var animal_data = {}
-
-#var sceneryManager
 var scenery_list = []
-
-#var fixtureManager
 var fixture_list = []
-
-#var peepManager
 var peepGroupList = []
-
-#var buildingManager
 var building_list = []
-
-#var waterManager
 var water_list = []
+var staff_list = []
 
-#var pathManager
 
 var tilemap_layers = []
 
@@ -84,6 +71,8 @@ func start_save_manager():
 	water_list = get_tree().get_nodes_in_group('WaterBodies')
 
 	building_list = get_tree().get_nodes_in_group('Buildings')
+	
+	staff_list = get_tree().get_nodes_in_group('Staff')
 
 	SignalBus.update_peeps_cached_positions.emit()
 	peepGroupList = get_tree().get_nodes_in_group('PeepGroups')
@@ -189,6 +178,14 @@ func save_game():
 		i += 1
 	save_data['fixtureData'] = fixture_data
 	
+	## Save staff data
+	i = 1
+	var staff_data = {}
+	for staff in staff_list:
+		staff_data[i] = get_staff_data(staff).duplicate(true)
+		i+=1
+	save_data['staffData'] = staff_data
+	
 	## Save finance data
 	save_data['financeData'] = get_finance_data().duplicate(true)
 	
@@ -290,20 +287,30 @@ func load_game():
 			
 	if data.has('sceneryData'):
 		for key in data["sceneryData"]:
+			var scenery_data = {}
 			var position = Vector2i(data["sceneryData"][key]['x_pos'], data["sceneryData"][key]['y_pos'])
+			scenery_data['position'] = position
 			if data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.VEGETATION:
-				var res = load(data["sceneryData"][key]['vegetation_res'])
-				sceneryManager.place_vegetation(position, res, null)
-			elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.TREE:
-				var res = load(data["sceneryData"][key]['tree_res'])
-				sceneryManager.place_tree(position, res, null)
-			elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.DECORATION:
-				var res = load(data["sceneryData"][key]['decoration_res'])
-				var direction = data["sceneryData"][key].get('direction', 1)
-				sceneryManager.place_decoration(position, res, direction, null)
-			elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.ROCK:
-				var res = load(data["sceneryData"][key]['decoration_res'])
-				sceneryManager.place_rock(position, res, null)
+				var random_y = data["sceneryData"][key].get('random_y', randi_range(0,2))
+				scenery_data['random_y'] = random_y
+			
+			scenery_data['direction'] = data["sceneryData"][key].get('direction', null)
+			scenery_data['id'] = null
+			var res = load(data["sceneryData"][key]['res'])
+			sceneryManager.on_load_scenery(data["sceneryData"][key]['scenery_type'], res, scenery_data)
+			#if data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.VEGETATION:
+				#var res = load(data["sceneryData"][key]['vegetation_res'])
+				#sceneryManager.place_vegetation(position, res, null)
+			#elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.TREE:
+				#var res = load(data["sceneryData"][key]['tree_res'])
+				#sceneryManager.place_tree(position, res, null)
+			#elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.DECORATION:
+				#var res = load(data["sceneryData"][key]['decoration_res'])
+				#var direction = data["sceneryData"][key].get('direction', 1)
+				#sceneryManager.place_decoration(position, res, direction, null)
+			#elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.ROCK:
+				#var res = load(data["sceneryData"][key]['decoration_res'])
+				#sceneryManager.place_rock(position, res, null)
 				
 	if data.has('fixtureData'):
 		for key in data["fixtureData"]:
@@ -487,15 +494,15 @@ func get_scenery_data(scenery):
 	data['x_pos'] = scenery.cached_position.x
 	data['y_pos'] = scenery.cached_position.y
 	if scenery_type == IdRefs.SCENERY_TYPES.VEGETATION:
-		#print('type vegetation')
-		data['vegetation_res'] = scenery.vegetation_res.get_path()
+		data['res'] = scenery.vegetation_res.get_path()
+		data['random_y'] = scenery.random_y
 	elif scenery_type == IdRefs.SCENERY_TYPES.TREE:
-		data['tree_res'] = scenery.tree_res.get_path()
+		data['res'] = scenery.tree_res.get_path()
 	elif scenery_type == IdRefs.SCENERY_TYPES.DECORATION:
-		data['decoration_res'] = scenery.decoration_res.get_path()
+		data['res'] = scenery.decoration_res.get_path()
 		data['direction'] = scenery.direction
 	elif scenery_type == IdRefs.SCENERY_TYPES.ROCK:
-		data['decoration_res'] = scenery.rock_res.get_path()
+		data['res'] = scenery.rock_res.get_path()
 	return data
 
 func get_fixture_data(fixture):
@@ -589,4 +596,10 @@ func get_time_data():
 		'current_year': TimeManager.current_year,
 		'timer_time_left': TimeManager.get_timer_time_left()
 	}
+	return data
+
+
+func get_staff_data(staff):
+	var data = {}
+	
 	return data

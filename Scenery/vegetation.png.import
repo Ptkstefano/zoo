@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xj2p8ub41kqg"
-path="res://.godot/imported/vegetation3.png-908a41232066b09a46e656779020de78.ctex"
+uid="uid://dmtpwgwgu56s5"
+path="res://.godot/imported/vegetation.png-2dcfd1d49fae423117081fc38a489932.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenery/Vegetation/vegetation3.png"
-dest_files=["res://.godot/imported/vegetation3.png-908a41232066b09a46e656779020de78.ctex"]
+source_file="res://Scenery/vegetation.png"
+dest_files=["res://.godot/imported/vegetation.png-2dcfd1d49fae423117081fc38a489932.ctex"]
 
 [params]
 

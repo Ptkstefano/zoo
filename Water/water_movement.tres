@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dnrl255m8dbu6"]
 
-[ext_resource type="Shader" path="res://Water/scrolling.gdshader" id="1_yhufy"]
+[ext_resource type="Shader" uid="uid://pllmt0j7dv1v" path="res://Water/scrolling.gdshader" id="1_yhufy"]
 [ext_resource type="Texture2D" uid="uid://kw67tgg6ws3i" path="res://Water/water2.png" id="2_vewhp"]
 
 [resource]

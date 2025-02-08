@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bx40coqo4ygks"]
 
 [ext_resource type="Texture2D" uid="uid://pc30rlsi2umk" path="res://UI/Icons/gender1.png" id="1_s54qn"]
-[ext_resource type="Script" path="res://UI/UI popups/elements/animal_in_enclosure_element.gd" id="1_xyiyn"]
+[ext_resource type="Script" uid="uid://0j7s77ohlqtd" path="res://UI/UI popups/elements/animal_in_enclosure_element.gd" id="1_xyiyn"]
 [ext_resource type="Texture2D" uid="uid://c7elyqd6wdtkr" path="res://UI/Icons/mag-glass.png" id="2_xyiyn"]
 [ext_resource type="Texture2D" uid="uid://bxp117rrpsexg" path="res://UI/Icons/gender2.png" id="3_lqmgb"]
 

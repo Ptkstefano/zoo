@@ -23,6 +23,8 @@ var peep_thoughts : Array[ThoughtManager.PEEP_THOUGHTS] = []
 var direction : IdRefs.DIRECTIONS
 var active_node
 
+var number_of_peeps_inside : int = 0
+
 var maximum_stock = 50
 
 var shop_product_data = {}
@@ -202,3 +204,14 @@ func update_stock_stats(product_id, replenish_cost):
 	shop_product_data[product_id]['lifetime']['stock_expenditure'] += replenish_cost
 	shop_expenditure_data['current_month'] += replenish_cost
 	shop_expenditure_data['lifetime'] += replenish_cost
+
+func peep_entered():
+	number_of_peeps_inside += 1
+	if building_res.has_occupied_sprite:
+		active_node.find_child('Sprite2D').frame_coords.y = 1
+	
+func peep_exited():
+	number_of_peeps_inside -= 1
+	if building_res.has_occupied_sprite:
+		if number_of_peeps_inside == 0:
+			active_node.find_child('Sprite2D').frame_coords.y = 0

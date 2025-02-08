@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://32hy2cqq5ww0"]
 
-[ext_resource type="Texture2D" uid="uid://bsvsl53n4gga3" path="res://Scenery/Vegetation/vegetation1.png" id="1_f67hu"]
 [ext_resource type="Script" uid="uid://sks6m1lyqfy5" path="res://Scenery/Vegetation/vegetation_scene.gd" id="1_noc2m"]
+[ext_resource type="Texture2D" uid="uid://5n1wdx7fmaqu" path="res://Scenery/Vegetation/vegetation.png" id="2_fy26q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_71esx"]
 radius = 8.0
@@ -11,8 +11,10 @@ script = ExtResource("1_noc2m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_f67hu")
-centered = false
+position = Vector2(0, -16)
+texture = ExtResource("2_fy26q")
+hframes = 8
+vframes = 3
 
 [node name="Area" type="Area2D" parent="."]
 collision_layer = 4096
@@ -22,3 +24,7 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
 visible = false
 shape = SubResource("CircleShape2D_71esx")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true

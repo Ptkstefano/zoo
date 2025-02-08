@@ -1,14 +1,22 @@
 extends Node
 
 ## Represents total level of quality of zoo from available attractions and boosts
-var zoo_rating : int:
-	set(value):
-		zoo_rating = value
-		calculate_zoo_attractiveness()
-		calculate_entrance_perceived_value()
+
 		
 var entrance_price : float = 10
 var zoo_entrance_open : bool = false
+		
+		
+## Animal rating is sum of the ratins of all species present in the zoo
+var animal_rating : int
+
+## Zoo rating is sum of animal rating and other available boosts
+var zoo_rating : int
+
+## Zoo attractiveness is the product of a calculation that factors zoo rating and current reputation
+var zoo_attractiveness : int
+
+## The entrance perceived value takes into account the zoo attractiveness and the current reputation
 var entrance_perceived_value : float = 10.0
 		
 ## How much the rating value impacts attractiveness
@@ -19,14 +27,15 @@ var staff_list : Dictionary = {}
 
 ## Represents current maximum number of guests in zoo
 ## Factors in zoo_rating and current reputation
-var zoo_attractiveness : int:
+
+## Represents level of satisfaction from guests
+var reputation : float = 5:
 	set(value):
-		zoo_attractiveness = value
-		calculate_entrance_perceived_value()
+		reputation = clamp(value, 0, 5)
+		calculate_zoo_attractiveness()
+
 
 var zoo_animals : Dictionary = {}
-
-var animal_rating : int
 		
 var next_animal_id : int = 0
 
@@ -56,12 +65,6 @@ var peep_count : int:
 		peep_count = value
 		peep_count_updated.emit(value)
 
-## Represents level of satisfaction from guests
-var reputation : float = 5:
-	set(value):
-		reputation = clamp(value, 0, 5)
-		calculate_zoo_attractiveness()
-		calculate_entrance_perceived_value()
 		
 signal zoo_reputation_updated
 signal peep_count_updated
@@ -181,6 +184,7 @@ func calculate_zoo_rating():
 func calculate_zoo_attractiveness():
 	zoo_attractiveness = float(zoo_rating * rating_ratio) * (clampf(reputation, 0.25, 5) * 0.3)
 	zoo_reputation_updated.emit(reputation)
+	calculate_entrance_perceived_value()
 
 func update_rating(new_rating):
 	last_guest_ratings.append(new_rating)
@@ -222,7 +226,8 @@ func update_entrance_price(value):
 
 func calculate_entrance_perceived_value():
 	## Value in money that is considered ideal pricing for the entrance
-	entrance_perceived_value = ((zoo_attractiveness * 1.2) + (zoo_rating)) * 0.01
+	var rating_to_entrance_ratio = 0.01
+	entrance_perceived_value = 5.0 + (zoo_rating * rating_to_entrance_ratio) + ((reputation - 2.5) * 2.5)
 	entrance_perceived_value = clampf(entrance_perceived_value, 5.0, 100.0)
 
 func generate_staff_id():

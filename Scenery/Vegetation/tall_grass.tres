@@ -1,12 +1,10 @@
-[gd_resource type="Resource" script_class="vegetation_resource" load_steps=3 format=3 uid="uid://bpx7vdfrvha4a"]
+[gd_resource type="Resource" script_class="vegetation_resource" load_steps=2 format=3 uid="uid://bpx7vdfrvha4a"]
 
-[ext_resource type="Script" path="res://Scenery/Vegetation/vegetation_res.gd" id="1_l0d11"]
-[ext_resource type="Texture2D" uid="uid://da3rmr6656h5s" path="res://Scenery/Vegetation/vegetation2.png" id="2_61s3m"]
+[ext_resource type="Script" uid="uid://d3riapnnqoikx" path="res://Scenery/Vegetation/vegetation_res.gd" id="1_l0d11"]
 
 [resource]
 script = ExtResource("1_l0d11")
-name = "Tall grass"
+name = "Tall Grass"
 cost = 1.0
-texture = ExtResource("2_61s3m")
-texture_offset = Vector2(0, 0)
+atlas_x = 1
 vegetation_weight = 0.3

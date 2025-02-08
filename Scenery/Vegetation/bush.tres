@@ -1,12 +1,10 @@
-[gd_resource type="Resource" script_class="vegetation_resource" load_steps=3 format=3 uid="uid://ch0c44mjn0ono"]
+[gd_resource type="Resource" script_class="vegetation_resource" load_steps=2 format=3 uid="uid://ch0c44mjn0ono"]
 
-[ext_resource type="Script" path="res://Scenery/Vegetation/vegetation_res.gd" id="1_h6o6d"]
-[ext_resource type="Texture2D" uid="uid://xj2p8ub41kqg" path="res://Scenery/Vegetation/vegetation3.png" id="2_6176h"]
+[ext_resource type="Script" uid="uid://d3riapnnqoikx" path="res://Scenery/Vegetation/vegetation_res.gd" id="1_h6o6d"]
 
 [resource]
 script = ExtResource("1_h6o6d")
 name = "Bush"
 cost = 2.5
-texture = ExtResource("2_6176h")
-texture_offset = Vector2(0, 0)
+atlas_x = 2
 vegetation_weight = 0.25

@@ -1,7 +1,7 @@
-[gd_scene load_steps=206 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=211 format=4 uid="uid://e8kgl625in1o"]
 
-[ext_resource type="Script" path="res://Scripts/debug_controller.gd" id="1_nisry"]
-[ext_resource type="Script" path="res://Scripts/input_controller.gd" id="1_ojpln"]
+[ext_resource type="Script" uid="uid://o2egpp0b02e2" path="res://Scripts/debug_controller.gd" id="1_nisry"]
+[ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
 [ext_resource type="Script" uid="uid://dabd0wtptg5ku" path="res://main.gd" id="1_oseej"]
 [ext_resource type="Script" uid="uid://bawblafy70sf4" path="res://reputation_manager.gd" id="2_1b04k"]
 [ext_resource type="Script" uid="uid://b0adab4c0yrtg" path="res://Scripts/path_manager.gd" id="2_4bhy0"]
@@ -21,19 +21,19 @@
 [ext_resource type="Script" uid="uid://saxl0xjps650" path="res://Scripts/highlight_layer.gd" id="6_5hq40"]
 [ext_resource type="Resource" uid="uid://b8jk8nfoxbpbo" path="res://Terrain/grass.tres" id="6_twhii"]
 [ext_resource type="Resource" uid="uid://cv3jbpbpoab6s" path="res://Terrain/sand.tres" id="7_i5ul7"]
-[ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="7_pw5dd"]
+[ext_resource type="Script" uid="uid://c3k8yrw5ov665" path="res://Scripts/camera_2d.gd" id="7_pw5dd"]
 [ext_resource type="PackedScene" uid="uid://loilhhqarje0" path="res://UI/UI selectable elements/ui_path_element.tscn" id="7_tmdpf"]
 [ext_resource type="Script" uid="uid://bjsg0rr5ai5l3" path="res://bulldozer_collider.gd" id="7_xhqw8"]
 [ext_resource type="Resource" uid="uid://dp82v0odladsa" path="res://Paths/null_path.tres" id="7_ybs1u"]
 [ext_resource type="Texture2D" uid="uid://cs6ugrllcg1e3" path="res://bulldozer.png" id="8_7mmqq"]
 [ext_resource type="PackedScene" uid="uid://dvjtneek7b62q" path="res://UI/UI selectable elements/ui_terrain_element.tscn" id="8_qghle"]
-[ext_resource type="Script" path="res://Scripts/building_ui.gd" id="10_pctuh"]
+[ext_resource type="Script" uid="uid://c3p6hiks7eom0" path="res://Scripts/building_ui.gd" id="10_pctuh"]
 [ext_resource type="Script" uid="uid://dy3cw312sp2us" path="res://Managers/peep_manager.gd" id="10_ubp83"]
 [ext_resource type="PackedScene" uid="uid://ca66y62ys1xkh" path="res://Peeps/peep.tscn" id="11_nv6fn"]
 [ext_resource type="Resource" uid="uid://dcrw61juxfsvs" path="res://Terrain/dirt.tres" id="12_jliyx"]
 [ext_resource type="Resource" uid="uid://dk382e4qklm34" path="res://Terrain/deciduous.tres" id="13_jic8h"]
 [ext_resource type="Resource" uid="uid://ctusbtwghbxrl" path="res://Terrain/savanna.tres" id="14_1rewk"]
-[ext_resource type="Script" path="res://Managers/scenery_manager.gd" id="14_62h3g"]
+[ext_resource type="Script" uid="uid://bjwm8a55y7i7h" path="res://Managers/scenery_manager.gd" id="14_62h3g"]
 [ext_resource type="Script" uid="uid://bvnak0w5oxnhm" path="res://Enclosures/Fences/fence_res.gd" id="20_k6451"]
 [ext_resource type="Texture2D" uid="uid://cfp2cyqpum0g5" path="res://Buildings/Sprites/entrance.png" id="21_41lik"]
 [ext_resource type="PackedScene" uid="uid://oa08vk0rrcpe" path="res://UI/UI selectable elements/ui_animal_element.tscn" id="21_a35of"]
@@ -42,13 +42,13 @@
 [ext_resource type="Texture2D" uid="uid://utbwnfc2qxje" path="res://Buildings/Sprites/entrance_roof.png" id="22_nankq"]
 [ext_resource type="Script" uid="uid://cankjki47tjd5" path="res://Scenery/Trees/tree_resource.gd" id="24_g51a1"]
 [ext_resource type="Resource" uid="uid://s5hkg34ufeu3" path="res://Scenery/Trees/Limber Pine.tres" id="25_qvxwd"]
-[ext_resource type="Script" path="res://Scenery/Decorations/decoration_resource.gd" id="26_0c60e"]
+[ext_resource type="Script" uid="uid://d143y0sc6ar4w" path="res://Scenery/Decorations/decoration_resource.gd" id="26_0c60e"]
 [ext_resource type="PackedScene" uid="uid://cuiky1io0hfof" path="res://Scenery/Trees/tree_scene.tscn" id="26_vuik7"]
 [ext_resource type="PackedScene" uid="uid://bt8m7eb0se03i" path="res://UI/UI selectable elements/ui_scenery_element.tscn" id="27_5553e"]
-[ext_resource type="Script" path="res://Managers/building_manager.gd" id="27_mg3kq"]
+[ext_resource type="Script" uid="uid://db4c2pqkkun6" path="res://Managers/building_manager.gd" id="27_mg3kq"]
 [ext_resource type="Resource" uid="uid://dqn36shhu7sgb" path="res://Scenery/Decorations/deer-statue.tres" id="27_r3jxo"]
 [ext_resource type="PackedScene" uid="uid://bb5olte5gphhj" path="res://UI/UI selectable elements/ui_building_element.tscn" id="28_04i1b"]
-[ext_resource type="Script" path="res://Buildings/building_res.gd" id="28_58uqa"]
+[ext_resource type="Script" uid="uid://b3dk3jci5ihs8" path="res://Buildings/building_res.gd" id="28_58uqa"]
 [ext_resource type="Resource" uid="uid://xk5hxkv0keyb" path="res://Enclosures/Fences/Fence resources/concrete.tres" id="28_ldw2x"]
 [ext_resource type="Script" uid="uid://d3riapnnqoikx" path="res://Scenery/Vegetation/vegetation_res.gd" id="28_wajut"]
 [ext_resource type="Resource" uid="uid://bin28cl7rvgjd" path="res://Scenery/Vegetation/short_grass.tres" id="29_d00f0"]
@@ -59,7 +59,7 @@
 [ext_resource type="Resource" uid="uid://bpx7vdfrvha4a" path="res://Scenery/Vegetation/tall_grass.tres" id="30_dvure"]
 [ext_resource type="Resource" uid="uid://b6yflquscb8la" path="res://Scenery/Trees/Palm 1.tres" id="30_yos0d"]
 [ext_resource type="Resource" uid="uid://ch0c44mjn0ono" path="res://Scenery/Vegetation/bush.tres" id="31_7jmpp"]
-[ext_resource type="Shader" path="res://Shaders/terrain.gdshader" id="31_e0m5j"]
+[ext_resource type="Shader" uid="uid://b0e23qgminbhp" path="res://Shaders/terrain.gdshader" id="31_e0m5j"]
 [ext_resource type="Resource" uid="uid://dsp7g10m8i1c5" path="res://Scenery/Trees/Palm 2.tres" id="31_m2uoq"]
 [ext_resource type="Texture2D" uid="uid://wj8tt8gnhkn5" path="res://Terrain/terrain_sheet.png" id="32_05eb2"]
 [ext_resource type="Resource" uid="uid://36wmkrb0dw5i" path="res://Scenery/Trees/Jacaranda.tres" id="32_weqx1"]
@@ -79,7 +79,7 @@
 [ext_resource type="Resource" uid="uid://bsox4n3cixif" path="res://Scenery/Fixtures/wooden bench.tres" id="47_gvub1"]
 [ext_resource type="Resource" uid="uid://c20l3l7d4n8e5" path="res://Scenery/Rocks/rock1.tres" id="47_jcxqu"]
 [ext_resource type="Resource" uid="uid://gk6rd1nfkfuo" path="res://Scenery/Rocks/rock2.tres" id="48_0arob"]
-[ext_resource type="Script" path="res://Managers/popup_manager.gd" id="48_w8cen"]
+[ext_resource type="Script" uid="uid://djfaqc8j8g763" path="res://Managers/popup_manager.gd" id="48_w8cen"]
 [ext_resource type="Resource" uid="uid://dwomu3s1tuou4" path="res://Scenery/Rocks/rock3.tres" id="49_dij0e"]
 [ext_resource type="Script" uid="uid://bb51mdph56ind" path="res://Managers/shelter_manager.gd" id="49_hnjxi"]
 [ext_resource type="PackedScene" uid="uid://ddbum626vwima" path="res://UI/UI popups/ui_shop_popup.tscn" id="50_dyuu3"]
@@ -89,10 +89,15 @@
 [ext_resource type="Resource" uid="uid://dwwf1t208xn6v" path="res://Scenery/Rocks/rock5.tres" id="51_wat4s"]
 [ext_resource type="PackedScene" uid="uid://dasxyu5n8ncu0" path="res://UI/UI selectable elements/ui_shelter_element.tscn" id="52_30626"]
 [ext_resource type="Resource" uid="uid://cw0qxk8uuda34" path="res://Buildings/BuildingResources/toilet1.tres" id="53_1nclh"]
-[ext_resource type="Shader" path="res://Shaders/postfx.gdshader" id="53_fkgg7"]
+[ext_resource type="Shader" uid="uid://cy6xjukasrqil" path="res://Shaders/postfx.gdshader" id="53_fkgg7"]
 [ext_resource type="PackedScene" uid="uid://c0yqr1xdbc6do" path="res://UI/UI selectable elements/ui_enclosure_element.tscn" id="54_il7k7"]
+[ext_resource type="Resource" uid="uid://bcld4w1mfdp4n" path="res://Scenery/Vegetation/reeds.tres" id="54_wm5rm"]
 [ext_resource type="PackedScene" uid="uid://b020lesiynlbr" path="res://Enclosures/enclosure_scene.tscn" id="55_54dhb"]
+[ext_resource type="Resource" uid="uid://bola5mrcl185v" path="res://Scenery/Vegetation/savanna_grass.tres" id="55_ekl5k"]
 [ext_resource type="PackedScene" uid="uid://dvlhldkt22u1u" path="res://Scenery/Rocks/rock_piece.tscn" id="55_ywjan"]
+[ext_resource type="Resource" uid="uid://bo7jk700o783b" path="res://Scenery/Vegetation/century_plant.tres" id="57_rpys8"]
+[ext_resource type="Resource" uid="uid://det1dqeagbh2a" path="res://Scenery/Vegetation/lemon_grass.tres" id="58_6gr3f"]
+[ext_resource type="Resource" uid="uid://dxi0k8yus5htv" path="res://Scenery/Vegetation/savanna_red_oats.tres" id="58_wm5rm"]
 [ext_resource type="Script" uid="uid://523fsfqlnuv" path="res://Managers/peep_navigation_region.gd" id="61_8dedt"]
 [ext_resource type="PackedScene" uid="uid://c2x0h40jh0wj6" path="res://Staff/staff.tscn" id="69_ba76w"]
 [ext_resource type="Resource" uid="uid://ccsw3cdj7hvqt" path="res://Buildings/BuildingResources/italian_restaurant.tres" id="70_8rtrj"]
@@ -112,11 +117,11 @@
 [ext_resource type="Script" uid="uid://t3naf2okb6cm" path="res://UI/ui_debug_shader.gd" id="87_1b22a"]
 [ext_resource type="Texture2D" uid="uid://bm088drsntwdy" path="res://Sprites/highlight_tiles.png" id="89_mnw77"]
 [ext_resource type="PackedScene" uid="uid://bie8wky7dopo4" path="res://UI/UI popups/ui_mgmt_box.tscn" id="90_kjtd0"]
-[ext_resource type="Script" path="res://Staff/staff_manager.gd" id="91_qrq7t"]
+[ext_resource type="Script" uid="uid://3icrhm6y3yor" path="res://Staff/staff_manager.gd" id="91_qrq7t"]
 [ext_resource type="PackedScene" uid="uid://b7qlfxl72twhw" path="res://Staff/zookeeper.tscn" id="93_ox7mk"]
 [ext_resource type="Texture2D" uid="uid://b7f8nv73rdsl8" path="res://Staff/sprites/zookeeper.png" id="94_ttfan"]
 [ext_resource type="Texture2D" uid="uid://jvgmda4s0kqx" path="res://Staff/sprites/zookeeper_unique.png" id="95_hugdr"]
-[ext_resource type="Shader" path="res://replace_color.gdshader" id="97_84xii"]
+[ext_resource type="Shader" uid="uid://bu1lv0m1sqnci" path="res://replace_color.gdshader" id="97_84xii"]
 [ext_resource type="Script" uid="uid://bx7r3upcavvb4" path="res://notification_manager.gd" id="98_yvsr8"]
 [ext_resource type="PackedScene" uid="uid://c1lavh6yvgdgb" path="res://UI/notification_label.tscn" id="99_vieuh"]
 [ext_resource type="Texture2D" uid="uid://b5ehp47ajkovo" path="res://UI/art/buttons.png" id="101_cpm2s"]
@@ -212,6 +217,26 @@ texture_region_size = Vector2i(64, 32)
 2:4/0 = 0
 3:4/0 = 0
 4:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:0/0 = 0
+5:1/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+6:3/0 = 0
+6:4/0 = 0
+5:4/0 = 0
+5:3/0 = 0
+6:1/0 = 0
+6:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_awsfk"]
 tile_shape = 1
@@ -664,10 +689,10 @@ shader_parameter/saturation_r = 1.0
 shader_parameter/saturation_g = 1.0
 shader_parameter/saturation_b = 1.0
 shader_parameter/color_quantization = 32.0
-shader_parameter/brightness = 0.0900001
-shader_parameter/contrast = 0.25
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 0.0
 shader_parameter/use_palette = false
-shader_parameter/palette_colors = null
+shader_parameter/palette_colors = 0
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_oseej")
@@ -761,7 +786,7 @@ y_sort_enabled = true
 script = ExtResource("14_62h3g")
 available_trees = Array[ExtResource("24_g51a1")]([ExtResource("33_5f25m"), ExtResource("42_p82ky"), ExtResource("40_eq8ba"), ExtResource("34_7vtya"), ExtResource("43_xdjgi"), ExtResource("41_qqr73"), ExtResource("32_weqx1"), ExtResource("25_qvxwd"), ExtResource("30_yos0d"), ExtResource("31_m2uoq")])
 available_decorations = Array[ExtResource("26_0c60e")]([ExtResource("27_r3jxo"), ExtResource("47_cb2x4")])
-available_vegetations = Array[ExtResource("28_wajut")]([ExtResource("29_d00f0"), ExtResource("30_dvure"), ExtResource("31_7jmpp")])
+available_vegetations = Array[ExtResource("28_wajut")]([ExtResource("29_d00f0"), ExtResource("30_dvure"), ExtResource("31_7jmpp"), ExtResource("58_6gr3f"), ExtResource("57_rpys8"), ExtResource("54_wm5rm"), ExtResource("55_ekl5k"), ExtResource("58_wm5rm")])
 available_rocks = Array[ExtResource("46_inymm")]([ExtResource("47_jcxqu"), ExtResource("48_0arob"), ExtResource("49_dij0e"), ExtResource("50_k1udn"), ExtResource("51_wat4s")])
 tree_scene = ExtResource("26_vuik7")
 vegetation_scene = ExtResource("29_kyg12")
@@ -1014,7 +1039,6 @@ wait_time = 3.0
 
 [node name="DebugScreen" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 2
@@ -1252,7 +1276,6 @@ layout_mode = 2
 min_value = -1.0
 max_value = 1.0
 step = 0.01
-value = 0.09
 
 [node name="Label6" type="Label" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug/MarginContainer/VBoxContainer3/UIDebugShader"]
 layout_mode = 2
@@ -1263,7 +1286,6 @@ layout_mode = 2
 min_value = -1.0
 max_value = 1.0
 step = 0.01
-value = 0.25
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer"]
 layout_mode = 2
@@ -2993,10 +3015,10 @@ theme_override_font_sizes/font_size = 40
 text = "$ 1000,00"
 horizontal_alignment = 2
 
-[node name="TODO REPLACE COLOR" type="CanvasLayer" parent="."]
+[node name="OutlineColor" type="CanvasLayer" parent="."]
 layer = 0
 
-[node name="ColorRect" type="ColorRect" parent="TODO REPLACE COLOR"]
+[node name="ColorRect" type="ColorRect" parent="OutlineColor"]
 material = SubResource("ShaderMaterial_ogm70")
 anchors_preset = 15
 anchor_right = 1.0
@@ -3006,11 +3028,12 @@ grow_vertical = 2
 color = Color(1, 1, 1, 0)
 metadata/_edit_lock_ = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="PostFX" type="CanvasLayer" parent="."]
 layer = 0
 
-[node name="PostFX" type="ColorRect" parent="CanvasLayer"]
+[node name="PostFX" type="ColorRect" parent="PostFX"]
 unique_name_in_owner = true
+visible = false
 material = SubResource("ShaderMaterial_if1ac")
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="vegetation_resource" load_steps=2 format=3 uid="uid://dxi0k8yus5htv"]
+
+[ext_resource type="Script" uid="uid://d3riapnnqoikx" path="res://Scenery/Vegetation/vegetation_res.gd" id="1_mfx5x"]
+
+[resource]
+script = ExtResource("1_mfx5x")
+name = "Savanna Red Oats"
+cost = 1.0
+atlas_x = 5
+vegetation_weight = 0.3

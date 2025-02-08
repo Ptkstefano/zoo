@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://5ju27qay4qx7"]
 
-[ext_resource type="Script" path="res://Buildings/building.gd" id="1_kpacv"]
+[ext_resource type="Script" uid="uid://cev33fjgjl2uf" path="res://Buildings/building.gd" id="1_kpacv"]
 [ext_resource type="Texture2D" uid="uid://cojnbxxqn5465" path="res://Buildings/Sprites/ItalianRestaurant.png" id="2_mpxkm"]
 [ext_resource type="PackedScene" uid="uid://dkhxs71sdajj2" path="res://UI/detectable.tscn" id="3_0f6yb"]
 

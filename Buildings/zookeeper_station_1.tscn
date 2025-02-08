@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwc4orlvef7x7"]
 
-[ext_resource type="Script" path="res://Buildings/building.gd" id="1_4nwd1"]
+[ext_resource type="Script" uid="uid://cev33fjgjl2uf" path="res://Buildings/building.gd" id="1_4nwd1"]
 [ext_resource type="Texture2D" uid="uid://du5t84xpecea3" path="res://Buildings/Sprites/Keeper Hut.png" id="2_j5408"]
 [ext_resource type="PackedScene" uid="uid://dkhxs71sdajj2" path="res://UI/detectable.tscn" id="3_3grf2"]
 
@@ -21,7 +21,7 @@ position = Vector2(-3, -63.5)
 texture_filter = 1
 texture = ExtResource("2_j5408")
 flip_h = true
-hframes = 2
+vframes = 2
 
 [node name="Detectable" parent="0" instance=ExtResource("3_3grf2")]
 position = Vector2(0, -32)
@@ -53,7 +53,7 @@ position = Vector2(-3, -63.5)
 [node name="Sprite2D" type="Sprite2D" parent="1/Sprites"]
 texture_filter = 1
 texture = ExtResource("2_j5408")
-hframes = 2
+vframes = 2
 
 [node name="Detectable" parent="1" instance=ExtResource("3_3grf2")]
 position = Vector2(0, -32)

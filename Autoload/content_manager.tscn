@@ -21,7 +21,7 @@
 [ext_resource type="Resource" uid="uid://c00v5iehbxapf" path="res://Animals/AnimalResources/Panda Bear.tres" id="16_4jlli"]
 [ext_resource type="Resource" uid="uid://c086ou4yyva4u" path="res://Products/brownie_sundae.tres" id="16_42240"]
 [ext_resource type="Resource" uid="uid://cqqot0eu3qu67" path="res://Animals/AnimalResources/Cassowary.tres" id="17_42kvv"]
-[ext_resource type="Script" path="res://Buildings/building_res.gd" id="17_ib6gx"]
+[ext_resource type="Script" uid="uid://b3dk3jci5ihs8" path="res://Buildings/building_res.gd" id="17_ib6gx"]
 [ext_resource type="Resource" uid="uid://csjatom74kl3h" path="res://Buildings/BuildingResources/ice_cream_shop.tres" id="18_dhs4s"]
 [ext_resource type="Resource" uid="uid://bvnpr5v6trmlp" path="res://Products/pasta_bolognese.tres" id="18_hdj2o"]
 [ext_resource type="Resource" uid="uid://ludbawk1bcoe" path="res://Animals/AnimalResources/Alaskan Moose.tres" id="18_q0dih"]
