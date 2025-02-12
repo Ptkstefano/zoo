@@ -9,15 +9,12 @@ extends Node
 
 @export var ui_animal_info_popup : PackedScene
 
-@export var ui_confirmation_popup : PackedScene
-
 var opened_popup
 
 func _ready() -> void:
 	SignalBus.open_popup.connect(open_popup)
 	SignalBus.open_popup_with_data.connect(open_popup_with_data)
 	SignalBus.open_box.connect(open_box)
-	SignalBus.open_confirmation_popup.connect(open_confirmation_popup)
 
 
 func open_popup_with_data(type, data):
@@ -47,13 +44,6 @@ func open_popup(detector_pos, element):
 			open_shop_popup(element)
 		else:
 			open_building_popup(element)
-
-func open_confirmation_popup(callback, popup_text, data):
-	var confirmation_popup = ui_confirmation_popup.instantiate()
-	confirmation_popup.callback = callback
-	confirmation_popup.text = popup_text
-	confirmation_popup.data = data
-	add_child(confirmation_popup)
 
 func close_popup():
 	if opened_popup != null:

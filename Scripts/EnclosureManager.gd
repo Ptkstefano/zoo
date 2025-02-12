@@ -26,13 +26,12 @@ func update_terrain_menu():
 		var element = ui_enclosure_element.instantiate()
 		element.enclosure_res = enclosure_res
 		enclosure_menu.add_child(element)
-		
-	$"../../UI".update_ui()
+		%UI.connect_ui_element(element)
 	
 	selected_fence = available_enclosures[0]
 	
 	
-func build_enclosure(id, cells, entrance_cell, fence_res):
+func build_enclosure(id, cells, entrance_cell, fence_res, is_enclosure_in_work_queue):
 	##Check if there is already enclosure
 	if fence_res:
 		selected_fence = fence_res
@@ -53,6 +52,8 @@ func build_enclosure(id, cells, entrance_cell, fence_res):
 		## Load data
 		if entrance_cell:
 			new_enclosure.place_entrance(entrance_cell)
+		if is_enclosure_in_work_queue:
+			new_enclosure.add_to_work_queue()
 		for coordinate in new_enclosure.enclosure_cells:
 			enclosure_layer.set_cell(coordinate, 0, Vector2i(0,0))
 

@@ -1,7 +1,17 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://5rinnmfg30fq"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://5rinnmfg30fq"]
 
 [ext_resource type="FontFile" uid="uid://dh3lo7lghhs8x" path="res://UI/Thin sans.ttf" id="1_yrdlq"]
+[ext_resource type="Texture2D" uid="uid://b5ehp47ajkovo" path="res://UI/art/buttons.png" id="2_o01di"]
 [ext_resource type="Texture2D" uid="uid://dtc7ihyg3w5bq" path="res://UI/art/panel_dark.png" id="2_yrdlq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b5qfd"]
+texture = ExtResource("2_o01di")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+region_rect = Rect2(210, 404, 152, 160)
+modulate_color = Color(0.597176, 0.597176, 0.597176, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yrdlq"]
 content_margin_top = 16.0
@@ -60,6 +70,7 @@ region_rect = Rect2(402, 24, 152, 152)
 Button/constants/outline_size = 16
 Button/font_sizes/font_size = 48
 Button/fonts/font = ExtResource("1_yrdlq")
+Button/styles/disabled = SubResource("StyleBoxTexture_b5qfd")
 Button/styles/focus = SubResource("StyleBoxTexture_yrdlq")
 Button/styles/hover = SubResource("StyleBoxTexture_oxger")
 Button/styles/hover_pressed = SubResource("StyleBoxTexture_midbw")

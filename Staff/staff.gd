@@ -13,6 +13,8 @@ var frame = 0
 var sprite_x := 0
 var sprite_y := 0
 
+var cached_global_position : Vector2
+
 var id : int
 
 var salary : float = 0
@@ -24,6 +26,10 @@ var staff_behavior
 
 var is_moving : bool = false
 
+var data
+
+signal staff_fired
+
 func _ready():
 	agent.waypoint_reached.connect(on_agent_waypoint_reached)
 	$FrameTimer.timeout.connect(on_frame_timer)
@@ -32,8 +38,12 @@ func _ready():
 	staff_behavior.reset_staff.connect(reset_staff)
 	SignalBus.path_erased.connect(on_path_erased)
 	TimeManager.on_pass_month.connect(on_pass_month)
+	SignalBus.update_cached_positions.connect(update_cached_position)
 	if staff_type == IdRefs.STAFF_TYPES.ZOOKEEPER or staff_type == IdRefs.STAFF_TYPES.ZOOKEEPER_UNIQUE:
 		staff_behavior.leap_towards.connect(on_leap_towards)
+	
+	if data:
+		global_position = data['global_position']
 
 func set_sprite(sprite : Texture):
 	$PeepSprite.texture = sprite
@@ -130,3 +140,10 @@ func on_path_erased(cell):
 func on_pass_month():
 	if salary > 0:
 		FinanceManager.remove(salary, IdRefs.PAYMENT_REMOVE_TYPES.SALARY)
+
+func update_cached_position():
+	cached_global_position.x = global_position.x
+	cached_global_position.y = global_position.y
+
+func fire_staff():
+	staff_fired.emit(self)

@@ -16,6 +16,7 @@ building_cost = 1000.0
 base_maintenance = 300.0
 possible_directions = Array[int]([0, 1])
 is_building_entereable = false
+has_occupied_sprite = false
 is_shop = false
 building_type = 1
 product_types = Array[int]([])

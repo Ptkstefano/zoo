@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce0okymgxf8n4"]
+
+[ext_resource type="Theme" uid="uid://dnfx05qfn4rdn" path="res://UI/Themes/popup_inner_content_alternate.tres" id="1_r6bbe"]
+[ext_resource type="Script" uid="uid://dxtlkh60vtnlx" path="res://MainMenu/main_menu_save_game_element.gd" id="2_cihvy"]
+
+[node name="SaveGameElement" type="PanelContainer"]
+theme = ExtResource("1_r6bbe")
+script = ExtResource("2_cihvy")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="SaveGameFileName" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 48
+text = "Sandbox"
+
+[node name="DeleteSaveButton" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Remove"

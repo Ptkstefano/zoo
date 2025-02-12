@@ -121,7 +121,7 @@ func _ready() -> void:
 	change_state(ANIMAL_STATES.IDLE)
 	enclosure.enclosure_stats_updated.connect(update_habitat_satifaction)
 	
-	SignalBus.update_animals_cached_positions.connect(update_cached_position)
+	SignalBus.update_cached_positions.connect(update_cached_position)
 	
 
 func initialize_animal(res, coordinate, found_enclosure, saved_data, is_spawned_infant, spawn_gender):

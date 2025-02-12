@@ -32,8 +32,7 @@ func update_selection_menu():
 		element.resource = fixture_res
 		element.scenery_type = 'fixture'
 		%FixtureSelectionContainer.add_child(element)
-		
-	$"../../UI".update_ui()
+		%UI.connect_ui_element(element)
 
 func place_fixture(press_pos, fixture_res : fixture_resource, free_placement : bool, saved_direction):
 	var cell = pathLayer.local_to_map(press_pos)

@@ -23,8 +23,7 @@ func update_terrain_menu():
 		var element = ui_terrain_element.instantiate()
 		element.terrain_res = terrain_res
 		terrain_menu.add_child(element)
-		
-	$"../UI".update_ui()
+		%UI.connect_ui_element(element)
 
 func build_terrain(coords, atlas_y):
 	var neighbors = []

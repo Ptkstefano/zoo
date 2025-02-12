@@ -30,8 +30,7 @@ func update_animal_menu():
 		var element = ui_animal_element.instantiate()
 		element.animal_res = animal_res
 		animal_menu.add_child(element)
-		
-	$"../../UI".update_ui()
+		%UI.connect_ui_element(element)
 
 
 func spawn_animal(coordinate, animal_res : animal_resource, saved_data, is_spawned_infant : bool, selected_spawn_gender):

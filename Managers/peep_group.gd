@@ -585,6 +585,8 @@ func initialize_peep_group_destinations():
 
 	## Initialize destinations
 	for id in desired_enclosure_ids:
+		if int(id) not in ZooManager.zoo_enclosures.keys():
+			continue
 		if !ZooManager.zoo_enclosures[int(id)]['species']:
 			continue
 		var destination = {"enclosure_id": int(id), "species": ZooManager.zoo_enclosures[int(id)]['species'].species_id, "view_position": ZooManager.zoo_enclosures[int(id)].node.enclosure_view_positions.pick_random()}
@@ -595,6 +597,9 @@ func initialize_peep_group_destinations():
 	
 func leave_zoo():
 	var rating
+	if $VisibleOnScreenNotifier2D.is_on_screen():
+		SoundscapeManager.trees_in_screen -= 1
+	
 	if has_entered_zoo:
 		if group_desired_destinations.size() == 0 and observed_animals.size() > 3:
 			modifiers.append(ThoughtManager.PEEP_THOUGHTS.SEEN_ALL_DESIRED_ANIMALS)

@@ -34,6 +34,7 @@ var enclosure_central_point : Vector2
 var entrance_cell : Vector2i
 var entrance_door_cell : Vector2i
 
+var is_enclosure_in_work_queue : bool = false
 var has_zookeeper_assigned : bool = false
 
 @onready var enclosure_tilemap = $EnclosureTiles
@@ -323,7 +324,12 @@ func open_door():
 func add_to_work_queue():
 	if self not in ZooManager.enclosures_needing_work:
 		ZooManager.enclosures_needing_work.append(self)
+		is_enclosure_in_work_queue = true
 
+func remove_from_work_queue():
+	if self in ZooManager.enclosures_needing_work:
+		ZooManager.enclosures_needing_work.erase(self)
+		is_enclosure_in_work_queue = false
 
 func add_animal_feed():
 	## TODO - Spawn feed in a specific cell

@@ -1,5 +1,7 @@
 extends PanelContainer
 
+class_name UI_LakeElement
+
 var lake_res : lake_resource
 
 signal lake_selected

@@ -128,6 +128,9 @@ func entrance_price_change(amount):
 	return
 
 func generate_staff_tab():
+	for child in %ZookeeperContainer.get_children():
+		child.queue_free()
+	
 	for staff in ZooManager.staff_list[IdRefs.STAFF_TYPES.ZOOKEEPER_UNIQUE]:
 		var staff_entry = staff_element.instantiate()
 		staff_entry.staff_scene = staff['scene']
@@ -138,6 +141,11 @@ func generate_staff_tab():
 		staff_entry.staff_scene = staff['scene']
 		staff_entry.set_icon(zookeeper_icon)
 		%ZookeeperContainer.add_child(staff_entry)
+		staff_entry.staff_fired.connect(on_staff_fired)
 		
 func on_hire_zookeeper():
 	SignalBus.hire_staff.emit(IdRefs.STAFF_TYPES.ZOOKEEPER)
+	generate_staff_tab()
+
+func on_staff_fired():
+	generate_staff_tab()

@@ -61,7 +61,7 @@ layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
 
-[node name="Animal List" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+[node name="Enclosure Info" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme = ExtResource("6_k6h60")
@@ -70,6 +70,33 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Enclosure Info"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Enclosure Info/ScrollContainer"]
+layout_mode = 2
+
+[node name="InfoList" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Enclosure Info/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ZookeeperVisit" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Enclosure Info/ScrollContainer/MarginContainer/InfoList"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Animal List" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme = ExtResource("6_k6h60")
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+metadata/_tab_index = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Animal List"]
 layout_mode = 2
@@ -80,6 +107,41 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Actions" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme = ExtResource("6_k6h60")
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+metadata/_tab_index = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Actions"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Actions/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ActionsList" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Actions/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RequestZookeeper" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Actions/ScrollContainer/MarginContainer/ActionsList"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Request zookeeper visit"
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

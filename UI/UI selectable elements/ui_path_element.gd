@@ -1,5 +1,7 @@
 extends Control
 
+class_name UI_PathElement
+
 var path_res : path_resource
 var type 
 

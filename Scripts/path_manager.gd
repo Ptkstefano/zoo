@@ -29,8 +29,8 @@ func update_path_menu():
 		var element = ui_element.instantiate()
 		element.path_res = path_res
 		path_menu.add_child(element)
-		
-	$"../UI".update_ui()
+		%UI.connect_ui_element(element)
+	
 	
 
 func build_path(coordinates, atlas_y : int):

@@ -152,14 +152,14 @@ func handle_camera_input(event):
 			
 func handle_tooling_input(event):
 	if is_pressing:
-		if !Helpers.is_valid_cell(touch_start_global_pos) or !Helpers.is_valid_cell(touch_current_global_pos):
+		if !Helpers.is_valid_position(touch_start_global_pos) or !Helpers.is_valid_position(touch_current_global_pos):
 			return
 			
 	if event is InputEventScreenDrag:
 		if is_pressing:
 			if current_tool in hide_ui_tools:
 				SignalBus.ui_visibility.emit(false)
-			if !Helpers.is_valid_cell(touch_start_global_pos) or !Helpers.is_valid_cell(touch_current_global_pos):
+			if !Helpers.is_valid_position(touch_start_global_pos) or !Helpers.is_valid_position(touch_current_global_pos):
 				return
 			if current_tool == TOOLS.PATH:
 				highlight_area()
@@ -168,13 +168,17 @@ func handle_tooling_input(event):
 			if current_tool == TOOLS.TERRAIN:
 				highlight_area()
 			if current_tool == TOOLS.VEGETATION:
-				if vegetation_brush:
-					if touch_current_global_pos.distance_to(previous_snapshot_pos) > 100:
-						previous_snapshot_pos = touch_current_global_pos
-						for i in 3:
+				if touch_current_global_pos.distance_to(previous_snapshot_pos) > 100:
+					previous_snapshot_pos = touch_current_global_pos
+					if vegetation_brush:
+						for i in 5:
 							## TODO - Allow player to customize min distance and offset
-							var random_offset = Vector2(randf_range(-50,50), randf_range(-50,50))
-							scenery_manager.place_vegetation(touch_current_global_pos + random_offset, selected_res, null, null)
+							var random_offset = Vector2(randf_range(-25,25), randf_range(-25,25))
+							var random_position = touch_current_global_pos + random_offset
+							if Helpers.is_valid_position(random_position):
+								scenery_manager.place_vegetation(random_position, selected_res, null, null)
+					else:
+						scenery_manager.place_vegetation(touch_current_global_pos, selected_res, null, null)
 					
 			if current_tool == TOOLS.WATER:
 				if is_placing_water:
@@ -207,7 +211,7 @@ func handle_tooling_input(event):
 					return
 				if cells.is_empty():
 					return
-				$"../Objects/EnclosureManager".build_enclosure(null, cells.duplicate(), null, selected_res)
+				$"../Objects/EnclosureManager".build_enclosure(null, cells.duplicate(), null, selected_res, false)
 				cells.clear()
 			if current_tool == TOOLS.TERRAIN:
 				$"../TerrainManager".build_terrain(cells.duplicate(), selected_res.atlas.y)
@@ -218,7 +222,7 @@ func handle_tooling_input(event):
 				scenery_manager.place_tree(touch_start_global_pos, selected_res, null)
 			if current_tool == TOOLS.VEGETATION:
 				if vegetation_brush:
-					previous_snapshot_pos = touch_start_global_pos
+					previous_snapshot_pos = Vector2(9999,9999)
 					return
 				scenery_manager.place_vegetation(touch_start_global_pos, selected_res, null, null)
 			if current_tool == TOOLS.FIXTURE:
@@ -242,7 +246,7 @@ func handle_bulldozing_input(event):
 		if is_pressing:
 			if current_tool in hide_ui_tools:
 				SignalBus.ui_visibility.emit(false)
-			if !Helpers.is_valid_cell(touch_start_global_pos) or !Helpers.is_valid_cell(touch_current_global_pos):
+			if !Helpers.is_valid_position(touch_start_global_pos) or !Helpers.is_valid_position(touch_current_global_pos):
 				return
 			if current_tool == TOOLS.BULLDOZER_PATH:
 				highlight_area()

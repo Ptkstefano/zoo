@@ -20,8 +20,7 @@ func update_selection_menu():
 		var element = ui_lake_element.instantiate()
 		element.lake_res = lake_res
 		%LakeSelectionContainer.add_child(element)
-		
-	$"../../UI".update_ui()
+		%UI.connect_ui_element(element)
 
 func create_water_body(points):
 	if points.size() < 5:

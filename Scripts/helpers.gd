@@ -25,7 +25,7 @@ func get_current_tile_z_index(global_position):
 func get_global_pos_of_cell(coordinate):
 	return TileMapRef.map_to_local(coordinate)
 
-func is_valid_cell(position):
+func is_valid_position(position):
 	var tile_at_position = TileMapRef.local_to_map(position)
 	if tile_at_position.x > GameManager.playable_area_size * 0.5:
 		return false

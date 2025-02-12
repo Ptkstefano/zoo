@@ -1,10 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://clyvum5qvd0b5"]
+[gd_scene load_steps=13 format=3 uid="uid://clyvum5qvd0b5"]
 
 [ext_resource type="Script" uid="uid://ua6s4x1ng2yn" path="res://MainMenu/UI_main_menu.gd" id="1_jxm28"]
 [ext_resource type="Theme" uid="uid://5rinnmfg30fq" path="res://MainMenu/MainMenu.tres" id="2_24wdr"]
 [ext_resource type="Texture2D" uid="uid://bqrwr2cqyvfly" path="res://UI/art/bgtest.png" id="2_po2gx"]
 [ext_resource type="Texture2D" uid="uid://bhdvqbx2t3rji" path="res://MainMenu/logo3.png" id="3_po2gx"]
 [ext_resource type="Script" uid="uid://ddm4yop4wv5l4" path="res://MainMenu/control_scale_tween.gd" id="4_po2gx"]
+[ext_resource type="Theme" uid="uid://die2jiitjcnwu" path="res://Green_button.tres" id="6_kbpwf"]
+[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/Themes/popup_theme.tres" id="7_jdgnk"]
+[ext_resource type="Theme" uid="uid://di7iy2m47x8rx" path="res://UI/Themes/popup_inner_content.tres" id="8_83n0s"]
+[ext_resource type="PackedScene" uid="uid://ce0okymgxf8n4" path="res://MainMenu/MainMenu_save_game_element.tscn" id="9_83n0s"]
+[ext_resource type="PackedScene" uid="uid://cxbu5fqbnlcu1" path="res://UI/UI popups/ui_confirmation_popup.tscn" id="18_o1f7t"]
+[ext_resource type="Script" uid="uid://dpucmwjqh7h8m" path="res://MainMenu/confirmation_popup_manager.gd" id="19_dhpph"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83n0s"]
+content_margin_top = 24.0
+content_margin_bottom = 12.0
+bg_color = Color(0.800491, 0.800491, 0.800491, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -14,6 +29,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jxm28")
+save_game_element = ExtResource("9_83n0s")
 
 [node name="MainBG" type="TextureRect" parent="."]
 texture_filter = 1
@@ -26,7 +42,7 @@ grow_vertical = 2
 texture = ExtResource("2_po2gx")
 expand_mode = 1
 
-[node name="MainContainer" type="MarginContainer" parent="."]
+[node name="ContainerContainer" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -34,90 +50,252 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
 
-[node name="HBoxContainer" type="VBoxContainer" parent="MainContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MainContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Control" type="Control" parent="MainContainer/HBoxContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="MainContainer/HBoxContainer/MarginContainer/Control"]
+[node name="MainContainer" type="MarginContainer" parent="ContainerContainer"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="VBoxContainer" parent="ContainerContainer/MainContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ContainerContainer/MainContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="TextureRect2" type="TextureRect" parent="ContainerContainer/MainContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
 texture = ExtResource("3_po2gx")
+expand_mode = 3
 stretch_mode = 5
 script = ExtResource("4_po2gx")
 
-[node name="VBoxContainer3" type="HBoxContainer" parent="MainContainer/HBoxContainer"]
-custom_minimum_size = Vector2(1.49, 0)
+[node name="VBoxContainer3" type="VBoxContainer" parent="ContainerContainer/MainContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.6
 theme = ExtResource("2_24wdr")
 theme_override_constants/separation = 15
+alignment = 2
 
-[node name="Control" type="Control" parent="MainContainer/HBoxContainer/VBoxContainer3"]
+[node name="Control" type="Control" parent="ContainerContainer/MainContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ContainerContainer/MainContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="StoryButton" type="Button" parent="ContainerContainer/MainContainer/HBoxContainer/VBoxContainer3/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
+disabled = true
+text = "Story"
 
-[node name="ContinueButton" type="Button" parent="MainContainer/HBoxContainer/VBoxContainer3/Control"]
+[node name="SandboxButton" type="Button" parent="ContainerContainer/MainContainer/HBoxContainer/VBoxContainer3/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -48.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Continue game"
-
-[node name="Control2" type="Control" parent="MainContainer/HBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "Sandbox"
 
-[node name="StartButton" type="Button" parent="MainContainer/HBoxContainer/VBoxContainer3/Control2"]
+[node name="ContinueButton" type="Button" parent="ContainerContainer/MainContainer/HBoxContainer/VBoxContainer3/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -48.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "New game"
-
-[node name="Control3" type="Control" parent="MainContainer/HBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("6_kbpwf")
+text = "Continue last Zoo"
 
-[node name="QuitButton" type="Button" parent="MainContainer/HBoxContainer/VBoxContainer3/Control3"]
+[node name="SandboxContainer" type="MarginContainer" parent="ContainerContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
+visible = false
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -48.0
-offset_bottom = 48.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Quit"
+theme = ExtResource("7_jdgnk")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="MarginContainer" type="MarginContainer" parent="ContainerContainer/SandboxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 150
+
+[node name="PanelContainer" type="PanelContainer" parent="ContainerContainer/SandboxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Sandbox"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("8_83n0s")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SandboxSaveGameList" type="VBoxContainer" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SaveGameElement" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/SandboxSaveGameList" instance=ExtResource("9_83n0s")]
+layout_mode = 2
+
+[node name="NewSandboxGame" type="Button" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("6_kbpwf")
+text = "New Zoo"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="CloseSandboxButton" type="Button" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.1
+text = "X"
+
+[node name="NewSandboxZooContainer" type="MarginContainer" parent="ContainerContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_jdgnk")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="MarginContainer" type="MarginContainer" parent="ContainerContainer/NewSandboxZooContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 500
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 500
+theme_override_constants/margin_bottom = 100
+
+[node name="PanelContainer" type="PanelContainer" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "Create new Zoo"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 5.0
+theme_override_constants/separation = 8
+
+[node name="Label2" type="Label" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Zoo name"
+horizontal_alignment = 1
+
+[node name="ZooNameLineEdit" type="LineEdit" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 56
+theme_override_styles/normal = SubResource("StyleBoxFlat_83n0s")
+text = "New Zoo"
+alignment = 1
+max_length = 32
+caret_blink = true
+
+[node name="StartNewSandboxGame" type="Button" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("6_kbpwf")
+disabled = true
+text = "Start game"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="CloseNewZooButton" type="Button" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.1
+text = "X"
+
+[node name="ConfirmationPopupManager" type="CanvasLayer" parent="."]
+layer = 10
+script = ExtResource("19_dhpph")
+ui_confirmation_popup = ExtResource("18_o1f7t")

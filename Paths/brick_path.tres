@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="path_resource" load_steps=2 format=3 uid="uid://bphygoo2uobbe"]
+
+[ext_resource type="Script" uid="uid://cv4mt4ewctgbq" path="res://Paths/path_res.gd" id="1_c78sf"]
+
+[resource]
+script = ExtResource("1_c78sf")
+name = "Brick Path"
+cost = 5.0
+atlas_y = 2

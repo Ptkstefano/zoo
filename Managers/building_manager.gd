@@ -40,8 +40,7 @@ func update_building_menu():
 			%ServicesSelectionContainer.add_child(element)
 		if element.building_res.building_menu == IdRefs.BUILDING_MENU.ADMINISTRATION:
 			%AdministrationSelectionContainer.add_child(element)
-		
-	$"../../UI".update_ui()
+		%UI.connect_ui_element(element)
 
 func build_building(building_res : building_resource, start_tile, direction, data):
 	if !building_res:

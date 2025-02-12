@@ -1,4 +1,4 @@
-[gd_scene load_steps=211 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=219 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" uid="uid://o2egpp0b02e2" path="res://Scripts/debug_controller.gd" id="1_nisry"]
 [ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -30,6 +30,7 @@
 [ext_resource type="Script" uid="uid://c3p6hiks7eom0" path="res://Scripts/building_ui.gd" id="10_pctuh"]
 [ext_resource type="Script" uid="uid://dy3cw312sp2us" path="res://Managers/peep_manager.gd" id="10_ubp83"]
 [ext_resource type="PackedScene" uid="uid://ca66y62ys1xkh" path="res://Peeps/peep.tscn" id="11_nv6fn"]
+[ext_resource type="Resource" uid="uid://bphygoo2uobbe" path="res://Paths/brick_path.tres" id="12_ekl5k"]
 [ext_resource type="Resource" uid="uid://dcrw61juxfsvs" path="res://Terrain/dirt.tres" id="12_jliyx"]
 [ext_resource type="Resource" uid="uid://dk382e4qklm34" path="res://Terrain/deciduous.tres" id="13_jic8h"]
 [ext_resource type="Resource" uid="uid://ctusbtwghbxrl" path="res://Terrain/savanna.tres" id="14_1rewk"]
@@ -137,7 +138,6 @@
 [ext_resource type="Theme" uid="uid://bged1njjfndbj" path="res://UI/Themes/bottom_panel.tres" id="108_smeu8"]
 [ext_resource type="PackedScene" uid="uid://cmymygq532ra5" path="res://UI/UI popups/ui_enclosure_popup.tscn" id="109_37eu1"]
 [ext_resource type="PackedScene" uid="uid://b4j6v4cc3p1w" path="res://UI/UI popups/ui_animal_info_popup.tscn" id="109_pw0td"]
-[ext_resource type="PackedScene" uid="uid://cxbu5fqbnlcu1" path="res://UI/UI popups/ui_confirmation_popup.tscn" id="109_t5kpo"]
 [ext_resource type="Texture2D" uid="uid://b5bma8wo0rn86" path="res://UI/Icons/icons3.png" id="111_vjgyh"]
 [ext_resource type="Theme" uid="uid://dnsbtrrtp1vwi" path="res://Red_button.tres" id="117_1iygd"]
 [ext_resource type="Theme" uid="uid://die2jiitjcnwu" path="res://Green_button.tres" id="117_g5xqc"]
@@ -153,6 +153,8 @@
 [ext_resource type="FontFile" uid="uid://dh3lo7lghhs8x" path="res://UI/Thin sans.ttf" id="135_t5kpo"]
 [ext_resource type="Texture2D" uid="uid://b2tvkl7nw6goi" path="res://UI/Icons/peeps_icon.png" id="135_xkvoa"]
 [ext_resource type="Texture2D" uid="uid://bqrwr2cqyvfly" path="res://UI/art/bgtest.png" id="136_ldnlw"]
+[ext_resource type="Texture2D" uid="uid://bhdvqbx2t3rji" path="res://MainMenu/logo3.png" id="155_fdpg8"]
+[ext_resource type="Script" uid="uid://b6cxmm7gdxulo" path="res://UII_main_menu.gd" id="155_rpys8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4oys"]
 radius = 12.0
@@ -252,9 +254,39 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
 agent_radius = 0.0
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ekl5k"]
+vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
+agent_radius = 0.0
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nwaol"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_fdpg8"]
+vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
+agent_radius = 0.0
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nyr2l"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rpys8"]
+vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6gr3f"]
+vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6seew"]
+vertices = PackedVector2Array(32, 0, 0, 16, -32, 0, 0, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -16, -32, 0, 0, 16, 32, 0)])
+agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k4cji"]
 texture = ExtResource("4_f4nul")
@@ -304,6 +336,28 @@ use_texture_padding = false
 9:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_5lb64")
 10:1/0 = 0
 10:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_5lb64")
+0:2/0 = 0
+0:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_ekl5k")
+1:2/0 = 0
+1:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_ekl5k")
+2:2/0 = 0
+2:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_rpys8")
+3:2/0 = 0
+3:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_rpys8")
+4:2/0 = 0
+4:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_rpys8")
+5:2/0 = 0
+5:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_6gr3f")
+6:2/0 = 0
+6:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_6gr3f")
+7:2/0 = 0
+7:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_6gr3f")
+8:2/0 = 0
+8:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_6gr3f")
+9:2/0 = 0
+9:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_6seew")
+10:2/0 = 0
+10:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_fdpg8")
 
 [sub_resource type="TileSet" id="TileSet_qn1u4"]
 tile_shape = 1
@@ -694,6 +748,9 @@ shader_parameter/contrast = 0.0
 shader_parameter/use_palette = false
 shader_parameter/palette_colors = 0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fdpg8"]
+bg_color = Color(0.190762, 0.190762, 0.190762, 0.47)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_oseej")
 
@@ -735,7 +792,7 @@ shape = SubResource("CircleShape2D_l4oys")
 
 [node name="PathManager" type="Node2D" parent="." groups=["PathManager"]]
 script = ExtResource("2_4bhy0")
-available_paths = Array[ExtResource("4_5g54g")]([ExtResource("5_yh37h")])
+available_paths = Array[ExtResource("4_5g54g")]([ExtResource("5_yh37h"), ExtResource("12_ekl5k")])
 ui_element = ExtResource("7_tmdpf")
 null_path = ExtResource("7_ybs1u")
 
@@ -841,6 +898,7 @@ ui_scenery_element = ExtResource("27_5553e")
 pathLayer = NodePath("../../TileMap/PathLayer")
 
 [node name="ShelterManager" type="Node2D" parent="Objects"]
+visible = false
 script = ExtResource("49_hnjxi")
 available_shelters = Array[ExtResource("50_m3er2")]([ExtResource("51_row6q")])
 ui_shelter_element = ExtResource("52_30626")
@@ -964,7 +1022,6 @@ ui_mgmt_popup = ExtResource("90_kjtd0")
 ui_peep_group_popup = ExtResource("83_4rd2l")
 ui_enclosure_popup = ExtResource("109_37eu1")
 ui_animal_info_popup = ExtResource("109_pw0td")
-ui_confirmation_popup = ExtResource("109_t5kpo")
 
 [node name="InfoBorder" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -983,6 +1040,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_inymm")
 metadata/_edit_lock_ = true
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("inputController")]
+unique_name_in_owner = true
 layer = 2
 script = ExtResource("10_pctuh")
 inputController = NodePath("../InputController")
@@ -1039,6 +1097,7 @@ wait_time = 3.0
 
 [node name="DebugScreen" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 2
@@ -1306,7 +1365,6 @@ size_flags_vertical = 0
 
 [node name="OptionsDropMenu" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/VBoxContainer/Control"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 1
 anchors_preset = 5
@@ -1358,6 +1416,13 @@ custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Save"
+
+[node name="MainMenuButton" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/VBoxContainer/Control/OptionsDropMenu/MarginContainer/VBoxContainer2/DropDownMenu"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Options"
 
 [node name="MainConstruction" type="PanelContainer" parent="UI/VBoxContainer/MainMargin"]
 layout_mode = 2
@@ -2158,6 +2223,7 @@ text = "X"
 
 [node name="Top-Right" type="Control" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 2
@@ -2897,6 +2963,7 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_bnk2o")
 layout_mode = 2
 
 [node name="PanelContainer2" type="PanelContainer" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/Left/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(152, 70)
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/Left/HBoxContainer/MarginContainer/PanelContainer2"]
@@ -2925,7 +2992,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 40
-text = "238"
+text = "0"
 horizontal_alignment = 1
 
 [node name="Center" type="MarginContainer" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu"]
@@ -3064,3 +3131,71 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("136_ldnlw")
 expand_mode = 1
+
+[node name="MainMenu" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+layer = 128
+script = ExtResource("155_rpys8")
+
+[node name="MainMenuBG" type="PanelContainer" parent="MainMenu"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_fdpg8")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/MainMenuBG"]
+layout_mode = 2
+theme_override_constants/margin_left = 750
+theme_override_constants/margin_top = 250
+theme_override_constants/margin_right = 750
+theme_override_constants/margin_bottom = 250
+
+[node name="PanelContainer" type="PanelContainer" parent="MainMenu/MainMenuBG/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("104_vjgyh")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture = ExtResource("155_fdpg8")
+stretch_mode = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "a"
+
+[node name="Button2" type="Button" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Options"
+
+[node name="BackToMenuButton" type="Button" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Main Menu"

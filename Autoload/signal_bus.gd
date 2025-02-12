@@ -20,8 +20,7 @@ signal path_layer_updated
 
 signal clear_highlight ## Received by highlightLayer
 
-signal update_peeps_cached_positions ## Emitted by: save_manager, received by peepManager
-signal update_animals_cached_positions
+signal update_cached_positions
 
 signal move_camera_to ## Received by the camera. Needs global position as argument
 
@@ -31,10 +30,12 @@ signal hire_staff ## Emitted by mgmt UI to staffManager
 
 signal save_game
 signal game_started
+signal game_stopped
 
 signal money_changed
 
 signal ui_visibility ## Emitted by: inputController
+signal ui_element_selected ## Emitted by individual elements when selected and received by other elements
 
 signal pass_month ## Emitted by: TimeManager
 

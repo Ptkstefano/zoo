@@ -26,8 +26,7 @@ func update_shelter_menu():
 		var element = ui_shelter_element.instantiate()
 		element.shelter_res = shelter_res
 		shelter_menu.add_child(element)
-		
-	$"../../UI".update_ui()
+		%UI.connect_ui_element(element)
 
 func build_shelter(shelter_res, starting_coord, rotate, coords):
 	var new_shelter = shelter_res.shelter_scene.instantiate()

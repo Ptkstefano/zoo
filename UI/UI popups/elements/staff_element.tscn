@@ -56,6 +56,18 @@ text = "Salary: #"
 layout_mode = 2
 size_flags_horizontal = 10
 
+[node name="FireStaffButton" type="Button" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Fire"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/HBoxContainer/FireStaffButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="GoToStaffButton" type="Button" parent="MarginContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 150)

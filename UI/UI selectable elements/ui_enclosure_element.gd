@@ -1,5 +1,7 @@
 extends Control
 
+class_name UI_EnclosureElement
+
 var enclosure_res : fence_resource
 
 signal enclosure_selected

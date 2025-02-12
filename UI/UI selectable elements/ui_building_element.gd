@@ -1,5 +1,7 @@
 extends Control
 
+class_name UI_BuildingElement
+
 var building_res : building_resource
 
 signal building_selected

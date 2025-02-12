@@ -33,6 +33,7 @@ func on_popup_closed():
 	popup_closed.emit()
 	
 func on_product_cost_changed(id, new_cost):
+	new_cost = snappedf(new_cost, 0.1)
 	shop_node.update_product_price(id, new_cost)
 	#products[id].product.current_price = new_cost
 	

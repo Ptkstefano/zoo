@@ -1,5 +1,7 @@
 extends Control
 
+class_name UI_SceneryElement
+
 var resource : Resource
 
 signal scenery_selected

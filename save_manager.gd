@@ -24,22 +24,50 @@ var tilemap_layers = []
 
 var thread : Thread
 
-var main_save_path = 'user://save_game.json'
-var backup_save_path = 'user://save_game_backup.json'
+var current_save_path : String
+var backup_save_path : String
+
+var is_saving_game : bool = false
+
+signal finished_saving_game
 
 func _ready() -> void:
 	SignalBus.save_game.connect(thread_save_game)
 	thread = Thread.new()
 	$AutoSaveTimer.timeout.connect(on_autosave)
+	SignalBus.game_started.connect(on_game_started)
+	SignalBus.game_stopped.connect(on_stop_game)
 
+func set_save_file(file_name):
+	current_save_path = 'user://sandbox_saves/' + file_name
+	backup_save_path = 'user://sandbox_saves/backup/' + file_name
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed('save_game'):
+		thread_save_game()
+	if event.is_action_pressed('load_game'):
+		if is_saving_game:
+			await finished_saving_game
+		get_tree().reload_current_scene()
+		load_game()
+
+func on_game_started():
+	$AutoSaveTimer.start()
+
+func on_stop_game():
+	$AutoSaveTimer.stop()
 
 func on_autosave():
 	thread_save_game()
 
 func start_save_manager():
+	is_saving_game = true
 	#var main_node = get_tree().root.get_node("Main")
 	#var tilemaps = main_node.get_node("TileMap")
 	var tilemaps = get_tree().get_first_node_in_group('TilemapManager')
+	if !tilemaps:
+		print('Save initialization failed')
+		return
 	WaterCoverageLayer = tilemaps.get_node("WaterCoverageLayer")
 	TerrainLayer = tilemaps.get_node("TerrainLayer")
 	PathLayer =  tilemaps.get_node("PathLayer")
@@ -59,9 +87,10 @@ func start_save_manager():
 		'TerrainWangN': TerrainWangN
 	}
 	
+	SignalBus.update_cached_positions.emit()
+	
 	enclosure_list = get_tree().get_nodes_in_group('Enclosures')
 
-	SignalBus.update_animals_cached_positions.emit()
 	animal_list = get_tree().get_nodes_in_group('Animals')
 
 	scenery_list = get_tree().get_nodes_in_group('Scenery')
@@ -74,11 +103,8 @@ func start_save_manager():
 	
 	staff_list = get_tree().get_nodes_in_group('Staff')
 
-	SignalBus.update_peeps_cached_positions.emit()
 	peepGroupList = get_tree().get_nodes_in_group('PeepGroups')
 	
-	
-
 
 func thread_save_game():
 	if !GameManager.game_running:
@@ -93,7 +119,7 @@ func save_game():
 	
 	if(FileAccess.get_open_error() != OK):
 		return
-	var saveFile = FileAccess.open(main_save_path, FileAccess.WRITE)
+	var saveFile = FileAccess.open(current_save_path, FileAccess.WRITE)
 
 	var save_data = {}
 		
@@ -115,8 +141,9 @@ func save_game():
 	## Save animal data
 	i = 1
 	for animal in animal_list:
-		animal_data[i] = get_animal_data(animal).duplicate(true)
-		i += 1
+		if is_instance_valid(animal):
+			animal_data[i] = get_animal_data(animal).duplicate(true)
+			i += 1
 
 	save_data['animalData'] = animal_data
 	
@@ -138,6 +165,7 @@ func save_game():
 	save_data['peepGroupData'] = peep_group_data
 	
 	var zoo_manager_data = {}
+	zoo_manager_data['zoo_name'] = ZooManager.zoo_name
 	zoo_manager_data['next_enclosure_id'] = ZooManager.next_enclosure_id
 	zoo_manager_data['next_animal_id'] = ZooManager.next_animal_id
 	zoo_manager_data['next_building_id'] = ZooManager.next_building_id
@@ -147,7 +175,6 @@ func save_game():
 	zoo_manager_data['entrance_price'] = ZooManager.entrance_price
 	zoo_manager_data['zoo_entrance_open'] = ZooManager.zoo_entrance_open
 	
-
 	save_data['zoo_manager_data'] = zoo_manager_data
 	
 	
@@ -208,6 +235,8 @@ func save_game():
 	
 func save_finished():
 	thread.wait_to_finish()
+	is_saving_game = false
+	finished_saving_game.emit()
 	print('Game saved')
 	
 	
@@ -225,10 +254,11 @@ func load_game():
 	var buildingManager = main_node.get_node("Objects").get_node('BuildingManager') as BuildingManager
 	var peepManager = main_node.get_node("Objects").get_node('PeepManager')
 	var pathManager = main_node.get_node('PathManager') as PathManager
+	var staffManager = main_node.get_node("Objects").get_node('StaffManager') as StaffManager
 	
 	
 	
-	var file = FileAccess.open(main_save_path, FileAccess.READ)
+	var file = FileAccess.open(current_save_path, FileAccess.READ)
 	if !file:
 		return
 		
@@ -248,7 +278,7 @@ func load_game():
 	for key in tilemap_layers.keys():
 		if key == 'PathLayer':
 			## Grabs all coordinates of given path atlas Y and builds it 
-			var possible_path_atlas_y = {0: [], 1: []}
+			var possible_path_atlas_y = {0: [], 1: [], 2: []}
 			for cell in data["tilemapData"][key]:
 				if int(data["tilemapData"][key][cell].atlas_y) in possible_path_atlas_y.keys():
 					possible_path_atlas_y[int(data["tilemapData"][key][cell].atlas_y)].append(Vector2i(int(data["tilemapData"][key][cell].x), int(data["tilemapData"][key][cell].y)))
@@ -273,7 +303,8 @@ func load_game():
 			var entrance_cell = null
 			if data["enclosureData"][key]['enclosure_entrance']:
 				entrance_cell = Vector2i(data["enclosureData"][key]['enclosure_entrance'].x, data["enclosureData"][key]['enclosure_entrance'].y)
-			enclosureManager.build_enclosure(enclosure_id, enclosure_cells, entrance_cell, fence_res)
+			var is_enclosure_in_work_queue = data["enclosureData"][key].get('is_enclosure_in_work_queue', false)
+			enclosureManager.build_enclosure(enclosure_id, enclosure_cells, entrance_cell, fence_res, is_enclosure_in_work_queue)
 			if data["enclosureData"][key].has('feed_data'):
 				enclosureManager.restore_enclosure_feed(enclosure_id, data["enclosureData"][key]['feed_data'])
 				
@@ -298,19 +329,6 @@ func load_game():
 			scenery_data['id'] = null
 			var res = load(data["sceneryData"][key]['res'])
 			sceneryManager.on_load_scenery(data["sceneryData"][key]['scenery_type'], res, scenery_data)
-			#if data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.VEGETATION:
-				#var res = load(data["sceneryData"][key]['vegetation_res'])
-				#sceneryManager.place_vegetation(position, res, null)
-			#elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.TREE:
-				#var res = load(data["sceneryData"][key]['tree_res'])
-				#sceneryManager.place_tree(position, res, null)
-			#elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.DECORATION:
-				#var res = load(data["sceneryData"][key]['decoration_res'])
-				#var direction = data["sceneryData"][key].get('direction', 1)
-				#sceneryManager.place_decoration(position, res, direction, null)
-			#elif data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.ROCK:
-				#var res = load(data["sceneryData"][key]['decoration_res'])
-				#sceneryManager.place_rock(position, res, null)
 				
 	if data.has('fixtureData'):
 		for key in data["fixtureData"]:
@@ -376,6 +394,15 @@ func load_game():
 			groupData['min_product_level'] = data["peepGroupData"][key].get('min_product_level', 1)
 			peepManager.instantiate_peep_group(groupData)
 			
+	if data.has('staffData'):
+		for key in data['staffData']:
+			var staff_type = data['staffData'][key]['staff_type']
+			var staff_data = {}
+			staff_data['global_position'] = Vector2(data['staffData'][key]['x_pos'], data['staffData'][key]['y_pos'])
+			staff_data['id'] = data['staffData'][key]['id']
+			
+			staffManager.spawn_staff(staff_type, staff_data)
+			
 	if data.has('zoo_manager_data'):
 		ZooManager.next_enclosure_id = int(data['zoo_manager_data']['next_enclosure_id'])
 		ZooManager.next_animal_id = int(data['zoo_manager_data']['next_animal_id'])
@@ -385,6 +412,7 @@ func load_game():
 		ZooManager.review_list = data['zoo_manager_data'].get('review_list', [])
 		ZooManager.entrance_price = data['zoo_manager_data'].get('entrance_price', 10.0)
 		ZooManager.zoo_entrance_open = data['zoo_manager_data'].get('zoo_entrance_open', true)
+		ZooManager.zoo_name = data['zoo_manager_data'].get('zoo_name', 'Zoo Name')
 		
 	if data.has('financeData'):
 		FinanceManager.current_money = data['financeData']['current_money']
@@ -427,6 +455,7 @@ func get_enclosure_data(enclosure):
 	data['enclosure_cells'] = enclosure_cells
 	data['enclosure_id'] = enclosure.id
 	data['enclosure_animals'] = enclosure.enclosure_animals
+	data['is_enclosure_in_work_queue'] = enclosure.is_enclosure_in_work_queue
 	if enclosure.entrance_door_cell:
 		data['enclosure_entrance'] = {'x': enclosure.entrance_door_cell.x, 'y': enclosure.entrance_door_cell.y}
 	else:
@@ -565,31 +594,6 @@ func get_building_data(building):
 
 	return data
 
-	
-func save_new_scenery(scenery):
-	if(FileAccess.get_open_error() != OK):
-		return
-	var saveFile = FileAccess.open("user://save_game.json", FileAccess.READ_WRITE)
-	
-	var save_content = saveFile.get_as_text()
-
-	
-	var save_data = JSON.parse_string(save_content)
-	saveFile.close()
-	if save_data.has('sceneryData'):
-		var last_key = save_data['sceneryData'].size()
-		save_data['sceneryData'][last_key + 1] = get_scenery_data(scenery)
-	
-	var json_data = JSON.stringify(save_data)
-	
-	if json_data.is_empty():
-		print('save failed')
-		return
-		
-	saveFile.store_string(json_data)
-	saveFile.close()
-	print('saved scenery')
-	
 func get_time_data():
 	var data = {
 		"current_month": TimeManager.current_month,
@@ -601,5 +605,9 @@ func get_time_data():
 
 func get_staff_data(staff):
 	var data = {}
+	data['id'] = staff.id
+	data['staff_type'] = staff.staff_type
+	data['x_pos'] = staff.cached_global_position.x
+	data['y_pos'] = staff.cached_global_position.y
 	
 	return data

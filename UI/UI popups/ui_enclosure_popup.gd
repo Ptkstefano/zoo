@@ -14,3 +14,12 @@ func _ready() -> void:
 		element.animal_scene = animal
 		%AnimalInEnclosureList.add_child(element)
 		
+	if enclosure.is_enclosure_in_work_queue:
+		%ZookeeperVisit.text = 'Enclosure expecting zookeeper visit'
+	else:
+		%ZookeeperVisit.text = ''
+
+	%RequestZookeeper.pressed.connect(on_request_zookeeper)
+	
+func on_request_zookeeper():
+	enclosure.add_to_work_queue()

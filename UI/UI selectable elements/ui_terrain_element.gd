@@ -1,5 +1,7 @@
 extends Control
 
+class_name UI_TerrainElement
+
 var terrain_res : terrain_resource
 
 signal terrain_selected

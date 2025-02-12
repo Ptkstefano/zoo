@@ -40,6 +40,8 @@ func _ready() -> void:
 func on_area_entered(area):
 	if area is Bulldozer:
 		#$RemovalArea/CollisionShape2D.disabled = true
+		if $VisibleOnScreenNotifier2D.is_on_screen():
+			SoundscapeManager.trees_in_screen -= 1
 		object_removed.emit(self)
 		#queue_free()
 

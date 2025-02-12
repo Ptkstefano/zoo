@@ -46,26 +46,29 @@ func update_selection_menu():
 		element.resource = tree_res
 		element.scenery_type = 'tree'
 		%TreesSelectionContainer.add_child(element)
+		%UI.connect_ui_element(element)
 		
 	for vegetation_res in available_vegetations:
 		var element = ui_scenery_element.instantiate()
 		element.resource = vegetation_res
 		element.scenery_type = 'vegetation'
 		%VegetationSelectionContainer.add_child(element)
+		%UI.connect_ui_element(element)
 		
 	for decoration_res in available_decorations:
 		var element = ui_scenery_element.instantiate()
 		element.resource = decoration_res
 		element.scenery_type = 'decoration'
 		%DecorationSelectionContainer.add_child(element)
+		%UI.connect_ui_element(element)
 		
 	for rock_res in available_rocks:
 		var element = ui_scenery_element.instantiate()
 		element.resource = rock_res
 		element.scenery_type = 'rock'
 		%RockSelectionContainer.add_child(element)
+		%UI.connect_ui_element(element)
 		
-	$"../../UI".update_ui()
 
 func place_tree(press_start_pos, tree_res, id):
 	if !tree_res:

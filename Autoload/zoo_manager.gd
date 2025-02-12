@@ -1,7 +1,4 @@
 extends Node
-
-## Represents total level of quality of zoo from available attractions and boosts
-
 		
 var entrance_price : float = 10
 var zoo_entrance_open : bool = false
@@ -20,8 +17,9 @@ var zoo_attractiveness : int
 var entrance_perceived_value : float = 10.0
 		
 ## How much the rating value impacts attractiveness
-## This value defines the difficulty of the game: higher values spawn more peeps
+## This value works as difficulty setting of the game: higher values spawn more peeps
 var rating_ratio = 0.75
+#var rating_ratio = 10
 
 var staff_list : Dictionary = {}
 
@@ -59,6 +57,8 @@ var zookeeper_stations = {}
 
 var active_boosts : Dictionary = {}
 var boost_rating : int = 0
+
+var zoo_name : String
 
 var peep_count : int:
 	set(value):
@@ -236,3 +236,9 @@ func generate_staff_id():
 
 func add_staff(staff_type, staff):
 	staff_list[staff_type].append({'id': staff.id, 'scene': staff})
+
+func remove_staff(staff_scene):
+	for staff_entry in staff_list[staff_scene.staff_type]:
+		if staff_entry.id == staff_scene.id:
+			staff_list[staff_scene.staff_type].erase(staff_entry)
+		

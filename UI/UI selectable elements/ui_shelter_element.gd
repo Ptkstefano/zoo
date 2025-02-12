@@ -1,5 +1,7 @@
 extends Control
 
+class_name UI_ShelterElement
+
 var shelter_res : shelter_resource
 
 signal shelter_selected

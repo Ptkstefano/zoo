@@ -170,7 +170,7 @@ func enter_enclosure():
 	check_for_enclosure_work()
 
 func leave_enclosure():
-	ZooManager.enclosures_needing_work.erase(destination_enclosure)
+	destination_enclosure.remove_from_work_queue()
 	destination_enclosure.has_zookeeper_assigned = false
 	leap_towards.emit(TileMapRef.map_to_local(destination_enclosure.entrance_cell), false)
 	destination_enclosure.open_door()

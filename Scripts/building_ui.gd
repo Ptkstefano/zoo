@@ -22,6 +22,7 @@ func _ready() -> void:
 	## Options menu buttons
 	%SaveGame.pressed.connect(on_save_game)
 	%MgmtMenu.pressed.connect(on_box_pressed.bind(IdRefs.UI_BOXES.MANAGEMENT))
+	%MainMenuButton.pressed.connect(on_open_main_menu)
 	
 	%OptionsMenuToggle.visibility_changed.connect(on_options_menu_toggle_visibility_changed)
 
@@ -93,52 +94,23 @@ func _ready() -> void:
 	resize_ui()
 	hide_selection_menu()
 
-func update_ui():
-	for element in %AnimalSelectionContainer.get_children():
-		if element:
-			element.animal_selected.connect(on_animal_selected)
-	for element in %TerrainSelectionContainer.get_children():
-		if element:
-			element.terrain_selected.connect(on_terrain_selected)
-	for element in %EnclosureSelectionContainer.get_children():
-		if element:
-			element.enclosure_selected.connect(on_enclosure_selected)
-	for element in %ShelterSelectionContainer.get_children():
-		if element:
-			element.shelter_selected.connect(on_shelter_selected)
-	for element in %PathSelectionContainer.get_children():
-		if element:
-			element.path_selected.connect(on_path_selected)
-	for element in %EaterySelectionContainer.get_children():
-		if element:
-			element.building_selected.connect(on_building_selected)
-	for element in %RestaurantSelectionContainer.get_children():
-		if element:
-			element.building_selected.connect(on_building_selected)
-	for element in %ServicesSelectionContainer.get_children():
-		if element:
-			element.building_selected.connect(on_building_selected)
-	for element in %AdministrationSelectionContainer.get_children():
-		if element:
-			element.building_selected.connect(on_building_selected)
-	for element in %TreesSelectionContainer.get_children():
-		if element:
-			element.scenery_selected.connect(on_scenery_selected)
-	for element in %VegetationSelectionContainer.get_children():
-		if element:
-			element.scenery_selected.connect(on_scenery_selected)
-	for element in %FixtureSelectionContainer.get_children():
-		if element:
-			element.scenery_selected.connect(on_scenery_selected)
-	for element in %DecorationSelectionContainer.get_children():
-		if element:
-			element.scenery_selected.connect(on_scenery_selected)
-	for element in %RockSelectionContainer.get_children():
-		if element:
-			element.scenery_selected.connect(on_scenery_selected)
-	for element in %LakeSelectionContainer.get_children():
-		if element:
-			element.lake_selected.connect(on_lake_selected)
+func connect_ui_element(element):
+	if element is UI_AnimalElement:
+		element.animal_selected.connect(on_animal_selected)
+	if element is UI_PathElement:
+		element.path_selected.connect(on_path_selected)
+	if element is UI_TerrainElement:
+		element.terrain_selected.connect(on_terrain_selected)
+	if element is UI_EnclosureElement:
+		element.enclosure_selected.connect(on_enclosure_selected)
+	if element is UI_ShelterElement:
+		element.shelter_selected.connect(on_shelter_selected)
+	if element is UI_BuildingElement:
+		element.building_selected.connect(on_building_selected)
+	if element is UI_SceneryElement:
+		element.scenery_selected.connect(on_scenery_selected)
+	if element is UI_LakeElement:
+		element.lake_selected.connect(on_lake_selected)
 
 func on_options_menu_toggle(toggled):
 	if toggled:
@@ -517,3 +489,6 @@ func update_animal_info_label():
 	
 func on_animal_info_pressed():
 	SignalBus.open_popup_with_data.emit('AnimalInfo', {'resource': selected_res})
+
+func on_open_main_menu():
+	%MainMenu.show()

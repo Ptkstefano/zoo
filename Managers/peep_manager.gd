@@ -30,7 +30,7 @@ signal peep_count_updated
 func _ready() -> void:
 	spawn_location = path_manager.path_layer.map_to_local(Vector2(0,48))
 	$PeepSpawnTimer.timeout.connect(on_peep_spawn_timeout)
-	SignalBus.update_peeps_cached_positions.connect(update_peeps_cached_positions)
+	SignalBus.update_cached_positions.connect(update_peeps_cached_positions)
 
 	
 func update_peeps_cached_positions():

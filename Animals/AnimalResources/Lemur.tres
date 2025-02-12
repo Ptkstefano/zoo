@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://bnjmn8ira1465"]
+
+[ext_resource type="Texture2D" uid="uid://c10ljmb8dblb3" path="res://Animals/sprites/Lemur.png" id="1_ip1jo"]
+[ext_resource type="Texture2D" uid="uid://dv5gaym020mxf" path="res://Animals/sprites/lemur_cub.png" id="1_xpeh5"]
+[ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="2_k6kgm"]
+
+[resource]
+script = ExtResource("2_k6kgm")
+name = "Lemur"
+species_id = 8
+cost = 350.0
+texture = ExtResource("1_ip1jo")
+cub_texture = ExtResource("1_xpeh5")
+feed = 2
+shadow_scale = 1.0
+sprite_y_offset = 4
+animation_speed_scale = 1.0
+base_speed = 20.0
+run_speed = 25.0
+can_swim = false
+animal_rating = 140
+months_of_pregnancy = 5
+percentage_of_will_to_mate = 5
+months_to_adulthood = 36
+months_of_expected_lifetime = 240
+terrain_preference = Dictionary[int, float]({})
+terrain_dislike = Array[int]([])
+needs_water = false
+minimum_habitat_size = 50
+minimum_cells_per_animal = 10
+minimum_vegetation_coverage = 0.3
+maximum_vegetation_coverage = 1.5
+minimum_herd_size = 2
+favorite_tree = 0
+minimum_shelter_level = 0
+minimum_fence_level = 3
+possible_sprite_variations = 1
+separate_gender_sprites = false
+can_be_albino = false
