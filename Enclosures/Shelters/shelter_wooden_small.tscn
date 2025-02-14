@@ -10,7 +10,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_8paum"]
 radius = 38.0526
 
-[node name="shelter-wooden-small" type="Node2D"]
+[node name="shelter-wooden-small" type="Node2D" groups=["Shelter"]]
 y_sort_enabled = true
 script = ExtResource("1_5dxfw")
 

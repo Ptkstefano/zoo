@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="shelter_resource" load_steps=3 format=3 uid="uid://cuk4yesxl2kqy"]
 
-[ext_resource type="Script" path="res://Enclosures/Shelters/shelter_res.gd" id="1_vj8uj"]
+[ext_resource type="Script" uid="uid://ci0g6eukld5d" path="res://Enclosures/Shelters/shelter_res.gd" id="1_vj8uj"]
 [ext_resource type="PackedScene" uid="uid://d1crdigrxqao5" path="res://Enclosures/Shelters/shelter_wooden_small.tscn" id="2_dhj5k"]
 
 [resource]
@@ -9,3 +9,6 @@ name = "Small wooden shelter"
 size = Vector2i(2, 2)
 shelter_scene = ExtResource("2_dhj5k")
 z_offset = 0
+interior_z_index_delta = 0
+is_entereable = false
+possible_directions = Array[int]([1])

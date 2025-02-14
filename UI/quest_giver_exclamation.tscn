@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvjrcqnns6o28"]
+
+[ext_resource type="Texture2D" uid="uid://dhwssutocwgkl" path="res://UI/Icons/quest_giver_exclamation.png" id="1_o6a86"]
+[ext_resource type="Script" uid="uid://bt7hlout57ryb" path="res://Staff/quest_giver_exclamation.gd" id="2_qhaxt"]
+
+[node name="QuestGiverExclamation" type="Sprite2D"]
+position = Vector2(1, -32)
+texture = ExtResource("1_o6a86")
+script = ExtResource("2_qhaxt")

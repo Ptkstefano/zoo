@@ -8,7 +8,11 @@ var story_save_folder_path = "story_saves"
 var sandbox_saves = []
 
 func _ready() -> void:
+	SignalBus.instantiating_main_menu.connect(_ready)
+	
 	initialize_folders()
+	
+	sandbox_saves.clear()
 		
 	var sandbox_saves_dir = DirAccess.open(userfolder_path + sandbox_save_folder_path)
 	if sandbox_saves_dir:
@@ -25,10 +29,14 @@ func _ready() -> void:
 					var backup_file = FileAccess.open(userfolder_path + sandbox_save_folder_path + 'backup/' + file_name, FileAccess.READ)
 					data = json.parse_string(backup_file.get_as_text())  
 				save_data['zoo_name'] = data['zoo_manager_data'].get('zoo_name', file_name)
+				var datetime = data['saveFileData'].get('datetime', null)
+				save_data['save_datetime'] = datetime
 			sandbox_saves.append(save_data)
-			
 	else:
 		print('error')
+		
+	## Test this
+	sandbox_saves.sort_custom(func(a, b): return a["save_datetime"] > b["save_datetime"])
 
 func initialize_folders():
 	var dir = DirAccess.open(userfolder_path)

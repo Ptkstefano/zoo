@@ -40,3 +40,10 @@ signal ui_element_selected ## Emitted by individual elements when selected and r
 signal pass_month ## Emitted by: TimeManager
 
 signal set_debug_label_text
+
+signal exiting_game_scene ## Emmited by options menu -> used to update autoloads
+signal instantiating_main_menu ## Emmited by main_menu on ready -> used to update autoloads
+
+## Just as debug for now
+signal start_night
+signal start_day

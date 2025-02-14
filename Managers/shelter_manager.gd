@@ -28,18 +28,25 @@ func update_shelter_menu():
 		shelter_menu.add_child(element)
 		%UI.connect_ui_element(element)
 
-func build_shelter(shelter_res, starting_coord, rotate, coords):
+func build_shelter(shelter_res, starting_tile, direction):
+	if !shelter_res:
+		print('No shelter resource found')
+		return
+	var enclosure = TileMapRef.get_enclosure_by_cell(starting_tile)
+	print(starting_tile)
+	if !enclosure:
+		print('No enclosure for shelter')
+		return
 	var new_shelter = shelter_res.shelter_scene.instantiate()
-	new_shelter.shelter_position = TileMapRef.map_to_local(starting_coord)
-	#new_shelter.is_shelter_rotated = rotate
+	new_shelter.shelter_position = TileMapRef.map_to_local(starting_tile)
 	new_shelter.shelter_res = shelter_res
-	new_shelter.used_coordinates = coords
+	new_shelter.starting_tile = starting_tile
+	new_shelter.direction = direction
 	new_shelter.shelter_removed.connect(on_shelter_removed)
-	add_child(new_shelter)
-	coordinates_used_by_shelters.append(coords)
-	var enclosure = TileMapRef.get_enclosure_by_cell(starting_coord)
-	enclosure.add_shelter(new_shelter)
 	new_shelter.enclosure = enclosure
+	add_child(new_shelter)
+	coordinates_used_by_shelters.append(Helpers.get_building_cells(shelter_res.size, starting_tile, direction).duplicate())
+	enclosure.add_shelter(new_shelter)
 	
 	
 func on_shelter_removed(shelter_node):

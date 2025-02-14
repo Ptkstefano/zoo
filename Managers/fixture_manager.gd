@@ -61,6 +61,12 @@ func place_fixture(press_pos, fixture_res : fixture_resource, free_placement : b
 		elif fixture_res.type == IdRefs.FIXTURES.DECORATION:
 			if fixture_res.positioning == IdRefs.FIXTURE_POS.SIDE:
 				fixture_scene = side_fixture.instantiate()
+		elif fixture_res.type == IdRefs.FIXTURES.LIGHT:
+			if fixture_res.positioning == IdRefs.FIXTURE_POS.SIDE:
+				fixture_scene = side_fixture.instantiate()
+				
+		if !fixture_scene:
+			return
 				
 		fixture_scene.fixture_res = fixture_res
 		fixture_scene.global_position = cell_central_pos

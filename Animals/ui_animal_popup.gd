@@ -22,6 +22,9 @@ func _ready():
 	
 	%DebugPathfinding.pressed.connect(animal_scene.debug_toggle_pathfinding_draw)
 	%DebugDie.pressed.connect(animal_scene.die)
+	%DebugHungry.pressed.connect(set_animal_need.bind('hunger'))
+	%DebugTired.pressed.connect(set_animal_need.bind('rest'))
+	%DebugBored.pressed.connect(set_animal_need.bind('play'))
 	
 	%FeedLabel.text = str(animal_scene.animal_res.feed)
 	if animal_scene.months_in_zoo > 0:
@@ -127,3 +130,11 @@ func update_preferences():
 
 func on_animal_info_pressed():
 	SignalBus.open_popup_with_data.emit('AnimalInfo', {'resource': animal_scene.animal_res})
+
+func set_animal_need(need):
+	if need == 'hunger':
+		animal_scene.needs_hunger = 5.0
+	if need == 'play':
+		animal_scene.needs_play = 5.0
+	if need == 'rest':
+		animal_scene.needs_rest = 5.0

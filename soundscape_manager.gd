@@ -29,11 +29,12 @@ var close_up_bus_index : int = 0
 #var vegetation_zoom_volume = [-25, -20, -15, -12, -8, -5]
 
 var crowd_zoom_volume = [-25, -20, -16, -12, -8, -5]
-var vegetation_zoom_volume = [-30, -22, -18, -15, -12, -8]
+var vegetation_zoom_volume = [-36, -30, -22, -18, -12, -8]
 
 
 func _ready():
 	SignalBus.game_started.connect(on_start)
+	SignalBus.exiting_game_scene.connect(on_stop)
 	
 func on_start():
 	%CrowdPlayer.play()
@@ -43,6 +44,10 @@ func on_start():
 	crowd_player = %CrowdPlayer.get_stream_playback()
 	vegetation_player = %VegetationPlayer.get_stream_playback()
 
+func on_stop():
+	%CrowdPlayer.stop()
+	%GeneralAmbiancePlayer.stop()
+	%VegetationPlayer.stop()
 
 func _physics_process(delta: float) -> void:
 	#var close_up_volume = (camera_zoom * 0.2) * 20 - 20

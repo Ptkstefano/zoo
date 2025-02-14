@@ -21,6 +21,6 @@ func on_bg_event(event):
 func on_back_to_menu():
 	SignalBus.save_game.emit()
 	await SaveManager.finished_saving_game
-	SignalBus.game_stopped.emit()
+	SignalBus.exiting_game_scene.emit()
 	get_tree().change_scene_to_file("res://MainMenu/main_menu.tscn")
 	

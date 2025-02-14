@@ -12,6 +12,8 @@ extends Node2D
 @onready var peep_weight_label = %Debug_peep_weight
 
 
+var is_day : bool = true
+
 var base_peep_spawn_timer
 
 @onready var highlight_layer = $"../TileMap/HighlightLayer"
@@ -38,6 +40,7 @@ func _ready() -> void:
 	%DebugAddMoney.pressed.connect(add_money)
 	%DebugSpeedTime.button_down.connect(speed_time)
 	%DebugSpeedTime.button_up.connect(normal_time)
+	%DebugToggleDay.pressed.connect(on_toggle_day)
 	
 
 
@@ -78,3 +81,11 @@ func speed_time():
 	
 func normal_time():
 	Engine.time_scale = 1
+
+func on_toggle_day():
+	if is_day:
+		is_day = false
+		SignalBus.start_night.emit()
+	else:
+		is_day = true
+		SignalBus.start_day.emit()

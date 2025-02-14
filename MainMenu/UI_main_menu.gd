@@ -3,13 +3,16 @@ extends Control
 @export var save_game_element : PackedScene
 
 func _ready() -> void:
+	
+	SignalBus.instantiating_main_menu.emit()
+	
 	for child in %ContainerContainer.get_children():
 		if child.name != 'MainContainer':
 			child.hide()
 		else:
 			child.show()
 	
-	instantiate_save_games()
+	setup_save_files()
 	
 	#%ContinueButton.pressed.connect(on_continue_button_pressed)
 	#%StartButton.pressed.connect(on_start_new_button_pressed)
@@ -21,7 +24,6 @@ func _ready() -> void:
 	%ContinueButton.pressed.connect(setup_game_start.bind(false))
 	%StartNewSandboxGame.pressed.connect(setup_game_start.bind(true))
 	%ZooNameLineEdit.text_changed.connect(on_sandbox_zoo_name_changed)
-	
 	
 	get_tree().paused = false
 	
@@ -35,12 +37,13 @@ func _process(delta: float) -> void:
 	
 func setup_game_start(is_new_game : bool):
 	if is_new_game:
-		GameManager.load_game = true
+		GameManager.is_load_game = false
+		GameManager.is_new_game = true
 		var zoo_name = %ZooNameLineEdit.text
 		SaveManager.set_save_file(zoo_name+'.json')
 		ZooManager.zoo_name = zoo_name
 	else:
-		GameManager.load_game = true
+		GameManager.is_load_game = true
 		
 	start_game()
 	
@@ -63,7 +66,12 @@ func on_open_container(container_name):
 		else:
 			child.hide()
 		
-func instantiate_save_games():
+func setup_save_files():
+	if FolderDataManager.sandbox_saves.is_empty():
+		%ContinueButton.disabled = true
+	else:
+		SaveManager.set_save_file(FolderDataManager.sandbox_saves[0]['file_name'])
+	
 	for child in %SandboxSaveGameList.get_children():
 		child.queue_free()
 	

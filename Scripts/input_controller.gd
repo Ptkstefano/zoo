@@ -58,7 +58,7 @@ signal zoom_camera
 signal move_camera
 signal move_camera_in_direction
 
-signal building_placed
+signal building_placed ## Received by UI so that it can show the building side panel
 signal building_built
 
 var fingers_touching = {}
@@ -383,6 +383,9 @@ func highlight_area():
 	else:
 		$"../TileMap/HighlightLayer".apply_highlight(cells, IdRefs.HIGHLIGHT_TYPES.YELLOW)
 
+func clear_highlight():
+	$"../TileMap/HighlightLayer".clear_highlight()
+
 func highlight_building_area():
 	var tile_map_layer = $"../TileMap/TerrainLayer" as TileMapLayer
 	#if selected_res is not building_resource:
@@ -400,7 +403,6 @@ func highlight_building_area():
 			if $"../Objects/EnclosureManager".get_enclosure_overlap(cells):
 				$"../TileMap/HighlightLayer".clear_highlight()
 				return
-
 
 	if building_direction == IdRefs.DIRECTIONS.E:
 		$"../TileMap/HighlightLayer".apply_highlight(cells, IdRefs.HIGHLIGHT_TYPES.BUILDING_E)
@@ -424,8 +426,7 @@ func build_shelter():
 	$"../TileMap/HighlightLayer".clear_highlight()
 	building_built.emit()
 	
-	## - TODO - Remove cells just like in build building()
-	$"../Objects/ShelterManager".build_shelter(selected_res, start_tile_pos, building_direction, cells)
+	$"../Objects/ShelterManager".build_shelter(selected_res, start_tile_pos, building_direction)
 	
 func build_decoration():
 	$"../TileMap/HighlightLayer".clear_highlight()

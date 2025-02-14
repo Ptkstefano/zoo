@@ -176,3 +176,16 @@ func on_object_removed(object):
 		if enclosure:
 			enclosure.call_deferred('update_navigation_region')
 	object.queue_free()
+
+func generate_random_map():
+	var grass_res = load("res://Scenery/Vegetation/short_grass.tres")
+	for i in 1000:
+		var random_tile_pos = TileMapRef.map_to_local(Vector2(randi_range(-45,45), randi_range(-45,45)))
+		var random_pos = Vector2(random_tile_pos.x + randf_range(-32,32), random_tile_pos.y + randf_range(-16,16))
+		place_vegetation(random_pos, grass_res, null, null)
+	var possible_trees = [load("res://Scenery/Trees/Alder Tree.tres"), load("res://Scenery/Trees/Limber Pine.tres")]
+	for i in 25:
+		var random_tile_pos = TileMapRef.map_to_local(Vector2(randi_range(-35,35), randi_range(-35,35)))
+		for j in randi_range(2,10):
+			var random_pos = Vector2(random_tile_pos.x + randf_range(-32*8,32*8), random_tile_pos.y + randf_range(-16*8,16*8))
+			place_tree(random_pos, possible_trees.pick_random(), null)

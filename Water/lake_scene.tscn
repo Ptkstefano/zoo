@@ -43,7 +43,7 @@ navigation_polygon = SubResource("NavigationPolygon_ta1gu")
 enabled = false
 navigation_layers = 0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Enclosure"]]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["EnclosureBlocker"]]
 collision_layer = 2048
 collision_mask = 0
 

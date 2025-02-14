@@ -9,7 +9,7 @@ func _ready() -> void:
 func scale_tween():
 	
 	var tween = create_tween()
-	tween.tween_property(self, "scale", Vector2(1.05, 1.05), 2).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(self, "scale", Vector2(0.95, 0.95), 2).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, "scale", Vector2(1.025, 1.025), 3).set_trans(Tween.TRANS_QUART)
+	tween.tween_property(self, "scale", Vector2(0.975, 0.975), 3).set_trans(Tween.TRANS_QUART)
 	tween.play()
 	tween.tween_callback(scale_tween)

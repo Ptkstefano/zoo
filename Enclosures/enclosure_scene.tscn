@@ -93,13 +93,13 @@ sources/1 = SubResource("TileSetAtlasSource_2d4kf")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mv2b7"]
 source_geometry_mode = 2
-source_geometry_group_name = &"Enclosure"
+source_geometry_group_name = &"EnclosureBlocker"
 agent_radius = 1.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_k6c81"]
 parsed_collision_mask = 4294965247
 source_geometry_mode = 2
-source_geometry_group_name = &"Enclosure"
+source_geometry_group_name = &"EnclosureBlocker"
 cell_size = 10.0
 border_size = 10.0
 agent_radius = 5.0
@@ -121,19 +121,18 @@ sources/1 = SubResource("TileSetAtlasSource_jqj8t")
 [node name="EnclosureScene" type="Node2D" groups=["Enclosures"]]
 script = ExtResource("1_nv64f")
 
-[node name="EnclosureTiles" type="TileMapLayer" parent="." groups=["Enclosure"]]
+[node name="EnclosureTiles" type="TileMapLayer" parent="." groups=["Enclosure", "EnclosureBlocker"]]
 visible = false
 tile_set = SubResource("TileSet_o4u8v")
 navigation_enabled = false
 
-[node name="LandRegion" type="NavigationRegion2D" parent="." groups=["Enclosure"]]
+[node name="LandRegion" type="NavigationRegion2D" parent="." groups=["Enclosure", "EnclosureBlocker"]]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_mv2b7")
 use_edge_connections = false
 navigation_layers = 2
 
-[node name="WaterRegion" type="NavigationRegion2D" parent="."]
-visible = false
+[node name="WaterRegion" type="NavigationRegion2D" parent="." groups=["Enclosure", "EnclosureBlocker"]]
 navigation_polygon = SubResource("NavigationPolygon_k6c81")
 use_edge_connections = false
 navigation_layers = 4

@@ -5,7 +5,7 @@ extends Node2D
 func _ready() -> void:
 	%LoadScreen.show()
 	AudioServer.set_bus_volume_db(0, -80)
-	if GameManager.load_game:
+	if GameManager.is_load_game:
 		SaveManager.load_game()
 	else:
 		generate_game_start()
@@ -24,3 +24,4 @@ func _ready() -> void:
 
 func generate_game_start():
 	$Objects/StaffManager.spawn_staff(IdRefs.STAFF_TYPES.ZOOKEEPER_UNIQUE, null)
+	$Objects/SceneryManager.generate_random_map()

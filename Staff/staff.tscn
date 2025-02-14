@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2x0h40jh0wj6"]
+[gd_scene load_steps=6 format=3 uid="uid://c2x0h40jh0wj6"]
 
 [ext_resource type="Script" uid="uid://c1ix8nsss5nhn" path="res://Staff/staff.gd" id="1_mje0d"]
+[ext_resource type="Texture2D" uid="uid://jvgmda4s0kqx" path="res://Staff/sprites/zookeeper_unique.png" id="2_l4ah5"]
+[ext_resource type="PackedScene" uid="uid://cvjrcqnns6o28" path="res://UI/quest_giver_exclamation.tscn" id="2_qwret"]
+[ext_resource type="PackedScene" uid="uid://dkhxs71sdajj2" path="res://UI/detectable.tscn" id="3_uglyn"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7k8cv"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_qwret"]
+radius = 13.0384
 
 [node name="Staff" type="Node2D" groups=["Staff"]]
 script = ExtResource("1_mje0d")
+quest_giver_icon_scene = ExtResource("2_qwret")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0
@@ -19,10 +24,18 @@ debug_path_custom_line_width = 0.83
 light_mask = 0
 texture_filter = 1
 position = Vector2(0, -9)
-texture = SubResource("CompressedTexture2D_7k8cv")
-hframes = 10
+texture = ExtResource("2_l4ah5")
+hframes = 12
 vframes = 2
+frame = 22
 
 [node name="FrameTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="ClickDetector" parent="." instance=ExtResource("3_uglyn")]
+position = Vector2(0, -8)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickDetector"]
+shape = SubResource("CircleShape2D_qwret")

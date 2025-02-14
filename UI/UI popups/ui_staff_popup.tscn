@@ -1,0 +1,125 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvx7ukf647gy5"]
+
+[ext_resource type="Script" uid="uid://c8f0bhm4nslqm" path="res://UI/UI popups/ui_staff_popup.gd" id="1_kd7k7"]
+[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/Themes/popup_theme.tres" id="4_mmcoq"]
+[ext_resource type="Script" uid="uid://oq7aounld7th" path="res://UI/UI popups/responsive_margin_container.gd" id="5_4rhj6"]
+[ext_resource type="Theme" uid="uid://di7iy2m47x8rx" path="res://UI/Themes/popup_inner_content.tres" id="6_1gi7i"]
+
+[node name="StaffPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_kd7k7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_mmcoq")
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 150
+script = ExtResource("5_4rhj6")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="StaffName" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Staff"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 1
+
+[node name="Info" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme = ExtResource("6_1gi7i")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+metadata/_tab_index = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Info"]
+layout_mode = 2
+
+[node name="Actions" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 35
+metadata/_tab_index = 1
+
+[node name="Needs" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Actions"]
+layout_mode = 2
+
+[node name="FireStaff" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Actions/Needs"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Fire Staff"
+
+[node name="Debug" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 35
+metadata/_tab_index = 2
+
+[node name="Needs" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug"]
+layout_mode = 2
+
+[node name="DebugPathfinding" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/Needs"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Show pathfinding"
+
+[node name="DebugBecomeQuestGiver" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/Needs"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Become quest giver"
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 25
+
+[node name="CloseButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+text = "Close"

@@ -7,6 +7,6 @@
 script = ExtResource("1_xu8fm")
 name = "Steel lamp"
 texture = ExtResource("2_xu8fm")
-type = 1
+type = 2
 positioning = 0
 cost = 10.0

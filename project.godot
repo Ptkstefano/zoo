@@ -48,7 +48,6 @@ project/assembly_name="Zoo"
 
 [global_group]
 
-Enclosure=""
 Navigation=""
 Scenery=""
 Enclosures=""
@@ -57,6 +56,8 @@ Buildings=""
 Animals=""
 Fixtures=""
 TilemapManager=""
+EnclosureBlocker=""
+Shelter=""
 
 [input]
 
@@ -88,6 +89,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_11="Scenery"
 2d_physics/layer_12="water"
 2d_physics/layer_13="EnclosureVegetation"
+2d_physics/layer_14="enclosure_blocker"
 2d_physics/layer_16="water_detection"
 2d_physics/layer_17="BulldozerTree"
 2d_physics/layer_18="BulldozerVegetation"

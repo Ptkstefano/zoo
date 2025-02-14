@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://bw162hi7yxvui"]
+
+[ext_resource type="Script" uid="uid://ir7ncjdcjern" path="res://Enclosures/Shelters/building_shelter.gd" id="1_p5ni7"]
+[ext_resource type="Texture2D" uid="uid://ccwtw2pygf5vg" path="res://Enclosures/Shelters/tall_shelter.png" id="3_xu4tm"]
+[ext_resource type="PackedScene" uid="uid://dkhxs71sdajj2" path="res://UI/detectable.tscn" id="6_v80w7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8paum"]
+radius = 38.0526
+
+[node name="TallShelter" type="Node2D" groups=["Shelter"]]
+y_sort_enabled = true
+script = ExtResource("1_p5ni7")
+
+[node name="RestSpots" type="Node2D" parent="."]
+position = Vector2(0, -33)
+
+[node name="Node2D" type="Node2D" parent="RestSpots"]
+position = Vector2(39, 9)
+
+[node name="Node2D2" type="Node2D" parent="RestSpots"]
+position = Vector2(-37, -4)
+
+[node name="Node2D3" type="Node2D" parent="RestSpots"]
+position = Vector2(-12, -15)
+
+[node name="Node2D4" type="Node2D" parent="RestSpots"]
+position = Vector2(9, -23)
+
+[node name="Node2D5" type="Node2D" parent="RestSpots"]
+position = Vector2(30, -10)
+
+[node name="Detectable" parent="." instance=ExtResource("6_v80w7")]
+visible = false
+position = Vector2(15, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detectable"]
+shape = SubResource("CircleShape2D_8paum")
+
+[node name="Sprites" type="Node2D" parent="."]
+position = Vector2(0, -85)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Sprites"]
+z_index = -6
+texture = ExtResource("3_xu4tm")
+vframes = 4
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprites"]
+texture = ExtResource("3_xu4tm")
+vframes = 4
+frame = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites"]
+z_index = -6
+texture = ExtResource("3_xu4tm")
+vframes = 4
+frame = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprites"]
+z_index = -4
+texture = ExtResource("3_xu4tm")
+vframes = 4
+frame = 2
+
+[node name="Entrance" type="Node2D" parent="."]
+position = Vector2(-62, 5)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["EnclosureBlocker"]]
+position = Vector2(0, -7)
+collision_layer = 8192
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-102, -22, 1, 28, 104, -26, -1, -76)

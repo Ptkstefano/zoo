@@ -152,10 +152,12 @@ func close_selection_submenu():
 			child.hide()
 			
 func hide_selection_menu():
+	print('hide selection menu')
 	hide_side_panel()
 	%SelectionMenu.visible = false
 
 func hide_side_panel():
+	print('hide side panel')
 	%SidePanel.visible = false
 	%BuildingSidePanel.visible = false
 
@@ -191,13 +193,14 @@ func on_enclosure_selected(enclosure_res):
 	selected_res = enclosure_res
 	
 func on_shelter_selected(shelter_res):
-	hide_side_panel()
-	open_tool_info_panel('PlacingShelterInfoContainer')
+	#hide_side_panel()
 	%SidePanel.show()
+	open_tool_info_panel('PlacingShelterInfoContainer')
 	%InfoBorder.apply_color(ColorRefs.construction_yellow)
 	%BuildingSidePanel.show()
 	inputController.current_tool = inputController.TOOLS.SHELTER
 	selected_res = shelter_res
+	inputController.building_direction = selected_res.possible_directions[0]
 	
 func on_path_selected(path_res):
 	hide_side_panel()
@@ -253,11 +256,14 @@ func on_lake_selected(lake_res):
 	selected_res = lake_res
 	
 func on_building_placed():
+	print('building placed')
 	%SidePanel.show()
-	%InfoBorder.apply_color(ColorRefs.construction_yellow)
 	%BuildingSidePanel.show()
+	print(%BuildingSidePanel.visible)
+	%InfoBorder.apply_color(ColorRefs.construction_yellow)
 	
 func on_building_built():
+	print('building built')
 	hide_side_panel()
 	inputController.current_tool = inputController.TOOLS.NONE
 
@@ -383,6 +389,7 @@ func debug_timer_timeout():
 		%DebugScreen.show()
 	
 func on_build_mode_toggle(toggle):
+	print('build mode toggle')
 	if toggle:
 		%ConstructionToolsContainer.show()
 		%InfoBorder.show()
@@ -439,13 +446,17 @@ func on_tool_deselect():
 	%ToolInfoPanel.hide()
 	%ToolPanel.show()
 	%SidePanel.hide()
-	%BuildingSidePanel.hide()
+	if inputController.current_tool not in inputController.building_placement_tools:
+		%BuildingSidePanel.hide()
+		
+	inputController.clear_highlight()
 	for child in %ToolInfoContainer.get_children():
 		if child is PanelContainer:
 			child.hide()
 	%ToolInfoPanelContainer.hide()
 
 func reset_ui():
+	print('reset ui')
 	hide_side_panel()
 	on_tool_deselect()
 	%ConstructionToolsContainer.hide()

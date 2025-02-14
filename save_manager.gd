@@ -18,6 +18,7 @@ var peepGroupList = []
 var building_list = []
 var water_list = []
 var staff_list = []
+var shelter_list = []
 
 
 var tilemap_layers = []
@@ -36,7 +37,7 @@ func _ready() -> void:
 	thread = Thread.new()
 	$AutoSaveTimer.timeout.connect(on_autosave)
 	SignalBus.game_started.connect(on_game_started)
-	SignalBus.game_stopped.connect(on_stop_game)
+	SignalBus.exiting_game_scene.connect(on_stop_game)
 
 func set_save_file(file_name):
 	current_save_path = 'user://sandbox_saves/' + file_name
@@ -102,6 +103,8 @@ func start_save_manager():
 	building_list = get_tree().get_nodes_in_group('Buildings')
 	
 	staff_list = get_tree().get_nodes_in_group('Staff')
+	
+	shelter_list = get_tree().get_nodes_in_group('Shelter')
 
 	peepGroupList = get_tree().get_nodes_in_group('PeepGroups')
 	
@@ -213,11 +216,21 @@ func save_game():
 		i+=1
 	save_data['staffData'] = staff_data
 	
+	i = 1
+	var shelter_data = {}
+	for shelter in shelter_list:
+		shelter_data[i] = get_shelter_data(shelter).duplicate(true)
+		i += 1
+	save_data['shelterData'] = shelter_data
+		
 	## Save finance data
 	save_data['financeData'] = get_finance_data().duplicate(true)
 	
 	## Save time data
 	save_data['timeData'] = get_time_data().duplicate(true)
+	
+	save_data['saveFileData'] = {}
+	save_data['saveFileData']['datetime'] = Time.get_datetime_string_from_system()
 	
 	var json_data = JSON.stringify(save_data)
 	
@@ -255,6 +268,7 @@ func load_game():
 	var peepManager = main_node.get_node("Objects").get_node('PeepManager')
 	var pathManager = main_node.get_node('PathManager') as PathManager
 	var staffManager = main_node.get_node("Objects").get_node('StaffManager') as StaffManager
+	var shelterManager = main_node.get_node("Objects").get_node('ShelterManager') as ShelterManager
 	
 	
 	
@@ -402,6 +416,13 @@ func load_game():
 			staff_data['id'] = data['staffData'][key]['id']
 			
 			staffManager.spawn_staff(staff_type, staff_data)
+			
+	if data.has('shelterData'):
+		for key in data['shelterData']:
+			var shelter_res = load(data['shelterData'][key]['shelter_res'])
+			var start_tile = Vector2(int(data['shelterData'][key]['starting_tile_x']), int(data['shelterData'][key]['starting_tile_y']))
+			var direction = int(data['shelterData'][key]['direction'])
+			shelterManager.build_shelter(shelter_res, start_tile, direction)
 			
 	if data.has('zoo_manager_data'):
 		ZooManager.next_enclosure_id = int(data['zoo_manager_data']['next_enclosure_id'])
@@ -610,4 +631,12 @@ func get_staff_data(staff):
 	data['x_pos'] = staff.cached_global_position.x
 	data['y_pos'] = staff.cached_global_position.y
 	
+	return data
+
+func get_shelter_data(shelter):
+	var data = {}
+	data['shelter_res'] = shelter.shelter_res.get_path()
+	data['starting_tile_x'] = shelter.starting_tile.x
+	data['starting_tile_y'] = shelter.starting_tile.y
+	data['direction'] = shelter.direction
 	return data

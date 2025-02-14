@@ -7,6 +7,10 @@ var speed = 25
 @onready var agent : NavigationAgent2D = $NavigationAgent2D
 @onready var peepSprite = $PeepSprite
 
+@export var quest_giver_icon_scene : PackedScene
+var quest_giver_icon : Sprite2D
+var is_quest_giver : bool = false
+
 var direction : Vector2
 
 var frame = 0
@@ -147,3 +151,25 @@ func update_cached_position():
 
 func fire_staff():
 	staff_fired.emit(self)
+
+func on_staff_giving_quest():
+	staff_behavior.start_quest_giver()
+	is_quest_giver = true
+	quest_giver_icon = quest_giver_icon_scene.instantiate()
+	add_child(quest_giver_icon)
+	sprite_x = 10
+	sprite_y = 1
+	peepSprite.flip_h=false
+	is_moving = false
+	
+func on_staff_stop_giving_quest():
+	staff_behavior.stop_quest_giver()
+	quest_giver_icon.queue_free()
+	is_quest_giver = false
+	sprite_x = 0
+
+func toggle_pathfinding():
+	if $NavigationAgent2D.debug_enabled:
+		$NavigationAgent2D.debug_enabled = false
+	else:
+		$NavigationAgent2D.debug_enabled = true

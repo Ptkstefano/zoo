@@ -12,6 +12,8 @@ var type : IdRefs.FIXTURES
 
 var sitting_posisitions = []
 
+var lights = []
+
 var is_available : bool = true
 
 signal remove_fixture
@@ -27,8 +29,25 @@ func _ready() -> void:
 			for children2 in children.get_children():
 				if children2 is Sprite2D:
 					children2.texture = fixture_res.texture
+				if children2 is PointLight2D:
+					if type != IdRefs.FIXTURES.LIGHT:
+						children2.queue_free()
+					else:
+						SignalBus.start_night.connect(on_start_night)
+						SignalBus.start_day.connect(on_start_day)
+						lights.append(children2)
+						children2.hide()
 	z_index = Helpers.get_current_tile_z_index(global_position)
+	
 
 func on_area_entered(area):
 	if area is Bulldozer:
 		remove_fixture.emit(self)
+
+func on_start_night():
+	for light in lights:
+		light.show()
+	
+func on_start_day():
+	for light in lights:
+		light.hide()

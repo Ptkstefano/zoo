@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="shelter_resource" load_steps=3 format=3 uid="uid://bqcnlf24xehnx"]
+
+[ext_resource type="Script" uid="uid://ci0g6eukld5d" path="res://Enclosures/Shelters/shelter_res.gd" id="1_ayywm"]
+[ext_resource type="PackedScene" uid="uid://bw162hi7yxvui" path="res://Enclosures/Shelters/shelter_tall.tscn" id="2_ayywm"]
+
+[resource]
+script = ExtResource("1_ayywm")
+name = "Tall shelter"
+size = Vector2i(3, 3)
+shelter_scene = ExtResource("2_ayywm")
+z_offset = 0
+interior_z_index_delta = -5
+is_entereable = true
+possible_directions = Array[int]([1])

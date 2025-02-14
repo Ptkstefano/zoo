@@ -16,7 +16,7 @@ var speed
 
 var id : int
 
-enum ANIMAL_STATES {IDLE, WANDER, SWIMMING, MOVING_TOWARDS_REST, MOVING_TOWARDS_FOOD, MOVING_TOWARDS_MATE, EATING, RUNNING, RESTING, WAITING, MATING, DEAD}
+enum ANIMAL_STATES {IDLE, WANDER, SWIMMING, MOVING_TOWARDS_REST, MOVING_TOWARDS_FOOD, MOVING_TOWARDS_MATE, EATING, RUNNING, RESTING, WAITING, MATING, DEAD, INSIDE_SHELTER}
 var current_state = ANIMAL_STATES.IDLE
 
 var move_states = [ANIMAL_STATES.WANDER, ANIMAL_STATES.SWIMMING, ANIMAL_STATES.MOVING_TOWARDS_FOOD, ANIMAL_STATES.MOVING_TOWARDS_REST, ANIMAL_STATES.MOVING_TOWARDS_MATE, ANIMAL_STATES.RUNNING]
@@ -58,6 +58,8 @@ var hunger_drain_rate = 0.8
 var rest_drain_rate = 0.5
 var play_drain_rate = 0.5
 
+var target_shelter
+
 var animal_happiness : float = 2.5:
 	set(value):
 		animal_happiness = clampf(value, 0, 5)
@@ -92,6 +94,7 @@ var is_looking_for_mate : bool = false
 var months_of_life : int
 var months_in_zoo : int = 0
 var is_dead : bool = false
+var is_inside_shelter : bool = false
 
 var sprite_x_size : int
 var sprite_y_size : int
@@ -213,14 +216,13 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if screenNotifier.is_on_screen():
-		z_index = Helpers.get_current_tile_z_index(global_position)
 		animal_sprite.frame_coords = Vector2(sprite_x + frame, sprite_y)
-		
 		
 	if current_state in fill_states:
 		fill_needs(delta)
 
 	if current_state in move_states:
+		z_index = Helpers.get_current_tile_z_index(global_position)
 		if animal_res.can_swim:
 			if $SwimRaycast.is_colliding():
 				if !is_swimming:
@@ -253,7 +255,11 @@ func navigation_finished():
 	if current_state == ANIMAL_STATES.WANDER:
 		agent.target_position=get_new_destination()
 	if current_state == ANIMAL_STATES.MOVING_TOWARDS_REST:
-		change_state(ANIMAL_STATES.RESTING)
+		if target_shelter.is_entereable:
+			print('leap towards')
+			on_leap_towards(target_shelter.rest_spots.pick_random().global_position, true)
+		else:
+			change_state(ANIMAL_STATES.RESTING)
 	if current_state == ANIMAL_STATES.SWIMMING:
 		agent.target_position=get_new_destination()
 	if current_state == ANIMAL_STATES.MOVING_TOWARDS_MATE:
@@ -317,6 +323,7 @@ func change_state(state : ANIMAL_STATES):
 		$DecayTimer.stop()
 		sprite_x = 2
 	elif state == ANIMAL_STATES.MOVING_TOWARDS_REST:
+		$StateTimer.stop()
 		speed = base_speed
 		search_for_rest()
 		sprite_x = 2
@@ -347,7 +354,10 @@ func fill_needs(delta):
 		sprite_x = 6
 		needs_rest += 0.5 * delta
 		if needs_rest > 90:
-			change_state(ANIMAL_STATES.IDLE)
+			if is_inside_shelter:
+				on_leap_towards(target_shelter.entrance_pos, false)
+			else:
+				change_state(ANIMAL_STATES.IDLE)
 	elif current_state == ANIMAL_STATES.RUNNING:
 		needs_play += 2 * delta
 		if needs_play > 90:
@@ -359,6 +369,9 @@ func move_toward_direction(direction: Vector2, delta: float):
 func on_agent_waypoint_reached(d):
 	await get_tree().create_timer(0.05).timeout
 	direction = (agent.get_next_path_position() - global_position).normalized()
+
+func set_direction(global_pos):
+	direction = (global_pos - global_position).normalized()
 
 func remove_animal():
 	animal_removed.emit(self) ## Get's sent to enclosure and animal manager
@@ -374,11 +387,15 @@ func search_for_feed():
 		change_state(ANIMAL_STATES.IDLE)
 		
 func search_for_rest():
+	print('looking for rest')
 	if enclosure.available_shelters.size() > 0:
 		var enclosure_shelters = enclosure.available_shelters
-		var random_shelter = enclosure_shelters.pick_random()
-		var random_resting_spot = random_shelter.rest_spots.pick_random()
-		agent.target_position = random_resting_spot.global_position
+		target_shelter = enclosure_shelters.pick_random()
+		if target_shelter.is_entereable:
+			agent.target_position = target_shelter.entrance_pos
+		else:
+			var random_resting_spot = target_shelter.rest_spots.pick_random()
+			agent.target_position = random_resting_spot.global_position
 	else:
 		change_state(ANIMAL_STATES.RESTING)
 	
@@ -611,3 +628,29 @@ func debug_toggle_pathfinding_draw():
 		agent.set_debug_enabled(true)
 	else:
 		agent.set_debug_enabled(false)
+
+
+func on_leap_towards(final_pos, is_entering_shelter):
+	if is_entering_shelter:
+		## Setting to idle so that z_index is not overriden
+		current_state = ANIMAL_STATES.IDLE
+		z_index = target_shelter.shelter_interior_z_index
+		var tween = get_tree().create_tween()
+		sprite_x = 2
+		direction = global_position.direction_to(final_pos)
+		var duration = global_position.distance_to(final_pos) / base_speed
+		tween.tween_property(self, "global_position", final_pos, duration).set_trans(Tween.TRANS_LINEAR)
+		await get_tree().create_timer(duration).timeout
+		change_state(ANIMAL_STATES.RESTING)
+		is_inside_shelter = true
+	else:
+		## Setting to idle so that z_index is not overriden
+		current_state = ANIMAL_STATES.IDLE
+		var tween = get_tree().create_tween()
+		sprite_x = 2
+		direction = global_position.direction_to(final_pos)
+		var duration = global_position.distance_to(final_pos) / base_speed
+		tween.tween_property(self, "global_position", final_pos, duration).set_trans(Tween.TRANS_LINEAR)
+		await get_tree().create_timer(duration).timeout
+		sprite_x = 0
+		change_state(ANIMAL_STATES.IDLE)

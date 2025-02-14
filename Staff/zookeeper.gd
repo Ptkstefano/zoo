@@ -2,7 +2,7 @@ extends Node
 
 class_name StaffZooKeeper
 
-enum zookeeper_states {STOPPED, WALKING, RESTING, GOING_TO_ENCLOSURE, GOING_TO_REST, LEAVING_ENCLOSURE, FEEDING, MOVING_TOWARDS_DEAD_ANIMAL}
+enum zookeeper_states {STOPPED, WALKING, RESTING, GOING_TO_ENCLOSURE, GOING_TO_REST, LEAVING_ENCLOSURE, FEEDING, MOVING_TOWARDS_DEAD_ANIMAL, GIVING_QUEST}
 var current_state = zookeeper_states.STOPPED
 
 var destination_enclosure : Enclosure
@@ -21,6 +21,7 @@ signal destination_updated
 signal leap_towards
 signal stopped
 signal reset_staff
+signal left_enclosure
 
 @onready var staff_scene = get_parent() ## Parent
 
@@ -46,22 +47,21 @@ func on_state_timer_timeout():
 		
 func change_state(state):
 	current_state = state
+	if state == zookeeper_states.GIVING_QUEST:
+		destination_building = null
 	if state == zookeeper_states.GOING_TO_ENCLOSURE:
 		return
 	if state == zookeeper_states.LEAVING_ENCLOSURE:
 		get_enclosure_exit_destination()
 	if state == zookeeper_states.STOPPED:
-		print('stopped')
 		destination_building = null
 		stopped.emit()
 		$StateTimer.start()
 	#if state == zookeeper_states.FEEDING:
 		#feed_enclosure()
 	if state == zookeeper_states.GOING_TO_REST:
-		print('going to rest')
 		return
 	if state == zookeeper_states.RESTING:
-		print('resting')
 		staff_scene.visible = false
 		destination_building.peep_entered()
 		await get_tree().create_timer(60).timeout
@@ -83,7 +83,6 @@ func get_new_task():
 		return
 
 func find_rest_spot():
-	print('Finding rest spot')
 	var closest_rest_spot_distance : float = 99999
 	destination_building
 	for rest_spot in ZooManager.zookeeper_stations:
@@ -93,16 +92,12 @@ func find_rest_spot():
 			destination_building = ZooManager.zookeeper_stations[rest_spot].scene
 			
 	if !destination_building:
-		print('No rest spot')
 		change_state(zookeeper_states.STOPPED)
 		return
 			
 	destination_updated.emit(destination_building.enter_positions.pick_random())
-	change_state(zookeeper_states.GOING_TO_REST)
-	print('Going to rest spot')
 
 func destination_reached():
-	print('destination reached')
 	if current_state == zookeeper_states.GOING_TO_ENCLOSURE:
 		enter_enclosure()
 	elif current_state == zookeeper_states.LEAVING_ENCLOSURE:
@@ -178,11 +173,11 @@ func leave_enclosure():
 	is_inside_enclosure = false
 	destination_enclosure = null
 	change_state(zookeeper_states.STOPPED)
+	left_enclosure.emit()
 	unreacheable_enclosures.clear()
 
 func target_unreacheable():
 	SignalBus.notification.emit('Zookeeper could not find path to enclosure')
-	print('target unreacheable')
 	if destination_enclosure:
 		unreacheable_enclosures.append(destination_enclosure)
 		destination_enclosure.has_zookeeper_assigned = false
@@ -190,12 +185,10 @@ func target_unreacheable():
 	change_state(zookeeper_states.STOPPED)
 
 func check_for_enclosure_work():
-	print('Checking for enclosure work')
 	if !is_instance_valid(destination_enclosure):
 		reset_staff.emit()
 		return
 	if destination_enclosure.animal_feed:
-		print('There is animal feed in enclosure')
 		if is_instance_valid(destination_enclosure.animal_feed):
 			if destination_enclosure.animal_feed.amount < 80:
 				feed_enclosure()
@@ -204,10 +197,8 @@ func check_for_enclosure_work():
 		return
 	
 	if destination_enclosure.dead_animals.size() > 0:
-		print('There are dead animals in enclosure')
 		change_state(zookeeper_states.MOVING_TOWARDS_DEAD_ANIMAL)
 	else:
-		print('Enclosure work is done')
 		change_state(zookeeper_states.LEAVING_ENCLOSURE)
 		
 func remove_dead_animal():
@@ -233,3 +224,13 @@ func reset_state():
 func on_decay_timer_timeout():
 	needs_rest -= rest_drain_rate
 	
+func start_quest_giver():
+	if is_inside_enclosure:
+		await left_enclosure
+	if destination_enclosure:
+		destination_enclosure.has_zookeeper_assigned = false
+		destination_enclosure = null
+	change_state(zookeeper_states.GIVING_QUEST)
+
+func stop_quest_giver():
+	change_state(zookeeper_states.STOPPED)

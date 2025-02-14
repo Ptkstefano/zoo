@@ -61,9 +61,10 @@ theme_override_constants/separation = 25
 [node name="TabContainer" type="TabContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 4
 
 [node name="Info" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme = ExtResource("5_tarbw")
@@ -297,7 +298,6 @@ theme_override_colors/font_color = Color(0.463584, 0.679404, 0.436323, 1)
 text = "Satisfied with enclosure size"
 
 [node name="Debug" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
-visible = false
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -306,18 +306,39 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 35
 metadata/_tab_index = 4
 
-[node name="Needs" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug"]
 layout_mode = 2
 
-[node name="DebugPathfinding" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/Needs"]
+[node name="Needs" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="DebugPathfinding" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer/Needs"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Show pathfinding"
 
-[node name="DebugDie" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/Needs"]
+[node name="DebugDie" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer/Needs"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Kill animal"
+
+[node name="DebugHungry" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer/Needs"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Hungry"
+
+[node name="DebugTired" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer/Needs"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Tired"
+
+[node name="DebugBored" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer/Needs"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Bored"
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

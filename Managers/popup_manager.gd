@@ -6,6 +6,7 @@ extends Node
 @export var ui_mgmt_popup : PackedScene
 @export var ui_peep_group_popup : PackedScene
 @export var ui_enclosure_popup : PackedScene
+@export var ui_staff_popup : PackedScene
 
 @export var ui_animal_info_popup : PackedScene
 
@@ -39,6 +40,8 @@ func open_popup(detector_pos, element):
 		open_building_popup(element)
 	if element is EnclosureFence or element is Enclosure:
 		open_enclosure_popup(element)
+	if element is Staff:
+		open_staff_popup(element)
 	if element is Building:
 		if element.is_shop:
 			open_shop_popup(element)
@@ -104,3 +107,12 @@ func open_enclosure_popup(element):
 		opened_popup.enclosure = element
 	opened_popup.popup_closed.connect(close_popup)
 	add_child(opened_popup)
+
+func open_staff_popup(staff : Staff):
+	if staff.is_quest_giver:
+		staff.on_staff_stop_giving_quest()
+	else:
+		opened_popup = ui_staff_popup.instantiate()
+		opened_popup.staff_scene = staff
+		opened_popup.popup_closed.connect(close_popup)
+		add_child(opened_popup)
