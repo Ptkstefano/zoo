@@ -2,7 +2,8 @@ extends Resource
 
 class_name tree_resource
 
-@export var name : String
+@export var tr_name : String
+@export var scientific_name : String
 @export var cost : float
 @export var id : IdRefs.TREE_SPECIES
 #@export var texture : Texture2D

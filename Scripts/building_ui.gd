@@ -494,9 +494,9 @@ func on_animal_gender_toggle(value, gender):
 
 func update_animal_info_label():
 	if inputController.selected_animal_gender == IdRefs.ANIMAL_GENDERS.MALE:
-		%InfoLabelAnimal.text = "Placing male " + selected_res.name
+		%InfoLabelAnimal.text = "Placing male " + tr(selected_res.tr_name)
 	else:
-		%InfoLabelAnimal.text = "Placing female " + selected_res.name.to_lower()
+		%InfoLabelAnimal.text = "Placing female " + tr(selected_res.tr_name).to_lower()
 	
 func on_animal_info_pressed():
 	SignalBus.open_popup_with_data.emit('AnimalInfo', {'resource': selected_res})

@@ -8,7 +8,7 @@ var placement_global_pos : Vector2
 var direction : int
 var cell : Vector2i
 
-var type : IdRefs.FIXTURES
+var type : IdRefs.FIXTURE_TYPES
 
 var sitting_posisitions = []
 
@@ -30,7 +30,7 @@ func _ready() -> void:
 				if children2 is Sprite2D:
 					children2.texture = fixture_res.texture
 				if children2 is PointLight2D:
-					if type != IdRefs.FIXTURES.LIGHT:
+					if type != IdRefs.FIXTURE_TYPES.LIGHT:
 						children2.queue_free()
 					else:
 						SignalBus.start_night.connect(on_start_night)

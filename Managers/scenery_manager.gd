@@ -2,11 +2,6 @@ extends Node2D
 
 class_name SceneryManager
 
-@export var available_trees : Array[tree_resource]
-@export var available_decorations : Array[decoration_resource]
-@export var available_vegetations : Array[vegetation_resource]
-@export var available_rocks : Array[rock_resource]
-
 @export var tree_scene : PackedScene
 @export var vegetation_scene : PackedScene
 @export var decoration_scene : PackedScene
@@ -20,6 +15,7 @@ var used_cells = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	ResearchManager.unlocked_scenery_changed.connect(update_selection_menu)
 	update_selection_menu()
 
 
@@ -38,40 +34,46 @@ func on_load_scenery(scenery_type, res, data):
 func update_selection_menu():
 	for child in %TreesSelectionContainer.get_children():
 		child.queue_free()
-	for child in %TreesSelectionContainer.get_children():
+	for child in %VegetationSelectionContainer.get_children():
+		child.queue_free()
+	for child in %DecorationSelectionContainer.get_children():
+		child.queue_free()
+	for child in %RockSelectionContainer.get_children():
 		child.queue_free()
 		
-	for tree_res in available_trees:
+	for id in ResearchManager.unlocked_trees:
 		var element = ui_scenery_element.instantiate()
-		element.resource = tree_res
+		element.resource = ContentManager.trees[id]
 		element.scenery_type = 'tree'
 		%TreesSelectionContainer.add_child(element)
 		%UI.connect_ui_element(element)
 		
-	for vegetation_res in available_vegetations:
+	for id in ResearchManager.unlocked_vegetation:
 		var element = ui_scenery_element.instantiate()
-		element.resource = vegetation_res
+		element.resource = ContentManager.vegetation[id]
 		element.scenery_type = 'vegetation'
 		%VegetationSelectionContainer.add_child(element)
 		%UI.connect_ui_element(element)
 		
-	for decoration_res in available_decorations:
+	for id in ResearchManager.unlocked_decoration:
 		var element = ui_scenery_element.instantiate()
-		element.resource = decoration_res
+		element.resource = ContentManager.decoration[id]
 		element.scenery_type = 'decoration'
 		%DecorationSelectionContainer.add_child(element)
 		%UI.connect_ui_element(element)
 		
-	for rock_res in available_rocks:
-		var element = ui_scenery_element.instantiate()
-		element.resource = rock_res
-		element.scenery_type = 'rock'
-		%RockSelectionContainer.add_child(element)
-		%UI.connect_ui_element(element)
+	#for rock_res in ResearchManager.unlocked_trees:
+		#var element = ui_scenery_element.instantiate()
+		#element.resource = rock_res
+		#element.scenery_type = 'rock'
+		#%RockSelectionContainer.add_child(element)
+		#%UI.connect_ui_element(element)
 		
 
 func place_tree(press_start_pos, tree_res, id):
 	if !tree_res:
+		return
+	if TileMapRef.local_to_map(press_start_pos) in TileMapRef.occupied_tiles:
 		return
 	var tree = tree_scene.instantiate()
 	tree.tree_res = tree_res
@@ -93,8 +95,9 @@ func place_tree(press_start_pos, tree_res, id):
 	SignalBus.vegetation_placed.emit(tree.global_position)
 	
 func place_vegetation(press_start_pos, vegetation_res : vegetation_resource, id, random_y):
+	if TileMapRef.local_to_map(press_start_pos) in TileMapRef.occupied_tiles:
+		return
 	var vegetation = vegetation_scene.instantiate()
-	
 	vegetation.vegetation_res = vegetation_res
 	vegetation.global_position = press_start_pos
 	if random_y:
@@ -104,7 +107,7 @@ func place_vegetation(press_start_pos, vegetation_res : vegetation_resource, id,
 	AudioManager.play_vegetation_placed()
 	if !id:
 		if !FinanceManager.is_amount_available(vegetation_res.cost):
-			SignalBus.tooltip.emit('Not enough money')
+			SignalBus.tooltip.emit(tr('TOOLTIP_NOT_ENOUGH_MONEY'), null)
 			return
 		vegetation.id = ZooManager.generate_scenery_id()
 		FinanceManager.remove(vegetation_res.cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
@@ -128,7 +131,7 @@ func place_decoration(press_start_pos, decoration_res, direction, id):
 	decoration.global_position = decoration_position_local
 	if !id:
 		if !FinanceManager.is_amount_available(decoration_res.cost):
-			SignalBus.tooltip.emit('Not enough money')
+			SignalBus.tooltip.emit(tr('TOOLTIP_NOT_ENOUGH_MONEY'), null)
 			return
 		decoration.id = ZooManager.generate_scenery_id()
 		FinanceManager.remove(decoration_res.cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
@@ -148,7 +151,7 @@ func place_rock(press_start_pos, rock_res, id):
 	rock.global_position = press_start_pos
 	if !id:
 		if !FinanceManager.is_amount_available(rock_res.cost):
-			SignalBus.tooltip.emit('Not enough money')
+			SignalBus.tooltip.emit(tr('TOOLTIP_NOT_ENOUGH_MONEY'), null)
 			return
 		rock.id = ZooManager.generate_scenery_id()
 		FinanceManager.remove(rock_res.cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)

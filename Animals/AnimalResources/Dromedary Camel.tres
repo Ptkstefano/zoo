@@ -7,8 +7,8 @@
 
 [resource]
 script = ExtResource("2_ogf4n")
-name = "Dromedary Camel"
-species_id = 18
+tr_name = "ANIMAL_DROMEDARY_CAMEL"
+id = 18
 cost = 120.0
 texture = ExtResource("1_cfu5b")
 cub_texture = ExtResource("1_rec60")

@@ -53,7 +53,7 @@ signal stats_updated
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	building_res = ContentManager.buildings[building_res_id]
+	#building_res = ContentManager.buildings[building_res_id]
 	building_type = building_res.building_type
 	product_types = building_res.product_types
 	z_index = Helpers.get_current_tile_z_index(global_position)

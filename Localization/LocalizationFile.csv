@@ -1,0 +1,118 @@
+KEY,en,pt
+LANGUAGE,English,Português
+,,
+UI_MAIN_MENU_SANDBOX,Sandbox,Jogo livre
+UI_MAIN_MENU_STORY,Story,Modo história
+UI_MAIN_MENU_CONTINUE,Continue last Zoo,Continuar último Zoo
+UI_MAIN_MENU_CREATE_NEW,Create new Zoo,Criar novo Zoo
+UI_MAIN_MENU_ZOO_NAME,Zoo name,Nome do Zoo
+UI_MAIN_MENU_START,Start game,Começar novo jogo
+,,
+UI_ANIMAL_TERRAIN_SATISFIED,Satisfied with the terrain,Satisfeito com o terreno
+UI_ANIMAL_TERRAIN_DISLIKE,Doesn't like ,Não gosta de
+UI_ANIMAL_NEED_MORE_TERRAIN,Needs more ,Necessita mais 
+UI_ANIMAL_HAS_WATER,Likes having a lake,Satisfeito com o lago
+UI_ANIMAL_WANTS_WATER,Needs to have a lake,Necessita acesso a um lago
+UI_ANIMAL_GOOD_ENCLOSURE_SIZE,Has a good sized enclosure,O recinto tem um tamanho adequado
+UI_ANIMAL_BAD_ENCLOSURE_SIZE,Needs a bigger enclosure,Precisa de um recinto maior
+UI_ANIMAL_GOOD_VEGETATION,Likes the amount of vegetation,Satisfeito com a cobertura de vegetação
+UI_ANIMAL_LITTLE_VEGETATION,Needs more vegetation coverage,Necessita de mais cobertura de vegetação
+UI_ANIMAL_TOO_MUCH_VEGETATION,Has too much vegetation coverage,Tem cobertura de vegetação demais
+UI_ANIMAL_ENOUGH_FRIENDS,Satisfied with the herd size,Satisfeito com o tamanho do grupo
+UI_ANIMAL_NEEDS_FRIENDS,Needs a bigger herd,Necessita um grupo maior
+UI_ANIMAL_ENOUGH_SPACE,Enclosure is big enough for herd,O tamanho do recinto é adequado para o grupo
+UI_ANIMAL_NEEDS_SPACE,Herd too big for enclosure size,O grupo é grande demais para o recinto
+UI_ANIMAL_HAS_FAVORITE_TREE,Has it's favorite tree ,Tem a árvore favorita 
+UI_ANIMAL_NEEDS_FAVORITE_TREE,Wants to have favorite tree ,Sente falta da árvore favorita 
+UI_ANIMAL_INFO,Info,Informações
+UI_ANIMAL_NEEDS,Needs,Necessidades
+UI_ANIMAL_HABITAT,Habitat,Recinto
+UI_ANIMAL_HABITAT_HAPPINESS,Habitat happiness: ,Satisfação com o recinto: 
+,,
+UI_ANIMAL_INFO_TERRAIN_REQUIREMENT,Terrain requirements: ,Requerimentos de terreno: 
+UI_ANIMAL_INFO_NEEDS_WATER,Needs water: ,Necessita lago: 
+UI_ANIMAL_INFO_ENCLOSURE_SIZE,Enclosure size:,Tamanho do recinto: 
+UI_ANIMAL_INFO_MINIMUM_HERD,Minimum herd size: ,Mínimo de individuos no grupo:
+UI_ANIMAL_INFO_VEGETATION_DENSITY,Vegetation density: ,Densidade da vegetação: 
+UI_ANIMAL_INFO_FAVORITE_TREE,Favorite tree: ,Árvore favorita: 
+UI_ANIMAL_INFO_FENCE_LEVEL,Fence level: ,Nível da cerca: 
+UI_ANIMAL_INFO_SHELTER_LEVEL,Shelter level: ,Nível do abrigo: 
+UI_ANIMAL_INFO_ANIMAL_INFO,Animal info,Informações
+UI_ANIMAL_INFO_FEED_TYPE,Feed type: ,Tipo de ração: 
+UI_ANIMAL_INFO_EXPECTED_LIFETIME,Expected lifetime: ,Expectativa de vida: 
+UI_ANIMAL_INFO_PREGNANCY_TIME,Pregnancy time: ,Tempo de gestação: 
+UI_ANIMAL_INFO_ADULTHOOD,Age to adulthood: ,Tempo até maturidade: 
+UI_ANIMAL_INFO_RATING,Rating: ,Atratividade: 
+UI_ANIMAL_INFO_MINIMUM_ENCLOSURE_SIZE,Minimum ,No mínimo 
+UI_ANIMAL_INFO_CELLS,cells,quadros
+UI_ANIMAL_INFO_PER_ANIMAL,per animal,por animal
+,,
+,,
+MINIMAL,Minimal,Mínimo
+LOW,Low,Pouco
+MEDIUM,Medium,Intermediário
+HIGH,High,Alto
+ACTIONS,Actions,Ações
+INFO,Info,Informações
+CLOSE,Close,Fechar
+OPTIONS,Options,Opções
+,,
+TREE_LIMBER_PINE,Limber Pine,Pinheiro-flexível
+TREE_PALM,Palm Tree,Palmeira
+TREE_JACARANDA,Jacaranda Tree,Jacarandá
+TREE_UMBRELLA_ACACIA,Umbrella Thorn Acacia,Acácia Sombrinho Espinhenta
+TREE_ARAUCARIA,Araucaria Pine,Araucária
+TREE_ALEPPO_PINE,Aleppo Pine,Pinheiro-de-Alepo
+TREE_BLOODWOOD,Desert Bloodwood,Eucalipto Sangue-do-deserto
+TREE_BAMBOO,Bamboo,Bambu
+TREE_ALDER,Alder Tree,Amieiro
+,,
+VEGETATION_GRASS,Grass,Grama
+VEGETATION_TALL_GRASS,Tall grass,Grama alta
+VEGETATION_BUSH,Berry bush,Arbusto
+VEGETATION_SAVANNA_GRASS,Savanna grass,Grama de savana
+VEGETATION_RED_OATS,Savanna red oats,Capim-da-savana
+VEGETATION_LEMON_GRASS,Lemon grass,Capim-limão
+VEGETATION_CENTURY_PLANT,Century plant,Agave americana
+,,
+DECORATION_DEER_STATUE,Deer Statue,Estátua de cervo
+DECORATION_NATIVE_TOTEM,Native Totem,Totem tribal
+,,
+FIXTURES_WOODEN_BENCH,Wooden Bench,Banco de madeira
+FIXTURES_STEEL_LAMP,Steel Lamp,Luminária de aço
+FIXTURES_FLOWER_POT,Flower Pot,Pote floral
+,,
+TERRAIN_GRASS,Grassland,Gramado
+TERRAIN_SAND,Sand,Areia
+TERRAIN_DIRT,Dirt,Terra
+TERRAIN_DECIDUOUS,Deciduous,Decíduo
+TERRAIN_SAVANNA,Savanna,Savana
+,,
+ANIMAL_CAPYBARA,Capybara,Capivara
+ANIMAL_AMERICAN_FLAMINGO,American Flamingo,Flamingo-americano
+ANIMAL_KORDOFAN_GIRAFFE,Kordofan Giraffe,Girafa de Kordofan
+ANIMAL_WHITETAILED_DEER,White-tailed Deer,Veado-de-cauda-branca
+ANIMAL_RED_KANGAROO,Red Kangaroo,Canguru vermelho
+ANIMAL_RED_PANDA,Red Panda,Panda vermelho
+ANIMAL_BLACK_BEAR,Black Bear,Urso-negro
+ANIMAL_AFRICAN_ELEPHANT,African Elephant,Elefante africano
+ANIMAL_RED_FOX,Red Fox,Raposa-vermelha
+ANIMAL_JAGUAR,Jaguar,Onça pintada
+ANIMAL_MANED_WOLF,Maned Wolf,Lobo guará
+ANIMAL_SECRETARY_BIRD,Secretary Bird,Secretário
+ANIMAL_GREY_SEAL,Grey Seal,Foca-cinzenta
+ANIMAL_CASSOWARY,Cassowary,Casuar
+ANIMAL_PANDA_BEAR,Panda Bear,Urso panda
+ANIMAL_DROMEDARY_CAMEL,Dromedary Camel,Camelo dromedário
+ANIMAL_ALASKAN_MOOSE,Alaskan Moose,Alce do Alaska
+ANIMAL_LEMUR,Lemur,Lêmure
+,,
+TOOLTIP_ENCLOSURE_ENTRANCE_PLACED,Entrance placed,Entrada posicionada
+TOOLTIP_NOT_ENOUGH_MONEY,Not enough money,Fundos insuficientes
+TOOLTIP_REQUIRES_ENCLOSURE,Animal requires enclosure,Animal deve ser posicionado dentro de um recinto
+TOOLTIP_REQUIRES_ENTRANCE,Enclosure requires entrance,Recinto deve ter uma entrada
+TOOLTIP_NO_ANIMAL_MIXING,Not allowed to mix different species,Não é permitido misturar espécies
+TOOLTIP_ENCLOSURE_NOT_SAFE,Enclosure not safe enough for this animal,O recinto não é seguro o suficiente
+,,
+,,
+,,

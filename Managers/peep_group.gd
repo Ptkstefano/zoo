@@ -404,7 +404,7 @@ func on_detector_area_entered(area):
 				group_desired_animals.erase(animal.animal_species)
 		
 		for destination in group_desired_destinations:
-			if destination['species'] == animal.animal_res.species_id:
+			if destination['species'] == animal.animal_res.id:
 				group_desired_destinations.erase(destination)
 				desired_enclosure_ids.erase(destination['enclosure_id'])
 		
@@ -589,7 +589,7 @@ func initialize_peep_group_destinations():
 			continue
 		if !ZooManager.zoo_enclosures[int(id)]['species']:
 			continue
-		var destination = {"enclosure_id": int(id), "species": ZooManager.zoo_enclosures[int(id)]['species'].species_id, "view_position": ZooManager.zoo_enclosures[int(id)].node.enclosure_view_positions.pick_random()}
+		var destination = {"enclosure_id": int(id), "species": ZooManager.zoo_enclosures[int(id)]['species'].id, "view_position": ZooManager.zoo_enclosures[int(id)].node.enclosure_view_positions.pick_random()}
 		group_desired_destinations.append(destination)
 		group_desired_animals.append(destination['species'])
 

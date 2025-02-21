@@ -10,6 +10,7 @@ var vegetation_weight
 var random_y : int
 
 var cached_position : Vector2
+var tile : Vector2i
 
 var id : int
 
@@ -22,6 +23,8 @@ func _ready() -> void:
 	z_index = Helpers.get_current_tile_z_index(global_position)
 	vegetation_weight = vegetation_res.vegetation_weight
 	Effects.wobble(self)
+	tile = TileMapRef.local_to_map(global_position)
+	TileMapRef.new_occupied_tile.connect(check_if_invalid_tile)
 	cached_position = global_position
 	#$Timer.timeout.connect(on_vegetation_move)
 
@@ -33,3 +36,7 @@ func on_area_entered(area):
 func on_vegetation_move():
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, 'scale', Vector2(randf_range(0.9,1.1), randf_range(0.9,1.1)), 2)
+
+func check_if_invalid_tile(new_tile):
+	if new_tile == tile:
+		object_removed.emit(self)

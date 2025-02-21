@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bie8wky7dopo4"]
+[gd_scene load_steps=23 format=3 uid="uid://bie8wky7dopo4"]
 
 [ext_resource type="Script" uid="uid://3g8g24bmchtx" path="res://UI/UI popups/ui_mgmt_box.gd" id="1_dv7di"]
 [ext_resource type="PackedScene" uid="uid://l3ox8v7yeprd" path="res://UI/UI popups/elements/ui_review_element.tscn" id="2_6b1ha"]
@@ -39,6 +39,22 @@ texture_margin_top = 8.0
 texture_margin_right = 8.0
 texture_margin_bottom = 8.0
 region_rect = Rect2(402, 24, 152, 152)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkw1j"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x22dl"]
+bg_color = Color(0.13792, 0.596228, 0.887608, 1)
+border_color = Color(0, 0, 0, 1)
 
 [node name="UI_mgmt_popup" type="CanvasLayer"]
 layer = 10
@@ -92,7 +108,7 @@ horizontal_alignment = 1
 [node name="TabContainer" type="TabContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 4
+current_tab = 5
 
 [node name="Management" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 visible = false
@@ -582,6 +598,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Staff List" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 10
 metadata/_tab_index = 4
@@ -632,6 +649,61 @@ text = "Hire new Zookeeper"
 [node name="ZookeeperContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Staff List/MarginContainer/ScrollContainer/StaffZookeeperContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="Research" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+metadata/_tab_index = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Research"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Research/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="ResearchDebugInfo" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Research/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Research/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="CollectResearchButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Research/MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 10
+disabled = true
+text = "Collect research"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Research/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Research/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Research progress"
+horizontal_alignment = 1
+
+[node name="ResearchProgressBar" type="ProgressBar" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Research/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 50)
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_styles/background = SubResource("StyleBoxFlat_kkw1j")
+theme_override_styles/fill = SubResource("StyleBoxFlat_x22dl")
+step = 1.0
+show_percentage = false
 
 [node name="CloseButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer"]
 unique_name_in_owner = true

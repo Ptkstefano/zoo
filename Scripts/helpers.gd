@@ -112,3 +112,17 @@ func get_utility_score(perceived_value, current_price, product_level, level_diff
 		var level_diff = abs(level_difference) * 0.2
 		item_utility_score *= (1 - level_diff)
 	return item_utility_score
+
+
+
+func get_adjacent_cells_with_paths(cells):
+	var path_layer_cells = TileMapRef.get_path_layer_cells().duplicate()
+	var adjacent_path_cells = []
+	for cell in cells:
+		var neighbor_cells = Helpers.get_adjacent(cell)
+		for neighbor_cell in neighbor_cells:
+			if neighbor_cell in path_layer_cells:
+				if neighbor_cell not in adjacent_path_cells:
+					adjacent_path_cells.append(neighbor_cell)
+					
+	return adjacent_path_cells

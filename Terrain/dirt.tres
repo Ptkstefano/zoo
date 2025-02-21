@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="terrain_resource" load_steps=2 format=3 uid="uid://dcrw61juxfsvs"]
 
-[ext_resource type="Script" path="res://Terrain/terrain_res.gd" id="1_1705o"]
+[ext_resource type="Script" uid="uid://c20mhk8a1m5xv" path="res://Terrain/terrain_res.gd" id="1_1705o"]
 
 [resource]
 script = ExtResource("1_1705o")
-name = "Dirt"
+tr_name = "TERRAIN_DIRT"
 cost = 5.0
 atlas = Vector2i(0, 2)
+id = 2

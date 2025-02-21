@@ -7,8 +7,8 @@
 
 [resource]
 script = ExtResource("1_a584d")
-name = "Maned Wolf"
-species_id = 10
+tr_name = "ANIMAL_MANED_WOLF"
+id = 10
 cost = 200.0
 texture = ExtResource("3_6ppi1")
 cub_texture = ExtResource("1_6ppi1")

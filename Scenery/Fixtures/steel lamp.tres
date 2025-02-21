@@ -5,7 +5,8 @@
 
 [resource]
 script = ExtResource("1_xu8fm")
-name = "Steel lamp"
+tr_name = "FIXTURES_STEEL_LAMP"
+id = 1
 texture = ExtResource("2_xu8fm")
 type = 2
 positioning = 0

@@ -9,7 +9,7 @@ func _ready() -> void:
 		SaveManager.load_game()
 	else:
 		generate_game_start()
-
+		ResearchManager.new_game_unlocks()
 	
 	await get_tree().create_timer(1).timeout
 	var tween = create_tween()

@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_22ge1")
-name = "Bamboo"
+tr_name = "TREE_BAMBOO"
+scientific_name = ""
 cost = 10.0
 id = 4
 texture_y = 8

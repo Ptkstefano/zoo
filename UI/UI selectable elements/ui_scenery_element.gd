@@ -11,7 +11,7 @@ var scenery_type
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	%Button.pressed.connect(on_scenery_selected)
-	%Scenery.text = resource.name
+	%Scenery.text = tr(resource.tr_name)
 	%Thumbnail.texture = resource.thumb
 	%SceneryCost.text = Helpers.money_text(resource.cost)
 	

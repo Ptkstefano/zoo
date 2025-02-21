@@ -14,7 +14,7 @@ signal animal_selected
 func _ready() -> void:
 	if animal_res:
 		#%Button.pressed.connect(on_animal_selected)
-		%AnimalName.text = animal_res.name
+		%AnimalName.text = tr(animal_res.tr_name)
 		%Thumbnail.texture = animal_res.thumb
 		gui_input.connect(on_gui)
 		%AnimalCost.text = Helpers.money_text(animal_res.cost)

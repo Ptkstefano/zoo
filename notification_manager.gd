@@ -6,10 +6,14 @@ func _ready() -> void:
 	SignalBus.tooltip.connect(on_tooltip_emitted)
 	SignalBus.money_tooltip.connect(on_money_tooltip_emitted)
 	
-func on_tooltip_emitted(tooltip):
+func on_tooltip_emitted(tooltip_text, emit_position):
 	var label = notification_scene.instantiate()
-	label.text = tooltip
-	var pos = $"../InputController".touch_start_global_pos + Vector2(DisplayServer.window_get_size().x * -0.5 - 25, DisplayServer.window_get_size().y * -0.5 -50)
+	label.text = tooltip_text
+	var pos
+	if emit_position:
+		pos = emit_position + Vector2(DisplayServer.window_get_size().x * -0.5 - 25, DisplayServer.window_get_size().y * -0.5 -50)
+	else:
+		pos = $"../InputController".touch_start_global_pos + Vector2(DisplayServer.window_get_size().x * -0.5 - 25, DisplayServer.window_get_size().y * -0.5 -50)
 	label.position = pos
 	add_child(label)
 	label.show()

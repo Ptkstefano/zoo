@@ -3,6 +3,7 @@ extends Node
 signal tooltip
 signal money_tooltip 
 signal notification
+signal tooltip_with_pos
 
 signal obstacle_changed
 signal vegetation_placed
@@ -37,7 +38,7 @@ signal money_changed
 signal ui_visibility ## Emitted by: inputController
 signal ui_element_selected ## Emitted by individual elements when selected and received by other elements
 
-signal pass_month ## Emitted by: TimeManager
+#signal pass_month ## Emitted by: TimeManager
 
 signal set_debug_label_text
 

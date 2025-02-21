@@ -13,16 +13,19 @@ var animal_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	## TODO - Generate list according to unlocks
-	for key in ContentManager.animals.keys():
-		available_animals.append(ContentManager.animals[key])
 	update_animal_menu()
+	
+	ResearchManager.unlocked_animals_changed.connect(update_animal_menu)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 func update_animal_menu():
+	available_animals.clear()
+	for key in ResearchManager.unlocked_animals.keys():
+		available_animals.append(ContentManager.animals[key])
+
 	for child in animal_menu.get_children():
 		child.queue_free()
 		
@@ -42,19 +45,19 @@ func spawn_animal(coordinate, animal_res : animal_resource, saved_data, is_spawn
 		print(saved_data)
 	
 	if !found_enclosure:
-		SignalBus.tooltip.emit('Animal requires enclosure')
+		SignalBus.tooltip.emit(tr('TOOLTIP_REQUIRES_ENCLOSURE'), null)
 		return
 	if !found_enclosure.entrance_door_cell:
-		SignalBus.tooltip.emit('Enclosure requires entrance')
+		SignalBus.tooltip.emit(tr('TOOLTIP_REQUIRES_ENTRANCE'), null)
 		return
 		
 	if found_enclosure.enclosure_species != null:
 		if found_enclosure.enclosure_species != animal_res:
-			SignalBus.tooltip.emit('Not allowed to mix different species')
+			SignalBus.tooltip.emit(tr('TOOLTIP_NO_ANIMAL_MIXING'), null)
 			return
 			
 	if found_enclosure.fence_res.fence_level < animal_res.minimum_fence_level:
-		SignalBus.tooltip.emit('Enclosure not safe enough for this animal')
+		SignalBus.tooltip.emit(tr('TOOLTIP_ENCLOSURE_NOT_SAFE'), null)
 		return
 		
 	var spawned_animal = animal_scene.instantiate()
@@ -65,7 +68,7 @@ func spawn_animal(coordinate, animal_res : animal_resource, saved_data, is_spawn
 		## This means animal was bought
 		if !is_spawned_infant:
 			if !FinanceManager.is_amount_available(animal_res.cost):
-				SignalBus.tooltip.emit('Not enough money')
+				SignalBus.tooltip.emit(tr('TOOLTIP_NOT_ENOUGH_MONEY'), null)
 				return
 			FinanceManager.remove(animal_res.cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
 			SignalBus.money_tooltip.emit(animal_res.cost, false, coordinate)

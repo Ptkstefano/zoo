@@ -93,6 +93,9 @@ func add_cells(coordinates, fence_res):
 	build_fence()
 	if entrance_door_cell:
 		call_deferred("place_entrance", entrance_door_cell)
+	else:
+		print('no entrance')
+		generate_random_entrance.call_deferred()
 	update_central_point()
 	call_deferred('update_navigation_region')
 	call_deferred("calculate_enclosure_stats")
@@ -123,11 +126,12 @@ func remove_cells(coordinates):
 	enclosure_area_changed.emit()
 	update_enclosure_area()
 	
-func place_entrance(cell):
+func place_entrance(cell : Vector2i):
 	var new_entrance = $EnclosureFenceManager.place_entrance(cell)
 	if new_entrance:
 		entrance_cell = new_entrance
 		entrance_door_cell = cell
+		SignalBus.tooltip.emit(tr('TOOLTIP_ENCLOSURE_ENTRANCE_PLACED'), TileMapRef.map_to_local(cell))
 		
 	#feed_position = TileMapRef.map_to_local(Vector2(entrance_door_cell.x, entrance_door_cell.y + 1))
 	ZooManager.update_zoo_enclosure(self)
@@ -389,15 +393,16 @@ func find_mate_for_animal(animal):
 	
 	return null
 
+func generate_random_entrance():
+	enclosure_adjacent_path_cells = Helpers.get_adjacent_cells_with_paths(enclosure_fence_manager.fence_cells.duplicate())
+	if enclosure_adjacent_path_cells.is_empty():
+		return
+	var random_cell : Vector2i = enclosure_adjacent_path_cells.pick_random()
+	place_entrance(random_cell)
+	
+	
 func generate_sight_cells():
-	var path_layer_cells = TileMapRef.get_path_layer_cells().duplicate()
-	for cell in enclosure_fence_manager.fence_cells.duplicate():
-		var neighbor_cells = Helpers.get_adjacent(cell)
-		for neighbor_cell in neighbor_cells:
-			if neighbor_cell in path_layer_cells:
-				if neighbor_cell not in enclosure_adjacent_path_cells:
-					enclosure_adjacent_path_cells.append(neighbor_cell)
-				
+	enclosure_adjacent_path_cells = Helpers.get_adjacent_cells_with_paths(enclosure_fence_manager.fence_cells.duplicate())
 	var sight_cell_count = min(5, enclosure_adjacent_path_cells.size())
 	var random_sight_cells = []
 	if enclosure_adjacent_path_cells.size() < 5:

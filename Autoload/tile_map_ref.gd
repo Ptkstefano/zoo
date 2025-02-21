@@ -2,6 +2,10 @@ extends TileMapLayer
 
 var navigation_rid
 
+var occupied_tiles : Array[Vector2i] = []
+
+signal new_occupied_tile
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -48,3 +52,14 @@ func set_navigation_rid(rid):
 
 func get_navigation_rid():
 	return navigation_rid
+
+func add_occupied_tiles(new_tiles):
+	for tile in new_tiles:
+		if tile not in occupied_tiles:
+			new_occupied_tile.emit(tile)
+			occupied_tiles.append(tile)
+			
+func remove_occupied_tiles(removed_tiles):
+	for tile in removed_tiles:
+		if tile in occupied_tiles:
+			occupied_tiles.erase(tile)

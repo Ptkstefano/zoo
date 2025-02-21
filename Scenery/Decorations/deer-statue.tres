@@ -5,7 +5,8 @@
 
 [resource]
 script = ExtResource("1_imivf")
-name = "Deer Statue"
+tr_name = "DECORATION_DEER_STATUE"
+id = 0
 cost = 25.0
 texture = ExtResource("2_m3i3b")
 texture_offset = Vector2(0, -15)

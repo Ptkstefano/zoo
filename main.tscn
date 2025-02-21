@@ -1,4 +1,4 @@
-[gd_scene load_steps=222 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=196 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" uid="uid://o2egpp0b02e2" path="res://Scripts/debug_controller.gd" id="1_nisry"]
 [ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -42,68 +42,34 @@
 [ext_resource type="Resource" uid="uid://camg8o6ropjnr" path="res://Enclosures/Fences/Fence resources/small.tres" id="21_ad55l"]
 [ext_resource type="Resource" uid="uid://b85gocjhm05am" path="res://Enclosures/Fences/Fence resources/steel.tres" id="22_kya8w"]
 [ext_resource type="Texture2D" uid="uid://utbwnfc2qxje" path="res://Buildings/Sprites/entrance_roof.png" id="22_nankq"]
-[ext_resource type="Script" uid="uid://cankjki47tjd5" path="res://Scenery/Trees/tree_resource.gd" id="24_g51a1"]
-[ext_resource type="Resource" uid="uid://s5hkg34ufeu3" path="res://Scenery/Trees/Limber Pine.tres" id="25_qvxwd"]
-[ext_resource type="Script" uid="uid://d143y0sc6ar4w" path="res://Scenery/Decorations/decoration_resource.gd" id="26_0c60e"]
 [ext_resource type="PackedScene" uid="uid://cuiky1io0hfof" path="res://Scenery/Trees/tree_scene.tscn" id="26_vuik7"]
 [ext_resource type="PackedScene" uid="uid://bt8m7eb0se03i" path="res://UI/UI selectable elements/ui_scenery_element.tscn" id="27_5553e"]
 [ext_resource type="Script" uid="uid://db4c2pqkkun6" path="res://Managers/building_manager.gd" id="27_mg3kq"]
-[ext_resource type="Resource" uid="uid://dqn36shhu7sgb" path="res://Scenery/Decorations/deer-statue.tres" id="27_r3jxo"]
 [ext_resource type="PackedScene" uid="uid://bb5olte5gphhj" path="res://UI/UI selectable elements/ui_building_element.tscn" id="28_04i1b"]
-[ext_resource type="Script" uid="uid://b3dk3jci5ihs8" path="res://Buildings/building_res.gd" id="28_58uqa"]
 [ext_resource type="Resource" uid="uid://xk5hxkv0keyb" path="res://Enclosures/Fences/Fence resources/concrete.tres" id="28_ldw2x"]
-[ext_resource type="Script" uid="uid://d3riapnnqoikx" path="res://Scenery/Vegetation/vegetation_res.gd" id="28_wajut"]
-[ext_resource type="Resource" uid="uid://bin28cl7rvgjd" path="res://Scenery/Vegetation/short_grass.tres" id="29_d00f0"]
 [ext_resource type="PackedScene" uid="uid://32hy2cqq5ww0" path="res://Scenery/Vegetation/vegetation_scene.tscn" id="29_kyg12"]
-[ext_resource type="Resource" uid="uid://csjatom74kl3h" path="res://Buildings/BuildingResources/ice_cream_shop.tres" id="29_nh40u"]
 [ext_resource type="PackedScene" uid="uid://dyjax0fx7tuvi" path="res://Scenery/Decorations/decoration_piece.tscn" id="29_xj5w8"]
 [ext_resource type="Resource" uid="uid://du5ia6244wkd1" path="res://Enclosures/Fences/Fence resources/corral.tres" id="29_xkvoa"]
-[ext_resource type="Resource" uid="uid://bpx7vdfrvha4a" path="res://Scenery/Vegetation/tall_grass.tres" id="30_dvure"]
-[ext_resource type="Resource" uid="uid://b6yflquscb8la" path="res://Scenery/Trees/Palm 1.tres" id="30_yos0d"]
-[ext_resource type="Resource" uid="uid://ch0c44mjn0ono" path="res://Scenery/Vegetation/bush.tres" id="31_7jmpp"]
 [ext_resource type="Shader" uid="uid://b0e23qgminbhp" path="res://Shaders/terrain.gdshader" id="31_e0m5j"]
-[ext_resource type="Resource" uid="uid://dsp7g10m8i1c5" path="res://Scenery/Trees/Palm 2.tres" id="31_m2uoq"]
 [ext_resource type="Texture2D" uid="uid://wj8tt8gnhkn5" path="res://Terrain/terrain_sheet.png" id="32_05eb2"]
-[ext_resource type="Resource" uid="uid://36wmkrb0dw5i" path="res://Scenery/Trees/Jacaranda.tres" id="32_weqx1"]
-[ext_resource type="Resource" uid="uid://d0guv3uxkjigw" path="res://Scenery/Trees/Acacia.tres" id="33_5f25m"]
-[ext_resource type="Resource" uid="uid://benyyn571ipab" path="res://Scenery/Trees/Araucaria.tres" id="34_7vtya"]
-[ext_resource type="Resource" uid="uid://c26sgldy6tdt7" path="res://Scenery/Trees/Aleppo Pine.tres" id="40_eq8ba"]
 [ext_resource type="PackedScene" uid="uid://iscokpw16nk" path="res://Managers/peep_group.tscn" id="40_rrrup"]
-[ext_resource type="Resource" uid="uid://domqu5rry32dh" path="res://Scenery/Trees/Bloodwood.tres" id="41_qqr73"]
-[ext_resource type="Resource" uid="uid://buqh6ti4i532y" path="res://Scenery/Trees/Alder Tree.tres" id="42_p82ky"]
 [ext_resource type="Script" uid="uid://bjcrbyhfvjdmd" path="res://Managers/water_manager.gd" id="43_sh5qp"]
-[ext_resource type="Resource" uid="uid://c804tlyallbn2" path="res://Scenery/Trees/Bamboo.tres" id="43_xdjgi"]
 [ext_resource type="PackedScene" uid="uid://dfb5pi2yfy3jh" path="res://Water/lake_scene.tscn" id="44_wq78x"]
 [ext_resource type="Script" uid="uid://cu2j3songpy3l" path="res://Managers/fixture_manager.gd" id="45_u6xcc"]
 [ext_resource type="Script" uid="uid://5ejtocxcdxha" path="res://Scenery/Fixtures/fixture_resource.gd" id="46_0jpxo"]
-[ext_resource type="Script" uid="uid://bgsyapjwrjvwf" path="res://Scenery/Rocks/rock_resource.gd" id="46_inymm"]
-[ext_resource type="Resource" uid="uid://deoir12m8n42g" path="res://Scenery/Decorations/native-totem.tres" id="47_cb2x4"]
 [ext_resource type="Resource" uid="uid://bsox4n3cixif" path="res://Scenery/Fixtures/wooden bench.tres" id="47_gvub1"]
-[ext_resource type="Resource" uid="uid://c20l3l7d4n8e5" path="res://Scenery/Rocks/rock1.tres" id="47_jcxqu"]
-[ext_resource type="Resource" uid="uid://gk6rd1nfkfuo" path="res://Scenery/Rocks/rock2.tres" id="48_0arob"]
 [ext_resource type="Script" uid="uid://djfaqc8j8g763" path="res://Managers/popup_manager.gd" id="48_w8cen"]
-[ext_resource type="Resource" uid="uid://dwomu3s1tuou4" path="res://Scenery/Rocks/rock3.tres" id="49_dij0e"]
 [ext_resource type="Script" uid="uid://bb51mdph56ind" path="res://Managers/shelter_manager.gd" id="49_hnjxi"]
 [ext_resource type="PackedScene" uid="uid://ddbum626vwima" path="res://UI/UI popups/ui_shop_popup.tscn" id="50_dyuu3"]
-[ext_resource type="Resource" uid="uid://d07435lk4khj5" path="res://Scenery/Rocks/rock4.tres" id="50_k1udn"]
 [ext_resource type="Script" uid="uid://ci0g6eukld5d" path="res://Enclosures/Shelters/shelter_res.gd" id="50_m3er2"]
 [ext_resource type="Resource" uid="uid://cuk4yesxl2kqy" path="res://Enclosures/Shelters/shelter resources/small_wooden_shelter.tres" id="51_row6q"]
-[ext_resource type="Resource" uid="uid://dwwf1t208xn6v" path="res://Scenery/Rocks/rock5.tres" id="51_wat4s"]
 [ext_resource type="PackedScene" uid="uid://dasxyu5n8ncu0" path="res://UI/UI selectable elements/ui_shelter_element.tscn" id="52_30626"]
-[ext_resource type="Resource" uid="uid://cw0qxk8uuda34" path="res://Buildings/BuildingResources/toilet1.tres" id="53_1nclh"]
 [ext_resource type="Shader" uid="uid://cy6xjukasrqil" path="res://Shaders/postfx.gdshader" id="53_fkgg7"]
 [ext_resource type="PackedScene" uid="uid://c0yqr1xdbc6do" path="res://UI/UI selectable elements/ui_enclosure_element.tscn" id="54_il7k7"]
-[ext_resource type="Resource" uid="uid://bcld4w1mfdp4n" path="res://Scenery/Vegetation/reeds.tres" id="54_wm5rm"]
 [ext_resource type="PackedScene" uid="uid://b020lesiynlbr" path="res://Enclosures/enclosure_scene.tscn" id="55_54dhb"]
-[ext_resource type="Resource" uid="uid://bola5mrcl185v" path="res://Scenery/Vegetation/savanna_grass.tres" id="55_ekl5k"]
 [ext_resource type="PackedScene" uid="uid://dvlhldkt22u1u" path="res://Scenery/Rocks/rock_piece.tscn" id="55_ywjan"]
-[ext_resource type="Resource" uid="uid://bo7jk700o783b" path="res://Scenery/Vegetation/century_plant.tres" id="57_rpys8"]
-[ext_resource type="Resource" uid="uid://det1dqeagbh2a" path="res://Scenery/Vegetation/lemon_grass.tres" id="58_6gr3f"]
-[ext_resource type="Resource" uid="uid://dxi0k8yus5htv" path="res://Scenery/Vegetation/savanna_red_oats.tres" id="58_wm5rm"]
 [ext_resource type="Script" uid="uid://523fsfqlnuv" path="res://Managers/peep_navigation_region.gd" id="61_8dedt"]
 [ext_resource type="PackedScene" uid="uid://c2x0h40jh0wj6" path="res://Staff/staff.tscn" id="69_ba76w"]
-[ext_resource type="Resource" uid="uid://ccsw3cdj7hvqt" path="res://Buildings/BuildingResources/italian_restaurant.tres" id="70_8rtrj"]
-[ext_resource type="Resource" uid="uid://qj0xyns38rnr" path="res://Buildings/BuildingResources/zookeepers_station.tres" id="73_3e2rx"]
 [ext_resource type="PackedScene" uid="uid://baic6x8rh68v8" path="res://UI/UI popups/ui_animal_popup.tscn" id="73_mv3dj"]
 [ext_resource type="Theme" uid="uid://qsq4gutgth07" path="res://UI/Themes/default_theme.tres" id="74_7k2ss"]
 [ext_resource type="Script" uid="uid://bngrxugl7sj74" path="res://UI/ui_show.gd" id="74_d5mka"]
@@ -130,32 +96,38 @@
 [ext_resource type="Texture2D" uid="uid://b5ehp47ajkovo" path="res://UI/art/buttons.png" id="101_cpm2s"]
 [ext_resource type="Theme" uid="uid://ctgx6ui8lfp8i" path="res://UI/Themes/dark_button.tres" id="101_f3y11"]
 [ext_resource type="Texture2D" uid="uid://cupyxc714k5o8" path="res://Enclosures/fence_sheet.png" id="101_xkvoa"]
-[ext_resource type="Texture2D" uid="uid://5jn11yg0ds68" path="res://UI/Icons/icon-construction3.png" id="102_f3y11"]
 [ext_resource type="Script" uid="uid://diov21aejn74a" path="res://info_border_panel.gd" id="103_tttfs"]
 [ext_resource type="PackedScene" uid="uid://dghecrq5m52py" path="res://UI/UI popups/ui_building_popup.tscn" id="104_3exxq"]
 [ext_resource type="Texture2D" uid="uid://dtc7ihyg3w5bq" path="res://UI/art/panel_dark.png" id="104_f3y11"]
 [ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/Themes/popup_theme.tres" id="104_vjgyh"]
 [ext_resource type="Theme" uid="uid://b6646spks2n34" path="res://UI/Themes/main_tool_subpanel.tres" id="105_6idwh"]
-[ext_resource type="Texture2D" uid="uid://clu6pr714pcy6" path="res://UI/Icons/icons2.png" id="107_u81y6"]
 [ext_resource type="Theme" uid="uid://bged1njjfndbj" path="res://UI/Themes/bottom_panel.tres" id="108_smeu8"]
 [ext_resource type="PackedScene" uid="uid://cmymygq532ra5" path="res://UI/UI popups/ui_enclosure_popup.tscn" id="109_37eu1"]
 [ext_resource type="PackedScene" uid="uid://b4j6v4cc3p1w" path="res://UI/UI popups/ui_animal_info_popup.tscn" id="109_pw0td"]
-[ext_resource type="Texture2D" uid="uid://b5bma8wo0rn86" path="res://UI/Icons/icons3.png" id="111_vjgyh"]
 [ext_resource type="Theme" uid="uid://dnsbtrrtp1vwi" path="res://Red_button.tres" id="117_1iygd"]
 [ext_resource type="Theme" uid="uid://die2jiitjcnwu" path="res://Green_button.tres" id="117_g5xqc"]
 [ext_resource type="PackedScene" uid="uid://bvx7ukf647gy5" path="res://UI/UI popups/ui_staff_popup.tscn" id="120_rpys8"]
+[ext_resource type="Script" uid="uid://2fk2lucomke6" path="res://research_progress_bar.gd" id="121_3exxq"]
 [ext_resource type="Theme" uid="uid://n5hp2ks3tu04" path="res://checkbox.tres" id="121_86lig"]
 [ext_resource type="Theme" uid="uid://dpbxcu82btgu" path="res://light_blue_button.tres" id="121_oosfy"]
 [ext_resource type="Texture2D" uid="uid://ei36ih8llxbb" path="res://UI/Icons/gender4.png" id="122_nf4f2"]
 [ext_resource type="Texture2D" uid="uid://d1yua2ag5dbcx" path="res://UI/Icons/gender3.png" id="123_xkvoa"]
 [ext_resource type="Script" uid="uid://c4x8c8c70ukhk" path="res://UI_BottomMargin.gd" id="125_2n44k"]
 [ext_resource type="PackedScene" uid="uid://kn44cenbnuda" path="res://UI/level_star.tscn" id="126_5aa3q"]
+[ext_resource type="Texture2D" uid="uid://ctfqwbe20e07n" path="res://UI/Icons/construction_color.png" id="131_3ox4t"]
 [ext_resource type="Texture2D" uid="uid://b787nqd6tt5ow" path="res://UI/Icons/star2x.png" id="132_nf4f2"]
 [ext_resource type="Texture2D" uid="uid://dprrgv2xdx1qh" path="res://UI/Icons/star-half2x.png" id="133_xkvoa"]
+[ext_resource type="Texture2D" uid="uid://d5mkxcygdw23" path="res://UI/Icons/icon_path_color.png" id="134_bil4k"]
 [ext_resource type="Script" uid="uid://b1sdilxgtfn6u" path="res://ui_time.gd" id="134_nf4f2"]
+[ext_resource type="Texture2D" uid="uid://diu4y6lqvo0yl" path="res://UI/Icons/icon_enclosure_color.png" id="135_hnquj"]
 [ext_resource type="FontFile" uid="uid://dh3lo7lghhs8x" path="res://UI/Thin sans.ttf" id="135_t5kpo"]
 [ext_resource type="Texture2D" uid="uid://b2tvkl7nw6goi" path="res://UI/Icons/peeps_icon.png" id="135_xkvoa"]
+[ext_resource type="Texture2D" uid="uid://c63ducte68y2t" path="res://UI/Icons/icon_scenery_color.png" id="136_3ox4t"]
+[ext_resource type="Texture2D" uid="uid://ckmas72i3n3ol" path="res://UI/Icons/icon_building_color.png" id="136_4fmho"]
+[ext_resource type="Texture2D" uid="uid://bllx02oqne4ad" path="res://UI/Icons/icon_animals_color.png" id="136_hnquj"]
 [ext_resource type="Texture2D" uid="uid://bqrwr2cqyvfly" path="res://UI/art/bgtest.png" id="136_ldnlw"]
+[ext_resource type="Texture2D" uid="uid://wpi46nbm1vek" path="res://UI/Icons/icon_terrain_color.png" id="139_hnquj"]
+[ext_resource type="Texture2D" uid="uid://dvsf8o1ingwa8" path="res://UI/Icons/icon_water_color.png" id="140_hnquj"]
 [ext_resource type="Texture2D" uid="uid://bhdvqbx2t3rji" path="res://MainMenu/logo3.png" id="155_fdpg8"]
 [ext_resource type="Script" uid="uid://b6cxmm7gdxulo" path="res://UII_main_menu.gd" id="155_rpys8"]
 
@@ -718,6 +690,22 @@ border_color = Color(1, 1, 1, 1)
 expand_margin_left = 2.0
 expand_margin_right = 2.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hnquj"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0h8y2"]
+bg_color = Color(0.13792, 0.596228, 0.887608, 1)
+border_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkvoa"]
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 4
@@ -759,7 +747,7 @@ script = ExtResource("1_oseej")
 
 [node name="NightModulate" type="CanvasModulate" parent="."]
 visible = false
-color = Color(0.425143, 0.621439, 0.943565, 1)
+color = Color(0.383314, 0.5314, 0.937877, 1)
 script = ExtResource("2_6seew")
 
 [node name="ReputationManager" type="Node" parent="."]
@@ -849,10 +837,6 @@ ui_animal_element = ExtResource("21_a35of")
 [node name="SceneryManager" type="Node2D" parent="Objects" node_paths=PackedStringArray("buildingManager")]
 y_sort_enabled = true
 script = ExtResource("14_62h3g")
-available_trees = Array[ExtResource("24_g51a1")]([ExtResource("33_5f25m"), ExtResource("42_p82ky"), ExtResource("40_eq8ba"), ExtResource("34_7vtya"), ExtResource("43_xdjgi"), ExtResource("41_qqr73"), ExtResource("32_weqx1"), ExtResource("25_qvxwd"), ExtResource("30_yos0d"), ExtResource("31_m2uoq")])
-available_decorations = Array[ExtResource("26_0c60e")]([ExtResource("27_r3jxo"), ExtResource("47_cb2x4")])
-available_vegetations = Array[ExtResource("28_wajut")]([ExtResource("29_d00f0"), ExtResource("30_dvure"), ExtResource("31_7jmpp"), ExtResource("58_6gr3f"), ExtResource("57_rpys8"), ExtResource("54_wm5rm"), ExtResource("55_ekl5k"), ExtResource("58_wm5rm")])
-available_rocks = Array[ExtResource("46_inymm")]([ExtResource("47_jcxqu"), ExtResource("48_0arob"), ExtResource("49_dij0e"), ExtResource("50_k1udn"), ExtResource("51_wat4s")])
 tree_scene = ExtResource("26_vuik7")
 vegetation_scene = ExtResource("29_kyg12")
 decoration_scene = ExtResource("29_xj5w8")
@@ -881,7 +865,6 @@ multimesh = SubResource("MultiMesh_mn50c")
 [node name="BuildingManager" type="Node2D" parent="Objects"]
 y_sort_enabled = true
 script = ExtResource("27_mg3kq")
-available_buildings = Array[ExtResource("28_58uqa")]([ExtResource("29_nh40u"), ExtResource("53_1nclh"), ExtResource("70_8rtrj"), ExtResource("73_3e2rx")])
 ui_building_element = ExtResource("28_04i1b")
 
 [node name="WaterManager" type="Node2D" parent="Objects"]
@@ -970,7 +953,7 @@ light_mask = 0
 z_index = -200
 y_sort_enabled = true
 texture_filter = 1
-tile_map_data = PackedByteArray("AAAAAC0AAAAHAAEAAAAAACwAAAAAAAAAAAAAACsAAAAIAAEAAAAAACoAAAACAAEAAAAAAC4AAAACAAEAAAAAAC8AAAACAAEAAAAAADAAAAACAAEAAAACAC8AAAAFAAEAAAD+/y8AAAADAAEAAAACADAAAAAJAAEAAAD+/zAAAAAKAAEAAAD//y8AAAACAAEAAAABAC8AAAACAAEAAAABADAAAAACAAEAAAD//zAAAAACAAEAAAAAACkAAAACAAEAAAABACkAAAACAAEAAAACACkAAAAIAAEAAAADACkAAAAIAAEAAAAEACkAAAAGAAEAAAD//ykAAAACAAEAAAD+/ykAAAAIAAEAAAD9/ykAAAAIAAEAAAD8/ykAAAAEAAEAAAABAC4AAAAJAAEAAAABAC0AAAAJAAEAAAABACwAAAABAAEAAAABACsAAAAJAAEAAAABACoAAAAJAAEAAAD//y4AAAAKAAEAAAD//y0AAAAKAAEAAAD//ywAAAABAAEAAAD//ysAAAAKAAEAAAD//yoAAAAKAAEAAAAEACgAAAAFAAEAAAADACgAAAAHAAEAAAACACgAAAAHAAEAAAABACgAAAAHAAEAAAAAACgAAAAHAAEAAAD//ygAAAAHAAEAAAD+/ygAAAAHAAEAAAD9/ygAAAAHAAEAAAD8/ygAAAADAAEAAAA=")
+tile_map_data = PackedByteArray("AAAAAC0AAAAHAAEAAAAAACwAAAAAAAAAAAAAACsAAAAIAAEAAAAAAC4AAAACAAEAAAAAAC8AAAACAAEAAAAAADAAAAACAAEAAAACAC8AAAAFAAEAAAD+/y8AAAADAAEAAAACADAAAAAJAAEAAAD+/zAAAAAKAAEAAAD//y8AAAACAAEAAAABAC8AAAACAAEAAAABADAAAAACAAEAAAD//zAAAAACAAEAAAABAC4AAAAJAAEAAAABAC0AAAAJAAEAAAABACwAAAABAAEAAAABACsAAAAJAAEAAAD//y4AAAAKAAEAAAD//y0AAAAKAAEAAAD//ywAAAABAAEAAAD//ysAAAAKAAEAAAABACoAAAAFAAEAAAAAACoAAAAHAAEAAAD//yoAAAADAAEAAAA=")
 tile_set = SubResource("TileSet_qn1u4")
 collision_enabled = false
 navigation_enabled = false
@@ -1485,7 +1468,7 @@ theme_override_constants/margin_bottom = 15
 
 [node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/BuildModeButtonContainer/Control/BuildModeButton/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("102_f3y11")
+texture = ExtResource("131_3ox4t")
 expand_mode = 5
 
 [node name="ConstructionToolsContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer"]
@@ -1563,10 +1546,8 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(140, 140)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Paths"
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/PathTool"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1580,7 +1561,7 @@ theme_override_constants/margin_bottom = 15
 
 [node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/PathTool/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("107_u81y6")
+texture = ExtResource("134_bil4k")
 expand_mode = 5
 
 [node name="EnclosureTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
@@ -1588,10 +1569,8 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(140, 140)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Enclosure"
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/EnclosureTool"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1605,7 +1584,7 @@ theme_override_constants/margin_bottom = 15
 
 [node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/EnclosureTool/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("111_vjgyh")
+texture = ExtResource("135_hnquj")
 expand_mode = 5
 
 [node name="AnimalTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
@@ -1613,10 +1592,8 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(140, 140)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Animals"
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/AnimalTool"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1630,7 +1607,7 @@ theme_override_constants/margin_bottom = 15
 
 [node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/AnimalTool/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("107_u81y6")
+texture = ExtResource("136_hnquj")
 expand_mode = 5
 
 [node name="BuildingTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
@@ -1638,26 +1615,90 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(140, 140)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Buildings"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/BuildingTool"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/BuildingTool/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("136_4fmho")
+expand_mode = 5
 
 [node name="SceneryTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(140, 140)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Scenery"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/SceneryTool"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/SceneryTool/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("136_3ox4t")
+expand_mode = 5
 
 [node name="TerrainTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(140, 140)
 layout_mode = 2
-text = "Terrain"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/TerrainTool"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/TerrainTool/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("139_hnquj")
+expand_mode = 5
 
 [node name="WaterTool" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(140, 140)
 layout_mode = 2
-text = "Water"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/WaterTool"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer/ToolContainer/WaterTool/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("140_hnquj")
+expand_mode = 5
 
 [node name="ToolContainer2" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolPanel/ToolPanel/PanelContainer/MainPanel/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -1819,6 +1860,7 @@ text = "Administration"
 
 [node name="ToolInfoPanel" type="Control" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(1100, 255)
 layout_mode = 2
 mouse_filter = 2
@@ -3007,6 +3049,28 @@ theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 40
 text = "0"
 horizontal_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/Left/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxFlat_bnk2o")
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/Left/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ResearchProgressBar" type="ProgressBar" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/Left/HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(190, 50)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_hnquj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0h8y2")
+step = 1.0
+show_percentage = false
+script = ExtResource("121_3exxq")
 
 [node name="Center" type="MarginContainer" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu"]
 layout_mode = 2

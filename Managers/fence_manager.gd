@@ -138,12 +138,12 @@ func instantiate_fence_instances():
 				fence_instances[str(cell.x) + ',' + str(cell.y)] = fence_instance
 		direction_index -= 1
 
-func place_entrance(cell):
+func place_entrance(cell : Vector2i):
 	if cell not in fence_cells:
-		if Vector2(cell.x, cell.y + 1) in fence_cells:
+		if Vector2i(cell.x, cell.y + 1) in fence_cells:
 			cell = Vector2(cell.x, cell.y + 1)
-		elif Vector2(cell.x - 1, cell.y) in fence_cells:
-			cell = Vector2(cell.x - 1,  cell.y)
+		elif Vector2i(cell.x - 1, cell.y) in fence_cells:
+			cell = Vector2i(cell.x - 1,  cell.y)
 		else:
 			return
 		

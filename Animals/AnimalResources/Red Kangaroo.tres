@@ -7,8 +7,8 @@
 
 [resource]
 script = ExtResource("1_kntb2")
-name = "Red Kangaroo"
-species_id = 4
+tr_name = "ANIMAL_RED_KANGAROO"
+id = 4
 cost = 250.0
 texture = ExtResource("3_yi0ix")
 cub_texture = ExtResource("1_jgaf2")

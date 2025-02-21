@@ -110,18 +110,18 @@ region_rect = Rect2(210, 404, 152, 160)
 
 [resource]
 default_font = ExtResource("4_yynsw")
-default_font_size = 40
-Button/constants/outline_size = 18
+default_font_size = 32
+Button/constants/outline_size = 0
 Button/styles/focus = SubResource("StyleBoxTexture_27gct")
 Button/styles/hover = SubResource("StyleBoxTexture_s7iii")
 Button/styles/normal = SubResource("StyleBoxTexture_qsrn0")
 Button/styles/pressed = SubResource("StyleBoxTexture_rc7u6")
-Label/constants/outline_size = 16
-Label/font_sizes/font_size = 40
+Label/constants/outline_size = 0
+Label/font_sizes/font_size = 32
 Label/styles/normal = SubResource("StyleBoxEmpty_yynsw")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_yynsw")
-TabContainer/constants/outline_size = 16
-TabContainer/font_sizes/font_size = 40
+TabContainer/constants/outline_size = 0
+TabContainer/font_sizes/font_size = 32
 TabContainer/fonts/font = ExtResource("4_yynsw")
 TabContainer/styles/panel = SubResource("StyleBoxTexture_qkd5o")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_qkd5o")

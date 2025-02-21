@@ -7,8 +7,8 @@
 
 [resource]
 script = ExtResource("1_udr7q")
-name = "Kardofan Giraffe"
-species_id = 2
+tr_name = "ANIMAL_KORDOFAN_GIRAFFE"
+id = 2
 cost = 200.0
 texture = ExtResource("3_q8i27")
 cub_texture = ExtResource("1_q8i27")

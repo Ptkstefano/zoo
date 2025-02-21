@@ -66,6 +66,7 @@ func build_path(coordinates, atlas_y : int):
 		## Adds instersections to neighbors of built paths
 		build_intersections(neighbor, null)
 		
+	TileMapRef.add_occupied_tiles(coordinates)
 	if GameManager.game_running: ## Ensures baking isn't flooded with requests at the start
 		SignalBus.peep_navigation_changed.emit()
 		SignalBus.path_layer_updated.emit(coordinates)
@@ -90,7 +91,8 @@ func remove_path(coordinates):
 					all_neighbors.append(neighbor)
 	for neighbor in all_neighbors:
 		## Adds instersections to neighbors of built paths
-		build_intersections(neighbor, null)
+		build_intersections(neighbor, null)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+	TileMapRef.remove_occupied_tiles(coordinates)
 	SignalBus.peep_navigation_changed.emit()
 	SignalBus.path_layer_updated.emit(coordinates)
 

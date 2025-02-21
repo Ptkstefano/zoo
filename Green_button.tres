@@ -11,5 +11,5 @@ texture_margin_bottom = 8.0
 region_rect = Rect2(20, 212, 152, 160)
 
 [resource]
-Button/constants/outline_size = 16
+Button/constants/outline_size = 0
 Button/styles/normal = SubResource("StyleBoxTexture_jng1b")

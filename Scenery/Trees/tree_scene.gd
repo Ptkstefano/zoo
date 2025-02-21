@@ -15,6 +15,7 @@ var vegetation_weight
 var id : int
 
 var cached_position : Vector2
+var tile : Vector2i
 
 signal object_removed
 
@@ -32,7 +33,8 @@ func _ready() -> void:
 	vegetation_weight = tree_res.vegetation_weight
 	Effects.wobble(self)
 	cached_position = global_position
-	
+	tile = TileMapRef.local_to_map(global_position)
+	TileMapRef.new_occupied_tile.connect(check_if_invalid_tile)
 	$VisibleOnScreenNotifier2D.screen_entered.connect(on_visibility_entered)
 	$VisibleOnScreenNotifier2D.screen_exited.connect(on_visibility_exited)
 	
@@ -49,3 +51,9 @@ func on_visibility_entered():
 	SoundscapeManager.trees_in_screen += 1
 func on_visibility_exited():
 	SoundscapeManager.trees_in_screen -= 1
+
+func check_if_invalid_tile(new_tile):
+	if new_tile == tile:
+		if $VisibleOnScreenNotifier2D.is_on_screen():
+			SoundscapeManager.trees_in_screen -= 1
+		object_removed.emit(self)

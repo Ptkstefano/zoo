@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://clyvum5qvd0b5"]
+[gd_scene load_steps=14 format=3 uid="uid://clyvum5qvd0b5"]
 
 [ext_resource type="Script" uid="uid://ua6s4x1ng2yn" path="res://MainMenu/UI_main_menu.gd" id="1_jxm28"]
 [ext_resource type="Theme" uid="uid://5rinnmfg30fq" path="res://MainMenu/MainMenu.tres" id="2_24wdr"]
@@ -9,6 +9,7 @@
 [ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/Themes/popup_theme.tres" id="7_jdgnk"]
 [ext_resource type="Theme" uid="uid://di7iy2m47x8rx" path="res://UI/Themes/popup_inner_content.tres" id="8_83n0s"]
 [ext_resource type="PackedScene" uid="uid://ce0okymgxf8n4" path="res://MainMenu/MainMenu_save_game_element.tscn" id="9_83n0s"]
+[ext_resource type="Script" uid="uid://bfnsgyh1kohgr" path="res://MainMenu/LanguageButton.gd" id="12_id3bs"]
 [ext_resource type="PackedScene" uid="uid://cxbu5fqbnlcu1" path="res://UI/UI popups/ui_confirmation_popup.tscn" id="18_o1f7t"]
 [ext_resource type="Script" uid="uid://dpucmwjqh7h8m" path="res://MainMenu/confirmation_popup_manager.gd" id="19_dhpph"]
 
@@ -103,20 +104,20 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
-text = "Story"
+text = "UI_MAIN_MENU_STORY"
 
 [node name="SandboxButton" type="Button" parent="ContainerContainer/MainContainer/HBoxContainer/VBoxContainer3/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Sandbox"
+text = "UI_MAIN_MENU_SANDBOX"
 
 [node name="ContinueButton" type="Button" parent="ContainerContainer/MainContainer/HBoxContainer/VBoxContainer3/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("6_kbpwf")
-text = "Continue last Zoo"
+text = "UI_MAIN_MENU_CONTINUE"
 
 [node name="SandboxContainer" type="MarginContainer" parent="ContainerContainer"]
 unique_name_in_owner = true
@@ -158,7 +159,7 @@ theme_override_constants/separation = 40
 [node name="Label" type="Label" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "Sandbox"
+text = "UI_MAIN_MENU_SANDBOX"
 horizontal_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
@@ -185,7 +186,7 @@ custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("6_kbpwf")
-text = "New Zoo"
+text = "UI_MAIN_MENU_CREATE_NEW"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
@@ -242,7 +243,7 @@ theme_override_constants/separation = 40
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 48
-text = "Create new Zoo"
+text = "UI_MAIN_MENU_CREATE_NEW"
 horizontal_alignment = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
@@ -258,7 +259,7 @@ theme_override_constants/separation = 8
 [node name="Label2" type="Label" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "Zoo name"
+text = "UI_MAIN_MENU_ZOO_NAME"
 horizontal_alignment = 1
 
 [node name="ZooNameLineEdit" type="LineEdit" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
@@ -279,7 +280,7 @@ layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("6_kbpwf")
 disabled = true
-text = "Start game"
+text = "UI_MAIN_MENU_START"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
@@ -299,3 +300,15 @@ text = "X"
 layer = 10
 script = ExtResource("19_dhpph")
 ui_confirmation_popup = ExtResource("18_o1f7t")
+
+[node name="Language" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 1640.0
+offset_top = 48.0
+offset_right = 1870.0
+offset_bottom = 148.0
+theme = ExtResource("6_kbpwf")
+theme_override_font_sizes/font_size = 32
+text = "LANGUAGE"
+script = ExtResource("12_id3bs")

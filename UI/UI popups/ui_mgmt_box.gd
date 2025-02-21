@@ -35,6 +35,15 @@ func _ready():
 	%Plus.pressed.connect(entrance_price_change.bind(1))
 	%Price.text = Helpers.money_text(ZooManager.entrance_price)
 	
+	
+	if ResearchManager.current_research_progress > 99:
+		%CollectResearchButton.disabled = false
+	else:
+		%CollectResearchButton.disabled = true
+	%CollectResearchButton.pressed.connect(on_unlock_research)
+	%ResearchProgressBar.value = ResearchManager.current_research_progress
+	%ResearchDebugInfo.text = str(ResearchManager.last_research)
+	
 	%HireZookeeperButton.pressed.connect(on_hire_zookeeper)
 	
 	for enclosure_entry in ZooManager.zoo_enclosures.keys():
@@ -149,3 +158,13 @@ func on_hire_zookeeper():
 
 func on_staff_fired():
 	generate_staff_tab()
+
+func update_research_progress():
+	%ResearchProgressBar.value = ResearchManager.current_research_progress
+	if ResearchManager.current_research_progress == 100.0:
+		%CollectResearchButton.disabled = false
+
+func on_unlock_research():
+	ResearchManager.new_research_unlocked()
+	%CollectResearchButton.disabled = true
+	%ResearchDebugInfo.text = str(ResearchManager.last_research)

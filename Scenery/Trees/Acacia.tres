@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_rwuxn")
-name = "Umbrella Thorn Acacia"
+tr_name = "TREE_UMBRELLA_ACACIA"
+scientific_name = ""
 cost = 15.0
 id = 0
 texture_y = 4

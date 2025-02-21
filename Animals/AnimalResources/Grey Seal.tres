@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("2_notk4")
-name = "Grey Seal"
-species_id = 15
+tr_name = "ANIMAL_GREY_SEAL"
+id = 15
 cost = 200.0
 texture = ExtResource("2_oudqo")
 feed = 4

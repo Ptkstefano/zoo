@@ -6,8 +6,8 @@
 
 [resource]
 script = ExtResource("2_ebj7x")
-name = "Alaskan Moose"
-species_id = 24
+tr_name = "ANIMAL_ALASKAN_MOOSE"
+id = 24
 cost = 650.0
 texture = ExtResource("1_offvu")
 cub_texture = ExtResource("1_tb3pc")

@@ -29,7 +29,9 @@ func _ready() -> void:
 					var backup_file = FileAccess.open(userfolder_path + sandbox_save_folder_path + 'backup/' + file_name, FileAccess.READ)
 					data = json.parse_string(backup_file.get_as_text())  
 				save_data['zoo_name'] = data['zoo_manager_data'].get('zoo_name', file_name)
-				var datetime = data['saveFileData'].get('datetime', null)
+				var datetime = ''
+				if data.has('saveFileData'):
+					datetime = data['saveFileData'].get('datetime', null)
 				save_data['save_datetime'] = datetime
 			sandbox_saves.append(save_data)
 	else:

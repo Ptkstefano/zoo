@@ -229,6 +229,8 @@ func save_game():
 	## Save time data
 	save_data['timeData'] = get_time_data().duplicate(true)
 	
+	save_data['researchData'] = get_research_data().duplicate(true)
+	
 	save_data['saveFileData'] = {}
 	save_data['saveFileData']['datetime'] = Time.get_datetime_string_from_system()
 	
@@ -435,6 +437,9 @@ func load_game():
 		ZooManager.zoo_entrance_open = data['zoo_manager_data'].get('zoo_entrance_open', true)
 		ZooManager.zoo_name = data['zoo_manager_data'].get('zoo_name', 'Zoo Name')
 		
+	if data.has('researchData'):
+		ResearchManager.load_data(data['researchData'])
+		
 	if data.has('financeData'):
 		FinanceManager.current_money = data['financeData']['current_money']
 		FinanceManager.monthly_stats = data['financeData'].get('monthly_stats', {})
@@ -639,4 +644,18 @@ func get_shelter_data(shelter):
 	data['starting_tile_x'] = shelter.starting_tile.x
 	data['starting_tile_y'] = shelter.starting_tile.y
 	data['direction'] = shelter.direction
+	return data
+
+func get_research_data():
+	var data = {}
+	data['unlocked_animals'] = ResearchManager.unlocked_animals.keys()
+	data['unlocked_restaurants'] = ResearchManager.unlocked_restaurants.keys()
+	data['unlocked_eateries'] = ResearchManager.unlocked_eateries.keys()
+	data['unlocked_services'] = ResearchManager.unlocked_services.keys()
+	data['unlocked_administration'] = ResearchManager.unlocked_administration.keys()
+	data['unlocked_products'] = ResearchManager.unlocked_products.keys()
+	data['unlocked_vegetation'] = ResearchManager.unlocked_vegetation.keys()
+	data['unlocked_trees'] = ResearchManager.unlocked_trees.keys()
+	data['unlocked_decoration'] = ResearchManager.unlocked_decoration.keys()
+	data['unlocked_fixtures'] = ResearchManager.unlocked_fixtures.keys()
 	return data

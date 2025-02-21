@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_rd5au")
-name = "Aleppo Pine"
+tr_name = "TREE_ALEPPO_PINE"
+scientific_name = ""
 cost = 10.0
 id = 2
 texture_y = 6

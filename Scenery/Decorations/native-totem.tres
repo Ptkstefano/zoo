@@ -5,7 +5,8 @@
 
 [resource]
 script = ExtResource("1_crtxl")
-name = "Native Totem"
+tr_name = ""
+id = 1
 cost = 25.0
 texture = ExtResource("2_klfbc")
 texture_offset = Vector2(0, -25)

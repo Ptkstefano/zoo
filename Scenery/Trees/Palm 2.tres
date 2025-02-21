@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_kyhpm")
-name = "Palm Tree (large)"
+tr_name = "TREE_PALM"
+scientific_name = ""
 cost = 10.0
 id = 8
 texture_y = 2

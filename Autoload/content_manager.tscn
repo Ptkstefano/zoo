@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://mqvvqf6wxoe8"]
+[gd_scene load_steps=65 format=3 uid="uid://mqvvqf6wxoe8"]
 
 [ext_resource type="Script" uid="uid://da6bglapjw4jm" path="res://Autoload/content_manager.gd" id="1_0xc5w"]
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="2_3584o"]
@@ -31,9 +31,50 @@
 [ext_resource type="Resource" uid="uid://ckyyswqj3cgfy" path="res://Products/pasta_shrimp_squid_ink.tres" id="20_ccdbg"]
 [ext_resource type="Resource" uid="uid://ccsw3cdj7hvqt" path="res://Buildings/BuildingResources/italian_restaurant.tres" id="21_17nn5"]
 [ext_resource type="Resource" uid="uid://qj0xyns38rnr" path="res://Buildings/BuildingResources/zookeepers_station.tres" id="30_4atb1"]
+[ext_resource type="Script" uid="uid://d3riapnnqoikx" path="res://Scenery/Vegetation/vegetation_res.gd" id="32_t074i"]
+[ext_resource type="Resource" uid="uid://ch0c44mjn0ono" path="res://Scenery/Vegetation/bush.tres" id="33_6g5sk"]
+[ext_resource type="Resource" uid="uid://bo7jk700o783b" path="res://Scenery/Vegetation/century_plant.tres" id="34_saslj"]
+[ext_resource type="Resource" uid="uid://det1dqeagbh2a" path="res://Scenery/Vegetation/lemon_grass.tres" id="35_xgmcp"]
+[ext_resource type="Resource" uid="uid://bcld4w1mfdp4n" path="res://Scenery/Vegetation/reeds.tres" id="36_rwk4n"]
+[ext_resource type="Resource" uid="uid://bola5mrcl185v" path="res://Scenery/Vegetation/savanna_grass.tres" id="37_bpe58"]
+[ext_resource type="Resource" uid="uid://dxi0k8yus5htv" path="res://Scenery/Vegetation/savanna_red_oats.tres" id="38_3ffpm"]
+[ext_resource type="Resource" uid="uid://bin28cl7rvgjd" path="res://Scenery/Vegetation/short_grass.tres" id="39_d3w36"]
+[ext_resource type="Resource" uid="uid://bpx7vdfrvha4a" path="res://Scenery/Vegetation/tall_grass.tres" id="40_ylbxl"]
+[ext_resource type="Script" uid="uid://cankjki47tjd5" path="res://Scenery/Trees/tree_resource.gd" id="41_jy4ga"]
+[ext_resource type="Resource" uid="uid://d0guv3uxkjigw" path="res://Scenery/Trees/Acacia.tres" id="42_3p65x"]
+[ext_resource type="Resource" uid="uid://buqh6ti4i532y" path="res://Scenery/Trees/Alder Tree.tres" id="43_n3fek"]
+[ext_resource type="Resource" uid="uid://c26sgldy6tdt7" path="res://Scenery/Trees/Aleppo Pine.tres" id="44_b8fmj"]
+[ext_resource type="Resource" uid="uid://benyyn571ipab" path="res://Scenery/Trees/Araucaria.tres" id="45_2h3ac"]
+[ext_resource type="Resource" uid="uid://c804tlyallbn2" path="res://Scenery/Trees/Bamboo.tres" id="46_c5usc"]
+[ext_resource type="Resource" uid="uid://domqu5rry32dh" path="res://Scenery/Trees/Bloodwood.tres" id="47_w750t"]
+[ext_resource type="Resource" uid="uid://36wmkrb0dw5i" path="res://Scenery/Trees/Jacaranda.tres" id="48_h2np6"]
+[ext_resource type="Resource" uid="uid://s5hkg34ufeu3" path="res://Scenery/Trees/Limber Pine.tres" id="49_6x4al"]
+[ext_resource type="Resource" uid="uid://b6yflquscb8la" path="res://Scenery/Trees/Palm 1.tres" id="50_oqpmd"]
+[ext_resource type="Resource" uid="uid://dsp7g10m8i1c5" path="res://Scenery/Trees/Palm 2.tres" id="51_2wsl5"]
+[ext_resource type="Script" uid="uid://d143y0sc6ar4w" path="res://Scenery/Decorations/decoration_resource.gd" id="52_t074i"]
+[ext_resource type="Resource" uid="uid://dqn36shhu7sgb" path="res://Scenery/Decorations/deer-statue.tres" id="53_6g5sk"]
+[ext_resource type="Resource" uid="uid://deoir12m8n42g" path="res://Scenery/Decorations/native-totem.tres" id="54_saslj"]
+[ext_resource type="Script" uid="uid://5ejtocxcdxha" path="res://Scenery/Fixtures/fixture_resource.gd" id="55_hoia3"]
+[ext_resource type="Resource" uid="uid://bxqdyityaxu4g" path="res://Scenery/Fixtures/steel lamp.tres" id="56_gbhr0"]
+[ext_resource type="Resource" uid="uid://bsox4n3cixif" path="res://Scenery/Fixtures/wooden bench.tres" id="57_v3ma4"]
+[ext_resource type="Resource" uid="uid://d03yeo0qd6n66" path="res://Scenery/Fixtures/wooden_flower_pot.tres" id="58_6fxf8"]
+[ext_resource type="Script" uid="uid://c20mhk8a1m5xv" path="res://Terrain/terrain_res.gd" id="59_3ffpm"]
+[ext_resource type="Resource" uid="uid://b8jk8nfoxbpbo" path="res://Terrain/grass.tres" id="60_d3w36"]
+[ext_resource type="Resource" uid="uid://cv3jbpbpoab6s" path="res://Terrain/sand.tres" id="61_ylbxl"]
+[ext_resource type="Resource" uid="uid://dcrw61juxfsvs" path="res://Terrain/dirt.tres" id="62_jy4ga"]
+[ext_resource type="Resource" uid="uid://dk382e4qklm34" path="res://Terrain/deciduous.tres" id="63_3p65x"]
+[ext_resource type="Resource" uid="uid://ctusbtwghbxrl" path="res://Terrain/savanna.tres" id="64_n3fek"]
 
 [node name="ContentManager" type="Node"]
 script = ExtResource("1_0xc5w")
-animal_files = Array[ExtResource("2_3584o")]([ExtResource("3_fp7ms"), ExtResource("4_gewqj"), ExtResource("5_mbt8i"), ExtResource("6_6f7jl"), ExtResource("7_m8nde"), ExtResource("8_8irge"), ExtResource("9_3wn2c"), ExtResource("10_ii8x0"), ExtResource("11_ugt0a"), ExtResource("12_4jekg"), ExtResource("13_pshdp"), ExtResource("14_ccdbg"), ExtResource("15_nitx6"), ExtResource("16_4jlli"), ExtResource("17_42kvv"), ExtResource("18_q0dih"), ExtResource("19_vttp4")])
+animal_resources = Array[ExtResource("2_3584o")]([ExtResource("10_ii8x0"), ExtResource("18_q0dih"), ExtResource("3_fp7ms"), ExtResource("11_ugt0a"), ExtResource("4_gewqj"), ExtResource("17_42kvv"), ExtResource("14_ccdbg"), ExtResource("5_mbt8i"), ExtResource("15_nitx6"), ExtResource("6_6f7jl"), ExtResource("19_vttp4"), ExtResource("13_pshdp"), ExtResource("16_4jlli"), ExtResource("12_4jekg"), ExtResource("7_m8nde"), ExtResource("8_8irge"), ExtResource("9_3wn2c")])
+restaurant_resources = Array[ExtResource("17_ib6gx")]([ExtResource("21_17nn5")])
+eatery_resources = Array[ExtResource("17_ib6gx")]([ExtResource("18_dhs4s")])
+service_resources = Array[ExtResource("17_ib6gx")]([ExtResource("19_3wtsv")])
+administration_resources = Array[ExtResource("17_ib6gx")]([ExtResource("30_4atb1")])
 product_resources = Array[ExtResource("10_k1pd2")]([ExtResource("11_xkxqe"), ExtResource("12_2cy81"), ExtResource("16_42240"), ExtResource("18_hdj2o"), ExtResource("19_l3gxn"), ExtResource("20_ccdbg")])
-building_resources = Array[ExtResource("17_ib6gx")]([ExtResource("18_dhs4s"), ExtResource("19_3wtsv"), ExtResource("21_17nn5"), ExtResource("30_4atb1")])
+vegetation_resources = Array[ExtResource("32_t074i")]([ExtResource("33_6g5sk"), ExtResource("34_saslj"), ExtResource("35_xgmcp"), ExtResource("36_rwk4n"), ExtResource("37_bpe58"), ExtResource("38_3ffpm"), ExtResource("39_d3w36"), ExtResource("40_ylbxl")])
+tree_resources = Array[ExtResource("41_jy4ga")]([ExtResource("42_3p65x"), ExtResource("43_n3fek"), ExtResource("44_b8fmj"), ExtResource("45_2h3ac"), ExtResource("46_c5usc"), ExtResource("47_w750t"), ExtResource("48_h2np6"), ExtResource("49_6x4al"), ExtResource("50_oqpmd"), ExtResource("51_2wsl5")])
+decoration_resources = Array[ExtResource("52_t074i")]([ExtResource("53_6g5sk"), ExtResource("54_saslj")])
+fixture_resources = Array[ExtResource("55_hoia3")]([ExtResource("56_gbhr0"), ExtResource("57_v3ma4"), ExtResource("58_6fxf8")])
+terrain_resources = Array[ExtResource("59_3ffpm")]([ExtResource("60_d3w36"), ExtResource("61_ylbxl"), ExtResource("62_jy4ga"), ExtResource("63_3p65x"), ExtResource("64_n3fek")])

@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_j26nj")
-name = "Lemon Grass"
+tr_name = "VEGETATION_LEMON_GRASS"
 cost = 1.0
 atlas_x = 7
+id = 6
 vegetation_weight = 0.3

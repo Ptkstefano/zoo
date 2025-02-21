@@ -76,7 +76,7 @@ var preference_vegetation_coverage_satisfied : bool
 var too_much_vegetation : bool = false
 var too_little_vegetation : bool = false
 var preference_herd_size_satisfied : bool
-var preference_herd_density_satisfied : bool
+#var preference_herd_density_satisfied : bool
 var favorite_tree_satisfied : bool
 var is_there_disliked_terrain : bool = false
 var disliked_terrains_in_habitat = []
@@ -187,8 +187,8 @@ func initialize_animal(res, coordinate, found_enclosure, saved_data, is_spawned_
 			base_sprite_y =  ((animal_color_variation - 1) * 4) + 2
 	else:
 		base_sprite_y =  (animal_color_variation - 1) * 2
-	animal_name = animal_res.name
-	animal_species = animal_res.species_id
+	animal_name = animal_res.tr_name
+	animal_species = animal_res.id
 	
 	$Sprite2D.frame_coords = Vector2i(0, base_sprite_y)
 	
@@ -200,7 +200,7 @@ func initialize_animal(res, coordinate, found_enclosure, saved_data, is_spawned_
 		$NavigationAgent2D.set_navigation_layer_value(3, false)
 		$SwimRaycast.enabled = false
 		
-	if animal_res.species_id == IdRefs.ANIMAL_SPECIES.KARDOFAN_GIRAFFE:
+	if animal_res.id == IdRefs.ANIMAL_SPECIES.KORDOFAN_GIRAFFE:
 		$NavigationAgent2D.target_desired_distance = 30
 		
 	global_position = coordinate
@@ -480,11 +480,11 @@ func update_habitat_satifaction():
 	else:
 		preference_herd_size_satisfied = false
 
-	if enclosure.cells_per_animal >= animal_res.minimum_cells_per_animal:
-		preference_herd_density_satisfied = true
-		habitat_happiness_value += 1
-	else:
-		preference_herd_density_satisfied = false
+	#if enclosure.cells_per_animal >= animal_res.minimum_cells_per_animal:
+		#preference_herd_density_satisfied = true
+		#habitat_happiness_value += 1
+	#else:
+		#preference_herd_density_satisfied = false
 		
 	if enclosure.enclosure_tree_species_ids.has(animal_res.favorite_tree):
 		favorite_tree_satisfied = true

@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_kwvu2")
-name = "Desert Bloodwood"
+tr_name = "TREE_BLOODWOOD"
+scientific_name = ""
 cost = 10.0
 id = 5
 texture_y = 7

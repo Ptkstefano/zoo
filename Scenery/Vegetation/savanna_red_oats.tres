@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_mfx5x")
-name = "Savanna Red Oats"
+tr_name = "VEGETATION_RED_OATS"
 cost = 1.0
 atlas_x = 5
+id = 4
 vegetation_weight = 0.3

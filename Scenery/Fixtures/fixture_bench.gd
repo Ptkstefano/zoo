@@ -10,7 +10,7 @@ var cell : Vector2i
 
 var sitting_posisitions = []
 
-var type = IdRefs.FIXTURES.BENCH
+var type = IdRefs.FIXTURE_TYPES.BENCH
 
 var is_available : bool = true
 

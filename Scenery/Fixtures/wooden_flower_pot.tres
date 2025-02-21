@@ -5,7 +5,8 @@
 
 [resource]
 script = ExtResource("1_dgkt6")
-name = "Wooden flower pot"
+tr_name = "FIXTURES_FLOWER_POT"
+id = 2
 texture = ExtResource("2_dgkt6")
 type = 1
 positioning = 0

@@ -34,6 +34,7 @@ FinanceManager="*res://Autoload/FinanceManager.tscn"
 MusicManager="*res://Autoload/music_manager.tscn"
 SaveManager="*res://Autoload/save_manager.tscn"
 SoundscapeManager="*res://Autoload/soundscape_manager.tscn"
+ResearchManager="*res://Autoload/research_manager.tscn"
 
 [display]
 
@@ -75,6 +76,10 @@ load_game={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://Localization/LocalizationFile.pt.translation", "res://Localization/LocalizationFile.en.translation")
 
 [layer_names]
 

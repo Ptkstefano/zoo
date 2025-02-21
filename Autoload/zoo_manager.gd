@@ -99,11 +99,11 @@ func add_zoo_enclosure(enclosure : Enclosure):
 func update_zoo_enclosure(enclosure):
 	zoo_enclosures[enclosure.id] = {"node": enclosure, "location": enclosure.enclosure_central_point, "species": enclosure.enclosure_species, "entrance_cell": enclosure.entrance_cell}
 	if enclosure.enclosure_species:
-		if enclosure.enclosure_species.name not in zoo_animals:
-			zoo_animals[enclosure.enclosure_species.name] = {"rating": enclosure.enclosure_species.animal_rating, "enclosures": [enclosure.id]}
+		if enclosure.enclosure_species.id not in zoo_animals:
+			zoo_animals[enclosure.enclosure_species.id] = {"rating": enclosure.enclosure_species.animal_rating, "enclosures": [enclosure.id]}
 		else:
-			if enclosure.id not in zoo_animals[enclosure.enclosure_species.name]["enclosures"]:
-				zoo_animals[enclosure.enclosure_species.name]["enclosures"].append(enclosure.id)
+			if enclosure.id not in zoo_animals[enclosure.enclosure_species.id]["enclosures"]:
+				zoo_animals[enclosure.enclosure_species.id]["enclosures"].append(enclosure.id)
 	else:
 		for animal in zoo_animals:
 			if zoo_animals[animal]["enclosures"].has(enclosure.id):

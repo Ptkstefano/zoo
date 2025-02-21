@@ -4,13 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://pl3bohw1urls" path="res://Scenery/Fixtures/steel_lamp.png" id="2_d5t88"]
 
 [sub_resource type="Gradient" id="Gradient_d5t88"]
-interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.74)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fef55"]
 gradient = SubResource("Gradient_d5t88")
-width = 256
-height = 256
+width = 400
+height = 400
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.854701, 0.141026)
@@ -30,7 +30,8 @@ script = ExtResource("1_d5t88")
 
 [node name="Light" type="PointLight2D" parent="3"]
 position = Vector2(13, -33)
-energy = 1.25
+color = Color(0.875633, 0.85525, 0.697475, 1)
+energy = 1.5
 blend_mode = 2
 texture = SubResource("GradientTexture2D_fef55")
 
@@ -53,7 +54,8 @@ shape = SubResource("CircleShape2D_fef55")
 
 [node name="Light" type="PointLight2D" parent="2"]
 position = Vector2(-10, -35)
-energy = 1.25
+color = Color(0.875633, 0.85525, 0.697475, 1)
+energy = 1.5
 blend_mode = 2
 texture = SubResource("GradientTexture2D_fef55")
 
@@ -76,7 +78,8 @@ z_index = 1
 
 [node name="Light" type="PointLight2D" parent="1"]
 position = Vector2(-11, -21)
-energy = 1.25
+color = Color(0.875633, 0.85525, 0.697475, 1)
+energy = 1.5
 blend_mode = 2
 texture = SubResource("GradientTexture2D_fef55")
 
@@ -101,7 +104,8 @@ z_index = 1
 
 [node name="Light" type="PointLight2D" parent="0"]
 position = Vector2(14, -21)
-energy = 1.25
+color = Color(0.875633, 0.85525, 0.697475, 1)
+energy = 1.5
 blend_mode = 2
 texture = SubResource("GradientTexture2D_fef55")
 

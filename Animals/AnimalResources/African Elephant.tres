@@ -7,8 +7,8 @@
 
 [resource]
 script = ExtResource("1_k0vb8")
-name = "African Elephant"
-species_id = 7
+tr_name = "ANIMAL_AFRICAN_ELEPHANT"
+id = 7
 cost = 500.0
 texture = ExtResource("3_lngwh")
 cub_texture = ExtResource("1_712nq")

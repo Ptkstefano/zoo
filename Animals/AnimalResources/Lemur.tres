@@ -6,8 +6,8 @@
 
 [resource]
 script = ExtResource("2_k6kgm")
-name = "Lemur"
-species_id = 8
+tr_name = "ANIMAL_LEMUR"
+id = 25
 cost = 350.0
 texture = ExtResource("1_ip1jo")
 cub_texture = ExtResource("1_xpeh5")

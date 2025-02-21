@@ -7,8 +7,8 @@
 
 [resource]
 script = ExtResource("1_5v5j4")
-name = "American Flamingo"
-species_id = 1
+tr_name = "ANIMAL_AMERICAN_FLAMINGO"
+id = 1
 cost = 75.0
 texture = ExtResource("3_ohsgs")
 cub_texture = ExtResource("1_srd1q")

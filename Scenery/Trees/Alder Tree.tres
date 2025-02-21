@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_ha28h")
-name = "Alder Tree"
+tr_name = "TREE_ALDER"
+scientific_name = ""
 cost = 10.0
 id = 1
 texture_y = 9

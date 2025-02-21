@@ -2,8 +2,6 @@ extends Node2D
 
 class_name BuildingManager
 
-@export var available_buildings : Array[building_resource]
-
 @export var ui_building_element : PackedScene
 
 #@onready var building_menu = %BuildingSelectionContainer
@@ -12,6 +10,7 @@ var coordinates_used_by_buildings = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	ResearchManager.unlocked_buildings_changed.connect(update_building_menu)
 	update_building_menu()
 
 
@@ -29,18 +28,29 @@ func update_building_menu():
 	for child in %AdministrationSelectionContainer.get_children():
 		child.queue_free()
 		
-	for building_res in available_buildings:
+	var all_buildings = []
+	for id in ResearchManager.unlocked_administration:
+		all_buildings.append(ContentManager.administration[id])
+	for id in ResearchManager.unlocked_services:
+		all_buildings.append(ContentManager.services[id])
+	for id in ResearchManager.unlocked_eateries:
+		all_buildings.append(ContentManager.eateries[id])
+	for id in ResearchManager.unlocked_restaurants:
+		all_buildings.append(ContentManager.restaurants[id])
+		
+	for building_res in all_buildings:
 		var element = ui_building_element.instantiate()
 		element.building_res = building_res
+		if element.building_res.building_menu == IdRefs.BUILDING_MENU.ADMINISTRATION:
+			%AdministrationSelectionContainer.add_child(element)
 		if element.building_res.building_menu == IdRefs.BUILDING_MENU.EATERY:
 			%EaterySelectionContainer.add_child(element)
 		if element.building_res.building_menu == IdRefs.BUILDING_MENU.RESTAURANT:
 			%RestaurantSelectionContainer.add_child(element)
 		if element.building_res.building_menu == IdRefs.BUILDING_MENU.SERVICE:
 			%ServicesSelectionContainer.add_child(element)
-		if element.building_res.building_menu == IdRefs.BUILDING_MENU.ADMINISTRATION:
-			%AdministrationSelectionContainer.add_child(element)
 		%UI.connect_ui_element(element)
+
 
 func build_building(building_res : building_resource, start_tile, direction, data):
 	if !building_res:
@@ -50,7 +60,7 @@ func build_building(building_res : building_resource, start_tile, direction, dat
 		
 	if !data:
 		if !FinanceManager.is_amount_available(building_res.building_cost):
-			SignalBus.tooltip.emit('Not enough money')
+			SignalBus.tooltip.emit(tr('TOOLTIP_NOT_ENOUGH_MONEY'), null)
 			return
 		FinanceManager.remove(building_res.building_cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
 		building_id = ZooManager.generate_building_id()

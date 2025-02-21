@@ -6,7 +6,7 @@ var animal_scene : Animal
 
 
 func _ready() -> void:
-	%AnimalNameLabel.text = str(animal_scene.animal_res.name) + ' #' + str(animal_scene.id)
+	%AnimalNameLabel.text = tr(animal_scene.animal_res.tr_name) + ' #' + str(animal_scene.id)
 	%AgeLabel.text = Helpers.format_months_to_years_and_months(animal_scene.months_of_life)
 	%GenderTexture.texture = gender_icon_textures[animal_scene.animal_gender]
 	%ReleaseAnimalButton.pressed.connect(on_release_animal_pressed)

@@ -10,7 +10,7 @@ signal terrain_selected
 func _ready() -> void:
 	if terrain_res:
 		%Button.pressed.connect(on_terrain_selected)
-		%TerrainName.text = terrain_res.name
+		%TerrainName.text = tr(terrain_res.tr_name)
 		%Thumbnail.texture = terrain_res.thumb
 		%TerrainCost.text = Helpers.money_text(terrain_res.cost)
 	
