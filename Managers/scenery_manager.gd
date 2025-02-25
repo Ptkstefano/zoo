@@ -23,7 +23,7 @@ func on_load_scenery(scenery_type, res, data):
 	if !res:
 		return
 	if scenery_type == IdRefs.SCENERY_TYPES.TREE:
-		place_tree(data.position, res, data.id)
+		place_tree(data.position, res, data.id, data.atlas_y)
 	elif scenery_type == IdRefs.SCENERY_TYPES.VEGETATION:
 		place_vegetation(data.position, res, data.id, data.random_y)
 	elif scenery_type == IdRefs.SCENERY_TYPES.DECORATION:
@@ -70,7 +70,7 @@ func update_selection_menu():
 		#%UI.connect_ui_element(element)
 		
 
-func place_tree(press_start_pos, tree_res, id):
+func place_tree(press_start_pos, tree_res, id, atlas_y):
 	if !tree_res:
 		return
 	if TileMapRef.local_to_map(press_start_pos) in TileMapRef.occupied_tiles:
@@ -83,8 +83,10 @@ func place_tree(press_start_pos, tree_res, id):
 		tree.id = ZooManager.generate_scenery_id()
 		FinanceManager.remove(tree_res.cost, IdRefs.PAYMENT_REMOVE_TYPES.CONSTRUCTION)
 		SignalBus.money_tooltip.emit(tree_res.cost, false, press_start_pos)
+		tree.atlas_y = tree_res.possible_y.pick_random()
 	else:
 		tree.id = id
+		tree.atlas_y = atlas_y
 	add_child(tree)
 	await get_tree().create_timer(0.3).timeout
 	#$"../../RenderingController".add_object(tree)
@@ -191,4 +193,5 @@ func generate_random_map():
 		var random_tile_pos = TileMapRef.map_to_local(Vector2(randi_range(-35,35), randi_range(-35,35)))
 		for j in randi_range(2,10):
 			var random_pos = Vector2(random_tile_pos.x + randf_range(-32*8,32*8), random_tile_pos.y + randf_range(-16*8,16*8))
-			place_tree(random_pos, possible_trees.pick_random(), null)
+			var random_tree_res = possible_trees.pick_random()
+			place_tree(random_pos, random_tree_res, null, random_tree_res.possible_y.pick_random())

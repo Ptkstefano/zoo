@@ -130,3 +130,24 @@ func change_state(state):
 	if state == 3: ## SITTING:
 		peep_state = PEEP_STATES.RESTING
 		sprite_x = 6
+
+func add_thought_bubble(frame):
+	$ThoughtBubble.frame_coords.x = frame
+	$ThoughtBubble.show()
+	await get_tree().create_timer(4).timeout
+	$ThoughtBubble.hide()
+	
+func add_money_bubble(amount):
+	$MoneyBubble.frame_coords.x = clampi(int(amount / 5), 0, 5)
+	$MoneyBubble.position = Vector2(1, -28)
+	$MoneyBubble.modulate = Color.WHITE
+	$MoneyBubble.show()
+	var tween = get_tree().create_tween()
+	tween.parallel().tween_property($MoneyBubble, 'modulate', Color.TRANSPARENT, 3).set_trans(Tween.TRANS_QUAD)
+	tween.parallel().tween_property($MoneyBubble, 'position', Vector2($MoneyBubble.position.x, $MoneyBubble.position.y - 25), 4)
+	tween.finished.connect(reset_money_bubble)
+
+func reset_money_bubble():
+	$MoneyBubble.hide()
+	$MoneyBubble.position = Vector2(1, -28)
+	$MoneyBubble.modulate = Color.WHITE

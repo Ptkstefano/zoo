@@ -56,6 +56,15 @@ ACTIONS,Actions,Ações
 INFO,Info,Informações
 CLOSE,Close,Fechar
 OPTIONS,Options,Opções
+BUILD,Build,Construir
+ROTATE,Rotate,Girar
+MOVE_CAMERA,Move camera,Mover câmera
+SAVE_AND_CLOSE,Save and close,Salvar e fechar
+SOUND,Sound,Som
+SOUNDSCAPE,Soundscape,Sons ambientes
+MUSIC,Music,Música
+MUTE,Mute,Mudo
+MASTER,Master,Master
 ,,
 TREE_LIMBER_PINE,Limber Pine,Pinheiro-flexível
 TREE_PALM,Palm Tree,Palmeira
@@ -66,6 +75,7 @@ TREE_ALEPPO_PINE,Aleppo Pine,Pinheiro-de-Alepo
 TREE_BLOODWOOD,Desert Bloodwood,Eucalipto Sangue-do-deserto
 TREE_BAMBOO,Bamboo,Bambu
 TREE_ALDER,Alder Tree,Amieiro
+TREE_MARULA,Marula Tree,Marula
 ,,
 VEGETATION_GRASS,Grass,Grama
 VEGETATION_TALL_GRASS,Tall grass,Grama alta
@@ -98,7 +108,7 @@ ANIMAL_BLACK_BEAR,Black Bear,Urso-negro
 ANIMAL_AFRICAN_ELEPHANT,African Elephant,Elefante africano
 ANIMAL_RED_FOX,Red Fox,Raposa-vermelha
 ANIMAL_JAGUAR,Jaguar,Onça pintada
-ANIMAL_MANED_WOLF,Maned Wolf,Lobo guará
+ANIMAL_MANED_WOLF,Maned Wolf,Lobo-guará
 ANIMAL_SECRETARY_BIRD,Secretary Bird,Secretário
 ANIMAL_GREY_SEAL,Grey Seal,Foca-cinzenta
 ANIMAL_CASSOWARY,Cassowary,Casuar
@@ -113,6 +123,36 @@ TOOLTIP_REQUIRES_ENCLOSURE,Animal requires enclosure,Animal deve ser posicionado
 TOOLTIP_REQUIRES_ENTRANCE,Enclosure requires entrance,Recinto deve ter uma entrada
 TOOLTIP_NO_ANIMAL_MIXING,Not allowed to mix different species,Não é permitido misturar espécies
 TOOLTIP_ENCLOSURE_NOT_SAFE,Enclosure not safe enough for this animal,O recinto não é seguro o suficiente
+,,
+THOUGHT_SEEN_FAVORITE_ANIMAL,We found our favorite animal!,Vimos nosso animal favorito!
+THOUGHT_EXCEEDED_ANIMAL_RATING_EXPECTATIONS,We saw lots of great animals!,Vimos muitos animais incríveis!
+THOUGHT_SEEN_ALL_DESIRED_ANIMALS,We saw all animals we wanted to see!,Vimos todos animais que viemos para ver!
+THOUGHT_GREAT_VALUE_FOOD,The food we bought was of great value!,Compramos comida com um preço ótimo!
+THOUGHT_FILLED_NEEDS,We were confortable in our visit,Nossa visita foi confortável
+THOUGHT_ATE_AT_RESTAURANT,We ate at a good restaurant,Comemos num bom restaurante
+THOUGHT_ONLY_SAW_HAPPY_ANIMALS,All the animals seemed happy!,Todos animais pareciam felizes!
+THOUGHT_GREAT_VALUE_ENTRANCE,The entrance price was really good!,O preço da entrada estava ótimo!
+,,
+THOUGHT_MISSED_ANIMAL,We did not see an animal we came to see,Não conseguimos ver um animal que viemos para ver
+THOUGHT_NO_TOILET,We could not find a toilet,Não encontramos banheiro
+THOUGHT_NO_FOOD,We could not find food,Não encontramos comida
+THOUGHT_NO_REST_SPOT,We got tired and found no benches,Ficamos cansados e não encontramos assentos
+THOUGHT_TOO_EXPENSIVE,The product we wanted was too expensive,Queriamos comprar algo que estava muito caro
+THOUGHT_NO_SHOP_STOCK,"We wanted to buy an item, but it was out of stock",Queriamos comprar algo que estava em falta
+THOUGHT_EMPTY_SHOP,We went to an empty shop,Encontramos uma loja sem produtos
+THOUGHT_NO_DESIRABLE_QUALITY,We found no products we wanted to buy,Não encontramos nada que queriamos comprar
+THOUGHT_NO_FOOD_SHOP_IN_RANGE,All eateries were too far away from us,Todos lugares de comer estavam muito longe
+THOUGHT_SAW_UNHAPPY_ANIMAL,We saw an unhappy animal,Vimos um animal triste
+THOUGHT_SEEN_FEW_ANIMALS,We saw too few animals for a zoo trip,Vimos muito poucos animais
+THOUGHT_SAW_DEAD_ANIMAL,We saw a dead animal,Vimos um animal morto
+THOUGHT_ENTRANCE_TOO_EXPENSIVE,The entrance was too expensive,A entrada estava muito cara
+,,
+,,
+,,
+,,
+,,
+,,
+,,
 ,,
 ,,
 ,,

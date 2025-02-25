@@ -128,6 +128,7 @@ func remove_cells(coordinates):
 	
 func place_entrance(cell : Vector2i):
 	var new_entrance = $EnclosureFenceManager.place_entrance(cell)
+	print(cell)
 	if new_entrance:
 		entrance_cell = new_entrance
 		entrance_door_cell = cell
@@ -394,11 +395,11 @@ func find_mate_for_animal(animal):
 	return null
 
 func generate_random_entrance():
-	enclosure_adjacent_path_cells = Helpers.get_adjacent_cells_with_paths(enclosure_fence_manager.fence_cells.duplicate())
-	if enclosure_adjacent_path_cells.is_empty():
-		return
-	var random_cell : Vector2i = enclosure_adjacent_path_cells.pick_random()
-	place_entrance(random_cell)
+	for cell in enclosure_fence_manager.fence_cells.duplicate():
+		if !Helpers.get_adjacent_cells_with_paths([cell]).is_empty():
+			place_entrance(cell)
+			if entrance_cell:
+				return
 	
 	
 func generate_sight_cells():

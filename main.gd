@@ -4,7 +4,7 @@ extends Node2D
 
 func _ready() -> void:
 	%LoadScreen.show()
-	AudioServer.set_bus_volume_db(0, -80)
+	AudioServer.set_bus_mute(0, true)
 	if GameManager.is_load_game:
 		SaveManager.load_game()
 	else:
@@ -16,8 +16,9 @@ func _ready() -> void:
 	tween.tween_property(%LoadScreen, "modulate", Color('#FFFFFF00'), 1)
 	await tween.finished
 	GameManager.start_game()
-	AudioServer.set_bus_volume_db(0, 0)
+	AudioServer.set_bus_mute(0, false)
 	SignalBus.update_enclosure_land_areas.emit()
+	GlobalConfigManager.load_config()
 	%LoadScreen.hide()
 	SignalBus.game_started.emit()
 

@@ -115,13 +115,18 @@ func _ready() -> void:
 	$DecayTimer.timeout.connect(on_decay_timer_timeout)
 	agent.set_target_position(get_new_destination())
 	
+	screenNotifier.screen_entered.connect(on_screen_entered)
+	
 	$FrameTimer.timeout.connect(on_frame_timer)
 	
 	$NoSwimTimer.timeout.connect(on_no_swim_timer_timeout)
 	
 	TimeManager.on_pass_month.connect(on_month_pass)
 	
-	change_state(ANIMAL_STATES.IDLE)
+	if is_inside_shelter:
+		change_state(ANIMAL_STATES.RESTING)
+	else:
+		change_state(ANIMAL_STATES.IDLE)
 	enclosure.enclosure_stats_updated.connect(update_habitat_satifaction)
 	
 	SignalBus.update_cached_positions.connect(update_cached_position)
@@ -130,6 +135,8 @@ func _ready() -> void:
 func initialize_animal(res, coordinate, found_enclosure, saved_data, is_spawned_infant, spawn_gender):
 	
 	animal_res = res
+	
+	enclosure = found_enclosure
 	
 	if saved_data:
 		animal_gender = saved_data['animal_gender']
@@ -144,6 +151,15 @@ func initialize_animal(res, coordinate, found_enclosure, saved_data, is_spawned_
 		months_of_life = saved_data.get('months_of_life', 20)
 		months_in_zoo = saved_data.get('months_in_zoo', 0)
 		is_dead = saved_data.get('is_dead', false)
+		is_inside_shelter = saved_data.get('is_inside_shelter', false)
+		if is_inside_shelter:
+			var closest_shelter = enclosure.available_shelters[0]
+			for shelter in enclosure.available_shelters:
+				if global_position.distance_to(shelter.global_position) < global_position.distance_to(closest_shelter.global_position):
+					closest_shelter = shelter
+			target_shelter = closest_shelter
+			z_index = target_shelter.shelter_interior_z_index
+			
 		
 	else:
 		animal_color_variation = (randi_range(1, animal_res.possible_sprite_variations))
@@ -205,7 +221,6 @@ func initialize_animal(res, coordinate, found_enclosure, saved_data, is_spawned_
 		
 	global_position = coordinate
 	cached_global_position = Vector2(global_position.x, global_position.y)
-	enclosure = found_enclosure
 	
 	sprite_x_size = animal_res.texture.get_width() / $Sprite2D.hframes
 	sprite_y_size = animal_res.texture.get_height() / 2
@@ -654,3 +669,7 @@ func on_leap_towards(final_pos, is_entering_shelter):
 		await get_tree().create_timer(duration).timeout
 		sprite_x = 0
 		change_state(ANIMAL_STATES.IDLE)
+		is_inside_shelter = false
+
+func on_screen_entered():
+	z_index = Helpers.get_current_tile_z_index(global_position)

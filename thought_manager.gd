@@ -22,31 +22,45 @@ enum PEEP_THOUGHTS {
 	SEEN_FEW_ANIMALS,
 	SAW_DEAD_ANIMAL,
 	GREAT_VALUE_ENTRANCE,
+	ENTRANCE_TOO_EXPENSIVE,
+}
+
+var bubbles = {
+	'NONE': -1,
+	'HAPPY_SMILE': 0,
+	'SAD_SMILE': 1,
+	'THUMBS_UP': 2,
+	'THUMBS_DOWN': 3,
+	'NO_TOILET': 4,
+	'NO_BENCH': 5,
+	'NO_FOOD': 6
 }
 
 var peep_thoughts = {
 	## Positive
-	PEEP_THOUGHTS.SEEN_FAVORITE_ANIMAL: PeepThought.new("We found our favorite animal!", 1, true),
-	PEEP_THOUGHTS.EXCEEDED_ANIMAL_RATING_EXPECTATIONS: PeepThought.new("We saw lots of great animals!", 1, true),
-	PEEP_THOUGHTS.SEEN_ALL_DESIRED_ANIMALS: PeepThought.new("We saw all animals we wanted to see!", 1, true),
-	PEEP_THOUGHTS.GREAT_VALUE_FOOD: PeepThought.new("The food we bought was of great value!", 0.5, true),
-	PEEP_THOUGHTS.FILLED_NEEDS: PeepThought.new("We were confortable in our visit", 0.5, true),
-	PEEP_THOUGHTS.ATE_AT_RESTAURANT:  PeepThought.new("We ate at a good restaurant", 0.5, true),
-	PEEP_THOUGHTS.ONLY_SAW_HAPPY_ANIMALS:  PeepThought.new("All the animals seemed happy!", 0.5, true),
-	PEEP_THOUGHTS.GREAT_VALUE_ENTRANCE: PeepThought.new("The entrance price was really good!", 0.5, true),
+	PEEP_THOUGHTS.SEEN_FAVORITE_ANIMAL: PeepThought.new('THOUGHT_SEEN_FAVORITE_ANIMAL', 1, true, bubbles['HAPPY_SMILE']),
+	PEEP_THOUGHTS.EXCEEDED_ANIMAL_RATING_EXPECTATIONS: PeepThought.new('THOUGHT_EXCEEDED_ANIMAL_RATING_EXPECTATIONS', 1, true, bubbles['NONE']),
+	PEEP_THOUGHTS.SEEN_ALL_DESIRED_ANIMALS: PeepThought.new('THOUGHT_SEEN_ALL_DESIRED_ANIMALS', 1, true, bubbles['NONE']),
+	PEEP_THOUGHTS.GREAT_VALUE_FOOD: PeepThought.new('THOUGHT_GREAT_VALUE_FOOD', 0.5, true, bubbles['THUMBS_UP']),
+	PEEP_THOUGHTS.FILLED_NEEDS: PeepThought.new('THOUGHT_FILLED_NEEDS', 0.5, true, bubbles['NONE']),
+	PEEP_THOUGHTS.ATE_AT_RESTAURANT:  PeepThought.new('THOUGHT_ATE_AT_RESTAURANT', 0.5, true, bubbles['NONE']),
+	PEEP_THOUGHTS.ONLY_SAW_HAPPY_ANIMALS:  PeepThought.new('THOUGHT_ONLY_SAW_HAPPY_ANIMALS', 0.5, true, bubbles['NONE']),
+	PEEP_THOUGHTS.GREAT_VALUE_ENTRANCE: PeepThought.new('THOUGHT_GREAT_VALUE_ENTRANCE', 0.5, true, bubbles['THUMBS_UP']),
 	## Negative
-	PEEP_THOUGHTS.MISSED_ANIMAL: PeepThought.new("We did not see an animal we came to see", -0.5, false),
-	PEEP_THOUGHTS.NO_TOILET: PeepThought.new("We could not find a toilet", -2, false),
-	PEEP_THOUGHTS.NO_FOOD: PeepThought.new("We could not find food", -1, false),
-	PEEP_THOUGHTS.NO_REST_SPOT: PeepThought.new("We got tired and found no benches", -1, false),
-	PEEP_THOUGHTS.TOO_EXPENSIVE: PeepThought.new("The product we wanted was too expensive", -0.25, false),
-	PEEP_THOUGHTS.NO_SHOP_STOCK: PeepThought.new("We wanted to buy an item, but it was out of stock", -0.5, false),
-	PEEP_THOUGHTS.EMPTY_SHOP: PeepThought.new("We went to an empty shop", -0.25, false),
-	PEEP_THOUGHTS.NO_DESIRABLE_QUALITY: PeepThought.new("We found no products we wanted to buy", -0.25, false),
-	PEEP_THOUGHTS.NO_FOOD_SHOP_IN_RANGE: PeepThought.new("All eateries were too f/ar away from us", -0.25, false),
-	PEEP_THOUGHTS.SAW_UNHAPPY_ANIMAL: PeepThought.new("We saw an unhappy animal", -1.5, false),
-	PEEP_THOUGHTS.SEEN_FEW_ANIMALS: PeepThought.new("We saw too few animals for a zoo trip", -1.5, false),
-	PEEP_THOUGHTS.SAW_DEAD_ANIMAL: PeepThought.new("We saw a dead animal", -1, false)
+	PEEP_THOUGHTS.MISSED_ANIMAL: PeepThought.new('THOUGHT_MISSED_ANIMAL', -0.5, false, bubbles['SAD_SMILE']),
+	PEEP_THOUGHTS.NO_TOILET: PeepThought.new('THOUGHT_NO_TOILET', -2, false, bubbles['NO_TOILET']),
+	PEEP_THOUGHTS.NO_FOOD: PeepThought.new('THOUGHT_NO_FOOD', -1, false, bubbles['NO_FOOD']),
+	PEEP_THOUGHTS.NO_REST_SPOT: PeepThought.new('THOUGHT_NO_REST_SPOT', -1, false, bubbles['NO_BENCH']),
+	PEEP_THOUGHTS.TOO_EXPENSIVE: PeepThought.new('THOUGHT_TOO_EXPENSIVE', -0.25, false, bubbles['NONE']),
+	PEEP_THOUGHTS.NO_SHOP_STOCK: PeepThought.new('THOUGHT_NO_SHOP_STOCK', -0.5, false, bubbles['THUMBS_DOWN']),
+	PEEP_THOUGHTS.EMPTY_SHOP: PeepThought.new('THOUGHT_EMPTY_SHOP', -0.25, false, bubbles['THUMBS_DOWN']),
+	PEEP_THOUGHTS.NO_DESIRABLE_QUALITY: PeepThought.new('THOUGHT_NO_DESIRABLE_QUALITY', -0.25, false, bubbles['NONE']),
+	PEEP_THOUGHTS.NO_FOOD_SHOP_IN_RANGE: PeepThought.new('THOUGHT_NO_FOOD_SHOP_IN_RANGE', -0.25, false, bubbles['NO_FOOD']),
+	PEEP_THOUGHTS.SAW_UNHAPPY_ANIMAL: PeepThought.new('THOUGHT_SAW_UNHAPPY_ANIMAL', -1.5, false, bubbles['SAD_SMILE']),
+	PEEP_THOUGHTS.SEEN_FEW_ANIMALS: PeepThought.new('THOUGHT_SEEN_FEW_ANIMALS', -1.5, false, bubbles['NONE']),
+	PEEP_THOUGHTS.SAW_DEAD_ANIMAL: PeepThought.new('THOUGHT_SAW_DEAD_ANIMAL', -1, false, bubbles['SAD_SMILE']),
+	PEEP_THOUGHTS.ENTRANCE_TOO_EXPENSIVE: PeepThought.new('THOUGHT_ENTRANCE_TOO_EXPENSIVE', 0, false, bubbles['THUMBS_DOWN']),
+	
 }
 
 

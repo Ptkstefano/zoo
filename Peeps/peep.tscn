@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ca66y62ys1xkh"]
+[gd_scene load_steps=5 format=3 uid="uid://ca66y62ys1xkh"]
 
-[ext_resource type="Script" path="res://Peeps/peep.gd" id="1_kks3u"]
+[ext_resource type="Script" uid="uid://b22o8uewboeyp" path="res://Peeps/peep.gd" id="1_kks3u"]
 [ext_resource type="Texture2D" uid="uid://davt3dtp40gvd" path="res://Peeps/peep-sheet-trim.png" id="2_rusm1"]
+[ext_resource type="Texture2D" uid="uid://bkoobakt8dgph" path="res://Peeps/money.png" id="3_5p3w1"]
+[ext_resource type="Texture2D" uid="uid://6qfi4ey47ax0" path="res://Peeps/thoughts.png" id="4_a6ljs"]
 
 [node name="Peep" type="Node2D"]
 light_mask = 0
@@ -23,3 +25,20 @@ wait_time = 0.5
 autostart = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="MoneyBubble" type="Sprite2D" parent="."]
+visible = false
+z_index = 1024
+z_as_relative = false
+texture_filter = 1
+position = Vector2(1, -28)
+texture = ExtResource("3_5p3w1")
+hframes = 6
+
+[node name="ThoughtBubble" type="Sprite2D" parent="."]
+visible = false
+z_index = 1024
+z_as_relative = false
+position = Vector2(11, -24)
+texture = ExtResource("4_a6ljs")
+hframes = 7

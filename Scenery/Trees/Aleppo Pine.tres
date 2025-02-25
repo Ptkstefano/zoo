@@ -8,5 +8,6 @@ tr_name = "TREE_ALEPPO_PINE"
 scientific_name = ""
 cost = 10.0
 id = 2
-texture_y = 6
+texture_x = 6
+possible_y = Array[int]([0])
 vegetation_weight = 5.0

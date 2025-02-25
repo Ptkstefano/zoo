@@ -49,8 +49,8 @@
 [ext_resource type="Resource" uid="uid://domqu5rry32dh" path="res://Scenery/Trees/Bloodwood.tres" id="47_w750t"]
 [ext_resource type="Resource" uid="uid://36wmkrb0dw5i" path="res://Scenery/Trees/Jacaranda.tres" id="48_h2np6"]
 [ext_resource type="Resource" uid="uid://s5hkg34ufeu3" path="res://Scenery/Trees/Limber Pine.tres" id="49_6x4al"]
-[ext_resource type="Resource" uid="uid://b6yflquscb8la" path="res://Scenery/Trees/Palm 1.tres" id="50_oqpmd"]
-[ext_resource type="Resource" uid="uid://dsp7g10m8i1c5" path="res://Scenery/Trees/Palm 2.tres" id="51_2wsl5"]
+[ext_resource type="Resource" uid="uid://b6yflquscb8la" path="res://Scenery/Trees/Palm.tres" id="50_oqpmd"]
+[ext_resource type="Resource" uid="uid://ddvyd47x722cd" path="res://Scenery/Trees/Marula.tres" id="51_3ffpm"]
 [ext_resource type="Script" uid="uid://d143y0sc6ar4w" path="res://Scenery/Decorations/decoration_resource.gd" id="52_t074i"]
 [ext_resource type="Resource" uid="uid://dqn36shhu7sgb" path="res://Scenery/Decorations/deer-statue.tres" id="53_6g5sk"]
 [ext_resource type="Resource" uid="uid://deoir12m8n42g" path="res://Scenery/Decorations/native-totem.tres" id="54_saslj"]
@@ -74,7 +74,7 @@ service_resources = Array[ExtResource("17_ib6gx")]([ExtResource("19_3wtsv")])
 administration_resources = Array[ExtResource("17_ib6gx")]([ExtResource("30_4atb1")])
 product_resources = Array[ExtResource("10_k1pd2")]([ExtResource("11_xkxqe"), ExtResource("12_2cy81"), ExtResource("16_42240"), ExtResource("18_hdj2o"), ExtResource("19_l3gxn"), ExtResource("20_ccdbg")])
 vegetation_resources = Array[ExtResource("32_t074i")]([ExtResource("33_6g5sk"), ExtResource("34_saslj"), ExtResource("35_xgmcp"), ExtResource("36_rwk4n"), ExtResource("37_bpe58"), ExtResource("38_3ffpm"), ExtResource("39_d3w36"), ExtResource("40_ylbxl")])
-tree_resources = Array[ExtResource("41_jy4ga")]([ExtResource("42_3p65x"), ExtResource("43_n3fek"), ExtResource("44_b8fmj"), ExtResource("45_2h3ac"), ExtResource("46_c5usc"), ExtResource("47_w750t"), ExtResource("48_h2np6"), ExtResource("49_6x4al"), ExtResource("50_oqpmd"), ExtResource("51_2wsl5")])
+tree_resources = Array[ExtResource("41_jy4ga")]([ExtResource("42_3p65x"), ExtResource("43_n3fek"), ExtResource("44_b8fmj"), ExtResource("45_2h3ac"), ExtResource("46_c5usc"), ExtResource("47_w750t"), ExtResource("48_h2np6"), ExtResource("49_6x4al"), ExtResource("50_oqpmd"), ExtResource("51_3ffpm")])
 decoration_resources = Array[ExtResource("52_t074i")]([ExtResource("53_6g5sk"), ExtResource("54_saslj")])
 fixture_resources = Array[ExtResource("55_hoia3")]([ExtResource("56_gbhr0"), ExtResource("57_v3ma4"), ExtResource("58_6fxf8")])
 terrain_resources = Array[ExtResource("59_3ffpm")]([ExtResource("60_d3w36"), ExtResource("61_ylbxl"), ExtResource("62_jy4ga"), ExtResource("63_3p65x"), ExtResource("64_n3fek")])

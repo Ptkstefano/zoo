@@ -6,4 +6,4 @@
 script = ExtResource("1_suk8l")
 
 [node name="MonthTimer" type="Timer" parent="."]
-wait_time = 180.0
+wait_time = 150.0

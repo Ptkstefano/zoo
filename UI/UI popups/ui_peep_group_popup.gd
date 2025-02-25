@@ -55,7 +55,7 @@ func update_popup_data():
 	
 	%n_species_seen.text = str(peep_group_node.observed_animals.size())
 	%n_animals_yet_to_see.text = str(peep_group_node.group_desired_destinations.size())
-	%favorite_animal.text = str(ContentManager.animals[peep_group_node.favorite_animal].name)
+	%favorite_animal.text = tr(ContentManager.animals[peep_group_node.favorite_animal].tr_name)
 	
 	%money_spent.text = str(peep_group_node.spent_money)
 	
@@ -64,7 +64,7 @@ func update_popup_data():
 	
 	for animal in peep_group_node.observed_animals:
 		var label = Label.new()
-		label.text = str(ContentManager.animals[animal].name)
+		label.text = tr(ContentManager.animals[animal].tr_name)
 		%SeenAnimalsList.add_child(label)
 		
 	for child in %AnimalsToSeeList.get_children():
@@ -73,7 +73,7 @@ func update_popup_data():
 	for animal in peep_group_node.group_desired_animals:
 		#if animal not in peep_group_node.observed_animals:
 		var label = Label.new()
-		label.text = str(ContentManager.animals[animal].name)
+		label.text = tr(ContentManager.animals[animal].tr_name)
 		%AnimalsToSeeList.add_child(label)
 		
 	for child in %InventoryList.get_children():
@@ -87,9 +87,9 @@ func update_popup_data():
 	for child in %ThoughtList.get_children():
 		child.queue_free()
 		
-	for modifier in peep_group_node.modifiers:
+	for thought in peep_group_node.thoughts:
 		var label = Label.new()
-		label.text = str(ThoughtManager.peep_thoughts[modifier].description)
+		label.text = tr(ThoughtManager.peep_thoughts[thought].description)
 		%ThoughtList.add_child(label)
 		
 

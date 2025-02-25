@@ -134,7 +134,6 @@ func on_pass_month():
 	current_research_progress += monthly_reseach_increase
 
 func generate_eligible_research():
-	
 	eligible_animals.clear()
 	eligible_restaurants.clear()
 	eligible_eateries.clear()
@@ -199,7 +198,7 @@ func new_game_unlocks():
 	var starting_services = [IdRefs.BUILDINGS.SMALL_BATHROOM]
 	var starting_trees = [IdRefs.TREE_SPECIES.PALM, IdRefs.TREE_SPECIES.ARAUCARIA, IdRefs.TREE_SPECIES.LIMBER_PINE, IdRefs.TREE_SPECIES.ALDER]
 	var starting_vegetation = [IdRefs.VEGETATION_SPECIES.SHORT_GRASS, IdRefs.VEGETATION_SPECIES.TALL_GRASS, IdRefs.VEGETATION_SPECIES.BERRY_BUSH]
-	var starting_fixtures = [IdRefs.FIXTURES.WOODEN_BENCH]
+	var starting_fixtures = [IdRefs.FIXTURES.WOODEN_BENCH, IdRefs.FIXTURES.STEEL_LAMP]
 	
 	for id in starting_animals:
 		unlocked_animals[id] = ContentManager.animals[id]
@@ -249,4 +248,35 @@ func load_data(data):
 	unlocked_animals_changed.emit()
 	unlocked_buildings_changed.emit()
 	unlocked_scenery_changed.emit()
+	unlocked_products_changed.emit()
+
+func unlock_everything():
+	generate_eligible_research()
+	
+	for id in eligible_animals:
+		unlocked_animals[id] = ContentManager.animals[id]
+	unlocked_animals_changed.emit()
+
+	for id in eligible_restaurants:
+		unlocked_restaurants[id] = ContentManager.restaurants[id]
+	for id in eligible_eateries:
+		unlocked_eateries[id] = ContentManager.eateries[id]
+	for id in eligible_administration:
+		unlocked_administration[id] = ContentManager.administration[id]
+	for id in eligible_services:
+		unlocked_services[id] = ContentManager.services[id]
+	unlocked_buildings_changed.emit()
+
+	for id in eligible_trees:
+		unlocked_trees[id] = ContentManager.trees[id]
+	for id in eligible_vegetation:
+		unlocked_vegetation[id] = ContentManager.vegetation[id]
+	for id in eligible_decoration:
+		unlocked_decoration[id] = ContentManager.decoration[id]
+	for id in eligible_fixtures:
+		unlocked_fixtures[id] = ContentManager.fixtures[id]
+	unlocked_scenery_changed.emit()
+		
+	for id in eligible_products:
+		unlocked_products[id] = ContentManager.products[id]
 	unlocked_products_changed.emit()

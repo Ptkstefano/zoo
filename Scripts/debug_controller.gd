@@ -41,6 +41,7 @@ func _ready() -> void:
 	%DebugSpeedTime.button_down.connect(speed_time)
 	%DebugSpeedTime.button_up.connect(normal_time)
 	%DebugToggleDay.pressed.connect(on_toggle_day)
+	%DebugUnlockEverything.pressed.connect(on_unlock_everything)
 	
 
 
@@ -89,3 +90,6 @@ func on_toggle_day():
 	else:
 		is_day = true
 		SignalBus.start_day.emit()
+
+func on_unlock_everything():
+	ResearchManager.unlock_everything()

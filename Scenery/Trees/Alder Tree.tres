@@ -8,5 +8,6 @@ tr_name = "TREE_ALDER"
 scientific_name = ""
 cost = 10.0
 id = 1
-texture_y = 9
+texture_x = 9
+possible_y = Array[int]([0])
 vegetation_weight = 10.0

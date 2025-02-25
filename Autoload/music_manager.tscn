@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://n05p6getruss" path="res://OST/zoo2 dreams of animals.ogg" id="3_8gp5i"]
 
 [node name="MusicManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_mjtb4")
 music_items = Array[AudioStream]([ExtResource("2_2tsyk"), ExtResource("3_8gp5i")])
 

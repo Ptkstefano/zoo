@@ -219,7 +219,7 @@ func handle_tooling_input(event):
 			if current_tool == TOOLS.ANIMAL:
 				animal_manager.spawn_animal(touch_start_global_pos, selected_res, null, false, selected_animal_gender)
 			if current_tool == TOOLS.TREE:
-				scenery_manager.place_tree(touch_start_global_pos, selected_res, null)
+				scenery_manager.place_tree(touch_start_global_pos, selected_res, null, null)
 			if current_tool == TOOLS.VEGETATION:
 				if vegetation_brush:
 					previous_snapshot_pos = Vector2(9999,9999)

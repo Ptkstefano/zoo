@@ -51,7 +51,7 @@ position = Vector2(78, -21)
 
 [node name="1" type="Node2D" parent="."]
 z_index = -3
-position = Vector2(8, -1.125)
+position = Vector2(6, -1)
 
 [node name="Sprites" type="Node2D" parent="1"]
 position = Vector2(-3, -63.5)
@@ -62,7 +62,7 @@ position = Vector2(-20, 41.5)
 texture = ExtResource("2_tg1el")
 
 [node name="Detectable" parent="1" instance=ExtResource("3_khyh2")]
-position = Vector2(-18, -21)
+position = Vector2(-25, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="1/Detectable"]
 position = Vector2(-2, -22)

@@ -8,7 +8,7 @@ var review
 func _ready() -> void:
 	for thought in review['thoughts']:
 		var thought_label = Label.new()
-		thought_label.text = str(ThoughtManager.peep_thoughts[int(thought)].description)
+		thought_label.text = tr(ThoughtManager.peep_thoughts[int(thought)].description)
 		%ThoughtList.add_child(thought_label)
 		if ThoughtManager.peep_thoughts[int(thought)].is_positive:
 			thought_label.add_theme_color_override("font_color", ColorRefs.positive_green)

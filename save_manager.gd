@@ -325,12 +325,13 @@ func load_game():
 				enclosureManager.restore_enclosure_feed(enclosure_id, data["enclosureData"][key]['feed_data'])
 				
 		
-	if data.has('animalData'):
-		for key in data["animalData"]:
-			var position = Vector2i(data["animalData"][key]['x_pos'], data["animalData"][key]['y_pos'])
-			var animal_res = load(data['animalData'][key]['animal_res'])
-			var animal_data = data['animalData'][key]
-			animalManager.call_deferred('spawn_animal', position, animal_res, animal_data, false, null)
+	if data.has('shelterData'):
+		for key in data['shelterData']:
+			var shelter_res = load(data['shelterData'][key]['shelter_res'])
+			var start_tile = Vector2(int(data['shelterData'][key]['starting_tile_x']), int(data['shelterData'][key]['starting_tile_y']))
+			var direction = int(data['shelterData'][key]['direction'])
+			shelterManager.build_shelter(shelter_res, start_tile, direction)
+		
 			
 	if data.has('sceneryData'):
 		for key in data["sceneryData"]:
@@ -340,6 +341,9 @@ func load_game():
 			if data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.VEGETATION:
 				var random_y = data["sceneryData"][key].get('random_y', randi_range(0,2))
 				scenery_data['random_y'] = random_y
+				
+			if data["sceneryData"][key]['scenery_type'] == IdRefs.SCENERY_TYPES.TREE:
+				scenery_data['atlas_y'] = data["sceneryData"][key].get('atlas_y', 0)
 			
 			scenery_data['direction'] = data["sceneryData"][key].get('direction', null)
 			scenery_data['id'] = null
@@ -394,6 +398,14 @@ func load_game():
 				
 			buildingManager.build_building(building_res, pos, direction, building_data)
 			
+			
+	if data.has('animalData'):
+		for key in data["animalData"]:
+			var position = Vector2i(data["animalData"][key]['x_pos'], data["animalData"][key]['y_pos'])
+			var animal_res = load(data['animalData'][key]['animal_res'])
+			var animal_data = data['animalData'][key]
+			animalManager.call_deferred('spawn_animal', position, animal_res, animal_data, false, null)
+			
 	if data.has('peepGroupData'):
 		for key in data["peepGroupData"]:
 			var groupData = {}
@@ -419,12 +431,6 @@ func load_game():
 			
 			staffManager.spawn_staff(staff_type, staff_data)
 			
-	if data.has('shelterData'):
-		for key in data['shelterData']:
-			var shelter_res = load(data['shelterData'][key]['shelter_res'])
-			var start_tile = Vector2(int(data['shelterData'][key]['starting_tile_x']), int(data['shelterData'][key]['starting_tile_y']))
-			var direction = int(data['shelterData'][key]['direction'])
-			shelterManager.build_shelter(shelter_res, start_tile, direction)
 			
 	if data.has('zoo_manager_data'):
 		ZooManager.next_enclosure_id = int(data['zoo_manager_data']['next_enclosure_id'])
@@ -518,6 +524,7 @@ func get_animal_data(animal):
 	data['animal_color_variation'] = animal.animal_color_variation
 	data['months_of_life'] = animal.months_of_life
 	data['months_in_zoo'] = animal.months_in_zoo
+	data['is_inside_shelter'] = animal.is_inside_shelter
 	return data
 	
 
@@ -553,6 +560,7 @@ func get_scenery_data(scenery):
 		data['random_y'] = scenery.random_y
 	elif scenery_type == IdRefs.SCENERY_TYPES.TREE:
 		data['res'] = scenery.tree_res.get_path()
+		data['atlas_y'] = scenery.atlas_y
 	elif scenery_type == IdRefs.SCENERY_TYPES.DECORATION:
 		data['res'] = scenery.decoration_res.get_path()
 		data['direction'] = scenery.direction

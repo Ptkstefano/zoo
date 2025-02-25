@@ -1,0 +1,185 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqh7kxpmotbcn"]
+
+[ext_resource type="Script" uid="uid://oq7aounld7th" path="res://UI/UI popups/responsive_margin_container.gd" id="1_4gmlt"]
+[ext_resource type="Script" uid="uid://lhmch72h6mdr" path="res://options_menu.gd" id="1_ogda5"]
+[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/Themes/popup_theme.tres" id="2_ogda5"]
+[ext_resource type="Texture2D" uid="uid://bhdvqbx2t3rji" path="res://MainMenu/logo3.png" id="3_6bffs"]
+[ext_resource type="Theme" uid="uid://n5hp2ks3tu04" path="res://checkbox.tres" id="5_6bffs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vwtu1"]
+
+[node name="OptionsMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 101
+script = ExtResource("1_ogda5")
+
+[node name="MainMenuBG" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vwtu1")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuBG"]
+layout_mode = 2
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 100
+script = ExtResource("1_4gmlt")
+
+[node name="PanelContainer" type="PanelContainer" parent="MainMenuBG/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_ogda5")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuBG/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture = ExtResource("3_6bffs")
+stretch_mode = 5
+
+[node name="TabContainer" type="TabContainer" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3"]
+layout_mode = 2
+current_tab = 0
+
+[node name="SOUND" type="MarginContainer" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Sound" type="VBoxContainer" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.3
+text = "MASTER"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="MasterSlider" type="HSlider" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer3/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 10.0
+value = 10.0
+tick_count = 11
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer3"]
+layout_mode = 2
+
+[node name="MasterMute" type="CheckButton" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer3/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("5_6bffs")
+
+[node name="Label" type="Label" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+text = "Mute"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.3
+text = "SOUNDSCAPE"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="SoundscapeSlider" type="HSlider" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 10.0
+value = 10.0
+tick_count = 11
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer"]
+layout_mode = 2
+
+[node name="SoundscapeMute" type="CheckButton" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("5_6bffs")
+
+[node name="Label" type="Label" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mute"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.3
+text = "MUSIC"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="MusicSlider" type="HSlider" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer2/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 10.0
+value = 9.0
+tick_count = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer2"]
+layout_mode = 2
+
+[node name="MusicMute" type="CheckButton" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("5_6bffs")
+
+[node name="Label" type="Label" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/TabContainer/SOUND/Sound/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Mute"
+
+[node name="CloseButton" type="Button" parent="MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
+text = "SAVE_AND_CLOSE"

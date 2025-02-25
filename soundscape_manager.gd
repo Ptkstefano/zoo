@@ -25,9 +25,6 @@ var close_up_volume
 
 var close_up_bus_index : int = 0
 
-#var crowd_zoom_volume = [-20, -15, -10, -7, -3, 0]
-#var vegetation_zoom_volume = [-25, -20, -15, -12, -8, -5]
-
 var crowd_zoom_volume = [-25, -20, -16, -12, -8, -5]
 var vegetation_zoom_volume = [-36, -30, -22, -18, -12, -8]
 

@@ -68,8 +68,8 @@ func on_peep_group_left(group, rating):
 	## TODO - update zoo status
 	if rating >= 0:
 		ZooManager.update_rating(rating)
-		ZooManager.store_recent_peep_group_modifiers(group.modifiers)
-		ZooManager.store_peep_group_review({'rating': rating, 'thoughts': group.modifiers})
+		ZooManager.store_recent_peep_group_modifiers(group.thoughts)
+		ZooManager.store_peep_group_review({'rating': rating, 'thoughts': group.thoughts})
 		
 	ZooManager.remove_peep_group_id(group.id)
 	peep_count -= group.peep_count

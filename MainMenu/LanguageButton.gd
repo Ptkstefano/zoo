@@ -10,4 +10,5 @@ func on_pressed():
 	else:
 		TranslationServer.set_locale('en')
 		
+	GlobalConfigManager.save_config()
 	text = tr('LANGUAGE')

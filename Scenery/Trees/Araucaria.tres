@@ -8,5 +8,6 @@ tr_name = "TREE_ARAUCARIA"
 scientific_name = ""
 cost = 20.0
 id = 3
-texture_y = 5
+texture_x = 5
+possible_y = Array[int]([0])
 vegetation_weight = 10.0

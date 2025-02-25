@@ -8,5 +8,6 @@ tr_name = "TREE_BLOODWOOD"
 scientific_name = ""
 cost = 10.0
 id = 5
-texture_y = 7
+texture_x = 7
+possible_y = Array[int]([0])
 vegetation_weight = 10.0

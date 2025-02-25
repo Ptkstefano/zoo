@@ -10,6 +10,8 @@ var tree_res : tree_resource
 
 var texture : Texture2D
 
+var atlas_y : int
+
 var vegetation_weight
 
 var id : int
@@ -24,7 +26,7 @@ func _ready() -> void:
 	$Area.area_entered.connect(on_area_entered)
 	$Sprite2D.vframes = tree_sheet.get_height() / 128
 	$Sprite2D.hframes = tree_sheet.get_width() / 128
-	$Sprite2D.frame_coords = Vector2(tree_res.texture_y, 0)
+	$Sprite2D.frame_coords = Vector2(tree_res.texture_x, atlas_y)
 	texture = tree_sheet
 	var y = -128
 	var x = -128 * 0.5

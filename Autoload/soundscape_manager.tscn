@@ -69,19 +69,21 @@ script = ExtResource("1_edib3")
 [node name="CrowdPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_rm7hr")
+bus = &"Soundscape"
 
 [node name="VegetationPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_jhse8")
-bus = &"CloseUp_Ambiance"
+bus = &"Soundscape"
 
 [node name="GeneralAmbiancePlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("10_d4po3")
 volume_db = -16.0
+bus = &"Soundscape"
 
 [node name="CashRegister" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_yn6rc")
 volume_db = 8.0
 max_polyphony = 10
-bus = &"CloseUp"
+bus = &"Soundscape"

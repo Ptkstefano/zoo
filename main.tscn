@@ -1,4 +1,4 @@
-[gd_scene load_steps=196 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=201 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" uid="uid://o2egpp0b02e2" path="res://Scripts/debug_controller.gd" id="1_nisry"]
 [ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -52,7 +52,7 @@
 [ext_resource type="Resource" uid="uid://du5ia6244wkd1" path="res://Enclosures/Fences/Fence resources/corral.tres" id="29_xkvoa"]
 [ext_resource type="Shader" uid="uid://b0e23qgminbhp" path="res://Shaders/terrain.gdshader" id="31_e0m5j"]
 [ext_resource type="Texture2D" uid="uid://wj8tt8gnhkn5" path="res://Terrain/terrain_sheet.png" id="32_05eb2"]
-[ext_resource type="PackedScene" uid="uid://iscokpw16nk" path="res://Managers/peep_group.tscn" id="40_rrrup"]
+[ext_resource type="PackedScene" uid="uid://iscokpw16nk" path="res://Peeps/peep_group.tscn" id="40_rrrup"]
 [ext_resource type="Script" uid="uid://bjcrbyhfvjdmd" path="res://Managers/water_manager.gd" id="43_sh5qp"]
 [ext_resource type="PackedScene" uid="uid://dfb5pi2yfy3jh" path="res://Water/lake_scene.tscn" id="44_wq78x"]
 [ext_resource type="Script" uid="uid://cu2j3songpy3l" path="res://Managers/fixture_manager.gd" id="45_u6xcc"]
@@ -112,8 +112,10 @@
 [ext_resource type="Theme" uid="uid://dpbxcu82btgu" path="res://light_blue_button.tres" id="121_oosfy"]
 [ext_resource type="Texture2D" uid="uid://ei36ih8llxbb" path="res://UI/Icons/gender4.png" id="122_nf4f2"]
 [ext_resource type="Texture2D" uid="uid://d1yua2ag5dbcx" path="res://UI/Icons/gender3.png" id="123_xkvoa"]
+[ext_resource type="Texture2D" uid="uid://36ud6c6wjo38" path="res://UI/Icons/money.png" id="124_bmvma"]
 [ext_resource type="Script" uid="uid://c4x8c8c70ukhk" path="res://UI_BottomMargin.gd" id="125_2n44k"]
 [ext_resource type="PackedScene" uid="uid://kn44cenbnuda" path="res://UI/level_star.tscn" id="126_5aa3q"]
+[ext_resource type="PackedScene" uid="uid://dqh7kxpmotbcn" path="res://options_menu.tscn" id="130_5aa3q"]
 [ext_resource type="Texture2D" uid="uid://ctfqwbe20e07n" path="res://UI/Icons/construction_color.png" id="131_3ox4t"]
 [ext_resource type="Texture2D" uid="uid://b787nqd6tt5ow" path="res://UI/Icons/star2x.png" id="132_nf4f2"]
 [ext_resource type="Texture2D" uid="uid://dprrgv2xdx1qh" path="res://UI/Icons/star-half2x.png" id="133_xkvoa"]
@@ -553,6 +555,12 @@ expand_margin_top = 3.0
 expand_margin_right = 3.0
 expand_margin_bottom = 3.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5aa3q"]
+content_margin_right = 32.0
+
+[sub_resource type="Theme" id="Theme_bmvma"]
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_5aa3q")
+
 [sub_resource type="Theme" id="Theme_jcxqu"]
 default_font_size = 16
 
@@ -692,19 +700,23 @@ expand_margin_right = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hnquj"]
 bg_color = Color(1, 1, 1, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
-expand_margin_left = 4.0
-expand_margin_top = 4.0
-expand_margin_right = 4.0
-expand_margin_bottom = 4.0
+corner_detail = 16
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0h8y2"]
 bg_color = Color(0.13792, 0.596228, 0.887608, 1)
 border_color = Color(0, 0, 0, 1)
+expand_margin_right = 2.0
+shadow_color = Color(0.137255, 0.596078, 0.886275, 1)
+anti_aliasing_size = 0.5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkvoa"]
 bg_color = Color(1, 1, 1, 1)
@@ -721,6 +733,9 @@ expand_margin_bottom = 4.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t5kpo"]
 bg_color = Color(0.807843, 0.294118, 0.294118, 1)
 border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bmvma"]
+content_margin_top = 12.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ogm70"]
 shader = ExtResource("97_84xii")
@@ -1088,7 +1103,6 @@ wait_time = 3.0
 
 [node name="DebugScreen" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 2
@@ -1099,65 +1113,76 @@ mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2"]
 layout_mode = 2
-size_flags_horizontal = 0
 mouse_filter = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = SubResource("Theme_bmvma")
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/ScrollContainer"]
 custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="DebugSpawnPeeps" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
+[node name="DebugSpawnPeeps" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "Spawn peeps"
 
-[node name="DebugHungryPeeps" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
+[node name="DebugHungryPeeps" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "Hungry peeps"
 
-[node name="DebugToiletPeeps" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
+[node name="DebugToiletPeeps" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "Toilet peeps"
 
-[node name="DebugRemovePeeps" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
+[node name="DebugRemovePeeps" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "Clear peeps"
 
-[node name="DebugAddMoney" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
+[node name="DebugAddMoney" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "Add money"
 
-[node name="DebugPassMonth" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
+[node name="DebugPassMonth" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "Pass month"
 
-[node name="DebugSpeedTime" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
+[node name="DebugSpeedTime" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "Fast forward"
 
-[node name="DebugToggleDay" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/VBoxContainer"]
+[node name="DebugToggleDay" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "Toggle Day/Night"
+
+[node name="DebugUnlockEverything" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen/Debug2/MarginContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+text = "Unlock All"
 
 [node name="Debug" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/DebugScreen"]
 layout_mode = 2
@@ -1369,7 +1394,7 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -80.5
 offset_right = 80.5
-offset_bottom = 556.0
+offset_bottom = 427.0
 grow_horizontal = 2
 theme = ExtResource("104_vjgyh")
 script = ExtResource("74_d5mka")
@@ -1388,24 +1413,13 @@ layout_mode = 2
 [node name="DropDownMenu" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/VBoxContainer/Control/OptionsDropMenu/MarginContainer/VBoxContainer2"]
 layout_mode = 2
 
-[node name="ResearchMenu" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/VBoxContainer/Control/OptionsDropMenu/MarginContainer/VBoxContainer2/DropDownMenu"]
-custom_minimum_size = Vector2(125, 125)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Rsrch"
-
-[node name="StaffMenu" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/VBoxContainer/Control/OptionsDropMenu/MarginContainer/VBoxContainer2/DropDownMenu"]
-custom_minimum_size = Vector2(125, 125)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Staff"
-
 [node name="MgmtMenu" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/VBoxContainer/Control/OptionsDropMenu/MarginContainer/VBoxContainer2/DropDownMenu"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Mgmt"
+text = "Management"
+autowrap_mode = 3
 
 [node name="SaveGame" type="Button" parent="UI/VBoxContainer/MainMargin/MainOptions/Top-Right-Options/VBoxContainer/VBoxContainer/Control/OptionsDropMenu/MarginContainer/VBoxContainer2/DropDownMenu"]
 unique_name_in_owner = true
@@ -1419,7 +1433,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Options"
+text = "Menu"
 
 [node name="MainConstruction" type="PanelContainer" parent="UI/VBoxContainer/MainMargin"]
 layout_mode = 2
@@ -1860,7 +1874,6 @@ text = "Administration"
 
 [node name="ToolInfoPanel" type="Control" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(1100, 255)
 layout_mode = 2
 mouse_filter = 2
@@ -1982,6 +1995,7 @@ horizontal_alignment = 1
 
 [node name="PlacingAnimalInfoContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1iygd")
@@ -2029,7 +2043,6 @@ text = "Animal info"
 
 [node name="BulldozingSceneryInfoContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1iygd")
@@ -2881,7 +2894,7 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_1iygd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_g5xqc")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_s4o1y")
 theme_override_styles/normal = SubResource("StyleBoxTexture_mnw77")
-text = "Build"
+text = "BUILD"
 
 [node name="RotateButtonPanel" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/ConstructionSidePanel/BuildingSidePanel"]
 layout_mode = 2
@@ -2905,7 +2918,7 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_7mmqq")
 theme_override_styles/hover = SubResource("StyleBoxTexture_3exxq")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_5aa3q")
 theme_override_styles/normal = SubResource("StyleBoxTexture_vjgyh")
-text = "Rotate"
+text = "ROTATE"
 
 [node name="CameraButtonPanel" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/BuildModeSidePanel/SidePanel/ConstructionSidePanel"]
 layout_mode = 2
@@ -2928,8 +2941,7 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_cpm2s")
 theme_override_styles/hover = SubResource("StyleBoxTexture_d5iia")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_asu84")
 theme_override_styles/normal = SubResource("StyleBoxTexture_u81y6")
-text = "Move
- Camera"
+text = "MOVE_CAMERA"
 
 [node name="BottomMargin" type="MarginContainer" parent="UI/VBoxContainer"]
 layout_mode = 2
@@ -2944,7 +2956,6 @@ theme = ExtResource("108_smeu8")
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/BottomMargin/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = -2
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = -10
 
@@ -3045,7 +3056,6 @@ theme_override_constants/margin_bottom = 5
 [node name="PeepCountLabel" type="Label" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/Left/HBoxContainer/MarginContainer/PanelContainer2/HBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 40
 text = "0"
 horizontal_alignment = 1
@@ -3092,9 +3102,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
-theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 5
 
 [node name="InfoPanelContainer" type="HBoxContainer" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/Right"]
 layout_mode = 2
@@ -3116,7 +3124,6 @@ theme_override_constants/margin_right = 10
 [node name="TimeLabel" type="Label" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/Right/InfoPanelContainer/UI_Time/VBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 26
 text = "Jan, year 2"
 horizontal_alignment = 1
@@ -3150,14 +3157,22 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="MoneyLabel" type="Label" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/Right/InfoPanelContainer/MoneyContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/Right/InfoPanelContainer/MoneyContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/Right/InfoPanelContainer/MoneyContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("124_bmvma")
+expand_mode = 3
+
+[node name="MoneyLabel" type="Label" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/Right/InfoPanelContainer/MoneyContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bmvma")
 text = "$ 1000,00"
-horizontal_alignment = 2
+horizontal_alignment = 1
 
 [node name="OutlineColor" type="CanvasLayer" parent="."]
 layer = 0
@@ -3212,9 +3227,10 @@ expand_mode = 1
 [node name="MainMenu" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
-layer = 128
+layer = 100
 visible = false
 script = ExtResource("155_rpys8")
+options_menu = ExtResource("130_5aa3q")
 
 [node name="MainMenuBG" type="PanelContainer" parent="MainMenu"]
 unique_name_in_owner = true
@@ -3268,7 +3284,8 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "a"
 
-[node name="Button2" type="Button" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2"]
+[node name="OptionsMenuButton" type="Button" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "Options"

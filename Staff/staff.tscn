@@ -14,8 +14,8 @@ quest_giver_icon_scene = ExtResource("2_qwret")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0
-target_desired_distance = 2.0
 path_metadata_flags = 0
+avoidance_mask = 0
 debug_enabled = true
 debug_path_custom_point_size = 4.36
 debug_path_custom_line_width = 0.83

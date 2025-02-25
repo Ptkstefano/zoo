@@ -18,6 +18,7 @@ boot_splash/show_image=false
 [autoload]
 
 FolderDataManager="*res://folderDataManager.gd"
+GlobalConfigManager="*res://global_config_manager.gd"
 IdRefs="*res://Autoload/id_refs.gd"
 ContentManager="*res://Autoload/content_manager.tscn"
 Helpers="*res://Scripts/helpers.gd"
