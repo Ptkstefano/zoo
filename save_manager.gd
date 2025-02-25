@@ -428,6 +428,8 @@ func load_game():
 			var staff_data = {}
 			staff_data['global_position'] = Vector2(data['staffData'][key]['x_pos'], data['staffData'][key]['y_pos'])
 			staff_data['id'] = data['staffData'][key]['id']
+			if staff_type in [IdRefs.STAFF_TYPES.ZOOKEEPER, IdRefs.STAFF_TYPES.ZOOKEEPER_UNIQUE]:
+				staff_data['is_inside_enclosure'] = data['staffData'][key].get('is_inside_enclosure', null)
 			
 			staffManager.spawn_staff(staff_type, staff_data)
 			

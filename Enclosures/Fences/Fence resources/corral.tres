@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_ag0b0")
-name = "Corral"
+tr_name = "FENCES_CORRAL"
 segment_cost = 15.0
 atlas_y = 3
 fence_level = 1

@@ -91,7 +91,8 @@ func buy(product_id : int, peep_count : int) -> bool:
 		update_earn_stats(available_products[product_id].current_price * peep_count)
 		update_product_stats(available_products[product_id], peep_count)
 		
-		FinanceManager.add(available_products[product_id].current_price * peep_count, IdRefs.PAYMENT_ADD_TYPES.PRODUCT)
+		if building_type in [IdRefs.BUILDING_TYPES.EATERY, IdRefs.BUILDING_TYPES.RESTAURANT]:
+			FinanceManager.add(available_products[product_id].current_price * peep_count, IdRefs.PAYMENT_ADD_TYPES.FOOD_PRODUCT)
 		
 		if on_screen_notifier.is_on_screen():
 			SoundscapeManager.play_cash_register()
@@ -181,6 +182,11 @@ func on_month_pass():
 		update_maintenance_stats(available_products[key])
 		
 	FinanceManager.remove(product_maintenance, IdRefs.PAYMENT_REMOVE_TYPES.PRODUCT_MAINTENANCE)
+	
+	if building_type in [IdRefs.BUILDING_TYPES.EATERY, IdRefs.BUILDING_TYPES.RESTAURANT]:
+		FinanceManager.remove(building_res.base_maintenance, IdRefs.PAYMENT_REMOVE_TYPES.SHOP_MAINTENANCE)
+	if building_type in [IdRefs.BUILDING_TYPES.TOILET, IdRefs.BUILDING_TYPES.ZOOKEEPER_STATION]:
+		FinanceManager.remove(building_res.base_maintenance, IdRefs.PAYMENT_REMOVE_TYPES.FACILITY_MAINTENANCE)
 		
 	
 func update_earn_stats(value):

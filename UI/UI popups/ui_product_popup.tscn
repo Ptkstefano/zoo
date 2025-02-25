@@ -55,13 +55,13 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 75)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
-text = "Remove product"
+text = "UI_PRODUCT_REMOVE PRODUCT"
 
 [node name="Replenish" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 75)
 layout_mode = 2
-text = "Replenish"
+text = "UI_PRODUCT_REPLENISH"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -81,7 +81,7 @@ layout_mode = 2
 
 [node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Product maintenance:"
+text = "UI_PRODUCT_MAINTENANCE"
 
 [node name="MaintenanceCost" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -94,7 +94,7 @@ layout_mode = 2
 
 [node name="Label3" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "Stock unit cost:"
+text = "UI_PRODUCT_STOCK_COST"
 
 [node name="StockUnitCost" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
@@ -108,7 +108,7 @@ size_flags_vertical = 8
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Auto replenish"
+text = "UI_PRODUCT_AUTO_REPLENISH"
 horizontal_alignment = 1
 
 [node name="AutoReplenishCheckbox" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer/VBoxContainer"]
@@ -133,11 +133,6 @@ theme_override_constants/margin_top = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
-layout_mode = 2
-text = "Product stats"
-horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
@@ -164,7 +159,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/PanelContainer/MarginContainer/LastMonthContainer"]
 layout_mode = 2
-text = "Last month"
+text = "UI_PRODUCT_LAST_MONTH"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/PanelContainer/MarginContainer/LastMonthContainer"]
@@ -173,7 +168,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/PanelContainer/MarginContainer/LastMonthContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Units sold:"
+text = "UI_PRODUCT_UNITS_SOLD"
 
 [node name="PreviousUnitsSold" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/PanelContainer/MarginContainer/LastMonthContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -189,7 +184,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.454902, 0.705882, 0.4, 1)
-text = "Revenue:"
+text = "UI_PRODUCT_REVENUE"
 
 [node name="PreviousRevenue" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/PanelContainer/MarginContainer/LastMonthContainer/HBoxContainer2"]
 unique_name_in_owner = true
@@ -205,7 +200,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.847059, 0.168627, 0.219608, 1)
-text = "Expenditures:"
+text = "UI_PRODUCT_EXPENDITURES"
 
 [node name="PreviousExpenditures" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/PanelContainer/MarginContainer/LastMonthContainer/HBoxContainer3"]
 unique_name_in_owner = true
@@ -220,7 +215,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/PanelContainer/MarginContainer/LastMonthContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Total:"
+text = "UI_PRODUCT_TOTAL"
 
 [node name="PreviousTotal" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/PanelContainer/MarginContainer/LastMonthContainer/HBoxContainer4"]
 unique_name_in_owner = true
@@ -245,7 +240,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/CurrentMonthContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Current month"
+text = "UI_PRODUCT_CURRENT_MONTH"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/CurrentMonthContainer/MarginContainer/VBoxContainer"]
@@ -254,7 +249,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/CurrentMonthContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Units sold:"
+text = "UI_PRODUCT_UNITS_SOLD"
 
 [node name="CurrentUnitsSold" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/CurrentMonthContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -270,7 +265,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.454902, 0.705882, 0.4, 1)
-text = "Revenue:"
+text = "UI_PRODUCT_REVENUE"
 
 [node name="CurrentRevenue" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/CurrentMonthContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
@@ -286,7 +281,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.847059, 0.168627, 0.219608, 1)
-text = "Expenditures:"
+text = "UI_PRODUCT_EXPENDITURES"
 
 [node name="CurrentExpenditures" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/CurrentMonthContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 unique_name_in_owner = true
@@ -301,7 +296,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/CurrentMonthContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Total:"
+text = "UI_PRODUCT_TOTAL"
 
 [node name="CurrentTotal" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/CurrentMonthContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 unique_name_in_owner = true
@@ -326,7 +321,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Lifetime"
+text = "UI_PRODUCT_LIFETIME"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
@@ -335,7 +330,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Units sold:"
+text = "UI_PRODUCT_UNITS_SOLD"
 
 [node name="LifetimeUnitsSold" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -351,7 +346,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.454902, 0.705882, 0.4, 1)
-text = "Revenue:"
+text = "UI_PRODUCT_REVENUE"
 
 [node name="LifetimeRevenue" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
@@ -367,7 +362,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.847059, 0.168627, 0.219608, 1)
-text = "Expenditures:"
+text = "UI_PRODUCT_EXPENDITURES"
 
 [node name="LifetimeExpenditures" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer3"]
 unique_name_in_owner = true
@@ -382,7 +377,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Total:"
+text = "UI_PRODUCT_TOTAL"
 
 [node name="LifetimeTotal" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ScrollContainer/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer4"]
 unique_name_in_owner = true

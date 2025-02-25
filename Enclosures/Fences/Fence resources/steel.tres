@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_yfve2")
-name = "Steel"
+tr_name = "FENCES_STEEL"
 segment_cost = 20.0
 atlas_y = 6
 fence_level = 3

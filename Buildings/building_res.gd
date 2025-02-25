@@ -3,6 +3,7 @@ extends Resource
 class_name building_resource
 
 @export var name : String
+@export var tr_name : String
 @export var id : IdRefs.BUILDINGS
 @export var thumb : Texture2D
 @export var building_menu : IdRefs.BUILDING_MENU

@@ -7,7 +7,7 @@
 script = ExtResource("1_juhfy")
 id = 4
 type = 0
-name = "Pesto Pasta"
+tr_name = "PRODUCTS_PASTA_PESTO"
 thumb = ExtResource("2_juhfy")
 base_sell_value = 20.0
 perceived_value = 20.0

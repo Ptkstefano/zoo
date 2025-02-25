@@ -47,6 +47,13 @@ func load_game(data):
 	for animal_id in data['animals']:
 		unlocked_animals[animal_id] = ContentManager.animals[animal_id]
 
+func add_research_progress(amount):
+	current_research_progress += amount
+
+func boost_research():
+	add_research_progress(15)
+	FinanceManager.remove(1000, IdRefs.PAYMENT_REMOVE_TYPES.RESEARCH_BOOST)
+
 func new_research_unlocked():
 	if current_research_progress < 99:
 		return

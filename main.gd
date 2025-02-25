@@ -26,3 +26,4 @@ func _ready() -> void:
 func generate_game_start():
 	$Objects/StaffManager.spawn_staff(IdRefs.STAFF_TYPES.ZOOKEEPER_UNIQUE, null)
 	$Objects/SceneryManager.generate_random_map()
+	TimeManager.month_timer.start()

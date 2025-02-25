@@ -17,11 +17,15 @@ var needs_rest = 100:
 		
 var rest_drain_rate = 2.5
 
+var target_animal : Animal
+
 signal destination_updated
 signal leap_towards
 signal stopped
 signal reset_staff
 signal left_enclosure
+
+var initialize_data
 
 @onready var staff_scene = get_parent() ## Parent
 
@@ -29,6 +33,7 @@ func _ready() -> void:
 	$StateTimer.timeout.connect(on_state_timer_timeout)
 	$StateTimer.start()
 	$DecayTimer.timeout.connect(on_decay_timer_timeout)
+			
 
 func on_state_timer_timeout():
 	if current_state == zookeeper_states.STOPPED:
@@ -71,7 +76,8 @@ func change_state(state):
 		change_state(zookeeper_states.STOPPED)
 	if state == zookeeper_states.MOVING_TOWARDS_DEAD_ANIMAL:
 		if is_instance_valid(destination_enclosure.dead_animals.front()):
-			destination_updated.emit(destination_enclosure.dead_animals.front().global_position)
+			target_animal = destination_enclosure.dead_animals.front()
+			destination_updated.emit(target_animal.global_position)
 	
 		
 func get_new_task():
@@ -137,6 +143,7 @@ func get_enclosure_entrance_destination():
 		destination_enclosure.has_zookeeper_assigned = true
 		destination_enclosure.enclosure_removed.connect(on_destination_enclosure_removed)
 		destination_enclosure.enclosure_area_changed.connect(on_destination_enclosure_changed)
+		destination_enclosure.entrance_changed.connect(on_destination_enclosure_changed)
 		
 	if !destination_enclosure.entrance_cell:
 		ZooManager.enclosures_needing_work.erase(destination_enclosure.id)
@@ -185,6 +192,7 @@ func target_unreacheable():
 	change_state(zookeeper_states.STOPPED)
 
 func check_for_enclosure_work():
+	print('checking for ecnlosure work')
 	if !is_instance_valid(destination_enclosure):
 		reset_staff.emit()
 		return
@@ -192,11 +200,13 @@ func check_for_enclosure_work():
 		if is_instance_valid(destination_enclosure.animal_feed):
 			if destination_enclosure.animal_feed.amount < 80:
 				feed_enclosure()
+				return
 	else:
 		feed_enclosure()
 		return
 	
 	if destination_enclosure.dead_animals.size() > 0:
+		print('moving towards dead animal')
 		change_state(zookeeper_states.MOVING_TOWARDS_DEAD_ANIMAL)
 	else:
 		change_state(zookeeper_states.LEAVING_ENCLOSURE)
@@ -204,7 +214,8 @@ func check_for_enclosure_work():
 func remove_dead_animal():
 	if destination_enclosure.dead_animals.size() == 0:
 		return
-	destination_enclosure.dead_animals.front().remove_animal()
+	target_animal.remove_animal()
+	destination_enclosure.remove_dead_animal(target_animal)
 	change_state(zookeeper_states.STOPPED)
 
 func on_destination_enclosure_removed():
@@ -213,6 +224,10 @@ func on_destination_enclosure_removed():
 func on_destination_enclosure_changed():
 	if is_inside_enclosure:
 		reset_staff.emit()
+	else:
+		change_state(zookeeper_states.STOPPED)
+		destination_enclosure.has_zookeeper_assigned = false
+		destination_enclosure = null
 
 func reset_state():
 	if destination_enclosure:

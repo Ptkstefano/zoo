@@ -26,7 +26,7 @@ func _ready() -> void:
 	#%ReplenishButton.pressed.connect(on_replenish_stock)
 	%Price.text = "$" + str(price).pad_decimals(2)
 	## TODO - Grab name
-	%ProductName.text = str(product_name)
+	%ProductName.text = tr(str(product_name))
 	#%Remove.pressed.connect(on_remove_product)
 	#%AutoReplenishCheckbox.button_pressed = auto_restock
 	#%AutoReplenishCheckbox.toggled.connect(on_replenish_toggled)

@@ -4,7 +4,7 @@ class_name product_resource
 
 @export var id : IdRefs.PRODUCTS
 @export var type : IdRefs.PRODUCT_TYPES
-@export var name : String
+@export var tr_name : String
 @export var thumb : Texture2D
 
 @export var base_sell_value : float  ## Base price when building is plopped down

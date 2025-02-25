@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="building_resource" load_steps=4 format=3 uid="uid://csjatom74kl3h"]
 
-[ext_resource type="Script" path="res://Buildings/building_res.gd" id="1_7ywjo"]
+[ext_resource type="Script" uid="uid://b3dk3jci5ihs8" path="res://Buildings/building_res.gd" id="1_7ywjo"]
 [ext_resource type="PackedScene" uid="uid://cbybw05w52fdu" path="res://Buildings/ice_cream_shop.tscn" id="1_l45hq"]
 [ext_resource type="Texture2D" uid="uid://cwvec4talel2p" path="res://Buildings/Sprites/IceCreamShop.png" id="2_ka74h"]
 
 [resource]
 script = ExtResource("1_7ywjo")
 name = "Ice Cream Shop"
+tr_name = "BUILDING_ICE_CREAM"
 id = 0
 thumb = ExtResource("2_ka74h")
 building_menu = 0
@@ -16,6 +17,7 @@ building_cost = 1000.0
 base_maintenance = 100.0
 possible_directions = Array[int]([0, 1])
 is_building_entereable = false
+has_occupied_sprite = false
 is_shop = true
 building_type = 0
 product_types = Array[int]([0])

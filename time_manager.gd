@@ -12,7 +12,7 @@ var current_year : int = 0
 
 @onready var month_timer = $MonthTimer
 
-var default_month_time : int = 180
+var default_month_time : int = 150
 
 signal on_pass_month
 

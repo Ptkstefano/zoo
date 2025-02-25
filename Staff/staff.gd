@@ -48,12 +48,18 @@ func _ready():
 	
 	if data:
 		global_position = data['global_position']
+		var enclosure = TileMapRef.get_enclosure_by_cell(TileMapRef.local_to_map(global_position))
+		if enclosure:
+			$NavigationAgent2D.set_navigation_layer_value(1, false)
+			$NavigationAgent2D.set_navigation_layer_value(2, true)
+			staff_behavior.is_inside_enclosure = true
+			
 
 func set_sprite(sprite : Texture):
 	$PeepSprite.texture = sprite
 
 func reset_staff():
-	global_position = Vector2(-1300, 675)
+	global_position = Vector2(-1470, 768)
 	$NavigationAgent2D.set_navigation_layer_value(1, true)
 	$NavigationAgent2D.set_navigation_layer_value(2, false)
 	staff_behavior.reset_state()

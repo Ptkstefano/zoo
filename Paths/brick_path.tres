@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_c78sf")
-name = "Brick Path"
+tr_name = "PATHS_BRICKS"
 cost = 5.0
 atlas_y = 2

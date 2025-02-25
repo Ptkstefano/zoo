@@ -2,7 +2,7 @@ extends Resource
 
 class_name shelter_resource
 
-@export var name : String
+@export var tr_name : String
 @export var thumb : Texture2D
 @export var size : Vector2i
 @export var shelter_scene : PackedScene

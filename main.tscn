@@ -1910,7 +1910,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BuildingPathInfoContainer/VBoxContainer"]
 layout_mode = 2
-text = "Building path"
+text = "UI_INFO_CONT_PATH_BUILDING"
 horizontal_alignment = 1
 
 [node name="BulldozingPathInfoContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer"]
@@ -1926,7 +1926,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BulldozingPathInfoContainer/VBoxContainer"]
 layout_mode = 2
-text = "Removing path"
+text = "UI_INFO_CONT_PATH_REMOVING"
 horizontal_alignment = 1
 
 [node name="BuildingEnclosureInfoContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer"]
@@ -1942,7 +1942,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BuildingEnclosureInfoContainer/VBoxContainer"]
 layout_mode = 2
-text = "Building enclosure"
+text = "UI_INFO_CONT_ENCLOSURE_BUILDING"
 horizontal_alignment = 1
 
 [node name="BulldozingEnclosureInfoContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer"]
@@ -1958,7 +1958,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BulldozingEnclosureInfoContainer/VBoxContainer"]
 layout_mode = 2
-text = "Bulldozing enclosure"
+text = "UI_INFO_CONT_ENCLOSURE_REMOVING"
 horizontal_alignment = 1
 
 [node name="PlacingShelterInfoContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer"]
@@ -1974,7 +1974,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingShelterInfoContainer/VBoxContainer"]
 layout_mode = 2
-text = "Placing shelter"
+text = "UI_INFO_CONT_SHELTER_BUILDING"
 horizontal_alignment = 1
 
 [node name="PlacingToyInfoContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer"]
@@ -2007,7 +2007,7 @@ layout_mode = 2
 [node name="InfoLabelAnimal" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingAnimalInfoContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Placing animal"
+text = "UI_INFO_CONT_ANIMAL_PLACING"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingAnimalInfoContainer/VBoxContainer"]
@@ -2043,6 +2043,7 @@ text = "Animal info"
 
 [node name="BulldozingSceneryInfoContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1iygd")
@@ -2053,7 +2054,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BulldozingSceneryInfoContainer/VBoxContainer"]
 layout_mode = 2
-text = "Bulldozing scenery"
+text = "UI_INFO_CONT_BULLDOZING_SCENERY"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BulldozingSceneryInfoContainer/VBoxContainer"]
@@ -2068,7 +2069,9 @@ layout_mode = 2
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BulldozingSceneryInfoContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Trees:"
+text = "UI_INFO_CONT_BULLDOZING_SCENERY_TREES"
+visible_characters = 15
+visible_ratio = 0.405405
 
 [node name="BulldozerTreeCheckBox" type="CheckButton" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BulldozingSceneryInfoContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
 unique_name_in_owner = true
@@ -2083,7 +2086,9 @@ layout_mode = 2
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BulldozingSceneryInfoContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Vegetation:"
+text = "UI_INFO_CONT_BULLDOZING_SCENERY_VEGETATION"
+visible_characters = 15
+visible_ratio = 0.357143
 
 [node name="BulldozerVegetationCheckBox" type="CheckButton" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BulldozingSceneryInfoContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer2"]
 unique_name_in_owner = true
@@ -2101,7 +2106,9 @@ layout_mode = 2
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BulldozingSceneryInfoContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Fixtures:"
+text = "UI_INFO_CONT_BULLDOZING_SCENERY_FIXTURES"
+visible_characters = 15
+visible_ratio = 0.375
 
 [node name="BulldozerFixtureCheckBox" type="CheckButton" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BulldozingSceneryInfoContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer"]
 unique_name_in_owner = true
@@ -2116,7 +2123,9 @@ layout_mode = 2
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BulldozingSceneryInfoContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Decoration:"
+text = "UI_INFO_CONT_BULLDOZING_SCENERY_DECORATION"
+visible_characters = 15
+visible_ratio = 0.357143
 
 [node name="BulldozerDecorationCheckBox" type="CheckButton" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BulldozingSceneryInfoContainer/VBoxContainer/HBoxContainer/VBoxContainer3/HBoxContainer2"]
 unique_name_in_owner = true
@@ -2134,7 +2143,9 @@ layout_mode = 2
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BulldozingSceneryInfoContainer/VBoxContainer/HBoxContainer/VBoxContainer4/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Rocks:"
+text = "UI_INFO_CONT_BULLDOZING_SCENERY_ROCKS"
+visible_characters = 15
+visible_ratio = 0.405405
 
 [node name="BulldozerRockCheckBox" type="CheckButton" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BulldozingSceneryInfoContainer/VBoxContainer/HBoxContainer/VBoxContainer4/HBoxContainer"]
 unique_name_in_owner = true
@@ -2156,7 +2167,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingSceneryInfoContainer/VBoxContainer"]
 layout_mode = 2
-text = "Placing scenery"
+text = "UI_INFO_CONT_SCENERY_PLACING"
 horizontal_alignment = 1
 
 [node name="PlacingVegetationInfoContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer"]
@@ -2172,7 +2183,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingVegetationInfoContainer/VBoxContainer"]
 layout_mode = 2
-text = "Placing vegetation"
+text = "UI_INFO_CONT_VEGETATION_PLACING"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingVegetationInfoContainer/VBoxContainer"]
@@ -2181,7 +2192,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingVegetationInfoContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Use vegetation brush"
+text = "UI_INFO_CONT_VEGETATION_BRUSH"
 
 [node name="VegetationBrushCheckBox" type="CheckButton" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingVegetationInfoContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -2202,7 +2213,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingFixtureInfoContainer/VBoxContainer"]
 layout_mode = 2
-text = "Placing fixture"
+text = "UI_INFO_CONT_FIXTURE_PLACING"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingFixtureInfoContainer/VBoxContainer"]
@@ -2211,7 +2222,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingFixtureInfoContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Place freely"
+text = "UI_INFO_CONT_FIXTURE_FREE_PLACING"
 
 [node name="FixtureFreeCheckBox" type="CheckButton" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingFixtureInfoContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -2232,7 +2243,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingTerrainInfoContainer/VBoxContainer"]
 layout_mode = 2
-text = "Placing terrain"
+text = "UI_INFO_CONT_TERRAIN_PAINTING"
 horizontal_alignment = 1
 
 [node name="PlacingBuildingInfoContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer"]
@@ -2248,7 +2259,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingBuildingInfoContainer/VBoxContainer"]
 layout_mode = 2
-text = "Placing building"
+text = "UI_INFO_CONT_BUILDING_PLACING"
 horizontal_alignment = 1
 
 [node name="PlacingLakeInfoContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer"]
@@ -2264,12 +2275,11 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/PlacingLakeInfoContainer/VBoxContainer"]
 layout_mode = 2
-text = "Building lake"
+text = "UI_INFO_CONT_LAKE_PLACING"
 horizontal_alignment = 1
 
 [node name="BulldozingLakeInfoContainer" type="PanelContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1iygd")
@@ -2280,7 +2290,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BulldozingLakeInfoContainer/VBoxContainer"]
 layout_mode = 2
-text = "Bulldozing lake"
+text = "UI_INFO_CONT_LAKE_REMOVING"
 horizontal_alignment = 1
 
 [node name="ToolDeselect" type="Button" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer"]
@@ -2341,7 +2351,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 theme = ExtResource("117_1iygd")
-text = "Bulldoze paths"
+text = "UI_BUTTON_REMOVE_PATHS"
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/PathMenu/MarginContainer/VBoxContainer/BulldozerPath"]
 layout_mode = 0
@@ -2394,7 +2404,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 theme = ExtResource("117_1iygd")
-text = "Bulldoze enclosure"
+text = "UI_BUTTON_REMOVE_ENCLOSURE"
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/EnclosureMenu/MarginContainer/HBoxContainer/BulldozerEnclosure"]
 layout_mode = 0
@@ -2583,7 +2593,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 theme = ExtResource("117_1iygd")
-text = "Bulldoze scenery"
+text = "UI_BUTTON_REMOVE_SCENERY"
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/TreesMenu/MarginContainer/VBoxContainer/BulldozerTrees"]
 layout_mode = 0
@@ -2622,7 +2632,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 theme = ExtResource("117_1iygd")
-text = "Bulldoze scenery"
+text = "UI_BUTTON_REMOVE_SCENERY"
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/VegetationMenu/MarginContainer/VBoxContainer/BulldozerVegetation"]
 layout_mode = 0
@@ -2661,7 +2671,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 theme = ExtResource("117_1iygd")
-text = "Bulldoze scenery"
+text = "UI_BUTTON_REMOVE_SCENERY"
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/FixtureMenu/MarginContainer/VBoxContainer/BulldozerFixture"]
 layout_mode = 0
@@ -2698,7 +2708,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 theme = ExtResource("117_1iygd")
-text = "Bulldoze scenery"
+text = "UI_BUTTON_REMOVE_SCENERY"
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/DecorationMenu/MarginContainer/VBoxContainer/BulldozerDecoration"]
 layout_mode = 0
@@ -2737,7 +2747,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 theme = ExtResource("117_1iygd")
-text = "Bulldoze scenery"
+text = "UI_BUTTON_REMOVE_SCENERY"
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/RockMenu/MarginContainer/VBoxContainer/BulldozerRock"]
 layout_mode = 0
@@ -2825,7 +2835,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 theme = ExtResource("117_1iygd")
-text = "Remove lakes"
+text = "UI_BUTTON_REMOVE_LAKES"
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Right/SelectionMenu/SelectionPanel/LakeMenu/MarginContainer/VBoxContainer/BulldozerLake"]
 layout_mode = 0
@@ -2942,6 +2952,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_d5iia")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_asu84")
 theme_override_styles/normal = SubResource("StyleBoxTexture_u81y6")
 text = "MOVE_CAMERA"
+autowrap_mode = 2
 
 [node name="BottomMargin" type="MarginContainer" parent="UI/VBoxContainer"]
 layout_mode = 2
@@ -3125,7 +3136,7 @@ theme_override_constants/margin_right = 10
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
-text = "Jan, year 2"
+text = "Jan, year 0"
 horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/Right/InfoPanelContainer/UI_Time/VBoxContainer"]
@@ -3143,7 +3154,6 @@ size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_xkvoa")
 theme_override_styles/fill = SubResource("StyleBoxFlat_t5kpo")
 step = 1.0
-value = 76.0
 show_percentage = false
 
 [node name="MoneyContainer" type="PanelContainer" parent="UI/VBoxContainer/BottomMargin/PanelContainer/MarginContainer/BottomMenu/Right/InfoPanelContainer"]

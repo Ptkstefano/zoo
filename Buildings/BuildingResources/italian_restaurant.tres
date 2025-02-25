@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_5aypc")
 name = "Italian Restaurant"
+tr_name = "BUILDING_ITALIAN_RESTAURANT"
 id = 2
 thumb = ExtResource("2_aac0r")
 building_menu = 1

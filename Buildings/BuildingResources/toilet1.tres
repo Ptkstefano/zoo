@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("3_6l82a")
 name = "Toilet"
+tr_name = "BUILDING_TOILET_1"
 id = 1
 thumb = ExtResource("4_5ol6i")
 building_menu = 2

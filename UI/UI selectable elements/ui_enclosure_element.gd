@@ -10,7 +10,7 @@ signal enclosure_selected
 func _ready() -> void:
 	if enclosure_res:
 		%Button.pressed.connect(on_enclosure_selected)
-		%FenceName.text = enclosure_res.name
+		%FenceName.text = tr(enclosure_res.tr_name)
 		%Thumbnail.texture = enclosure_res.thumb
 		%FenceCost.text = Helpers.money_text(enclosure_res.segment_cost)
 	

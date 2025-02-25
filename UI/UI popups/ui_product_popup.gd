@@ -11,7 +11,7 @@ signal remove_product
 signal auto_replenish
 
 func _ready():
-	%Title.text = product_name
+	%Title.text = tr(product_name)
 	#%Thumbnail.texture = thumbnail
 
 	%Close.pressed.connect(queue_free)

@@ -110,13 +110,13 @@ layout_mode = 2
 size_flags_vertical = 3
 current_tab = 5
 
-[node name="Management" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+[node name="UI_MGMT_MANAGEMENT" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 10
 metadata/_tab_index = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -124,55 +124,55 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT/MarginContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management/MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management/MarginContainer/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT/MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Zoo entrance open"
+text = "UI_MGMT_ENTRANCE_OPEN"
 horizontal_alignment = 1
 
-[node name="ZooOpenCheckbox" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="ZooOpenCheckbox" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme = ExtResource("7_qr7ui")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
-text = "Entrance price"
+text = "UI_MGMT_ENTRANCE_PRICE"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="Minus" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+[node name="Minus" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
@@ -180,13 +180,13 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 24
 text = "-"
 
-[node name="VSeparator2" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_8v1n8")
 
-[node name="Price" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+[node name="Price" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
@@ -194,13 +194,13 @@ theme_override_fonts/font = ExtResource("8_n8ash")
 text = "10.00"
 vertical_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_uafkp")
 
-[node name="Plus" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+[node name="Plus" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
@@ -209,19 +209,19 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 24
 text = "+"
 
-[node name="VSeparator3" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Management/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
+[node name="VSeparator3" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_MANAGEMENT/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_uafkp")
 
-[node name="Reviews" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+[node name="UI_MGMT_REVIEWS" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 10
 metadata/_tab_index = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Reviews"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_REVIEWS"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -229,75 +229,75 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Reviews/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_REVIEWS/MarginContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Reviews/MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_REVIEWS/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_f32gp")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Reviews/MarginContainer/VBoxContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_REVIEWS/MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Reviews/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_REVIEWS/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 52
-text = "Social Media Rating"
+text = "UI_MGMT_SOCIAL_MEDIA_RATING"
 horizontal_alignment = 1
 
-[node name="UI_ReputationStars" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Reviews/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="UI_ReputationStars" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_REVIEWS/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="LevelStar" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Reviews/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/UI_ReputationStars" instance=ExtResource("6_tgrxr")]
+[node name="LevelStar" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_REVIEWS/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/UI_ReputationStars" instance=ExtResource("6_tgrxr")]
 custom_minimum_size = Vector2(76, 72)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="LevelStar2" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Reviews/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/UI_ReputationStars" instance=ExtResource("6_tgrxr")]
+[node name="LevelStar2" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_REVIEWS/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/UI_ReputationStars" instance=ExtResource("6_tgrxr")]
 custom_minimum_size = Vector2(76, 72)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="LevelStar3" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Reviews/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/UI_ReputationStars" instance=ExtResource("6_tgrxr")]
+[node name="LevelStar3" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_REVIEWS/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/UI_ReputationStars" instance=ExtResource("6_tgrxr")]
 custom_minimum_size = Vector2(76, 72)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="LevelStar4" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Reviews/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/UI_ReputationStars" instance=ExtResource("6_tgrxr")]
+[node name="LevelStar4" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_REVIEWS/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/UI_ReputationStars" instance=ExtResource("6_tgrxr")]
 custom_minimum_size = Vector2(76, 72)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="LevelStar5" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Reviews/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/UI_ReputationStars" instance=ExtResource("6_tgrxr")]
+[node name="LevelStar5" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_REVIEWS/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/UI_ReputationStars" instance=ExtResource("6_tgrxr")]
 custom_minimum_size = Vector2(76, 72)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Reviews/MarginContainer/VBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_REVIEWS/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VScrollBar" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Reviews/MarginContainer/VBoxContainer/PanelContainer2"]
+[node name="VScrollBar" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_REVIEWS/MarginContainer/VBoxContainer/PanelContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="ReviewContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Reviews/MarginContainer/VBoxContainer/PanelContainer2/VScrollBar"]
+[node name="ReviewContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_REVIEWS/MarginContainer/VBoxContainer/PanelContainer2/VScrollBar"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Finance" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+[node name="UI_MGMT_FINANCE" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 10
 metadata/_tab_index = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -305,15 +305,15 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SecondLastMonth" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer"]
+[node name="SecondLastMonth" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -322,77 +322,77 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="SecondLastMonthContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth"]
+[node name="SecondLastMonthContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.67069, 0.67069, 0.67069, 1)
-text = "2 months ago"
+text = "UI_MGMT_2_MONTH_AGO"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="IncomeTab" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="IncomeTab" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.453267, 0.706234, 0.400476, 1)
-text = "Income"
+text = "UI_MGMT_INCOME"
 
-[node name="IncomeEntries" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
+[node name="IncomeEntries" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
 layout_mode = 2
 
-[node name="ExpenditureTab" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="ExpenditureTab" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.848114, 0.168769, 0.221077, 1)
-text = "Expenditures"
+text = "UI_MGMT_EXPENDITURES"
 horizontal_alignment = 1
 
-[node name="ExpenditureEntries" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
+[node name="ExpenditureEntries" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
 layout_mode = 2
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/VBoxContainer3"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/VBoxContainer3"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Total"
+text = "UI_MGMT_TOTAL"
 
-[node name="TotalValue" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/VBoxContainer3"]
+[node name="TotalValue" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/SecondLastMonth/SecondLastMonthContainer/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "$123,00"
 
-[node name="LastMonth" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer"]
+[node name="LastMonth" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -401,77 +401,77 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="LastMonthContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/LastMonth"]
+[node name="LastMonthContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/LastMonth"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.67069, 0.67069, 0.67069, 1)
-text = "1 month ago"
+text = "UI_MGMT_1_MONTH_AGO"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="IncomeTab" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="IncomeTab" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.453267, 0.706234, 0.400476, 1)
-text = "Income"
+text = "UI_MGMT_INCOME"
 
-[node name="IncomeEntries" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
+[node name="IncomeEntries" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
 layout_mode = 2
 
-[node name="ExpenditureTab" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="ExpenditureTab" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.848114, 0.168769, 0.221077, 1)
-text = "Expenditures"
+text = "UI_MGMT_EXPENDITURES"
 horizontal_alignment = 1
 
-[node name="ExpenditureEntries" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
+[node name="ExpenditureEntries" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
 layout_mode = 2
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Total"
+text = "UI_MGMT_TOTAL"
 
-[node name="TotalValue" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
+[node name="TotalValue" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/LastMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "$123,00"
 
-[node name="CurrentMonth" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer"]
+[node name="CurrentMonth" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -480,107 +480,107 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth"]
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer"]
 layout_mode = 2
-text = "Current Month"
+text = "UI_MGMT_CURRENT_MONTH"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer"]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="IncomeTab" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="IncomeTab" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.453267, 0.706234, 0.400476, 1)
-text = "Income"
+text = "UI_MGMT_INCOME"
 
-[node name="IncomeEntries" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
+[node name="IncomeEntries" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
 layout_mode = 2
 
-[node name="IncomeEntry" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab/IncomeEntries"]
+[node name="IncomeEntry" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab/IncomeEntries"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab/IncomeEntries/IncomeEntry"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab/IncomeEntries/IncomeEntry"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Entrance"
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab/IncomeEntries/IncomeEntry"]
+[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab/IncomeEntries/IncomeEntry"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "200"
 
-[node name="ExpenditureTab" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="ExpenditureTab" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.848114, 0.168769, 0.221077, 1)
-text = "Expenditures"
+text = "UI_MGMT_EXPENDITURES"
 horizontal_alignment = 1
 
-[node name="ExpenditureEntries" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
+[node name="ExpenditureEntries" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
 layout_mode = 2
 
-[node name="ExpenditureEntry" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab/ExpenditureEntries"]
+[node name="ExpenditureEntry" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab/ExpenditureEntries"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab/ExpenditureEntries/ExpenditureEntry"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab/ExpenditureEntries/ExpenditureEntry"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Entrance"
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab/ExpenditureEntries/ExpenditureEntry"]
+[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab/ExpenditureEntries/ExpenditureEntry"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "200"
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/VBoxContainer3"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/VBoxContainer3"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Total"
+text = "UI_MGMT_TOTAL"
 
-[node name="TotalValue" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Finance/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/VBoxContainer3"]
+[node name="TotalValue" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_FINANCE/MarginContainer/ScrollContainer/HBoxContainer/CurrentMonth/PanelContainer3/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "$123,00"
 
-[node name="Enclosure List" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+[node name="UI_MGMT_ENCLOSURE_LIST" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 10
 metadata/_tab_index = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Enclosure List"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_ENCLOSURE_LIST"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -588,22 +588,22 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Enclosure List/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_ENCLOSURE_LIST/MarginContainer"]
 layout_mode = 2
 
-[node name="EnclosureListContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Enclosure List/MarginContainer/ScrollContainer"]
+[node name="EnclosureListContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_ENCLOSURE_LIST/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Staff List" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+[node name="UI_MGMT_STAFF_LIST" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 10
 metadata/_tab_index = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Staff List"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_STAFF_LIST"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -611,51 +611,51 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Staff List/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_STAFF_LIST/MarginContainer"]
 layout_mode = 2
 
-[node name="StaffZookeeperContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Staff List/MarginContainer/ScrollContainer"]
+[node name="StaffZookeeperContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_STAFF_LIST/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PanelContainer" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Staff List/MarginContainer/ScrollContainer/StaffZookeeperContainer"]
+[node name="PanelContainer" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_STAFF_LIST/MarginContainer/ScrollContainer/StaffZookeeperContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 toggle_mode = true
 text = "Zookeepers"
 
-[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Staff List/MarginContainer/ScrollContainer/StaffZookeeperContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_STAFF_LIST/MarginContainer/ScrollContainer/StaffZookeeperContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_s63b8")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Staff List/MarginContainer/ScrollContainer/StaffZookeeperContainer/PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_STAFF_LIST/MarginContainer/ScrollContainer/StaffZookeeperContainer/PanelContainer2"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Staff List/MarginContainer/ScrollContainer/StaffZookeeperContainer/PanelContainer2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_STAFF_LIST/MarginContainer/ScrollContainer/StaffZookeeperContainer/PanelContainer2/MarginContainer"]
 layout_mode = 2
 
-[node name="HireZookeeperButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Staff List/MarginContainer/ScrollContainer/StaffZookeeperContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="HireZookeeperButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_STAFF_LIST/MarginContainer/ScrollContainer/StaffZookeeperContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme = ExtResource("13_in2ri")
 text = "Hire new Zookeeper"
 
-[node name="ZookeeperContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Staff List/MarginContainer/ScrollContainer/StaffZookeeperContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="ZookeeperContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_STAFF_LIST/MarginContainer/ScrollContainer/StaffZookeeperContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Research" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+[node name="UI_MGMT_RESEARCH" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 metadata/_tab_index = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Research"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_RESEARCH"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -663,21 +663,30 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Research/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_RESEARCH/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 35
 
-[node name="ResearchDebugInfo" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Research/MarginContainer/VBoxContainer"]
+[node name="ResearchDebugInfo" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_RESEARCH/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Research/MarginContainer/VBoxContainer"]
+[node name="BoostResearch" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_RESEARCH/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 10
+disabled = true
+text = "Boost research
+$1000.00"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_RESEARCH/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_right = 50
 
-[node name="CollectResearchButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Research/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="CollectResearchButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_RESEARCH/MarginContainer/VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
@@ -685,17 +694,17 @@ size_flags_vertical = 10
 disabled = true
 text = "Collect research"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Research/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_RESEARCH/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Research/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_RESEARCH/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 text = "Research progress"
 horizontal_alignment = 1
 
-[node name="ResearchProgressBar" type="ProgressBar" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Research/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="ResearchProgressBar" type="ProgressBar" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_MGMT_RESEARCH/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(190, 50)
 layout_mode = 2

@@ -10,7 +10,7 @@ signal shelter_selected
 func _ready() -> void:
 	if shelter_res:
 		$PanelContainer/Button.pressed.connect(on_shelter_selected)
-		%BuildingName.text = shelter_res.name
+		%BuildingName.text = tr(shelter_res.tr_name)
 		%Thumbnail.texture = shelter_res.thumb
 	
 func on_shelter_selected():

@@ -47,6 +47,108 @@ UI_ANIMAL_INFO_MINIMUM_ENCLOSURE_SIZE,Minimum ,No mínimo
 UI_ANIMAL_INFO_CELLS,cells,quadros
 UI_ANIMAL_INFO_PER_ANIMAL,per animal,por animal
 ,,
+UI_ENCLOSURE_INFO,Enclosure info,Informações
+UI_ENCLOSURE_ANIMAL_LIST,Animal list,Lista de animais
+UI_ENCLOSURE_ACTIONS,Actions,Ações
+UI_ENCLOSURE_REQUEST_KEEPER,Request zookeeper's visit,Requisitar visita de tratador
+UI_ENCLOSURE_ANIMAL_AGE,Age: ,Idade: 
+UI_ENCLOSURE_RELEASE,Release animal,Devolver animal
+,,
+UI_SHOP_PRODUCTS,Products,Produtos
+UI_SHOP_STATS,Stats,Dados
+UI_SHOP_THOUGHTS,Thoughts,Opiniões
+UI_SHOP_ADD_PRODUCT,Add product,Adicionar produto
+UI_SHOP_AVAILABLE_PRODUCTS,Available products,Produtos disponíveis
+UI_SHOP_1_MONTH_AGO,Last month,Mês anterior
+UI_SHOP_CURRENT_MONTH,Current month,Mês atual
+UI_SHOP_LIFETIME,Lifetime,Total
+UI_SHOP_INCOME,Income,Renda
+UI_SHOP_EXPENDITURES,Expenditures,Despesas
+UI_SHOP_TOTAL,Total,Total
+,,
+UI_PRODUCT_MAINTENANCE,Monthly maintenance:,Custo mensal: 
+UI_PRODUCT_STOCK_COST,Stock unit cost:,Custo unitário de estoque: 
+UI_PRODUCT_AUTO_REPLENISH,Auto replenish: ,Repor automaticamente: 
+UI_PRODUCT_REMOVE PRODUCT,Remove product,Remover produto
+UI_PRODUCT_REPLENISH,Replenish,Repor
+UI_PRODUCT_LAST_MONTH,Last month,Mês anterior
+UI_PRODUCT_CURRENT_MONTH,Current month,Mês atuial
+UI_PRODUCT_LIFETIME,Lifetime,Total
+UI_PRODUCT_UNITS_SOLD,Units sold: ,Unidades vendidas
+UI_PRODUCT_REVENUE,Revenue: ,Renda
+UI_PRODUCT_EXPENDITURES,Expenditures:,Despesas
+UI_PRODUCT_TOTAL,Total:,Total
+,,
+,,
+,,
+UI_INFO_CONT_BULLDOZING_SCENERY,Bulldozing scenery,Removendo cenário
+UI_INFO_CONT_BULLDOZING_SCENERY_TREES,Trees: ,Árvores: 
+UI_INFO_CONT_BULLDOZING_SCENERY_VEGETATION,Vegetation: ,Vegetação: 
+UI_INFO_CONT_BULLDOZING_SCENERY_FIXTURES,Fixtures: ,Utilitários: 
+UI_INFO_CONT_BULLDOZING_SCENERY_ROCKS,Rocks: ,Pedras: 
+UI_INFO_CONT_BULLDOZING_SCENERY_DECORATION,Decoration: ,Decorações: 
+UI_INFO_CONT_PATH_BUILDING,Building paths,Construindo calçadas
+UI_INFO_CONT_PATH_REMOVING,Removing paths,Removendo calçadas
+UI_INFO_CONT_ENCLOSURE_BUILDING,Building enclosure,Construindo recinto
+UI_INFO_CONT_ENCLOSURE_REMOVING,Removing enclosure,Removendo recinto
+UI_INFO_CONT_SHELTER_BUILDING,Placing shelter,Posicionando abrigo
+UI_INFO_CONT_SHELTER_REMOVING,Removing shelter,Removendo abrigo
+UI_INFO_CONT_ANIMAL_PLACING,Buying animal,Comprando animal
+UI_INFO_CONT_SCENERY_PLACING,Placing scenery,Posicionando cenário
+UI_INFO_CONT_VEGETATION_PLACING,Placing vegetation,Posicionando vegetação
+UI_INFO_CONT_VEGETATION_BRUSH,Vegetation brush: ,Pincel de vegetação: 
+UI_INFO_CONT_FIXTURE_PLACING,Placing fixture,Posicionando utilidade
+UI_INFO_CONT_FIXTURE_FREE_PLACING,Place freely: ,Posicionar livremente: 
+UI_INFO_CONT_TERRAIN_PAINTING,Painting terrain,Pintando terreno
+UI_INFO_CONT_BUILDING_PLACING,Placing building,Posicionando construção
+UI_INFO_CONT_LAKE_PLACING,Creating lake,Criando lago
+UI_INFO_CONT_LAKE_REMOVING,Removing lakes,Removendo lagos
+,,
+UI_BUTTON_REMOVE_SCENERY,Remove scenery,Remover cenário
+UI_BUTTON_REMOVE_PATHS,Bulldoze paths,Remover calçadas
+UI_BUTTON_REMOVE_ENCLOSURE,Remove enclosure fences,Remover recinto
+UI_BUTTON_REMOVE_LAKES,Remove lakes,Remover lagos
+,,
+UI_PRODUCT_ELEMENT_STOCK_COST,Stock cost: ,Custo unitário: 
+UI_PRODUCT_ELEMENT_SELL_PRICE,Sell price: ,Preço de venda: 
+UI_PRODUCT_ELEMENT_MAINTENANCE,Maintenance: ,Custo mensal: 
+,,
+,,
+,,
+UI_MGMT_MANAGEMENT,Management,Gerência
+UI_MGMT_REVIEWS,Reviews,Avaliações
+UI_MGMT_FINANCE,Finance,Finanças
+UI_MGMT_ENCLOSURE_LIST,Enclosure list,Recintos
+UI_MGMT_STAFF_LIST,Staff list,Funcionários
+UI_MGMT_RESEARCH,Research,Pesquisa
+UI_MGMT_ENTRANCE_OPEN,Zoo entrance open,Entrada do zoológico
+UI_MGMT_ENTRANCE_PRICE,Entrance price,Preço da entrada
+UI_MGMT_SOCIAL_MEDIA_RATING,Social media rating,Pontuação nas redes sociais
+UI_MGMT_1_MONTH_AGO,1 month ago,1 mês atrás
+UI_MGMT_2_MONTH_AGO,2 months ago,2 meses atrás
+UI_MGMT_CURRENT_MONTH,current month,mês atual
+UI_MGMT_INCOME,Income,Rendas
+UI_MGMT_EXPENDITURES,Expenditures,Despesas
+UI_MGMT_TOTAL,Total,Total
+UI_MGMT_ZOOKEEPERS,Zookeepers,Tratadores
+UI_MGMT_ANIMAL_COUNT,Number of animals: ,Número de animais: 
+UI_MGMT_ANIMAL_SPECIES,Species,Espécie: 
+UI_MGMT_ENCLOSURE_COUNT,Enclosure #,Recinto #
+UI_MGMT_EXPECTING_ZOOKEEPER,Enclosure awaiting zookeeper visit,Recinto esperando visita do tratador
+,,
+YEAR,Year,Ano
+JAN,Jan,Janeiro
+FEB,Feb,Fevereiro
+MAR,Mar,Março
+APR,Apr,Abril
+MAY,May,Maio
+JUN,Jun,Junho
+JUL,Jul,Julho
+AUG,Aug,Agosto
+SEP,Sep,Setembro
+OCT,Oct,Outubro
+NOV,Nov,Novembro
+DEC,Dec,Dezembro
 ,,
 MINIMAL,Minimal,Mínimo
 LOW,Low,Pouco
@@ -65,6 +167,27 @@ SOUNDSCAPE,Soundscape,Sons ambientes
 MUSIC,Music,Música
 MUTE,Mute,Mudo
 MASTER,Master,Master
+ENCLOSURE,Enclosure,Recinto
+CONFIRM,Confirm,Confirmar
+CANCEL,Cancel,Cancelar
+,,
+PATHS_CEMENT,Cement path,Calçada de cimento
+PATHS_BRICKS,Brick path,Calçada de tijolos
+,,
+FENCES_LOW,Low fence,Cerca baixa
+FENCES_CORRAL,Corral,Curral
+FENCES_CONCRETE,Concrete fence,Cerca de concreto
+FENCES_STEEL,Steel fence,Cerca de aço
+,,
+SHELTER_SMALL_WOODEN,Wooden shelter,Abrigo de madeira
+SHELTER_TALL_CONCRETE,Tall shelter,Abrigo alto
+,,
+LAKE_SANDY,Sandy lake,Lago arenoso
+,,
+BUILDING_ICE_CREAM,Ice-cream parlor,Sorveteria
+BUILDING_ITALIAN_RESTAURANT,Pasta restaurant,Restaurante de massas
+BUILDING_ZOOKEEPER_STATION,Zookeeper's Station,Estação do tratador
+BUILDING_TOILET_1,Toilet,Banheiro
 ,,
 TREE_LIMBER_PINE,Limber Pine,Pinheiro-flexível
 TREE_PALM,Palm Tree,Palmeira
@@ -147,12 +270,24 @@ THOUGHT_SEEN_FEW_ANIMALS,We saw too few animals for a zoo trip,Vimos muito pouco
 THOUGHT_SAW_DEAD_ANIMAL,We saw a dead animal,Vimos um animal morto
 THOUGHT_ENTRANCE_TOO_EXPENSIVE,The entrance was too expensive,A entrada estava muito cara
 ,,
+PAYMENT_ADD_ENTRANCE,Entrance,Entradas
+PAYMENT_ADD_FOOD,Concessions - Food products,Vendas - Comida
+PAYMENT_ADD_DONATION,Donations,Doações
 ,,
+PAYMENT_REMOVE_SHOP_MAINTENANCE,Shop maintenance,Manutenção de comércio
+PAYMENT_REMOVE_FACILITY_MAINTENANCE,Service maintenance,Manutenção de serviços
+PAYMENT_REMOVE_PRODUCT_MAINTENANCE,Product maintenance,Manutenção de produtos
+PAYMENT_REMOVE_CONSTRUCTION,Construction,Construção
+PAYMENT_REMOVE_RESTOCK,Product restock,Estoque de produtos
+PAYMENT_REMOVE_FEED,Animal feed,Alimentação animal
+PAYMENT_REMOVE_SALARY,Staff salary,Salários
+PAYMENT_RESEARCH_BOOST,Research boosts,Bônus para pesquisa
 ,,
-,,
-,,
-,,
-,,
-,,
+PRODUTS_BROWNIE_SUNDAE,Brownie Sundae,Petit gateau
+PRODUCTS_ICE_CREAM_CONE,Ice-cream Cone,Casquinha
+PRODUCTS_MILK_SHAKE,Milk-Shake,Milk-shake
+PRODUCTS_PASTA_PESTO,Pesto Pasta,Pasta ao pesto
+PRODUCTS_PASTA_BOLOGNESE,Bolognese Pasta,Pasta bolonhesa
+PRODUCTS_PASTA_SHRIMP,Shrimp Pasta with Squid-Ink,Pasta de camarão à tinta de lula
 ,,
 ,,

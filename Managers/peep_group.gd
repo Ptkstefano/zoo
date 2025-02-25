@@ -524,6 +524,10 @@ func buy_food():
 				spent_money += amount
 				add_thought(ThoughtManager.PEEP_THOUGHTS.ATE_AT_RESTAURANT)
 				if available_items[best_item_id].utility_score > 1.5:
+					if !is_instance_valid(target_building):
+						print('WHAT IS CAUSING THIS BUG?')
+						change_state(group_states.STOPPED)
+						return
 					target_building.add_peep_modifier(ThoughtManager.PEEP_THOUGHTS.GREAT_VALUE_FOOD)
 					add_thought(ThoughtManager.PEEP_THOUGHTS.GREAT_VALUE_FOOD)
 					money_bubble(amount)

@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_gjo0j")
 name = "Zookeeper's Station"
+tr_name = "BUILDING_ZOOKEEPER_STATION"
 id = 3
 thumb = ExtResource("2_ik8h3")
 building_menu = 3

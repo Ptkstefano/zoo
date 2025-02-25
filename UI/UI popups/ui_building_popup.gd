@@ -6,9 +6,9 @@ signal popup_closed
 
 func _ready() -> void:
 	if building_node is Shelter:
-		%BuildingName.text = building_node.shelter_res.name
+		%BuildingName.text = tr(building_node.shelter_res.tr_name)
 	else:
-		%BuildingName.text = building_node.building_res.name
+		%BuildingName.text = tr(building_node.building_res.tr_name)
 	%CloseButton.pressed.connect(on_popup_closed)
 	%DeleteButton.pressed.connect(on_remove_building)
 	

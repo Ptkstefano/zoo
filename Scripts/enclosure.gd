@@ -45,6 +45,7 @@ signal create_sibling_enclosure
 signal enclosure_stats_updated
 signal enclosure_removed
 signal enclosure_area_changed
+signal entrance_changed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -133,6 +134,7 @@ func place_entrance(cell : Vector2i):
 		entrance_cell = new_entrance
 		entrance_door_cell = cell
 		SignalBus.tooltip.emit(tr('TOOLTIP_ENCLOSURE_ENTRANCE_PLACED'), TileMapRef.map_to_local(cell))
+		entrance_changed.emit()
 		
 	#feed_position = TileMapRef.map_to_local(Vector2(entrance_door_cell.x, entrance_door_cell.y + 1))
 	ZooManager.update_zoo_enclosure(self)
@@ -420,5 +422,9 @@ func generate_sight_cells():
 	
 func add_dead_animal(animal):
 	dead_animals.append(animal)
-	enclosure_animals.erase(animal)
+	#enclosure_animals.erase(animal)
 	add_to_work_queue()
+
+func remove_dead_animal(animal):
+	dead_animals.erase(animal)
+	enclosure_animals.erase(animal)

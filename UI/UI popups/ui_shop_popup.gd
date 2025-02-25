@@ -18,7 +18,7 @@ signal popup_closed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	%ShopName.text = shop_node.building_res.name
+	%ShopName.text = tr(shop_node.building_res.tr_name)
 	shop_node.stats_updated.connect(update_stats)
 	%CloseButton.pressed.connect(on_popup_closed)
 	%AddProductButton.pressed.connect(open_product_menu)
@@ -79,7 +79,7 @@ func generate_stats_tab():
 		var id = modifiers[modifiers.size() - i - 1]
 		if !id:
 			return
-		var description = ThoughtManager.peep_thoughts[id].description
+		var description = tr(ThoughtManager.peep_thoughts[id].description)
 		var element = Label.new()
 		element.text = description
 		%ShopModifierList.add_child(element)
@@ -92,7 +92,7 @@ func generate_products_tab():
 	for id in shop_node.available_products:
 		var product = shop_node.available_products[id]
 		var element = product_element.instantiate()
-		element.product_name = product.product.name
+		element.product_name = product.product.tr_name
 		element.price = product.current_price
 		element.id = product.product.id
 		element.auto_restock = product.auto_restock
@@ -148,7 +148,7 @@ func generate_debug_tab():
 	
 	for key in ContentManager.products.keys():
 		var product_label = Label.new()
-		product_label.text = str(ContentManager.products[key].name)
+		product_label.text = tr(str(ContentManager.products[key].tr_name))
 		%DebugContainer.add_child(product_label)
 	
 

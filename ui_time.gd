@@ -2,7 +2,7 @@ extends PanelContainer
 
 var max_value
 
-var month_names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+var month_names = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
 func _ready() -> void:
 	max_value = TimeManager.default_month_time
@@ -15,4 +15,4 @@ func _process(delta: float) -> void:
 	%TimeProgressBar.value = max_value - TimeManager.month_timer.time_left
 
 func on_month_pass():
-	%TimeLabel.text = month_names[TimeManager.current_month - 1] +', year ' + str(TimeManager.current_year)
+	%TimeLabel.text = tr(month_names[TimeManager.current_month - 1]) +', ' + tr('YEAR') + ' ' + str(TimeManager.current_year)

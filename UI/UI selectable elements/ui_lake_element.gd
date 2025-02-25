@@ -10,7 +10,7 @@ signal lake_selected
 func _ready() -> void:
 	if lake_res:
 		%Button.pressed.connect(on_terrain_selected)
-		%TerrainName.text = lake_res.name
+		%TerrainName.text = tr(lake_res.tr_name)
 		%Thumbnail.texture = lake_res.thumbnail
 	
 func on_terrain_selected():

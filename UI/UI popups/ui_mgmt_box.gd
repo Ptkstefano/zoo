@@ -41,6 +41,7 @@ func _ready():
 	else:
 		%CollectResearchButton.disabled = true
 	%CollectResearchButton.pressed.connect(on_unlock_research)
+	%BoostResearch.pressed.connect(on_boost_research)
 	%ResearchProgressBar.value = ResearchManager.current_research_progress
 	%ResearchDebugInfo.text = str(ResearchManager.last_research)
 	
@@ -92,7 +93,7 @@ func generate_finance_month_element(element, financial_data):
 	for key in financial_data['income']:
 		var entry = HBoxContainer.new()
 		var type_label = Label.new()
-		type_label.text = str(key)
+		type_label.text = tr(FinanceManager.add_text[int(key)])
 		var value_label = Label.new()
 		value_label.size_flags_horizontal = Control.SIZE_EXPAND | Control.SIZE_SHRINK_END
 		value_label.text = str(financial_data['income'][key])
@@ -103,7 +104,7 @@ func generate_finance_month_element(element, financial_data):
 	for key in financial_data['expenditures']:
 		var entry = HBoxContainer.new()
 		var type_label = Label.new()
-		type_label.text = str(key)
+		type_label.text = tr(FinanceManager.remove_text[int(key)])
 		var value_label = Label.new()
 		value_label.size_flags_horizontal = Control.SIZE_EXPAND | Control.SIZE_SHRINK_END
 		value_label.text = str(financial_data['expenditures'][key])
@@ -168,3 +169,6 @@ func on_unlock_research():
 	ResearchManager.new_research_unlocked()
 	%CollectResearchButton.disabled = true
 	%ResearchDebugInfo.text = str(ResearchManager.last_research)
+
+func on_boost_research():
+	ResearchManager.boost_research()

@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_vj8uj")
-name = "Small wooden shelter"
+tr_name = "SHELTER_SMALL_WOODEN"
 size = Vector2i(2, 2)
 shelter_scene = ExtResource("2_dhj5k")
 z_offset = 0

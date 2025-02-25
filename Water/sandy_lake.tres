@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_owv5q")
-name = "Sandy lake"
+tr_name = "LAKE_SANDY"
 texture = ExtResource("2_r8flc")
 metadata/_custom_type_script = ExtResource("1_owv5q")

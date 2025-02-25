@@ -21,7 +21,7 @@ func on_hire_staff(staff_type):
 func spawn_staff(staff_type : IdRefs.STAFF_TYPES, data):
 	var staff = staff_scene.instantiate() as Staff
 	staff.staff_type = staff_type
-	staff.global_position = Vector2(-1270, 655)
+	staff.global_position = Vector2(-1470, 768)
 	if !data:
 		staff.id = ZooManager.generate_staff_id()
 	else:
@@ -34,7 +34,7 @@ func spawn_staff(staff_type : IdRefs.STAFF_TYPES, data):
 		staff.add_child(behavior_node)
 	if staff_type == IdRefs.STAFF_TYPES.ZOOKEEPER:
 		staff.set_sprite(keeper_sprite)
-		staff.salary = 1200
+		staff.salary = 1500
 		var behavior_node = keeper_behavior.instantiate()
 		staff.staff_behavior = behavior_node
 		staff.add_child(behavior_node)

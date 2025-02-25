@@ -12,7 +12,7 @@ func _ready() -> void:
 	if path_res:
 		type = path_res.type
 		%Button.pressed.connect(on_path_selected)
-		%PathName.text = path_res.name
+		%PathName.text = tr(path_res.tr_name)
 		%Thumbnail.texture = path_res.thumb
 		%PathCost.text = Helpers.money_text(path_res.cost)
 	
