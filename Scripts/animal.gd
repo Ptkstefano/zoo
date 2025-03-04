@@ -94,6 +94,7 @@ var is_looking_for_mate : bool = false
 var months_of_life : int
 var months_in_zoo : int = 0
 var is_dead : bool = false
+var months_dead : int = 0
 var is_inside_shelter : bool = false
 
 var sprite_x_size : int
@@ -567,8 +568,12 @@ func check_if_wants_to_mate():
 		is_looking_for_mate = false
 
 func on_month_pass():
-	months_of_life += 1
 	months_in_zoo += 1
+	
+	if is_dead:
+		months_dead += 1
+	else:
+		months_of_life += 1
 	
 	if months_of_life > animal_res.months_of_expected_lifetime:
 		if randi_range(0,100) > 70:

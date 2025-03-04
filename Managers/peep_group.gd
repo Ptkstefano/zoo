@@ -391,8 +391,9 @@ func on_detector_area_entered(area):
 	if area.get_parent() is Animal:
 		var animal = area.get_parent() as Animal
 		if animal.is_dead:
-			if ThoughtManager.PEEP_THOUGHTS.SAW_DEAD_ANIMAL not in thoughts:
-				add_thought(ThoughtManager.PEEP_THOUGHTS.SAW_DEAD_ANIMAL)
+			if animal.months_dead > 3:
+				if ThoughtManager.PEEP_THOUGHTS.SAW_DEAD_ANIMAL not in thoughts:
+					add_thought(ThoughtManager.PEEP_THOUGHTS.SAW_DEAD_ANIMAL)
 		if animal.animal_species not in observed_animals:
 			observed_animals.append(animal.animal_species)
 			change_state(group_states.OBSERVING)
@@ -522,6 +523,7 @@ func buy_food():
 				visible = true
 				change_state(group_states.STOPPED)
 				spent_money += amount
+				money_bubble(amount)
 				add_thought(ThoughtManager.PEEP_THOUGHTS.ATE_AT_RESTAURANT)
 				if available_items[best_item_id].utility_score > 1.5:
 					if !is_instance_valid(target_building):
@@ -530,7 +532,6 @@ func buy_food():
 						return
 					target_building.add_peep_modifier(ThoughtManager.PEEP_THOUGHTS.GREAT_VALUE_FOOD)
 					add_thought(ThoughtManager.PEEP_THOUGHTS.GREAT_VALUE_FOOD)
-					money_bubble(amount)
 				#for peep in peeps:
 					#SignalBus.money_tooltip.emit(amount, true, peep.global_position)
 					

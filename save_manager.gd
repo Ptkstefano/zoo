@@ -11,7 +11,6 @@ var TerrainWangN
 
 var enclosure_list = []
 var animal_list = []
-var animal_data = {}
 var scenery_list = []
 var fixture_list = []
 var peepGroupList = []
@@ -142,12 +141,11 @@ func save_game():
 	save_data['enclosureData'] = enclosure_data
 	
 	## Save animal data
-	i = 1
+	var animal_data = {}
 	for animal in animal_list:
 		if is_instance_valid(animal):
-			animal_data[i] = get_animal_data(animal).duplicate(true)
-			i += 1
-
+			animal_data[animal.id] = get_animal_data(animal).duplicate(true)
+			
 	save_data['animalData'] = animal_data
 	
 	## Save scenery data

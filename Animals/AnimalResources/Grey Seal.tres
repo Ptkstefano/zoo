@@ -22,12 +22,12 @@ percentage_of_will_to_mate = 5
 months_to_adulthood = 60
 months_of_expected_lifetime = 840
 terrain_preference = Dictionary[int, float]({
-2: 5.0,
-4: 75.0
+1: 20.0,
+2: 5.0
 })
 terrain_dislike = Array[int]([])
 needs_water = true
-minimum_habitat_size = 20
+minimum_habitat_size = 35
 minimum_cells_per_animal = 5
 minimum_vegetation_coverage = 0.25
 maximum_vegetation_coverage = 2.0

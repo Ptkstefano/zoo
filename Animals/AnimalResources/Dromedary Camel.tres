@@ -30,8 +30,8 @@ terrain_preference = Dictionary[int, float]({
 })
 terrain_dislike = Array[int]([3])
 needs_water = false
-minimum_habitat_size = 60
-minimum_cells_per_animal = 10
+minimum_habitat_size = 50
+minimum_cells_per_animal = 20
 minimum_vegetation_coverage = 0.05
 maximum_vegetation_coverage = 0.25
 minimum_herd_size = 2

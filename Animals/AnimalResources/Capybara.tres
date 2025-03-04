@@ -8,7 +8,7 @@
 [resource]
 script = ExtResource("1_ob3tf")
 tr_name = "ANIMAL_CAPYBARA"
-species_id = 0
+id = 0
 cost = 75.0
 texture = ExtResource("2_uytuh")
 cub_texture = ExtResource("1_81kna")
@@ -32,7 +32,7 @@ terrain_preference = Dictionary[int, float]({
 terrain_dislike = Array[int]([3, 4])
 needs_water = true
 minimum_habitat_size = 50
-minimum_cells_per_animal = 10
+minimum_cells_per_animal = 5
 minimum_vegetation_coverage = 0.3
 maximum_vegetation_coverage = 3.0
 minimum_herd_size = 5

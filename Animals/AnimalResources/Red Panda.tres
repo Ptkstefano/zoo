@@ -25,11 +25,13 @@ months_of_pregnancy = 4
 percentage_of_will_to_mate = 5
 months_to_adulthood = 20
 months_of_expected_lifetime = 252
-terrain_preference = Dictionary[int, float]({})
-terrain_dislike = Array[int]([])
+terrain_preference = Dictionary[int, float]({
+3: 35.0
+})
+terrain_dislike = Array[int]([4])
 needs_water = false
 minimum_habitat_size = 50
-minimum_cells_per_animal = 25
+minimum_cells_per_animal = 15
 minimum_vegetation_coverage = 0.35
 maximum_vegetation_coverage = 2.0
 minimum_herd_size = 1

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3 uid="uid://clxjuypu08aao"]
+
+[ext_resource type="Script" uid="uid://c71imi8yyxjv5" path="res://Quests/quest_res.gd" id="1_ded37"]
+
+[resource]
+script = ExtResource("1_ded37")
+quest_id = 1
+title = "Tutorial: Pathing"
+introduction_dialogue = Array[String](["QUEST_01_INTRO_01", "QUEST_01_INTRO_02", "QUEST_01_INTRO_03"])
+closure_dialogue = Array[String](["QUEST_01_CLOSE_01"])
+objective = Dictionary[int, int]({})
+rewards = Dictionary[int, int]({})
+prerequisites = []
+metadata/_custom_type_script = ExtResource("1_ded37")

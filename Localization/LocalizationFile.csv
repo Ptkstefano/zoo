@@ -47,6 +47,25 @@ UI_ANIMAL_INFO_MINIMUM_ENCLOSURE_SIZE,Minimum ,No mínimo
 UI_ANIMAL_INFO_CELLS,cells,quadros
 UI_ANIMAL_INFO_PER_ANIMAL,per animal,por animal
 ,,
+UI_PEEPGROUP_GROUP_INFO,Group info,Informações
+UI_PEEPGROUP_ANIMAL_SIGHTINGS,Animal Sightings,Avistamentos de animais
+UI_PEEPGROUP_BUDGET,Budget,Orçamento
+UI_PEEPGROUP_THOUGHTS,Thoughts,Pensamentos
+UI_PEEPGROUP_PEEP_COUNT,Peeps in group: ,Pessoas no grupo: 
+UI_PEEPGROUP_MIN_PROD_LEVEL,Minimum product level:,Nível mínimo de produto: 
+UI_PEEPGROUP_COST_TOLERANCE,Product cost tolerance:,
+UI_PEEPGROUP_SPECIES_SEEN,Count of seen species: ,Número de espécies avistadas: 
+UI_PEEPGROUP_ANIMALS_STILL_TO_SEE,Count of animals group still wants to see: ,Número de animais que grupo ainda pretende visitar: 
+UI_PEEPGROUP_FAVORITE_ANIMAL,Group's favorite animal:,Animal favorito do grupo: 
+UI_PEEPGROUP_SEEN_ANIMALS,Seen animals:,Animais avistados:
+UI_PEEPGROUP_ANIMALS_TO_SEE,Animals group wants to see:,Animais desejados: 
+UI_PEEPGROUP_MONEY_SPENT,Money spent in zoo:,Dinheiro gasto no zoológico: 
+UI_PEEPGROUP_ITEMS_BOUGHT,Items bought by group:,Produtos adquiridos: 
+,,
+,,
+,,
+,,
+,,
 UI_ENCLOSURE_INFO,Enclosure info,Informações
 UI_ENCLOSURE_ANIMAL_LIST,Animal list,Lista de animais
 UI_ENCLOSURE_ACTIONS,Actions,Ações
@@ -113,7 +132,7 @@ UI_PRODUCT_ELEMENT_STOCK_COST,Stock cost: ,Custo unitário:
 UI_PRODUCT_ELEMENT_SELL_PRICE,Sell price: ,Preço de venda: 
 UI_PRODUCT_ELEMENT_MAINTENANCE,Maintenance: ,Custo mensal: 
 ,,
-,,
+POPUP_CONFIRM_ENCLOSURE_FENCE_CHANGE,Do you want to change this enclosure's fence type?,Confirmar mudança de tipo de cerca do recinto?
 ,,
 UI_MGMT_MANAGEMENT,Management,Gerência
 UI_MGMT_REVIEWS,Reviews,Avaliações
@@ -150,6 +169,10 @@ OCT,Oct,Outubro
 NOV,Nov,Novembro
 DEC,Dec,Dezembro
 ,,
+NEEDS,Needs,Necessidades
+HUNGER,Hunger,Fome
+TOILET,Toilet,Banheiro
+REST,Rest,Descanso
 MINIMAL,Minimal,Mínimo
 LOW,Low,Pouco
 MEDIUM,Medium,Intermediário
@@ -170,6 +193,9 @@ MASTER,Master,Master
 ENCLOSURE,Enclosure,Recinto
 CONFIRM,Confirm,Confirmar
 CANCEL,Cancel,Cancelar
+,,
+,,
+,,
 ,,
 PATHS_CEMENT,Cement path,Calçada de cimento
 PATHS_BRICKS,Brick path,Calçada de tijolos
@@ -290,4 +316,4 @@ PRODUCTS_PASTA_PESTO,Pesto Pasta,Pasta ao pesto
 PRODUCTS_PASTA_BOLOGNESE,Bolognese Pasta,Pasta bolonhesa
 PRODUCTS_PASTA_SHRIMP,Shrimp Pasta with Squid-Ink,Pasta de camarão à tinta de lula
 ,,
-,,
+QUEST_01_INTRO_01,"Hi there! My name is Janet and I'm here to help you with getting your zoo started! First off, let's build a few paths.",

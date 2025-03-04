@@ -1,4 +1,4 @@
-[gd_scene load_steps=201 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=203 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" uid="uid://o2egpp0b02e2" path="res://Scripts/debug_controller.gd" id="1_nisry"]
 [ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -80,6 +80,8 @@
 [ext_resource type="PackedScene" uid="uid://dcmmhhcwneqel" path="res://Scenery/Fixtures/bench_scene.tscn" id="78_uy80e"]
 [ext_resource type="Resource" uid="uid://d03yeo0qd6n66" path="res://Scenery/Fixtures/wooden_flower_pot.tres" id="79_qwt6e"]
 [ext_resource type="PackedScene" uid="uid://dwvani4eft5jg" path="res://Scenery/Fixtures/fixture_side_scene.tscn" id="80_asu84"]
+[ext_resource type="Script" uid="uid://dpucmwjqh7h8m" path="res://MainMenu/confirmation_popup_manager.gd" id="81_2n44k"]
+[ext_resource type="PackedScene" uid="uid://cxbu5fqbnlcu1" path="res://UI/UI popups/ui_confirmation_popup.tscn" id="82_86lig"]
 [ext_resource type="PackedScene" uid="uid://fhgu3i03484t" path="res://UI/UI popups/ui_peep_group_popup.tscn" id="83_4rd2l"]
 [ext_resource type="Theme" uid="uid://dnjl2onbgc2xp" path="res://UI/Themes/main_tool_panel.tres" id="86_vgvmu"]
 [ext_resource type="Script" uid="uid://t3naf2okb6cm" path="res://UI/ui_debug_shader.gd" id="87_1b22a"]
@@ -1016,6 +1018,11 @@ script = ExtResource("7_pw5dd")
 inputController = NodePath("../InputController")
 min_zoom = Vector2(0.75, 0.75)
 max_zoom = Vector2(5, 5)
+
+[node name="ConfirmationPopupManager" type="CanvasLayer" parent="."]
+layer = 10
+script = ExtResource("81_2n44k")
+ui_confirmation_popup = ExtResource("82_86lig")
 
 [node name="PopupManager" type="CanvasLayer" parent="."]
 layer = 4
@@ -2070,7 +2077,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 text = "UI_INFO_CONT_BULLDOZING_SCENERY_TREES"
-visible_characters = 15
+visible_characters = 14
 visible_ratio = 0.405405
 
 [node name="BulldozerTreeCheckBox" type="CheckButton" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BulldozingSceneryInfoContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
@@ -2144,7 +2151,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 text = "UI_INFO_CONT_BULLDOZING_SCENERY_ROCKS"
-visible_characters = 15
+visible_characters = 14
 visible_ratio = 0.405405
 
 [node name="BulldozerRockCheckBox" type="CheckButton" parent="UI/VBoxContainer/MainMargin/MainConstruction/HBoxContainer/ConstructionToolsContainer/Top-Left/ConstructionMain/ToolInfoPanel/ToolInfoPanelContainer/MarginContainer/ToolInfoContainer/BulldozingSceneryInfoContainer/VBoxContainer/HBoxContainer/VBoxContainer4/HBoxContainer"]

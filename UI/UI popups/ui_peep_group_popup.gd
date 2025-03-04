@@ -33,11 +33,11 @@ func _ready():
 		%min_product_level.add_child(star_texture)
 	
 	if peep_group_node.min_utility_score_tolerance > 1.25:
-		%product_cost_tolerance.text = "Low"
+		%product_cost_tolerance.text = tr('LOW')
 	elif peep_group_node.min_utility_score_tolerance < 0.90:
-		%product_cost_tolerance.text = "High"
+		%product_cost_tolerance.text = tr('HIGH')
 	else:
-		%product_cost_tolerance.text = "Medium"
+		%product_cost_tolerance.text = tr('MEDIUM')
 
 
 func on_popup_closed():
@@ -81,7 +81,7 @@ func update_popup_data():
 
 	for item in peep_group_node.peep_group_inventory:
 		var label = Label.new()
-		label.text = str(item.name) + ' x ' + str(peep_group_node.peep_count)
+		label.text = str(item.tr_name) + ' x ' + str(peep_group_node.peep_count)
 		%InventoryList.add_child(label)
 		
 	for child in %ThoughtList.get_children():

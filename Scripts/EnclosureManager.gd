@@ -62,7 +62,8 @@ func build_enclosure(id, cells, entrance_cell, fence_res, is_enclosure_in_work_q
 		var current_enclosure = enclosures_in_area.front()
 		#current_enclosure.fence_res = selected_fence
 		if current_enclosure.fence_res != selected_fence:
-			var popup_text = "Confirm change of enclosure fence"
+			print('different fence')
+			var popup_text = tr('POPUP_CONFIRM_ENCLOSURE_FENCE_CHANGE')
 			SignalBus.open_confirmation_popup.emit(update_fence_callable, popup_text, {'resource': selected_fence, 'enclosure': current_enclosure})
 		current_enclosure.add_cells(cells, selected_fence)
 		for coordinate in current_enclosure.enclosure_cells:
