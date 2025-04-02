@@ -6,11 +6,11 @@ func _ready() -> void:
 	
 	SignalBus.instantiating_main_menu.emit()
 	
-	for child in %ContainerContainer.get_children():
-		if child.name != 'MainContainer':
-			child.hide()
-		else:
-			child.show()
+	#for child in %ContainerContainer.get_children():
+		#if child.name != 'MainContainer':
+			#child.hide()
+		#else:
+			#child.show()
 	
 	setup_save_files()
 	

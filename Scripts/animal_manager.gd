@@ -7,33 +7,17 @@ var available_animals : Array[animal_resource]
 @export var enclosure_manager : EnclosureManager
 @export var animal_scene : PackedScene
 
-@onready var animal_menu = %AnimalSelectionContainer
 @export var ui_animal_element : PackedScene
 var animal_count = 0
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	update_animal_menu()
-	
-	ResearchManager.unlocked_animals_changed.connect(update_animal_menu)
+#func _ready() -> void:
+	#ResearchManager.unlocked_animals_changed.connect()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-func update_animal_menu():
-	available_animals.clear()
-	for key in ResearchManager.unlocked_animals.keys():
-		available_animals.append(ContentManager.animals[key])
-
-	for child in animal_menu.get_children():
-		child.queue_free()
-		
-	for animal_res in available_animals:
-		var element = ui_animal_element.instantiate()
-		element.animal_res = animal_res
-		animal_menu.add_child(element)
-		%UI.connect_ui_element(element)
 
 
 func spawn_animal(coordinate, animal_res : animal_resource, saved_data, is_spawned_infant : bool, selected_spawn_gender):

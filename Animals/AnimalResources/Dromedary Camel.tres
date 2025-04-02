@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="animal_resource" load_steps=5 format=3 uid="uid://ctm61fgy0pr1r"]
+[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://ctm61fgy0pr1r"]
 
 [ext_resource type="Texture2D" uid="uid://dpdy3nvq5d7nj" path="res://Animals/sprites/dromedary_camel.png" id="1_cfu5b"]
 [ext_resource type="Texture2D" uid="uid://sjgfw5lubqtl" path="res://Animals/sprites/dromedary_camel_cub.png" id="1_rec60"]
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="2_ogf4n"]
-[ext_resource type="Texture2D" uid="uid://belet8q2kndbt" path="res://Animals/thumbs/animal_thumbs9.png" id="4_7u748"]
 
 [resource]
 script = ExtResource("2_ogf4n")
@@ -12,7 +11,6 @@ id = 18
 cost = 120.0
 texture = ExtResource("1_cfu5b")
 cub_texture = ExtResource("1_rec60")
-thumb = ExtResource("4_7u748")
 feed = 1
 shadow_scale = 1.5
 sprite_y_offset = 0

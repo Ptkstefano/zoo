@@ -1,0 +1,257 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfipnhy2cv66s"]
+
+[ext_resource type="Theme" uid="uid://tfrt3qgw8yof" path="res://UI/Themes/woody/woody_popup_main.tres" id="1_cuf80"]
+[ext_resource type="Script" uid="uid://cam708i7xw2yp" path="res://construction_menu_popu.gd" id="4_5e7mi"]
+[ext_resource type="Theme" uid="uid://di0ha0ac0ni8i" path="res://UI/Themes/woody/woody_construction_elements_popup.tres" id="4_cuf80"]
+[ext_resource type="PackedScene" uid="uid://2t2ep4vybhjk" path="res://build_menu_element.tscn" id="5_b1gx5"]
+
+[node name="ConstructionMenuPopu" type="Control"]
+layout_mode = 3
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+theme = ExtResource("1_cuf80")
+script = ExtResource("4_5e7mi")
+element_card = ExtResource("5_b1gx5")
+
+[node name="PanelContainer" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.99
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_cuf80")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -278.0
+offset_right = 278.0
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Scenery"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="CategoryButtons" type="HBoxContainer" parent="Control/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PathButton" type="Button" parent="Control/VBoxContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Path"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="FixtureButton" type="Button" parent="Control/VBoxContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Fixture"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="DecorationButton" type="Button" parent="Control/VBoxContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Decorations"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="FenceButton" type="Button" parent="Control/VBoxContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Fence"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="ShelterButton" type="Button" parent="Control/VBoxContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Fence"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="TreeButton" type="Button" parent="Control/VBoxContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Trees"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="VegetationButton" type="Button" parent="Control/VBoxContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Vegetation"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="RockButton" type="Button" parent="Control/VBoxContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Rocks"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="EateryButton" type="Button" parent="Control/VBoxContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Eateries"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="RestaurantButton" type="Button" parent="Control/VBoxContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Restaurant"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="AdministrationButton" type="Button" parent="Control/VBoxContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Administration"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="ServiceButton" type="Button" parent="Control/VBoxContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Service"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="CloseMenu" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "X"
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="ElementList" type="GridContainer" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 2
+columns = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="InfoContainer" type="HBoxContainer" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/PanelContainer/InfoContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/PanelContainer/InfoContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "asd"
+horizontal_alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/PanelContainer/InfoContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+text = "Confirm"

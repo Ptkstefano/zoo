@@ -90,7 +90,6 @@ func get_new_task():
 
 func find_rest_spot():
 	var closest_rest_spot_distance : float = 99999
-	destination_building
 	for rest_spot in ZooManager.zookeeper_stations:
 		var current_spot_distance = staff_scene.global_position.distance_to(ZooManager.zookeeper_stations[rest_spot]['position'])
 		if current_spot_distance < closest_rest_spot_distance:

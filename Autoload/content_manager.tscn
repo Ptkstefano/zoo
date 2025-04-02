@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://mqvvqf6wxoe8"]
+[gd_scene load_steps=76 format=3 uid="uid://mqvvqf6wxoe8"]
 
 [ext_resource type="Script" uid="uid://da6bglapjw4jm" path="res://Autoload/content_manager.gd" id="1_0xc5w"]
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="2_3584o"]
@@ -64,6 +64,17 @@
 [ext_resource type="Resource" uid="uid://dcrw61juxfsvs" path="res://Terrain/dirt.tres" id="62_jy4ga"]
 [ext_resource type="Resource" uid="uid://dk382e4qklm34" path="res://Terrain/deciduous.tres" id="63_3p65x"]
 [ext_resource type="Resource" uid="uid://ctusbtwghbxrl" path="res://Terrain/savanna.tres" id="64_n3fek"]
+[ext_resource type="Script" uid="uid://cv4mt4ewctgbq" path="res://Paths/path_res.gd" id="65_jy4ga"]
+[ext_resource type="Resource" uid="uid://cea7u5xphaurx" path="res://Paths/cement_path.tres" id="66_3p65x"]
+[ext_resource type="Resource" uid="uid://bphygoo2uobbe" path="res://Paths/brick_path.tres" id="67_n3fek"]
+[ext_resource type="Script" uid="uid://bvnak0w5oxnhm" path="res://Enclosures/Fences/fence_res.gd" id="68_c5usc"]
+[ext_resource type="Resource" uid="uid://camg8o6ropjnr" path="res://Enclosures/Fences/Fence resources/small.tres" id="69_w750t"]
+[ext_resource type="Resource" uid="uid://du5ia6244wkd1" path="res://Enclosures/Fences/Fence resources/corral.tres" id="70_h2np6"]
+[ext_resource type="Resource" uid="uid://xk5hxkv0keyb" path="res://Enclosures/Fences/Fence resources/concrete.tres" id="71_6x4al"]
+[ext_resource type="Resource" uid="uid://b85gocjhm05am" path="res://Enclosures/Fences/Fence resources/steel.tres" id="72_oqpmd"]
+[ext_resource type="Script" uid="uid://ci0g6eukld5d" path="res://Enclosures/Shelters/shelter_res.gd" id="73_6x4al"]
+[ext_resource type="Resource" uid="uid://cuk4yesxl2kqy" path="res://Enclosures/Shelters/shelter resources/small_wooden_shelter.tres" id="74_oqpmd"]
+[ext_resource type="Resource" uid="uid://bqcnlf24xehnx" path="res://Enclosures/Shelters/shelter resources/tall_shelter.tres" id="75_2wsl5"]
 
 [node name="ContentManager" type="Node"]
 script = ExtResource("1_0xc5w")
@@ -78,3 +89,6 @@ tree_resources = Array[ExtResource("41_jy4ga")]([ExtResource("42_3p65x"), ExtRes
 decoration_resources = Array[ExtResource("52_t074i")]([ExtResource("53_6g5sk"), ExtResource("54_saslj")])
 fixture_resources = Array[ExtResource("55_hoia3")]([ExtResource("56_gbhr0"), ExtResource("57_v3ma4"), ExtResource("58_6fxf8")])
 terrain_resources = Array[ExtResource("59_3ffpm")]([ExtResource("60_d3w36"), ExtResource("61_ylbxl"), ExtResource("62_jy4ga"), ExtResource("63_3p65x"), ExtResource("64_n3fek")])
+path_resources = Array[ExtResource("65_jy4ga")]([ExtResource("66_3p65x"), ExtResource("67_n3fek")])
+fence_resources = Array[ExtResource("68_c5usc")]([ExtResource("69_w750t"), ExtResource("70_h2np6"), ExtResource("71_6x4al"), ExtResource("72_oqpmd")])
+shelter_resources = Array[ExtResource("73_6x4al")]([ExtResource("74_oqpmd"), ExtResource("75_2wsl5")])

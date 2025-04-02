@@ -8,3 +8,4 @@ tr_name = "FENCES_CORRAL"
 segment_cost = 15.0
 atlas_y = 3
 fence_level = 1
+id = 1

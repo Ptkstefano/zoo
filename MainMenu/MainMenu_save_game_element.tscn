@@ -4,11 +4,14 @@
 [ext_resource type="Script" uid="uid://dxtlkh60vtnlx" path="res://MainMenu/main_menu_save_game_element.gd" id="2_cihvy"]
 
 [node name="SaveGameElement" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 98.0
+grow_horizontal = 2
 theme = ExtResource("1_r6bbe")
 script = ExtResource("2_cihvy")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -22,7 +25,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 24
 text = "Sandbox"
 
 [node name="DeleteSaveButton" type="Button" parent="MarginContainer/HBoxContainer"]

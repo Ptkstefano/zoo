@@ -14,26 +14,15 @@ var used_cells = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	update_selection_menu()
 	SignalBus.path_erased.connect(remove_fixture_from_path)
 	SignalBus.path_changed.connect(replace_fixture)
-	ResearchManager.unlocked_scenery_changed.connect(update_selection_menu)
+	#ResearchManager.unlocked_scenery_changed.connect()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 	
-func update_selection_menu():
-	for child in %FixtureSelectionContainer.get_children():
-		child.queue_free()
-		
-	for id in ResearchManager.unlocked_fixtures:
-		var element = ui_scenery_element.instantiate()
-		element.resource = ContentManager.fixtures[id]
-		element.scenery_type = 'fixture'
-		%FixtureSelectionContainer.add_child(element)
-		%UI.connect_ui_element(element)
 
 func place_fixture(press_pos, fixture_res : fixture_resource, free_placement : bool, saved_direction):
 	var cell = pathLayer.local_to_map(press_pos)

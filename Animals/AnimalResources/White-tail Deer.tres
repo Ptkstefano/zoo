@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_hthtb"]
 [ext_resource type="Texture2D" uid="uid://d33l2m041kkgx" path="res://Animals/sprites/white_tail_deer_cub.png" id="1_snkw7"]
-[ext_resource type="Texture2D" uid="uid://dsv6levbc3rv3" path="res://Animals/thumbs/animal_whitetail_deer.png" id="3_3lfbr"]
+[ext_resource type="Texture2D" uid="uid://cb04a3wq654pj" path="res://Animals/icons/whitetail-deer.png" id="2_snkw7"]
 [ext_resource type="Texture2D" uid="uid://c0vgwtkyia3um" path="res://Animals/sprites/white_tail_deer.png" id="3_l0tfm"]
 
 [resource]
@@ -12,7 +12,7 @@ id = 3
 cost = 175.0
 texture = ExtResource("3_l0tfm")
 cub_texture = ExtResource("1_snkw7")
-thumb = ExtResource("3_3lfbr")
+icon = ExtResource("2_snkw7")
 feed = 1
 shadow_scale = 1.0
 sprite_y_offset = 4

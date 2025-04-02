@@ -3,7 +3,6 @@ extends Node2D
 class_name PathManager
 
 @export var available_paths : Array[path_resource]
-@onready var path_menu = %PathSelectionContainer
 @export var ui_element : PackedScene
 
 @export var null_path : path_resource
@@ -15,21 +14,11 @@ var building_path_coordinates = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	path_coordinates = path_layer.get_used_cells()
-	update_path_menu()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 	
-func update_path_menu():
-	for child in path_menu.get_children():
-		child.queue_free()
-		
-	for path_res in available_paths:
-		var element = ui_element.instantiate()
-		element.path_res = path_res
-		path_menu.add_child(element)
-		%UI.connect_ui_element(element)
 	
 	
 

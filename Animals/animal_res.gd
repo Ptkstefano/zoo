@@ -9,7 +9,8 @@ class_name animal_resource
 @export var cost : float
 @export var texture : Texture2D
 @export var cub_texture : Texture2D
-@export var thumb : Texture2D
+@export var thumbnail : Texture2D
+@export var icon : Texture2D
 @export var feed : IdRefs.FEED_TYPES
 
 @export var shadow_scale : float = 1

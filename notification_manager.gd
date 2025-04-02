@@ -11,9 +11,11 @@ func on_tooltip_emitted(tooltip_text, emit_position):
 	label.text = tooltip_text
 	var pos
 	if emit_position:
-		pos = emit_position + Vector2(DisplayServer.window_get_size().x * -0.5 - 25, DisplayServer.window_get_size().y * -0.5 -50)
+		pos = emit_position + Vector2(720 * -0.5 - 25, 1280 * -0.5 -50)
+		#pos = emit_position + Vector2(DisplayServer.window_get_size().x * -0.5 - 25, DisplayServer.window_get_size().y * -0.5 -50)
 	else:
-		pos = $"../InputController".touch_start_global_pos + Vector2(DisplayServer.window_get_size().x * -0.5 - 25, DisplayServer.window_get_size().y * -0.5 -50)
+		pos = $"../InputController".touch_start_global_pos + Vector2(720 * -0.5 - 25,1280 * -0.5 -50)
+		#pos = $"../InputController".touch_start_global_pos + Vector2(DisplayServer.window_get_size().x * -0.5 - 25, DisplayServer.window_get_size().y * -0.5 -50)
 	label.position = pos
 	add_child(label)
 	label.show()
@@ -30,7 +32,8 @@ func on_money_tooltip_emitted(value, earned : bool, global_pos : Vector2):
 		return
 	var label = notification_scene.instantiate()
 	label.text = "$"+str(value)
-	var pos = global_pos + Vector2(DisplayServer.window_get_size().x * -0.5 - 25, DisplayServer.window_get_size().y * -0.5 -50)
+	#var pos = global_pos + Vector2(DisplayServer.window_get_size().x * -0.5 - 25, DisplayServer.window_get_size().y * -0.5 -50)
+	var pos = global_pos + Vector2(720 * -0.5 - 25, 1280 * -0.5 -50)
 	if !earned:
 		label.add_theme_color_override("font_color", ColorRefs.negative_red)
 	else:

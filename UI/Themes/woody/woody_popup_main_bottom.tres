@@ -1,0 +1,57 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dw4rfb4bphg80"]
+
+[ext_resource type="FontFile" uid="uid://dh3lo7lghhs8x" path="res://UI/Thin sans.ttf" id="1_ww27g"]
+[ext_resource type="Texture2D" uid="uid://imjitgjexxki" path="res://UI/Themes/woody/wood_ui.png" id="2_8xf8p"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_72ch2"]
+texture = ExtResource("2_8xf8p")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 8.0
+region_rect = Rect2(192, 512, 128, 124)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t50lu"]
+texture = ExtResource("2_8xf8p")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 8.0
+region_rect = Rect2(192, 512, 128, 124)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iw52e"]
+texture = ExtResource("2_8xf8p")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(192, 672, 128, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4217v"]
+texture = ExtResource("2_8xf8p")
+texture_margin_left = 8.0
+texture_margin_top = 10.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(32, 192, 128, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ww27g"]
+texture = ExtResource("2_8xf8p")
+texture_margin_left = 2.0
+texture_margin_right = 4.0
+region_rect = Rect2(38, 40, 6, 42)
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_ww27g")
+Button/styles/hover = SubResource("StyleBoxTexture_72ch2")
+Button/styles/normal = SubResource("StyleBoxTexture_t50lu")
+Button/styles/pressed = SubResource("StyleBoxTexture_iw52e")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_ww27g")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_4217v")
+VSeparator/styles/separator = SubResource("StyleBoxTexture_ww27g")

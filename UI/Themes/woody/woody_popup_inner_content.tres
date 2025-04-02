@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bsbphmr758ul1"]
+
+[ext_resource type="Texture2D" uid="uid://imjitgjexxki" path="res://UI/Themes/woody/wood_ui.png" id="1_svj7u"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ahaeo"]
+texture = ExtResource("1_svj7u")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(352, 192, 128, 128)
+
+[resource]
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_ahaeo")

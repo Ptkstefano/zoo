@@ -1,5 +1,13 @@
 extends Node
 
+signal tool_selected
+signal tool_deselected
+signal free_camera
+signal rotate_building
+signal building_placed
+signal building_built
+signal construction_menu_closed
+
 signal tooltip
 signal money_tooltip 
 signal notification
@@ -13,6 +21,7 @@ signal open_popup
 signal open_box ## Emitted by UI
 signal open_confirmation_popup
 signal open_popup_with_data
+signal open_construction_menu ## Emitted by buttons in UI
 
 signal peep_navigation_changed
 signal path_erased

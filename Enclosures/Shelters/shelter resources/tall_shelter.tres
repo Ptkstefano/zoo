@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_ayywm")
 tr_name = "SHELTER_TALL_CONCRETE"
+id = 1
 size = Vector2i(3, 3)
 shelter_scene = ExtResource("2_ayywm")
 z_offset = 0

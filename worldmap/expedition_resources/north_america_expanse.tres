@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="expedition_resource" load_steps=2 format=3 uid="uid://cd1ondgak7rvn"]
+
+[ext_resource type="Script" uid="uid://cfsbk44kndtb2" path="res://worldmap/expedition_resources/expedition_res.gd" id="1_lp6p8"]
+
+[resource]
+script = ExtResource("1_lp6p8")
+tr_name = "North-American Expanses"
+possible_animals = Array[int]([3, 24, 6])
+tr_description = "Venture into the vast North-American expanses"
+cost = 1000.0
+metadata/_custom_type_script = "uid://cfsbk44kndtb2"

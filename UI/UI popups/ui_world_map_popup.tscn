@@ -1,0 +1,213 @@
+[gd_scene load_steps=16 format=3 uid="uid://mfo25nkb620y"]
+
+[ext_resource type="Script" uid="uid://dkyvpru8k0qaj" path="res://UI/UI popups/ui_world_map_popup.gd" id="1_hmb0u"]
+[ext_resource type="Theme" uid="uid://dw4rfb4bphg80" path="res://UI/Themes/woody/woody_popup_main_bottom.tres" id="2_3wvs4"]
+[ext_resource type="Texture2D" uid="uid://t2u57oilyuhf" path="res://worldmap/worldmap1.png" id="3_a2ixh"]
+[ext_resource type="Theme" uid="uid://ddneklvhdy4g0" path="res://UI/Themes/woody/woody_whiteboard.tres" id="3_e7yyf"]
+[ext_resource type="Texture2D" uid="uid://b76emxqrxelwh" path="res://worldmap/worldmap.png" id="3_i27hd"]
+[ext_resource type="Texture2D" uid="uid://p6g7g0cgxt4o" path="res://worldmap/north-american-expanses.png" id="4_2t1j0"]
+[ext_resource type="Script" uid="uid://dqba50320tl8q" path="res://UI/UI popups/world_map.gd" id="4_gkysp"]
+[ext_resource type="Texture2D" uid="uid://cpfyu3p473r6h" path="res://worldmap/worldmap2.png" id="4_hmb0u"]
+[ext_resource type="Texture2D" uid="uid://be7jp16ade7u6" path="res://worldmap/worldmap3.png" id="5_gkysp"]
+[ext_resource type="Script" uid="uid://djxnatrichxvn" path="res://UI/UI popups/expedition_icon.gd" id="9_6av83"]
+[ext_resource type="Resource" uid="uid://cd1ondgak7rvn" path="res://worldmap/expedition_resources/north_america_expanse.tres" id="10_r2hm2"]
+[ext_resource type="Theme" uid="uid://bsbphmr758ul1" path="res://UI/Themes/woody/woody_popup_inner_content.tres" id="12_3wvs4"]
+[ext_resource type="Texture2D" uid="uid://s78mhwo52ucr" path="res://Animals/icons/alaskan-moose.png" id="12_e7yyf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6av83"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_a2ixh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hmb0u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gkysp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hmb0u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hmb0u"]
+radius = 28.8617
+
+[node name="UI_world_map_popup" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_hmb0u")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_3wvs4")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/Control"]
+layout_mode = 2
+offset_top = 23.0
+offset_right = 540.0
+offset_bottom = 55.6
+theme_override_font_sizes/font_size = 32
+text = "Expeditions"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="Control/PanelContainer/MarginContainer/VBoxContainer/Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 0
+text = "X"
+
+[node name="WorldmapContainer" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(540, 612)
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("3_e7yyf")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer"]
+custom_minimum_size = Vector2(0, 580)
+layout_mode = 2
+size_flags_vertical = 0
+scroll_horizontal_custom_step = 0.0
+vertical_scroll_mode = 0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer/SubViewportContainer"]
+handle_input_locally = false
+physics_object_picking = true
+size = Vector2i(1100, 580)
+render_target_update_mode = 4
+
+[node name="WorldMap" type="Node2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer/SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
+script = ExtResource("4_gkysp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer/SubViewportContainer/SubViewport/WorldMap"]
+sprite_frames = SubResource("SpriteFrames_6av83")
+autoplay = "default"
+frame = 3
+frame_progress = 0.0301455
+centered = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer/SubViewportContainer/SubViewport/WorldMap"]
+visible = false
+texture = ExtResource("3_i27hd")
+centered = false
+
+[node name="Icons" type="Node2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer/SubViewportContainer/SubViewport/WorldMap"]
+
+[node name="Expedition_NAExpanses" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
+unique_name_in_owner = true
+position = Vector2(229, 125)
+collision_mask = 0
+input_pickable = true
+script = ExtResource("9_6av83")
+expedition_resource = ExtResource("10_r2hm2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_NAExpanses"]
+shape = SubResource("CircleShape2D_hmb0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_NAExpanses"]
+texture = ExtResource("4_2t1j0")
+
+[node name="ExpeditionInfoContainer" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("12_3wvs4")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer/ExpeditionInfoContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer/ExpeditionInfoContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer/ExpeditionInfoContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ExpeditionName" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/ExpeditionInfoContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Expedition name"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer/ExpeditionInfoContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/ExpeditionInfoContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Possible animals:"
+horizontal_alignment = 1
+
+[node name="PossibleAnimals" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer/ExpeditionInfoContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/PanelContainer/MarginContainer/VBoxContainer/ExpeditionInfoContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/PossibleAnimals"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("12_e7yyf")
+
+[node name="Expedition description" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/ExpeditionInfoContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
+text = "Venture into the vast North-American expanses to track majestic moose, elusive black bears, and roaming deer across wild, untamed landscapes."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="StartExpeditionButton" type="Button" parent="Control/PanelContainer/MarginContainer/VBoxContainer/ExpeditionInfoContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Go!"

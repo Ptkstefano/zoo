@@ -10,6 +10,7 @@ var unlocked_vegetation = {}
 var unlocked_trees = {}
 var unlocked_decoration = {}
 var unlocked_fixtures = {}
+var unlocked_paths = {}
 
 signal unlocked_animals_changed
 signal unlocked_buildings_changed
@@ -26,6 +27,7 @@ var eligible_vegetation = []
 var eligible_trees = []
 var eligible_decoration = []
 var eligible_fixtures = []
+var eligible_paths = []
 
 var last_research
 
@@ -74,6 +76,7 @@ func new_research_unlocked():
 		"decoration": eligible_decoration,
 		"fixtures": eligible_fixtures,
 		"products": eligible_products,
+		"paths": eligible_paths,
 	}
 	
 	for key in eligible_categories.keys():
@@ -134,6 +137,8 @@ func new_research_unlocked():
 		elif unlock.category == 'products':
 			unlocked_products[unlock.id] = ContentManager.products[unlock.id]
 			unlocked_products_changed.emit()
+		elif unlock.category == 'paths':
+			unlocked_paths[unlock.id] = ContentManager.paths[unlock.id]
 	
 
 func on_pass_month():
@@ -151,10 +156,15 @@ func generate_eligible_research():
 	eligible_trees.clear()
 	eligible_decoration.clear()
 	eligible_fixtures.clear()
+	eligible_paths.clear()
 	
 	for id in ContentManager.animals.keys():
 		if id not in unlocked_animals.keys():
 			eligible_animals.append(id)
+			
+	for id in ContentManager.paths.keys():
+		if id not in unlocked_paths.keys():
+			eligible_paths.append(id)
 			
 	for id in ContentManager.restaurants.keys():
 		if id not in unlocked_restaurants.keys():
@@ -206,6 +216,7 @@ func new_game_unlocks():
 	var starting_trees = [IdRefs.TREE_SPECIES.PALM, IdRefs.TREE_SPECIES.ARAUCARIA, IdRefs.TREE_SPECIES.LIMBER_PINE, IdRefs.TREE_SPECIES.ALDER]
 	var starting_vegetation = [IdRefs.VEGETATION_SPECIES.SHORT_GRASS, IdRefs.VEGETATION_SPECIES.TALL_GRASS, IdRefs.VEGETATION_SPECIES.BERRY_BUSH]
 	var starting_fixtures = [IdRefs.FIXTURES.WOODEN_BENCH, IdRefs.FIXTURES.STEEL_LAMP]
+	var starting_paths = [1]
 	
 	for id in starting_animals:
 		unlocked_animals[id] = ContentManager.animals[id]
@@ -224,6 +235,10 @@ func new_game_unlocks():
 		
 	for id in starting_fixtures:
 		unlocked_fixtures[id] = ContentManager.fixtures[id]
+	
+	for id in starting_paths:
+		unlocked_paths[id] = ContentManager.paths[id]
+		
 
 	unlocked_animals_changed.emit()
 	unlocked_buildings_changed.emit()
@@ -263,6 +278,9 @@ func unlock_everything():
 	for id in eligible_animals:
 		unlocked_animals[id] = ContentManager.animals[id]
 	unlocked_animals_changed.emit()
+
+	for id in eligible_paths:
+		unlocked_paths[id] = ContentManager.paths[id]
 
 	for id in eligible_restaurants:
 		unlocked_restaurants[id] = ContentManager.restaurants[id]
