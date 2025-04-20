@@ -11,6 +11,7 @@ var unlocked_trees = {}
 var unlocked_decoration = {}
 var unlocked_fixtures = {}
 var unlocked_paths = {}
+var unlocked_lakes = {}
 
 signal unlocked_animals_changed
 signal unlocked_buildings_changed
@@ -28,6 +29,7 @@ var eligible_trees = []
 var eligible_decoration = []
 var eligible_fixtures = []
 var eligible_paths = []
+var eligible_lakes = []
 
 var last_research
 
@@ -77,6 +79,7 @@ func new_research_unlocked():
 		"fixtures": eligible_fixtures,
 		"products": eligible_products,
 		"paths": eligible_paths,
+		"lakes": eligible_lakes,
 	}
 	
 	for key in eligible_categories.keys():
@@ -157,6 +160,7 @@ func generate_eligible_research():
 	eligible_decoration.clear()
 	eligible_fixtures.clear()
 	eligible_paths.clear()
+	eligible_lakes.clear()
 	
 	for id in ContentManager.animals.keys():
 		if id not in unlocked_animals.keys():
@@ -207,6 +211,10 @@ func generate_eligible_research():
 		for id in unlocked_eateries[eatery].possible_products:
 			if id not in unlocked_products.keys():
 				eligible_products.append(id)
+	
+	for id in ContentManager.lakes.keys():
+		if id not in unlocked_lakes.keys():
+			eligible_lakes.append(id)
 
 
 func new_game_unlocks():
@@ -247,7 +255,8 @@ func new_game_unlocks():
 
 func load_data(data):
 	for id in data['unlocked_animals']:
-		unlocked_animals[int(id)] = ContentManager.animals[int(id)]
+		if int(id) in ContentManager.animals.keys():
+			unlocked_animals[int(id)] = ContentManager.animals[int(id)]
 	for id in data['unlocked_restaurants']:
 		unlocked_restaurants[int(id)] = ContentManager.restaurants[int(id)]
 	for id in data['unlocked_eateries']:
@@ -305,3 +314,6 @@ func unlock_everything():
 	for id in eligible_products:
 		unlocked_products[id] = ContentManager.products[id]
 	unlocked_products_changed.emit()
+	
+	for id in eligible_lakes:
+		unlocked_lakes[id] = ContentManager.lakes[id]

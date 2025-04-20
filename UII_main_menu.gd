@@ -9,6 +9,10 @@ func _ready() -> void:
 	visibility_changed.connect(on_visibility_changed)
 	%BackToMenuButton.pressed.connect(on_back_to_menu)
 	%OptionsMenuButton.pressed.connect(on_open_options_menu)
+	%DebugMenuButton.pressed.connect(on_open_debug_menu)
+	
+	SignalBus.open_options_menu.connect(on_opened)
+	%CloseOptionsMenu.pressed.connect(hide)
 	
 func on_visibility_changed():
 	if visible:
@@ -24,6 +28,12 @@ func on_bg_event(event):
 func on_close_menu():
 	hide()
 
+func on_opened():
+	if visible:
+		hide()
+	else:
+		show()
+
 func on_back_to_menu():
 	SignalBus.save_game.emit()
 	await SaveManager.finished_saving_game
@@ -34,3 +44,7 @@ func on_open_options_menu():
 	var menu = options_menu.instantiate()
 	menu.option_menu_closed.connect(on_close_menu)
 	get_parent().add_child(menu)
+
+func on_open_debug_menu():
+	SignalBus.open_box.emit(IdRefs.UI_BOXES.DEBUG_MENU)
+	on_close_menu()

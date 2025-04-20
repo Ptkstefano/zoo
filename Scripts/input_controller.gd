@@ -63,23 +63,23 @@ var zoom_started : bool = false
 var cells : Array[Vector2i] = []
 var dir
 
-var screen_size : Vector2
 var y_camera_threshhold
 var x_camera_threshhold
 
 signal ui_visibility
 
 func _ready() -> void:
-	screen_size = DisplayServer.window_get_size()
-	y_camera_threshhold = screen_size.y * 0.1
-	x_camera_threshhold = screen_size.x * 0.1
+	y_camera_threshhold = get_viewport().get_visible_rect().size.y * 0.1
+	x_camera_threshhold = get_viewport().get_visible_rect().size.x * 0.1
 	SignalBus.tool_selected.connect(apply_tool)
 	SignalBus.tool_deselected.connect(deselect_tool)
 	SignalBus.free_camera.connect(on_free_camera_toggled)
 	SignalBus.rotate_building.connect(rotate_building_toggle)
 	SignalBus.building_built.connect(build_building)
+	
 
 func apply_tool(tool, resource):
+	## If animal, resource is stored_animal class instead
 	if resource:
 		selected_res = resource
 	current_tool = tool
@@ -231,7 +231,8 @@ func handle_tooling_input(event):
 				$"../TerrainManager".build_terrain(cells.duplicate(), selected_res.atlas.y)
 				cells.clear()
 			if current_tool == IdRefs.TOOLS.ANIMAL:
-				animal_manager.spawn_animal(touch_start_global_pos, selected_res, null, false, selected_animal_gender)
+				##selected_res is, in this case, an StoredAnimal
+				animal_manager.spawn_stored_animal(touch_start_global_pos, selected_res)
 			if current_tool == IdRefs.TOOLS.TREE:
 				scenery_manager.place_tree(touch_start_global_pos, selected_res, null, null)
 			if current_tool == IdRefs.TOOLS.VEGETATION:
@@ -459,6 +460,7 @@ func set_bulldozer_filters(tool):
 			$BulldozerCollider.set_collision_layer_value(collision_layer, true)
 
 func border_camera_movement():
+	var screen_size = get_viewport().get_visible_rect().size
 	var camera_direction = Vector2(0,0)
 	if touch_current_local_pos.x < x_camera_threshhold:
 		camera_direction.x = -1

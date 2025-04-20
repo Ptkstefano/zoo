@@ -8,7 +8,8 @@
 [resource]
 script = ExtResource("1_hthtb")
 tr_name = "ANIMAL_WHITETAILED_DEER"
-id = 3
+id = 4
+rarity = 0
 cost = 175.0
 texture = ExtResource("3_l0tfm")
 cub_texture = ExtResource("1_snkw7")

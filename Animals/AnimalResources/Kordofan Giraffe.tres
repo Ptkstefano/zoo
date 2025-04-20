@@ -1,16 +1,19 @@
-[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://c8vfd72bmgjcf"]
+[gd_resource type="Resource" script_class="animal_resource" load_steps=5 format=3 uid="uid://c8vfd72bmgjcf"]
 
-[ext_resource type="Texture2D" uid="uid://dsp3s35lxenl7" path="res://Animals/sprites/kardoffan_giraffe_cub.png" id="1_q8i27"]
-[ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_udr7q"]
-[ext_resource type="Texture2D" uid="uid://dcf7t04hbyvc6" path="res://Animals/sprites/kardoffan_giraffe.png" id="3_q8i27"]
+[ext_resource type="Texture2D" uid="uid://dsp3s35lxenl7" path="res://Animals/sprites/kardoffan_giraffe_cub.png" id="1_bj8hc"]
+[ext_resource type="Texture2D" uid="uid://cyek4s2l7y882" path="res://Animals/icons/kordofan-giraffe.png" id="2_3uwgr"]
+[ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="3_aga41"]
+[ext_resource type="Texture2D" uid="uid://dcf7t04hbyvc6" path="res://Animals/sprites/kardoffan_giraffe.png" id="4_yam2n"]
 
 [resource]
-script = ExtResource("1_udr7q")
+script = ExtResource("3_aga41")
 tr_name = "ANIMAL_KORDOFAN_GIRAFFE"
 id = 2
+rarity = 0
 cost = 200.0
-texture = ExtResource("3_q8i27")
-cub_texture = ExtResource("1_q8i27")
+texture = ExtResource("4_yam2n")
+cub_texture = ExtResource("1_bj8hc")
+icon = ExtResource("2_3uwgr")
 feed = 5
 shadow_scale = 1.8
 sprite_y_offset = 4

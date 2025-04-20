@@ -10,6 +10,6 @@ id = 1
 size = Vector2i(3, 3)
 shelter_scene = ExtResource("2_ayywm")
 z_offset = 0
-interior_z_index_delta = -5
+interior_z_index_delta = -4
 is_entereable = true
 possible_directions = Array[int]([1])

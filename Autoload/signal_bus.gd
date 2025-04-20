@@ -7,6 +7,7 @@ signal rotate_building
 signal building_placed
 signal building_built
 signal construction_menu_closed
+signal animal_placed
 
 signal tooltip
 signal money_tooltip 
@@ -22,6 +23,7 @@ signal open_box ## Emitted by UI
 signal open_confirmation_popup
 signal open_popup_with_data
 signal open_construction_menu ## Emitted by buttons in UI
+signal open_options_menu
 
 signal peep_navigation_changed
 signal path_erased
@@ -50,6 +52,7 @@ signal ui_element_selected ## Emitted by individual elements when selected and r
 #signal pass_month ## Emitted by: TimeManager
 
 signal set_debug_label_text
+signal debug_clear_peeps
 
 signal exiting_game_scene ## Emmited by options menu -> used to update autoloads
 signal instantiating_main_menu ## Emmited by main_menu on ready -> used to update autoloads

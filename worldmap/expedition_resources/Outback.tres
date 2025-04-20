@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="expedition_resource" load_steps=2 format=3 uid="uid://cahg86slfvv0q"]
+
+[ext_resource type="Script" uid="uid://cfsbk44kndtb2" path="res://worldmap/expedition_resources/expedition_res.gd" id="1_6daqw"]
+
+[resource]
+script = ExtResource("1_6daqw")
+tr_name = "Outback"
+possible_animals = Array[int]([8, 14])
+tr_description = ""
+cost = 1000.0
+metadata/_custom_type_script = "uid://cfsbk44kndtb2"

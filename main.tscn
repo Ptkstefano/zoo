@@ -1,4 +1,4 @@
-[gd_scene load_steps=165 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=187 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" uid="uid://o2egpp0b02e2" path="res://Scripts/debug_controller.gd" id="1_nisry"]
 [ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
@@ -83,10 +83,12 @@
 [ext_resource type="Texture2D" uid="uid://bm088drsntwdy" path="res://Sprites/highlight_tiles.png" id="89_mnw77"]
 [ext_resource type="PackedScene" uid="uid://bie8wky7dopo4" path="res://UI/UI popups/ui_mgmt_box.tscn" id="90_kjtd0"]
 [ext_resource type="Script" uid="uid://3icrhm6y3yor" path="res://Staff/staff_manager.gd" id="91_qrq7t"]
+[ext_resource type="PackedScene" uid="uid://c2u0ej3vivap1" path="res://UI/UI popups/animal_storage_popup.tscn" id="91_vjgyh"]
 [ext_resource type="PackedScene" uid="uid://dfipnhy2cv66s" path="res://UI/UI popups/construction_menu_popu.tscn" id="92_smeu8"]
 [ext_resource type="PackedScene" uid="uid://mfo25nkb620y" path="res://UI/UI popups/ui_world_map_popup.tscn" id="92_u81y6"]
 [ext_resource type="Script" uid="uid://cqo5u5r154c0t" path="res://ui_v.gd" id="93_m74q3"]
 [ext_resource type="PackedScene" uid="uid://b7qlfxl72twhw" path="res://Staff/zookeeper.tscn" id="93_ox7mk"]
+[ext_resource type="PackedScene" uid="uid://cvl3hi0v46wqh" path="res://UI/UI popups/debug_popup.tscn" id="94_d5iia"]
 [ext_resource type="Texture2D" uid="uid://b7f8nv73rdsl8" path="res://Staff/sprites/zookeeper.png" id="94_ttfan"]
 [ext_resource type="Texture2D" uid="uid://jvgmda4s0kqx" path="res://Staff/sprites/zookeeper_unique.png" id="95_hugdr"]
 [ext_resource type="Resource" uid="uid://bqcnlf24xehnx" path="res://Enclosures/Shelters/shelter resources/tall_shelter.tres" id="96_6gr3f"]
@@ -94,8 +96,10 @@
 [ext_resource type="Theme" uid="uid://cuw3ddwg0guo" path="res://UI/Themes/woody/woody_main_construction_tools.tres" id="96_mnw77"]
 [ext_resource type="Theme" uid="uid://jrje6x4s4k8r" path="res://UI/Themes/woody/woody_main_construction.tres" id="96_u81y6"]
 [ext_resource type="Shader" uid="uid://bu1lv0m1sqnci" path="res://replace_color.gdshader" id="97_84xii"]
+[ext_resource type="Texture2D" uid="uid://b787nqd6tt5ow" path="res://UI/Icons/star2x.png" id="98_tttfs"]
 [ext_resource type="Texture2D" uid="uid://bjthj4qg0ql5v" path="res://UI/Themes/woody/construction_icons1.png" id="98_u81y6"]
 [ext_resource type="Script" uid="uid://bx7r3upcavvb4" path="res://notification_manager.gd" id="98_yvsr8"]
+[ext_resource type="Texture2D" uid="uid://dprrgv2xdx1qh" path="res://UI/Icons/star-half2x.png" id="99_1iygd"]
 [ext_resource type="Texture2D" uid="uid://b2kay82i4d1qh" path="res://UI/Themes/woody/construction_icons2.png" id="99_rt5wr"]
 [ext_resource type="PackedScene" uid="uid://c1lavh6yvgdgb" path="res://UI/notification_label.tscn" id="99_vieuh"]
 [ext_resource type="Texture2D" uid="uid://c85k6stofrun1" path="res://UI/Themes/woody/construction_icons3.png" id="100_mnw77"]
@@ -110,12 +114,16 @@
 [ext_resource type="Texture2D" uid="uid://bo1q3hj30vc34" path="res://UI/Icons/star.png" id="105_f3y11"]
 [ext_resource type="Theme" uid="uid://dw4rfb4bphg80" path="res://UI/Themes/woody/woody_popup_main_bottom.tres" id="106_rt5wr"]
 [ext_resource type="PackedScene" uid="uid://cmymygq532ra5" path="res://UI/UI popups/ui_enclosure_popup.tscn" id="109_37eu1"]
+[ext_resource type="Texture2D" uid="uid://dfkjplwblef06" path="res://UI/Themes/woody/options_icon.png" id="109_asu84"]
 [ext_resource type="PackedScene" uid="uid://b4j6v4cc3p1w" path="res://UI/UI popups/ui_animal_info_popup.tscn" id="109_pw0td"]
-[ext_resource type="Theme" uid="uid://dxrywrrnf0uaf" path="res://UI/Themes/leather/leather_default_button.tres" id="116_u81y6"]
+[ext_resource type="Texture2D" uid="uid://dgdloyx56qvlw" path="res://UI/Themes/woody/money_icon.png" id="111_qwt6e"]
+[ext_resource type="Texture2D" uid="uid://gw6tg33iula6" path="res://UI/Themes/woody/peeps_icon.png" id="117_tttfs"]
+[ext_resource type="PackedScene" uid="uid://pqvttmiwgmtd" path="res://UI/animal_carousel_element.tscn" id="118_1iygd"]
+[ext_resource type="Script" uid="uid://ci2jo0lc8n30t" path="res://UI/animal_carousel_element.gd" id="119_s4o1y"]
 [ext_resource type="PackedScene" uid="uid://bvx7ukf647gy5" path="res://UI/UI popups/ui_staff_popup.tscn" id="120_rpys8"]
+[ext_resource type="Theme" uid="uid://tfrt3qgw8yof" path="res://UI/Themes/woody/woody_popup_main.tres" id="121_asu84"]
 [ext_resource type="PackedScene" uid="uid://kn44cenbnuda" path="res://UI/level_star.tscn" id="126_5aa3q"]
 [ext_resource type="PackedScene" uid="uid://dqh7kxpmotbcn" path="res://options_menu.tscn" id="130_5aa3q"]
-[ext_resource type="Texture2D" uid="uid://b2tvkl7nw6goi" path="res://UI/Icons/peeps_icon.png" id="135_xkvoa"]
 [ext_resource type="Texture2D" uid="uid://bqrwr2cqyvfly" path="res://UI/art/bgtest.png" id="136_ldnlw"]
 [ext_resource type="Texture2D" uid="uid://bhdvqbx2t3rji" path="res://MainMenu/logo3.png" id="155_fdpg8"]
 [ext_resource type="Script" uid="uid://b6cxmm7gdxulo" path="res://UII_main_menu.gd" id="155_rpys8"]
@@ -598,6 +606,20 @@ texture_margin_right = 8.0
 texture_margin_bottom = 14.0
 region_rect = Rect2(512, 32, 128, 128)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bmvma"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_shlp4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2n44k"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tttfs"]
+texture = ExtResource("104_rt5wr")
+texture_margin_left = 8.0
+texture_margin_top = 10.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(32, 192, 128, 128)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkvoa"]
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 4
@@ -613,6 +635,28 @@ expand_margin_bottom = 4.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t5kpo"]
 bg_color = Color(0.807843, 0.294118, 0.294118, 1)
 border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d5iia"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_asu84"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qwt6e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_off2o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tttfs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1iygd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g5xqc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s4o1y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7mmqq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3exxq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5aa3q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ogm70"]
 shader = ExtResource("97_84xii")
@@ -630,9 +674,6 @@ shader_parameter/brightness = 0.0
 shader_parameter/contrast = 0.0
 shader_parameter/use_palette = false
 shader_parameter/palette_colors = 0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fdpg8"]
-bg_color = Color(0.190762, 0.190762, 0.190762, 0.47)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_oseej")
@@ -909,8 +950,10 @@ ui_peep_group_popup = ExtResource("83_4rd2l")
 ui_enclosure_popup = ExtResource("109_37eu1")
 ui_staff_popup = ExtResource("120_rpys8")
 ui_construction_menu_popup = ExtResource("92_smeu8")
+ui_animal_storage_box = ExtResource("91_vjgyh")
 ui_mgmt_box = ExtResource("90_kjtd0")
 ui_world_map_box = ExtResource("92_u81y6")
+ui_debug_box = ExtResource("94_d5iia")
 ui_animal_info_popup = ExtResource("109_pw0td")
 
 [node name="InfoBorder" type="CanvasLayer" parent="."]
@@ -933,6 +976,9 @@ metadata/_edit_lock_ = true
 unique_name_in_owner = true
 layer = 2
 script = ExtResource("93_m74q3")
+level_star = ExtResource("98_tttfs")
+level_star_half = ExtResource("99_1iygd")
+animal_carousel_element = ExtResource("118_1iygd")
 
 [node name="ConstructUI" type="Control" parent="UI_V"]
 unique_name_in_owner = true
@@ -971,7 +1017,7 @@ layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 10
 
-[node name="ContextualBulldozer" type="Button" parent="UI_V/ConstructUI/MarginContainer/VBoxContainer"]
+[node name="Cancel" type="Button" parent="UI_V/ConstructUI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
@@ -981,6 +1027,17 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_qwt6e")
 theme_override_styles/normal = SubResource("StyleBoxTexture_off2o")
 action_mode = 0
 text = "Bulldoze"
+
+[node name="ContextualBulldozer" type="Button" parent="UI_V/ConstructUI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qwt6e")
+theme_override_styles/normal = SubResource("StyleBoxTexture_off2o")
+action_mode = 0
+text = "Cancel"
 
 [node name="FreeCamera" type="Button" parent="UI_V/ConstructUI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -1058,6 +1115,7 @@ text = "Remove Lake"
 
 [node name="MainMargin" type="MarginContainer" parent="UI_V"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1185,6 +1243,78 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_vjgyh")
 icon = ExtResource("104_qwt6e")
 expand_icon = true
 
+[node name="Top-Right" type="Control" parent="UI_V/MainMargin"]
+layout_mode = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="OptionsButton" type="Button" parent="UI_V/MainMargin/Top-Right"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -96.0
+offset_bottom = 96.0
+grow_horizontal = 0
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bmvma")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_shlp4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2n44k")
+icon = ExtResource("109_asu84")
+icon_alignment = 1
+expand_icon = true
+
+[node name="MainMarginAux" type="MarginContainer" parent="UI_V"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 30
+metadata/_edit_lock_ = true
+
+[node name="Center" type="Control" parent="UI_V/MainMarginAux"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("121_asu84")
+metadata/_edit_lock_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="UI_V/MainMarginAux/Center"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_right = 75.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_tttfs")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI_V/MainMarginAux/Center/PanelContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI_V/MainMarginAux/Center/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("111_qwt6e")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VBoxContainer" type="MarginContainer" parent="UI_V/MainMarginAux/Center/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 12
+
+[node name="MoneyLabel" type="Label" parent="UI_V/MainMarginAux/Center/PanelContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+text = "100000"
+
 [node name="BottomMargin" type="Control" parent="UI_V"]
 unique_name_in_owner = true
 visible = false
@@ -1212,10 +1342,31 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 5
 
-[node name="WorldMapButton" type="Button" parent="UI_V/BottomMargin/VBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI_V/BottomMargin/VBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="WorldMapButton" type="Button" parent="UI_V/BottomMargin/VBoxContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 text = "World Map"
+
+[node name="AnimalStorageButton" type="Button" parent="UI_V/BottomMargin/VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Animal Storage"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI_V/BottomMargin/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="AnimalModeButton" type="Button" parent="UI_V/BottomMargin/VBoxContainer/MarginContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Animals"
 
 [node name="PanelContainer" type="PanelContainer" parent="UI_V/BottomMargin/VBoxContainer"]
 layout_mode = 2
@@ -1232,41 +1383,42 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="UI_ReputationStars" type="HBoxContainer" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Left"]
+[node name="ReputationStars" type="HBoxContainer" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Left"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 alignment = 1
 
-[node name="LevelStar" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Left/UI_ReputationStars" instance=ExtResource("126_5aa3q")]
+[node name="LevelStar" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Left/ReputationStars" instance=ExtResource("126_5aa3q")]
 custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("105_f3y11")
 
-[node name="LevelStar2" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Left/UI_ReputationStars" instance=ExtResource("126_5aa3q")]
+[node name="LevelStar2" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Left/ReputationStars" instance=ExtResource("126_5aa3q")]
 custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("105_f3y11")
 
-[node name="LevelStar3" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Left/UI_ReputationStars" instance=ExtResource("126_5aa3q")]
+[node name="LevelStar3" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Left/ReputationStars" instance=ExtResource("126_5aa3q")]
 custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("105_f3y11")
 
-[node name="LevelStar4" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Left/UI_ReputationStars" instance=ExtResource("126_5aa3q")]
+[node name="LevelStar4" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Left/ReputationStars" instance=ExtResource("126_5aa3q")]
 custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("105_f3y11")
 
-[node name="LevelStar5" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Left/UI_ReputationStars" instance=ExtResource("126_5aa3q")]
+[node name="LevelStar5" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Left/ReputationStars" instance=ExtResource("126_5aa3q")]
 custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1281,24 +1433,37 @@ theme_override_constants/separation = 8
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_bottom = 12
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Center"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Center"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Center/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Center/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Center/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Center/VBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(56, 56)
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("135_xkvoa")
-expand_mode = 2
-stretch_mode = 3
+texture = ExtResource("117_tttfs")
+stretch_mode = 5
 
-[node name="PeepCountLabel" type="Label" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Center/HBoxContainer"]
+[node name="PeepCountLabel" type="Label" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Center/VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 theme_override_font_sizes/font_size = 24
 text = "0"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VSeparator2" type="VSeparator" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu"]
 layout_mode = 2
@@ -1319,6 +1484,7 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
 [node name="TimeLabel" type="Label" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Right/VBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Jan, year 0"
@@ -1332,13 +1498,125 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
 [node name="TimeProgressBar" type="ProgressBar" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer/BottomMenu/Right/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_xkvoa")
 theme_override_styles/fill = SubResource("StyleBoxFlat_t5kpo")
+max_value = 150.0
 step = 1.0
 show_percentage = false
+
+[node name="BottomPanelButton" type="Button" parent="UI_V/BottomMargin/VBoxContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_d5iia")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_asu84")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qwt6e")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_off2o")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_tttfs")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_1iygd")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_g5xqc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_s4o1y")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7mmqq")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_3exxq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5aa3q")
+metadata/_edit_lock_ = true
+
+[node name="AnimalModeMargin" type="MarginContainer" parent="UI_V"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("106_rt5wr")
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 25
+
+[node name="CloseAnimalModeButton" type="Button" parent="UI_V/AnimalModeMargin"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "X"
+
+[node name="Control" type="Control" parent="UI_V/AnimalModeMargin"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_V/AnimalModeMargin/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ExpeditionsButton" type="Button" parent="UI_V/AnimalModeMargin/Control/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_vertical = 10
+text = "Expeditions"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 8
+follow_focus = true
+scroll_horizontal_custom_step = 0.0
+scroll_vertical_custom_step = 0.0
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 10
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="AnimalCarouselList" type="HBoxContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="AnimalCarouselElement" type="PanelContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 200)
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("119_s4o1y")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/AnimalCarouselElement"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/AnimalCarouselElement/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/AnimalCarouselElement/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+text = "Animal Storage"
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="OutlineColor" type="CanvasLayer" parent="."]
 layer = 0
@@ -1398,8 +1676,19 @@ visible = false
 script = ExtResource("155_rpys8")
 options_menu = ExtResource("130_5aa3q")
 
-[node name="MainMenuBG" type="PanelContainer" parent="MainMenu"]
+[node name="Control" type="Control" parent="MainMenu"]
+layout_mode = 3
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("121_asu84")
+
+[node name="MainMenuBG" type="PanelContainer" parent="MainMenu/Control"]
 unique_name_in_owner = true
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1407,56 +1696,63 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_fdpg8")
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMenu/MainMenuBG"]
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/Control/MainMenuBG"]
 layout_mode = 2
-theme_override_constants/margin_left = 750
-theme_override_constants/margin_top = 200
-theme_override_constants/margin_right = 750
-theme_override_constants/margin_bottom = 200
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
 
-[node name="PanelContainer" type="PanelContainer" parent="MainMenu/MainMenuBG/MarginContainer"]
+[node name="CloseOptionsMenu" type="Button" parent="MainMenu/Control/MainMenuBG/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-theme = ExtResource("116_u81y6")
+size_flags_horizontal = 10
+size_flags_vertical = 0
+text = "X"
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/Control/MainMenuBG/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="MainMenu/Control/MainMenuBG/MarginContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Control/MainMenuBG/MarginContainer/MarginContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MainMenu/Control/MainMenuBG/MarginContainer/MarginContainer/VBoxContainer3/VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
 texture = ExtResource("155_fdpg8")
+expand_mode = 3
 stretch_mode = 5
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MainMenu/Control/MainMenuBG/MarginContainer/MarginContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Button" type="Button" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2"]
+[node name="DebugMenuButton" type="Button" parent="MainMenu/Control/MainMenuBG/MarginContainer/MarginContainer/VBoxContainer3/VBoxContainer2"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "a"
+text = "Debug Menu"
 
-[node name="OptionsMenuButton" type="Button" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2"]
+[node name="OptionsMenuButton" type="Button" parent="MainMenu/Control/MainMenuBG/MarginContainer/MarginContainer/VBoxContainer3/VBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "Options"
 
-[node name="BackToMenuButton" type="Button" parent="MainMenu/MainMenuBG/MarginContainer/PanelContainer/MarginContainer/VBoxContainer3/VBoxContainer2"]
+[node name="BackToMenuButton" type="Button" parent="MainMenu/Control/MainMenuBG/MarginContainer/MarginContainer/VBoxContainer3/VBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2

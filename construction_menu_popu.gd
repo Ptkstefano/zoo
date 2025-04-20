@@ -149,7 +149,7 @@ func add_elements():
 			create_element(ContentManager.terrains[entry])
 			
 	if menu_type == IdRefs.CONSTRUCTION_MENUS.LAKE:
-		for entry in ContentManager.lake_resources:
+		for entry in ResearchManager.unlocked_lakes:
 			create_element(ContentManager.lakes[entry])
 
 func create_element(resource):

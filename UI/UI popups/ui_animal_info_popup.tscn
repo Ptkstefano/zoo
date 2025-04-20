@@ -1,54 +1,32 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4j6v4cc3p1w"]
+[gd_scene load_steps=5 format=3 uid="uid://b4j6v4cc3p1w"]
 
 [ext_resource type="Script" uid="uid://b4ue560jtyrh4" path="res://UI/UI popups/ui_animal_info_popup.gd" id="1_p6rog"]
+[ext_resource type="Theme" uid="uid://tfrt3qgw8yof" path="res://UI/Themes/woody/woody_popup_main.tres" id="1_q2ugj"]
 [ext_resource type="Theme" uid="uid://n5hp2ks3tu04" path="res://checkbox.tres" id="3_81ffn"]
-[ext_resource type="Texture2D" uid="uid://b5ehp47ajkovo" path="res://UI/art/buttons.png" id="3_q2ugj"]
-[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/Themes/popup_theme.tres" id="4_8ao4j"]
-[ext_resource type="Texture2D" uid="uid://e1eo4sf7cs8g" path="res://Animals/thumbs/animal_capybara.png" id="4_81ffn"]
-[ext_resource type="Script" uid="uid://oq7aounld7th" path="res://UI/UI popups/responsive_margin_container.gd" id="5_oelc3"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p6rog"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 12.0
-texture = ExtResource("3_q2ugj")
-texture_margin_left = 8.0
-texture_margin_top = 8.0
-texture_margin_right = 8.0
-texture_margin_bottom = 16.0
-region_rect = Rect2(20, 404, 152, 160)
-draw_center = false
+[ext_resource type="Texture2D" uid="uid://byrh5ao3uywmr" path="res://Animals/icons/african-elephant.png" id="3_p6rog"]
 
 [node name="AnimalInfoPopup" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("1_q2ugj")
 script = ExtResource("1_p6rog")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("4_8ao4j")
-theme_override_constants/margin_left = 200
-theme_override_constants/margin_top = 150
-theme_override_constants/margin_right = 200
-theme_override_constants/margin_bottom = 150
-script = ExtResource("5_oelc3")
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 custom_minimum_size = Vector2(600, 400)
 layout_mode = 2
 theme_override_constants/margin_left = 20
@@ -56,269 +34,257 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="AnimalName" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+[node name="AnimalName" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 56
+theme_override_font_sizes/font_size = 32
 text = "Animal name"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="AnimalIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 10
+texture = ExtResource("3_p6rog")
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Enclosure Requirements" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3"]
+[node name="Enclosure Requirements" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer"]
 layout_mode = 2
 text = "Enclosure requirements"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="TerrainRequirement" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="TerrainRequirement" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/TerrainRequirement"]
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/TerrainRequirement"]
 layout_mode = 2
 text = "UI_ANIMAL_INFO_TERRAIN_REQUIREMENT"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/TerrainRequirement"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/TerrainRequirement"]
 layout_mode = 2
 theme_override_constants/margin_left = 35
 
-[node name="TerrainLabels" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/TerrainRequirement/MarginContainer"]
+[node name="TerrainLabels" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/TerrainRequirement/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="WaterRequirement" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="WaterRequirement" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/WaterRequirement"]
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/WaterRequirement"]
 layout_mode = 2
 text = "UI_ANIMAL_INFO_NEEDS_WATER"
 
-[node name="BulldozerDecorationCheckBox" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/WaterRequirement"]
+[node name="BulldozerDecorationCheckBox" type="CheckButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/WaterRequirement"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("3_81ffn")
 
-[node name="HabitatSize" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HabitatSize" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="habitatlabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HabitatSize"]
+[node name="habitatlabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HabitatSize"]
 layout_mode = 2
 text = "UI_ANIMAL_INFO_ENCLOSURE_SIZE"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HabitatSize"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HabitatSize"]
 layout_mode = 2
 theme_override_constants/margin_left = 35
 
-[node name="TerrainLabels" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HabitatSize/MarginContainer"]
+[node name="TerrainLabels" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HabitatSize/MarginContainer"]
 layout_mode = 2
 
-[node name="EnclosureSizeLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HabitatSize/MarginContainer/TerrainLabels"]
+[node name="EnclosureSizeLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/HabitatSize/MarginContainer/TerrainLabels"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-
-[node name="HerdSize" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="HerdSize" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer2/HerdSize"]
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/HerdSize"]
 layout_mode = 2
 text = "UI_ANIMAL_INFO_MINIMUM_HERD"
 
-[node name="HerdSizeLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer2/HerdSize"]
+[node name="HerdSizeLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/HerdSize"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VegetationDensity" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="VegetationDensity" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer2/VegetationDensity"]
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/VegetationDensity"]
 layout_mode = 2
 text = "UI_ANIMAL_INFO_VEGETATION_DENSITY"
 
-[node name="VegetationDensityLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer2/VegetationDensity"]
+[node name="VegetationDensityLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/VegetationDensity"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="FavoriteTree" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="FavoriteTree" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer2/FavoriteTree"]
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/FavoriteTree"]
 layout_mode = 2
 text = "UI_ANIMAL_INFO_FAVORITE_TREE"
 
-[node name="FavoriteTreeLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer2/FavoriteTree"]
+[node name="FavoriteTreeLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/FavoriteTree"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MinFenceLevel" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="MinFenceLevel" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer2/MinFenceLevel"]
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MinFenceLevel"]
 layout_mode = 2
 text = "UI_ANIMAL_INFO_FENCE_LEVEL"
 
-[node name="FenceLevelLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer2/MinFenceLevel"]
+[node name="FenceLevelLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MinFenceLevel"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MinShelterLevel" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="MinShelterLevel" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer2/MinShelterLevel"]
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MinShelterLevel"]
 layout_mode = 2
 text = "UI_ANIMAL_INFO_SHELTER_LEVEL"
 
-[node name="ShelterLevelLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer2/MinShelterLevel"]
+[node name="ShelterLevelLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Enclosure Requirements/VBoxContainer/HBoxContainer/VBoxContainer/MinShelterLevel"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Animal Info" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3"]
+[node name="Animal Info" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer"]
 layout_mode = 2
 text = "UI_ANIMAL_INFO_ANIMAL_INFO"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Feed type" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Feed type" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="FeedType" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Feed type"]
+[node name="FeedType" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Feed type"]
 layout_mode = 2
 text = "UI_ANIMAL_INFO_FEED_TYPE"
 
-[node name="FeedTypeLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Feed type"]
+[node name="FeedTypeLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/Feed type"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "#"
 
-[node name="LifeTime" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="LifeTime" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Lifetime" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/LifeTime"]
+[node name="Lifetime" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/LifeTime"]
 layout_mode = 2
 text = "UI_ANIMAL_INFO_EXPECTED_LIFETIME"
 
-[node name="LifetimeLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/LifeTime"]
+[node name="LifetimeLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/LifeTime"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "#"
 
-[node name="PregnancyTime" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="PregnancyTime" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/PregnancyTime"]
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/PregnancyTime"]
 layout_mode = 2
 text = "UI_ANIMAL_INFO_PREGNANCY_TIME"
 
-[node name="PregnancyLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/PregnancyTime"]
+[node name="PregnancyLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/PregnancyTime"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "#"
 
-[node name="InfancyTime" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="InfancyTime" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/InfancyTime"]
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/InfancyTime"]
 layout_mode = 2
 text = "UI_ANIMAL_INFO_ADULTHOOD"
 
-[node name="AdulthoodLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/InfancyTime"]
+[node name="AdulthoodLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/InfancyTime"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "#"
 
-[node name="AnimalRating" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="AnimalRating" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/AnimalRating"]
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/AnimalRating"]
 layout_mode = 2
 text = "UI_ANIMAL_INFO_RATING"
 
-[node name="RatingLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/AnimalRating"]
+[node name="RatingLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer3/Animal Info/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/AnimalRating"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "#"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.33
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_p6rog")
-
-[node name="AnimalThumb" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PanelContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("4_81ffn")
-expand_mode = 4
-stretch_mode = 6
-
-[node name="CloseButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "CLOSE"

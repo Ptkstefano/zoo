@@ -47,9 +47,9 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		if event.keycode == KEY_F9:
-			print('Unlock all')
-			on_unlock_everything()
+		if event.pressed:
+			if event.keycode == KEY_F9:
+				SignalBus.open_box.emit(IdRefs.UI_BOXES.DEBUG_MENU)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -100,3 +100,6 @@ func on_toggle_day():
 
 func on_unlock_everything():
 	ResearchManager.unlock_everything()
+
+func add_animal_to_storage():
+	AnimalStorageManager.create_animal(ContentManager.animals[IdRefs.ANIMAL_SPECIES.WHITETAILED_DEER])

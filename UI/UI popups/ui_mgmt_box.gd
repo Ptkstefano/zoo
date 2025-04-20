@@ -18,8 +18,9 @@ var star_instances
 
 signal popup_closed
 
+
 func _ready():
-	%CloseButton.pressed.connect(on_popup_closed)
+	%CloseMenu.pressed.connect(on_popup_closed)
 	generate_reviews_tab()
 	ZooManager.reviews_changed.connect(generate_reviews_tab)
 	FinanceManager.current_month_changed.connect(generate_finances_tab)
@@ -34,6 +35,13 @@ func _ready():
 	%Minus.pressed.connect(entrance_price_change.bind(-1))
 	%Plus.pressed.connect(entrance_price_change.bind(1))
 	%Price.text = Helpers.money_text(ZooManager.entrance_price)
+	
+	%MgmtButton.pressed.connect(on_change_tab.bind(%UI_MGMT_MANAGEMENT))
+	%ReviewButton.pressed.connect(on_change_tab.bind(%UI_MGMT_REVIEWS))
+	%FinanceButton.pressed.connect(on_change_tab.bind(%UI_MGMT_FINANCE))
+	%EnclosureButton.pressed.connect(on_change_tab.bind(%UI_MGMT_ENCLOSURE_LIST))
+	%StaffButton.pressed.connect(on_change_tab.bind(%UI_MGMT_STAFF_LIST))
+	%ResearchButton.pressed.connect(on_change_tab.bind(%UI_MGMT_RESEARCH))
 	
 	
 	if ResearchManager.current_research_progress > 99:
@@ -57,6 +65,12 @@ func _ready():
 
 func on_popup_closed():
 	popup_closed.emit()
+
+func on_change_tab(tab):
+	for child in %TabContainer.get_children():
+		child.hide()
+		
+	tab.show()
 
 func generate_reviews_tab():
 	review_count.clear()

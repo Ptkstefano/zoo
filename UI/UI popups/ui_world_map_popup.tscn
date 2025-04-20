@@ -1,11 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://mfo25nkb620y"]
+[gd_scene load_steps=28 format=3 uid="uid://mfo25nkb620y"]
 
 [ext_resource type="Script" uid="uid://dkyvpru8k0qaj" path="res://UI/UI popups/ui_world_map_popup.gd" id="1_hmb0u"]
-[ext_resource type="Theme" uid="uid://dw4rfb4bphg80" path="res://UI/Themes/woody/woody_popup_main_bottom.tres" id="2_3wvs4"]
+[ext_resource type="Theme" uid="uid://tfrt3qgw8yof" path="res://UI/Themes/woody/woody_popup_main.tres" id="2_fiyai"]
 [ext_resource type="Texture2D" uid="uid://t2u57oilyuhf" path="res://worldmap/worldmap1.png" id="3_a2ixh"]
 [ext_resource type="Theme" uid="uid://ddneklvhdy4g0" path="res://UI/Themes/woody/woody_whiteboard.tres" id="3_e7yyf"]
 [ext_resource type="Texture2D" uid="uid://b76emxqrxelwh" path="res://worldmap/worldmap.png" id="3_i27hd"]
 [ext_resource type="Texture2D" uid="uid://p6g7g0cgxt4o" path="res://worldmap/north-american-expanses.png" id="4_2t1j0"]
+[ext_resource type="Texture2D" uid="uid://dkpkvoqe2wt6f" path="res://UI/Themes/woody/grabber.png" id="4_8a31w"]
 [ext_resource type="Script" uid="uid://dqba50320tl8q" path="res://UI/UI popups/world_map.gd" id="4_gkysp"]
 [ext_resource type="Texture2D" uid="uid://cpfyu3p473r6h" path="res://worldmap/worldmap2.png" id="4_hmb0u"]
 [ext_resource type="Texture2D" uid="uid://be7jp16ade7u6" path="res://worldmap/worldmap3.png" id="5_gkysp"]
@@ -13,6 +14,26 @@
 [ext_resource type="Resource" uid="uid://cd1ondgak7rvn" path="res://worldmap/expedition_resources/north_america_expanse.tres" id="10_r2hm2"]
 [ext_resource type="Theme" uid="uid://bsbphmr758ul1" path="res://UI/Themes/woody/woody_popup_inner_content.tres" id="12_3wvs4"]
 [ext_resource type="Texture2D" uid="uid://s78mhwo52ucr" path="res://Animals/icons/alaskan-moose.png" id="12_e7yyf"]
+[ext_resource type="Resource" uid="uid://c4irrbd6xo0h2" path="res://worldmap/expedition_resources/pantanal_exploration.tres" id="12_lwm33"]
+[ext_resource type="Resource" uid="uid://0tte50qf7u46" path="res://worldmap/expedition_resources/Chinese_highlands.tres" id="13_v7cbd"]
+[ext_resource type="Resource" uid="uid://cahg86slfvv0q" path="res://worldmap/expedition_resources/Outback.tres" id="14_ydgmp"]
+[ext_resource type="Resource" uid="uid://cit45db1ej2m7" path="res://worldmap/expedition_resources/Savanna.tres" id="15_hev1o"]
+[ext_resource type="Resource" uid="uid://i2obebwg4vyo" path="res://worldmap/expedition_resources/arabian_deserts.tres" id="16_lieg5"]
+[ext_resource type="Resource" uid="uid://dtmpr6nr1kkry" path="res://worldmap/expedition_resources/europe_forests.tres" id="17_w4dqc"]
+[ext_resource type="Resource" uid="uid://davvkdfoebcd4" path="res://worldmap/expedition_resources/caribbean_paradise.tres" id="18_fiyai"]
+[ext_resource type="Resource" uid="uid://53afkl2amhgn" path="res://worldmap/expedition_resources/northern_coasts.tres" id="19_8a31w"]
+[ext_resource type="Resource" uid="uid://bhooceo3a60ni" path="res://worldmap/expedition_resources/madagascar.tres" id="20_w4dqc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_baxg6"]
+texture = ExtResource("4_8a31w")
+texture_margin_left = 4.0
+texture_margin_top = 2.0
+texture_margin_right = 4.0
+texture_margin_bottom = 2.0
+axis_stretch_horizontal = 2
+
+[sub_resource type="Theme" id="Theme_36can"]
+HScrollBar/styles/grabber = SubResource("StyleBoxTexture_baxg6")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6av83"]
 animations = [{
@@ -49,7 +70,8 @@ anchor_right = 0.9
 anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_3wvs4")
+mouse_filter = 1
+theme = ExtResource("2_fiyai")
 
 [node name="PanelContainer" type="PanelContainer" parent="Control"]
 layout_mode = 1
@@ -105,41 +127,54 @@ layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("3_e7yyf")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer"]
+layout_mode = 2
+
+[node name="WorldMapScrollContainer" type="ScrollContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 580)
 layout_mode = 2
 size_flags_vertical = 0
-scroll_horizontal_custom_step = 0.0
+theme = SubResource("Theme_36can")
+horizontal_scroll_mode = 3
 vertical_scroll_mode = 0
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer"]
 layout_mode = 2
 
-[node name="SubViewport" type="SubViewport" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer"]
 handle_input_locally = false
 physics_object_picking = true
 size = Vector2i(1100, 580)
 render_target_update_mode = 4
 
-[node name="WorldMap" type="Node2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer/SubViewportContainer/SubViewport"]
+[node name="WorldMap" type="Node2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
 script = ExtResource("4_gkysp")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer/SubViewportContainer/SubViewport/WorldMap"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap"]
 sprite_frames = SubResource("SpriteFrames_6av83")
 autoplay = "default"
 frame = 3
 frame_progress = 0.0301455
 centered = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer/SubViewportContainer/SubViewport/WorldMap"]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap"]
+sprite_frames = SubResource("SpriteFrames_6av83")
+autoplay = "default"
+frame = 3
+frame_progress = 0.0301455
+centered = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap"]
 visible = false
 texture = ExtResource("3_i27hd")
 centered = false
 
-[node name="Icons" type="Node2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer/SubViewportContainer/SubViewport/WorldMap"]
+[node name="Icons" type="Node2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap"]
+unique_name_in_owner = true
 
-[node name="Expedition_NAExpanses" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
+[node name="Expedition_NAExpanses" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
 unique_name_in_owner = true
 position = Vector2(229, 125)
 collision_mask = 0
@@ -147,14 +182,146 @@ input_pickable = true
 script = ExtResource("9_6av83")
 expedition_resource = ExtResource("10_r2hm2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_NAExpanses"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_NAExpanses"]
 shape = SubResource("CircleShape2D_hmb0u")
 
-[node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/ScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_NAExpanses"]
+[node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_NAExpanses"]
 texture = ExtResource("4_2t1j0")
+
+[node name="Expedition_Pantanal" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
+unique_name_in_owner = true
+position = Vector2(343, 362)
+collision_mask = 0
+input_pickable = true
+script = ExtResource("9_6av83")
+expedition_resource = ExtResource("12_lwm33")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Pantanal"]
+shape = SubResource("CircleShape2D_hmb0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Pantanal"]
+texture = ExtResource("4_2t1j0")
+
+[node name="Expedition_ChineseHighlands" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
+unique_name_in_owner = true
+position = Vector2(830, 164)
+collision_mask = 0
+input_pickable = true
+script = ExtResource("9_6av83")
+expedition_resource = ExtResource("13_v7cbd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_ChineseHighlands"]
+shape = SubResource("CircleShape2D_hmb0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_ChineseHighlands"]
+texture = ExtResource("4_2t1j0")
+
+[node name="Expedition_Outback" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
+unique_name_in_owner = true
+position = Vector2(925, 351)
+collision_mask = 0
+input_pickable = true
+script = ExtResource("9_6av83")
+expedition_resource = ExtResource("14_ydgmp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Outback"]
+shape = SubResource("CircleShape2D_hmb0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Outback"]
+texture = ExtResource("4_2t1j0")
+
+[node name="Expedition_Savanna" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
+unique_name_in_owner = true
+position = Vector2(609, 271)
+collision_mask = 0
+input_pickable = true
+script = ExtResource("9_6av83")
+expedition_resource = ExtResource("15_hev1o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Savanna"]
+shape = SubResource("CircleShape2D_hmb0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Savanna"]
+texture = ExtResource("4_2t1j0")
+
+[node name="Expedition_Arabian" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
+unique_name_in_owner = true
+position = Vector2(622, 192)
+collision_mask = 0
+input_pickable = true
+script = ExtResource("9_6av83")
+expedition_resource = ExtResource("16_lieg5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Arabian"]
+shape = SubResource("CircleShape2D_hmb0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Arabian"]
+texture = ExtResource("4_2t1j0")
+
+[node name="Expedition_EuropeanForests" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
+unique_name_in_owner = true
+position = Vector2(557, 114)
+collision_mask = 0
+input_pickable = true
+script = ExtResource("9_6av83")
+expedition_resource = ExtResource("17_w4dqc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_EuropeanForests"]
+shape = SubResource("CircleShape2D_hmb0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_EuropeanForests"]
+texture = ExtResource("4_2t1j0")
+
+[node name="Expedition_Caribbean" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
+unique_name_in_owner = true
+position = Vector2(292, 224)
+collision_mask = 0
+input_pickable = true
+script = ExtResource("9_6av83")
+expedition_resource = ExtResource("18_fiyai")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Caribbean"]
+shape = SubResource("CircleShape2D_hmb0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Caribbean"]
+texture = ExtResource("4_2t1j0")
+
+[node name="Expedition_NorthernCoasts" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
+unique_name_in_owner = true
+position = Vector2(372, 113)
+collision_mask = 0
+input_pickable = true
+script = ExtResource("9_6av83")
+expedition_resource = ExtResource("19_8a31w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_NorthernCoasts"]
+shape = SubResource("CircleShape2D_hmb0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_NorthernCoasts"]
+texture = ExtResource("4_2t1j0")
+
+[node name="Expedition_Madagascar" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
+unique_name_in_owner = true
+position = Vector2(658, 340)
+collision_mask = 0
+input_pickable = true
+script = ExtResource("9_6av83")
+expedition_resource = ExtResource("20_w4dqc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Madagascar"]
+shape = SubResource("CircleShape2D_hmb0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Madagascar"]
+texture = ExtResource("4_2t1j0")
+
+[node name="WorldMapScroll" type="HScrollBar" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 532.0
 
 [node name="ExpeditionInfoContainer" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("12_3wvs4")

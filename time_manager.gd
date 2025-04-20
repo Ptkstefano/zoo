@@ -33,6 +33,9 @@ func on_month_pass():
 func pass_year():
 	current_year += 1
 
+func get_timer_progress():
+	return default_month_time - month_timer.time_left
+	
 func get_timer_time_left():
 	return month_timer.time_left
 

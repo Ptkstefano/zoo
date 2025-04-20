@@ -18,31 +18,16 @@ var animal_count = 0
 func _process(delta: float) -> void:
 	pass
 
-
+func spawn_stored_animal(coordinate, stored_animal : StoredAnimal):
+	var saved_data = stored_animal.get_saved_data()
+	spawn_animal(coordinate, stored_animal.animal_res, saved_data, false, stored_animal.animal_gender)
 
 func spawn_animal(coordinate, animal_res : animal_resource, saved_data, is_spawned_infant : bool, selected_spawn_gender):
-	## Find what enclosure the player wants to add an animal to
-	var cell = TileMapRef.local_to_map(coordinate)
-	var found_enclosure = enclosure_manager.get_enclosure_by_cell(cell)
-	if !animal_res:
-		print('Problem loading animal')
-		print(saved_data)
-	
-	if !found_enclosure:
-		SignalBus.tooltip.emit(tr('TOOLTIP_REQUIRES_ENCLOSURE'), null)
-		return
-	if !found_enclosure.entrance_door_cell:
-		SignalBus.tooltip.emit(tr('TOOLTIP_REQUIRES_ENTRANCE'), null)
+	if !check_if_valid_position(coordinate, animal_res):
 		return
 		
-	if found_enclosure.enclosure_species != null:
-		if found_enclosure.enclosure_species != animal_res:
-			SignalBus.tooltip.emit(tr('TOOLTIP_NO_ANIMAL_MIXING'), null)
-			return
-			
-	if found_enclosure.fence_res.fence_level < animal_res.minimum_fence_level:
-		SignalBus.tooltip.emit(tr('TOOLTIP_ENCLOSURE_NOT_SAFE'), null)
-		return
+	var cell = TileMapRef.local_to_map(coordinate)
+	var found_enclosure = enclosure_manager.get_enclosure_by_cell(cell)
 		
 	var spawned_animal = animal_scene.instantiate()
 	
@@ -63,6 +48,9 @@ func spawn_animal(coordinate, animal_res : animal_resource, saved_data, is_spawn
 	spawned_animal.spawn_cub.connect(spawn_cub)
 	
 	add_child(spawned_animal)
+	
+	SignalBus.animal_placed.emit(spawned_animal.id)
+	
 	Effects.wobble(spawned_animal)
 	found_enclosure.add_animal(spawned_animal)
 	animal_count += 1
@@ -74,3 +62,25 @@ func spawn_cub(parent : Animal):
 func despawn_animal(animal):
 	animal_count -= 1
 	animal.queue_free()
+
+func check_if_valid_position(coordinate, animal_res) -> bool:
+	var cell = TileMapRef.local_to_map(coordinate)
+	var found_enclosure = enclosure_manager.get_enclosure_by_cell(cell)
+	
+	if !found_enclosure:
+		SignalBus.tooltip.emit(tr('TOOLTIP_REQUIRES_ENCLOSURE'), null)
+		return false
+	if !found_enclosure.entrance_door_cell:
+		SignalBus.tooltip.emit(tr('TOOLTIP_REQUIRES_ENTRANCE'), null)
+		return false
+		
+	if found_enclosure.enclosure_species != null:
+		if found_enclosure.enclosure_species != animal_res:
+			SignalBus.tooltip.emit(tr('TOOLTIP_NO_ANIMAL_MIXING'), null)
+			return false
+			
+	if found_enclosure.fence_res.fence_level < animal_res.minimum_fence_level:
+		SignalBus.tooltip.emit(tr('TOOLTIP_ENCLOSURE_NOT_SAFE'), null)
+		return false
+		
+	return true

@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=3 uid="uid://dkyq54bpawtoq"]
 
-[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/Themes/popup_theme.tres" id="1_4y68s"]
+[ext_resource type="Theme" uid="uid://b6ou4s4eaow2o" path="res://UI/Themes/woody/woody_list_element.tres" id="1_5dyuu"]
 [ext_resource type="Script" uid="uid://yuksdpapqa7b" path="res://UI/UI popups/elements/ui_product_element.gd" id="1_vpxgb"]
 [ext_resource type="PackedScene" uid="uid://kn44cenbnuda" path="res://UI/level_star.tscn" id="3_fkehs"]
-[ext_resource type="FontFile" uid="uid://cpnqdh47y1283" path="res://UI/Logic_Loop.ttf" id="3_sefss"]
 [ext_resource type="PackedScene" uid="uid://c8bajfgxnpfow" path="res://UI/UI popups/ui_product_popup.tscn" id="4_ft5ms"]
 [ext_resource type="Texture2D" uid="uid://ccnb5ruwtu418" path="res://Products/Icons/products1.png" id="5_5dyuu"]
+[ext_resource type="Texture2D" uid="uid://imjitgjexxki" path="res://UI/Themes/woody/wood_ui.png" id="5_k1tdi"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ft5ms"]
 
@@ -17,22 +17,23 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mug7e"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dyuu"]
-bg_color = Color(0.464616, 0.442849, 0.686033, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ijnfv"]
+texture = ExtResource("5_k1tdi")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(512, 192, 128, 128)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1mjrf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f6yke"]
 
 [node name="ProductElement" type="PanelContainer"]
-offset_right = 815.0
-offset_bottom = 144.0
+offset_right = 507.0
+offset_bottom = 165.0
 size_flags_horizontal = 3
-theme = ExtResource("1_4y68s")
+theme = ExtResource("1_5dyuu")
 script = ExtResource("1_vpxgb")
 level_star = ExtResource("3_fkehs")
 product_popup = ExtResource("4_ft5ms")
@@ -55,23 +56,32 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Element"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Element"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Element/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Element/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Element/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="Element/HBoxContainer/VBoxContainer2"]
+[node name="ProductName" type="Label" parent="Element/VBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Ice Cream"
+
+[node name="Panel" type="Panel" parent="Element/VBoxContainer/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5dyuu")
+theme_override_styles/panel = SubResource("StyleBoxTexture_ijnfv")
 
-[node name="Thumbnail" type="TextureRect" parent="Element/HBoxContainer/VBoxContainer2/Panel"]
+[node name="Thumbnail" type="TextureRect" parent="Element/VBoxContainer/HBoxContainer/VBoxContainer2/Panel"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -82,80 +92,68 @@ grow_vertical = 2
 texture = ExtResource("5_5dyuu")
 stretch_mode = 5
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="Element/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="HBoxContainer2" type="VBoxContainer" parent="Element/HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 2
-
-[node name="ProductName" type="Label" parent="Element/HBoxContainer/VBoxContainer3/HBoxContainer2"]
+[node name="LevelStars" type="HBoxContainer" parent="Element/VBoxContainer/HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 2
-theme_override_font_sizes/font_size = 48
-text = "Ice Cream"
-
-[node name="LevelStars" type="HBoxContainer" parent="Element/HBoxContainer/VBoxContainer3/HBoxContainer2"]
-unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 36)
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 4
+size_flags_vertical = 6
+alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Element/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Element/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Element/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Element/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Element/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 mouse_filter = 2
 
-[node name="Minus" type="Button" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Minus" type="Button" parent="Element/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 24
 text = "-"
 
-[node name="VSeparator2" type="VSeparator" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="VSeparator2" type="VSeparator" parent="Element/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_1mjrf")
 
-[node name="Price" type="Label" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Price" type="Label" parent="Element/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_sefss")
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = -20
 text = "2.00
 "
 
-[node name="VSeparator" type="VSeparator" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="Element/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_f6yke")
 
-[node name="Plus" type="Button" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Plus" type="Button" parent="Element/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 24
 text = "+"
 
-[node name="VSeparator3" type="VSeparator" parent="Element/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="VSeparator3" type="VSeparator" parent="Element/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 20

@@ -1,16 +1,19 @@
-[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://xncaf8r72rkb"]
+[gd_resource type="Resource" script_class="animal_resource" load_steps=5 format=3 uid="uid://xncaf8r72rkb"]
 
 [ext_resource type="Texture2D" uid="uid://cih1e3v64yv0m" path="res://Animals/sprites/red_kangaroo_cub.png" id="1_jgaf2"]
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_kntb2"]
+[ext_resource type="Texture2D" uid="uid://b1rcc7wgcd5jl" path="res://Animals/icons/red_kangaroo.png" id="2_jgaf2"]
 [ext_resource type="Texture2D" uid="uid://pvv5d6jilre3" path="res://Animals/sprites/red_kangaroo.png" id="3_yi0ix"]
 
 [resource]
 script = ExtResource("1_kntb2")
 tr_name = "ANIMAL_RED_KANGAROO"
-id = 4
+id = 8
+rarity = 0
 cost = 250.0
 texture = ExtResource("3_yi0ix")
 cub_texture = ExtResource("1_jgaf2")
+icon = ExtResource("2_jgaf2")
 feed = 1
 shadow_scale = 1.0
 sprite_y_offset = 2

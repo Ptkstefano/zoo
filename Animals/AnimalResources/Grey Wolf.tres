@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://dhs5dmiefy8ti"]
+
+[ext_resource type="Texture2D" uid="uid://dwtvltt0tawkt" path="res://Animals/sprites/grey_wolf.png" id="1_uemab"]
+[ext_resource type="Texture2D" uid="uid://crrol3w0ojjif" path="res://Animals/icons/gray-wolf.png" id="2_qapih"]
+[ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="3_kns8q"]
+
+[resource]
+script = ExtResource("3_kns8q")
+tr_name = "ANIMAL_GRAY_WOLF"
+id = 20
+rarity = 0
+cost = 200.0
+texture = ExtResource("1_uemab")
+cub_texture = ExtResource("1_uemab")
+icon = ExtResource("2_qapih")
+feed = 0
+shadow_scale = 1.0
+sprite_y_offset = 4
+animation_speed_scale = 1.0
+base_speed = 15.0
+run_speed = 25.0
+can_swim = false
+animal_rating = 140
+months_of_pregnancy = 2
+percentage_of_will_to_mate = 5
+months_to_adulthood = 12
+months_of_expected_lifetime = 144
+terrain_preference = Dictionary[int, float]({})
+terrain_dislike = Array[int]([4])
+needs_water = false
+minimum_habitat_size = 75
+minimum_cells_per_animal = 15
+minimum_vegetation_coverage = 0.5
+maximum_vegetation_coverage = 1.5
+minimum_herd_size = 2
+favorite_tree = 7
+minimum_shelter_level = 0
+minimum_fence_level = 3
+possible_sprite_variations = 1
+separate_gender_sprites = false
+can_be_albino = false

@@ -1,16 +1,19 @@
-[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://cqqot0eu3qu67"]
+[gd_resource type="Resource" script_class="animal_resource" load_steps=5 format=3 uid="uid://cqqot0eu3qu67"]
 
 [ext_resource type="Texture2D" uid="uid://08ty1m3m0ue4" path="res://Animals/sprites/cassowary_cub.png" id="1_12wcf"]
 [ext_resource type="Texture2D" uid="uid://bkwbasbhtk5n2" path="res://Animals/sprites/cassowary.png" id="1_gehfp"]
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="2_71avn"]
+[ext_resource type="Texture2D" uid="uid://bkc1n2o4edcsi" path="res://Animals/icons/cassowary.png" id="2_rap6q"]
 
 [resource]
 script = ExtResource("2_71avn")
 tr_name = "ANIMAL_CASSOWARY"
-id = 16
+id = 14
+rarity = 1
 cost = 100.0
 texture = ExtResource("1_gehfp")
 cub_texture = ExtResource("1_12wcf")
+icon = ExtResource("2_rap6q")
 feed = 0
 shadow_scale = 1.0
 sprite_y_offset = 0

@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://gmxgrhwjv5t8" path="res://Animals/sprites/capy_cub.png" id="1_81kna"]
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_ob3tf"]
+[ext_resource type="Texture2D" uid="uid://b68s257xsk02" path="res://Animals/icons/capybara.png" id="2_81kna"]
 [ext_resource type="Texture2D" uid="uid://c6wmdilxav70a" path="res://Animals/sprites/capy.png" id="2_uytuh"]
-[ext_resource type="Texture2D" uid="uid://e1eo4sf7cs8g" path="res://Animals/thumbs/animal_capybara.png" id="3_18ebj"]
 
 [resource]
 script = ExtResource("1_ob3tf")
@@ -12,7 +12,7 @@ id = 0
 cost = 75.0
 texture = ExtResource("2_uytuh")
 cub_texture = ExtResource("1_81kna")
-thumb = ExtResource("3_18ebj")
+icon = ExtResource("2_81kna")
 feed = 1
 shadow_scale = 1.0
 sprite_y_offset = 0

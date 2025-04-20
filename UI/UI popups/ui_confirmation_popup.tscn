@@ -2,28 +2,30 @@
 
 [ext_resource type="Script" uid="uid://c5hqciys01nvk" path="res://UI/UI popups/ui_confirmation_popup.gd" id="1_xjvv2"]
 [ext_resource type="Theme" uid="uid://die2jiitjcnwu" path="res://Green_button.tres" id="2_xjqda"]
+[ext_resource type="Theme" uid="uid://tfrt3qgw8yof" path="res://UI/Themes/woody/woody_popup_main.tres" id="2_xjvv2"]
 [ext_resource type="Theme" uid="uid://dnsbtrrtp1vwi" path="res://Red_button.tres" id="3_xjvv2"]
-[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/Themes/popup_theme.tres" id="5_nkoa4"]
 
 [node name="UI_confirmation_popup" type="CanvasLayer"]
 layer = 15
 script = ExtResource("1_xjvv2")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_xjvv2")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 0
-theme = ExtResource("5_nkoa4")
-theme_override_constants/margin_left = 500
-theme_override_constants/margin_top = 300
-theme_override_constants/margin_right = 500
-theme_override_constants/margin_bottom = 300
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
-layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2

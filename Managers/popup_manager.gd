@@ -8,8 +8,10 @@ extends Node
 @export var ui_staff_popup : PackedScene
 @export var ui_construction_menu_popup : PackedScene
 
+@export var ui_animal_storage_box : PackedScene
 @export var ui_mgmt_box : PackedScene
 @export var ui_world_map_box : PackedScene
+@export var ui_debug_box : PackedScene
 
 @export var ui_animal_info_popup : PackedScene
 
@@ -75,9 +77,13 @@ func open_box(box):
 		opened_popup.queue_free()
 		opened_popup = null
 	if box == IdRefs.UI_BOXES.MANAGEMENT:
-		open_mgmt_box()
+		instantiate_box(ui_mgmt_box)
 	if box == IdRefs.UI_BOXES.WORLD_MAP:
-		open_world_map_box()
+		instantiate_box(ui_world_map_box)
+	if box == IdRefs.UI_BOXES.ANIMAL_STORAGE:
+		instantiate_box(ui_animal_storage_box)
+	if box == IdRefs.UI_BOXES.DEBUG_MENU:
+		instantiate_box(ui_debug_box)
 	if opened_popup != null:
 		SignalBus.ui_visibility.emit(false)
 
@@ -94,16 +100,11 @@ func open_animal_popup(animal_node, detector_pos):
 	opened_popup.popup_closed.connect(close_popup)
 	add_child(opened_popup)
 
-func open_mgmt_box():
-	opened_popup = ui_mgmt_box.instantiate()
+func instantiate_box(box):
+	opened_popup = box.instantiate()
 	opened_popup.popup_closed.connect(close_popup)
 	add_child(opened_popup)
-
-func open_world_map_box():
-	opened_popup = ui_world_map_box.instantiate()
-	opened_popup.popup_closed.connect(close_popup)
-	add_child(opened_popup)
-
+	
 func open_peepgroup_popup(peepgroup_node):
 	opened_popup = ui_peep_group_popup.instantiate()
 	opened_popup.peep_group_node = peepgroup_node

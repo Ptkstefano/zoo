@@ -39,27 +39,34 @@ shape = SubResource("CircleShape2D_8paum")
 [node name="Sprites" type="Node2D" parent="."]
 position = Vector2(0, -85)
 
-[node name="Sprite2D4" type="Sprite2D" parent="Sprites"]
-z_index = -6
+[node name="Sprite2D5" type="Sprite2D" parent="Sprites"]
+z_index = -5
 texture = ExtResource("3_xu4tm")
-vframes = 4
-
-[node name="Sprite2D3" type="Sprite2D" parent="Sprites"]
-texture = ExtResource("3_xu4tm")
-vframes = 4
-frame = 3
+vframes = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprites"]
-z_index = -6
+z_index = -3
 texture = ExtResource("3_xu4tm")
-vframes = 4
+vframes = 5
 frame = 1
 
 [node name="Sprite2D2" type="Sprite2D" parent="Sprites"]
-z_index = -4
+z_index = -3
 texture = ExtResource("3_xu4tm")
-vframes = 4
+vframes = 5
 frame = 2
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprites"]
+z_index = -3
+texture = ExtResource("3_xu4tm")
+vframes = 5
+frame = 3
+
+[node name="Sprite2D4" type="Sprite2D" parent="Sprites"]
+z_index = -3
+texture = ExtResource("3_xu4tm")
+vframes = 5
+frame = 4
 
 [node name="Entrance" type="Node2D" parent="."]
 position = Vector2(-62, 5)

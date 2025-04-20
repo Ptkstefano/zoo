@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="expedition_resource" load_steps=2 format=3 uid="uid://dtmpr6nr1kkry"]
+
+[ext_resource type="Script" uid="uid://cfsbk44kndtb2" path="res://worldmap/expedition_resources/expedition_res.gd" id="1_f0ed6"]
+
+[resource]
+script = ExtResource("1_f0ed6")
+tr_name = "Ancient Forests of Europe"
+possible_animals = Array[int]([9])
+tr_description = ""
+cost = 1000.0
+metadata/_custom_type_script = "uid://cfsbk44kndtb2"

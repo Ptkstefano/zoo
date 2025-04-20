@@ -6,16 +6,9 @@ var animal_count = 2
 
 var game_active : bool = true
 
-enum ICONS {
-	ANIMAL,
-	FOOTSTEPS,
-	DISTURBED_VEGETATION,
-	DROPPING,
-}
+var hidden_animals = []
 
 var revealed_tiles : Array[Vector2i] = []
-
-var found_animals : Array = []
 
 ## blocked_tiles are tiles occupied by blockers and they can't be played
 var blocked_tiles : Array[Vector2i]
@@ -26,7 +19,6 @@ var used_tiles = {}
 var placed_animals = []
 var captured_animals = []
 
-@export var animal_icon : Texture2D
 @export var footstep_icon : Texture2D
 @export var disturbed_vegetation_icon : Texture2D
 @export var dropping_icon : Texture2D
@@ -48,6 +40,11 @@ func _ready() -> void:
 	$Debug.pressed.connect(on_debug)
 	#$Start.pressed.connect(start_game)
 	%QuitButton.pressed.connect(hexagon_ended.emit)
+	
+	## For debug purposes
+	if hidden_animals.is_empty():
+		hidden_animals= [ContentManager.animals[3], ContentManager.animals[3]]
+	
 	start_game()
 
 func start_game():
@@ -74,9 +71,6 @@ func _input(event: InputEvent) -> void:
 						%TriesLabel.text = ('Tries left: ' + str(maximum_tries - tries_attempted))
 						revealed_tiles.append(tile)
 						reveal_tile(tile)
-						
-						if found_animals.size() >= animal_count:
-							end_hexagon_game()
 							
 						if tries_attempted >= maximum_tries:
 							end_hexagon_game()
@@ -84,25 +78,16 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		$TileLabel.text = str(%SafariTilemap.local_to_map(event.position))
 
-func spawn_icon(tile, clue_type):
-	var animal_icon_sprite = Sprite2D.new()
+func spawn_icon(tile, icon):
+	var icon_sprite = Sprite2D.new()
+	icon_sprite.texture = icon
 
-	if clue_type == ICONS.FOOTSTEPS:
-		animal_icon_sprite.texture = footstep_icon
-	if clue_type == ICONS.DISTURBED_VEGETATION:
-		animal_icon_sprite.texture = disturbed_vegetation_icon
-	if clue_type == ICONS.DROPPING:
-		animal_icon_sprite.texture = dropping_icon
-	if clue_type == ICONS.ANIMAL:
-		animal_icon_sprite.texture = animal_icon
-			
-
-	animal_icon_sprite.scale = Vector2(3,3)
-	animal_icon_sprite.global_position = %SafariTilemap.map_to_local(tile) + %SafariTilemap.position
-	animal_icon_sprite.hide()
-	%Icons.add_child(animal_icon_sprite)
+	icon_sprite.scale = Vector2(3,3)
+	icon_sprite.global_position = %SafariTilemap.map_to_local(tile) + %SafariTilemap.position
+	icon_sprite.hide()
+	%Icons.add_child(icon_sprite)
 	
-	return animal_icon_sprite
+	return icon_sprite
 
 func generate_tilemap():
 	## Generate random playable tiles
@@ -122,18 +107,18 @@ func generate_tilemap():
 
 
 func generate_animals():
-
 	
-	for animal in animal_count:
+	for animal in hidden_animals:
 		
 		var placed_animal = {}
 		
 		var random_tile = Vector2i(randi_range(3,10), randi_range(3,10))
-		while random_tile in blocked_tiles:
+		while random_tile in blocked_tiles or random_tile in used_tiles:
 			random_tile = Vector2i(randi_range(3,10), randi_range(3,10))
 		
 		placed_animal.animal_tile = random_tile
-		used_tiles[random_tile] = spawn_icon(placed_animal.animal_tile, ICONS.ANIMAL)
+		placed_animal.animal_res = animal
+		used_tiles[random_tile] = spawn_icon(placed_animal.animal_tile, animal.icon)
 		
 		## Generate footstep clue tiles
 		var direction = adjacent_hexagons.pick_random()
@@ -145,7 +130,7 @@ func generate_animals():
 					if tile not in blocked_tiles:
 							if tile != placed_animal.animal_tile:
 								placed_animal.footstep_clue_tiles.append(tile)
-								used_tiles[tile] = spawn_icon(tile, ICONS.FOOTSTEPS)
+								used_tiles[tile] = spawn_icon(tile, footstep_icon)
 					
 		
 		## Generate vegetation clue tiles
@@ -157,7 +142,7 @@ func generate_animals():
 					if tile not in used_tiles:
 						if tile != placed_animal.animal_tile:
 							placed_animal.vegetation_clue_tiles.append(tile)
-							used_tiles[tile] = spawn_icon(tile, ICONS.DISTURBED_VEGETATION)
+							used_tiles[tile] = spawn_icon(tile, disturbed_vegetation_icon)
 						
 		## Generate dropping clue tiles
 		placed_animal.dropping_clue_tiles = []
@@ -168,26 +153,36 @@ func generate_animals():
 					if tile not in used_tiles:
 						if tile != placed_animal.animal_tile:
 							placed_animal.dropping_clue_tiles.append(tile)
-							used_tiles[tile] = spawn_icon(tile, ICONS.DROPPING)
+							used_tiles[tile] = spawn_icon(tile, dropping_icon)
 			else:
 				tile = placed_animal.animal_tile + [Vector2i(1,0), Vector2i(-1,0), Vector2i(0,1), Vector2i(0,-1)].pick_random()
 				if tile in valid_tiles:
 					if tile not in blocked_tiles:
 						if tile not in used_tiles:
 							if tile != placed_animal.animal_tile:
-								used_tiles.append(tile)
 								placed_animal.dropping_clue_tiles.append(tile)
-								used_tiles[tile] = spawn_icon(tile, ICONS.DROPPING)
+								used_tiles[tile] = spawn_icon(tile, dropping_icon)
+								
+		placed_animals.append(placed_animal)
 
-func reveal_tile(tile):
+func reveal_tile(tile : Vector2i):
 	var atlas_coords = %SafariTilemap.get_cell_atlas_coords(tile)
 	%SafariTilemap.set_cell(tile, 0, Vector2(atlas_coords.x,atlas_coords.y+1), 0)
 	if tile in used_tiles.keys():
 		used_tiles[tile].show()
 		
 	for animal in placed_animals:
-		if tile == placed_animals.animal_tile:
-			captured_animals.append(animal)
+		if tile == animal.animal_tile:
+			captured_animals.append(animal.animal_res)
+			for clue_tile in animal.vegetation_clue_tiles:
+				if is_instance_valid(used_tiles[clue_tile]):
+					used_tiles[clue_tile].queue_free()
+			for clue_tile in animal.footstep_clue_tiles:
+				if is_instance_valid(used_tiles[clue_tile]):
+					used_tiles[clue_tile].queue_free()
+			for clue_tile in animal.dropping_clue_tiles:
+				if is_instance_valid(used_tiles[clue_tile]):
+					used_tiles[clue_tile].queue_free()
 			
 	if captured_animals.size() == animal_count:
 		end_hexagon_game()
@@ -198,7 +193,7 @@ func on_debug():
 		child.show()
 
 func end_hexagon_game():
-	await get_tree().create_timer(3).timeout
-	print('Ending hexagon game')
-	game_active = false
-	hexagon_ended.emit()
+	if game_active:
+		await get_tree().create_timer(3).timeout
+		game_active = false
+		hexagon_ended.emit()

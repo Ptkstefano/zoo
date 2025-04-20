@@ -24,13 +24,12 @@ var attractiveness_multiplier = 10
 @export var peep_texture_body : Texture2D
 @export var peep_texture_head : Texture2D
 
-signal peep_count_updated
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn_location = path_manager.path_layer.map_to_local(Vector2(0,48))
 	$PeepSpawnTimer.timeout.connect(on_peep_spawn_timeout)
 	SignalBus.update_cached_positions.connect(update_peeps_cached_positions)
+	SignalBus.debug_clear_peeps.connect(debug_clear_peeps)
 
 	
 func update_peeps_cached_positions():

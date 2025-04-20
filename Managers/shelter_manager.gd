@@ -33,13 +33,16 @@ func build_shelter(shelter_res, starting_tile, direction):
 	new_shelter.shelter_removed.connect(on_shelter_removed)
 	new_shelter.enclosure = enclosure
 	add_child(new_shelter)
-	coordinates_used_by_shelters.append(Helpers.get_building_cells(shelter_res.size, starting_tile, direction).duplicate())
+	var used_cells = Helpers.get_building_cells(shelter_res.size, starting_tile, direction).duplicate()
+	coordinates_used_by_shelters.append(used_cells)
+	TileMapRef.add_occupied_tiles(used_cells)
 	enclosure.add_shelter(new_shelter)
 	
 	
 func on_shelter_removed(shelter_node):
 	for coordinate in shelter_node.used_coordinates:
 		coordinates_used_by_shelters.erase(coordinate)
+		TileMapRef.remove_occupied_tiles(coordinate)
 		
 	shelter_node.enclosure.remove_shelter(shelter_node)
 	shelter_node.queue_free()

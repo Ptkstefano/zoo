@@ -37,6 +37,7 @@ MusicManager="*res://Autoload/music_manager.tscn"
 SaveManager="*res://Autoload/save_manager.tscn"
 SoundscapeManager="*res://Autoload/soundscape_manager.tscn"
 ResearchManager="*res://Autoload/research_manager.tscn"
+AnimalStorageManager="*res://animal_storage_manager.gd"
 
 [display]
 
