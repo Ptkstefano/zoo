@@ -19,6 +19,8 @@ var water_list = []
 var staff_list = []
 var shelter_list = []
 
+var animal_store_wait_time : int
+
 
 var tilemap_layers = []
 
@@ -106,6 +108,8 @@ func start_save_manager():
 	shelter_list = get_tree().get_nodes_in_group('Shelter')
 
 	peepGroupList = get_tree().get_nodes_in_group('PeepGroups')
+	
+	animal_store_wait_time = AnimalStorageManager.get_renew_store_time_left()
 	
 
 func thread_save_game():
@@ -214,6 +218,8 @@ func save_game():
 		i+=1
 	save_data['staffData'] = staff_data
 	
+	save_data['AnimalStoreData'] = get_animal_store_data()
+	
 	i = 1
 	var shelter_data = {}
 	for shelter in shelter_list:
@@ -231,6 +237,20 @@ func save_game():
 	
 	save_data['saveFileData'] = {}
 	save_data['saveFileData']['datetime'] = Time.get_datetime_string_from_system()
+	save_data['saveFileData']['unixTime'] = Time.get_unix_time_from_system()
+	
+	## Stored animal data
+	var stored_animal_data = {}
+	
+	for species_id in AnimalStorageManager.stored_animals.keys():
+		var list_data: Array = []
+		# for each StoredAnimal instance, pull its serializable data
+		for stored_animal in AnimalStorageManager.stored_animals[species_id]:
+			list_data.append(stored_animal.get_saved_data())
+		# keys must be strings if you’re exporting to JSON
+		stored_animal_data[str(species_id)] = list_data
+	
+	save_data['storedAnimalData'] = stored_animal_data
 	
 	var json_data = JSON.stringify(save_data)
 	
@@ -404,6 +424,25 @@ func load_game():
 			var animal_data = data['animalData'][key]
 			animalManager.call_deferred('spawn_animal', position, animal_res, animal_data, false, null)
 			
+	if data.has("storedAnimalData"):
+		var stored_animals = {}
+
+		for species_id_str in data['storedAnimalData'].keys():
+			var species_id = int(species_id_str)
+			for animal_dict in  data['storedAnimalData'][species_id_str]:
+				var instance: StoredAnimal = StoredAnimal.new()
+				instance.restore_save_data(animal_dict)
+				AnimalStorageManager.add_animal_data(instance)
+				
+	if data.has("AnimalStoreData"):
+		var wait_time = data["AnimalStoreData"].get("TimerWaitTime", AnimalStorageManager.renew_timer_default_wait_time)
+		if wait_time:
+			AnimalStorageManager.loaded_wait_time = wait_time
+		for animal in  data['AnimalStoreData']['StoreAnimals']:
+			var instance: StoredAnimal = StoredAnimal.new()
+			instance.restore_save_data(data['AnimalStoreData']['StoreAnimals'][animal])
+			AnimalStorageManager.add_store_animal_data(instance)
+			
 	if data.has('peepGroupData'):
 		for key in data["peepGroupData"]:
 			var groupData = {}
@@ -442,6 +481,10 @@ func load_game():
 		ZooManager.entrance_price = data['zoo_manager_data'].get('entrance_price', 10.0)
 		ZooManager.zoo_entrance_open = data['zoo_manager_data'].get('zoo_entrance_open', true)
 		ZooManager.zoo_name = data['zoo_manager_data'].get('zoo_name', 'Zoo Name')
+		
+	if data.has('saveFileData'):
+		if data['saveFileData'].has('unixTime'):
+			TimeManager.update_unix_time(data['saveFileData']['unixTime'])
 		
 	if data.has('researchData'):
 		ResearchManager.load_data(data['researchData'])
@@ -666,4 +709,14 @@ func get_research_data():
 	data['unlocked_trees'] = ResearchManager.unlocked_trees.keys()
 	data['unlocked_decoration'] = ResearchManager.unlocked_decoration.keys()
 	data['unlocked_fixtures'] = ResearchManager.unlocked_fixtures.keys()
+	return data
+
+func get_animal_store_data():
+	var data = {}
+	data['TimerWaitTime'] = animal_store_wait_time
+	data['StoreAnimals'] = {}
+	for species in AnimalStorageManager.available_animals_in_store:
+		for animal in AnimalStorageManager.available_animals_in_store[species]:
+			data['StoreAnimals'][animal.id] = animal.get_saved_data()
+		
 	return data

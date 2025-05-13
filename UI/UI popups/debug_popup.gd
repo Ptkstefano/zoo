@@ -41,7 +41,8 @@ func toggle_menu(menu):
 	
 		
 func on_add_animal(animal):
-	AnimalStorageManager.create_animal(animal)
+	var new_animal = AnimalStorageManager.create_animal(animal)
+	AnimalStorageManager.add_animal_data(new_animal)
 
 func spawn_peep_group():
 	$"../Objects/PeepManager".instantiate_peep_group(null)

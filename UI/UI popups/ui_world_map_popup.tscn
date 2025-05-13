@@ -1,10 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://mfo25nkb620y"]
+[gd_scene load_steps=34 format=3 uid="uid://mfo25nkb620y"]
 
 [ext_resource type="Script" uid="uid://dkyvpru8k0qaj" path="res://UI/UI popups/ui_world_map_popup.gd" id="1_hmb0u"]
 [ext_resource type="Theme" uid="uid://tfrt3qgw8yof" path="res://UI/Themes/woody/woody_popup_main.tres" id="2_fiyai"]
 [ext_resource type="Texture2D" uid="uid://t2u57oilyuhf" path="res://worldmap/worldmap1.png" id="3_a2ixh"]
 [ext_resource type="Theme" uid="uid://ddneklvhdy4g0" path="res://UI/Themes/woody/woody_whiteboard.tres" id="3_e7yyf"]
-[ext_resource type="Texture2D" uid="uid://b76emxqrxelwh" path="res://worldmap/worldmap.png" id="3_i27hd"]
 [ext_resource type="Texture2D" uid="uid://p6g7g0cgxt4o" path="res://worldmap/north-american-expanses.png" id="4_2t1j0"]
 [ext_resource type="Texture2D" uid="uid://dkpkvoqe2wt6f" path="res://UI/Themes/woody/grabber.png" id="4_8a31w"]
 [ext_resource type="Script" uid="uid://dqba50320tl8q" path="res://UI/UI popups/world_map.gd" id="4_gkysp"]
@@ -16,13 +15,18 @@
 [ext_resource type="Texture2D" uid="uid://s78mhwo52ucr" path="res://Animals/icons/alaskan-moose.png" id="12_e7yyf"]
 [ext_resource type="Resource" uid="uid://c4irrbd6xo0h2" path="res://worldmap/expedition_resources/pantanal_exploration.tres" id="12_lwm33"]
 [ext_resource type="Resource" uid="uid://0tte50qf7u46" path="res://worldmap/expedition_resources/Chinese_highlands.tres" id="13_v7cbd"]
+[ext_resource type="Texture2D" uid="uid://doi4yql427tkp" path="res://worldmap/pantanal.png" id="14_36can"]
 [ext_resource type="Resource" uid="uid://cahg86slfvv0q" path="res://worldmap/expedition_resources/Outback.tres" id="14_ydgmp"]
 [ext_resource type="Resource" uid="uid://cit45db1ej2m7" path="res://worldmap/expedition_resources/Savanna.tres" id="15_hev1o"]
 [ext_resource type="Resource" uid="uid://i2obebwg4vyo" path="res://worldmap/expedition_resources/arabian_deserts.tres" id="16_lieg5"]
 [ext_resource type="Resource" uid="uid://dtmpr6nr1kkry" path="res://worldmap/expedition_resources/europe_forests.tres" id="17_w4dqc"]
 [ext_resource type="Resource" uid="uid://davvkdfoebcd4" path="res://worldmap/expedition_resources/caribbean_paradise.tres" id="18_fiyai"]
+[ext_resource type="Texture2D" uid="uid://ysw835bp2ij3" path="res://worldmap/arabian-deserts.png" id="18_lsu4o"]
 [ext_resource type="Resource" uid="uid://53afkl2amhgn" path="res://worldmap/expedition_resources/northern_coasts.tres" id="19_8a31w"]
+[ext_resource type="Texture2D" uid="uid://dn2qyli66l7as" path="res://worldmap/european-forests.png" id="20_60dws"]
+[ext_resource type="Texture2D" uid="uid://jabt6enwiytu" path="res://worldmap/caribbean.png" id="20_baxg6"]
 [ext_resource type="Resource" uid="uid://bhooceo3a60ni" path="res://worldmap/expedition_resources/madagascar.tres" id="20_w4dqc"]
+[ext_resource type="Texture2D" uid="uid://c8qoyondx6llp" path="res://worldmap/northern-coasts.png" id="22_36can"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_baxg6"]
 texture = ExtResource("4_8a31w")
@@ -57,6 +61,18 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hmb0u"]
 radius = 28.8617
+
+[sub_resource type="Gradient" id="Gradient_lsu4o"]
+offsets = PackedFloat32Array(0, 0.998, 1)
+colors = PackedColorArray(0.774104, 0.878448, 0.86133, 1, 0.720467, 0.720468, 0.720467, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_60dws"]
+gradient = SubResource("Gradient_lsu4o")
+width = 80
+height = 80
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.82, 0.15)
 
 [node name="UI_world_map_popup" type="CanvasLayer"]
 layer = 5
@@ -159,20 +175,9 @@ frame = 3
 frame_progress = 0.0301455
 centered = false
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap"]
-sprite_frames = SubResource("SpriteFrames_6av83")
-autoplay = "default"
-frame = 3
-frame_progress = 0.0301455
-centered = false
-
-[node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap"]
-visible = false
-texture = ExtResource("3_i27hd")
-centered = false
-
 [node name="Icons" type="Node2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap"]
 unique_name_in_owner = true
+light_mask = 2
 
 [node name="Expedition_NAExpanses" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
 unique_name_in_owner = true
@@ -186,7 +191,15 @@ expedition_resource = ExtResource("10_r2hm2")
 shape = SubResource("CircleShape2D_hmb0u")
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_NAExpanses"]
+light_mask = 2
 texture = ExtResource("4_2t1j0")
+
+[node name="PointLight2D" type="PointLight2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_NAExpanses"]
+light_mask = 2
+enabled = false
+energy = 0.85
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_60dws")
 
 [node name="Expedition_Pantanal" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
 unique_name_in_owner = true
@@ -200,10 +213,20 @@ expedition_resource = ExtResource("12_lwm33")
 shape = SubResource("CircleShape2D_hmb0u")
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Pantanal"]
-texture = ExtResource("4_2t1j0")
+modulate = Color(0.830335, 0.830335, 0.830335, 1)
+light_mask = 2
+texture = ExtResource("14_36can")
+
+[node name="PointLight2D" type="PointLight2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Pantanal"]
+light_mask = 2
+enabled = false
+energy = 0.85
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_60dws")
 
 [node name="Expedition_ChineseHighlands" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
 unique_name_in_owner = true
+modulate = Color(0.890196, 0.890196, 0.890196, 1)
 position = Vector2(830, 164)
 collision_mask = 0
 input_pickable = true
@@ -214,10 +237,18 @@ expedition_resource = ExtResource("13_v7cbd")
 shape = SubResource("CircleShape2D_hmb0u")
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_ChineseHighlands"]
+light_mask = 2
 texture = ExtResource("4_2t1j0")
+
+[node name="PointLight2D" type="PointLight2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_ChineseHighlands"]
+enabled = false
+energy = 0.85
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_60dws")
 
 [node name="Expedition_Outback" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
 unique_name_in_owner = true
+modulate = Color(0.890196, 0.890196, 0.890196, 1)
 position = Vector2(925, 351)
 collision_mask = 0
 input_pickable = true
@@ -228,10 +259,19 @@ expedition_resource = ExtResource("14_ydgmp")
 shape = SubResource("CircleShape2D_hmb0u")
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Outback"]
+light_mask = 2
 texture = ExtResource("4_2t1j0")
+
+[node name="PointLight2D" type="PointLight2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Outback"]
+light_mask = 2
+enabled = false
+energy = 0.85
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_60dws")
 
 [node name="Expedition_Savanna" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
 unique_name_in_owner = true
+modulate = Color(0.890196, 0.890196, 0.890196, 1)
 position = Vector2(609, 271)
 collision_mask = 0
 input_pickable = true
@@ -242,10 +282,19 @@ expedition_resource = ExtResource("15_hev1o")
 shape = SubResource("CircleShape2D_hmb0u")
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Savanna"]
+light_mask = 2
 texture = ExtResource("4_2t1j0")
+
+[node name="PointLight2D" type="PointLight2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Savanna"]
+light_mask = 2
+enabled = false
+energy = 0.85
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_60dws")
 
 [node name="Expedition_Arabian" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
 unique_name_in_owner = true
+modulate = Color(0.890196, 0.890196, 0.890196, 1)
 position = Vector2(622, 192)
 collision_mask = 0
 input_pickable = true
@@ -256,10 +305,19 @@ expedition_resource = ExtResource("16_lieg5")
 shape = SubResource("CircleShape2D_hmb0u")
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Arabian"]
-texture = ExtResource("4_2t1j0")
+light_mask = 2
+texture = ExtResource("18_lsu4o")
+
+[node name="PointLight2D" type="PointLight2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Arabian"]
+light_mask = 2
+enabled = false
+energy = 0.85
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_60dws")
 
 [node name="Expedition_EuropeanForests" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
 unique_name_in_owner = true
+modulate = Color(0.890196, 0.890196, 0.890196, 1)
 position = Vector2(557, 114)
 collision_mask = 0
 input_pickable = true
@@ -270,11 +328,20 @@ expedition_resource = ExtResource("17_w4dqc")
 shape = SubResource("CircleShape2D_hmb0u")
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_EuropeanForests"]
-texture = ExtResource("4_2t1j0")
+light_mask = 2
+texture = ExtResource("20_60dws")
+
+[node name="PointLight2D" type="PointLight2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_EuropeanForests"]
+light_mask = 2
+enabled = false
+energy = 0.85
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_60dws")
 
 [node name="Expedition_Caribbean" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
 unique_name_in_owner = true
-position = Vector2(292, 224)
+modulate = Color(0.890196, 0.890196, 0.890196, 1)
+position = Vector2(312, 192)
 collision_mask = 0
 input_pickable = true
 script = ExtResource("9_6av83")
@@ -284,11 +351,19 @@ expedition_resource = ExtResource("18_fiyai")
 shape = SubResource("CircleShape2D_hmb0u")
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Caribbean"]
-texture = ExtResource("4_2t1j0")
+texture = ExtResource("20_baxg6")
+
+[node name="PointLight2D" type="PointLight2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Caribbean"]
+light_mask = 2
+enabled = false
+energy = 0.85
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_60dws")
 
 [node name="Expedition_NorthernCoasts" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
 unique_name_in_owner = true
-position = Vector2(372, 113)
+modulate = Color(0.890196, 0.890196, 0.890196, 1)
+position = Vector2(330, 101)
 collision_mask = 0
 input_pickable = true
 script = ExtResource("9_6av83")
@@ -298,10 +373,19 @@ expedition_resource = ExtResource("19_8a31w")
 shape = SubResource("CircleShape2D_hmb0u")
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_NorthernCoasts"]
-texture = ExtResource("4_2t1j0")
+light_mask = 2
+texture = ExtResource("22_36can")
+
+[node name="PointLight2D" type="PointLight2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_NorthernCoasts"]
+light_mask = 2
+enabled = false
+energy = 0.85
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_60dws")
 
 [node name="Expedition_Madagascar" type="StaticBody2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons"]
 unique_name_in_owner = true
+modulate = Color(0.890196, 0.890196, 0.890196, 1)
 position = Vector2(658, 340)
 collision_mask = 0
 input_pickable = true
@@ -312,16 +396,23 @@ expedition_resource = ExtResource("20_w4dqc")
 shape = SubResource("CircleShape2D_hmb0u")
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Madagascar"]
+light_mask = 2
 texture = ExtResource("4_2t1j0")
 
-[node name="WorldMapScroll" type="HScrollBar" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer"]
+[node name="PointLight2D" type="PointLight2D" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer/WorldMapScrollContainer/SubViewportContainer/SubViewport/WorldMap/Icons/Expedition_Madagascar"]
+light_mask = 2
+enabled = false
+energy = 0.85
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_60dws")
+
+[node name="WorldMapScroll" type="HSlider" parent="Control/PanelContainer/MarginContainer/VBoxContainer/WorldmapContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 532.0
 
 [node name="ExpeditionInfoContainer" type="PanelContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("12_3wvs4")
@@ -364,11 +455,11 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 texture = ExtResource("12_e7yyf")
 
-[node name="Expedition description" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/ExpeditionInfoContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="ExpeditionCost" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/ExpeditionInfoContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 10
-text = "Venture into the vast North-American expanses to track majestic moose, elusive black bears, and roaming deer across wild, untamed landscapes."
+text = "Cost: "
 horizontal_alignment = 1
 autowrap_mode = 3
 

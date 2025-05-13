@@ -6,7 +6,7 @@ class_name PeepManager
 @export var peep_group_scene : PackedScene
 var spawn_location : Vector2
 
-var base_spawn_time : float = 7.0
+var base_spawn_time : float = 8.0
 
 @export var path_manager : PathManager
 
@@ -52,7 +52,7 @@ func on_peep_spawn_timeout():
 	if peep_count == 0: 
 		spawn_ratio = ZooManager.zoo_attractiveness
 	else:
-		spawn_ratio = ZooManager.zoo_attractiveness / peep_count
+		spawn_ratio = (ZooManager.zoo_attractiveness * 0.5) / peep_count 
 		
 	spawn_ratio = clamp(spawn_ratio, 0.1, 10)
 	

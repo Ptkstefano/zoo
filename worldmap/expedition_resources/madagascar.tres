@@ -7,5 +7,5 @@ script = ExtResource("1_rtx3b")
 tr_name = "Madagascar"
 possible_animals = Array[int]([16])
 tr_description = ""
-cost = 1000.0
+cost = 4000.0
 metadata/_custom_type_script = "uid://cfsbk44kndtb2"

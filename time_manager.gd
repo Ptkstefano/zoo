@@ -1,5 +1,8 @@
 extends Node
 
+var delta_unix_time = 0
+
+
 var current_month : int = 1:
 	set(value):
 		if value > 12:
@@ -41,3 +44,10 @@ func get_timer_time_left():
 
 func set_timer_time_left(time):
 	month_timer.start(time)
+
+func update_unix_time(previous_unix_time):
+	var current_unix_time = Time.get_unix_time_from_system()
+	delta_unix_time = int(current_unix_time - previous_unix_time)
+
+func get_delta_unix_time():
+	return delta_unix_time

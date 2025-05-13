@@ -1,5 +1,7 @@
 extends Node
 
+
+## Each of these stores a key : value pair of id : resource
 var unlocked_animals = {}
 var unlocked_restaurants = {}
 var unlocked_eateries = {}

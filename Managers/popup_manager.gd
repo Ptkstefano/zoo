@@ -7,11 +7,14 @@ extends Node
 @export var ui_enclosure_popup : PackedScene
 @export var ui_staff_popup : PackedScene
 @export var ui_construction_menu_popup : PackedScene
+@export var ui_expedition_results_popup : PackedScene
 
 @export var ui_animal_storage_box : PackedScene
 @export var ui_mgmt_box : PackedScene
 @export var ui_world_map_box : PackedScene
 @export var ui_debug_box : PackedScene
+@export var ui_welcome_box : PackedScene
+@export var ui_animal_store_box : PackedScene
 
 @export var ui_animal_info_popup : PackedScene
 
@@ -40,6 +43,8 @@ func open_popup_with_data(type, data):
 		opened_popup = null
 	if type == 'AnimalInfo':
 		open_animal_info_popup(data)
+	if type == 'ExpeditionResults':
+		open_expedition_results(data)
 		
 
 func open_popup(detector_pos, element):
@@ -84,6 +89,10 @@ func open_box(box):
 		instantiate_box(ui_animal_storage_box)
 	if box == IdRefs.UI_BOXES.DEBUG_MENU:
 		instantiate_box(ui_debug_box)
+	if box == IdRefs.UI_BOXES.WELCOME:
+		instantiate_box(ui_welcome_box)
+	if box == IdRefs.UI_BOXES.ANIMAL_STORE:
+		instantiate_box(ui_animal_store_box)
 	if opened_popup != null:
 		SignalBus.ui_visibility.emit(false)
 
@@ -120,6 +129,12 @@ func open_building_popup(building_node):
 func open_animal_info_popup(data):
 	opened_popup = ui_animal_info_popup.instantiate()
 	opened_popup.animal_res = data['resource']
+	opened_popup.popup_closed.connect(close_popup)
+	add_child(opened_popup)
+	
+func open_expedition_results(data):
+	opened_popup = ui_expedition_results_popup.instantiate()
+	opened_popup.animal_data = data
 	opened_popup.popup_closed.connect(close_popup)
 	add_child(opened_popup)
 

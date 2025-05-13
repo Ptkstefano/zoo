@@ -7,5 +7,5 @@ script = ExtResource("1_fonem")
 tr_name = "Pantanal Exploration"
 possible_animals = Array[int]([0, 10, 5])
 tr_description = ""
-cost = 1000.0
+cost = 2500.0
 metadata/_custom_type_script = "uid://cfsbk44kndtb2"

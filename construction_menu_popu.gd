@@ -46,6 +46,7 @@ func _ready() -> void:
 	%RestaurantButton.pressed.connect(change_category.bind(CATEGORIES.RESTAURANT))
 	%AdministrationButton.pressed.connect(change_category.bind(CATEGORIES.ADMINISTRATION))
 	%ServiceButton.pressed.connect(change_category.bind(CATEGORIES.SERVICE))
+	%EntranceButton.pressed.connect(apply_tool.bind(IdRefs.TOOLS.ENTRANCE))
 	
 	
 	
@@ -59,6 +60,10 @@ func select_element(element):
 		
 	%InfoContainer.show()
 	selected_element = element
+
+func apply_tool(tool):
+	SignalBus.tool_selected.emit(tool, null)
+	hide()
 
 func add_category_buttons():
 	
@@ -75,6 +80,7 @@ func add_category_buttons():
 		current_category = CATEGORIES.FENCE
 		%FenceButton.show()
 		%ShelterButton.show()
+		%EntranceButton.show()
 		
 	if menu_type == IdRefs.CONSTRUCTION_MENUS.SCENERY:
 		current_category = CATEGORIES.TREE

@@ -40,16 +40,20 @@ func _ready() -> void:
 	%FixtureBulldozer.pressed.connect(on_bulldozer_tool_selected.bind(IdRefs.TOOLS.BULLDOZER_FIXTURE))
 	%LakeBulldozer.pressed.connect(on_bulldozer_tool_selected.bind(IdRefs.TOOLS.BULLDOZER_WATER))
 	
+	
 	%BulldozerMenuButton.pressed.connect(on_bulldozer_tool)
 	
 	%ContextualBulldozer.button_down.connect(on_contextual_bulldozer.bind(true))
 	%ContextualBulldozer.button_up.connect(on_contextual_bulldozer.bind(false))
+	
+	#%Cancel.pressed.connect()
 	
 	%RotateButton.pressed.connect(SignalBus.rotate_building.emit)
 	%BuildButton.pressed.connect(SignalBus.building_built.emit)
 	
 	%WorldMapButton.pressed.connect(SignalBus.open_box.emit.bind(IdRefs.UI_BOXES.WORLD_MAP))
 	%ExpeditionsButton.pressed.connect(SignalBus.open_box.emit.bind(IdRefs.UI_BOXES.WORLD_MAP))
+	%AnimalStoreButton.pressed.connect(SignalBus.open_box.emit.bind(IdRefs.UI_BOXES.ANIMAL_STORE))
 	%AnimalStorageButton.pressed.connect(SignalBus.open_box.emit.bind(IdRefs.UI_BOXES.ANIMAL_STORAGE))
 	
 	SignalBus.tool_selected.connect(on_tool_selected)
@@ -60,6 +64,7 @@ func _ready() -> void:
 	#SignalBus.animal_placed.connect(on_build_mode_button_toggled.unbind(1).bind(false))
 	SignalBus.animal_placed.connect(on_animal_placed)
 	SignalBus.money_changed.connect(on_money_changed)
+	AnimalStorageManager.stored_animals_updated.connect(update_animal_carousel)
 	
 	ZooManager.zoo_reputation_updated.connect(on_reputation_update)
 	ZooManager.peep_count_updated.connect(on_peep_count_update)
@@ -76,9 +81,13 @@ func _ready() -> void:
 	%MainToolContainer.hide()
 	%BulldozerToolsContainer.hide()
 	%AnimalModeMargin.hide()
+	%ToolLabelContainer.hide()
+	
 	
 	## Show
 	%BottomMargin.show()
+	%MainMargin.show()
+	%MainMarginAux.show()
 
 func _process(delta: float) -> void:
 	%TimeProgressBar.value = TimeManager.get_timer_progress()
@@ -110,6 +119,7 @@ func on_bulldozer_tool():
 	$ConstructUI.show()
 	%BulldozerToolsContainer.show()
 	%ContextualBulldozer.hide()
+	%ToolLabelContainer.show()
 	
 
 func on_open_construction_menu(menu : IdRefs.CONSTRUCTION_MENUS):
@@ -143,8 +153,10 @@ func on_build_mode_button_toggled(value):
 		%MainToolContainer.hide()
 		%InfoBorder.hide()
 		%GridLayer.hide()
+		%ToolLabelContainer.hide()
 		%AnimalModeMargin.hide()
 		%BottomMargin.show()
+		SignalBus.tool_deselected.emit()
 	
 func on_tool_selected(tool, res):
 	if tool == IdRefs.TOOLS.NONE:
@@ -155,34 +167,47 @@ func on_tool_selected(tool, res):
 	%MainMargin.hide()
 	%BottomMargin.hide()
 	$ConstructUI.show()
+	%ToolLabelContainer.show()
 	if tool not in [IdRefs.TOOLS.BULLDOZER_PATH, IdRefs.TOOLS.BULLDOZER_WATER, IdRefs.TOOLS.BULLDOZER_FIXTURE, IdRefs.TOOLS.BULLDOZER_SCENERY, IdRefs.TOOLS.BULLDOZER_ENCLOSURE]:
 		stored_tool = tool
+		%ToolLabel.text = 'BULLDOZING'
 	if tool == IdRefs.TOOLS.PATH:
 		%ContextualBulldozer.show()
 		%ContextualBulldozer.text == tr('BULLDOZE_PATH')
+		%ToolLabel.text = 'PATH'
 		contextual_bulldozer_tool = IdRefs.TOOLS.BULLDOZER_PATH
 	if tool == IdRefs.TOOLS.WATER:
 		%ContextualBulldozer.show()
 		%ContextualBulldozer.text == tr('BULLDOZE_WATER')
 		contextual_bulldozer_tool = IdRefs.TOOLS.BULLDOZER_WATER
+		%ToolLabel.text = 'WATER'
 	if tool in [IdRefs.TOOLS.FIXTURE, IdRefs.TOOLS.DECORATION]:
 		%ContextualBulldozer.show()
 		%ContextualBulldozer.text == tr('BULLDOZE_FIXTURE')
 		contextual_bulldozer_tool = IdRefs.TOOLS.BULLDOZER_FIXTURE
+		%ToolLabel.text = 'FIXTURE'
 	if tool in [IdRefs.TOOLS.TREE, IdRefs.TOOLS.VEGETATION, IdRefs.TOOLS.ROCK, IdRefs.TOOLS]:
 		%ContextualBulldozer.show()
 		%ContextualBulldozer.text == tr('BULLDOZE_SCENERY')
 		contextual_bulldozer_tool = IdRefs.TOOLS.BULLDOZER_SCENERY
+		%ToolLabel.text = 'SCENERY'
 	if tool == IdRefs.TOOLS.ENCLOSURE:
 		%ContextualBulldozer.show()
 		%ContextualBulldozer.text == tr('BULLDOZE_ENCLOSURE')
 		contextual_bulldozer_tool = IdRefs.TOOLS.BULLDOZER_ENCLOSURE
+		%ToolLabel.text = 'ENCLOSURE'
 	if tool == IdRefs.TOOLS.TERRAIN:
 		%ContextualBulldozer.hide()
+		%ToolLabel.text = 'TERRAIN'
 	if tool == IdRefs.TOOLS.BUILDING:
 		%ContextualBulldozer.hide()
+		%ToolLabel.text = 'BUILDING'
 	if tool == IdRefs.TOOLS.ANIMAL:
 		%ContextualBulldozer.hide()
+		%ToolLabel.text = 'ANIMAL'
+	if tool == IdRefs.TOOLS.ENTRANCE:
+		%ContextualBulldozer.hide()
+		%ToolLabel.text = 'ENTRANCE'
 
 func add_element_to_menu(menu, element):
 	return
@@ -191,6 +216,7 @@ func on_deselect_tool():
 	$ConstructUI.hide()
 	%BuildingButtonsContainer.hide()
 	%BulldozerToolsContainer.hide()
+	%ToolLabelContainer.hide()
 	on_build_mode_button_toggled(true)
 	SignalBus.tool_deselected.emit()
 	stored_tool = IdRefs.TOOLS.NONE
@@ -247,7 +273,6 @@ func update_animal_carousel():
 			element.stored_animal = animal
 			element.place_animal.connect(place_animal)
 			element.element_selected.connect(on_animal_carousel_element_selected)
-			#element.release_animal.connect(release_animal)
 			%AnimalCarouselList.add_child(element)
 
 func place_animal(animal):

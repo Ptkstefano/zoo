@@ -9,6 +9,8 @@ signal building_built
 signal construction_menu_closed
 signal animal_placed
 
+signal animal_bought
+
 signal tooltip
 signal money_tooltip 
 signal notification

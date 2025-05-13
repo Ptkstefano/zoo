@@ -1,7 +1,4 @@
-[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://cumug01vkfwjk"]
-
-[ext_resource type="FontFile" uid="uid://dh3lo7lghhs8x" path="res://UI/Thin sans.ttf" id="1_8y00e"]
+[gd_resource type="FontVariation" format=3 uid="uid://cumug01vkfwjk"]
 
 [resource]
-base_font = ExtResource("1_8y00e")
 spacing_top = 4

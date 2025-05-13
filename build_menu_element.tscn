@@ -22,13 +22,14 @@ texture_margin_bottom = 2.0
 region_rect = Rect2(2, 2, 124, 124)
 
 [node name="BuildMenuElement" type="Control"]
-custom_minimum_size = Vector2(175, 270)
+custom_minimum_size = Vector2(170, 250)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 180.0
-offset_bottom = 270.0
+offset_right = 174.0
+offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme = ExtResource("1_2dx4k")
 script = ExtResource("2_i8l2y")
 

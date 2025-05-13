@@ -3,6 +3,8 @@ extends Node2D
 ## Handles game initialization
 var is_landscape : bool = false
 
+var current_session_unix_time
+
 
 func _ready() -> void:
 	%LoadScreen.show()
@@ -24,8 +26,15 @@ func _ready() -> void:
 	%LoadScreen.hide()
 	SignalBus.game_started.emit()
 	
+	var delta_unix_time = TimeManager.get_delta_unix_time()
+	
+	if delta_unix_time > 0:
+		SignalBus.open_box.emit(IdRefs.UI_BOXES.WELCOME)
+	
 	## Debug
 	ResearchManager.unlock_everything()
+		
+	AnimalStorageManager.start()
 	
 	get_tree().get_root().size_changed.connect(resize_ui)
 

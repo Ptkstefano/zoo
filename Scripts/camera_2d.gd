@@ -30,7 +30,7 @@ func _ready() -> void:
 
 func on_camera_move(mouse_delta):
 	var direction = Vector2(-mouse_delta.x * sensitivity, -mouse_delta.y * sensitivity)
-	translate(direction)
+	translate(Vector2(int(direction.x), int(direction.y)))
 		
 func on_directional_camera_move(move_direction : Vector2):
 	var multiplier = 30 

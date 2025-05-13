@@ -7,5 +7,5 @@ script = ExtResource("1_lp6p8")
 tr_name = "North-American Expanses"
 possible_animals = Array[int]([3, 4, 15])
 tr_description = "Venture into the vast North-American expanses"
-cost = 1000.0
+cost = 1750.0
 metadata/_custom_type_script = "uid://cfsbk44kndtb2"

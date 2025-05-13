@@ -24,4 +24,5 @@ func place_animal(animal):
 	popup_closed.emit()
 	
 func release_animal(animal):
-	return
+	AnimalStorageManager.remove_animal_data(animal)
+	_ready()

@@ -95,7 +95,6 @@ func add_cells(coordinates, fence_res):
 	if entrance_door_cell:
 		call_deferred("place_entrance", entrance_door_cell)
 	else:
-		print('no entrance')
 		generate_random_entrance.call_deferred()
 	update_central_point()
 	call_deferred('update_navigation_region')
@@ -129,7 +128,6 @@ func remove_cells(coordinates):
 	
 func place_entrance(cell : Vector2i):
 	var new_entrance = $EnclosureFenceManager.place_entrance(cell)
-	print(cell)
 	if new_entrance:
 		entrance_cell = new_entrance
 		entrance_door_cell = cell

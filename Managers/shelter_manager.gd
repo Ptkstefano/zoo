@@ -18,12 +18,9 @@ func _process(delta: float) -> void:
 
 func build_shelter(shelter_res, starting_tile, direction):
 	if !shelter_res:
-		print('No shelter resource found')
 		return
 	var enclosure = TileMapRef.get_enclosure_by_cell(starting_tile)
-	print(starting_tile)
 	if !enclosure:
-		print('No enclosure for shelter')
 		return
 	var new_shelter = shelter_res.shelter_scene.instantiate()
 	new_shelter.shelter_position = TileMapRef.map_to_local(starting_tile)

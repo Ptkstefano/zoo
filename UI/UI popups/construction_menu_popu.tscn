@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfipnhy2cv66s"]
+[gd_scene load_steps=20 format=3 uid="uid://dfipnhy2cv66s"]
 
 [ext_resource type="Theme" uid="uid://tfrt3qgw8yof" path="res://UI/Themes/woody/woody_popup_main.tres" id="1_cuf80"]
 [ext_resource type="Script" uid="uid://cam708i7xw2yp" path="res://construction_menu_popu.gd" id="4_5e7mi"]
@@ -52,6 +52,28 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 region_rect = Rect2(512, 192, 128, 128)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sqqsl"]
+corner_radius_top_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8e0k5"]
+content_margin_left = 10.0
+content_margin_top = 2.0
+content_margin_right = 10.0
+content_margin_bottom = 2.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.486275, 0.368627, 0.294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 20
+anti_aliasing = false
+
 [sub_resource type="Theme" id="Theme_lxjh1"]
 Button/font_sizes/font_size = 32
 Button/fonts/font = ExtResource("4_sqqsl")
@@ -62,6 +84,43 @@ Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("4_sqqsl")
 Panel/styles/panel = SubResource("StyleBoxTexture_n3bvu")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_4217v")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_sqqsl")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_8e0k5")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sqqsl"]
+load_path = "res://.godot/imported/wood_ui.png-d36251b9fd84a0c97b0a2b2810eb16a4.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8e0k5"]
+texture = SubResource("CompressedTexture2D_sqqsl")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 8.0
+region_rect = Rect2(192, 512, 128, 124)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uhik4"]
+load_path = "res://.godot/imported/wood_ui.png-d36251b9fd84a0c97b0a2b2810eb16a4.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_60vwe"]
+texture = SubResource("CompressedTexture2D_uhik4")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(192, 672, 128, 128)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5l1sr"]
+load_path = "res://.godot/imported/wood_ui.png-d36251b9fd84a0c97b0a2b2810eb16a4.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wk3qf"]
+texture = SubResource("CompressedTexture2D_5l1sr")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 8.0
+region_rect = Rect2(352, 512, 128, 124)
 
 [node name="ConstructionMenuPopu" type="Control"]
 layout_mode = 3
@@ -117,10 +176,12 @@ theme_override_constants/margin_top = 8
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_constants/separation = 12
 
 [node name="CategoryButtons" type="HBoxContainer" parent="Control/VBoxContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="PathButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
 unique_name_in_owner = true
@@ -157,7 +218,6 @@ expand_icon = true
 
 [node name="FenceButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Fence"
@@ -168,10 +228,23 @@ expand_icon = true
 
 [node name="ShelterButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Fence"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="EntranceButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_styles/hover = SubResource("StyleBoxTexture_8e0k5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_60vwe")
+theme_override_styles/normal = SubResource("StyleBoxTexture_wk3qf")
+text = "Service"
 autowrap_mode = 2
 clip_text = true
 icon_alignment = 1
@@ -223,6 +296,7 @@ expand_icon = true
 
 [node name="RestaurantButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Restaurant"
@@ -233,6 +307,7 @@ expand_icon = true
 
 [node name="AdministrationButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Administration"
@@ -243,6 +318,7 @@ expand_icon = true
 
 [node name="ServiceButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Service"
@@ -255,7 +331,7 @@ expand_icon = true
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 8
 text = "X"
 
 [node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer"]
@@ -269,14 +345,41 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
 
-[node name="ElementList" type="GridContainer" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer"]
+[node name="ElementList" type="FlowContainer" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/h_separation = 2
-columns = 3
+alignment = 1
+
+[node name="BuildMenuElement" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
+
+[node name="BuildMenuElement2" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
+
+[node name="BuildMenuElement3" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
+
+[node name="BuildMenuElement4" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
+
+[node name="BuildMenuElement5" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
+
+[node name="BuildMenuElement6" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
+
+[node name="BuildMenuElement7" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
+
+[node name="BuildMenuElement8" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
+
+[node name="BuildMenuElement9" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2

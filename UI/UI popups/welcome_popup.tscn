@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=3 uid="uid://r0spf3llgqjx"]
+
+[ext_resource type="Script" uid="uid://blcdpi04rp071" path="res://UI/UI popups/welcome_popup.gd" id="1_q0dpu"]
+[ext_resource type="Theme" uid="uid://tfrt3qgw8yof" path="res://UI/Themes/woody/woody_popup_main.tres" id="2_q0dpu"]
+[ext_resource type="Theme" uid="uid://dyf3vmir01b4a" path="res://UI/Themes/woody/woody_button_green.tres" id="3_bmh0y"]
+[ext_resource type="Texture2D" uid="uid://imjitgjexxki" path="res://UI/Themes/woody/wood_ui.png" id="4_xer4a"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bmh0y"]
+content_margin_top = 28.0
+texture = ExtResource("4_xer4a")
+texture_margin_left = 8.0
+texture_margin_top = 10.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(32, 352, 128, 128)
+
+[node name="WelcomeGrantPopup" type="Control"]
+layout_mode = 3
+anchor_left = 0.1
+anchor_top = 0.25
+anchor_right = 0.9
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q0dpu")
+
+[node name="Control" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_q0dpu")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 2
+theme_override_constants/margin_top = 12
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="Control" parent="Control/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -30.0
+offset_right = 87.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Welcome back!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Here is your grant for the time you were away:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxTexture_bmh0y")
+
+[node name="GrantValue" type="Label" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.380392, 0.756863, 0.219608, 1)
+theme_override_colors/font_shadow_color = Color(0.485703, 0.485704, 0.485703, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 42
+text = "$1500"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollectButton" type="Button" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 135)
+layout_mode = 2
+size_flags_vertical = 10
+theme = ExtResource("3_bmh0y")
+text = "Collect"

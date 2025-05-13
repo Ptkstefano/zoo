@@ -62,7 +62,7 @@ func _input(event: InputEvent) -> void:
 		if event.pressed:
 			if !game_active:
 				return
-			var tile_pos = (event.position / %SafariTilemap.scale) - %SafariTilemap.position
+			var tile_pos = (event.global_position / %SafariTilemap.scale) - %SafariTilemap.position
 			var tile = %SafariTilemap.local_to_map(tile_pos)
 			if tile in valid_tiles:
 				if tries_attempted < maximum_tries:

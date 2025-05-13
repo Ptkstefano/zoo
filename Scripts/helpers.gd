@@ -126,3 +126,12 @@ func get_adjacent_cells_with_paths(cells):
 					adjacent_path_cells.append(neighbor_cell)
 					
 	return adjacent_path_cells
+
+func format_seconds_to_clock(seconds: int) -> String:
+	var hours = int(seconds / 3600)
+	var minutes = int((seconds % 3600) / 60)
+	var seconds_left = seconds % 60
+	
+	# Format hours, minutes, and seconds as two-digit numbers
+	return "%02d:%02d:%02d" % [hours, minutes, seconds_left]
+	

@@ -9,4 +9,7 @@ func _ready() -> void:
 func on_icon_clicked(viewport, event : InputEvent, shape, node):
 	if event is InputEventScreenTouch:
 		if event.is_pressed():
+			for child in %Icons.get_children():
+				child.deselect()
 			expedition_chosen.emit(node.expedition_resource)
+			node.selected()

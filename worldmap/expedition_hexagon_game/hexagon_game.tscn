@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://cdomoxx0xnseg" path="res://worldmap/expedition_hexagon_game/hexagon_game.gd" id="1_0e48y"]
 [ext_resource type="Texture2D" uid="uid://balabdswh40cu" path="res://worldmap/expedition_hexagon_game/footstep_clue_icon.png" id="3_q6r6c"]
 [ext_resource type="Texture2D" uid="uid://dxuelx22whjuj" path="res://worldmap/expedition_hexagon_game/vegetation_clue_icon.png" id="4_kdubu"]
+[ext_resource type="Texture2D" uid="uid://vqobp5lxkd43" path="res://worldmap/expedition_hexagon_game/hexagon-sheet2.png" id="5_5d0pb"]
 [ext_resource type="Texture2D" uid="uid://ca4almmft16xp" path="res://worldmap/expedition_hexagon_game/dropping_clue_icon.png" id="5_kdubu"]
-[ext_resource type="Texture2D" uid="uid://d4ap27clgtq8t" path="res://worldmap/expedition_hexagon_game/hexagon-sheet.png" id="6_oqhw5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wr13b"]
-texture = ExtResource("6_oqhw5")
+texture = ExtResource("5_5d0pb")
 texture_region_size = Vector2i(64, 96)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 16)
@@ -113,3 +113,7 @@ offset_top = 27.0
 offset_right = 119.0
 offset_bottom = 114.0
 text = "X"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(308, 535)
+zoom = Vector2(2, 2)
