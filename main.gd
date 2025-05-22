@@ -3,6 +3,7 @@ extends Node2D
 ## Handles game initialization
 var is_landscape : bool = false
 
+
 var current_session_unix_time
 
 
@@ -35,6 +36,7 @@ func _ready() -> void:
 	ResearchManager.unlock_everything()
 		
 	AnimalStorageManager.start()
+	QuestManager.start()
 	
 	get_tree().get_root().size_changed.connect(resize_ui)
 

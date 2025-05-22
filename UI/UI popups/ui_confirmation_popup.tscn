@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cxbu5fqbnlcu1"]
 
 [ext_resource type="Script" uid="uid://c5hqciys01nvk" path="res://UI/UI popups/ui_confirmation_popup.gd" id="1_xjvv2"]
-[ext_resource type="Theme" uid="uid://die2jiitjcnwu" path="res://Green_button.tres" id="2_xjqda"]
+[ext_resource type="Theme" uid="uid://die2jiitjcnwu" path="res://UI/Themes/Green_button.tres" id="2_xjqda"]
 [ext_resource type="Theme" uid="uid://tfrt3qgw8yof" path="res://UI/Themes/woody/woody_popup_main.tres" id="2_xjvv2"]
-[ext_resource type="Theme" uid="uid://dnsbtrrtp1vwi" path="res://Red_button.tres" id="3_xjvv2"]
+[ext_resource type="Theme" uid="uid://dnsbtrrtp1vwi" path="res://UI/Themes/Red_button.tres" id="3_xjvv2"]
 
 [node name="UI_confirmation_popup" type="CanvasLayer"]
 layer = 15

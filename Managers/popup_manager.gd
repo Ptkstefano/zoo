@@ -28,6 +28,8 @@ func _ready() -> void:
 
 
 func open_construction_menu(menu_type):
+	if GameManager.is_screen_busy:
+		return
 	if opened_popup != null:
 		opened_popup.queue_free()
 
@@ -38,6 +40,8 @@ func open_construction_menu(menu_type):
 
 
 func open_popup_with_data(type, data):
+	if GameManager.is_screen_busy:
+		return
 	if opened_popup != null:
 		opened_popup.queue_free()
 		opened_popup = null
@@ -48,6 +52,8 @@ func open_popup_with_data(type, data):
 		
 
 func open_popup(detector_pos, element):
+	if GameManager.is_screen_busy:
+		return
 	if opened_popup != null:
 		opened_popup.queue_free()
 		opened_popup = null
@@ -78,6 +84,8 @@ func close_popup():
 		SignalBus.ui_visibility.emit(true)
 
 func open_box(box):
+	if GameManager.is_screen_busy:
+		return
 	if opened_popup != null:
 		opened_popup.queue_free()
 		opened_popup = null
@@ -149,7 +157,7 @@ func open_enclosure_popup(element):
 
 func open_staff_popup(staff : Staff):
 	if staff.is_quest_giver:
-		staff.on_staff_stop_giving_quest()
+		staff.on_quest_giver_clicked()
 	else:
 		opened_popup = ui_staff_popup.instantiate()
 		opened_popup.staff_scene = staff

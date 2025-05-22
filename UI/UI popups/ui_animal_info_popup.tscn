@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b4ue560jtyrh4" path="res://UI/UI popups/ui_animal_info_popup.gd" id="1_p6rog"]
 [ext_resource type="Theme" uid="uid://tfrt3qgw8yof" path="res://UI/Themes/woody/woody_popup_main.tres" id="1_q2ugj"]
-[ext_resource type="Theme" uid="uid://n5hp2ks3tu04" path="res://checkbox.tres" id="3_81ffn"]
+[ext_resource type="Theme" uid="uid://n5hp2ks3tu04" path="res://UI/checkbox.tres" id="3_81ffn"]
 [ext_resource type="Texture2D" uid="uid://byrh5ao3uywmr" path="res://Animals/icons/african-elephant.png" id="3_p6rog"]
 
 [node name="AnimalInfoPopup" type="Control"]

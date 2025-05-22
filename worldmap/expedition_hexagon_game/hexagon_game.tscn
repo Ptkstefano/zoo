@@ -113,7 +113,3 @@ offset_top = 27.0
 offset_right = 119.0
 offset_bottom = 114.0
 text = "X"
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(308, 535)
-zoom = Vector2(2, 2)

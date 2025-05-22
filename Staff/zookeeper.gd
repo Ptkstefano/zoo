@@ -53,6 +53,7 @@ func on_state_timer_timeout():
 func change_state(state):
 	current_state = state
 	if state == zookeeper_states.GIVING_QUEST:
+		QuestManager.quest_giver_exists = true
 		destination_building = null
 	if state == zookeeper_states.GOING_TO_ENCLOSURE:
 		return

@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dprrgv2xdx1qh" path="res://UI/Icons/star-half2x.png" id="4_qr7ui"]
 [ext_resource type="Texture2D" uid="uid://cec5dk5br230v" path="res://UI/art/innerpannel-export.png" id="5_lr170"]
 [ext_resource type="PackedScene" uid="uid://kn44cenbnuda" path="res://UI/level_star.tscn" id="6_tgrxr"]
-[ext_resource type="Theme" uid="uid://n5hp2ks3tu04" path="res://checkbox.tres" id="7_qr7ui"]
+[ext_resource type="Theme" uid="uid://n5hp2ks3tu04" path="res://UI/checkbox.tres" id="7_qr7ui"]
 [ext_resource type="Texture2D" uid="uid://c63bsjmajlrdm" path="res://UI/Icons/staff_icons1.png" id="8_0sm50"]
 [ext_resource type="FontFile" uid="uid://cpnqdh47y1283" path="res://UI/Logic_Loop.ttf" id="8_n8ash"]
 [ext_resource type="Theme" uid="uid://tfrt3qgw8yof" path="res://UI/Themes/woody/woody_popup_main.tres" id="9_x22dl"]
@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cpubyrl6mw1pq" path="res://UI/UI popups/elements/enclosure_list_element.tscn" id="11_8v1n8"]
 [ext_resource type="Texture2D" uid="uid://b5ehp47ajkovo" path="res://UI/art/buttons.png" id="12_vjfh8"]
 [ext_resource type="Texture2D" uid="uid://blw51svd5tq1x" path="res://UI/Icons/staff_icons2.png" id="13_11rjp"]
-[ext_resource type="Theme" uid="uid://dpbxcu82btgu" path="res://light_blue_button.tres" id="13_in2ri"]
+[ext_resource type="Theme" uid="uid://dpbxcu82btgu" path="res://UI/Themes/light_blue_button.tres" id="13_in2ri"]
 [ext_resource type="PackedScene" uid="uid://ccw7p2jtp82gx" path="res://UI/UI popups/elements/staff_element.tscn" id="14_0hwv4"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_72ch2"]

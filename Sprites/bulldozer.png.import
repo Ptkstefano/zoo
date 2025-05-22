@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cs6ugrllcg1e3"
-path="res://.godot/imported/bulldozer.png-6e28a05d1abd67c89432b87fb60d66db.ctex"
+path="res://.godot/imported/bulldozer.png-b7ddc0e97369f98702173712141cbcc1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bulldozer.png"
-dest_files=["res://.godot/imported/bulldozer.png-6e28a05d1abd67c89432b87fb60d66db.ctex"]
+source_file="res://Sprites/bulldozer.png"
+dest_files=["res://.godot/imported/bulldozer.png-b7ddc0e97369f98702173712141cbcc1.ctex"]
 
 [params]
 

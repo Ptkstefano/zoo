@@ -1,10 +1,10 @@
 [gd_scene load_steps=20 format=3 uid="uid://dfipnhy2cv66s"]
 
 [ext_resource type="Theme" uid="uid://tfrt3qgw8yof" path="res://UI/Themes/woody/woody_popup_main.tres" id="1_cuf80"]
-[ext_resource type="Script" uid="uid://cam708i7xw2yp" path="res://construction_menu_popu.gd" id="4_5e7mi"]
+[ext_resource type="Script" uid="uid://cam708i7xw2yp" path="res://UI/construction_menu_popu.gd" id="4_5e7mi"]
 [ext_resource type="FontFile" uid="uid://dh3lo7lghhs8x" path="res://UI/Thin sans.ttf" id="4_sqqsl"]
 [ext_resource type="Texture2D" uid="uid://imjitgjexxki" path="res://UI/Themes/woody/wood_ui.png" id="5_8e0k5"]
-[ext_resource type="PackedScene" uid="uid://2t2ep4vybhjk" path="res://build_menu_element.tscn" id="5_b1gx5"]
+[ext_resource type="PackedScene" uid="uid://2t2ep4vybhjk" path="res://UI/UI popups/elements/build_menu_element.tscn" id="5_b1gx5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_72ch2"]
 texture = ExtResource("5_8e0k5")

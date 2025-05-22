@@ -18,12 +18,12 @@ boot_splash/show_image=false
 [autoload]
 
 Helpers="*res://Scripts/helpers.gd"
-FolderDataManager="*res://folderDataManager.gd"
-GlobalConfigManager="*res://global_config_manager.gd"
+FolderDataManager="*res://Autoload/folderDataManager.gd"
+GlobalConfigManager="*res://Autoload/global_config_manager.gd"
 IdRefs="*res://Autoload/id_refs.gd"
 ZooManager="*res://Autoload/zoo_manager.gd"
 ContentManager="*res://Autoload/content_manager.tscn"
-ExpeditionManager="*res://expedition_manager.gd"
+ExpeditionManager="*res://Autoload/expedition_manager.gd"
 GameManager="*res://Managers/game_manager.gd"
 ColorRefs="*res://Autoload/color_refs.tscn"
 TileMapRef="*res://Autoload/tile_map_ref.tscn"
@@ -31,13 +31,14 @@ SignalBus="*res://Autoload/signal_bus.gd"
 Effects="*res://Autoload/effects.gd"
 TimeManager="*res://Autoload/time_manager.tscn"
 AudioManager="*res://Autoload/audio_manager.tscn"
-ThoughtManager="*res://thought_manager.gd"
+ThoughtManager="*res://Autoload/thought_manager.gd"
 FinanceManager="*res://Autoload/FinanceManager.tscn"
 MusicManager="*res://Autoload/music_manager.tscn"
 SaveManager="*res://Autoload/save_manager.tscn"
 SoundscapeManager="*res://Autoload/soundscape_manager.tscn"
 ResearchManager="*res://Autoload/research_manager.tscn"
 AnimalStorageManager="*res://Autoload/AnimalStorageManager.tscn"
+QuestManager="*res://Autoload/quest_manager.tscn"
 
 [display]
 

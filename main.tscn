@@ -1,11 +1,11 @@
-[gd_scene load_steps=188 format=4 uid="uid://e8kgl625in1o"]
+[gd_scene load_steps=193 format=4 uid="uid://e8kgl625in1o"]
 
 [ext_resource type="Script" uid="uid://o2egpp0b02e2" path="res://Scripts/debug_controller.gd" id="1_nisry"]
 [ext_resource type="Script" uid="uid://blx6trscluteh" path="res://Scripts/input_controller.gd" id="1_ojpln"]
 [ext_resource type="Script" uid="uid://dabd0wtptg5ku" path="res://main.gd" id="1_oseej"]
-[ext_resource type="Script" uid="uid://bawblafy70sf4" path="res://reputation_manager.gd" id="2_1b04k"]
+[ext_resource type="Script" uid="uid://bawblafy70sf4" path="res://Autoload/reputation_manager.gd" id="2_1b04k"]
 [ext_resource type="Script" uid="uid://b0adab4c0yrtg" path="res://Scripts/path_manager.gd" id="2_4bhy0"]
-[ext_resource type="Script" uid="uid://cvrvd5kbmdlsl" path="res://night_modulate.gd" id="2_6seew"]
+[ext_resource type="Script" uid="uid://cvrvd5kbmdlsl" path="res://Scripts/night_modulate.gd" id="2_6seew"]
 [ext_resource type="PackedScene" uid="uid://cl4o0ja0kt0i1" path="res://Animals/animal.tscn" id="2_7ivxh"]
 [ext_resource type="Script" uid="uid://cwjk7eao4e2gh" path="res://Managers/rendering_controller.gd" id="2_hhygd"]
 [ext_resource type="Script" uid="uid://b4vdwe5o8vo48" path="res://Scripts/EnclosureManager.gd" id="3_3jjmw"]
@@ -24,9 +24,9 @@
 [ext_resource type="Resource" uid="uid://cv3jbpbpoab6s" path="res://Terrain/sand.tres" id="7_i5ul7"]
 [ext_resource type="Script" uid="uid://c3k8yrw5ov665" path="res://Scripts/camera_2d.gd" id="7_pw5dd"]
 [ext_resource type="PackedScene" uid="uid://loilhhqarje0" path="res://UI/UI selectable elements/ui_path_element.tscn" id="7_tmdpf"]
-[ext_resource type="Script" uid="uid://bjsg0rr5ai5l3" path="res://bulldozer_collider.gd" id="7_xhqw8"]
+[ext_resource type="Script" uid="uid://bjsg0rr5ai5l3" path="res://Scripts/bulldozer_collider.gd" id="7_xhqw8"]
 [ext_resource type="Resource" uid="uid://dp82v0odladsa" path="res://Paths/null_path.tres" id="7_ybs1u"]
-[ext_resource type="Texture2D" uid="uid://cs6ugrllcg1e3" path="res://bulldozer.png" id="8_7mmqq"]
+[ext_resource type="Texture2D" uid="uid://cs6ugrllcg1e3" path="res://Sprites/bulldozer.png" id="8_7mmqq"]
 [ext_resource type="PackedScene" uid="uid://dvjtneek7b62q" path="res://UI/UI selectable elements/ui_terrain_element.tscn" id="8_qghle"]
 [ext_resource type="Script" uid="uid://dy3cw312sp2us" path="res://Managers/peep_manager.gd" id="10_ubp83"]
 [ext_resource type="PackedScene" uid="uid://ca66y62ys1xkh" path="res://Peeps/peep.tscn" id="11_nv6fn"]
@@ -87,7 +87,7 @@
 [ext_resource type="PackedScene" uid="uid://c2u0ej3vivap1" path="res://UI/UI popups/animal_storage_popup.tscn" id="91_vjgyh"]
 [ext_resource type="PackedScene" uid="uid://dfipnhy2cv66s" path="res://UI/UI popups/construction_menu_popu.tscn" id="92_smeu8"]
 [ext_resource type="PackedScene" uid="uid://mfo25nkb620y" path="res://UI/UI popups/ui_world_map_popup.tscn" id="92_u81y6"]
-[ext_resource type="Script" uid="uid://cqo5u5r154c0t" path="res://ui_v.gd" id="93_m74q3"]
+[ext_resource type="Script" uid="uid://cqo5u5r154c0t" path="res://UI/ui_v.gd" id="93_m74q3"]
 [ext_resource type="PackedScene" uid="uid://b7qlfxl72twhw" path="res://Staff/zookeeper.tscn" id="93_ox7mk"]
 [ext_resource type="PackedScene" uid="uid://cvl3hi0v46wqh" path="res://UI/UI popups/debug_popup.tscn" id="94_d5iia"]
 [ext_resource type="Texture2D" uid="uid://b7f8nv73rdsl8" path="res://Staff/sprites/zookeeper.png" id="94_ttfan"]
@@ -98,9 +98,9 @@
 [ext_resource type="PackedScene" uid="uid://r0spf3llgqjx" path="res://UI/UI popups/welcome_popup.tscn" id="96_s4o1y"]
 [ext_resource type="Theme" uid="uid://jrje6x4s4k8r" path="res://UI/Themes/woody/woody_main_construction.tres" id="96_u81y6"]
 [ext_resource type="PackedScene" uid="uid://clc0ubxyr8ptc" path="res://UI/UI popups/animal_shop_popup.tscn" id="97_7mmqq"]
-[ext_resource type="Shader" uid="uid://bu1lv0m1sqnci" path="res://replace_color.gdshader" id="97_84xii"]
+[ext_resource type="Shader" uid="uid://bu1lv0m1sqnci" path="res://Shaders/replace_color.gdshader" id="97_84xii"]
 [ext_resource type="Texture2D" uid="uid://bjthj4qg0ql5v" path="res://UI/Themes/woody/construction_icons1.png" id="98_u81y6"]
-[ext_resource type="Script" uid="uid://bx7r3upcavvb4" path="res://notification_manager.gd" id="98_yvsr8"]
+[ext_resource type="Script" uid="uid://bx7r3upcavvb4" path="res://Autoload/notification_manager.gd" id="98_yvsr8"]
 [ext_resource type="Texture2D" uid="uid://b2kay82i4d1qh" path="res://UI/Themes/woody/construction_icons2.png" id="99_rt5wr"]
 [ext_resource type="Texture2D" uid="uid://bktsnx5cw4fsa" path="res://UI/Themes/woody/star.png" id="99_s4o1y"]
 [ext_resource type="PackedScene" uid="uid://c1lavh6yvgdgb" path="res://UI/notification_label.tscn" id="99_vieuh"]
@@ -110,7 +110,7 @@
 [ext_resource type="Texture2D" uid="uid://cupyxc714k5o8" path="res://Enclosures/fence_sheet.png" id="101_xkvoa"]
 [ext_resource type="Texture2D" uid="uid://ceu57lrqnwdnw" path="res://UI/Themes/woody/construction_icons5.png" id="102_d5iia"]
 [ext_resource type="Texture2D" uid="uid://cacmcos7dlj01" path="res://UI/Themes/woody/construction_icons6.png" id="103_asu84"]
-[ext_resource type="Script" uid="uid://diov21aejn74a" path="res://info_border_panel.gd" id="103_tttfs"]
+[ext_resource type="Script" uid="uid://diov21aejn74a" path="res://Scripts/info_border_panel.gd" id="103_tttfs"]
 [ext_resource type="PackedScene" uid="uid://dghecrq5m52py" path="res://UI/UI popups/ui_building_popup.tscn" id="104_3exxq"]
 [ext_resource type="Texture2D" uid="uid://bq5lk51uefsqk" path="res://UI/Themes/woody/construction_icons7.png" id="104_qwt6e"]
 [ext_resource type="Texture2D" uid="uid://imjitgjexxki" path="res://UI/Themes/woody/wood_ui.png" id="104_rt5wr"]
@@ -124,11 +124,14 @@
 [ext_resource type="Texture2D" uid="uid://cijqvxnw5arm4" path="res://UI/Themes/woody/peeps.png" id="119_7mmqq"]
 [ext_resource type="PackedScene" uid="uid://bvx7ukf647gy5" path="res://UI/UI popups/ui_staff_popup.tscn" id="120_rpys8"]
 [ext_resource type="Theme" uid="uid://tfrt3qgw8yof" path="res://UI/Themes/woody/woody_popup_main.tres" id="121_asu84"]
+[ext_resource type="Texture2D" uid="uid://tu0u778dph43" path="res://Quests/Characters/zookeeper-unique.png" id="123_3exxq"]
+[ext_resource type="Script" uid="uid://diodgy2qdfpaa" path="res://UI/speech_screen.gd" id="123_bmvma"]
+[ext_resource type="FontFile" uid="uid://dh3lo7lghhs8x" path="res://UI/Thin sans.ttf" id="124_5aa3q"]
 [ext_resource type="PackedScene" uid="uid://kn44cenbnuda" path="res://UI/level_star.tscn" id="126_5aa3q"]
-[ext_resource type="PackedScene" uid="uid://dqh7kxpmotbcn" path="res://options_menu.tscn" id="130_5aa3q"]
+[ext_resource type="PackedScene" uid="uid://dqh7kxpmotbcn" path="res://UI/options_menu.tscn" id="130_5aa3q"]
 [ext_resource type="Texture2D" uid="uid://bqrwr2cqyvfly" path="res://UI/art/bgtest.png" id="136_ldnlw"]
 [ext_resource type="Texture2D" uid="uid://bhdvqbx2t3rji" path="res://MainMenu/logo3.png" id="155_fdpg8"]
-[ext_resource type="Script" uid="uid://b6cxmm7gdxulo" path="res://UII_main_menu.gd" id="155_rpys8"]
+[ext_resource type="Script" uid="uid://b6cxmm7gdxulo" path="res://UI/UII_main_menu.gd" id="155_rpys8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4oys"]
 radius = 12.0
@@ -651,8 +654,21 @@ border_color = Color(0, 0, 0, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ogm70"]
 shader = ExtResource("97_84xii")
 shader_parameter/r = 0.0
-shader_parameter/g = 0.12
+shader_parameter/g = 0.04
 shader_parameter/b = 0.22
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bmvma"]
+bg_color = Color(0, 0, 0, 0.282353)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5aa3q"]
+content_margin_left = 32.0
+texture = ExtResource("104_rt5wr")
+texture_margin_left = 52.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 36.0
+expand_margin_right = 18.0
+region_rect = Rect2(192, 1248, 128, 128)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_if1ac"]
 shader = ExtResource("53_fkgg7")
@@ -1604,9 +1620,72 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+mouse_filter = 0
+follow_focus = true
+scroll_horizontal_custom_step = 0.0
+scroll_vertical_custom_step = 0.0
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/HBoxContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 10
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/HBoxContainer2/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="AnimalCarouselList" type="HBoxContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/HBoxContainer2/ScrollContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="AnimalStorageButton" type="Button" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 200)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/HBoxContainer2/AnimalStorageButton"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 10.0
+offset_right = 132.0
+offset_bottom = 192.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/HBoxContainer2/AnimalStorageButton/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/HBoxContainer2/AnimalStorageButton/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+text = "Animal Storage"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
 mouse_filter = 2
 
 [node name="ExpeditionsButton" type="Button" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/HBoxContainer"]
@@ -1625,64 +1704,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 text = "Animal store"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer"]
-custom_minimum_size = Vector2(0, 250)
-layout_mode = 2
-size_flags_vertical = 8
-mouse_filter = 0
-follow_focus = true
-scroll_horizontal_custom_step = 0.0
-scroll_vertical_custom_step = 0.0
-horizontal_scroll_mode = 3
-vertical_scroll_mode = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 10
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/ScrollContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="AnimalCarouselList" type="HBoxContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 12
-
-[node name="AnimalStorageButton" type="Button" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(140, 200)
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/AnimalStorageButton"]
-layout_mode = 2
-offset_left = 8.0
-offset_top = 10.0
-offset_right = 132.0
-offset_bottom = 192.0
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/AnimalStorageButton/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI_V/AnimalModeMargin/Control/VBoxContainer/ScrollContainer/MarginContainer/HBoxContainer/AnimalStorageButton/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 6
-text = "Animal Storage"
-horizontal_alignment = 1
-autowrap_mode = 3
-
 [node name="OutlineColor" type="CanvasLayer" parent="."]
 layer = 0
 
@@ -1695,6 +1716,73 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
 metadata/_edit_lock_ = true
+
+[node name="SpeechScreen" type="CanvasLayer" parent="."]
+layer = 0
+visible = false
+script = ExtResource("123_bmvma")
+
+[node name="SpeechBG" type="Panel" parent="SpeechScreen"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bmvma")
+
+[node name="SpeechControl" type="Control" parent="SpeechScreen"]
+unique_name_in_owner = true
+layout_mode = 3
+anchor_left = 0.025
+anchor_top = 0.025
+anchor_right = 0.95
+anchor_bottom = 0.975
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SpeechScreen/SpeechControl"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="CharacterTexture" type="TextureRect" parent="SpeechScreen/SpeechControl/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("123_3exxq")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="SpeechBubble" type="PanelContainer" parent="SpeechScreen/SpeechControl/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_5aa3q")
+
+[node name="SpeechText" type="RichTextLabel" parent="SpeechScreen/SpeechControl/HBoxContainer/SpeechBubble"]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.0509804, 0.14902, 0.258824, 1)
+theme_override_fonts/normal_font = ExtResource("124_5aa3q")
+theme_override_font_sizes/normal_font_size = 32
+text = "Building a zoo is hard work! Let's start off with the basics to get you up to speed!"
+scroll_active = false
+horizontal_alignment = 3
+
+[node name="SpeechTimer" type="Timer" parent="SpeechScreen"]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
 
 [node name="PostFX" type="CanvasLayer" parent="."]
 layer = 0

@@ -64,6 +64,10 @@ func _ready() -> void:
 	#SignalBus.animal_placed.connect(on_build_mode_button_toggled.unbind(1).bind(false))
 	SignalBus.animal_placed.connect(on_animal_placed)
 	SignalBus.money_changed.connect(on_money_changed)
+	SignalBus.speech_started.connect(on_speech_started)
+	SignalBus.speech_ended.connect(on_speech_ended)
+	
+	
 	AnimalStorageManager.stored_animals_updated.connect(update_animal_carousel)
 	
 	ZooManager.zoo_reputation_updated.connect(on_reputation_update)
@@ -76,18 +80,7 @@ func _ready() -> void:
 	
 	on_money_changed(FinanceManager.current_money)
 	
-	## Hide
-	$ConstructUI.hide()
-	%MainToolContainer.hide()
-	%BulldozerToolsContainer.hide()
-	%AnimalModeMargin.hide()
-	%ToolLabelContainer.hide()
-	
-	
-	## Show
-	%BottomMargin.show()
-	%MainMargin.show()
-	%MainMarginAux.show()
+	show_ui()
 
 func _process(delta: float) -> void:
 	%TimeProgressBar.value = TimeManager.get_timer_progress()
@@ -145,8 +138,7 @@ func on_build_mode_button_toggled(value):
 		%GridLayer.show()
 		%AnimalModeMargin.hide()
 		%BottomMargin.hide()
-		
-		
+
 	else:
 		build_mode_toggled = false
 		%MainMargin.show()
@@ -277,3 +269,24 @@ func update_animal_carousel():
 
 func place_animal(animal):
 	SignalBus.tool_selected.emit(IdRefs.TOOLS.ANIMAL, animal)
+
+func on_speech_started():
+	hide()
+
+func on_speech_ended():
+	show_ui()
+	
+func show_ui():
+	show()
+	## Hide
+	$ConstructUI.hide()
+	%MainToolContainer.hide()
+	%BulldozerToolsContainer.hide()
+	%AnimalModeMargin.hide()
+	%ToolLabelContainer.hide()
+	$"../SpeechScreen".hide()
+	
+	## Show
+	%BottomMargin.show()
+	%MainMargin.show()
+	%MainMarginAux.show()

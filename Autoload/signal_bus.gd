@@ -32,6 +32,15 @@ signal path_erased
 signal path_changed
 signal path_layer_updated
 
+signal activate_quest_giver ## Emitted by QuestManager and received by possible quest givers
+signal quest_activated ## Emitted bi quest giver so that manager can properly start quest
+signal quest_started ## Emitted by QuestManager with quest_resource
+
+
+signal speech_started
+signal speech_ended
+
+
 signal clear_highlight ## Received by highlightLayer
 
 signal update_cached_positions

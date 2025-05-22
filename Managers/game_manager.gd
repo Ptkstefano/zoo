@@ -8,6 +8,8 @@ var is_load_game : bool = false
 
 var is_day : bool = true
 
+## Used so that certain states can claim preference
+var is_screen_busy : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

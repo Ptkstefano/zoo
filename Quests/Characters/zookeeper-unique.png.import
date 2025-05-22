@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cre5ecr7mkgph"
-path="res://.godot/imported/construction_color2.png-54fc8c2cc53508a745b2c22c7ad841e7.ctex"
+uid="uid://tu0u778dph43"
+path="res://.godot/imported/zookeeper-unique.png-b8b669898213e6b67754790333cd1432.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenery/construction_color2.png"
-dest_files=["res://.godot/imported/construction_color2.png-54fc8c2cc53508a745b2c22c7ad841e7.ctex"]
+source_file="res://Quests/Characters/zookeeper-unique.png"
+dest_files=["res://.godot/imported/zookeeper-unique.png-b8b669898213e6b67754790333cd1432.ctex"]
 
 [params]
 

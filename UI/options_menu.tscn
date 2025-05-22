@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://dqh7kxpmotbcn"]
 
 [ext_resource type="Script" uid="uid://oq7aounld7th" path="res://UI/UI popups/responsive_margin_container.gd" id="1_4gmlt"]
-[ext_resource type="Script" uid="uid://lhmch72h6mdr" path="res://options_menu.gd" id="1_ogda5"]
+[ext_resource type="Script" uid="uid://lhmch72h6mdr" path="res://UI/options_menu.gd" id="1_ogda5"]
 [ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/Themes/popup_theme.tres" id="2_ogda5"]
 [ext_resource type="Texture2D" uid="uid://bhdvqbx2t3rji" path="res://MainMenu/logo3.png" id="3_6bffs"]
-[ext_resource type="Theme" uid="uid://n5hp2ks3tu04" path="res://checkbox.tres" id="5_6bffs"]
+[ext_resource type="Theme" uid="uid://n5hp2ks3tu04" path="res://UI/checkbox.tres" id="5_6bffs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vwtu1"]
 

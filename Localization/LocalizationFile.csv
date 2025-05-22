@@ -316,4 +316,8 @@ PRODUCTS_PASTA_PESTO,Pesto Pasta,Pasta ao pesto
 PRODUCTS_PASTA_BOLOGNESE,Bolognese Pasta,Pasta bolonhesa
 PRODUCTS_PASTA_SHRIMP,Shrimp Pasta with Squid-Ink,Pasta de camarão à tinta de lula
 ,,
-QUEST_01_INTRO_01,"Hi there! My name is Janet and I'm here to help you with getting your zoo started! First off, let's build a few paths.",
+QUEST_01_INTRO_01,"Wew! We finally got everything sorted out and we're ready to start build the zoo!",Ufa! Finalmente terminamos de resolver tudo e estamos prontos para começar a construção!
+QUEST_01_INTRO_02,"Now, building a zoo is hard work. Zoo let's start with the basics! Let's get a few paths down first.",Construir um zoológico é trabalho duro. Vamos começar do básico. Vamos construir algumas calçadas!
+QUEST_01_INTRO_03,"To build anything, click on the build menu on the top left, find the right category and pick your option!","Para construir algo, abra o menu do botão no topo da tela à esquerda, encontre a categoria do que quer e escolha uma das opções!"
+,,
+,,

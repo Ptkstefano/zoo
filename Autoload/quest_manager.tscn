@@ -1,3 +1,12 @@
-[gd_scene format=3 uid="uid://byalr8i01wh8l"]
+[gd_scene load_steps=4 format=3 uid="uid://byalr8i01wh8l"]
+
+[ext_resource type="Script" uid="uid://n04xp0v1hg0o" path="res://Autoload/quest_manager.gd" id="1_np7dy"]
+[ext_resource type="Script" uid="uid://c71imi8yyxjv5" path="res://Quests/quest_res.gd" id="2_5pyv4"]
+[ext_resource type="Resource" uid="uid://clxjuypu08aao" path="res://Quests/Quest_resources/01_tutorial_paths.tres" id="3_2753n"]
 
 [node name="QuestManager" type="Node"]
+script = ExtResource("1_np7dy")
+quest_resources = Array[ExtResource("2_5pyv4")]([ExtResource("3_2753n")])
+
+[node name="QuestTimer" type="Timer" parent="."]
+wait_time = 10.0
