@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bqrwr2cqyvfly" path="res://UI/art/bgtest.png" id="2_po2gx"]
 [ext_resource type="Texture2D" uid="uid://bhdvqbx2t3rji" path="res://MainMenu/logo3.png" id="3_po2gx"]
 [ext_resource type="Script" uid="uid://ddm4yop4wv5l4" path="res://MainMenu/control_scale_tween.gd" id="4_po2gx"]
-[ext_resource type="Theme" uid="uid://die2jiitjcnwu" path="res://Green_button.tres" id="6_kbpwf"]
+[ext_resource type="Theme" uid="uid://die2jiitjcnwu" path="res://UI/Themes/Green_button.tres" id="6_kbpwf"]
 [ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/Themes/popup_theme.tres" id="7_jdgnk"]
 [ext_resource type="Theme" uid="uid://di7iy2m47x8rx" path="res://UI/Themes/popup_inner_content.tres" id="8_83n0s"]
 [ext_resource type="PackedScene" uid="uid://ce0okymgxf8n4" path="res://MainMenu/MainMenu_save_game_element.tscn" id="9_83n0s"]
@@ -29,6 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_jxm28")
 save_game_element = ExtResource("9_83n0s")
 
@@ -38,10 +39,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -778.667
+offset_right = 778.667
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("2_po2gx")
-expand_mode = 1
+expand_mode = 3
 
 [node name="ContainerContainer" type="Control" parent="."]
 unique_name_in_owner = true
@@ -52,76 +56,107 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MainContainer" type="MarginContainer" parent="ContainerContainer"]
+[node name="MainContainer" type="Control" parent="ContainerContainer"]
 unique_name_in_owner = true
+clip_children = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+mouse_filter = 2
 
-[node name="HBoxContainer" type="VBoxContainer" parent="ContainerContainer/MainContainer"]
-layout_mode = 2
+[node name="Control" type="Control" parent="ContainerContainer/MainContainer"]
+layout_mode = 1
+anchor_left = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="ContainerContainer/MainContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="TextureRect2" type="TextureRect" parent="ContainerContainer/MainContainer/HBoxContainer/MarginContainer"]
-layout_mode = 2
+[node name="TextureRect2" type="TextureRect" parent="ContainerContainer/MainContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_po2gx")
-expand_mode = 3
 stretch_mode = 5
 script = ExtResource("4_po2gx")
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="ContainerContainer/MainContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.6
+[node name="Control2" type="Control" parent="ContainerContainer/MainContainer"]
+layout_mode = 1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContainerContainer/MainContainer/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.0
+offset_top = -191.5
+offset_right = 207.0
+offset_bottom = 191.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("2_24wdr")
-theme_override_constants/separation = 15
-alignment = 2
-
-[node name="Control" type="Control" parent="ContainerContainer/MainContainer/HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ContainerContainer/MainContainer/HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="StoryButton" type="Button" parent="ContainerContainer/MainContainer/HBoxContainer/VBoxContainer3/HBoxContainer"]
+[node name="StoryButton" type="Button" parent="ContainerContainer/MainContainer/Control2/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 disabled = true
 text = "UI_MAIN_MENU_STORY"
 
-[node name="SandboxButton" type="Button" parent="ContainerContainer/MainContainer/HBoxContainer/VBoxContainer3/HBoxContainer"]
+[node name="SandboxButton" type="Button" parent="ContainerContainer/MainContainer/Control2/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "UI_MAIN_MENU_SANDBOX"
 
-[node name="ContinueButton" type="Button" parent="ContainerContainer/MainContainer/HBoxContainer/VBoxContainer3/HBoxContainer"]
+[node name="ContinueButton" type="Button" parent="ContainerContainer/MainContainer/Control2/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("6_kbpwf")
 text = "UI_MAIN_MENU_CONTINUE"
 
-[node name="SandboxContainer" type="MarginContainer" parent="ContainerContainer"]
+[node name="SandboxContainer" type="Control" parent="ContainerContainer"]
 unique_name_in_owner = true
 visible = false
+clip_children = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="ContainerContainer/SandboxContainer"]
+layout_mode = 1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SandboxContainer" type="MarginContainer" parent="ContainerContainer/SandboxContainer/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -134,53 +169,45 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="MarginContainer" type="MarginContainer" parent="ContainerContainer/SandboxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 200
-theme_override_constants/margin_top = 150
-theme_override_constants/margin_right = 200
-theme_override_constants/margin_bottom = 150
-
-[node name="PanelContainer" type="PanelContainer" parent="ContainerContainer/SandboxContainer/MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="ContainerContainer/SandboxContainer/Control/SandboxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ContainerContainer/SandboxContainer/Control/SandboxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ContainerContainer/SandboxContainer/Control/SandboxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 65
 
-[node name="Label" type="Label" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="ContainerContainer/SandboxContainer/Control/SandboxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 24
 text = "UI_MAIN_MENU_SANDBOX"
 horizontal_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="ContainerContainer/SandboxContainer/Control/SandboxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("8_83n0s")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ContainerContainer/SandboxContainer/Control/SandboxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SandboxSaveGameList" type="VBoxContainer" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer"]
+[node name="SandboxSaveGameList" type="VBoxContainer" parent="ContainerContainer/SandboxContainer/Control/SandboxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SaveGameElement" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/SandboxSaveGameList" instance=ExtResource("9_83n0s")]
+[node name="SaveGameElement" parent="ContainerContainer/SandboxContainer/Control/SandboxContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/SandboxSaveGameList" instance=ExtResource("9_83n0s")]
 layout_mode = 2
 
-[node name="NewSandboxGame" type="Button" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="NewSandboxGame" type="Button" parent="ContainerContainer/SandboxContainer/Control/SandboxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
@@ -188,12 +215,12 @@ size_flags_vertical = 8
 theme = ExtResource("6_kbpwf")
 text = "UI_MAIN_MENU_CREATE_NEW"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ContainerContainer/SandboxContainer/Control/SandboxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="CloseSandboxButton" type="Button" parent="ContainerContainer/SandboxContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="CloseSandboxButton" type="Button" parent="ContainerContainer/SandboxContainer/Control/SandboxContainer/PanelContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
@@ -202,8 +229,7 @@ size_flags_vertical = 0
 size_flags_stretch_ratio = 0.1
 text = "X"
 
-[node name="NewSandboxZooContainer" type="MarginContainer" parent="ContainerContainer"]
-unique_name_in_owner = true
+[node name="NewSandboxZooContainer" type="Control" parent="ContainerContainer"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -211,58 +237,60 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Control" type="Control" parent="ContainerContainer/NewSandboxZooContainer"]
+layout_mode = 1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ContainerContainer/NewSandboxZooContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("7_jdgnk")
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
 
-[node name="MarginContainer" type="MarginContainer" parent="ContainerContainer/NewSandboxZooContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 500
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 500
-theme_override_constants/margin_bottom = 100
-
-[node name="PanelContainer" type="PanelContainer" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ContainerContainer/NewSandboxZooContainer/Control/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ContainerContainer/NewSandboxZooContainer/Control/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="Label" type="Label" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="ContainerContainer/NewSandboxZooContainer/Control/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 48
 text = "UI_MAIN_MENU_CREATE_NEW"
 horizontal_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="ContainerContainer/NewSandboxZooContainer/Control/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ContainerContainer/NewSandboxZooContainer/Control/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 5.0
 theme_override_constants/separation = 8
 
-[node name="Label2" type="Label" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
+[node name="Label2" type="Label" parent="ContainerContainer/NewSandboxZooContainer/Control/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "UI_MAIN_MENU_ZOO_NAME"
 horizontal_alignment = 1
 
-[node name="ZooNameLineEdit" type="LineEdit" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
+[node name="ZooNameLineEdit" type="LineEdit" parent="ContainerContainer/NewSandboxZooContainer/Control/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -273,7 +301,7 @@ alignment = 1
 max_length = 32
 caret_blink = true
 
-[node name="StartNewSandboxGame" type="Button" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="StartNewSandboxGame" type="Button" parent="ContainerContainer/NewSandboxZooContainer/Control/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
@@ -282,12 +310,12 @@ theme = ExtResource("6_kbpwf")
 disabled = true
 text = "UI_MAIN_MENU_START"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ContainerContainer/NewSandboxZooContainer/Control/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="CloseNewZooButton" type="Button" parent="ContainerContainer/NewSandboxZooContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="CloseNewZooButton" type="Button" parent="ContainerContainer/NewSandboxZooContainer/Control/PanelContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2

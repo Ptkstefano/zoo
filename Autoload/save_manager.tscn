@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cv12wwtuer7xn"]
 
-[ext_resource type="Script" uid="uid://byy6f61raa6uf" path="res://save_manager.gd" id="1_ejxsv"]
+[ext_resource type="Script" uid="uid://byy6f61raa6uf" path="res://Autoload/save_manager.gd" id="1_ejxsv"]
 
 [node name="SaveManager" type="Node"]
 process_mode = 3

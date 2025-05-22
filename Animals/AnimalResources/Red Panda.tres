@@ -2,17 +2,18 @@
 
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_ccp0p"]
 [ext_resource type="Texture2D" uid="uid://dh8celqnmlfal" path="res://Animals/sprites/red_panda_cub.png" id="1_uoo5n"]
-[ext_resource type="Texture2D" uid="uid://cbl60an3oibn6" path="res://Animals/thumbs/animal_thumbs4.png" id="3_kkat6"]
+[ext_resource type="Texture2D" uid="uid://fxh20p2t31p1" path="res://Animals/icons/red-panda.png" id="2_uoo5n"]
 [ext_resource type="Texture2D" uid="uid://dqi1jx7bc3e05" path="res://Animals/sprites/red_panda.png" id="3_uoo5n"]
 
 [resource]
 script = ExtResource("1_ccp0p")
 tr_name = "ANIMAL_RED_PANDA"
-id = 5
+id = 7
+rarity = 1
 cost = 250.0
 texture = ExtResource("3_uoo5n")
 cub_texture = ExtResource("1_uoo5n")
-thumb = ExtResource("3_kkat6")
+icon = ExtResource("2_uoo5n")
 feed = 3
 shadow_scale = 1.0
 sprite_y_offset = 4

@@ -11,17 +11,19 @@ config_version=5
 [application]
 
 config/name="Retro Zoo CEO"
-run/main_scene="res://MainMenu/main_menu.tscn"
+run/main_scene="uid://clyvum5qvd0b5"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/show_image=false
 
 [autoload]
 
-FolderDataManager="*res://folderDataManager.gd"
-GlobalConfigManager="*res://global_config_manager.gd"
-IdRefs="*res://Autoload/id_refs.gd"
-ContentManager="*res://Autoload/content_manager.tscn"
 Helpers="*res://Scripts/helpers.gd"
+FolderDataManager="*res://Autoload/folderDataManager.gd"
+GlobalConfigManager="*res://Autoload/global_config_manager.gd"
+IdRefs="*res://Autoload/id_refs.gd"
+ZooManager="*res://Autoload/zoo_manager.gd"
+ContentManager="*res://Autoload/content_manager.tscn"
+ExpeditionManager="*res://Autoload/expedition_manager.gd"
 GameManager="*res://Managers/game_manager.gd"
 ColorRefs="*res://Autoload/color_refs.tscn"
 TileMapRef="*res://Autoload/tile_map_ref.tscn"
@@ -29,24 +31,31 @@ SignalBus="*res://Autoload/signal_bus.gd"
 Effects="*res://Autoload/effects.gd"
 TimeManager="*res://Autoload/time_manager.tscn"
 AudioManager="*res://Autoload/audio_manager.tscn"
-ZooManager="*res://Autoload/zoo_manager.gd"
-ThoughtManager="*res://thought_manager.gd"
+ThoughtManager="*res://Autoload/thought_manager.gd"
 FinanceManager="*res://Autoload/FinanceManager.tscn"
 MusicManager="*res://Autoload/music_manager.tscn"
 SaveManager="*res://Autoload/save_manager.tscn"
 SoundscapeManager="*res://Autoload/soundscape_manager.tscn"
 ResearchManager="*res://Autoload/research_manager.tscn"
+AnimalStorageManager="*res://Autoload/AnimalStorageManager.tscn"
+QuestManager="*res://Autoload/quest_manager.tscn"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=720
+window/size/viewport_height=1280
+window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+window/handheld/orientation=6
 window/vsync/vsync_mode=0
 
 [dotnet]
 
 project/assembly_name="Zoo"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/admob/plugin.cfg")
 
 [global_group]
 

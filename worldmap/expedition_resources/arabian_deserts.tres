@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="expedition_resource" load_steps=2 format=3 uid="uid://i2obebwg4vyo"]
+
+[ext_resource type="Script" uid="uid://cfsbk44kndtb2" path="res://worldmap/expedition_resources/expedition_res.gd" id="1_5o1fj"]
+
+[resource]
+script = ExtResource("1_5o1fj")
+tr_name = "Arabian Deserts"
+possible_animals = Array[int]([12])
+tr_description = ""
+cost = 1500.0
+metadata/_custom_type_script = "uid://cfsbk44kndtb2"

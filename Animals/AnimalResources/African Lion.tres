@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="animal_resource" load_steps=5 format=3 uid="uid://bx4w7ecw3b7i6"]
+
+[ext_resource type="Texture2D" uid="uid://b7jy4li3s0ufr" path="res://Animals/sprites/lion_cub.png" id="1_e2p4h"]
+[ext_resource type="Texture2D" uid="uid://dtrw0faadswbd" path="res://Animals/icons/african-lion.png" id="2_gv034"]
+[ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="3_8h5a1"]
+[ext_resource type="Texture2D" uid="uid://cw314flpudfl5" path="res://Animals/sprites/lion.png" id="4_8h5a1"]
+
+[resource]
+script = ExtResource("3_8h5a1")
+tr_name = "ANIMAL_AFRICAN_LION"
+id = 17
+rarity = 2
+cost = 350.0
+texture = ExtResource("4_8h5a1")
+cub_texture = ExtResource("1_e2p4h")
+icon = ExtResource("2_gv034")
+feed = 0
+shadow_scale = 1.0
+sprite_y_offset = 4
+animation_speed_scale = 0.8
+base_speed = 15.0
+run_speed = 30.0
+can_swim = false
+animal_rating = 220
+months_of_pregnancy = 4
+percentage_of_will_to_mate = 4
+months_to_adulthood = 48
+months_of_expected_lifetime = 240
+terrain_preference = Dictionary[int, float]({
+4: 75.0
+})
+terrain_dislike = Array[int]([])
+needs_water = true
+minimum_habitat_size = 75
+minimum_cells_per_animal = 40
+minimum_vegetation_coverage = 0.8
+maximum_vegetation_coverage = 5.0
+minimum_herd_size = 1
+favorite_tree = 9
+minimum_shelter_level = 0
+minimum_fence_level = 3
+possible_sprite_variations = 1
+separate_gender_sprites = true
+can_be_albino = false

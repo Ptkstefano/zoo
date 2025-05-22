@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://srqgkb3kycyf"]
 
-[ext_resource type="Script" path="res://visual_fx.gd" id="1_x6h0o"]
+[ext_resource type="Script" uid="uid://c0kbphos71lgx" path="res://vfx/visual_fx.gd" id="1_x6h0o"]
 [ext_resource type="Texture2D" uid="uid://bidbpr6mjbqfd" path="res://vfx/Free Smoke Fx  Pixel 06.png" id="2_kfr6j"]
 
 [sub_resource type="Animation" id="Animation_xuc5f"]

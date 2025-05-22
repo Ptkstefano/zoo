@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="expedition_resource" load_steps=2 format=3 uid="uid://0tte50qf7u46"]
+
+[ext_resource type="Script" uid="uid://cfsbk44kndtb2" path="res://worldmap/expedition_resources/expedition_res.gd" id="1_grgko"]
+
+[resource]
+script = ExtResource("1_grgko")
+tr_name = "Chinese Highlands"
+possible_animals = Array[int]([13, 7])
+tr_description = ""
+cost = 2500.0
+metadata/_custom_type_script = "uid://cfsbk44kndtb2"

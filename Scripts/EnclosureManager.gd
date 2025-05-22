@@ -3,7 +3,6 @@ extends Node2D
 class_name EnclosureManager
 
 @export var available_enclosures : Array[fence_resource]
-@onready var enclosure_menu = %EnclosureSelectionContainer
 @export var ui_enclosure_element : PackedScene
 
 @onready var enclosure_layer = $"../../TileMap/EnclosureLayer"
@@ -14,21 +13,9 @@ var selected_fence
 @export var enclosure_scene : PackedScene
 
 func _ready() -> void:
-	update_terrain_menu()
 	SignalBus.vegetation_placed.connect(check_for_vegetation_update)
 	SignalBus.path_layer_updated.connect(update_enclosures_sight_lines)
 
-func update_terrain_menu():
-	for child in enclosure_menu.get_children():
-		child.queue_free()
-		
-	for enclosure_res in available_enclosures:
-		var element = ui_enclosure_element.instantiate()
-		element.enclosure_res = enclosure_res
-		enclosure_menu.add_child(element)
-		%UI.connect_ui_element(element)
-	
-	selected_fence = available_enclosures[0]
 	
 	
 func build_enclosure(id, cells, entrance_cell, fence_res, is_enclosure_in_work_queue):

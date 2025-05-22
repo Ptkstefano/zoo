@@ -1,43 +1,41 @@
 [gd_scene load_steps=11 format=3 uid="uid://ddbum626vwima"]
 
+[ext_resource type="Theme" uid="uid://tfrt3qgw8yof" path="res://UI/Themes/woody/woody_popup_main.tres" id="1_2j380"]
 [ext_resource type="Script" uid="uid://dnxto2yafwg73" path="res://UI/UI popups/ui_shop_popup.gd" id="1_w81ri"]
 [ext_resource type="PackedScene" uid="uid://dkyq54bpawtoq" path="res://UI/UI popups/elements/ui_product_element.tscn" id="2_ts5ku"]
 [ext_resource type="PackedScene" uid="uid://c6fgf62ytu0xe" path="res://UI/UI popups/elements/shop_modifier_element.tscn" id="3_ul87g"]
 [ext_resource type="PackedScene" uid="uid://we0wd88u1111" path="res://UI/UI popups/elements/product_history_element.tscn" id="4_vhx3g"]
 [ext_resource type="PackedScene" uid="uid://8uotlvt85h4j" path="res://UI/UI popups/ui_available_products_popup.tscn" id="5_toidr"]
-[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/Themes/popup_theme.tres" id="6_klxwb"]
-[ext_resource type="Script" uid="uid://oq7aounld7th" path="res://UI/UI popups/responsive_margin_container.gd" id="7_2j380"]
+[ext_resource type="Theme" uid="uid://bsbphmr758ul1" path="res://UI/Themes/woody/woody_popup_inner_content.tres" id="7_r6wrp"]
 [ext_resource type="Theme" uid="uid://dnfx05qfn4rdn" path="res://UI/Themes/popup_inner_content_alternate.tres" id="7_s3t32"]
 [ext_resource type="Theme" uid="uid://di7iy2m47x8rx" path="res://UI/Themes/popup_inner_content.tres" id="7_ssr7q"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2j380"]
 
-[node name="UI_ShopPopup" type="CanvasLayer"]
-layer = 3
+[node name="UI_ShopPopup" type="Control"]
+layout_mode = 3
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2j380")
 script = ExtResource("1_w81ri")
 product_element = ExtResource("2_ts5ku")
 shop_modifier_element = ExtResource("3_ul87g")
 product_history_element = ExtResource("4_vhx3g")
 available_products_popup = ExtResource("5_toidr")
 
-[node name="PopupMarginContainer" type="MarginContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-theme = ExtResource("6_klxwb")
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 100
-script = ExtResource("7_2j380")
 
-[node name="PanelContainer" type="PanelContainer" parent="PopupMarginContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="PopupMarginContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
@@ -45,418 +43,43 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="ShopName" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ShopName" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/Control"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 534.0
+offset_bottom = 17.0
+grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
 text = "namehere"
-horizontal_alignment = 1
 
-[node name="TabContainer" type="TabContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-current_tab = 1
-
-[node name="UI_SHOP_PRODUCTS" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 0
-
-[node name="HSeparator" type="HSeparator" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_PRODUCTS"]
-layout_mode = 2
-theme_override_constants/separation = 10
-theme_override_styles/separator = SubResource("StyleBoxEmpty_2j380")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_PRODUCTS"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ProductList" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_PRODUCTS/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ProductElement" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_PRODUCTS/ScrollContainer/ProductList" instance=ExtResource("2_ts5ku")]
-layout_mode = 2
-
-[node name="HSeparator2" type="HSeparator" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_PRODUCTS"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="AddProductButton" type="Button" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_PRODUCTS"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 115)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "UI_SHOP_ADD_PRODUCT"
-
-[node name="UI_SHOP_STATS" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
-layout_mode = 2
-metadata/_tab_index = 1
-
-[node name="Budget" type="HBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="LastMonth" type="MarginContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="LastMonthContainer" type="PanelContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer"]
-layout_mode = 2
-
-[node name="HSeparator2" type="HSeparator" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.67069, 0.67069, 0.67069, 1)
-text = "UI_SHOP_1_MONTH_AGO"
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="IncomeTab" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.453267, 0.706234, 0.400476, 1)
-text = "UI_SHOP_INCOME"
-
-[node name="MonthAgoIncome" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "$1000"
-horizontal_alignment = 1
-
-[node name="ExpenditureTab" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.848114, 0.168769, 0.221077, 1)
-text = "UI_SHOP_EXPENDITURES"
-horizontal_alignment = 1
-
-[node name="MonthAgoExpenditure" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "$1000"
-horizontal_alignment = 1
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="HSeparator2" type="HSeparator" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "UI_SHOP_TOTAL"
-
-[node name="MonthAgoTotal" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-text = "$123,00"
-
-[node name="CurrentMonth" type="MarginContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="LastMonthContainer" type="PanelContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer"]
-layout_mode = 2
-
-[node name="HSeparator2" type="HSeparator" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.894118, 0.894118, 0.894118, 1)
-text = "UI_SHOP_CURRENT_MONTH"
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="IncomeTab" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.453267, 0.706234, 0.400476, 1)
-text = "UI_SHOP_INCOME"
-
-[node name="MonthCurrentIncome" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "$1000"
-horizontal_alignment = 1
-
-[node name="ExpenditureTab" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.848114, 0.168769, 0.221077, 1)
-text = "UI_SHOP_EXPENDITURES"
-horizontal_alignment = 1
-
-[node name="MonthCurrentExpenditure" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "$1000"
-horizontal_alignment = 1
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="HSeparator2" type="HSeparator" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "UI_SHOP_TOTAL"
-
-[node name="MonthCurrentTotal" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-text = "$123,00"
-
-[node name="Lifetime" type="MarginContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="LastMonthContainer" type="PanelContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer"]
-layout_mode = 2
-
-[node name="HSeparator2" type="HSeparator" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.894922, 0.894922, 0.894922, 1)
-text = "UI_SHOP_LIFETIME"
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="IncomeTab" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.453267, 0.706234, 0.400476, 1)
-text = "UI_SHOP_INCOME"
-
-[node name="LifetimeIncome" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "$1000"
-horizontal_alignment = 1
-
-[node name="ExpenditureTab" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.848114, 0.168769, 0.221077, 1)
-text = "UI_SHOP_EXPENDITURES"
-horizontal_alignment = 1
-
-[node name="LifetimeExpenditure" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "$1000"
-horizontal_alignment = 1
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="HSeparator2" type="HSeparator" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "UI_SHOP_TOTAL"
-
-[node name="LifetimeTotal" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/VBoxContainer3"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "$1000"
-horizontal_alignment = 1
-
-[node name="UI_SHOP_THOUGHTS" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 2
-
-[node name="Modifiers" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.8
-theme = ExtResource("7_s3t32")
-
-[node name="MarginContainer" type="MarginContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS/Modifiers"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="PanelContainer" type="PanelContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS/Modifiers/MarginContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS/Modifiers/MarginContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS/Modifiers/MarginContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Peep thoughts"
-horizontal_alignment = 1
-
-[node name="ScrollContainer" type="ScrollContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS/Modifiers/MarginContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS/Modifiers/MarginContainer/PanelContainer/VBoxContainer/ScrollContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_right = 20
-
-[node name="ShopModifierList" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS/Modifiers/MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS/Modifiers/MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ShopModifierList"]
-layout_mode = 2
-text = "asd"
-
-[node name="Debug" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 3
-
-[node name="ScrollContainer" type="ScrollContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("7_ssr7q")
-
-[node name="Stats" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ScrollContainer" type="ScrollContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer/MarginContainer/VBoxContainer/Stats"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="DebugContainer" type="VBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Debug/ScrollContainer/MarginContainer/VBoxContainer/Stats/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PopupMarginContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -204.0
+offset_top = -50.0
+offset_bottom = 50.0
+grow_horizontal = 0
+grow_vertical = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="DeleteButton" type="Button" parent="PopupMarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="DeleteButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/Control/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
@@ -465,7 +88,7 @@ size_flags_vertical = 0
 size_flags_stretch_ratio = 0.1
 text = "D"
 
-[node name="CloseButton" type="Button" parent="PopupMarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/Control/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
@@ -473,3 +96,395 @@ size_flags_horizontal = 10
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.1
 text = "X"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TabContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("7_r6wrp")
+
+[node name="UI_SHOP_PRODUCTS" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_PRODUCTS"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxEmpty_2j380")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_PRODUCTS"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ProductList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_PRODUCTS/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ProductElement" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_PRODUCTS/ScrollContainer/ProductList" instance=ExtResource("2_ts5ku")]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_PRODUCTS"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="AddProductButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_PRODUCTS"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 115)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "UI_SHOP_ADD_PRODUCT"
+
+[node name="UI_SHOP_STATS" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Budget" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LastMonth" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="LastMonthContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer"]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.67069, 0.67069, 0.67069, 1)
+text = "UI_SHOP_1_MONTH_AGO"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="IncomeTab" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.453267, 0.706234, 0.400476, 1)
+text = "UI_SHOP_INCOME"
+
+[node name="MonthAgoIncome" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$1000"
+horizontal_alignment = 1
+
+[node name="ExpenditureTab" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.848114, 0.168769, 0.221077, 1)
+text = "UI_SHOP_EXPENDITURES"
+horizontal_alignment = 1
+
+[node name="MonthAgoExpenditure" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$1000"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "UI_SHOP_TOTAL"
+
+[node name="MonthAgoTotal" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/LastMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "$123,00"
+
+[node name="CurrentMonth" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="LastMonthContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer"]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.894118, 0.894118, 0.894118, 1)
+text = "UI_SHOP_CURRENT_MONTH"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="IncomeTab" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.453267, 0.706234, 0.400476, 1)
+text = "UI_SHOP_INCOME"
+
+[node name="MonthCurrentIncome" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$1000"
+horizontal_alignment = 1
+
+[node name="ExpenditureTab" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.848114, 0.168769, 0.221077, 1)
+text = "UI_SHOP_EXPENDITURES"
+horizontal_alignment = 1
+
+[node name="MonthCurrentExpenditure" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$1000"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "UI_SHOP_TOTAL"
+
+[node name="MonthCurrentTotal" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/CurrentMonth/LastMonthContainer/VBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "$123,00"
+
+[node name="Lifetime" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="LastMonthContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer"]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.894922, 0.894922, 0.894922, 1)
+text = "UI_SHOP_LIFETIME"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="IncomeTab" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.453267, 0.706234, 0.400476, 1)
+text = "UI_SHOP_INCOME"
+
+[node name="LifetimeIncome" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/IncomeTab"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$1000"
+horizontal_alignment = 1
+
+[node name="ExpenditureTab" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.848114, 0.168769, 0.221077, 1)
+text = "UI_SHOP_EXPENDITURES"
+horizontal_alignment = 1
+
+[node name="LifetimeExpenditure" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/ScrollContainer/VBoxContainer/ExpenditureTab"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$1000"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "UI_SHOP_TOTAL"
+
+[node name="LifetimeTotal" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_STATS/Budget/Lifetime/LastMonthContainer/VBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$1000"
+horizontal_alignment = 1
+
+[node name="UI_SHOP_THOUGHTS" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Modifiers" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+theme = ExtResource("7_s3t32")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS/Modifiers"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS/Modifiers/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS/Modifiers/MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS/Modifiers/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Peep thoughts"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS/Modifiers/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS/Modifiers/MarginContainer/PanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="ShopModifierList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS/Modifiers/MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/UI_SHOP_THOUGHTS/Modifiers/MarginContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ShopModifierList"]
+layout_mode = 2
+text = "asd"
+
+[node name="Debug" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/Debug"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/Debug/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/Debug/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("7_ssr7q")
+
+[node name="Stats" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/Debug/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/Debug/ScrollContainer/MarginContainer/VBoxContainer/Stats"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DebugContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer2/VBoxContainer/TabContainer/Debug/ScrollContainer/MarginContainer/VBoxContainer/Stats/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2

@@ -1,15 +1,13 @@
-[gd_resource type="Resource" script_class="building_resource" load_steps=4 format=3 uid="uid://cw0qxk8uuda34"]
+[gd_resource type="Resource" script_class="building_resource" load_steps=3 format=3 uid="uid://cw0qxk8uuda34"]
 
 [ext_resource type="PackedScene" uid="uid://byxq15jhy21ri" path="res://Buildings/toilet_building.tscn" id="1_rg4bk"]
 [ext_resource type="Script" uid="uid://b3dk3jci5ihs8" path="res://Buildings/building_res.gd" id="3_6l82a"]
-[ext_resource type="Texture2D" uid="uid://dm06psgn1qbfb" path="res://Buildings/Sprites/Toilet1.png" id="4_5ol6i"]
 
 [resource]
 script = ExtResource("3_6l82a")
 name = "Toilet"
 tr_name = "BUILDING_TOILET_1"
 id = 1
-thumb = ExtResource("4_5ol6i")
 building_menu = 2
 building_scene = ExtResource("1_rg4bk")
 size = Vector2i(2, 1)

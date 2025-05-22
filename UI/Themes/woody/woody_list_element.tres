@@ -1,0 +1,59 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://b6ou4s4eaow2o"]
+
+[ext_resource type="FontFile" uid="uid://dh3lo7lghhs8x" path="res://UI/Thin sans.ttf" id="1_fjt1x"]
+[ext_resource type="Texture2D" uid="uid://imjitgjexxki" path="res://UI/Themes/woody/wood_ui.png" id="2_6bn60"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_72ch2"]
+texture = ExtResource("2_6bn60")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 8.0
+region_rect = Rect2(192, 512, 128, 124)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t50lu"]
+texture = ExtResource("2_6bn60")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 8.0
+region_rect = Rect2(192, 512, 128, 124)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iw52e"]
+texture = ExtResource("2_6bn60")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(192, 672, 128, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n3bvu"]
+texture = ExtResource("2_6bn60")
+texture_margin_left = 14.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 14.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(32, 32, 128, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_66ffs"]
+texture = ExtResource("2_6bn60")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+region_rect = Rect2(32, 512, 128, 124)
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_fjt1x")
+Button/styles/hover = SubResource("StyleBoxTexture_72ch2")
+Button/styles/normal = SubResource("StyleBoxTexture_t50lu")
+Button/styles/pressed = SubResource("StyleBoxTexture_iw52e")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_fjt1x")
+Panel/styles/panel = SubResource("StyleBoxTexture_n3bvu")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_66ffs")

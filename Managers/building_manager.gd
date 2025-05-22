@@ -10,46 +10,14 @@ var coordinates_used_by_buildings = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	ResearchManager.unlocked_buildings_changed.connect(update_building_menu)
-	update_building_menu()
+	return
+	#ResearchManager.unlocked_buildings_changed.connect(update_building_menu)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-func update_building_menu():
-	for child in %EaterySelectionContainer.get_children():
-		child.queue_free()
-	for child in %RestaurantSelectionContainer.get_children():
-		child.queue_free()
-	for child in %ServicesSelectionContainer.get_children():
-		child.queue_free()
-	for child in %AdministrationSelectionContainer.get_children():
-		child.queue_free()
-		
-	var all_buildings = []
-	for id in ResearchManager.unlocked_administration:
-		all_buildings.append(ContentManager.administration[id])
-	for id in ResearchManager.unlocked_services:
-		all_buildings.append(ContentManager.services[id])
-	for id in ResearchManager.unlocked_eateries:
-		all_buildings.append(ContentManager.eateries[id])
-	for id in ResearchManager.unlocked_restaurants:
-		all_buildings.append(ContentManager.restaurants[id])
-		
-	for building_res in all_buildings:
-		var element = ui_building_element.instantiate()
-		element.building_res = building_res
-		if element.building_res.building_menu == IdRefs.BUILDING_MENU.ADMINISTRATION:
-			%AdministrationSelectionContainer.add_child(element)
-		if element.building_res.building_menu == IdRefs.BUILDING_MENU.EATERY:
-			%EaterySelectionContainer.add_child(element)
-		if element.building_res.building_menu == IdRefs.BUILDING_MENU.RESTAURANT:
-			%RestaurantSelectionContainer.add_child(element)
-		if element.building_res.building_menu == IdRefs.BUILDING_MENU.SERVICE:
-			%ServicesSelectionContainer.add_child(element)
-		%UI.connect_ui_element(element)
 
 
 func build_building(building_res : building_resource, start_tile, direction, data):

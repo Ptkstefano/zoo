@@ -1,24 +1,38 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmbfadagljxjr"]
+[gd_scene load_steps=10 format=3 uid="uid://dmbfadagljxjr"]
 
 [ext_resource type="Script" uid="uid://omvn8ivumjsf" path="res://UI/UI popups/elements/ui_available_product_element.gd" id="1_85d0b"]
-[ext_resource type="Theme" uid="uid://dsr4e062fwx2f" path="res://UI/Themes/popup_theme.tres" id="1_a6d20"]
+[ext_resource type="Theme" uid="uid://b6ou4s4eaow2o" path="res://UI/Themes/woody/woody_list_element.tres" id="1_lhjsw"]
+[ext_resource type="Texture2D" uid="uid://imjitgjexxki" path="res://UI/Themes/woody/wood_ui.png" id="4_w5cv5"]
 [ext_resource type="PackedScene" uid="uid://kn44cenbnuda" path="res://UI/level_star.tscn" id="4_w6utf"]
+[ext_resource type="Texture2D" uid="uid://ccnb5ruwtu418" path="res://Products/Icons/products1.png" id="5_acxkn"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhjsw"]
-bg_color = Color(0.464616, 0.442849, 0.686033, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3jxmo"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a6d20"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cipju"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lhjsw"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_njw7g"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ldat5"]
+texture = ExtResource("4_w5cv5")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(512, 192, 128, 128)
 
 [node name="ProductElement" type="PanelContainer"]
-theme = ExtResource("1_a6d20")
+offset_right = 402.0
+offset_bottom = 215.0
+theme = ExtResource("1_lhjsw")
 script = ExtResource("1_85d0b")
 level_star = ExtResource("4_w6utf")
 
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3jxmo")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cipju")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_njw7g")
 
 [node name="MarginContainer" type="MarginContainer" parent="Button"]
 layout_mode = 0
@@ -36,15 +50,24 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 20
 
-[node name="Panel2" type="Panel" parent="HBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(150, 150)
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Ice cream"
+
+[node name="Panel" type="Panel" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_lhjsw")
+theme_override_styles/panel = SubResource("StyleBoxTexture_ldat5")
 
-[node name="Thumbnail" type="TextureRect" parent="HBoxContainer/MarginContainer/Panel2"]
+[node name="Thumbnail" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/Panel"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -52,36 +75,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("CompressedTexture2D_a6d20")
+texture = ExtResource("5_acxkn")
 stretch_mode = 5
+
+[node name="LevelStars" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 36)
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="Name" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Ice cream"
-
-[node name="VSeparator" type="VSeparator" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-theme_override_styles/separator = SubResource("StyleBoxEmpty_lhjsw")
-
-[node name="LevelStars" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 6
 mouse_filter = 2
 
 [node name="StockCost" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]

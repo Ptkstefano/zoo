@@ -6,24 +6,12 @@ class_name TerrainManager
 
 @export var available_terrains : Array[terrain_resource]
 
-@onready var terrain_menu = %TerrainSelectionContainer
 @export var ui_terrain_element : PackedScene
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	update_terrain_menu()
-
-
-func update_terrain_menu():
-	for child in terrain_menu.get_children():
-		child.queue_free()
-		
-	for terrain_res in available_terrains:
-		var element = ui_terrain_element.instantiate()
-		element.terrain_res = terrain_res
-		terrain_menu.add_child(element)
-		%UI.connect_ui_element(element)
+	return
 
 func build_terrain(coords, atlas_y):
 	var neighbors = []

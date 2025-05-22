@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 var thumbnail
 var product_name

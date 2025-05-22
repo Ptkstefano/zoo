@@ -31,6 +31,7 @@ func spawn_staff(staff_type : IdRefs.STAFF_TYPES, data):
 		staff.set_sprite(keeper_unique_sprite)
 		var behavior_node = keeper_behavior.instantiate()
 		staff.staff_behavior = behavior_node
+		staff.quest_giver_type = IdRefs.QUEST_GIVERS.ZOOKEEPER_UNIQUE
 		staff.add_child(behavior_node)
 	if staff_type == IdRefs.STAFF_TYPES.ZOOKEEPER:
 		staff.set_sprite(keeper_sprite)

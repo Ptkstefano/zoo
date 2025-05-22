@@ -13,6 +13,10 @@ extends Node
 @export var decoration_resources : Array[decoration_resource]
 @export var fixture_resources : Array[fixture_resource]
 @export var terrain_resources : Array[terrain_resource]
+@export var path_resources : Array[path_resource]
+@export var fence_resources : Array[fence_resource]
+@export var shelter_resources : Array[shelter_resource]
+@export var lake_resources : Array[lake_resource]
 
 var animals = {}
 var restaurants = {}
@@ -25,7 +29,10 @@ var trees = {}
 var decoration = {}
 var fixtures = {}
 var terrains = {}
-
+var paths = {}
+var fences = {}
+var shelters = {}
+var lakes = {}
 	
 func _ready():
 	load_all_resources()
@@ -57,12 +64,23 @@ func load_all_resources() -> void:
 		trees[resource.id] = resource
 		
 	for resource in decoration_resources:
-		decoration_resources[resource.id] = resource
+		decoration[resource.id] = resource
 		
 	for resource in fixture_resources:
 		fixtures[resource.id] = resource
 		
 	for resource in terrain_resources:
 		terrains[resource.id] = resource
+		
+	for resource in path_resources:
+		paths[resource.id] = resource
+		
+	for resource in fence_resources:
+		fences[resource.id] = resource
 
+	for resource in shelter_resources:
+		shelters[resource.id] = resource 
+		
+	for resource in lake_resources:
+		lakes[resource.id] = resource
 		

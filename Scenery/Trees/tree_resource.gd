@@ -9,5 +9,5 @@ class_name tree_resource
 #@export var texture : Texture2D
 @export var texture_x : int
 @export var possible_y : Array[int] = [0]
-@export var thumb : Texture2D
+@export var thumbnail : Texture2D
 @export var vegetation_weight : float

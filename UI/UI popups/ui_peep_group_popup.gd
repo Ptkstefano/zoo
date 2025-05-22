@@ -39,6 +39,21 @@ func _ready():
 	else:
 		%product_cost_tolerance.text = tr('MEDIUM')
 
+	%InfoButton.pressed.connect(toggle_menu.bind(%UI_PEEPGROUP_GROUP_INFO))
+	%AnimalsButton.pressed.connect(toggle_menu.bind(%UI_PEEPGROUP_ANIMAL_SIGHTINGS))
+	%MoneyButton.pressed.connect(toggle_menu.bind(%UI_PEEPGROUP_BUDGET))
+	%ThoughtsButton.pressed.connect(toggle_menu.bind(%UI_PEEPGROUP_THOUGHTS))
+	
+	%InventoryList.columns = peep_group_node.peep_count
+
+
+func toggle_menu(menu):
+	for child in %TabContainer.get_children():
+		child.hide()
+		
+	menu.show()
+
+
 
 func on_popup_closed():
 	popup_closed.emit()
@@ -58,31 +73,40 @@ func update_popup_data():
 	%favorite_animal.text = tr(ContentManager.animals[peep_group_node.favorite_animal].tr_name)
 	
 	%money_spent.text = str(peep_group_node.spent_money)
-	
-	for child in %SeenAnimalsList.get_children():
+		
+	for child in %SeenAnimalsIconList.get_children():
 		child.queue_free()
 	
 	for animal in peep_group_node.observed_animals:
-		var label = Label.new()
-		label.text = tr(ContentManager.animals[animal].tr_name)
-		%SeenAnimalsList.add_child(label)
+		var texture = TextureRect.new()
+		texture.texture = ContentManager.animals[int(animal)].icon
+		texture.custom_minimum_size = Vector2(80,80)
+		%SeenAnimalsIconList.add_child(texture)
+	
 		
-	for child in %AnimalsToSeeList.get_children():
+	for child in %AnimalsToSeeIconList.get_children():
 		child.queue_free()
 		
 	for animal in peep_group_node.group_desired_animals:
-		#if animal not in peep_group_node.observed_animals:
-		var label = Label.new()
-		label.text = tr(ContentManager.animals[animal].tr_name)
-		%AnimalsToSeeList.add_child(label)
+		var texture = TextureRect.new()
+		texture.texture = ContentManager.animals[int(animal)].icon
+		texture.custom_minimum_size = Vector2(80,80)
+		%AnimalsToSeeIconList.add_child(texture)
+			
 		
 	for child in %InventoryList.get_children():
 		child.queue_free()
 
 	for item in peep_group_node.peep_group_inventory:
-		var label = Label.new()
-		label.text = str(item.tr_name) + ' x ' + str(peep_group_node.peep_count)
-		%InventoryList.add_child(label)
+		for i in peep_group_node.peep_count:
+			var texture = TextureRect.new()
+			texture.texture = ContentManager.products[item.id].thumb
+			texture.custom_minimum_size = Vector2(80,80)
+			%InventoryList.add_child(texture)
+		
+		#var label = Label.new()
+		#label.text = str(item.tr_name) + ' x ' + str(peep_group_node.peep_count)
+		#%InventoryList.add_child(label)
 		
 	for child in %ThoughtList.get_children():
 		child.queue_free()
@@ -94,4 +118,5 @@ func update_popup_data():
 		
 
 func _process(delta: float) -> void:
-	update_popup_data()
+	return
+	#update_popup_data()

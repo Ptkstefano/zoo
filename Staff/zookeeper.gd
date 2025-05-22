@@ -53,6 +53,7 @@ func on_state_timer_timeout():
 func change_state(state):
 	current_state = state
 	if state == zookeeper_states.GIVING_QUEST:
+		QuestManager.quest_giver_exists = true
 		destination_building = null
 	if state == zookeeper_states.GOING_TO_ENCLOSURE:
 		return
@@ -90,7 +91,6 @@ func get_new_task():
 
 func find_rest_spot():
 	var closest_rest_spot_distance : float = 99999
-	destination_building
 	for rest_spot in ZooManager.zookeeper_stations:
 		var current_spot_distance = staff_scene.global_position.distance_to(ZooManager.zookeeper_stations[rest_spot]['position'])
 		if current_spot_distance < closest_rest_spot_distance:
@@ -178,7 +178,7 @@ func leave_enclosure():
 	destination_enclosure.open_door()
 	await get_tree().create_timer(2).timeout
 	is_inside_enclosure = false
-	destination_enclosure = null
+	clear_destination_enclosure()
 	change_state(zookeeper_states.STOPPED)
 	left_enclosure.emit()
 	unreacheable_enclosures.clear()
@@ -188,7 +188,7 @@ func target_unreacheable():
 	if destination_enclosure:
 		unreacheable_enclosures.append(destination_enclosure)
 		destination_enclosure.has_zookeeper_assigned = false
-		destination_enclosure = null
+		clear_destination_enclosure()
 	change_state(zookeeper_states.STOPPED)
 
 func check_for_enclosure_work():
@@ -222,17 +222,20 @@ func on_destination_enclosure_removed():
 	reset_staff.emit()
 
 func on_destination_enclosure_changed():
+	## I think this was bugging because the signal connection is not removed when the destination enclosure is changed, causing a crash
+	if !destination_enclosure:
+		return
 	if is_inside_enclosure:
 		reset_staff.emit()
 	else:
 		change_state(zookeeper_states.STOPPED)
 		destination_enclosure.has_zookeeper_assigned = false
-		destination_enclosure = null
+		clear_destination_enclosure()
 
 func reset_state():
 	if destination_enclosure:
 		destination_enclosure.has_zookeeper_assigned = false
-		destination_enclosure = null
+		clear_destination_enclosure()
 	is_inside_enclosure = false
 	change_state(zookeeper_states.STOPPED)
 	
@@ -244,8 +247,14 @@ func start_quest_giver():
 		await left_enclosure
 	if destination_enclosure:
 		destination_enclosure.has_zookeeper_assigned = false
-		destination_enclosure = null
+		clear_destination_enclosure()
 	change_state(zookeeper_states.GIVING_QUEST)
 
 func stop_quest_giver():
 	change_state(zookeeper_states.STOPPED)
+
+func clear_destination_enclosure():
+	destination_enclosure.enclosure_removed.disconnect(on_destination_enclosure_removed)
+	destination_enclosure.enclosure_area_changed.disconnect(on_destination_enclosure_changed)
+	destination_enclosure.entrance_changed.disconnect(on_destination_enclosure_changed)
+	destination_enclosure = null

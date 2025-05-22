@@ -1,0 +1,413 @@
+[gd_scene load_steps=20 format=3 uid="uid://dfipnhy2cv66s"]
+
+[ext_resource type="Theme" uid="uid://tfrt3qgw8yof" path="res://UI/Themes/woody/woody_popup_main.tres" id="1_cuf80"]
+[ext_resource type="Script" uid="uid://cam708i7xw2yp" path="res://UI/construction_menu_popu.gd" id="4_5e7mi"]
+[ext_resource type="FontFile" uid="uid://dh3lo7lghhs8x" path="res://UI/Thin sans.ttf" id="4_sqqsl"]
+[ext_resource type="Texture2D" uid="uid://imjitgjexxki" path="res://UI/Themes/woody/wood_ui.png" id="5_8e0k5"]
+[ext_resource type="PackedScene" uid="uid://2t2ep4vybhjk" path="res://UI/UI popups/elements/build_menu_element.tscn" id="5_b1gx5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_72ch2"]
+texture = ExtResource("5_8e0k5")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 8.0
+region_rect = Rect2(192, 512, 128, 124)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t50lu"]
+texture = ExtResource("5_8e0k5")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 8.0
+region_rect = Rect2(192, 512, 128, 124)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iw52e"]
+texture = ExtResource("5_8e0k5")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(192, 672, 128, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n3bvu"]
+texture = ExtResource("5_8e0k5")
+texture_margin_left = 14.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 14.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(32, 32, 128, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4217v"]
+texture = ExtResource("5_8e0k5")
+texture_margin_left = 14.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(512, 192, 128, 128)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sqqsl"]
+corner_radius_top_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8e0k5"]
+content_margin_left = 10.0
+content_margin_top = 2.0
+content_margin_right = 10.0
+content_margin_bottom = 2.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.486275, 0.368627, 0.294118, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 20
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_lxjh1"]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("4_sqqsl")
+Button/styles/hover = SubResource("StyleBoxTexture_72ch2")
+Button/styles/normal = SubResource("StyleBoxTexture_t50lu")
+Button/styles/pressed = SubResource("StyleBoxTexture_iw52e")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("4_sqqsl")
+Panel/styles/panel = SubResource("StyleBoxTexture_n3bvu")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_4217v")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_sqqsl")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_8e0k5")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sqqsl"]
+load_path = "res://.godot/imported/wood_ui.png-d36251b9fd84a0c97b0a2b2810eb16a4.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8e0k5"]
+texture = SubResource("CompressedTexture2D_sqqsl")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 8.0
+region_rect = Rect2(192, 512, 128, 124)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uhik4"]
+load_path = "res://.godot/imported/wood_ui.png-d36251b9fd84a0c97b0a2b2810eb16a4.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_60vwe"]
+texture = SubResource("CompressedTexture2D_uhik4")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(192, 672, 128, 128)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5l1sr"]
+load_path = "res://.godot/imported/wood_ui.png-d36251b9fd84a0c97b0a2b2810eb16a4.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wk3qf"]
+texture = SubResource("CompressedTexture2D_5l1sr")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 8.0
+region_rect = Rect2(352, 512, 128, 124)
+
+[node name="ConstructionMenuPopu" type="Control"]
+layout_mode = 3
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+theme = ExtResource("1_cuf80")
+script = ExtResource("4_5e7mi")
+element_card = ExtResource("5_b1gx5")
+
+[node name="PanelContainer" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.99
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_lxjh1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Scenery"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="CategoryButtons" type="HBoxContainer" parent="Control/VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PathButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Path"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="FixtureButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Fixture"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="DecorationButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Decorations"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="FenceButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Fence"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="ShelterButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Fence"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="EntranceButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_styles/hover = SubResource("StyleBoxTexture_8e0k5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_60vwe")
+theme_override_styles/normal = SubResource("StyleBoxTexture_wk3qf")
+text = "Service"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="TreeButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Trees"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="VegetationButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Vegetation"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="RockButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Rocks"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="EateryButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Eateries"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="RestaurantButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Restaurant"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="AdministrationButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Administration"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="ServiceButton" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer/CategoryButtons"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Service"
+autowrap_mode = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="CloseMenu" type="Button" parent="Control/VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "X"
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="ElementList" type="FlowContainer" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="BuildMenuElement" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
+
+[node name="BuildMenuElement2" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
+
+[node name="BuildMenuElement3" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
+
+[node name="BuildMenuElement4" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
+
+[node name="BuildMenuElement5" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
+
+[node name="BuildMenuElement6" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
+
+[node name="BuildMenuElement7" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
+
+[node name="BuildMenuElement8" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
+
+[node name="BuildMenuElement9" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("5_b1gx5")]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+
+[node name="InfoContainer" type="HBoxContainer" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/InfoContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/InfoContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "asd"
+horizontal_alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="Control/VBoxContainer/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/InfoContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+text = "Confirm"

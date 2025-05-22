@@ -15,8 +15,8 @@ var used_cells = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	ResearchManager.unlocked_scenery_changed.connect(update_selection_menu)
-	update_selection_menu()
+	return
+	#ResearchManager.unlocked_scenery_changed.connect()
 
 
 func on_load_scenery(scenery_type, res, data):
@@ -31,43 +31,6 @@ func on_load_scenery(scenery_type, res, data):
 	elif scenery_type == IdRefs.SCENERY_TYPES.ROCK:
 		place_rock(data.position, res, data.id)
 	
-func update_selection_menu():
-	for child in %TreesSelectionContainer.get_children():
-		child.queue_free()
-	for child in %VegetationSelectionContainer.get_children():
-		child.queue_free()
-	for child in %DecorationSelectionContainer.get_children():
-		child.queue_free()
-	for child in %RockSelectionContainer.get_children():
-		child.queue_free()
-		
-	for id in ResearchManager.unlocked_trees:
-		var element = ui_scenery_element.instantiate()
-		element.resource = ContentManager.trees[id]
-		element.scenery_type = 'tree'
-		%TreesSelectionContainer.add_child(element)
-		%UI.connect_ui_element(element)
-		
-	for id in ResearchManager.unlocked_vegetation:
-		var element = ui_scenery_element.instantiate()
-		element.resource = ContentManager.vegetation[id]
-		element.scenery_type = 'vegetation'
-		%VegetationSelectionContainer.add_child(element)
-		%UI.connect_ui_element(element)
-		
-	for id in ResearchManager.unlocked_decoration:
-		var element = ui_scenery_element.instantiate()
-		element.resource = ContentManager.decoration[id]
-		element.scenery_type = 'decoration'
-		%DecorationSelectionContainer.add_child(element)
-		%UI.connect_ui_element(element)
-		
-	#for rock_res in ResearchManager.unlocked_trees:
-		#var element = ui_scenery_element.instantiate()
-		#element.resource = rock_res
-		#element.scenery_type = 'rock'
-		#%RockSelectionContainer.add_child(element)
-		#%UI.connect_ui_element(element)
 		
 
 func place_tree(press_start_pos, tree_res, id, atlas_y):

@@ -8,8 +8,13 @@ var animal_scene : Animal
 signal popup_closed
 
 func _ready():
-	%CloseButton.pressed.connect(on_popup_closed)
+	%CloseMenu.pressed.connect(on_popup_closed)
 	%SellAnimal.pressed.connect(on_sell_animal)
+	
+	%InfoButton.pressed.connect(on_change_tab.bind(%INFO))
+	%ActionsButton.pressed.connect(on_change_tab.bind(%ACTIONS))
+	%HabitatButton.pressed.connect(on_change_tab.bind(%UI_ANIMAL_HABITAT))
+	%DebugButton.pressed.connect(on_change_tab.bind(%Debug))
 	
 	%AnimalInfoButton.pressed.connect(on_animal_info_pressed)
 	
@@ -49,6 +54,13 @@ func _process(delta: float) -> void:
 	%FunProgressBar.value = animal_scene.needs_play
 	
 	update_preferences()
+
+
+func on_change_tab(tab):
+	for child in %TabContainer.get_children():
+		child.hide()
+		
+	tab.show()
 
 func on_popup_closed():
 	popup_closed.emit()

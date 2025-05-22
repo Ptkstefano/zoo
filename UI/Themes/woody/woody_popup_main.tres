@@ -1,0 +1,121 @@
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://tfrt3qgw8yof"]
+
+[ext_resource type="FontFile" uid="uid://dh3lo7lghhs8x" path="res://UI/Thin sans.ttf" id="1_4217v"]
+[ext_resource type="Texture2D" uid="uid://imjitgjexxki" path="res://UI/Themes/woody/wood_ui.png" id="1_khojd"]
+[ext_resource type="Texture2D" uid="uid://dkpkvoqe2wt6f" path="res://UI/Themes/woody/grabber.png" id="3_t50lu"]
+[ext_resource type="Texture2D" uid="uid://da5u1ieygjbyn" path="res://UI/Themes/woody/scroll_bar.png" id="4_72ch2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_72ch2"]
+texture = ExtResource("1_khojd")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 8.0
+region_rect = Rect2(192, 512, 128, 124)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t50lu"]
+texture = ExtResource("1_khojd")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 8.0
+region_rect = Rect2(192, 512, 128, 124)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iw52e"]
+texture = ExtResource("1_khojd")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(192, 672, 128, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tvskk"]
+content_margin_left = 17.0
+content_margin_right = 17.0
+texture = ExtResource("3_t50lu")
+texture_margin_left = 40.0
+texture_margin_top = 30.0
+texture_margin_right = 40.0
+texture_margin_bottom = 20.0
+expand_margin_top = 25.0
+expand_margin_bottom = 25.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_227y5"]
+content_margin_left = 17.0
+content_margin_right = 17.0
+texture = ExtResource("3_t50lu")
+expand_margin_left = 16.0
+expand_margin_top = 8.0
+expand_margin_right = 16.0
+expand_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4jcfv"]
+content_margin_left = 17.0
+content_margin_right = 17.0
+texture = ExtResource("3_t50lu")
+expand_margin_left = 16.0
+expand_margin_top = 8.0
+expand_margin_right = 16.0
+expand_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p07w3"]
+texture = ExtResource("4_72ch2")
+texture_margin_left = 2.0
+texture_margin_top = 6.0
+texture_margin_right = 2.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(0, 0, 18, 7)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6mdn2"]
+texture = ExtResource("1_khojd")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+region_rect = Rect2(160, 1038, 96, 6)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n3bvu"]
+texture = ExtResource("1_khojd")
+texture_margin_left = 14.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 14.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(32, 32, 128, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4217v"]
+texture = ExtResource("1_khojd")
+texture_margin_left = 14.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 14.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(32, 32, 128, 128)
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_4217v")
+Button/styles/hover = SubResource("StyleBoxTexture_72ch2")
+Button/styles/normal = SubResource("StyleBoxTexture_t50lu")
+Button/styles/pressed = SubResource("StyleBoxTexture_iw52e")
+HScrollBar/styles/grabber = SubResource("StyleBoxTexture_tvskk")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_227y5")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_4jcfv")
+HScrollBar/styles/scroll = SubResource("StyleBoxTexture_p07w3")
+HSeparator/styles/separator = SubResource("StyleBoxTexture_6mdn2")
+HSlider/icons/grabber = ExtResource("3_t50lu")
+HSlider/icons/grabber_highlight = ExtResource("3_t50lu")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_4217v")
+Panel/styles/panel = SubResource("StyleBoxTexture_n3bvu")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_4217v")

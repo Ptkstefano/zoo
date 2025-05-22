@@ -36,6 +36,7 @@ func _ready() -> void:
 	%AdulthoodLabel.text = Helpers.format_months_to_years_and_months(animal_res.months_to_adulthood)
 	%RatingLabel.text = str(animal_res.animal_rating)
 	
-	%AnimalThumb.texture = animal_res.thumb
+	#%AnimalThumb.texture = animal_res.thumbnail
+	%AnimalIcon.texture = animal_res.icon
 	
 	%CloseButton.pressed.connect(popup_closed.emit)

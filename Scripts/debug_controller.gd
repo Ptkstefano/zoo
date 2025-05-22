@@ -30,6 +30,7 @@ var peep_count = 0:
 		
 # Called when the node enters the scene tree f1or the first time.
 func _ready() -> void:
+	return
 	SignalBus.game_started.emit()
 	base_peep_spawn_timer = %PeepSpawnTimer.wait_time
 	%DebugSpawnPeeps.button_down.connect(spawn_peep_group)
@@ -44,9 +45,15 @@ func _ready() -> void:
 	%DebugUnlockEverything.pressed.connect(on_unlock_everything)
 	
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.pressed:
+			if event.keycode == KEY_F9:
+				SignalBus.open_box.emit(IdRefs.UI_BOXES.DEBUG_MENU)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	return
 	if %DebugScreen.is_visible():
 		fps_label.text = ("FPS: " + str(Engine.get_frames_per_second()))
 		mouse_pos_label.text = str(get_global_mouse_position())
@@ -93,3 +100,6 @@ func on_toggle_day():
 
 func on_unlock_everything():
 	ResearchManager.unlock_everything()
+
+func add_animal_to_storage():
+	AnimalStorageManager.create_animal(ContentManager.animals[IdRefs.ANIMAL_SPECIES.WHITETAILED_DEER])

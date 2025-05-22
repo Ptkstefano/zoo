@@ -8,3 +8,4 @@ tr_name = "FENCES_CONCRETE"
 segment_cost = 30.0
 atlas_y = 9
 fence_level = 2
+id = 2

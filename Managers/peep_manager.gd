@@ -6,7 +6,7 @@ class_name PeepManager
 @export var peep_group_scene : PackedScene
 var spawn_location : Vector2
 
-var base_spawn_time : float = 7.0
+var base_spawn_time : float = 8.0
 
 @export var path_manager : PathManager
 
@@ -24,13 +24,12 @@ var attractiveness_multiplier = 10
 @export var peep_texture_body : Texture2D
 @export var peep_texture_head : Texture2D
 
-signal peep_count_updated
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn_location = path_manager.path_layer.map_to_local(Vector2(0,48))
 	$PeepSpawnTimer.timeout.connect(on_peep_spawn_timeout)
 	SignalBus.update_cached_positions.connect(update_peeps_cached_positions)
+	SignalBus.debug_clear_peeps.connect(debug_clear_peeps)
 
 	
 func update_peeps_cached_positions():
@@ -53,7 +52,7 @@ func on_peep_spawn_timeout():
 	if peep_count == 0: 
 		spawn_ratio = ZooManager.zoo_attractiveness
 	else:
-		spawn_ratio = ZooManager.zoo_attractiveness / peep_count
+		spawn_ratio = (ZooManager.zoo_attractiveness * 0.5) / peep_count 
 		
 	spawn_ratio = clamp(spawn_ratio, 0.1, 10)
 	

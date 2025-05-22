@@ -1,0 +1,198 @@
+[gd_scene load_steps=12 format=3 uid="uid://clc0ubxyr8ptc"]
+
+[ext_resource type="Script" uid="uid://b3brvgp0qf35r" path="res://UI/UI popups/animal_shop_popup.gd" id="1_fgnlg"]
+[ext_resource type="FontFile" uid="uid://dh3lo7lghhs8x" path="res://UI/Thin sans.ttf" id="3_860ib"]
+[ext_resource type="Texture2D" uid="uid://imjitgjexxki" path="res://UI/Themes/woody/wood_ui.png" id="4_3cf3y"]
+[ext_resource type="PackedScene" uid="uid://s32d1ahqoaj4" path="res://UI/UI popups/elements/store_animal_element.tscn" id="4_fgnlg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_72ch2"]
+texture = ExtResource("4_3cf3y")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 8.0
+region_rect = Rect2(192, 512, 128, 124)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t50lu"]
+texture = ExtResource("4_3cf3y")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 16.0
+expand_margin_top = 8.0
+region_rect = Rect2(192, 512, 128, 124)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iw52e"]
+texture = ExtResource("4_3cf3y")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(192, 672, 128, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n3bvu"]
+texture = ExtResource("4_3cf3y")
+texture_margin_left = 14.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 14.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(32, 32, 128, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4217v"]
+texture = ExtResource("4_3cf3y")
+texture_margin_left = 14.0
+texture_margin_top = 8.0
+texture_margin_right = 14.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(512, 192, 128, 128)
+
+[sub_resource type="Theme" id="Theme_lxjh1"]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("3_860ib")
+Button/styles/hover = SubResource("StyleBoxTexture_72ch2")
+Button/styles/normal = SubResource("StyleBoxTexture_t50lu")
+Button/styles/pressed = SubResource("StyleBoxTexture_iw52e")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("3_860ib")
+Panel/styles/panel = SubResource("StyleBoxTexture_n3bvu")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_4217v")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgnlg"]
+
+[node name="AnimalShopPopup" type="Control"]
+layout_mode = 3
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_fgnlg")
+store_animal_element = ExtResource("4_fgnlg")
+
+[node name="Control" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_lxjh1")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 2
+theme_override_constants/margin_top = 12
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="Control" parent="Control/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="CloseMenu" type="Button" parent="Control/MarginContainer/VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+offset_right = 100.0
+offset_bottom = 100.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "X"
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -30.0
+offset_right = 87.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Animal shop"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer/MarginContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer/MarginContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "New animals in:"
+horizontal_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer/MarginContainer2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "00:00:00"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_fgnlg")
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Available animals"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="ElementList" type="GridContainer" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 2
+
+[node name="StoreAnimalElement" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("4_fgnlg")]
+layout_mode = 2
+
+[node name="StoreAnimalElement2" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("4_fgnlg")]
+layout_mode = 2
+
+[node name="StoreAnimalElement3" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("4_fgnlg")]
+layout_mode = 2
+
+[node name="StoreAnimalElement4" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("4_fgnlg")]
+layout_mode = 2
+
+[node name="StoreAnimalElement5" parent="Control/MarginContainer/VBoxContainer2/VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/ElementList" instance=ExtResource("4_fgnlg")]
+layout_mode = 2

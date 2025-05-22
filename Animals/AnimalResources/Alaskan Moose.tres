@@ -1,16 +1,19 @@
-[gd_resource type="Resource" script_class="animal_resource" load_steps=4 format=3 uid="uid://ludbawk1bcoe"]
+[gd_resource type="Resource" script_class="animal_resource" load_steps=5 format=3 uid="uid://ludbawk1bcoe"]
 
 [ext_resource type="Texture2D" uid="uid://v6oksek6ba8l" path="res://Animals/sprites/alaskan_moose.png" id="1_offvu"]
 [ext_resource type="Texture2D" uid="uid://daop6gdh1kpvs" path="res://Animals/sprites/alaskan_moose_cub.png" id="1_tb3pc"]
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="2_ebj7x"]
+[ext_resource type="Texture2D" uid="uid://s78mhwo52ucr" path="res://Animals/icons/alaskan-moose.png" id="2_mxq81"]
 
 [resource]
 script = ExtResource("2_ebj7x")
 tr_name = "ANIMAL_ALASKAN_MOOSE"
-id = 24
+id = 15
+rarity = 1
 cost = 650.0
 texture = ExtResource("1_offvu")
 cub_texture = ExtResource("1_tb3pc")
+icon = ExtResource("2_mxq81")
 feed = 1
 shadow_scale = 1.8
 sprite_y_offset = 2

@@ -2,17 +2,18 @@
 
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_5tph4"]
 [ext_resource type="Texture2D" uid="uid://behwr7u7npntk" path="res://Animals/sprites/black_bear_cub.png" id="1_t438b"]
+[ext_resource type="Texture2D" uid="uid://crdq1b614now5" path="res://Animals/icons/black-bear.png" id="2_t438b"]
 [ext_resource type="Texture2D" uid="uid://dpmcrd6mc50c0" path="res://Animals/sprites/black_bear.png" id="3_t438b"]
-[ext_resource type="Texture2D" uid="uid://cce6rehbgbrbd" path="res://Animals/thumbs/animal_thumbs6.png" id="3_wtabk"]
 
 [resource]
 script = ExtResource("1_5tph4")
 tr_name = "ANIMAL_BLACK_BEAR"
-id = 6
+id = 3
+rarity = 2
 cost = 500.0
 texture = ExtResource("3_t438b")
 cub_texture = ExtResource("1_t438b")
-thumb = ExtResource("3_wtabk")
+icon = ExtResource("2_t438b")
 feed = 0
 shadow_scale = 1.8
 sprite_y_offset = 6

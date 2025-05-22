@@ -10,17 +10,7 @@ class_name WaterManager
 var water_cells : Array[Vector2i]
 
 func _ready():
-	update_selection_menu()
-
-func update_selection_menu():
-	for child in %FixtureSelectionContainer.get_children():
-		child.queue_free()
-		
-	for lake_res in available_lakes:
-		var element = ui_lake_element.instantiate()
-		element.lake_res = lake_res
-		%LakeSelectionContainer.add_child(element)
-		%UI.connect_ui_element(element)
+	return
 
 func create_water_body(points):
 	if points.size() < 5:

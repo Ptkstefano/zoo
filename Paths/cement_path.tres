@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_gfnhk")
+id = 1
 tr_name = "PATHS_CEMENT"
 cost = 5.0
 atlas_y = 1

@@ -2,17 +2,18 @@
 
 [ext_resource type="Script" uid="uid://cbyx0prd18ag5" path="res://Animals/animal_res.gd" id="1_l53un"]
 [ext_resource type="Texture2D" uid="uid://b5xo2ney0u7y4" path="res://Animals/sprites/red_fox_cub.png" id="1_loq4w"]
+[ext_resource type="Texture2D" uid="uid://c8dmeu84rjutv" path="res://Animals/icons/red-fox.png" id="2_loq4w"]
 [ext_resource type="Texture2D" uid="uid://cchhf1lbjqu7o" path="res://Animals/sprites/red_fox.png" id="3_loq4w"]
-[ext_resource type="Texture2D" uid="uid://b3ofx7s83hnq3" path="res://Animals/thumbs/animal_thumbs7.png" id="3_ny82v"]
 
 [resource]
 script = ExtResource("1_l53un")
 tr_name = "ANIMAL_RED_FOX"
-id = 8
+id = 9
+rarity = 2
 cost = 200.0
 texture = ExtResource("3_loq4w")
 cub_texture = ExtResource("1_loq4w")
-thumb = ExtResource("3_ny82v")
+icon = ExtResource("2_loq4w")
 feed = 0
 shadow_scale = 1.0
 sprite_y_offset = 4

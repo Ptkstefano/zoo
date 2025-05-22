@@ -10,6 +10,7 @@ var speed = 25
 @export var quest_giver_icon_scene : PackedScene
 var quest_giver_icon : Sprite2D
 var is_quest_giver : bool = false
+var quest_giver_type : IdRefs.QUEST_GIVERS
 
 var direction : Vector2
 
@@ -45,6 +46,8 @@ func _ready():
 	SignalBus.update_cached_positions.connect(update_cached_position)
 	if staff_type == IdRefs.STAFF_TYPES.ZOOKEEPER or staff_type == IdRefs.STAFF_TYPES.ZOOKEEPER_UNIQUE:
 		staff_behavior.leap_towards.connect(on_leap_towards)
+	
+	SignalBus.activate_quest_giver.connect(on_staff_giving_quest)
 	
 	if data:
 		global_position = data['global_position']
@@ -158,17 +161,20 @@ func update_cached_position():
 func fire_staff():
 	staff_fired.emit(self)
 
-func on_staff_giving_quest():
-	staff_behavior.start_quest_giver()
-	is_quest_giver = true
-	quest_giver_icon = quest_giver_icon_scene.instantiate()
-	add_child(quest_giver_icon)
-	sprite_x = 10
-	sprite_y = 1
-	peepSprite.flip_h=false
-	is_moving = false
+func on_staff_giving_quest(quest_giver : IdRefs.QUEST_GIVERS):
+	## TODO - This will only work for unique zookeeper
+	if quest_giver == quest_giver_type:
+		staff_behavior.start_quest_giver()
+		is_quest_giver = true
+		quest_giver_icon = quest_giver_icon_scene.instantiate()
+		add_child(quest_giver_icon)
+		sprite_x = 10
+		sprite_y = 1
+		peepSprite.flip_h=false
+		is_moving = false
 	
-func on_staff_stop_giving_quest():
+func on_quest_giver_clicked():
+	SignalBus.quest_activated.emit()
 	staff_behavior.stop_quest_giver()
 	quest_giver_icon.queue_free()
 	is_quest_giver = false
